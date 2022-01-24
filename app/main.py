@@ -1,6 +1,6 @@
 from app.uitls.checks import check_who_won_or_loose
 from app.uitls.feature_count import feature_count
-from app.data import KNIGHTS
+from app.data.data import KNIGHTS
 
 
 def battle(knightsConfig):
