@@ -11,7 +11,7 @@ class Knight:
             name: str,
             power: int,
             hp: int,
-            armour: list[Armour],
+            armour: list,
             weapon: Weapon,
             potion: Potion = None,
     ):
