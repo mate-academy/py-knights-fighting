@@ -17,8 +17,8 @@ class Preparation:
 
             # apply armour
             knight["protection"] = 0
-            for protection in knight["armour"]:
-                knight["protection"] += protection["protection"]
+            for armour in knight["armour"]:
+                knight["protection"] += armour["protection"]
 
             # apply weapon
             knight["power"] += knight["weapon"]["power"]
