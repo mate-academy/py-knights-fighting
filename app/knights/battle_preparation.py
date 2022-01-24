@@ -28,7 +28,9 @@ class Preparation:
 
                 for statistic in stats:
                     if statistic in knight["potion"]["effect"]:
-                        knight[statistic] += knight["potion"]["effect"][statistic]
+                        knight[statistic] += knight["potion"]["effect"][
+                            statistic
+                        ]
 
             knight_object = Knight(knight, knight["power"], knight["hp"])
             dict_knights.update({knight_object.name["name"]: knight_object})
