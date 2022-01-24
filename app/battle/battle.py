@@ -5,13 +5,14 @@ class Battle:
 
     def versus(self, knight_1: str, knight_2: str):
         result_dict = {}
-        if self.knights_dict.get(knight_1) and self.knights_dict.get(knight_2):
-            self.knights_dict[knight_1].name['hp'] -= \
-                self.knights_dict[knight_2].name['power'] \
-                - self.knights_dict[knight_1].name['protection']
-            self.knights_dict[knight_2].name['hp'] -= \
-                self.knights_dict[knight_1].name['power'] \
-                - self.knights_dict[knight_2].name['protection']
+
+        self.knights_dict[knight_1].name['hp'] -= \
+            self.knights_dict[knight_2].name['power'] \
+            - self.knights_dict[knight_1].name['protection']
+
+        self.knights_dict[knight_2].name['hp'] -= \
+            self.knights_dict[knight_1].name['power'] \
+            - self.knights_dict[knight_2].name['protection']
 
         check_hp1 = self.check_health_point(
             self.knights_dict[knight_1].name['hp']

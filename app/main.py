@@ -2,12 +2,12 @@ from app.battle.battle import Battle
 from app.knights.battle_preparation import Preparation
 
 
-def battle(knightsConfig):
+def battle(knights_config):
     battle_result = {}
 
     # BATTLE PREPARATIONS:
 
-    preparation = Preparation(knightsConfig)
+    preparation = Preparation(knights_config)
     preparation = preparation.battle_preparation()
 
     # -------------------------------------------------------------------------------

@@ -9,29 +9,26 @@ class Preparation:
     def battle_preparation(self):
         # BATTLE PREPARATIONS:
         dict_knights = {}
+        stats = ("protection", "power", "hp")
+
         for knight in self.knights:
             # knight
             knight = self.knights[knight]
 
             # apply armour
             knight["protection"] = 0
-            for a in knight["armour"]:
-                knight["protection"] += a["protection"]
+            for protection in knight["armour"]:
+                knight["protection"] += protection["protection"]
 
             # apply weapon
             knight["power"] += knight["weapon"]["power"]
 
             # apply potion if exist
             if knight["potion"] is not None:
-                if "power" in knight["potion"]["effect"]:
-                    knight["power"] += knight["potion"]["effect"]["power"]
 
-                if "protection" in knight["potion"]["effect"]:
-                    knight["protection"] +=\
-                        knight["potion"]["effect"]["protection"]
-
-                if "hp" in knight["potion"]["effect"]:
-                    knight["hp"] += knight["potion"]["effect"]["hp"]
+                for statistic in stats:
+                    if statistic in knight["potion"]["effect"]:
+                        knight[statistic] += knight["potion"]["effect"][statistic]
 
             knight_object = Knight(knight, knight["power"], knight["hp"])
             dict_knights.update({knight_object.name["name"]: knight_object})
