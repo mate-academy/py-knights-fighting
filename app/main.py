@@ -106,7 +106,8 @@ def battle(knightsConfig):
             lancelot["power"] += lancelot["potion"]["effect"]["power"]
 
         if "protection" in lancelot["potion"]["effect"]:
-            lancelot["protection"] += lancelot["potion"]["effect"]["protection"]
+            lancelot["protection"] += \
+                lancelot["potion"]["effect"]["protection"]
 
         if "hp" in lancelot["potion"]["effect"]:
             lancelot["hp"] += lancelot["potion"]["effect"]["hp"]
@@ -150,7 +151,8 @@ def battle(knightsConfig):
             mordred["power"] += mordred["potion"]["effect"]["power"]
 
         if "protection" in mordred["potion"]["effect"]:
-            mordred["protection"] += mordred["potion"]["effect"]["protection"]
+            mordred["protection"] +=\
+                mordred["potion"]["effect"]["protection"]
 
         if "hp" in mordred["potion"]["effect"]:
             mordred["hp"] += mordred["potion"]["effect"]["hp"]
@@ -172,7 +174,8 @@ def battle(knightsConfig):
             red_knight["power"] += red_knight["potion"]["effect"]["power"]
 
         if "protection" in red_knight["potion"]["effect"]:
-            red_knight["protection"] += red_knight["potion"]["effect"]["protection"]
+            red_knight["protection"] +=\
+                red_knight["potion"]["effect"]["protection"]
 
         if "hp" in red_knight["potion"]["effect"]:
             red_knight["hp"] += red_knight["potion"]["effect"]["hp"]
