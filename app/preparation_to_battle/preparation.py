@@ -2,7 +2,10 @@ class Preparation:
     def __init__(self, knight):
         self.knight = knight
 
-    def set_characteristics(self):
+    def __iter__(self):
+        self.current_element = 0
+
+    def __next__(self):
 
         for name_knight, value in self.knight.items():
             current_knight = {name_knight: {}}
@@ -19,7 +22,7 @@ class Preparation:
             current_knight[name_knight]["power"] += value["weapon"]["power"]
 
             # apply potion if exist
-            if current_knight[name_knight]["potion"] is not None:
+            if current_knight[name_knight]["potion"]:
 
                 if "power" in value["potion"]["effect"]:
                     current_knight[name_knight]["power"] += \

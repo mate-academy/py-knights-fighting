@@ -6,11 +6,12 @@ from app.battle.battle import Battle
 def battle():
     # BATTLE PREPARATIONS:
     prepare = Preparation(KNIGHTS)
+    # set_characteristics = iter(prepare)
 
-    lancelot = prepare.set_characteristics()
-    arthur = prepare.set_characteristics()
-    mordred = prepare.set_characteristics()
-    red_knight = prepare.set_characteristics()
+    lancelot = next(prepare)
+    arthur = next(prepare)
+    mordred = next(prepare)
+    red_knight = next(prepare)
 
     # -------------------------------------------------------------------------------
     # BATTLE:
