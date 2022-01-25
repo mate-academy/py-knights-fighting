@@ -14,13 +14,12 @@ class Battle:
         first_knight_hp -= knight_2.get_power() - knight_1.get_protection()
         second_knight_hp -= knight_1.get_power() - knight_2.get_protection()
 
-        if first_knight_hp <= 0:
-            first_knight_hp = 0
-
-        if second_knight_hp <= 0:
-            second_knight_hp = 0
+        def check_hp(hp):
+            if hp <= 0:
+                hp = 0
+            return hp
 
         return {
-            knight_1.knight["name"]: first_knight_hp,
-            knight_2.knight["name"]: second_knight_hp
+            knight_1.knight["name"]: check_hp(first_knight_hp),
+            knight_2.knight["name"]: check_hp(second_knight_hp)
         }
