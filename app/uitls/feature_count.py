@@ -4,14 +4,11 @@ def feature_count(knightsConfig, knight_2):
                                for armour in result["armour"])
     result["power"] += result["weapon"]["power"]
 
+    stats = ("protection", "power", "hp")
+
     if result["potion"] is not None:
-        if "power" in result["potion"]["effect"]:
-            result["power"] += result["potion"]["effect"]["power"]
-
-        if "protection" in result["potion"]["effect"]:
-            result["protection"] += result["potion"]["effect"]["protection"]
-
-        if "hp" in result["potion"]["effect"]:
-            result["hp"] += result["potion"]["effect"]["hp"]
+        for statistic in stats:
+            if statistic in result["potion"]["effect"]:
+                result[statistic] += result["potion"]["effect"][statistic]
 
     return result
