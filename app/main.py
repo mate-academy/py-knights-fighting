@@ -19,4 +19,4 @@ def battle(knightsConfig):
 
 
 if __name__ == '__main__':
-    print(battle(KNIGHTS))
+    battle(KNIGHTS)
