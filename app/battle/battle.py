@@ -6,14 +6,15 @@ class Battle:
 
     def start_battle(self):
         while True:
-            if self.knight_1.hp <= 0:
-                self.knight_1 = 0
-                print(f"Win {self.knight_2}")
-                break
-            if self.knight_2.hp <= 0:
-                self.knight_2 = 0
-                print(f"Win {self.knight_1}")
-                break
 
             self.knight_1.hp -= self.knight_2.power - self.knight_1.protection
+            if self.knight_1.hp <= 0:
+                self.knight_1.hp = 0
+                print(f"Won {self.knight_2}")
+                break
+
             self.knight_2.hp -= self.knight_1.power - self.knight_2.protection
+            if self.knight_2.hp <= 0:
+                self.knight_2.hp = 0
+                print(f"Won {self.knight_1}")
+                break
