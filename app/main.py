@@ -4,7 +4,7 @@ from app.battle.battle import Battle
 """
 This main.py module contains the "battle" function
 and KNIGHT config. Function takes KNIGHT config to
-get data, creates instances of particular knights,
+get the data, creates instances of particular knights,
 performs "battle" calculations and returns final result.
 """
 
