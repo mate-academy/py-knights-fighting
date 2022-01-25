@@ -18,10 +18,10 @@ def duel(rival1, rival2):
 
 def battle(knights):
     knights = {
-        prsn["name"]: Knight(
-            prsn["name"], prsn["power"], prsn["hp"],
-            prsn["armour"], prsn["weapon"], prsn["potion"])
-        for prsn in knights.values()
+        knight["name"]: Knight(
+            knight["name"], knight["power"], knight["hp"],
+            knight["armour"], knight["weapon"], knight["potion"])
+        for knight in knights.values()
     }
 
     for knight in knights.values():
