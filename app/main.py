@@ -3,11 +3,11 @@ from app.uitls.feature_count import feature_count
 from app.data.data import KNIGHTS
 
 
-def battle(knightsConfig):
-    lancelot = feature_count(knightsConfig, "lancelot")
-    arthur = feature_count(knightsConfig, "arthur")
-    mordred = feature_count(knightsConfig, "mordred")
-    red_knight = feature_count(knightsConfig, "red_knight")
+def battle(knights_config):
+    lancelot = feature_count(knights_config, "lancelot")
+    arthur = feature_count(knights_config, "arthur")
+    mordred = feature_count(knights_config, "mordred")
+    red_knight = feature_count(knights_config, "red_knight")
     check_who_won_or_loose(mordred, lancelot)
     check_who_won_or_loose(red_knight, arthur)
     return {

@@ -1,5 +1,5 @@
-def feature_count(knightsConfig, knight_2):
-    result = knightsConfig[knight_2]
+def feature_count(knights_config, knight_2):
+    result = knights_config[knight_2]
     result["protection"] = sum(armour["protection"]
                                for armour in result["armour"])
     result["power"] += result["weapon"]["power"]
