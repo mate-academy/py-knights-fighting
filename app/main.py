@@ -116,6 +116,3 @@ def battle(config):
     result.update(result2)
 
     return result
-
-
-print(battle(KNIGHTS))
