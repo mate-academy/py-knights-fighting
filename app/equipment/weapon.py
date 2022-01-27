@@ -15,14 +15,14 @@ class Weapon:
     @staticmethod
     def arm_the_knight(knights):
 
-        for pers in knights.values():
-            if pers["weapon"]:
-                Weapon.weapons[pers["weapon"]["name"]] = Weapon(
-                    pers["weapon"]["name"],
-                    pers["weapon"]["power"]
+        for knight in knights.values():
+            if knight["weapon"]:
+                Weapon.weapons[knight["weapon"]["name"]] = Weapon(
+                    knight["weapon"]["name"],
+                    knight["weapon"]["power"]
                 )
-                Knight.knights[pers["name"]].weapon = \
-                    Weapon.weapons[pers["weapon"]["name"]]
-                Knight.knights[pers["name"]].power += \
-                    pers["weapon"]["power"]
+                Knight.knights[knight["name"]].weapon = \
+                    Weapon.weapons[knight["weapon"]["name"]]
+                Knight.knights[knight["name"]].power += \
+                    knight["weapon"]["power"]
         return Weapon.weapons

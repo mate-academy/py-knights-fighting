@@ -15,13 +15,13 @@ class Armour:
     @staticmethod
     def protect_the_knight(knights):
 
-        for pers in knights.values():
-            if len(pers["armour"]) > 0:
-                for part in pers["armour"]:
+        for knight in knights.values():
+            if len(knight["armour"]) > 0:
+                for part in knight["armour"]:
                     Armour.armours[part["part"]] = \
                         Armour(part["part"], part["protection"])
-                    Knight.knights[pers["name"]].armour = \
+                    Knight.knights[knight["name"]].armour = \
                         Armour.armours[part["part"]]
-                    Knight.knights[pers["name"]].protection += \
+                    Knight.knights[knight["name"]].protection += \
                         part["protection"]
         return Armour.armours

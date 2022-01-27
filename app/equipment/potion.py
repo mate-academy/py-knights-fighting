@@ -15,24 +15,24 @@ class Potion:
     @staticmethod
     def give_a_potion(knights):
 
-        for pers in knights.values():
-            if pers["potion"]:
-                Potion.potions[pers["potion"]["name"]] = Potion(
-                    pers["potion"]["name"],
-                    pers["potion"]["effect"]
+        for knight in knights.values():
+            if knight["potion"]:
+                Potion.potions[knight["potion"]["name"]] = Potion(
+                    knight["potion"]["name"],
+                    knight["potion"]["effect"]
                 )
-                Knight.knights[pers["name"]].potion = \
-                    Potion.potions[pers["potion"]["name"]]
+                Knight.knights[knight["name"]].potion = \
+                    Potion.potions[knight["potion"]["name"]]
 
-                for effect in pers["potion"]["effect"]:
+                for effect in knight["potion"]["effect"]:
                     if effect == "power":
-                        Knight.knights[pers["name"]].power += \
-                            pers["potion"]["effect"]["power"]
+                        Knight.knights[knight["name"]].power += \
+                            knight["potion"]["effect"]["power"]
                     if effect == "hp":
-                        Knight.knights[pers["name"]].hp += \
-                            pers["potion"]["effect"]["hp"]
+                        Knight.knights[knight["name"]].hp += \
+                            knight["potion"]["effect"]["hp"]
                     if effect == "protection":
-                        Knight.knights[pers["name"]].protection += \
-                            pers["potion"]["effect"]["protection"]
+                        Knight.knights[knight["name"]].protection += \
+                            knight["potion"]["effect"]["protection"]
 
         return Potion.potions

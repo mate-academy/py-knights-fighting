@@ -12,10 +12,10 @@ class Knight:
         return f"{self.name}"
 
     @staticmethod
-    def create_the_knight(persons: dict) -> dict:
-        for person in persons.values():
-            Knight.knights[person["name"]] = Knight(
-                person["name"], person["power"], person["hp"])
+    def create_the_knight(knights: dict) -> dict:
+        for knight in knights.values():
+            Knight.knights[knight["name"]] = Knight(
+                knight["name"], knight["power"], knight["hp"])
         return Knight.knights
 
     def check_fell(self):
