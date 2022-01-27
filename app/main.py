@@ -14,30 +14,30 @@ def battle(knightslist):
             knightslist[key]["potion"]
         )
 
-    for i in Knights.listknights:
-        if len(i.armour) != 0:
-            KnightsPrep.count_protection(i)
+    for fighter in Knights.listknights:
+        if len(fighter.armour) != 0:
+            KnightsPrep.count_protection(fighter)
 
-    for i in Knights.listknights:
-        KnightsPrep.count_power(i)
+    for fighter in Knights.listknights:
+        KnightsPrep.count_power(fighter)
 
-    for i in Knights.listknights:
-        KnightsPrep.apply_potion(i)
+    for fighter in Knights.listknights:
+        KnightsPrep.apply_potion(fighter)
 
     lancelot = 0
     arthur = 0
     mordred = 0
     red_knight = 0
 
-    for i in Knights.listknights:
-        if i.name == "Lancelot":
-            lancelot = i
-        if i.name == "Artur":
-            arthur = i
-        if i.name == "Mordred":
-            mordred = i
-        if i.name == "Red Knight":
-            red_knight = i
+    for fighter in Knights.listknights:
+        if fighter.name == "Lancelot":
+            lancelot = fighter
+        if fighter.name == "Artur":
+            arthur = fighter
+        if fighter.name == "Mordred":
+            mordred = fighter
+        if fighter.name == "Red Knight":
+            red_knight = fighter
 
     KnightBattle.battle(lancelot, mordred)
     KnightBattle.battle(arthur, red_knight)

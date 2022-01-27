@@ -1,8 +1,8 @@
 class KnightsPrep:
     @staticmethod
     def count_protection(knight):
-        for a in knight.armour:
-            knight.protection += a["protection"]
+        for tool in knight.armour:
+            knight.protection += tool["protection"]
         # return knight["protection"]
 
     @staticmethod
