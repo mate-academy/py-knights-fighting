@@ -1,8 +1,5 @@
 class Battle:
 
-    def __init__(self):
-        pass
-
     @staticmethod
     def get_in_order(knights):
         lst = []

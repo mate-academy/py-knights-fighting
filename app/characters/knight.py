@@ -13,9 +13,9 @@ class Knight:
 
     @staticmethod
     def create_the_knight(persons: dict) -> dict:
-        for pers in persons.values():
-            Knight.knights[pers["name"]] = Knight(
-                pers["name"], pers["power"], pers["hp"])
+        for person in persons.values():
+            Knight.knights[person["name"]] = Knight(
+                person["name"], person["power"], person["hp"])
         return Knight.knights
 
     def check_fell(self):
