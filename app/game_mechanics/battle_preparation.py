@@ -12,7 +12,8 @@ list_of_knights = [lancelot, arthur, mordred, red_knight]
 def armour_preparation():
 
     for knight in list_of_knights:
-        knight["protection"] = knight["helmet"] + knight["boots"] + knight["breastplate"]
+        knight["protection"] = \
+            knight["helmet"] + knight["boots"] + knight["breastplate"]
         return knight
 
 
@@ -23,7 +24,8 @@ def potion_preparation():
         if knight["potion"] is not None:
             knight["hp"] = knight["hp"] + knight["potion_hp"]
             knight["power"] = knight["power"] + knight["potion_power"]
-            knight["protection"] = knight["protection"] + knight["potion_protection"]
+            knight["protection"] = \
+                knight["protection"] + knight["potion_protection"]
         return knight
 
 
