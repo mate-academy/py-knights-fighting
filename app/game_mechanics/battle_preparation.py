@@ -1,6 +1,5 @@
 from app.npc.knights import fighters
-# from app.game_mechanics.dice import modifying
-# from app.game_mechanics.dice import rolling
+
 
 lancelot = fighters["lancelot"]
 arthur = fighters["arthur"]
