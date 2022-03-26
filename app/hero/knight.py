@@ -6,7 +6,7 @@ from app.items.potion import Potion
 class Knights():
 
     def __init__(self, name: str, power: int, hp: int,
-                 armour: list[Armour], weapon: Weapon, potion: Potion):
+                 armour: list, weapon: Weapon, potion: Potion):
         self.name = name
         self.power = power
         self.hp = hp

@@ -20,6 +20,3 @@ def battle(KNIGHTS):
     }
 
 
-if __name__ == "__main__":
-    print(battle(KNIGHTS))
-    # {'Lancelot': 0, 'Artur': 30, 'Mordred': 35, 'Red Knight': 5}
