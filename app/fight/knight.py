@@ -12,17 +12,17 @@ class Knight:
         Knight.knights.append(self)
 
     def apply_armor(self):
-        for a in self.armour:
-            self.protection += a['protection']
+        for armour in self.armour:
+            self.protection += armour['protection']
 
     def apply_weapon(self):
         self.power += self.weapon["power"]
 
     def apply_potion(self):
         if self.potion is not None:
-            if "power" in self.potion["effect"]:
-                self.power += self.potion["effect"]["power"]
-            if "protection" in self.potion["effect"]:
-                self.protection += self.potion["effect"]["protection"]
-            if "hp" in self.potion["effect"]:
-                self.hp += self.potion["effect"]["hp"]
+            stats = ("protection", "power", "hp")
+            for stat in stats:
+                if stat in self.potion["effect"]:
+                    setattr(self,
+                            stat,
+                            getattr(self, stat) + self.potion["effect"][stat])
