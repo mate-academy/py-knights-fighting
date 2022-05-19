@@ -1,4 +1,5 @@
 from app.hero.knight import Knights
+from app.file.dict_KNIGHTS import heros_and_story
 
 
 def battle(KNIGHTS):
@@ -17,3 +18,8 @@ def battle(KNIGHTS):
         mordred.name: mordred.hp,
         red_knight.name: red_knight.hp,
     }
+
+
+if __name__ == "__main__":
+
+    print(battle(heros_and_story))

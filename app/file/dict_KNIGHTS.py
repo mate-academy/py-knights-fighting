@@ -1,4 +1,4 @@
-KNIGHTS = {
+heros_and_story = {
     "lancelot": {
         "name": "Lancelot",
         "power": 35,
