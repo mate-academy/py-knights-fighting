@@ -17,4 +17,3 @@ class Knight:
 
             if "hp" in knight_and_amo["potion"]["effect"]:
                 self.hp += knight_and_amo["potion"]["effect"]["hp"]
-
