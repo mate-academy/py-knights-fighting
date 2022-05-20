@@ -1,12 +1,12 @@
-from app.hero.knight import Knights
-from app.file.dict_KNIGHTS import heros_and_story
+from app.hero.knight import Knight
+from app.file.descride_heros import describe_heros
 
 
-def battle(KNIGHTS):
-    lancelot = Knights.create_knight(KNIGHTS["lancelot"])
-    arthur = Knights.create_knight(KNIGHTS["arthur"])
-    mordred = Knights.create_knight(KNIGHTS["mordred"])
-    red_knight = Knights.create_knight(KNIGHTS["red_knight"])
+def battle(describe_heros):
+    lancelot = Knight.create_knight(describe_heros["lancelot"])
+    arthur = Knight.create_knight(describe_heros["arthur"])
+    mordred = Knight.create_knight(describe_heros["mordred"])
+    red_knight = Knight.create_knight(describe_heros["red_knight"])
 
     lancelot.fight(mordred)
 
@@ -22,4 +22,4 @@ def battle(KNIGHTS):
 
 if __name__ == "__main__":
 
-    print(battle(heros_and_story))
+    print(battle(describe_heros))

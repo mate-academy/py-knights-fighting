@@ -3,7 +3,7 @@ from app.items.weapon import Weapon
 from app.items.potion import Potion
 
 
-class Knights():
+class Knight():
 
     def __init__(self, name: str, power: int, hp: int,
                  armour: list, weapon: Weapon, potion: Potion):
@@ -21,17 +21,17 @@ class Knights():
         self.use_weapon()
 
     @staticmethod
-    def create_knight(KNIGHT_dict):
-        weapon = Weapon.create_weapons(KNIGHT_dict["weapon"])
-        potion = Potion.create_potion(KNIGHT_dict["potion"])
-        armour = [Armour.create_armour(item) for item in KNIGHT_dict["armour"]]
+    def create_knight(describe):
+        weapon = Weapon.create_weapons(describe["weapon"])
+        potion = Potion.create_potion(describe["potion"])
+        armour = [Armour.create_armour(item) for item in describe["armour"]]
 
-        knight = Knights(name=KNIGHT_dict["name"],
-                         power=KNIGHT_dict["power"],
-                         hp=KNIGHT_dict["hp"],
-                         armour=armour,
-                         weapon=weapon,
-                         potion=potion)
+        knight = Knight(name=describe["name"],
+                        power=describe["power"],
+                        hp=describe["hp"],
+                        armour=armour,
+                        weapon=weapon,
+                        potion=potion)
         return knight
 
     def use_armour(self):

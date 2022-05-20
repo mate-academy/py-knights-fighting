@@ -1,4 +1,4 @@
-heros_and_story = {
+describe_heros = {
     "lancelot": {
         "name": "Lancelot",
         "power": 35,
