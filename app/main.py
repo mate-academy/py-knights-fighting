@@ -4,17 +4,15 @@ from battle.battle import Battle
 
 def battle(knights_config):
 
-    knights = [Knight(knights_config[knight])
-               for knight in knights_config.keys()]
+    lancelot = Knight(knights_config["lancelot"])
+    arthur = Knight(knights_config["arthur"])
+    mordred = Knight(knights_config["mordred"])
+    red_knight = Knight(knights_config["red_knight"])
 
-    for k in range(len(knights) - 2):
-        battle_result = Battle(knights[k], knights[k + 2])
-        battle_result.attack()
+    Battle(lancelot, mordred).attack()
+    Battle(arthur, red_knight).attack()
 
-    battle_results = {}
-
-    for k in range(len(knights) - 2):
-        battle_results.update({knights[k].name: knights[k].hp})
-        battle_results.update({knights[k + 2].name: knights[k + 2].hp})
-
-    return battle_results
+    return {lancelot.name: lancelot.hp,
+            arthur.name: arthur.hp,
+            mordred.name: mordred.hp,
+            red_knight.name: red_knight.hp}
