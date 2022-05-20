@@ -4,10 +4,10 @@ from app.knights.battle import pvp
 
 def battle(knights_config):
 
-    lancelot = Knight(knights_config["lancelot"])
-    arthur = Knight(knights_config["arthur"])
-    mordred = Knight(knights_config["mordred"])
-    red_knight = Knight(knights_config["red_knight"])
+    lancelot = Knight.create_knight(knights_config["lancelot"])
+    arthur = Knight.create_knight(knights_config["arthur"])
+    mordred = Knight.create_knight(knights_config["mordred"])
+    red_knight = Knight.create_knight(knights_config["red_knight"])
 
     pvp(lancelot, mordred)
     pvp(arthur, red_knight)
