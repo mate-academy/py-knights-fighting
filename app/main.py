@@ -5,7 +5,7 @@ from battle.battle import Battle
 def battle(knights_config):
 
     knights = [Knight(knights_config[knight])
-                    for knight in knights_config.keys()]
+               for knight in knights_config.keys()]
 
     for k in range(0, len(knights) - 2):
         battle_result = Battle(knights[k], knights[k + 2])
