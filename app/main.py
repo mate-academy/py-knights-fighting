@@ -20,6 +20,7 @@ def check_hp(knight):
     if knight.hp <= 0:
         knight.hp = 0
 
+
 def fight(knight1, knight2):
     knight1.hp -= knight2.power - knight1.protection
     knight2.hp -= knight1.power - knight2.protection
