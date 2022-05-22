@@ -44,10 +44,11 @@ class Knight:
     def get_potion_points(potion_data, stat):
         if not potion_data:
             return 0
+
         if stat in potion_data["effect"]:
             return potion_data["effect"][stat]
-        else:
-            return 0
+
+        return 0
 
     def __isub__(self, other):
         self.hp -= other.power - self.protection
