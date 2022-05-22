@@ -44,10 +44,10 @@ def battle(cfg):
     arthur.challenge(red_knight)
 
     return {
-            lancelot.name: lancelot.hp,
-            arthur.name: arthur.hp,
-            mordred.name: mordred.hp,
-            red_knight.name: red_knight.hp,
+        lancelot.name: lancelot.hp,
+        arthur.name: arthur.hp,
+        mordred.name: mordred.hp,
+        red_knight.name: red_knight.hp,
     }
 
 
