@@ -21,12 +21,8 @@ class Knight:
         if self.potion is not None:
             for stat in stats:
                 if stat in self.potion["effect"]:
-                    if stat == "power":
-                        self.power += self.potion["effect"]["power"]
-                    if stat == "protection":
-                        self.protection += self.potion["effect"]["protection"]
-                    if stat == "hp":
-                        self.hp += self.potion["effect"]["hp"]
+                    value = getattr(self, stat) + self.potion["effect"][stat]
+                    setattr(self, stat, value)
 
     def start_battle(self, other):
         self.hp -= other.power - self.protection
