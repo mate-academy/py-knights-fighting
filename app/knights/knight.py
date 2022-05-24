@@ -10,23 +10,23 @@ class Knight:
 
     def battle_preparation(self):
         # apply armour
-        self.protection = 0
-        for a in self.armour:
-            self.protection += a["protection"]
+        stats = ["power", "protection", "hp"]
+        for armour in self.armour:
+            self.protection += armour["protection"]
 
         # apply weapon
         self.power += self.weapon["power"]
 
         # apply potion if exist
         if self.potion is not None:
-            if "power" in self.potion["effect"]:
-                self.power += self.potion["effect"]["power"]
-
-            if "protection" in self.potion["effect"]:
-                self.protection += self.potion["effect"]["protection"]
-
-            if "hp" in self.potion["effect"]:
-                self.hp += self.potion["effect"]["hp"]
+            for stat in stats:
+                if stat in self.potion["effect"]:
+                    if stat == "power":
+                        self.power += self.potion["effect"]["power"]
+                    if stat == "protection":
+                        self.protection += self.potion["effect"]["protection"]
+                    if stat == "hp":
+                        self.hp += self.potion["effect"]["hp"]
 
     def start_battle(self, other):
         self.hp -= other.power - self.protection
