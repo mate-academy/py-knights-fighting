@@ -99,13 +99,13 @@ def battle(knightsConfig):
                       )
 
     # apply armour
-    lancelot.knight_armour(knightsConfig["lancelot"]["armour"])
+    lancelot.armour(knightsConfig["lancelot"]["armour"])
 
     # apply weapon
-    lancelot.knight_weapon(knightsConfig["lancelot"]["weapon"])
+    lancelot.weapon(knightsConfig["lancelot"]["weapon"])
 
     # apply potion if exist
-    lancelot.knight_potion(knightsConfig["lancelot"]["potion"])
+    lancelot.potion(knightsConfig["lancelot"]["potion"])
 
     # arthur
     arthur = Knight("Artur",
@@ -114,13 +114,13 @@ def battle(knightsConfig):
                     )
 
     # apply armour
-    arthur.knight_armour(knightsConfig["arthur"]["armour"])
+    arthur.armour(knightsConfig["arthur"]["armour"])
 
     # apply weapon
-    arthur.knight_weapon(knightsConfig["arthur"]["weapon"])
+    arthur.weapon(knightsConfig["arthur"]["weapon"])
 
     # apply potion if exist
-    arthur.knight_potion(knightsConfig["arthur"]["potion"])
+    arthur.potion(knightsConfig["arthur"]["potion"])
 
     # mordred
     mordred = Knight("Mordred",
@@ -129,13 +129,13 @@ def battle(knightsConfig):
                      )
 
     # apply armour
-    mordred.knight_armour(knightsConfig["mordred"]["armour"])
+    mordred.armour(knightsConfig["mordred"]["armour"])
 
     # apply weapon
-    mordred.knight_weapon(knightsConfig["mordred"]["weapon"])
+    mordred.weapon(knightsConfig["mordred"]["weapon"])
 
     # apply potion if exist
-    mordred.knight_potion(knightsConfig["mordred"]["potion"])
+    mordred.potion(knightsConfig["mordred"]["potion"])
 
     # red_knight
     red_knight = Knight("Red Knight",
@@ -144,13 +144,13 @@ def battle(knightsConfig):
                         )
 
     # apply armour
-    red_knight.knight_armour(knightsConfig["red_knight"]["armour"])
+    red_knight.armour(knightsConfig["red_knight"]["armour"])
 
     # apply weapon
-    red_knight.knight_weapon(knightsConfig["red_knight"]["weapon"])
+    red_knight.weapon(knightsConfig["red_knight"]["weapon"])
 
     # apply potion if exist
-    red_knight.knight_potion(knightsConfig["red_knight"]["potion"])
+    red_knight.potion(knightsConfig["red_knight"]["potion"])
 
     # -------------------------------------------------------------------------------
     # BATTLE:
