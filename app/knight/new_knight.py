@@ -7,8 +7,8 @@ class Knight:
         self.protection = 0
 
     def armour(self, armour: list):
-        for a in armour:
-            self.protection += a["protection"]
+        for armor in armour:
+            self.protection += armor["protection"]
 
     def weapon(self, weapon: dict):
         self.power += weapon["power"]
