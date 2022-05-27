@@ -6,8 +6,8 @@ class Knight:
         self.hp = knight["hp"]
 
         # apply armour
-        for a in knight["armour"]:
-            self.protection += a["protection"]
+        for armour in knight["armour"]:
+            self.protection += armour["protection"]
 
         # apply weapon
         self.power += knight["weapon"]["power"]

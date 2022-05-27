@@ -3,12 +3,12 @@ from app.knight_class import Knight
 from app.battle_func import fight
 
 
-def battle(knightsConfig):
+def battle(knights_config):
     # BATTLE PREPARATIONS:
-    lancelot = Knight(knightsConfig["lancelot"])
-    arthur = Knight(knightsConfig["arthur"])
-    mordred = Knight(knightsConfig["mordred"])
-    red_knight = Knight(knightsConfig["red_knight"])
+    lancelot = Knight(knights_config["lancelot"])
+    arthur = Knight(knights_config["arthur"])
+    mordred = Knight(knights_config["mordred"])
+    red_knight = Knight(knights_config["red_knight"])
 
     # BATTLE:
     fight(lancelot, mordred)
