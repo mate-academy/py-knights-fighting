@@ -35,14 +35,11 @@ def draw_weapon(knight):
 
 
 def drink_potion(knight):
-    knight_potion = knight.potion
-    if knight_potion is not None:
-        if "power" in knight_potion.effect:
-            knight.power += knight_potion.effect["power"]
-        if "protection" in knight_potion.effect:
-            knight.protection += knight_potion.effect["protection"]
-        if "hp" in knight_potion.effect:
-            knight.hp += knight_potion.effect["hp"]
+    if knight.potion is not None:
+        for effect, value in knight.potion.effect.items():
+            attribute_value = getattr(knight, effect)
+            attribute_value += value
+            setattr(knight, effect, attribute_value)
 
 
 def apply_equipment(knight: Knight):
