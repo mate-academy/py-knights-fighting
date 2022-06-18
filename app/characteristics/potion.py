@@ -1,10 +1,6 @@
 def amply_potion(knight):
+    stats = ["power", "protection", "hp"]
     if knight["potion"] is not None:
-        if "power" in knight["potion"]["effect"]:
-            knight["power"] += knight["potion"]["effect"]["power"]
-
-        if "protection" in knight["potion"]["effect"]:
-            knight["protection"] += knight["potion"]["effect"]["protection"]
-
-        if "hp" in knight["potion"]["effect"]:
-            knight["hp"] += knight["potion"]["effect"]["hp"]
+        for stat in stats:
+            if stat in knight["potion"]["effect"]:
+                knight[stat] += knight["potion"]["effect"][stat]
