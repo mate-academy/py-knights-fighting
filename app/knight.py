@@ -1,6 +1,3 @@
-from app.knight_stats import KNIGHTS
-
-
 class Knight:
 
     def __init__(self,
@@ -54,14 +51,3 @@ class Knight:
 
         else:
             print(f"{other.name} says: \"DIZ BUT A SCRATCH!!!\"")
-
-
-def get_knight(knight_name: dict):
-    return Knight(
-                  KNIGHTS[knight_name]["name"],
-                  KNIGHTS[knight_name]["power"],
-                  KNIGHTS[knight_name]["hp"],
-                  KNIGHTS[knight_name]["armour"],
-                  KNIGHTS[knight_name]["weapon"],
-                  KNIGHTS[knight_name]["potion"]
-    )
