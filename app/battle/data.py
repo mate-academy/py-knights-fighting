@@ -84,3 +84,7 @@ knights_dict = {
         }
     }
 }
+# print(knights_dict["lancelot"])
+# knights_dict["lancelot"]["hp"] += 50
+# knights_dict["lancelot"]["power"] += 50
+# print(knights_dict["lancelot"])
