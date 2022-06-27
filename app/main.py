@@ -1,20 +1,24 @@
-from app.knights_configuration import configured_knights
+from app.knights_configuration import knights_configuration
+from app.knights_list import knights
 
-#
+
 def battle(knights):
+
+    # BATTLE PREPARATIONS:
+
+    configured_knights = knights_configuration(knights)
 
     # 1 Lancelot vs Mordred:
 
-    lancelot = knights["lancelot"]
-    print(lancelot)
-    mordred = knights["mordred"]
+    lancelot = configured_knights["lancelot"]
+    mordred = configured_knights["mordred"]
 
     lancelot.versus(mordred)
 
     # 2 Arthur vs Red Knight:
 
-    arthur = knights["arthur"]
-    red_knight = knights["red_knight"]
+    arthur = configured_knights["arthur"]
+    red_knight = configured_knights["red_knight"]
 
     arthur.versus(red_knight)
 
@@ -27,4 +31,4 @@ def battle(knights):
     }
 
 
-print(battle(configured_knights))
+print(battle(knights))

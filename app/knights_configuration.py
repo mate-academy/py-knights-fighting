@@ -1,7 +1,5 @@
-from app.knights_list import knights
-
-
-class KnightsConfig:  # Class for knights configuration
+# Class for knights configuration
+class KnightsConfig:
 
     def __init__(self, name: str, hp: int, protection: int, power: int):
         self.name = name
@@ -18,10 +16,8 @@ class KnightsConfig:  # Class for knights configuration
             enemy.hp = 0
 
 
-configured_knights = {}
-
-
-def knights_configuration():
+# Function that configurate knights with KnightsConfig class
+def knights_configuration(knights):
 
     for key_name, properties in knights.items():
 
@@ -51,7 +47,5 @@ def knights_configuration():
                 hp += properties["potion"]["effect"]["hp"]
 
         knight = KnightsConfig(name, hp, protection, power)
-        configured_knights[key_name] = knight
-
-
-knights_configuration()
+        knights[key_name] = knight
+    return knights
