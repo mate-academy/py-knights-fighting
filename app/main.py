@@ -1,6 +1,6 @@
 from app.knights_configuration import configured_knights
 
-
+#
 def battle(knights):
 
     # 1 Lancelot vs Mordred:
