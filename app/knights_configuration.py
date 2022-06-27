@@ -36,16 +36,13 @@ def knights_configuration(knights):
         power = properties["power"] + properties["weapon"]["power"]
 
         # apply potion if exist
+        skills = {"hp": hp, "protection": protection, "power": power}
         if properties["potion"] is not None:
-            if "power" in properties["potion"]["effect"]:
-                power += properties["potion"]["effect"]["power"]
+            for key, value in skills.items():
+                if key in properties["potion"]["effect"]:
+                    value += properties["potion"]["effect"][key]
+                    skills[key] = value
 
-            if "protection" in properties["potion"]["effect"]:
-                protection += properties["potion"]["effect"]["protection"]
-
-            if "hp" in properties["potion"]["effect"]:
-                hp += properties["potion"]["effect"]["hp"]
-
-        knight = KnightsConfig(name, hp, protection, power)
+        knight = KnightsConfig(name, skills["hp"], skills["protection"], skills["power"])
         knights[key_name] = knight
     return knights
