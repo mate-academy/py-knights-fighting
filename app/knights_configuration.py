@@ -43,6 +43,10 @@ def knights_configuration(knights):
                     value += properties["potion"]["effect"][key]
                     skills[key] = value
 
-        knight = KnightsConfig(name, skills["hp"], skills["protection"], skills["power"])
+        knight = KnightsConfig(
+            name, skills["hp"],
+            skills["protection"],
+            skills["power"]
+        )
         knights[key_name] = knight
     return knights
