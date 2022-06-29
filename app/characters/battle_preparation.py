@@ -8,8 +8,8 @@ def battle_preparation(knights):
         hp = knights[character]["hp"]
 
         protection = 0
-        for a in knights[character]["armour"]:
-            protection += a["protection"]
+        for armour in knights[character]["armour"]:
+            protection += armour["protection"]
 
         power = knights[character]["power"] +\
             knights[character]["weapon"]["power"]
