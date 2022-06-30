@@ -14,18 +14,16 @@ def battle_preparation(knights):
         power = knights[character]["power"] +\
             knights[character]["weapon"]["power"]
 
+        skills = {"hp": hp, "protection": protection, "power": power}
         if knights[character]["potion"] is not None:
-            if "power" in knights[character]["potion"]["effect"]:
-                power += knights[character]["potion"]["effect"]["power"]
-
-            if "protection" in knights[character]["potion"]["effect"]:
-                protection += \
-                    knights[character]["potion"]["effect"]["protection"]
-
-            if "hp" in knights[character]["potion"]["effect"]:
-                hp += knights[character]["potion"]["effect"]["hp"]
+            for key, value in skills.items():
+                if key in knights[character]["potion"]["effect"]:
+                    value += knights[character]["potion"]["effect"][key]
+                    skills[key] = value
 
         knights_dict[character] = Knight(knights[character]['name'],
-                                         hp, protection, power)
+                                         skills["hp"],
+                                         skills["protection"],
+                                         skills["power"])
 
     return knights_dict
