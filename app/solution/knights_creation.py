@@ -12,21 +12,18 @@ class Knights:
         for name, value in heroes.items():
             knight = heroes[name]
             knight["protection"] = 0
-            for a in knight["armour"]:
-                knight["protection"] += a["protection"]
+            for armour in knight["armour"]:
+                knight["protection"] += armour["protection"]
             knight["power"] += knight["weapon"]["power"]
             if knight["potion"] is not None:
-                if "power" in knight["potion"]["effect"]:
-                    knight["power"] += knight["potion"]["effect"]["power"]
-                if "protection" in knight["potion"]["effect"]:
-                    knight["protection"] += \
-                        knight["potion"]["effect"]["protection"]
-                if "hp" in knight["potion"]["effect"]:
-                    knight["hp"] += knight["potion"]["effect"]["hp"]
-            new_dict.update({name: [knight["name"],
-                                    knight["power"],
-                                    knight["hp"],
-                                    knight["protection"]]})
+                stats = ["protection", "power", "hp"]
+                for stat in stats:
+                    if stat in knight["potion"]["effect"]:
+                        knight[stat] += knight["potion"]["effect"][stat]
+            new_dict.update({name: Knights(knight["name"],
+                                           knight["power"],
+                                           knight["hp"],
+                                           knight["protection"])})
         return new_dict
 
     def one_battle(self, other):

@@ -90,16 +90,9 @@ KNIGHTS = {
 
 
 def battle(kn_dict: dict):
-    info = Knights.transformation(kn_dict)
-    arthur = Knights(info["arthur"][0], info["arthur"][1],
-                     info["arthur"][2], info["arthur"][3])
-    lancelot = Knights(info["lancelot"][0], info["lancelot"][1],
-                       info["lancelot"][2], info["lancelot"][3])
-    mordred = Knights(info["mordred"][0], info["mordred"][1],
-                      info["mordred"][2], info["mordred"][3])
-    red_knight = Knights(info["red_knight"][0], info["red_knight"][1],
-                         info["red_knight"][2], info["red_knight"][3])
-    arthur.one_battle(red_knight)
-    lancelot.one_battle(mordred)
-    heroes = [arthur, lancelot, mordred, red_knight]
-    return {hero.name: hero.hp for hero in heroes}
+    heroes = Knights.transformation(kn_dict)
+    heroes.get("arthur").one_battle(heroes.get("red_knight"))
+    heroes.get("lancelot").one_battle(heroes.get("mordred"))
+    heroes_names = ["arthur", "lancelot", "mordred", "red_knight"]
+    return {heroes.get(hero).name: heroes.get(hero).hp
+            for hero in heroes_names}
