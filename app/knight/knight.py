@@ -32,15 +32,9 @@ class Knight:
 
     # knight's statistics before the battle
     def get_knight_stats(self):
-        setattr(self,
-                "total_hp",
-                self.hp + self.potion.hp)
-        setattr(self,
-                "total_power",
-                self.power + self.potion.power + self.weapon.power)
-        setattr(self,
-                "total_armour",
-                self.armour + self.potion.protection)
+        self.total_hp = self.hp + self.potion.hp
+        self.total_power = self.power + self.potion.power + self.weapon.power
+        self.total_armour = self.armour + self.potion.protection
 
     # battle between two knights
     @classmethod
@@ -51,12 +45,8 @@ class Knight:
         first_defense = second_knight.total_power - first_knight.total_armour
         second_defense = first_knight.total_power - second_knight.total_armour
 
-        setattr(first_knight,
-                "health",
-                first_knight.total_hp - first_defense)
-        setattr(second_knight,
-                "health",
-                second_knight.total_hp - second_defense)
+        first_knight.health = first_knight.total_hp - first_defense
+        second_knight.health = second_knight.total_hp - second_defense
 
         if first_knight.health < 0:
             first_knight.health = 0
