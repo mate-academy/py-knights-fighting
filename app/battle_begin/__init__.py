@@ -1,1 +1,0 @@
-print('The battle begin!!!')
