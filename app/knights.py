@@ -4,16 +4,18 @@ class Knights:
         self.knight = knight
         self.config = config
         self.name = self.config["name"]
-        self.hp = self.config["hp"] + \
-            (self.config["potion"]["effect"].get("hp", 0)
-                if self.config["potion"] is not None else 0)
-        self.power = self.config["power"] + self.config["weapon"]["power"] + \
-            (self.config["potion"]["effect"].get("power", 0)
-                if self.config["potion"] is not None else 0)
-        self.protection = sum(armour["protection"] for armour
-                              in self.config["armour"]) + \
-            (self.config["potion"]["effect"].get("protection", 0)
-                if self.config["potion"] is not None else 0)
+        self.armour = self.config["armour"]
+        self.weapon = self.config["weapon"]
+        self.potion = self.config["potion"]
+        self.hp = self.config["hp"]
+        self.power = self.config["power"] + self.weapon["power"]
+        self.protection = sum(armour["protection"] for armour in self.armour)
+
+        stats = ("hp", "power", "protection")
+        for stat in stats:
+            setattr(self, stat,
+                    getattr(self, stat) + (self.potion["effect"].get(stat, 0)
+                                           if self.potion is not None else 0))
 
     def knights_fighting(self, other):
         self.hp -= other.power - self.protection
