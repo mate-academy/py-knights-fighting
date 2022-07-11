@@ -12,10 +12,9 @@ class New_Knight:
 
         self.power += levelup.weapon['power']
 
+        stats = ("power", "hp", "protection")
         if levelup.potion is not None:
-            if levelup.potion['effect'].get('power'):
-                self.power += levelup.potion['effect']['power']
-            if levelup.potion['effect'].get('hp'):
-                self.hp += levelup.potion['effect']['hp']
-            if levelup.potion['effect'].get('protection'):
-                self.protection += levelup.potion['effect']['protection']
+            for _ in range(1):
+                self.power += levelup.potion['effect'].get(stats[0], 0)
+                self.hp += levelup.potion['effect'].get(stats[1], 0)
+                self.protection += levelup.potion['effect'].get(stats[2], 0)
