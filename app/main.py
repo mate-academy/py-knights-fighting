@@ -123,7 +123,7 @@ def battle(KnightsConfig):
         print(result)
         result.append(Knights[i + 2][2] - Knights[i][1] + Knights[i + 2][3])
 
-    for j in range(4):
+    for j in range(len(KnightsConfig)):
         if result[j] <= 0:
             result[j] = 0
 

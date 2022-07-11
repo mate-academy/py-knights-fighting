@@ -2,12 +2,10 @@ class Potion:
 
     @staticmethod
     def app_potion(potion: dict, power, hp, protection):
-        if "power" in potion["effect"]:
-            power += potion["effect"]["power"]
+        stats = ["power", "hp", "protection"]
+        stats_ = [power, hp, protection]
+        for i in range(len(stats)):
+            if stats[i] in potion["effect"]:
+                stats_[i] += potion["effect"][stats[i]]
 
-        if "protection" in potion["effect"]:
-            protection += potion["effect"]["protection"]
-
-        if "hp" in potion["effect"]:
-            hp += potion["effect"]["hp"]
-        return power, hp, protection
+        return stats_[0], stats_[1], stats_[2]
