@@ -95,11 +95,11 @@ def battle(KnightsConfig):
     # list of lists [name, power, hp, protection]
     Knights = []
 
-    for k, v in KnightsConfig.items():
+    for key, value in KnightsConfig.items():
         # list [name, power, hp, protection)
         Knight = []
 
-        knight = KnightsConfig[k]
+        knight = KnightsConfig[key]
 
         Knight.append(knight["name"])
 
