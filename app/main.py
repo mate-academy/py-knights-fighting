@@ -112,15 +112,19 @@ def knight_to_class(knights):
         name = knight["name"]
         power = knight["power"] + knight["weapon"]["power"]
         hp = knight["hp"]
-        protection = sum(i["protection"] for i in knight["armour"])
+        protection = sum(part["protection"] for part in knight["armour"])
 
         if knight["potion"] is not None:
-            if "power" in knight["potion"]["effect"]:
-                power += knight["potion"]["effect"]["power"]
-            if "hp" in knight["potion"]["effect"]:
-                hp += knight["potion"]["effect"]["hp"]
-            if "protection" in knight["potion"]["effect"]:
-                protection += knight["potion"]["effect"]["protection"]
+            potion = knight["potion"]["effect"]
+            stats = ("power", "hp", "protection")
+            for stat in stats:
+                if stat in potion:
+                    if  stat == "power":
+                        power += potion[stat]
+                    if stat == "hp":
+                        hp += potion[stat]
+                    if stat == "protection":
+                        protection += potion[stat]
 
         Knight(name=name, power=power, hp=hp, protection=protection)
 
@@ -138,7 +142,7 @@ def battle(knights):
     lancelot - mordred
     arthur - red_knight
 
-    return {i.name: i.hp for i in result_list}
+    return {knight.name: knight.hp for knight in result_list}
 
 
 print(battle(KNIGHTS))
