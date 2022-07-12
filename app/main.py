@@ -109,7 +109,9 @@ class Knight:
 def knight_to_class(knights):
     fighters = [value for key, value in knights.items()]
     for knight in fighters:
-        knight["protection"] = sum(part["protection"] for part in knight["armour"])
+        knight["protection"] = sum(
+            part["protection"] for part in knight["armour"]
+        )
         if knight["potion"] is not None:
             potion = knight["potion"]["effect"]
             stats = ("power", "hp", "protection")
