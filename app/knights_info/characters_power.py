@@ -16,9 +16,6 @@ class Knight:
             self.protection += armour_part["protection"]
 
         if self.potion is not None:
-            if "hp" in self.potion["effect"]:
-                self.hp += self.potion["effect"]["hp"]
-            if "power" in self.potion["effect"]:
-                self.power += self.potion["effect"]["power"]
-            if "protection" in self.potion["effect"]:
-                self.protection += self.potion["effect"]["protection"]
+            self.hp += self.potion["effect"].get("hp", 0)
+            self.power += self.potion["effect"].get("power", 0)
+            self.protection += self.potion["effect"].get("protection", 0)
