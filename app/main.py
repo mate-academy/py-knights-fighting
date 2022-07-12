@@ -119,7 +119,7 @@ def knight_to_class(knights):
             stats = ("power", "hp", "protection")
             for stat in stats:
                 if stat in potion:
-                    if  stat == "power":
+                    if stat == "power":
                         power += potion[stat]
                     if stat == "hp":
                         hp += potion[stat]
