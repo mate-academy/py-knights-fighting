@@ -97,23 +97,23 @@ def battle(KnightsConfig):
 
     for key, value in KnightsConfig.items():
         # list [name, power, hp, protection)
-        knight_ = []
+        knight_list = []
 
         knight = KnightsConfig[key]
 
-        knight_.append(knight["name"])
+        knight_list.append(knight["name"])
 
-        knight_.append(knight["power"] + knight["weapon"]["power"])
+        knight_list.append(knight["power"] + knight["weapon"]["power"])
 
-        knight_.append(knight["hp"])
+        knight_list.append(knight["hp"])
 
-        knight_.append(Armour.app_armour(knight["armour"]))
+        knight_list.append(Armour.app_armour(knight["armour"]))
 
         if knight["potion"] is not None:
-            knight_[1], knight_[2], knight_[3] = Potion.app_potion(
-                knight["potion"], knight_[1], knight_[2], knight_[3])
+            knight_list[1], knight_list[2], knight_list[3] = Potion.app_potion(
+                knight["potion"], knight_list[1], knight_list[2], knight_list[3])
 
-        Knights.append(knight_)
+        Knights.append(knight_list)
         print(Knights)
     # -------------------------------------------------------------------------------
     # list result hp_after_fighting
