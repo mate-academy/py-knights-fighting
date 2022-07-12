@@ -14,7 +14,6 @@ class New_Knight:
 
         stats = ("power", "hp", "protection")
         if levelup.potion is not None:
-            for _ in range(1):
-                self.power += levelup.potion['effect'].get(stats[0], 0)
-                self.hp += levelup.potion['effect'].get(stats[1], 0)
-                self.protection += levelup.potion['effect'].get(stats[2], 0)
+            self.power += levelup.potion['effect'].get(stats[0], 0)
+            self.hp += levelup.potion['effect'].get(stats[1], 0)
+            self.protection += levelup.potion['effect'].get(stats[2], 0)
