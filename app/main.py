@@ -1,103 +1,13 @@
-from app.battle_knights.battle import Battle
+from app.battle_knights.battle import BattleF
+from app.battle_knights.knights_dict import knights
 
 
-def battle(knights):
+def battle(dict_person=knights):
     total_hps = {}
-    total_hpg = Battle.total_hp(knights)
-    for knight, value in total_hpg.items():
+    battlefield = BattleF(knights_d=dict_person)
+    battlefield = battlefield.total_hp()
+    for knight_k, value in battlefield.items():
         if value <= 0:
             value = 0
-        total_hps[knights[knight]["name"]] = value
+        total_hps[knights[knight_k]["name"]] = value
     return total_hps
-
-
-
-KNIGHTS = {
-    "lancelot": {
-        "name": "Lancelot",
-        "power": 35,
-        "hp": 100,
-        "armour": [],
-        "weapon": {
-            "name": "Metal Sword",
-            "power": 50,
-        },
-        "potion": None,
-    },
-    "arthur": {
-        "name": "Artur",
-        "power": 45,
-        "hp": 75,
-        "armour": [
-            {
-                "part": "helmet",
-                "protection": 15,
-            },
-            {
-                "part": "breastplate",
-                "protection": 20,
-            },
-            {
-                "part": "boots",
-                "protection": 10,
-            }
-        ],
-        "weapon": {
-            "name": "Two-handed Sword",
-            "power": 55,
-        },
-        "potion": None,
-    },
-    "mordred": {
-        "name": "Mordred",
-        "power": 30,
-        "hp": 90,
-        "armour": [
-            {
-                "part": "breastplate",
-                "protection": 15,
-            },
-            {
-                "part": "boots",
-                "protection": 10,
-            }
-        ],
-        "weapon": {
-            "name": "Poisoned Sword",
-            "power": 60,
-        },
-        "potion": {
-            "name": "Berserk",
-            "effect": {
-                "power": +15,
-                "hp": -5,
-                "protection": +10,
-            }
-        }
-    },
-    "red_knight": {
-        "name": "Red Knight",
-        "power": 40,
-        "hp": 70,
-        "armour": [
-            {
-                "part": "breastplate",
-                "protection": 25,
-            }
-        ],
-        "weapon": {
-            "name": "Sword",
-            "power": 45
-        },
-        "potion": {
-            "name": "Blessing",
-            "effect": {
-                "hp": +10,
-                "power": +5,
-            }
-        }
-    }
-}
-print(battle(KNIGHTS))
-
-
