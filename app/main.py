@@ -91,9 +91,10 @@ KNIGHTS = {
 
 def battle(KnightsConfig):
 
-    # Preaparations
+    # preaparations
     # list of lists [name, power, hp, protection]
-    Knights = []
+
+    knights = []
 
     for key, value in KnightsConfig.items():
         # list [name, power, hp, protection)
@@ -111,25 +112,26 @@ def battle(KnightsConfig):
 
         if knight["potion"] is not None:
             knight_list[1], knight_list[2], knight_list[3] = Potion.app_potion(
-                knight["potion"], knight_list[1], knight_list[2], knight_list[3])
+                knight["potion"], knight_list[1],
+                knight_list[2], knight_list[3])
 
-        Knights.append(knight_list)
-        print(Knights)
+        knights.append(knight_list)
+        print(knights)
     # -------------------------------------------------------------------------------
     # list result hp_after_fighting
     result = []
     for i in range(2):
-        result.append(Knights[i][2] - Knights[i + 2][1] + Knights[i][3])
+        result.append(knights[i][2] - knights[i + 2][1] + knights[i][3])
         print(result)
-        result.append(Knights[i + 2][2] - Knights[i][1] + Knights[i + 2][3])
+        result.append(knights[i + 2][2] - knights[i][1] + knights[i + 2][3])
 
     for j in range(len(KnightsConfig)):
         if result[j] <= 0:
             result[j] = 0
 
     return {
-        Knights[0][0]: result[0],
-        Knights[1][0]: result[2],
-        Knights[2][0]: result[1],
-        Knights[3][0]: result[3],
+        knights[0][0]: result[0],
+        knights[1][0]: result[2],
+        knights[2][0]: result[1],
+        knights[3][0]: result[3],
     }
