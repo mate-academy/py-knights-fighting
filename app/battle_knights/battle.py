@@ -9,8 +9,8 @@ class BattleF:
 
     def total_hp(self):
         total = {}
-        total_list = TotalList(person=self.knights_d)
-        total_list = total_list.battle_()
+        total_l = TotalList(person=self.knights_d)
+        total_list = total_l.battle_()
         total_list["lancelot"]["hp"] -= total_list["mordred"]["power"] - total_list["lancelot"]["protection"]
         total["lancelot"] = total_list["lancelot"]["hp"]
         total_list["mordred"]["hp"] -= total_list["lancelot"]["power"] - total_list["mordred"]["protection"]
@@ -20,6 +20,4 @@ class BattleF:
         total_list["red_knight"]["hp"] -= total_list["arthur"]["power"] - total_list["red_knight"]["protection"]
         total["red_knight"] = total_list["red_knight"]["hp"]
         return total
-
-
 

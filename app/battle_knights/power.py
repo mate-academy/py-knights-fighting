@@ -1,15 +1,15 @@
-from app.battle_knights.knights_dict import knights
-
-
 class Power:
 
-    def __init__(self, knights_person=knights):
-        self.knights_person = knights_person
+    def __init__(self, knight_people):
+        self.knight_people = knight_people
 
     def battle_power(self):
-        for knight_people in self.knights_person.values():
-            knight_people["power"] += knight_people["weapon"]["power"]
-            if knight_people["potion"] is not None:
-                if "power" in knight_people["potion"]["effect"]:
-                    knight_people["power"] += knight_people["potion"]["effect"]["power"]
-            return knight_people["power"]
+        total_dic = {}
+        self.knight_people["power"] += self.knight_people["weapon"]["power"]
+        if self.knight_people["potion"] is not None:
+            if "power" in self.knight_people["potion"]["effect"]:
+                self.knight_people["power"] += self.knight_people["potion"]["effect"]["power"]
+            total_dic["knight_people"] = {"power": self.knight_people["power"]}
+        return total_dic
+
+
