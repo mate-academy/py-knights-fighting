@@ -7,8 +7,7 @@ class Total:
         totali = {}
         if self.knight_person["potion"] is not None:
             if "hp" in self.knight_person["potion"]["effect"]:
-                self.knight_person["hp"] += self.knight_person["potion"]["effect"]["hp"]
-            totali["knight_person"] = {"hp": self.knight_person["hp"]}
+                self.knight_person["hp"] +=\
+                    self.knight_person["potion"]["effect"]["hp"]
+        totali["hp"] = self.knight_person["hp"]
         return totali
-
-

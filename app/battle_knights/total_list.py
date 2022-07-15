@@ -10,7 +10,6 @@ class TotalList:
         self.person = person
 
     def battle_(self):
-        knight = {}
         total_dict = {}
         for knight_per, people_k in self.person.items():
             prot = Protection(knight_p=people_k)
@@ -20,5 +19,5 @@ class TotalList:
             total_t = Total(knight_person=people_k)
             c = total_t.battle_hp()
             knight = a | b | c
-            total_dict = {"knight_per": knight}
+            total_dict[knight_per] = knight
         return total_dict
