@@ -18,17 +18,10 @@ class King:
         # apply potion if exist
         stats = ("protection", "power", "hp")
         if name["potion"] is not None:
+            effect = name["potion"]["effect"]
             for stat in stats:
-                if stat in name["potion"]["effect"]:
-                    self.stat += name["potion"]["effect"][stat]
-            # if "power" in name["potion"]["effect"]:
-            #     self.power += name["potion"]["effect"]["power"]
-            #
-            # if "protection" in name["potion"]["effect"]:
-            #     self.protection += name["potion"]["effect"]["protection"]
-            #
-            # if "hp" in name["potion"]["effect"]:
-            #     self.hp += name["potion"]["effect"]["hp"]
+                if stat in effect:
+                    setattr(self, stat, getattr(self, stat) + effect[stat])
 
     def __sub__(self, other):
         self.hp -= other.power - self.protection
