@@ -9,22 +9,26 @@ class King:
         self.protection = protection
 
     def new_stat(self, name):
-        for a in name["armour"]:
-            self.protection += a["protection"]
+        for armour in name["armour"]:
+            self.protection += armour["protection"]
 
         # apply weapon
         self.power += name["weapon"]["power"]
 
         # apply potion if exist
+        stats = ("protection", "power", "hp")
         if name["potion"] is not None:
-            if "power" in name["potion"]["effect"]:
-                self.power += name["potion"]["effect"]["power"]
-
-            if "protection" in name["potion"]["effect"]:
-                self.protection += name["potion"]["effect"]["protection"]
-
-            if "hp" in name["potion"]["effect"]:
-                self.hp += name["potion"]["effect"]["hp"]
+            for stat in stats:
+                if stat in name["potion"]["effect"]:
+                    self.stat += name["potion"]["effect"][stat]
+            # if "power" in name["potion"]["effect"]:
+            #     self.power += name["potion"]["effect"]["power"]
+            #
+            # if "protection" in name["potion"]["effect"]:
+            #     self.protection += name["potion"]["effect"]["protection"]
+            #
+            # if "hp" in name["potion"]["effect"]:
+            #     self.hp += name["potion"]["effect"]["hp"]
 
     def __sub__(self, other):
         self.hp -= other.power - self.protection
