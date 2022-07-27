@@ -1,7 +1,7 @@
 def apply_armour(knight):
     knight["protection"] = 0
-    for protection in knight["armour"]:
-        knight["protection"] += protection["protection"]
+    for armour in knight["armour"]:
+        knight["protection"] += armour["protection"]
 
 
 def apply_weapon(knight):
