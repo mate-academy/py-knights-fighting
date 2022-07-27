@@ -14,6 +14,7 @@ def apply_potion_if_exist(knight):
             if magic in knight["potion"]["effect"]:
                 knight[magic] += knight["potion"]["effect"][magic]
 
+
 def train(*args):
     for knight in args:
         apply_armour(knight)
