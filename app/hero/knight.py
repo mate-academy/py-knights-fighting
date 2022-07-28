@@ -25,11 +25,11 @@ class Knight:
         return result
 
     def full_hp(self):
-        return self.hp + self.potion.hp
+        return self.hp + self.potion.effect["hp"]
 
     def full_power(self):
-        return self.power + self.weapon.power + self.potion.power
+        return self.power + self.weapon.power + self.potion.effect["power"]
 
     def full_protection(self):
         armour = sum([armour["protection"] for armour in self.armour.items])
-        return armour + self.potion.protection
+        return armour + self.potion.effect["protection"]
