@@ -9,8 +9,8 @@ def battle(knights):
     mordred = Knights(knights["mordred"])
     red_knight = Knights(knights["red_knight"])
 
-    lancelot.order_det_winner(mordred)
-    arthur.order_det_winner(red_knight)
+    lancelot.order_determination_winner(mordred)
+    arthur.order_determination_winner(red_knight)
 
     return {
         lancelot.name: lancelot.hp,

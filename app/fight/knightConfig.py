@@ -23,7 +23,7 @@ class Knights:
                             stat,
                             getattr(self, stat) + self.potion["effect"][stat])
 
-    def order_det_winner(self, other):
+    def order_determination_winner(self, other):
         self.hp -= other.power - self.protection
         other.hp -= self.power - other.protection
         if self.hp <= 0:
