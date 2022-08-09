@@ -8,7 +8,8 @@ class Stats:
             self.total_armor = 0
             self.total_power = value["power"]
             self.total_hp = value["hp"]
-            self.knights[self.name] = {"hp": self.hp(), "power": self.power(), "armor": self.armour()}
+            self.knights[self.name] = {"hp": self.hp(), "power": self.power(),
+                                       "armor": self.armour()}
 
     def armour(self):
         for armor in self.parameters["armour"]:
