@@ -53,4 +53,4 @@ def battle(knights):
     }
 
 
-print({k: v for k, v in battle(KNIGHTS).items()})
+print({knight: hp for knight, hp in battle(KNIGHTS).items()})
