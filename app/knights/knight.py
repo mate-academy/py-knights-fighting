@@ -26,6 +26,8 @@ class Knight:
 
     def knights_potion_drinking(self):
         effects = self.potion.get("effect")
-        stats = (effects.get("protection"), effects.get("power"), effects.get("hp"))
+        stats = (effects.get("protection"),
+                 effects.get("power"),
+                 effects.get("hp"))
 
         return stats
