@@ -11,9 +11,12 @@ class Battle:
             (extra_power,
              extra_hp,
              extra_protection) = knight.knights_potion_drinking()
-            knight.power += extra_power
-            knight.hp += extra_hp
-            knight.armour += extra_protection
+            if extra_power is not None:
+                knight.power += int(extra_power)
+            if extra_hp is not None:
+                knight.hp += int(extra_hp)
+            if extra_protection is not None:
+                knight.armour += int(extra_protection)
 
     @staticmethod
     def duel(first_duelist, second_duelist):
