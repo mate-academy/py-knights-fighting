@@ -1,6 +1,4 @@
-from app.prepare.protection import Protection
-from app.prepare.battle import Battle
-
+from app.prepare.protection import Knight
 
 KNIGHTS = {
     "lancelot": {
@@ -90,49 +88,37 @@ KNIGHTS = {
 }
 
 
-def battle(knightsConfig):
-    # BATTLE PREPARATIONS:
+def get_knight(name: str, config: dict):
+    return Knight(config[name]["name"],
+                  config[name]["power"],
+                  config[name]["hp"])
 
-    # lancelot
-    lancelot = knightsConfig["lancelot"]
-    lan = Protection(lancelot)
-    lan.get_protection()
-    lan.get_weapon()
-    lan.get_potion()
 
-    # arthur
-    arthur = knightsConfig["arthur"]
-    art = Protection(arthur)
-    art.get_protection()
-    art.get_weapon()
-    art.get_potion()
+def battle_two_knights(first: Knight, second: Knight):
+    first.hp -= second.power - first.protection
+    if first.hp <= 0:
+        first.hp = 0
+    second.hp -= first.power - second.protection
+    if second.hp <= 0:
+        second.hp = 0
+    return {first.name: first.hp, second.name: second.hp}
 
-    # mordred
-    mordred = knightsConfig["mordred"]
-    mor = Protection(mordred)
-    mor.get_protection()
-    mor.get_weapon()
-    mor.get_potion()
 
-    # red_knight
-    red_knight = knightsConfig["red_knight"]
-    red = Protection(red_knight)
-    red.get_protection()
-    red.get_weapon()
-    red.get_potion()
-
-    # -------------------------------------------------------------------------------
-    # BATTLE:
-    Battle(lancelot).battle_knight(mordred)
-    Battle(arthur).battle_knight(red_knight)
-
-    # Return battle results:
-    return {
-        lancelot["name"]: lancelot["hp"],
-        arthur["name"]: arthur["hp"],
-        mordred["name"]: mordred["hp"],
-        red_knight["name"]: red_knight["hp"],
-    }
+def battle(knights_config):
+    lancelot = get_knight("lancelot", knights_config)
+    arthur = get_knight("arthur", knights_config)
+    mordred = get_knight("mordred", knights_config)
+    red_knight = get_knight("red_knight", knights_config)
+    knights_list = [lancelot, arthur, mordred, red_knight]
+    for knight in knights_list:
+        for value in knights_config.values():
+            if knight.name == value["name"]:
+                knight.get_armour(value["armour"])
+                knight.get_weapon(value["weapon"])
+                knight.get_potion(value["potion"])
+    first_result = battle_two_knights(lancelot, mordred)
+    second_result = battle_two_knights(arthur, red_knight)
+    return first_result | second_result
 
 
 print(battle(KNIGHTS))

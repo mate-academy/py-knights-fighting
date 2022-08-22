@@ -1,24 +1,29 @@
-class Protection:
-    def __init__(self, knight: dict):
-        self.knight = knight
-        self.knight["protection"] = 0
+class Knight:
+    def __init__(self,
+                 name: str,
+                 power: int,
+                 hp: int):
+        self.name = name
+        self.power = power
+        self.hp = hp
+        self.protection = 0
 
-    def get_protection(self):
-        for a in self.knight["armour"]:
-            self.knight["protection"] += a["protection"]
+    def get_armour(self, armour: list):
+        if armour:
+            for part in armour:
+                if "protection" in part:
+                    self.protection += part["protection"]
 
-    def get_weapon(self):
-        self.knight["power"] += self.knight["weapon"]["power"]
+    def get_weapon(self, weapon: dict):
+        self.power += weapon["power"]
 
-    def get_potion(self):
-        if self.knight["potion"] is not None:
-            if "power" in self.knight["potion"]["effect"]:
-                self.knight["power"] +=\
-                    self.knight["potion"]["effect"]["power"]
-
-            if "protection" in self.knight["potion"]["effect"]:
-                self.knight["protection"] +=\
-                    self.knight["potion"]["effect"]["protection"]
-
-            if "hp" in self.knight["potion"]["effect"]:
-                self.knight["hp"] += self.knight["potion"]["effect"]["hp"]
+    def get_potion(self, potion: dict):
+        if potion is not None:
+            if "effect" in potion:
+                for effect in potion["effect"].keys():
+                    if effect == "power":
+                        self.power += potion["effect"]["power"]
+                    elif effect in "hp":
+                        self.hp += potion["effect"]["hp"]
+                    elif effect == "protection":
+                        self.protection += potion["effect"]["protection"]
