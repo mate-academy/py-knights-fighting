@@ -19,11 +19,9 @@ class Knight:
 
     def get_potion(self, potion: dict):
         if potion is not None:
-            if "effect" in potion:
-                for effect in potion["effect"].keys():
-                    if effect == "power":
-                        self.power += potion["effect"]["power"]
-                    elif effect in "hp":
-                        self.hp += potion["effect"]["hp"]
-                    elif effect == "protection":
-                        self.protection += potion["effect"]["protection"]
+            stats = ("protection", "power", "hp")
+            for stat in stats:
+                if stat in potion["effect"]:
+                    setattr(self,
+                            stat,
+                            getattr(self, stat) + potion["effect"][stat])
