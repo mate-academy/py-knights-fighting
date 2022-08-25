@@ -49,17 +49,17 @@ def battle(KNIGHTS):
     list_knights = [lancelot, arthur, mordred, red_knight]
     for knight in list_knights:
         sum_armour = 0
-        for elements in knight.armour:
-            sum_armour += elements.protection
+        for armour in knight.armour:
+            sum_armour += armour.protection
         knight.armour = sum_armour
         knight.power = knight.power + knight.weapon.power
         if knight.potion is not None:
-            additional_element = knight.potion["effect"]
-            knight.hp = knight.hp + additional_element["hp"]
-            knight.power = knight.power + additional_element["power"]
-            if len(additional_element) == 3:
+            potion = knight.potion["effect"]
+            knight.hp = knight.hp + potion["hp"]
+            knight.power = knight.power + potion["power"]
+            if len(potion) == 3:
                 knight.armour = \
-                    knight.armour + additional_element["protection"]
+                    knight.armour + potion["protection"]
             else:
                 pass
 
