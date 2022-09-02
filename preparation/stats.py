@@ -1,6 +1,3 @@
-# from preparation.knights import KNIGHTS
-#
-
 def total_stats(KNIGHTS):
     knight_total_stats = KNIGHTS
     for knight in knight_total_stats.values():

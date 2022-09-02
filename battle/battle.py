@@ -1,5 +1,4 @@
 from preparation.stats import total_stats
-# from preparation.knights import KNIGHTS
 
 
 def battle(KNIGHTS):
