@@ -12,14 +12,16 @@ def apply_potion(knight):
     if knight["potion"] is not None:
         if "power" in knight["potion"]["effect"]:
             knight["power"] += knight["potion"]["effect"]["power"]
+
         if "protection" in knight["potion"]["effect"]:
             knight["protection"] += knight["potion"]["effect"]["protection"]
+
         if "hp" in knight["potion"]["effect"]:
             knight["hp"] += knight["potion"]["effect"]["hp"]
 
 
 def battle_preparation(*args):
     for knight in args:
-        apply_weapon(knight)
         apply_armour(knight)
         apply_potion(knight)
+        apply_weapon(knight)
