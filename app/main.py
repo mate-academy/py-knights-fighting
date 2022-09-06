@@ -3,7 +3,7 @@ import app.battle_preparation as b_p
 import app.battle as bat
 
 
-def battle_main(knights_config):
+def battle(knights_config):
 
     lancelot = knights_config["lancelot"]
     arthur = knights_config["arthur"]
@@ -22,4 +22,4 @@ def battle_main(knights_config):
     }
 
 
-print(battle_main(knights))
+print(battle(knights))
