@@ -91,30 +91,15 @@ KNIGHTS = {
 
 
 def battle(knights):
-    # BATTLE PREPARATIONS:
 
-    # lancelot
     lancelot = knight_config(knights["lancelot"])
-
-    # arthur
     arthur = knight_config(knights["arthur"])
-
-    # mordred
     mordred = knight_config(knights["mordred"])
-
-    # red_knight
     red_knight = knight_config(knights["red_knight"])
 
-    # -------------------------------------------------------------------------------
-    # BATTLE:
-
-    # 1 Lancelot vs Mordred:
     battle_knights(lancelot, mordred)
-
-    # 2 Arthur vs Red Knight:
     battle_knights(arthur, red_knight)
 
-    # Return Battle results:
     return {
         lancelot["name"]: lancelot["hp"],
         arthur["name"]: arthur["hp"],
