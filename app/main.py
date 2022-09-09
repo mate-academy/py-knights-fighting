@@ -1,6 +1,5 @@
 from app.knight import Knight
-from app.battle import Battle
-from app.result import Result
+
 
 KNIGHTS = {
     "lancelot": {
@@ -90,6 +89,23 @@ KNIGHTS = {
 }
 
 
+def return_result(knights: list[Knight]):
+    result = {knight.name: knight.hp for knight in knights}
+    return result
+
+
+def two_knights_battle(knights: list[Knight]):
+    for i in range(len(knights)):
+        knights[i].hp -= \
+            knights[(i + 1) % len(knights)].power - knights[i].protection
+        fix_hp_if_fell(knights[i])
+
+
+def fix_hp_if_fell(knight: Knight):
+    if knight.hp < 0:
+        knight.hp = 0
+
+
 def battle(knights_config):
     # BATTLE PREPARATIONS:
 
@@ -102,13 +118,13 @@ def battle(knights_config):
     # BATTLE:
 
     # 1 Lancelot vs Mordred:
-    Battle.two_knights_battle([lancelot, mordred])
+    two_knights_battle([lancelot, mordred])
 
     # 2 Arthur vs Red Knight:
-    Battle.two_knights_battle([arthur, red_knight])
+    two_knights_battle([arthur, red_knight])
 
     # Return battle results:
-    return Result.return_result([lancelot, arthur, mordred, red_knight])
+    return return_result([lancelot, arthur, mordred, red_knight])
 
 
 print(battle(KNIGHTS))
