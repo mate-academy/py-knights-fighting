@@ -1,6 +1,5 @@
 class Knights:
     def __init__(self, configurations):
-        # for i in configurations.values():
         self.name = configurations['name']
         self.hp = configurations["hp"]
         self.power = configurations["power"]
