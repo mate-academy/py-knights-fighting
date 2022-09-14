@@ -1,15 +1,15 @@
 from app.stats.weapon import Weapon
 from app.stats.armour import Armour
-from app.stats.potion import Potion
 
 
 class Knight:
 
     def __init__(self, name, power, hp, protection=0):
         self.name = name
+        self.protection = protection
         self.power = power
         self.hp = hp
-        self.protection = protection
+        self.potion = None
 
     def apply_armour(self, armour):
         self.protection += armour.protection
@@ -35,26 +35,10 @@ class Knight:
         self.hp += potion.hp
         self.protection += potion.protection
 
-    def get_potion(self, knight_dict):
-        if knight_dict["potion"] is not None:
-            potion_dict = knight_dict["potion"]["effect"]
-            if "hp" in potion_dict:
-                potion_hp = potion_dict["hp"]
-            else:
-                potion_hp = 0
-            if "power" in potion_dict:
-                potion_power = potion_dict["power"]
-            else:
-                potion_power = 0
-            if "protection" in potion_dict:
-                potion_protection = potion_dict["protection"]
-            else:
-                potion_protection = 0
-            knight_potion = Potion(knight_dict["potion"]["name"],
-                                   potion_hp,
-                                   potion_power,
-                                   potion_protection)
-            self.apply_potion(knight_potion)
+    def get_potion(self):
+        stats = ("power", "hp", "protection")
+        for stat in stats:
+            setattr(self, stat, getattr(self, stat) + self.potion["effect"][stat])
 
     def fight(self, other):
         other_strength = other.power - self.protection
