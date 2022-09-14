@@ -38,7 +38,8 @@ class Knight:
     def get_potion(self):
         stats = ("power", "hp", "protection")
         for stat in stats:
-            setattr(self, stat, getattr(self, stat) + self.potion["effect"][stat])
+            setattr(self, stat,
+                    getattr(self, stat) + self.potion["effect"][stat])
 
     def fight(self, other):
         other_strength = other.power - self.protection
