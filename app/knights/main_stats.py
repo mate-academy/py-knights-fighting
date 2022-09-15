@@ -1,4 +1,4 @@
-def knights_check(all_knights, knight_name):
+def knight_stat(all_knights, knight_name):
     knight = all_knights[knight_name]
     # apply armour
     knight["protection"] = 0
@@ -17,11 +17,3 @@ def knights_check(all_knights, knight_name):
         if "hp" in knight["potion"]["effect"]:
             knight["hp"] += knight["potion"]["effect"]["hp"]
     return knight
-
-
-
-
-
-
-
-
