@@ -1,4 +1,3 @@
-from app.heroes.config import KNIGHTS
 from app.battles.tournament import make_tournament_list
 
 
