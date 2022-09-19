@@ -1,30 +1,31 @@
 class Armour:
-    def __init__(self, part: str, protection: int):
-        self.part = part
-        self.protection = protection
+    def __init__(self, armour: list):
+        self.armour = armour
+        self.protection = 0
 
-    def apply_armor(self, other):
-        other.protection += self.protection
+    def apply_armor(self):
+        for part in self.armour:
+            self.protection += part["protection"]
+        return self.protection
 
 
 class Weapon:
-    def __init__(self, name: str, power: int):
-        self.name = name
-        self.power = power
+    def __init__(self, weapon: dict):
+        self.power = weapon["power"]
 
-    def apply_weapon(self, other):
-        other.power += self.power
+    def get_power(self):
+        return self.power
 
 
 class Potion:
-    def __init__(self, name: str, effect: dict):
-        self.name = name
-        self.effect = effect
+    def __init__(self, potion: dict):
+        self.potion = potion
 
     def apply_potion(self, other):
-        if self.effect.get('hp'):
-            other.hp += self.effect['hp']
-        if self.effect.get('power'):
-            other.power += self.effect['power']
-        if self.effect.get('protection'):
-            other.protection += self.effect['protection']
+        if self.potion is not None:
+            if self.potion["effect"].get("power"):
+                other.power += self.potion["effect"]["power"]
+            if self.potion["effect"].get("protection"):
+                other.protection += self.potion["effect"]["protection"]
+            if self.potion["effect"].get("hp"):
+                other.hp += self.potion["effect"]["hp"]
