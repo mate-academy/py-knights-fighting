@@ -103,7 +103,8 @@ def battle(knights_config: dict) -> dict:
         if knight_magic["potion"] is not None:
             for value in list_power:
                 if value in knight_magic["potion"]["effect"]:
-                    knight_magic[value] += knight_magic["potion"]["effect"][value]
+                    knight_magic[value] += \
+                        knight_magic["potion"]["effect"][value]
     lancelot["hp"] -= mordred["power"] - lancelot["protection"]
     mordred["hp"] -= lancelot["power"] - mordred["protection"]
     arthur["hp"] -= red_knight["power"] - arthur["protection"]
