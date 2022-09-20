@@ -1,5 +1,5 @@
 from app.stats.features import knight_features
-from app.knight.battles import first_battle, second_battle
+from app.knight.battles import battles
 
 
 def battle(knights_info):
@@ -8,8 +8,7 @@ def battle(knights_info):
     mordred = knight_features(knights_info, knight_name="mordred")
     red_knight = knight_features(knights_info, knight_name="red_knight")
 
-    first_battle(lancelot, mordred)
-    second_battle(arthur, red_knight)
+    battles(lancelot, mordred, arthur, red_knight)
     return {
         lancelot["name"]: lancelot["hp"],
         arthur["name"]: arthur["hp"],
