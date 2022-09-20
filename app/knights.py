@@ -9,7 +9,7 @@ class Knight:
         self.power = knight_stats["power"]
         self.protection = 0
 
-    def prepare_to_battle(self):
+    def prepare_to_battle(self) -> None:
         armour = Armour(self.knight_stats["armour"])
         self.protection += armour.apply_armor()
 
@@ -19,9 +19,9 @@ class Knight:
         potion = Potion(self.knight_stats["potion"])
         potion.apply_potion(self)
 
-    def attack_enemy(self, other):
+    def attack_enemy(self, other) -> None:
         other.hp -= self.power - other.protection
 
-    def hp_check(self):
+    def hp_check(self) -> None:
         if self.hp <= 0:
             self.hp = 0

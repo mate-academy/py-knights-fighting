@@ -1,7 +1,7 @@
 from app.knights import Knight
 
 
-def battle(knights):
+def battle(knights) -> dict:
     lancelot = Knight(knights["lancelot"])
     lancelot.prepare_to_battle()
 
