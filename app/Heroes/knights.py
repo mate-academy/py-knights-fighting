@@ -1,5 +1,4 @@
-from app.config.equip import Armour
-from app.config.equip import Weapon
+from app.config.equip import Armour, Weapon
 from app.config.baffs import Buffs
 
 
