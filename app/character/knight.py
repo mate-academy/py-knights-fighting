@@ -65,9 +65,9 @@ class Knight:
     def armor_up(self) -> None:
         if self.items.armors:
             if not self.is_armored:
-                for arm in self.items.armors:
-                    self.protection += arm.protection
-                    print(f"{self.name} wear {arm.part}")
+                for armour in self.items.armors:
+                    self.protection += armour.protection
+                    print(f"{self.name} wear {armour.part}")
                 self.is_armored = True
                 if self.is_weapon_up:
                     self.is_ready = True
@@ -79,9 +79,9 @@ class Knight:
     def armor_down(self) -> None:
         if self.items.armors:
             if self.is_armored:
-                for arm in self.items.armors:
-                    self.protection -= arm.protection
-                    print(f"{self.name} unwearied {arm.part}")
+                for armour in self.items.armors:
+                    self.protection -= armour.protection
+                    print(f"{self.name} unwearied {armour.part}")
                 self.is_armored = False
                 self.is_ready = False
             else:
