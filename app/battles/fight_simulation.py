@@ -1,7 +1,10 @@
-def brawl(first, second) -> None:
-    first.hp -= second.power - first.protection
-    if first.hp <= 0:
-        first.hp = 0
-    second.hp -= first.power - second.protection
-    if second.hp <= 0:
-        second.hp = 0
+from app.heroes.fighter import Hero
+
+
+def brawl(first_fighter: Hero, second_fighter: Hero) -> None:
+    first_fighter.hp -= second_fighter.power - first_fighter.protection
+    if first_fighter.hp <= 0:
+        first_fighter.hp = 0
+    second_fighter.hp -= first_fighter.power - second_fighter.protection
+    if second_fighter.hp <= 0:
+        second_fighter.hp = 0
