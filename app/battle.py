@@ -6,7 +6,7 @@ class Battle:
         self.first_knight = first_knight
         self.second_knight = second_knight
 
-    def fight(self):
+    def fight(self) -> None:
         self.first_knight.hp -= \
             self.second_knight.power - self.first_knight.protection
 

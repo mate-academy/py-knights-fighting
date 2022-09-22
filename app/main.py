@@ -89,7 +89,7 @@ KNIGHTS = {
 }
 
 
-def battle(knight_config):
+def battle(knight_config) -> dict:
     lancelot = Knight.create_and_prepare_knight(knight_config["lancelot"])
     arthur = Knight.create_and_prepare_knight(knight_config["arthur"])
     mordred = Knight.create_and_prepare_knight(knight_config["mordred"])

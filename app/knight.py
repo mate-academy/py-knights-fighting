@@ -44,7 +44,7 @@ class Knight:
             self.protection += effect["protection"]
 
     @staticmethod
-    def get_all_knights_hp(knights: list):
+    def get_all_knights_hp(knights: list) -> dict:
         return {
             knight.name: knight.hp for knight in knights
         }
