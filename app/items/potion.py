@@ -1,10 +1,8 @@
 class Potion:
     def __init__(self,
-                 p_name: str = "Unknown",
-                 effect=None
-                 ) -> None:
-
+                 name: str = "Unknown",
+                 effect: dict = None) -> None:
         if effect is None:
             effect = {}
-        self.name = p_name
+        self.name = name
         self.effect = effect

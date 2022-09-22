@@ -5,24 +5,23 @@ from app.items.potion import Potion
 
 class Inventory:
     def __init__(self,
-                 i_weapon=None,
-                 i_armors=None,
-                 i_potion=None
-                 ) -> None:
-        if i_weapon:
-            self.weapon = Sword(i_weapon["name"], i_weapon["power"])
+                 weapon: dict = None,
+                 armors: dict = None,
+                 potion: dict = None) -> None:
+        if weapon:
+            self.weapon = Sword(weapon["name"], weapon["power"])
         else:
             self.weapon = None
 
-        if i_armors:
+        if armors:
             self.armors = [
-                Armor(arm["part"], arm["protection"])
-                for arm in i_armors
+                Armor(armour["part"], armour["protection"])
+                for armour in armors
             ]
         else:
             self.armors = []
 
-        if i_potion:
-            self.potion = Potion(i_potion["name"], i_potion["effect"])
+        if potion:
+            self.potion = Potion(potion["name"], potion["effect"])
         else:
             self.potion = None

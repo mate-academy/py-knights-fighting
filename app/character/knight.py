@@ -5,18 +5,17 @@ from app.character.inventory import Inventory
 
 class Knight:
     def __init__(self,
-                 k_name: str,
-                 k_power: int = 1,
-                 k_hp: int = 1,
-                 k_armors=[],
-                 k_weapon=None,
-                 k_potion=None
-                 ) -> None:
-        self.name = k_name
-        self.power = k_power
-        self.hp = k_hp
+                 name: str,
+                 power: int = 1,
+                 hp: int = 1,
+                 armors: list[dict] = None,
+                 weapon: dict = None,
+                 potion: dict = None) -> None:
+        self.name = name
+        self.power = power
+        self.hp = hp
         self.protection = 0
-        self.items = Inventory(k_weapon, k_armors, k_potion)
+        self.items = Inventory(weapon, armors, potion)
         self.is_ready = False
         self.is_armored = False
         self.is_weapon_up = False
@@ -33,23 +32,37 @@ class Knight:
             pers["potion"]
         )
 
-    def use_potion(self):
+    def use_potion(self) -> None:
         if self.items.potion:
             print(f"{self.name} drinking potion {self.items.potion.name}")
             boost = self.items.potion.effect
-            boost_k = boost.keys()
-            if "hp" in boost_k:
+            boost_keys = boost.keys()
+            if "hp" in boost_keys:
                 self.hp += boost["hp"]
-            if "power" in boost_k:
+            if "power" in boost_keys:
                 self.power += boost["power"]
-            if "protection" in boost_k:
+            if "protection" in boost_keys:
                 self.protection += boost["protection"]
             self.items.potion = None
             self.effect = boost
         else:
             print(f"{self.name} hasn't potion")
 
-    def armor_up(self):
+    def potion_during_down(self) -> None:
+        if self.effect:
+            p_name = self.items.potion.name
+            print(f"{p_name}'s duration is out for {self.name}")
+            boost = self.effect
+            boost_keys = boost.keys()
+            if "hp" in boost_keys:
+                self.hp -= boost["hp"]
+            if "power" in boost_keys:
+                self.power -= boost["power"]
+            if "protection" in boost_keys:
+                self.protection -= boost["protection"]
+            self.effect = None
+
+    def armor_up(self) -> None:
         if self.items.armors:
             if not self.is_armored:
                 for arm in self.items.armors:
@@ -63,7 +76,7 @@ class Knight:
         else:
             print(f"{self.name} hasn't armors!")
 
-    def armor_down(self):
+    def armor_down(self) -> None:
         if self.items.armors:
             if self.is_armored:
                 for arm in self.items.armors:
@@ -76,7 +89,7 @@ class Knight:
         else:
             print(f"{self.name} hasn't armors!")
 
-    def weapon_up(self):
+    def weapon_up(self) -> None:
         if self.items.weapon:
             if not self.is_weapon_up:
                 self.power += self.items.weapon.power
@@ -87,7 +100,7 @@ class Knight:
         else:
             print(f"{self.name} hasn't weapon!")
 
-    def weapon_down(self):
+    def weapon_down(self) -> None:
         if self.items.weapon:
             if self.is_weapon_up:
                 self.power -= self.items.weapon.power
@@ -98,13 +111,12 @@ class Knight:
         else:
             print(f"{self.name} hasn't weapon!")
 
-    def ready_up(self):
+    def ready_up(self) -> None:
         if not self.is_ready:
 
             self.weapon_up()
             self.armor_up()
-            if self.items.potion:
-                self.use_potion()
+            self.use_potion()
 
             self.is_ready = True
             print(f"{self.name} is ready!!!")
@@ -112,24 +124,102 @@ class Knight:
         else:
             print(f"{self.name} is already ready!!!")
 
-    def ready_down(self):
+    def ready_down(self) -> None:
         if not self.is_ready:
 
             self.weapon_down()
             self.armor_down()
-            if self.effect:
-                p_name = self.items.potion.name
-                print(f"{p_name}'s duration is out for {self.name}")
-                boost = self.effect
-                if boost["hp"]:
-                    self.hp -= boost["hp"]
-                if boost["power"]:
-                    self.power -= boost["power"]
-                if boost["protection"]:
-                    self.protection -= boost["protection"]
-                self.effect = None
+            self.potion_during_down()
 
             self.is_ready = False
 
         else:
             print(f"{self.name} is already ready!!!")
+
+
+default_knights = {
+    "lancelot": {
+        "name": "Lancelot",
+        "power": 35,
+        "hp": 100,
+        "armour": [],
+        "weapon": {
+            "name": "Metal Sword",
+            "power": 50,
+        },
+        "potion": None,
+    },
+    "arthur": {
+        "name": "Artur",
+        "power": 45,
+        "hp": 75,
+        "armour": [
+            {
+                "part": "helmet",
+                "protection": 15,
+            },
+            {
+                "part": "breastplate",
+                "protection": 20,
+            },
+            {
+                "part": "boots",
+                "protection": 10,
+            }
+        ],
+        "weapon": {
+            "name": "Two-handed Sword",
+            "power": 55,
+        },
+        "potion": None,
+    },
+    "mordred": {
+        "name": "Mordred",
+        "power": 30,
+        "hp": 90,
+        "armour": [
+            {
+                "part": "breastplate",
+                "protection": 15,
+            },
+            {
+                "part": "boots",
+                "protection": 10,
+            }
+        ],
+        "weapon": {
+            "name": "Poisoned Sword",
+            "power": 60,
+        },
+        "potion": {
+            "name": "Berserk",
+            "effect": {
+                "power": +15,
+                "hp": -5,
+                "protection": +10,
+            }
+        }
+    },
+    "red_knight": {
+        "name": "Red Knight",
+        "power": 40,
+        "hp": 70,
+        "armour": [
+            {
+                "part": "breastplate",
+                "protection": 25,
+            }
+        ],
+        "weapon": {
+            "name": "Sword",
+            "power": 45
+        },
+        "potion": {
+            "name": "Blessing",
+            "effect": {
+                "hp": +10,
+                "power": +5,
+            }
+        }
+    }
+}

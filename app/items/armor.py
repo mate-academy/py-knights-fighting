@@ -1,7 +1,6 @@
 class Armor:
     def __init__(self,
                  part: str,
-                 protection: int
-                 ) -> None:
+                 protection: int) -> None:
         self.part = part
         self.protection = protection
