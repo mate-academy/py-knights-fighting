@@ -87,7 +87,7 @@ KNIGHTS = {
 }
 
 
-def battle(knightsConfig):
+def battle(knightsConfig: dict) -> dict:
     # create knights_class objects
     knights_ready = {name: kc.Knights(data)
                      for name, data in knightsConfig.items()}
