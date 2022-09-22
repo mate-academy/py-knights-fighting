@@ -10,7 +10,7 @@ def prepare(knights_config: dict, knight: str) -> dict:
         potion_effects = ["power", "protection", "hp"]
         for effect in potion_effects:
             if effect in current_knight["potion"]["effect"]:
-                current_knight[effect] += \
-                    current_knight["potion"]["effect"][effect]
+                new_effect = current_knight["potion"]["effect"][effect]
+                current_knight[effect] += new_effect
 
     return current_knight
