@@ -89,27 +89,27 @@ KNIGHTS = {
 
 
 def knight_dict_create(data: dict) -> dict:
-    answer = dict()
-    answer["name"] = data["name"]
-    answer["protection"] = 0
-    answer["power"] = data["power"]
-    answer["hp"] = data["hp"]
+    knight_dict = dict()
+    knight_dict["name"] = data["name"]
+    knight_dict["protection"] = 0
+    knight_dict["power"] = data["power"]
+    knight_dict["hp"] = data["hp"]
     for armour in data["armour"]:
-        answer["protection"] += armour["protection"]
+        knight_dict["protection"] += armour["protection"]
 
-    answer["power"] += data["weapon"]["power"]
+    knight_dict["power"] += data["weapon"]["power"]
 
     if data["potion"] is not None:
         if "power" in data["potion"]["effect"]:
-            answer["power"] += data["potion"]["effect"]["power"]
+            knight_dict["power"] += data["potion"]["effect"]["power"]
 
         if "protection" in data["potion"]["effect"]:
-            answer["protection"] += data["potion"]["effect"]["protection"]
+            knight_dict["protection"] += data["potion"]["effect"]["protection"]
 
         if "hp" in data["potion"]["effect"]:
-            answer["hp"] += data["potion"]["effect"]["hp"]
+            knight_dict["hp"] += data["potion"]["effect"]["hp"]
 
-    return answer
+    return knight_dict
 
 
 def battle(knights: dict) -> dict:
