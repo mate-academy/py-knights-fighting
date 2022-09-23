@@ -11,7 +11,7 @@ def battle_function(knight1: dict, knight2: dict,
     if knight2["hp"] <= 0:
         knight2["hp"] = 0
 
-    # 2 knight3 vs Red Knight:
+    # 2 knight3 vs knight4:
     knight3["hp"] -= knight4["power"] - knight3["protection"]
     knight4["hp"] -= knight3["power"] - knight4["protection"]
 
