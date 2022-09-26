@@ -33,15 +33,14 @@ class Knight:
             return
 
         effect = potion["effect"]
+        stats = ("protection", "power", "hp")
+        for stat in stats:
+            if stat not in effect:
+                effect[stat] = 0
 
-        if "hp" in effect:
-            self.hp += effect["hp"]
-
-        if "power" in effect:
-            self.power += effect["power"]
-
-        if "protection" in effect:
-            self.protection += effect["protection"]
+        self.hp += effect["hp"]
+        self.power += effect["power"]
+        self.protection += effect["protection"]
 
     @staticmethod
     def get_all_knights_hp(knights: list) -> dict:
