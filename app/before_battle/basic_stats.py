@@ -1,4 +1,4 @@
-class NewKnight:
+class LegendaryKnight:
     def __init__(self, name, power, hp, protection=0):
         self.name = name
         self.power = power
