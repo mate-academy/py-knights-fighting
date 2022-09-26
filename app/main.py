@@ -1,5 +1,5 @@
 from app.battle_begin.logic_battle import Logic
-from app.before_battle.basic_stats import NewKnight
+from app.before_battle.basic_stats import LegendaryKnight
 from app.before_battle.extended_stats import ExtendedStats
 from app.battle_begin.result import Result
 
@@ -7,7 +7,7 @@ from app.battle_begin.result import Result
 def battle(knightsConfig):
     knights = {}
     for key, value in knightsConfig.items():
-        knights[value['name']] = NewKnight(
+        knights[value['name']] = LegendaryKnight(
             value['name'],
             value['power'],
             value['hp'])
