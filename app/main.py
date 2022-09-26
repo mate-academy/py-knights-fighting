@@ -1,4 +1,4 @@
-from app.fighters.knightsConfig import KNIGHTS
+from app.fighters.knights_сonfig import KNIGHTS
 from app.fighters.сharacters import Knight
 from app.battle_rules import fight
 
