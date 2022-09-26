@@ -1,4 +1,4 @@
-def apply_armour_weapon_potion_if_exists(knight: dict) -> dict:
+def apply_armour_weapon_potion(knight: dict) -> dict:
     # apply armour
     knight["protection"] = 0
     for a in knight["armour"]:

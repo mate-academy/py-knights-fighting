@@ -1,5 +1,5 @@
-def battle_function(knight1: dict, knight2: dict,
-                    knight3: dict, knight4: dict) -> dict:
+def battle_func(knight1: dict, knight2: dict,
+                knight3: dict, knight4: dict) -> dict:
     # 1 knight1 vs knight2:
     knight1["hp"] -= knight2["power"] - knight1["protection"]
     knight2["hp"] -= knight1["power"] - knight2["protection"]
