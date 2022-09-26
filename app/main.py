@@ -1,6 +1,6 @@
-from app.participants.Config import KNIGHTS
-from app.participants.Knight import Knight
-from app.Battle import fight
+from app.fighters.knightsConfig import KNIGHTS
+from app.fighters.сharacters import Knight
+from app.battle_rules import fight
 
 
 def participants_invite(name: dict) -> Knight:
@@ -10,25 +10,25 @@ def participants_invite(name: dict) -> Knight:
                   name["weapon"], name["potion"])
 
 
-def battle(knightsConfig):
+def battle(knights_config: dict) -> dict:
     # BATTLE PREPARATIONS:
     # lancelot
-    lancelot = participants_invite(knightsConfig["lancelot"])
+    lancelot = participants_invite(knights_config["lancelot"])
     # apply armour
     lancelot.get_ready()
 
     # arthur
-    arthur = participants_invite(knightsConfig["arthur"])
+    arthur = participants_invite(knights_config["arthur"])
     #  apply armour
     arthur.get_ready()
 
     # # mordred
-    mordred = participants_invite(knightsConfig["mordred"])
+    mordred = participants_invite(knights_config["mordred"])
     #  apply armour
     mordred.get_ready()
 
     # # red_knight
-    red_knight = participants_invite(knightsConfig["red_knight"])
+    red_knight = participants_invite(knights_config["red_knight"])
     #  apply armour
     red_knight.get_ready()
 

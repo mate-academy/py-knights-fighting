@@ -1,4 +1,4 @@
-from app.participants.Knight import Knight
+from app.fighters.сharacters import Knight
 
 
 def fight(first_knight: Knight, second_knight: Knight) -> None:
