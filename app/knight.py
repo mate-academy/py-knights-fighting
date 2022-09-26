@@ -33,8 +33,7 @@ class Knight:
             return
 
         effect = potion["effect"]
-        stats = ("protection", "power", "hp")
-        for stat in stats:
+        for stat in ("protection", "power", "hp"):
             if stat not in effect:
                 effect[stat] = 0
 
