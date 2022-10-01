@@ -1,5 +1,28 @@
-from knights import Knights
-from battle import battle
+from app.knights import Knights
+
+
+def battle(warriors_list):
+    # make configurations
+    battle_result = warriors_list
+
+    lancelot = battle_result["Lancelot"]
+    artur = battle_result["Artur"]
+    mordred = battle_result["Mordred"]
+    red_knight = battle_result["Red Knight"]
+
+    # battle
+    lancelot.hp -= mordred.power - lancelot.protection
+    mordred.hp -= lancelot.power - mordred.protection
+    artur.hp -= red_knight.power - artur.protection
+    red_knight.hp -= artur.power - red_knight.protection
+
+    # check if alive
+    for key, values in battle_result.items():
+        if values.hp <= 0:
+            values.hp = 0
+        battle_result[key] = values.hp
+    return battle_result
+
 
 KNIGHTS = {
     "lancelot": {
@@ -89,6 +112,4 @@ KNIGHTS = {
 }
 
 warriors = Knights.knight_config(KNIGHTS)
-print(warriors)
-battle_result = battle(warriors)
-print(battle_result)
+battle(warriors)
