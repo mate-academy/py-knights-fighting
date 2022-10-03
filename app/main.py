@@ -1,20 +1,20 @@
 from app.knights import Knights
 
 
-def battle(warriors_list):
+def battle(warriors_list) -> dict:
     # make configurations
     battle_result = warriors_list
 
-    lancelot = battle_result["Lancelot"]
-    artur = battle_result["Artur"]
-    mordred = battle_result["Mordred"]
-    red_knight = battle_result["Red Knight"]
+    lancelot = battle_result["lancelot"]
+    arthur = battle_result["arthur"]
+    mordred = battle_result["mordred"]
+    red_knight = battle_result["red_knight"]
 
     # battle
     lancelot.hp -= mordred.power - lancelot.protection
     mordred.hp -= lancelot.power - mordred.protection
-    artur.hp -= red_knight.power - artur.protection
-    red_knight.hp -= artur.power - red_knight.protection
+    arthur.hp -= red_knight.power - arthur.protection
+    red_knight.hp -= arthur.power - red_knight.protection
 
     # check if alive
     for key, values in battle_result.items():
@@ -112,4 +112,4 @@ KNIGHTS = {
 }
 
 warriors = Knights.knight_config(KNIGHTS)
-battle(warriors)
+print(battle(warriors))

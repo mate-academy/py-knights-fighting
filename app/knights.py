@@ -11,31 +11,33 @@ class Knights:
         self.protection = protection
 
     @staticmethod
-    def knight_config(knights_dict: dict):
+    def knight_config(knights_dict: dict) -> dict:
         knights = {}
         # create knight objects and save to dict
-        for key, value in knights_dict.items():
-            knight = Knights(name=value["name"],
-                             hp=value["hp"],
-                             power=value["power"])
+        for name, character in knights_dict.items():
+            knight = Knights(name=character["name"],
+                             hp=character["hp"],
+                             power=character["power"])
             # apply armour
-            for a in value["armour"]:
-                knight.protection += a["protection"]
+            for armour in character["armour"]:
+                knight.protection += armour["protection"]
 
             # apply weapon
-            knight.power += value["weapon"]["power"]
+            knight.power += character["weapon"]["power"]
 
             # apply potion if exist
-            if value["potion"] is not None:
-                if "power" in value["potion"]["effect"]:
-                    knight.power += value["potion"]["effect"]["power"]
+            if character["potion"] is not None:
+                stats = {"protection": knight.protection,
+                         "power": knight.power,
+                         "hp": knight.hp}
+                for option in stats:
+                    if option in character["potion"]["effect"]:
 
-                if "protection" in value["potion"]["effect"]:
-                    protection = value["potion"]["effect"]["protection"]
-                    knight.protection += protection
+                        stats[option] += character["potion"]["effect"][option]
 
-                if "hp" in value["potion"]["effect"]:
-                    knight.hp += value["potion"]["effect"]["hp"]
+                knight.protection = stats["protection"]
+                knight.power = stats["power"]
+                knight.hp = stats["hp"]
 
-            knights[value["name"]] = knight
+            knights[name] = knight
         return knights
