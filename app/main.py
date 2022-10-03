@@ -1,7 +1,6 @@
 from app.battle import Battle
 from app.knight import Knight
 
-
 knights_stats = {
     "lancelot": {
         "name": "Lancelot",

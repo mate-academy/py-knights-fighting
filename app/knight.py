@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+
 class Knight:
     def __init__(self, name: str, power: int, hp: int):
         self.name = name
@@ -6,7 +9,7 @@ class Knight:
         self.protection = 0
 
     @classmethod
-    def create_knight_from_dict(cls, knight_dict: dict):
+    def create_knight_from_dict(cls, knight_dict: dict) -> 'Knight':
         return cls(
             knight_dict["name"],
             knight_dict["power"],
@@ -14,7 +17,7 @@ class Knight:
         )
 
     @classmethod
-    def create_and_prepare_knight(cls, knight_dict: dict):
+    def create_and_prepare_knight(cls, knight_dict: dict) -> 'Knight':
         knight = cls.create_knight_from_dict(knight_dict)
         knight.apply_weapon(knight_dict["weapon"])
         knight.apply_armour(knight_dict["armour"])
