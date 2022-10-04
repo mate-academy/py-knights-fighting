@@ -1,27 +1,28 @@
 from app.knights import Knights
 
 
-def battle(warriors_list) -> dict:
+def battle(knights) -> dict:
     # make configurations
-    battle_result = warriors_list
+    knight_list = Knights.knight_config(knights)
 
-    lancelot = battle_result["lancelot"]
-    arthur = battle_result["arthur"]
-    mordred = battle_result["mordred"]
-    red_knight = battle_result["red_knight"]
+    lancelot = knight_list["Lancelot"]
+    arthur = knight_list["Artur"]
+    mordred = knight_list["Mordred"]
+    red_knight = knight_list["Red Knight"]
 
     # battle
+
     lancelot.hp -= mordred.power - lancelot.protection
     mordred.hp -= lancelot.power - mordred.protection
     arthur.hp -= red_knight.power - arthur.protection
     red_knight.hp -= arthur.power - red_knight.protection
 
     # check if alive
-    for key, values in battle_result.items():
-        if values.hp <= 0:
-            values.hp = 0
-        battle_result[key] = values.hp
-    return battle_result
+    for warrior, stats in knight_list.items():
+        if stats.hp <= 0:
+            stats.hp = 0
+        knight_list[warrior] = stats.hp
+    return knight_list
 
 
 KNIGHTS = {
@@ -110,6 +111,3 @@ KNIGHTS = {
         }
     }
 }
-
-warriors = Knights.knight_config(KNIGHTS)
-print(battle(warriors))

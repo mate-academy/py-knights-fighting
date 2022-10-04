@@ -39,5 +39,5 @@ class Knights:
                 knight.power = stats["power"]
                 knight.hp = stats["hp"]
 
-            knights[name] = knight
+            knights[character["name"]] = knight
         return knights
