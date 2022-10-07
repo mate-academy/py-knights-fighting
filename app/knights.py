@@ -1,5 +1,8 @@
 class Knight:
-    def __init__(self, name: str, power: int, hp: int, protection: int = 0):
+    def __init__(self, name: str,
+                 power: int,
+                 hp: int,
+                 protection: int = 0) -> None:
         self.name = name
         self.power = power
         self.hp = hp
@@ -14,8 +17,8 @@ class Knight:
                 power=stats["power"],
                 hp=stats["hp"]
             )
-            for a in stats["armour"]:
-                knight.protection += a["protection"]
+            for knight_armour in stats["armour"]:
+                knight.protection += knight_armour["protection"]
             knight.power += stats["weapon"]["power"]
             if stats["potion"] is not None:
                 if "power" in stats["potion"]["effect"]:
