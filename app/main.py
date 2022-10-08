@@ -23,7 +23,7 @@ def knights_items(name: str, parametrs: dict) -> Knight:
     return knight
 
 
-def battle(config) -> dict:
+def battle(config: int) -> dict:
     lancelot = knights_items("lancelot", config)
     arthur = knights_items("arthur", config)
     mordred = knights_items("mordred", config)
