@@ -1,8 +1,7 @@
-from app.knights.knights import KNIGHTS
 from app.knights.class_of_knigts import Knights
 
 
-def battle(knights_cof):
+def battle(knights_cof: dict):
     lancelot = Knights(knights_cof["lancelot"])
     arthur = Knights(knights_cof["arthur"])
     mordred = Knights(knights_cof["mordred"])
@@ -19,6 +18,3 @@ def battle(knights_cof):
         lord.name: lord.hp
         for lord in knights_list
     }
-
-
-print(battle(KNIGHTS))

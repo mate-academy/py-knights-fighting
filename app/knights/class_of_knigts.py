@@ -1,5 +1,5 @@
 class Knights:
-    def __init__(self, lord):
+    def __init__(self, lord: dict):
         self.name = lord["name"]
         self.hp = lord["hp"]
         self.power = lord["power"]
@@ -10,8 +10,8 @@ class Knights:
 
     def preparations(self):
         # apply armour
-        for a in self.armour:
-            self.protection += a["protection"]
+        for armo in self.armour:
+            self.protection += armo["protection"]
 
         # apply weapon
         self.power += self.weapon["power"]
@@ -63,7 +63,7 @@ class Knights:
             return another
 
     @staticmethod
-    def championship(members):
+    def championship(members: list):
         finalists = [
             members[i].battle_to_death(members[i + 1])
             for i in range(0, len(members), 2)
