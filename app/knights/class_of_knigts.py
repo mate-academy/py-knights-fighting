@@ -1,5 +1,5 @@
 class Knights:
-    def __init__(self, lord: dict):
+    def __init__(self, lord: dict) -> type(None):
         self.name = lord["name"]
         self.hp = lord["hp"]
         self.power = lord["power"]
