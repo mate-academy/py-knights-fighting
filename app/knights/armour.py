@@ -5,14 +5,14 @@ from __future__ import annotations
 class Armour:
     def __init__(self, part: str, protection: int) -> None:
         self.part = part
-        self.protection = protection
+        self.__protection = protection
 
     def change(self, part: str, protection: int) -> None:
         self.part = part
-        self.protection = protection
+        self.__protection = protection
 
     def get_protection(self) -> int:
-        return self.protection
+        return self.__protection
 
     @staticmethod
     def create_armour(info: dict) -> Armour:

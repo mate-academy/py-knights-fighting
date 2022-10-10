@@ -6,24 +6,24 @@ class Potion:
     def __init__(self, name: str, power: int = 0,
                  hp: int = 0, protection: int = 0) -> None:
         self.name = name
-        self.power = power
-        self.hp = hp
-        self.protection = protection
+        self.__power = power
+        self.__hp = hp
+        self.__protection = protection
 
     def set_property(self, prop: str, value: int) -> None:
         match prop:
-            case "power": self.power = value
-            case "hp": self.hp = value
-            case "protection": self.protection = value
+            case "power": self.__power = value
+            case "hp": self.__hp = value
+            case "protection": self.__protection = value
 
     def get_power(self) -> int:
-        return self.power
+        return self.__power
 
     def get_hp(self) -> int:
-        return self.hp
+        return self.__hp
 
     def get_protection(self) -> int:
-        return self.protection
+        return self.__protection
 
     @staticmethod
     def create_potion(info: dict | None) -> Potion | None:

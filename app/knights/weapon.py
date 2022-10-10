@@ -5,14 +5,14 @@ from __future__ import annotations
 class Weapon:
     def __init__(self, name: str, power: int) -> None:
         self.name = name
-        self.power = power
+        self.__power = power
 
     def change(self, name: str, power: int) -> None:
         self.name = name
-        self.power = power
+        self.__power = power
 
     def get_power(self) -> int:
-        return self.power
+        return self.__power
 
     @staticmethod
     def create_weapon(info: dict) -> Weapon:

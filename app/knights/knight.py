@@ -9,68 +9,68 @@ from .weapon import Weapon
 class Knight:
     def __init__(self, name: str, hp: int, power: int) -> None:
         self.name = name
-        self.hp = hp
-        self.power = power
+        self.__hp = hp
+        self.__power = power
 
-        self.protection = 0
+        self.__protection = 0
 
-        self.weapon = []
-        self.armour = []
-        self.potion = []
+        self.__weapon = []
+        self.__armour = []
+        self.__potion = []
 
     def get_hp(self) -> int:
-        return self.hp
+        return self.__hp
 
     def set_hp(self, hp: int) -> None:
-        self.hp = hp if hp > 0 else 0
+        self.__hp = hp if hp > 0 else 0
 
     def set_weapon(self, weapon: Weapon) -> None:
         if weapon is not None:
-            self.weapon.append(weapon)
+            self.__weapon.append(weapon)
 
     def get_weapon_list(self) -> list[Weapon]:
-        return self.weapon
+        return self.__weapon
 
     def set_armour(self, armour: Armour) -> None:
         if armour is not None:
-            self.armour.append(armour)
+            self.__armour.append(armour)
 
     def get_armour_list(self) -> list[Armour]:
-        return self.weapon
+        return self.__weapon
 
     def set_potion(self, potion: Potion) -> None:
         if potion is not None:
-            self.potion.append(potion)
+            self.__potion.append(potion)
 
     def get_potion_list(self) -> list[Potion]:
-        return self.potion
+        return self.__potion
 
     def get_current_power(self) -> int:
-        power = self.power
+        power = self.__power
 
-        for weapon in self.weapon:
+        for weapon in self.__weapon:
             power += weapon.get_power()
 
-        for potion in self.potion:
+        for potion in self.__potion:
             power += potion.get_power()
 
         return power
 
     def get_current_protection(self) -> int:
-        protection = self.protection
+        protection = self.__protection
 
-        for armour in self.armour:
+        for armour in self.__armour:
             protection += armour.get_protection()
 
-        for potion in self.potion:
+        for potion in self.__potion:
             protection += potion.get_protection()
 
         return protection
 
     def get_current_hp(self) -> int:
-        hp = self.hp
+        hp = self.__hp
 
-        for potion in self.potion:
+        for potion in self.__potion:
             hp += potion.get_hp()
 
         return hp
