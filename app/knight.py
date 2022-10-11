@@ -30,7 +30,7 @@ class Knight:
 
         return {"name": self.name,
                 "power": power,
-                "protection": protection,
+                "protect": protection,
                 "hp": hp}
 
 
