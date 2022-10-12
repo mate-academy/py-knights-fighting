@@ -105,8 +105,8 @@ def battle(knights: dict) -> dict:
         red_knight.name: red_knight.hp
     }
 
-    for key, value in result.items():
-        if value < 0:
-            result[key] = 0
+    for knight_name, hp_units in result.items():
+        if hp_units < 0:
+            result[knight_name] = 0
 
     return result

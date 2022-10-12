@@ -21,14 +21,12 @@ class Knight:
                 knight.protection += knight_armour["protection"]
             knight.power += stats["weapon"]["power"]
             if stats["potion"] is not None:
-                if "power" in stats["potion"]["effect"]:
-                    knight.power += stats["potion"]["effect"]["power"]
-
-                if "protection" in stats["potion"]["effect"]:
-                    knight.protection += \
-                        stats["potion"]["effect"]["protection"]
-
-                if "hp" in stats["potion"]["effect"]:
-                    knight.hp += stats["potion"]["effect"]["hp"]
+                for effect, points in stats["potion"]["effect"].items():
+                    potion_effects = {"power": 0, "hp": 0, "protection": 0}
+                    if effect in stats["potion"]["effect"]:
+                        potion_effects[effect] = points
+                    knight.power += potion_effects["power"]
+                    knight.hp += potion_effects["hp"]
+                    knight.protection += potion_effects["protection"]
             knights[stats["name"]] = knight
         return knights
