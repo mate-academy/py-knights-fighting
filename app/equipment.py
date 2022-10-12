@@ -3,7 +3,7 @@ class Armor:
         self.armour = armour
 
     def apply_armor(self) -> int:
-        return sum([part["protection"] for part in self.armour])
+        return sum(part["protection"] for part in self.armour)
 
 
 class Weapon:
@@ -21,7 +21,7 @@ class Potion:
     def drink_potion(self) -> list:
         potion_effect = [0, 0, 0]
 
-        if self.potion is not None:
+        if self.potion:
             effect = self.potion["effect"]
         else:
             return potion_effect
