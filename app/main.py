@@ -11,7 +11,7 @@ def battle(dict_of_knights: dict) -> dict:
     lancelot.hp -= mordred.power - lancelot.protection
     mordred.hp -= lancelot.power - mordred.protection
     arthur.hp -= red_knight.power - arthur.protection
-    red_knight.hp -= arthur.power - red_knight.protectio
+    red_knight.hp -= arthur.power - red_knight.protection
 
     for warrior, stats in list_of_knights.items():
         if stats.hp <= 0:
