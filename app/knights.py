@@ -2,8 +2,8 @@ class Knights:
 
     def __init__(self,
                  name: str = "",
-                 hp: int= 0,
-                 power: int=0,
+                 hp: int = 0,
+                 power: int = 0,
                  protection: int = 0):
         self.name = name
         self.hp = hp
@@ -11,12 +11,12 @@ class Knights:
         self.protection = protection
 
     @staticmethod
-    def knight_config(knights_dict: dict):
+    def knight_config(knights_dict: dict) -> dict:
         dict_of_knights = {}
         for name, atribute in knights_dict.items():
             knight = Knights(name=atribute["name"],
-                                      hp=atribute["hp"],
-                                      power=atribute["power"])
+                             hp=atribute["hp"],
+                             power=atribute["power"])
             for armour in atribute["armour"]:
                 knight.protection += armour["protection"]
             knight.power += atribute["weapon"]["power"]

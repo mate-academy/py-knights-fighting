@@ -8,7 +8,6 @@ def battle(dict_of_knights) -> dict:
     arthur = list_of_knights["Artur"]
     mordred = list_of_knights["Mordred"]
     red_knight = list_of_knights["Red Knight"]
-
     lancelot.hp -= mordred.power - lancelot.protection
     mordred.hp -= lancelot.power - mordred.protection
     arthur.hp -= red_knight.power - arthur.protection
