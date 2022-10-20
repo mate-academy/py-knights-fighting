@@ -1,7 +1,7 @@
 from app.knights import Knights
 
 
-def battle(dict_of_knights) -> dict:
+def battle(dict_of_knights) -> list:
     list_of_knights = Knights.knight_config(dict_of_knights)
 
     lancelot = list_of_knights["Lancelot"]
@@ -18,3 +18,4 @@ def battle(dict_of_knights) -> dict:
             stats.hp = 0
         list_of_knights[warrior] = stats.hp
     return list_of_knights
+    
