@@ -18,4 +18,3 @@ def battle(dict_of_knights) -> list:
             stats.hp = 0
         list_of_knights[warrior] = stats.hp
     return list_of_knights
-    
