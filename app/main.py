@@ -1,16 +1,27 @@
-from app.items import weapon
-from app.knights import knight
+from app.knights.knight import Knight
+from app.fighting.fight import Fight
+from tests.default_config import fights_config
 
 
-def config_pars(knightsConfig):
-    for value in knightsConfig.values():
-        knight.Knight(
-            name=value["name"],
-            power=value["power"] + weapon.Weapon(
-                name=value["weapon"]
-            )
-        )
+def battle(knights_config):
+    lancelot = Knight.pars(knights_config["lancelot"])
+    arthur = Knight.pars(knights_config["arthur"])
+    mordred = Knight.pars(knights_config["mordred"])
+    red_knight = Knight.pars(knights_config["red_knight"])
+
+    for knight in [lancelot, arthur, mordred, red_knight]:
+        knight.activate_items()
+
+    Fight.fight(lancelot, arthur)
+    Fight.fight(mordred, red_knight)
+
+    return {
+        lancelot.name: lancelot.hp,
+        arthur.name: arthur.hp,
+        mordred.name: mordred.hp,
+        red_knight.name: red_knight.hp,
+    }
 
 
-def battle():
-    pass
+print(battle(fights_config))
+

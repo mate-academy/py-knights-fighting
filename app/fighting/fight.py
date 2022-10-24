@@ -1,21 +1,30 @@
+from app.knights.knight import Knight
+
+
 class Fight:
-    def __init__(self, knights: list) -> None:
-        self.knights = knights
+    @staticmethod
+    def hit(knight_1: Knight, knight_2: Knight) -> None:
+        # knight_1 damage
+        damage = knight_1.power - knight_2.protection
+        if damage >= 0:
+            knight_2.hp -= damage
+        if knight_2.hp <= 0:
+            knight_2.hp = 0
+            knight_2.died = True
+            print(f"{knight_2.name} is died!")
+        print(f"{knight_1.name} hit {knight_2.name}!")
 
-    def fight(self) -> dict:
-        for knight in self.knights:
-            red_knight_stats["hp"] -= x_knight_stats["power"] - red_knight_stats["protection"]
-            x_knight_stats["hp"] -= red_knight_stats["power"] - x_knight_stats["protection"]
+        # knight_2 damage
+        damage = knight_2.power - knight_1.protection
+        if damage > 0:
+            knight_1.hp -= damage
+        if knight_1.hp <= 0:
+            knight_1.hp = 0
+            knight_1.died = True
+            print(f"{knight_1.name} is died!")
+        print(f"{knight_2.name} hit {knight_1.name}!")
 
-        if arthur["hp"] <= 0:
-            arthur["hp"] = 0
-
-        if red_knight["hp"] <= 0:
-            red_knight["hp"] = 0
-
-        return {
-            lancelot["name"]: lancelot["hp"],
-            arthur["name"]: arthur["hp"],
-            mordred["name"]: mordred["hp"],
-            red_knight["name"]: red_knight["hp"],
-        }
+    @staticmethod
+    def fight(knight_1: Knight, knight_2: Knight) -> None:
+        while not any([knight_1.died, knight_2.died]):
+            Fight.hit(knight_1, knight_2)
