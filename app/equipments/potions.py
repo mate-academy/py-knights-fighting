@@ -1,15 +1,12 @@
 class Potion:
     potions = {}
 
-    @staticmethod
-    def use(knight: None) -> None:
-        if Potion.potions[knight.name] is not None:
-            if "power" in Potion.potions[knight.name]["effect"]:
-                knight.power += Potion.potions[knight.name]["effect"]["power"]
-
-            if "protection" in Potion.potions[knight.name]["effect"]:
-                knight.protection += (Potion.potions[knight.name]
-                                      ["effect"]["protection"])
-
-            if "hp" in Potion.potions[knight.name]["effect"]:
-                knight.hp += Potion.potions[knight.name]["effect"]["hp"]
+    def use_potion(self) -> None:
+        if Potion.potions[self.name] is not None:
+            for effect in ("hp", "power", "protection"):
+                if effect not in Potion.potions[self.name]["effect"]:
+                    Potion.potions[self.name]["effect"][effect] = 0
+            self.power += Potion.potions[self.name]["effect"]["power"]
+            self.protection += (Potion.potions[self.name]
+                                ["effect"]["protection"])
+            self.hp += Potion.potions[self.name]["effect"]["hp"]

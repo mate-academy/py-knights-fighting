@@ -3,7 +3,7 @@ from app.equipments.weapons import Weapon
 from app.equipments.potions import Potion
 
 
-class Knight:
+class Knight(Armour, Weapon, Potion):
     knights = []
 
     def __init__(self, name: str, power: int, hp: int,

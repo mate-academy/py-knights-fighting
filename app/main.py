@@ -1,7 +1,4 @@
 from app.knights import Knight
-from app.equipments.armours import Armour
-from app.equipments.weapons import Weapon
-from app.equipments.potions import Potion
 
 KNIGHTS = {
     "lancelot": {
@@ -101,9 +98,9 @@ def battle(knightsconfig: dict) -> dict:
                               potion=knight["potion"]))
 
     for knight in Knight.knights:
-        Armour.equip(knight)
-        Weapon.equip(knight)
-        Potion.use(knight)
+        knight.equip_armour()
+        knight.equip_weapon()
+        knight.use_potion()
 
     Knight.battle("Lancelot", "Mordred")
     Knight.battle("Artur", "Red Knight")

@@ -1,7 +1,6 @@
 class Armour:
     armours = {}
 
-    @staticmethod
-    def equip(knight: None) -> None:
-        for armr in Armour.armours[knight.name]:
-            knight.protection += armr["protection"]
+    def equip_armour(self) -> None:
+        for armour in Armour.armours[self.name]:
+            self.protection += armour["protection"]
