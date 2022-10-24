@@ -1,30 +1,19 @@
-class Knight:
-    def __init__(self,
-                 name: str,
-                 power: int,
-                 hp: int,
-                 protection: int = 0) -> None:
-        self.name = name
-        self.hp = hp
-        self.power = power
-        self.protection = protection
+from app.equipment import Armor, Weapon, Potion
 
-    def use_armour(self, armour: int) -> None:
-        self.protection += armour.protection
 
-    def use_weapon(self, weapon: int) -> None:
-        self.power += weapon.power
+class Knights:
+    def __init__(self, knights: dict) -> None:
+        self.knights = knights
+        self.name = knights["name"]
+        self.power = knights["power"]
+        self.hp = knights["hp"]
+        self.protection = 0
 
-    def use_potion(self, potion: int) -> None:
-        if "power" in potion.effect:
-            self.power += potion.effect["power"]
-        if "protection" in potion.effect:
-            self.protection += potion.effect["protection"]
-        if "hp" in potion.effect:
-            self.hp += potion.effect["hp"]
+    def battle_preparation(self) -> None:
+        armor = Armor(self.knights["armour"]).apply_armor()
+        weapon = Weapon(self.knights["weapon"]).get_weapon()
+        potion = Potion(self.knights["potion"]).drink_potion()
 
-    def battle(self, other: int) -> int:
-        hp = self.hp - (other.power - self.protection)
-        if hp < 0:
-            hp = 0
-        return hp
+        self.power += weapon + potion[0]
+        self.hp += potion[1]
+        self.protection += armor + potion[2]

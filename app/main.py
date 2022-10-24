@@ -1,39 +1,39 @@
-from app.armour import Armour
-from app.potion import Potion
-from app.weapon import Weapon
-from app.knight import Knight
-from app.knights_list import KNIGHTS
+from app.knight import Knights
 
 
-def knights_items(name: str, parametrs: dict) -> Knight:
-    knight = Knight(parametrs[name]["name"],
-                    parametrs[name]["power"],
-                    parametrs[name]["hp"])
-    for armour in parametrs[name]["armour"]:
-        arm = Armour(armour["part"], armour["protection"])
-        knight.use_armour(arm)
-    if parametrs[name]["potion"] is not None:
-        potion = Potion(parametrs[name]["potion"]["name"],
-                        parametrs[name]["potion"]["effect"])
-        knight.use_potion(potion)
-    if parametrs[name]["weapon"]:
-        wpn = Weapon(parametrs[name]["weapon"]["name"],
-                     parametrs[name]["weapon"]["power"])
-        knight.use_weapon(wpn)
-    return knight
+def health_check(knights_hp: int) -> int:
+    if knights_hp <= 0:
+        return 0
+
+    return knights_hp
 
 
-def battle(config: int) -> dict:
-    lancelot = knights_items("lancelot", config)
-    arthur = knights_items("arthur", config)
-    mordred = knights_items("mordred", config)
-    red_knight = knights_items("red_knight", config)
-    result = {}
-    result.update({lancelot.name: lancelot.battle(mordred)})
-    result.update({mordred.name: mordred.battle(lancelot)})
-    result.update({arthur.name: arthur.battle(red_knight)})
-    result.update({red_knight.name: red_knight.battle(arthur)})
-    return result
+def battle(knights_config: dict) -> dict:
+    lancelot = Knights(knights_config["lancelot"])
+    arthur = Knights(knights_config["arthur"])
+    mordred = Knights(knights_config["mordred"])
+    red_knight = Knights(knights_config["red_knight"])
 
+    lancelot.battle_preparation()
+    arthur.battle_preparation()
+    mordred.battle_preparation()
+    red_knight.battle_preparation()
 
-print(battle(KNIGHTS))
+    lancelot.hp -= mordred.power - lancelot.protection
+    mordred.hp -= lancelot.power - mordred.protection
+
+    lancelot.hp = health_check(lancelot.hp)
+    mordred.hp = health_check(mordred.hp)
+
+    arthur.hp -= red_knight.power - arthur.protection
+    red_knight.hp -= arthur.power - red_knight.protection
+
+    arthur.hp = health_check(arthur.hp)
+    red_knight.hp = health_check(red_knight.hp)
+
+    return {
+        lancelot.name: lancelot.hp,
+        arthur.name: arthur.hp,
+        mordred.name: mordred.hp,
+        red_knight.name: red_knight.hp,
+    }
