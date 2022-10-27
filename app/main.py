@@ -3,7 +3,7 @@ from app.fighting.fight import Fight
 from tests.default_config import fights_config
 
 
-def battle(knights_config):
+def battle(knights_config: dict) -> dict:
     lancelot = Knight.pars(knights_config["lancelot"])
     arthur = Knight.pars(knights_config["arthur"])
     mordred = Knight.pars(knights_config["mordred"])
@@ -12,8 +12,8 @@ def battle(knights_config):
     for knight in [lancelot, arthur, mordred, red_knight]:
         knight.activate_items()
 
-    Fight.fight(lancelot, arthur)
-    Fight.fight(mordred, red_knight)
+    Fight.fight(lancelot, mordred)
+    Fight.fight(arthur, red_knight)
 
     return {
         lancelot.name: lancelot.hp,
@@ -24,4 +24,3 @@ def battle(knights_config):
 
 
 print(battle(fights_config))
-

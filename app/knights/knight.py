@@ -34,7 +34,7 @@ class Knight:
             potion=knight["potion"],
         )
 
-    def activate_weapon(self):
+    def activate_weapon(self) -> None:
         if not self.boost_weapon:
             self.power += self.items.weapon.power
 
@@ -43,16 +43,18 @@ class Knight:
         else:
             print(f"{self.name} already boost weapon!")
 
-    def activate_armour(self):
+    def activate_armour(self) -> None:
         if self.items.armour:
             if not self.boost_armour:
-                self.protection += sum([arm.protection for arm in self.items.armour])
+                self.protection += sum(
+                    [arm.protection for arm in self.items.armour]
+                )
                 self.boost_armour = True
                 print(f"{self.name} boosted armour!")
             else:
                 print(f"{self.name} already boost armour!")
 
-    def activate_potion(self):
+    def activate_potion(self) -> None:
         if self.items.potion:
             if not self.boost_potion:
                 for key, value in self.items.potion.effect.items():
@@ -64,11 +66,12 @@ class Knight:
                         self.protection += value
 
                 self.boost_potion = True
-                print(f"{self.name} got potion effect {self.items.potion.name}!")
+                print(f"{self.name} got potion effect "
+                      f"{self.items.potion.name}!")
             else:
                 print(f"{self.name} already get potion!")
 
-    def activate_items(self):
+    def activate_items(self) -> None:
         if not self.activated_items:
             self.activate_weapon()
             self.activate_armour()
