@@ -8,7 +8,8 @@ def battle(main_dict_knights: dict) -> dict:
     count = 0
     heroes = [person for person in preparation]
     for fight in range(2):
-        first, second = preparation[heroes[count]], preparation[heroes[count + 2]]
+        first = preparation[heroes[count]]
+        second = preparation[heroes[count + 2]]
 
         first["hp"] -= second["power"] - first["protection"]
         second["hp"] -= first["power"] - second["protection"]
