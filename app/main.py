@@ -94,7 +94,7 @@ knights_config = {
 }
 
 
-def battle(knights_config: dict):
+def battle(knights_config: dict) -> dict:
     # BATTLE PREPARATIONS:
     lancelot = knights_config["lancelot"]
     apply_armour(lancelot)
