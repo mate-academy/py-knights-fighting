@@ -1,5 +1,5 @@
-def get_ready(knights_config: dict) -> dict:
-    for person in knights_config.keys():
+def set_stats_hero(knights_config: dict) -> dict:
+    for person in knights_config:
         king = knights_config[person]
         king["protection"] = 0
 

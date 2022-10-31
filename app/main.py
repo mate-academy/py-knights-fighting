@@ -1,10 +1,10 @@
-from app.preparation import get_ready
+from app.preparation import set_stats_hero
 from app.data_of_knights import KNIGHTS
 from app.check_fell import check_fell
 
 
 def battle(main_dict_knights: dict) -> dict:
-    preparation = get_ready(main_dict_knights)
+    preparation = set_stats_hero(main_dict_knights)
     count = 0
     heroes = [person for person in preparation]
     for fight in range(2):
