@@ -97,27 +97,17 @@ knights_config = {
 def battle(knights_config: dict) -> dict:
     # BATTLE PREPARATIONS:
     lancelot = knights_config["lancelot"]
-    apply_armour(lancelot)
-    apply_weapon(lancelot)
-    apply_potion(lancelot)
-
     arthur = knights_config["arthur"]
-    apply_armour(arthur)
-    apply_weapon(arthur)
-    apply_potion(arthur)
-
     mordred = knights_config["mordred"]
-    apply_armour(mordred)
-    apply_weapon(mordred)
-    apply_potion(mordred)
-
     red_knight = knights_config["red_knight"]
-    apply_armour(red_knight)
-    apply_weapon(red_knight)
-    apply_potion(red_knight)
+
+    knights = (lancelot, arthur, mordred, red_knight)
+    for knight in knights:
+        apply_armour(knight)
+        apply_weapon(knight)
+        apply_potion(knight)
 
     # BATTLE:
-
     # 1 Lancelot vs Mordred:
     fight(lancelot, mordred)
     fight(mordred, lancelot)
