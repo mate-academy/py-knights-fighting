@@ -61,6 +61,6 @@ class Knight:
             # print(f"Drinks his {self.potion.name}.")
         return self
 
-    def __add__(self, other) -> None:
+    def __add__(self, other: Knight) -> None:
         self.hp = max(self.hp - other.power + self.protection, 0)
         other.hp = max(other.hp - self.power + other.protection, 0)
