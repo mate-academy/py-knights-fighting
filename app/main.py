@@ -3,7 +3,6 @@ from app.fight.fights import fight
 
 
 def battle(knightsconfig: dict) -> dict:
-    fight(knightsconfig)
     return fight(knightsconfig)
 
 
