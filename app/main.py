@@ -7,10 +7,10 @@ def battle(knights: dict) -> dict:
     mordred = Knight(knights["mordred"])
     red_knight = Knight(knights["red_knight"])
 
-    lancelot.equip()
-    arthur.equip()
-    mordred.equip()
-    red_knight.equip()
+    participants = [lancelot, arthur, mordred, red_knight]
+
+    for knight in participants:
+        knight.equip()
 
     lancelot.fight(mordred)
     arthur.fight(red_knight)
