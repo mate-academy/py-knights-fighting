@@ -27,10 +27,6 @@ class Knight:
 
     def knight_ready_for_fight(self) -> None:
 
-        print("                                        ")
-        print(f"{self.name} is getting ready for the fight.")
-        print("                                        ")
-
         if self.armour:
             for element in self.armour:
                 added_points = element["protection"]
@@ -47,20 +43,24 @@ class Knight:
 
         if self.potion is not None:
 
+            stats = {
+                "power": self.power,
+                "hp": self.hp,
+                "protection": self.protection
+            }
+
             effect_name = self.potion["name"]
-            if "power" in self.potion["effect"]:
-                self.power += self.potion["effect"]["power"]
-            if "hp" in self.potion["effect"]:
-                self.hp += self.potion["effect"]["hp"]
-            if "protection" in self.potion["effect"]:
-                self.protection += self.potion["effect"]["protection"]
+            stats_updates_with_effect = self.potion["effect"]
+
+            for stat, stat_value in stats_updates_with_effect.items():
+                stats[stat] += stat_value
+
+            for stat, stat_value in stats.items():
+                setattr(self, stat, stat_value)
+
             print(f"Potion {effect_name} is added to knight's stats.")
-            print("                                        ")
 
         print(f"CURRENT STATS OF {self.name}:")
-        print(f"|power = {self.power}"
-              f"|hp = {self.hp}"
+        print(f"|power = {self.power}|"
+              f"|hp = {self.hp}|"
               f"|protection = {self.protection}|")
-        print("                                        ")
-        print(f"Knight {self.name} is ready for the fight.")
-        print("___________________________________________")

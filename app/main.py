@@ -90,32 +90,32 @@ knights_info = KNIGHTS
 
 
 def battle(knights_info: dict) -> dict:
-    knights = []
+    basic_knights_info = []
     knights_classified = []
-    knights_ready_for_fight = []
+    knights_stats_updated = []
 
-    for key, value in knights_info.items():
-        knights.append(knights_info[key])
+    for attribute, attribute_value in knights_info.items():
+        basic_knights_info.append(knights_info[attribute])
 
-    for person in knights:
+    for attribute in basic_knights_info:
         knight = Knight(
-            person["name"],
-            person["power"],
-            person["hp"],
-            person["armour"],
-            person["weapon"],
-            person["potion"],
+            attribute["name"],
+            attribute["power"],
+            attribute["hp"],
+            attribute["armour"],
+            attribute["weapon"],
+            attribute["potion"],
         )
         knights_classified.append(knight)
 
     for knight in knights_classified:
         knight.__class__.knight_ready_for_fight(knight)
-        knights_ready_for_fight.append(knight)
+        knights_stats_updated.append(knight)
 
-    knight_1 = knights_ready_for_fight[0]
-    knight_2 = knights_ready_for_fight[2]
-    knight_3 = knights_ready_for_fight[1]
-    knight_4 = knights_ready_for_fight[3]
+    knight_1 = knights_stats_updated[0]
+    knight_2 = knights_stats_updated[2]
+    knight_3 = knights_stats_updated[1]
+    knight_4 = knights_stats_updated[3]
 
     knights_list = [knight_1, knight_2, knight_3, knight_4]
     battle_pairs = [[knight_1, knight_2], [knight_3, knight_4]]
@@ -130,9 +130,7 @@ def battle(knights_info: dict) -> dict:
 
     for pair in battle_pairs:
 
-        print("                                   ")
         print(f" xxx BATTLE {pair[0].name} & {pair[1].name}  xxx ")
-        print("                                   ")
 
         if pair[0].hp == 0 and pair[1].hp != 0:
             print(f"{pair[0].name} defeated.")
@@ -141,7 +139,7 @@ def battle(knights_info: dict) -> dict:
             print(f"{pair[1].name} defeated.")
             print(f"{pair[0].name} win!")
         if pair[0].hp != 0 and pair[1].hp != 0:
-            print("'Happy End', no one is defeated.")
+            print('"Happy End", no one is defeated.')
 
     return {
         knight_1.name: knight_1.hp,
@@ -149,3 +147,6 @@ def battle(knights_info: dict) -> dict:
         knight_2.name: knight_2.hp,
         knight_4.name: knight_4.hp,
     }
+
+
+battle(knights_info)
