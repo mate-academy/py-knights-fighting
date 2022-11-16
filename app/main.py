@@ -4,14 +4,14 @@ from app.knight_abilities.weapon import Weapon
 from app.knight.warrior import Knight
 
 
-def knights_items(name: str,  knights_parameters: dict) -> Knight:
+def knights_items(name: str, knights_parameters: dict) -> Knight:
     knight = Knight(knights_parameters[name]["name"],
                     knights_parameters[name]["power"],
                     knights_parameters[name]["hp"])
-    for armor in  knights_parameters[name]["armour"]:
+    for armor in knights_parameters[name]["armour"]:
         armor = Armour(armor["part"], armor["protection"])
         knight.use_armour(armor)
-    if  knights_parameters[name]["potion"] is not None:
+    if knights_parameters[name]["potion"] is not None:
         potion = Potion(knights_parameters[name]["potion"]["name"],
                         knights_parameters[name]["potion"]["effect"])
         knight.use_potion(potion)
