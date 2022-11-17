@@ -14,14 +14,12 @@ class Knight:
         knight["power"] += knight["weapon"]["power"]
 
         if knight["potion"] is not None:
-            stats = knight["potion"]["effect"]
-            if "power" in stats:
-                knight["power"] += stats["power"]
-            if "protection" in stats:
-                knight["protection"]\
-                    += stats["protection"]
-            if "hp" in stats:
-                knight["hp"] += stats["hp"]
+
+            status = knight["potion"]["effect"]
+            change_knight = ["power", "protection", "hp"]
+            for param in change_knight:
+                if param in status:
+                    knight[param] += status[param]
 
         self.name = knight["name"]
         self.hp = knight["hp"]
