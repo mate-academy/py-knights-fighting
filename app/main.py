@@ -1,13 +1,15 @@
 from app.Knight import Knight
 
 
+def check_hp(hp: int) -> int:
+    if hp <= 0:
+        return 0
+    return hp
+
+
 def fight(knight1: Knight, knight2: Knight) -> None:
-    knight1.hp -= knight2.power - knight1.protection
-    knight2.hp -= knight1.power - knight2.protection
-    if knight1.hp <= 0:
-        knight1.hp = 0
-    if knight2.hp <= 0:
-        knight2.hp = 0
+    knight1.hp = check_hp(knight1.hp - knight2.power + knight1.protection)
+    knight2.hp = check_hp(knight2.hp - knight1.power + knight2.protection)
 
 
 def battle(participants: list) -> dict:
