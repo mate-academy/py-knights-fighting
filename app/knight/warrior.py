@@ -9,13 +9,13 @@ class Knight:
         self.power = power
         self.protection = protection
 
-    def use_armour(self, armor: str) -> None:
+    def use_armour(self, armor: list) -> None:
         self.protection += armor.protection
 
-    def use_weapon(self, weapon: str) -> None:
+    def use_weapon(self, weapon: dict) -> None:
         self.power += weapon.power
 
-    def use_potion(self, potion: str) -> None:
+    def use_potion(self, potion: dict) -> None:
         if "power" in potion.effect:
             self.power += potion.effect["power"]
         if "protection" in potion.effect:
