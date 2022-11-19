@@ -5,15 +5,16 @@ from app.check_fell import check_fell
 
 def battle(main_dict_knights: dict) -> dict:
     preparation = set_stats_hero(main_dict_knights)
-    count = 0
-    heroes = [person for person in preparation]
-    for fight in range(2):
-        first = preparation[heroes[count]]
-        second = preparation[heroes[count + 2]]
 
-        first["hp"] -= second["power"] - first["protection"]
-        second["hp"] -= first["power"] - second["protection"]
-        count += 1
+    lancelot = preparation["lancelot"]
+    mordred = preparation["mordred"]
+    arthur = preparation["arthur"]
+    red_knight = preparation["red_knight"]
+
+    lancelot["hp"] -= mordred["power"] - lancelot["protection"]
+    mordred["hp"] -= lancelot["power"] - mordred["protection"]
+    arthur["hp"] -= red_knight["power"] - arthur["protection"]
+    red_knight["hp"] -= arthur["power"] - red_knight["protection"]
 
     for person in preparation:
         check = check_fell(preparation[person]["hp"])
