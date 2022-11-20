@@ -1,14 +1,14 @@
 def set_stats_hero(knights_config: dict) -> dict:
     for person in knights_config:
-        king = knights_config[person]
-        king["protection"] = 0
+        knight = knights_config[person]
+        knight["protection"] = 0
 
-        for part in king["armour"]:
-            king["protection"] += part["protection"]
+        for part in knight["armour"]:
+            knight["protection"] += part["protection"]
 
-        if king["potion"] is not None:
-            for effect in king["potion"]["effect"]:
-                king[effect] += king["potion"]["effect"][effect]
+        if knight["potion"] is not None:
+            for effect in knight["potion"]["effect"]:
+                knight[effect] += knight["potion"]["effect"][effect]
 
-        king["power"] += king["weapon"]["power"]
+        knight["power"] += knight["weapon"]["power"]
     return knights_config

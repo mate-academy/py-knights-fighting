@@ -1,4 +1,4 @@
-def check_fell(king_hp: int) -> int:
-    if king_hp <= 0:
-        king_hp = 0
-    return king_hp
+def check_fell(knight_hp: int) -> int:
+    if knight_hp <= 0:
+        knight_hp = 0
+    return knight_hp
