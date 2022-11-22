@@ -3,31 +3,29 @@ def battle_pref(knights: dict) -> dict:
 
     # loop for knight
     for knight in knights:
-        each_kn = knights[knight]
+        knight_in_dict = knights[knight]
 
-        each_kn["protection"] = 0
+        knight_in_dict["protection"] = 0
 
-        for armour_part in each_kn["armour"]:
-            each_kn["protection"] += armour_part["protection"]
+        for armour_part in knight_in_dict["armour"]:
+            knight_in_dict["protection"] += armour_part["protection"]
 
         # apply weapon
-        each_kn["power"] += each_kn["weapon"]["power"]
+        knight_in_dict["power"] += knight_in_dict["weapon"]["power"]
 
         # apply potion if exist
-        if each_kn["potion"] is not None:
-            if "power" in each_kn["potion"]["effect"]:
-                each_kn["power"]\
-                    += each_kn["potion"]["effect"]["power"]
+        if knight_in_dict["potion"] is not None:
+            potion_eff = knight_in_dict["potion"]["effect"]
 
-            if "protection" in each_kn["potion"]["effect"]:
-                each_kn["protection"]\
-                    += each_kn["potion"]["effect"]["protection"]
+            if "power" in potion_eff:
+                knight_in_dict["power"] += potion_eff["power"]
 
-            if "hp" in each_kn["potion"]["effect"]:
-                each_kn["hp"]\
-                    += each_kn["potion"]["effect"]["hp"]
+            if "protection" in potion_eff:
+                knight_in_dict["protection"] += potion_eff["protection"]
 
-    # make dict {name: preferences}
+            if "hp" in potion_eff:
+                knight_in_dict["hp"] += potion_eff["hp"]
+
     for knight_name in knights:
         new_pref_knights[knight_name] = knights[knight_name]
 
