@@ -8,10 +8,13 @@ class Battle:
 
     def conduct_battle(self) -> None:
         self.knight_1.hp -= self.knight_2.power - self.knight_1.protection
+        self.knight_1.hp = self.check_hp(self.knight_1.hp)
         self.knight_2.hp -= self.knight_1.power - self.knight_2.protection
+        self.knight_2.hp = self.check_hp(self.knight_2.hp)
 
-        if self.knight_1.hp <= 0:
-            self.knight_1.hp = 0
+    @staticmethod
+    def check_hp(hp: int) -> int:
+        if hp <= 0:
+            hp = 0
 
-        if self.knight_2.hp <= 0:
-            self.knight_2.hp = 0
+        return hp

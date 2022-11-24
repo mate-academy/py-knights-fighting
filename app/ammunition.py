@@ -23,12 +23,8 @@ class Ammunition:
     def potion_effect(self) -> None:
         if not self.potion:
             return
-        if "hp" in self.potion["effect"]:
-            self.effects["hp"] += self.potion["effect"]["hp"]
-        if "power" in self.potion["effect"]:
-            self.effects["power"] += self.potion["effect"]["power"]
-        if "protection" in self.potion["effect"]:
-            self.effects["protection"] += self.potion["effect"]["protection"]
+        for effect_name in self.potion["effect"]:
+            self.effects[effect_name] += self.potion["effect"][effect_name]
 
     def ammunition_effect(self) -> None:
         self.potion_effect()
