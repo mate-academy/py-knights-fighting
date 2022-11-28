@@ -24,14 +24,16 @@ class Knight:
 
     def apply_stats_of_potion(self) -> None:
         if self.potion is not None:
-            if "power" in self.potion["effect"]:
-                self.power += self.potion["effect"]["power"]
+            stats = ["hp", "power", "protection"]
 
-            if "hp" in self.potion["effect"]:
-                self.hp += self.potion["effect"]["hp"]
+            for stat in stats:
+                if stat in self.potion["effect"]:
+                    old_value_of_stat = getattr(self, stat)
 
-            if "protection" in self.potion["effect"]:
-                self.protection += self.potion["effect"]["protection"]
+                    new_value_of_stat = (old_value_of_stat
+                                         + self.potion["effect"][stat])
+
+                    setattr(self, stat, new_value_of_stat)
 
     def fight(self, other_knight: Knight) -> None:
         self.hp += min(self.protection - other_knight.power, 0)
