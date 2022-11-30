@@ -1,7 +1,7 @@
 from app.create_knight_instance import Knight
 
 
-def battle(knights: dict):
+def battle(knights: dict) -> dict:
     # CREATE CLASS INSTANCE FOR EVERY SINGLE KNIGHT
 
     lancelot = Knight.create_instance_from_dict(knights["lancelot"])

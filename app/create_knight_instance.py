@@ -52,4 +52,3 @@ class Knight:
         self.hp -= opponent.power - self.protection
         self.hp = 0 if self.hp <= 0 else self.hp
         return self
-
