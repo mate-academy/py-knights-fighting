@@ -19,7 +19,7 @@ def battle(dict_knight: dict) -> dict:
         result_dict.update({fighter.name: result})
 
         # apply potion if exist
-        if dict_knight[knight]["potion"] is not None:
+        if dict_knight[knight]["potion"]:
 
             if "hp" not in dict_knight[knight]["potion"]["effect"]:
                 dict_knight[knight]["potion"]["effect"] = 0
@@ -31,8 +31,7 @@ def battle(dict_knight: dict) -> dict:
             potion = Potion(dict_knight[knight]["potion"]["effect"]["hp"],
                             dict_knight[knight]["potion"]["effect"]["power"],
                             dict_knight[knight]
-                            ["potion"]["effect"]["protection"]
-                            )
+                            ["potion"]["effect"]["protection"])
 
             result_dict[fighter.name]["hp"] += potion.effect_hp
             result_dict[fighter.name]["power"] += potion.effect_power
