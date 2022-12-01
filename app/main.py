@@ -3,13 +3,20 @@ from app.units.knight import Knight
 
 
 def battle(knights_config: dict) -> dict:
-    lancelot = Knight(knights_config["lancelot"])
-    arthur = Knight(knights_config["arthur"])
-    mordred = Knight(knights_config["mordred"])
-    red_knight = Knight(knights_config["red_knight"])
+    lancelot = Knight(knights_config["lancelot"]).prepare_to_battle()
+    arthur = Knight(knights_config["arthur"]).prepare_to_battle()
+    mordred = Knight(knights_config["mordred"]).prepare_to_battle()
+    red_knight = Knight(knights_config["red_knight"]).prepare_to_battle()
 
-    knight_battle = Battle(lancelot, arthur, mordred, red_knight)
-    return knight_battle.execute()
+    battle_result = {}
+    first_battle = Battle.execute(lancelot, mordred)
+    second_battle = Battle.execute(arthur, red_knight)
+
+    battle_result.update(first_battle)
+    battle_result.update(second_battle)
+
+    # knight_battle = Battle()
+    return battle_result
 
 
 KNIGHTS = {

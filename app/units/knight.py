@@ -28,18 +28,21 @@ class Knight:
     def apply_potion(self) -> tuple:
         if self.potion is not None:
             potion = Potion(self.potion)
-            if "power" in potion.effect:
-                self.power += potion.effect["power"]
-
-            if "protection" in potion.effect:
-                self.protection += potion.effect["protection"]
-
-            if "hp" in potion.effect:
-                self.hp += potion.effect["hp"]
+            for item in potion.effect:
+                match item:
+                    case KeysKnight.POWER.value:
+                        self.power += potion.effect[
+                            KeysKnight.POWER.value]
+                    case KeysKnight.PROTECTION.value:
+                        self.protection += potion.effect[
+                            KeysKnight.PROTECTION.value]
+                    case KeysKnight.HP.value:
+                        self.hp += potion.effect[
+                            KeysKnight.HP.value]
         return self.power, self.protection, self.hp
 
-    def prepare_to_battle(self) -> tuple:
+    def prepare_to_battle(self) -> __build_class__:
         self.apply_armour()
         self.apply_weapon()
         self.apply_potion()
-        return self.power, self.protection, self.hp
+        return self
