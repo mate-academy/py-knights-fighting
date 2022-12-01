@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-import app.knight_class as kc
+from app.knight_class import Knight
 
 
 KNIGHTS = {
@@ -92,10 +92,10 @@ KNIGHTS = {
 
 
 def battle(knights_config: dict) -> dict:
-    knights: dict[str, kc.Knight] = {}
+    knights: dict[str, Knight] = {}
 
     for name, stats in knights_config.items():
-        knights[stats["name"]] = kc.Knight(stats)
+        knights[stats["name"]] = Knight(stats)
 
     battle_schedule = {
         "Lancelot": "Mordred",
