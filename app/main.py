@@ -1,5 +1,4 @@
-from app.preparation.preparation import preparation
-from app.preparation.positive import positive
+from app.class_knight.knight import Knight
 
 
 KNIGHTS = {
@@ -91,19 +90,19 @@ KNIGHTS = {
 
 
 def battle(knights_config: dict) -> dict:
-    lancelot = preparation(knights_config)["Lancelot"]
-    mordred = preparation(knights_config)["Mordred"]
-    artur = preparation(knights_config)["Artur"]
-    red_knight = preparation(knights_config)["Red Knight"]
+    lancelot = Knight.prepare("lancelot", knights_config)
+    mordred = Knight.prepare("mordred", knights_config)
+    arthur = Knight.prepare("arthur", knights_config)
+    red_knight = Knight.prepare("red_knight", knights_config)
     lancelot.hp -= mordred.power - lancelot.protection
     mordred.hp -= lancelot.power - mordred.protection
-    artur.hp -= red_knight.power - artur.protection
-    red_knight.hp -= artur.power - red_knight.protection
+    arthur.hp -= red_knight.power - arthur.protection
+    red_knight.hp -= arthur.power - red_knight.protection
 
-    return {lancelot.name: positive(lancelot.hp),
-            artur.name: positive(artur.hp),
-            mordred.name: positive(mordred.hp),
-            red_knight.name: positive(red_knight.hp)}
+    return {lancelot.name: lancelot.hp if lancelot.hp > 0 else 0,
+            arthur.name: arthur.hp if arthur.hp > 0 else 0,
+            mordred.name: mordred.hp if mordred.hp > 0 else 0,
+            red_knight.name: red_knight.hp if red_knight.hp > 0 else 0}
 
 
 print(battle(KNIGHTS))
