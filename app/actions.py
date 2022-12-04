@@ -17,7 +17,11 @@ def create_knights_stat(knights_config: dict) -> dict:
 def fight(fighter1: Knight, fighter2: Knight) -> None:
     fighter1.hp -= fighter2.power - fighter1.protection
     fighter2.hp -= fighter1.power - fighter2.protection
-    if fighter1.hp <= 0:
-        fighter1.hp = 0
-    if fighter2.hp <= 0:
-        fighter2.hp = 0
+    fighter1.hp = is_alive(fighter1.hp)
+    fighter2.hp = is_alive(fighter2.hp)
+
+
+def is_alive(hp: int) -> int:
+    if hp <= 0:
+        hp = 0
+    return hp

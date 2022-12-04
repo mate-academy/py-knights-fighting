@@ -10,25 +10,20 @@ class Knight:
         self.protection = protection
 
     def apply_improvements(self, knight: dict) -> None:
-        for param in knight:
-            if param == "name" or param == "power" or param == "hp":
-                continue
-            if param == "armour":
-                self.protection += \
-                    sum(part["protection"] for part in knight["armour"])
-                continue
-            if param == "weapon":
-                self.power += knight["weapon"]["power"]
-                continue
-            if param == "potion" and knight["potion"] is not None:
-                for effect in knight["potion"]["effect"]:
-                    if effect == "hp":
-                        self.hp += knight["potion"]["effect"]["hp"]
-                        continue
-                    if effect == "power":
-                        self.power += knight["potion"]["effect"]["power"]
-                        continue
-                    if effect == "protection":
-                        self.protection += \
-                            knight["potion"]["effect"]["protection"]
-                        continue
+        if "armour" in knight:
+            self.protection += \
+                sum(part["protection"] for part in knight["armour"])
+        if "weapon" in knight:
+            self.power += knight["weapon"]["power"]
+        if "potion" in knight and knight["potion"] is not None:
+            for effect in knight["potion"]["effect"]:
+                if effect == "hp":
+                    self.hp += knight["potion"]["effect"]["hp"]
+                    continue
+                if effect == "power":
+                    self.power += knight["potion"]["effect"]["power"]
+                    continue
+                if effect == "protection":
+                    self.protection += \
+                        knight["potion"]["effect"]["protection"]
+                    continue
