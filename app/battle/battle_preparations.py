@@ -5,39 +5,30 @@ class Knight:
     def __init__(self, knight: dict) -> None:
         self.knight = knight
 
-    @staticmethod
-    def apply_weapon(knight_weapon: dict) -> dict:
-        knight_weapon["power"] += knight_weapon["weapon"]["power"]
-        return knight_weapon
+    def apply_weapon(self) -> dict:
+        self.knight["power"] += self.knight["weapon"]["power"]
+        return self.knight
 
-    @staticmethod
-    def apply_armour(knight_armor: dict) -> dict:
-        knight_armor["protection"] = 0
-        for index_armor in knight_armor["armour"]:
-            knight_armor["protection"] += index_armor["protection"]
-        return knight_armor
+    def apply_armour(self) -> dict:
+        self.knight["protection"] = 0
+        for index_armor in self.knight["armour"]:
+            self.knight["protection"] += index_armor["protection"]
+        return self.knight
 
-    @staticmethod
-    def apply_potion(knight_potion: dict) -> dict:
-        if knight_potion["potion"] is not None:
-            if "power" in knight_potion["potion"]["effect"]:
-                knight_potion["power"] += \
-                    knight_potion["potion"]["effect"]["power"]
+    def apply_potion(self) -> dict:
+        if self.knight["potion"] is not None:
+            mass_values = ["power", "protection", "hp"]
+            for value in mass_values:
+                if value in self.knight["potion"]["effect"]:
+                    self.knight[value] += \
+                        self.knight["potion"]["effect"][value]
 
-            if "protection" in knight_potion["potion"]["effect"]:
-                knight_potion["protection"] += \
-                    knight_potion["potion"]["effect"]["protection"]
-
-            if "hp" in knight_potion["potion"]["effect"]:
-                knight_potion["hp"] += \
-                    knight_potion["potion"]["effect"]["hp"]
-
-        return knight_potion
+        return self.knight
 
     def get_ready(self) -> None:
-        self.knight = self.apply_weapon(self.knight)
-        self.knight = self.apply_armour(self.knight)
-        self.knight = self.apply_potion(self.knight)
+        self.apply_weapon()
+        self.apply_armour()
+        self.apply_potion()
 
     def battle_start(self, knight: Knight) -> None:
         self.knight["hp"] -= \
@@ -45,7 +36,6 @@ class Knight:
         knight.knight["hp"] -= \
             self.knight["power"] - knight.knight["protection"]
 
-        # check if someone fell in battle
         if self.knight["hp"] <= 0:
             self.knight["hp"] = 0
 
