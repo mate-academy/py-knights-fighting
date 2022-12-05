@@ -8,7 +8,7 @@ class Armour:
     def apply_armour(self) -> dict:
         for hero in self.knight:
             self.knight[hero]["protection"] = 0
-            for a in self.knight[hero]["armour"]:
-                self.knight[hero]["protection"] += a["protection"]
+            for arm in self.knight[hero]["armour"]:
+                self.knight[hero]["protection"] += arm["protection"]
 
         return Weapon(self.knight).apply_weapon()

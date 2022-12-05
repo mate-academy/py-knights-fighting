@@ -1,5 +1,5 @@
 class Round:
-    def __init__(self, player_1: dict, player_2: dict):
+    def __init__(self, player_1: dict, player_2: dict) -> None:
         self.player_1 = player_1
         self.player_2 = player_2
 
