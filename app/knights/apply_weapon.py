@@ -8,5 +8,4 @@ class Weapon:
     def apply_weapon(self) -> dict:
         for hero in self.knight:
             self.knight[hero]["power"] += self.knight[hero]["weapon"]["power"]
-
         return Potion(self.knight).apply_potion()

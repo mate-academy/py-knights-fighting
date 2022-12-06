@@ -3,19 +3,25 @@ class Potion:
         self.knight = knight
 
     def apply_potion(self) -> dict:
-
         for hero in self.knight:
             if self.knight[hero]["potion"] is not None:
-                if "power" in self.knight[hero]["potion"]["effect"]:
-                    self.knight[hero]["power"] += \
-                        self.knight[hero]["potion"]["effect"]["power"]
-
-                if "protection" in self.knight[hero]["potion"]["effect"]:
-                    self.knight[hero]["protection"] += \
-                        self.knight[hero]["potion"]["effect"]["protection"]
-
-                if "hp" in self.knight[hero]["potion"]["effect"]:
-                    self.knight[hero]["hp"] += \
-                        self.knight[hero]["potion"]["effect"]["hp"]
-
+                Potion(self.knight[hero]).power()
+                Potion(self.knight[hero]).protection()
+                Potion(self.knight[hero]).hp()
         return self.knight
+
+    def power(self) -> dict:
+        if "power" in self.knight["potion"]["effect"]:
+            self.knight["power"] += self.knight["potion"]["effect"]["power"]
+            return self.knight
+
+    def protection(self) -> dict:
+        if "protection" in self.knight["potion"]["effect"]:
+            self.knight["protection"] += \
+                self.knight["potion"]["effect"]["protection"]
+            return self.knight
+
+    def hp(self) -> dict:
+        if "hp" in self.knight["potion"]["effect"]:
+            self.knight["hp"] += self.knight["potion"]["effect"]["hp"]
+            return self.knight
