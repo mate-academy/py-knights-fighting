@@ -8,57 +8,27 @@ def health_point_check(knight: dict) -> None:
 
 def battle(knights_config: dict) -> dict:
 
-    lancelot = knights_config["lancelot"]
-    knight_lancelot = Knight(
-        name=lancelot["name"],
-        power=lancelot["power"],
-        hp=lancelot["hp"]
-    )
-    knight_lancelot.apply_armour(lancelot["armour"])
-    knight_lancelot.apply_weapon(lancelot["weapon"])
-    knight_lancelot.apply_potion(lancelot["potion"])
-    lancelot["hp"] = knight_lancelot.hp
-    lancelot["power"] = knight_lancelot.power
-    lancelot["protection"] = knight_lancelot.protection
+    hero_dict = {}
+    for person in knights_config.values():
+        hero = person
+        knight = Knight(
+            name=hero["name"],
+            power=hero["power"],
+            hp=hero["hp"]
+        )
+        knight.apply_armour(hero["armour"])
+        knight.apply_weapon(hero["weapon"])
+        knight.apply_potion(hero["potion"])
+        hero["hp"] = knight.hp
+        hero["power"] = knight.power
+        hero["protection"] = knight.protection
+        new_dict = {hero["name"]: hero}
+        hero_dict.update(new_dict)
 
-    arthur = knights_config["arthur"]
-    knight_arthur = Knight(
-        name=arthur["name"],
-        power=arthur["power"],
-        hp=arthur["hp"]
-    )
-    knight_arthur.apply_armour(arthur["armour"])
-    knight_arthur.apply_weapon(arthur["weapon"])
-    knight_arthur.apply_potion(arthur["potion"])
-    arthur["hp"] = knight_arthur.hp
-    arthur["power"] = knight_arthur.power
-    arthur["protection"] = knight_arthur.protection
-
-    mordred = knights_config["mordred"]
-    knight_mordred = Knight(
-        name=mordred["name"],
-        power=mordred["power"],
-        hp=mordred["hp"]
-    )
-    knight_mordred.apply_armour(mordred["armour"])
-    knight_mordred.apply_weapon(mordred["weapon"])
-    knight_mordred.apply_potion(mordred["potion"])
-    mordred["hp"] = knight_mordred.hp
-    mordred["power"] = knight_mordred.power
-    mordred["protection"] = knight_mordred.protection
-
-    red_knight = knights_config["red_knight"]
-    knight_red_knight = Knight(
-        name=red_knight["name"],
-        power=red_knight["power"],
-        hp=red_knight["hp"]
-    )
-    knight_red_knight.apply_armour(red_knight["armour"])
-    knight_red_knight.apply_weapon(red_knight["weapon"])
-    knight_red_knight.apply_potion(red_knight["potion"])
-    red_knight["hp"] = knight_red_knight.hp
-    red_knight["power"] = knight_red_knight.power
-    red_knight["protection"] = knight_red_knight.protection
+    lancelot = hero_dict["Lancelot"]
+    arthur = hero_dict["Artur"]
+    mordred = hero_dict["Mordred"]
+    red_knight = hero_dict["Red Knight"]
 
     lancelot["hp"] -= mordred["power"] - lancelot["protection"]
     health_point_check(lancelot)
