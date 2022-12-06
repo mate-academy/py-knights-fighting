@@ -19,7 +19,7 @@ class Knight:
         return self
 
     def set_potion(self) -> Knight:
-        if not isinstance(self.potions, type(None)):
+        if self.potions is not None:
             self.potions = self.potions["effect"]
 
             potions_map = {
