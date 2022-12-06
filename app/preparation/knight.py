@@ -15,7 +15,7 @@ class Knight:
         return self.power
 
     def apply_potion(self, potion: dict) -> None:
-        if potion is not None:
+        if potion:
             if "power" in potion["effect"]:
                 self.power += potion["effect"]["power"]
             if "protection" in potion["effect"]:
