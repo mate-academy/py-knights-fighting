@@ -38,12 +38,12 @@ class Knight:
     def weapons(self) -> None:
         self.power += self.dict["weapon"]["power"]
 
-    def fight(self, second: Knight) -> None:
-        self.hp -= second.power - self.protection
-        second.hp -= self.power - second.protection
+    def fight(self, enemy: Knight) -> None:
+        self.hp -= enemy.power - self.protection
+        enemy.hp -= self.power - enemy.protection
 
         if self.hp <= 0:
             self.hp = 0
 
-        if second.hp <= 0:
-            second.hp = 0
+        if enemy.hp <= 0:
+            enemy.hp = 0
