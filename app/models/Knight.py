@@ -21,12 +21,16 @@ class Knight:
     def set_potion(self) -> Knight:
         if not isinstance(self.potions, type(None)):
             self.potions = self.potions["effect"]
-            if "power" in self.potions:
-                self.power += self.potions["power"]
-            if "hp" in self.potions:
-                self.hp += self.potions["hp"]
-            if "protection" in self.potions:
-                self.protection += self.potions["protection"]
+
+            potions_map = {
+                "power": self.__add_power,
+                "hp": self.__add_hp,
+                "protection": self.__add_hp
+            }
+            for key, value in potions_map.items():
+                if key in self.potions:
+                    value(self.potions[key])
+
         return self
 
     def set_weapon(self) -> Knight:
@@ -35,3 +39,12 @@ class Knight:
 
     def knight_adjusting(self) -> Knight:
         return self.set_total_armor().set_potion().set_weapon()
+
+    def __add_power(self, power: int) -> None:
+        self.power += power
+
+    def __add_hp(self, hp: int) -> None:
+        self.hp += hp
+
+    def __add_protection(self, protection: int) -> None:
+        self.protection += protection
