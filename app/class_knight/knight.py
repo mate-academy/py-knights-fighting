@@ -19,10 +19,10 @@ class Knight:
             for armour in knight_dict["armour"]:
                 current_knight.protection += armour["protection"]
         current_knight.power += knight_dict["weapon"]["power"]
-        if knight_dict["potion"] is not None:
+        if knight_dict["potion"]:
             current_knight.power += knight_dict["potion"]["effect"]["power"]
             current_knight.hp += knight_dict["potion"]["effect"]["hp"]
-            if knight_dict["potion"]["effect"].get("protection") is not None:
+            if knight_dict["potion"]["effect"].get("protection", None):
                 current_knight.protection += \
                     knight_dict["potion"]["effect"]["protection"]
         return current_knight
