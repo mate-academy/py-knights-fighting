@@ -1,4 +1,5 @@
 from app.class_knight.knight import Knight
+from app.class_knight.value_check import Check
 
 
 KNIGHTS = {
@@ -99,10 +100,10 @@ def battle(knights_config: dict) -> dict:
     arthur.hp -= red_knight.power - arthur.protection
     red_knight.hp -= arthur.power - red_knight.protection
 
-    return {lancelot.name: lancelot.hp if lancelot.hp > 0 else 0,
-            arthur.name: arthur.hp if arthur.hp > 0 else 0,
-            mordred.name: mordred.hp if mordred.hp > 0 else 0,
-            red_knight.name: red_knight.hp if red_knight.hp > 0 else 0}
+    return {lancelot.name: Check.value_check(lancelot.hp),
+            arthur.name: Check.value_check(arthur.hp),
+            mordred.name: Check.value_check(mordred.hp),
+            red_knight.name: Check.value_check(red_knight.hp)}
 
 
 print(battle(KNIGHTS))
