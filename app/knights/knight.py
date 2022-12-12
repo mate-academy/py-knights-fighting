@@ -11,8 +11,8 @@ class Knights:
         self.add_from_potion()
 
     def add_armour(self) -> None:
-        for a in self.knight["armour"]:
-            self.protection += a["protection"]
+        for arm in self.knight["armour"]:
+            self.protection += arm["protection"]
 
     def add_weapon(self) -> None:
         self.power += self.knight["weapon"]["power"]
