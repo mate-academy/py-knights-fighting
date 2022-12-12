@@ -1,10 +1,9 @@
-from app.knights.apply_armour import Armour
+from app.knights.knight import Knights
 from app.tournament.start_fight import Battle
 
 
 def battle(knights: dict) -> dict:
     for_battle = {}
     for hero in knights:
-        for_battle.update(Armour({hero: knights[hero]}).apply_armour())
-
+        for_battle.update({hero: Knights(knights[hero])})
     return Battle(for_battle).start_fight()

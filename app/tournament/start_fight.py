@@ -1,5 +1,5 @@
-from app.tournament.round import Round
 from app.tournament.health import Health
+from app.tournament.round import Round
 
 
 class Battle:
@@ -15,12 +15,12 @@ class Battle:
         Health(self.knights["arthur"], self.knights["red_knight"]).health()
 
         return {
-            self.knights["lancelot"]["name"]:
-                self.knights["lancelot"]["hp"],
-            self.knights["arthur"]["name"]:
-                self.knights["arthur"]["hp"],
-            self.knights["mordred"]["name"]:
-                self.knights["mordred"]["hp"],
-            self.knights["red_knight"]["name"]:
-                self.knights["red_knight"]["hp"],
+            self.knights["lancelot"].name:
+                self.knights["lancelot"].hp,
+            self.knights["arthur"].name:
+                self.knights["arthur"].hp,
+            self.knights["mordred"].name:
+                self.knights["mordred"].hp,
+            self.knights["red_knight"].name:
+                self.knights["red_knight"].hp,
         }
