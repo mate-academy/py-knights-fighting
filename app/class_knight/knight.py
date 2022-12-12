@@ -5,7 +5,8 @@ class Knight:
 
     def __init__(
             self, name: str,
-            power: int, hp: int,
+            power: int,
+            hp: int,
             protection: int
     ) -> None:
         self.name = name
@@ -22,10 +23,11 @@ class Knight:
             for armour in knight_dict["armour"]:
                 current_knight.protection += armour["protection"]
         current_knight.power += knight_dict["weapon"]["power"]
+
         if knight_dict["potion"]:
-            current_knight.power += knight_dict["potion"]["effect"]["power"]
-            current_knight.hp += knight_dict["potion"]["effect"]["hp"]
-            if knight_dict["potion"]["effect"].get("protection", None):
-                current_knight.protection += \
-                    knight_dict["potion"]["effect"]["protection"]
+            potion = knight_dict["potion"]["effect"]
+            current_knight.power += potion["power"]
+            current_knight.hp += potion["hp"]
+            current_knight.protection += potion.get("protection", 0)
+
         return current_knight
