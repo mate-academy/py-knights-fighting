@@ -4,12 +4,12 @@ def check_hp_knight(hp: int) -> int:
     return hp
 
 
-def fighting(first: str, second: str, knights: dict) -> None:
+def fighting(first: str, second: str, knights_dict: dict) -> None:
 
-    knights[first]["hp"] -= knights[second]["power"] \
-        - knights[first]["protection"]
-    knights[second]["hp"] -= knights[first]["power"] \
-        - knights[second]["protection"]
+    knights_dict[first].hp -= knights_dict[second].power \
+        - knights_dict[first].protection
+    knights_dict[second].hp -= knights_dict[first].power \
+        - knights_dict[second].protection
 
-    knights[first]["hp"] = check_hp_knight(knights[first]["hp"])
-    knights[second]["hp"] = check_hp_knight(knights[second]["hp"])
+    knights_dict[first].hp = check_hp_knight(knights_dict[first].hp)
+    knights_dict[second].hp = check_hp_knight(knights_dict[second].hp)
