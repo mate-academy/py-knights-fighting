@@ -10,10 +10,8 @@ def preparations(knights: dict) -> dict:
         for armour in knight["armour"]:
             knight["protection"] += armour["protection"]
 
-        # apply weapon
         knight["power"] += knight["weapon"]["power"]
 
-        # apply potion if exist
         if knight["potion"] is not None:
             for char in ["power", "protection", "hp"]:
                 if char in knight["potion"]["effect"]:
