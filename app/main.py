@@ -1,5 +1,5 @@
 from app.prepare.knight import ReadyKnight
-from app.prepare.armour import armour_knight
+from app.prepare.armour import armour
 from app.prepare.potion import drink_potion
 from app.prepare.battle import battle_vs
 
@@ -107,8 +107,7 @@ def battle(knight_info: dict) -> dict:
             protection=0
         )
         # Dressing the fighter in armor
-        knights_ready[name].protection =\
-            armour_knight(knight_info[name]["armour"])
+        knights_ready[name].protection = armour(knight_info[name]["armour"])
         # drink a potion from a strange granny
         drink_potion(
             knight=knights_ready[name],
