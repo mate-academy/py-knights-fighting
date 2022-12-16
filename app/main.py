@@ -3,44 +3,24 @@ from knights_battle.battle import knights_battle
 from knights.knight import Knight
 
 
-def battle(knightsconfig: callable) -> dict:
-    # lancelot
-    lancelot = Knight("Lancelot", knightsconfig["lancelot"]["power"],
-                      knightsconfig["lancelot"]["hp"])
-    lancelot.using_armour(knightsconfig["lancelot"]["armour"],
-                          knightsconfig["lancelot"]["weapon"]["power"])
-    lancelot.using_potion(knightsconfig["lancelot"]["potion"])
+def battle(knightsconfig: dict) -> dict:
+    knights_name_lst = []
+    for name, knight_info in knightsconfig.items():
+        name = Knight(name, knight_info["power"], knight_info["hp"])
+        name.using_armour(knight_info["armour"],
+                          knight_info["weapon"]["power"])
+        name.using_potion(knight_info["potion"])
+        knights_name_lst.append(name)
 
-    # mordred
-    mordred = Knight("Mordred", knightsconfig["mordred"]["power"],
-                     knightsconfig["mordred"]["hp"])
-    mordred.using_armour(knightsconfig["mordred"]["armour"],
-                         knightsconfig["mordred"]["weapon"]["power"])
-    mordred.using_potion(knightsconfig["mordred"]["potion"])
-
-    # arthur
-    arthur = Knight("Artur", knightsconfig["arthur"]["power"],
-                    knightsconfig["arthur"]["hp"])
-    arthur.using_armour(knightsconfig["arthur"]["armour"],
-                        knightsconfig["arthur"]["weapon"]["power"])
-    arthur.using_potion(knightsconfig["arthur"]["potion"])
-
-    # red_knight
-    red_knight = Knight("Red Knight", knightsconfig["red_knight"]["power"],
-                        knightsconfig["red_knight"]["hp"])
-    red_knight.using_armour(knightsconfig["red_knight"]["armour"],
-                            knightsconfig["red_knight"]["weapon"]["power"])
-    red_knight.using_potion(knightsconfig["red_knight"]["potion"])
-
-    first_battle = knights_battle(lancelot, mordred)
-    second_battle = knights_battle(arthur, red_knight)
+    first_battle = knights_battle(knights_name_lst[0], knights_name_lst[2])
+    second_battle = knights_battle(knights_name_lst[1], knights_name_lst[3])
     result = {
-        "Lancelot": first_battle["Lancelot"],
-        "Artur": second_battle["Artur"],
-        "Mordred": first_battle["Mordred"],
-        "Red Knight": second_battle["Red Knight"],
+        "Lancelot": first_battle["lancelot"],
+        "Artur": second_battle["arthur"],
+        "Mordred": first_battle["mordred"],
+        "Red Knight": second_battle["red_knight"],
     }
-    print(result)
+    print(knights_name_lst.append)
     return result
 
 

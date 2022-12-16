@@ -1,4 +1,7 @@
-def knights_battle(knight1: callable, knight2: callable) -> dict:
+from knights.knight import Knight
+
+
+def knights_battle(knight1: Knight, knight2: Knight) -> dict:
     knight1_hp = knight1.hp - knight2.power
     knight2_hp = knight2.hp - knight1.power
     if knight1_hp < 0:
