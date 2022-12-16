@@ -95,26 +95,24 @@ def battle(knight_info: dict) -> dict:
     knights_ready = {}
 
     for key in knight_info.keys():
-        # create a tag with the name of a knight
-        name = f"{key}"
         # writing the knight's name for preparation
-        knights_ready[name] = key
+        knights_ready[key] = key
         # the medical board creates a knight's card
-        knights_ready[name] = ReadyKnight(
-            name=knight_info[name]["name"],
-            hp=knight_info[name]["hp"],
-            power=knight_info[name]["power"],
+        knights_ready[key] = ReadyKnight(
+            name=knight_info[key]["name"],
+            hp=knight_info[key]["hp"],
+            power=knight_info[key]["power"],
             protection=0
         )
         # Dressing the fighter in armor
-        knights_ready[name].protection = armour(knight_info[name]["armour"])
+        knights_ready[key].protection = armour(knight_info[key]["armour"])
         # drink a potion from a strange granny
         drink_potion(
-            knight=knights_ready[name],
-            potions=knight_info[name]["potion"]
+            knight=knights_ready[key],
+            potions=knight_info[key]["potion"]
         )
         # noble takes up arms
-        knights_ready[name].power += knight_info[name]["weapon"]["power"]
+        knights_ready[key].power += knight_info[key]["weapon"]["power"]
     # trumpets announce Lancelot's fight against Mordred
     battle_vs(knights_ready["lancelot"], knights_ready["mordred"])
     # an exciting battle between Arthur and the Red Knight began
