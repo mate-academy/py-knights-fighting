@@ -12,8 +12,10 @@ def battle(knightsconfig: dict) -> dict:
         knight.using_potion(knight_info["potion"])
         knights_name_dct[knight.name] = knight
 
-    first_battle = knights_battle(knights_name_dct["lancelot"], knights_name_dct["mordred"])
-    second_battle = knights_battle(knights_name_dct["arthur"], knights_name_dct["red_knight"])
+    first_battle = knights_battle(knights_name_dct["lancelot"],
+                                  knights_name_dct["mordred"])
+    second_battle = knights_battle(knights_name_dct["arthur"],
+                                   knights_name_dct["red_knight"])
     result = {
         "Lancelot": first_battle["lancelot"],
         "Artur": second_battle["arthur"],
