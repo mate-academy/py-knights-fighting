@@ -16,18 +16,14 @@ class Knight:
 
     def potion(self) -> None:
         if self.dict["potion"] is not None:
-
-            for effect in self.dict["potion"]["effect"]:
-
-                if effect == "hp":
-                    self.hp += self.dict["potion"]["effect"]["hp"]
-
-                if effect == "power":
-                    self.power += self.dict["potion"]["effect"]["power"]
-
-                if effect == "protection":
-                    self.protection += \
-                        self.dict["potion"]["effect"]["protection"]
+            effect_dict = self.dict["potion"]["effect"]
+            for key in effect_dict:
+                if key == "hp":
+                    self.hp += effect_dict[key]
+                if key == "power":
+                    self.power += effect_dict[key]
+                if key == "protection":
+                    self.protection += effect_dict[key]
 
     def armour(self) -> None:
         if self.dict["armour"]:
