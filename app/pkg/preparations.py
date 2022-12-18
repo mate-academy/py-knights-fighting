@@ -14,8 +14,7 @@ def preparations(knights: dict) -> dict:
 
         if knight["potion"] is not None:
             for char in ["power", "protection", "hp"]:
-                if char in knight["potion"]["effect"]:
-                    knight[char] += knight["potion"]["effect"][char]
+                knight[char] += knight["potion"]["effect"].get(char, 0)
 
         knights_dict[knight_name] = Knight(name=knight["name"],
                                            hp=knight["hp"],

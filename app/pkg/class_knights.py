@@ -15,3 +15,9 @@ class Knight:
     def __sub__(self, other: Knight) -> Knight:
         self.hp -= other.power - self.protection
         return self
+
+    @staticmethod
+    def check_hp_knight(hp: int) -> int:
+        if hp <= 0:
+            hp = 0
+        return hp
