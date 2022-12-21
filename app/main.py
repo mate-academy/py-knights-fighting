@@ -1,10 +1,9 @@
-from app.data_base.db import KNIGHTS
+from app.data_base.data_base_knights import KNIGHTS
 from app.knights_config.character_configuration import Character
 from app.battle.battle_knights import Battle
 
 
 def battle(knights_config: dict) -> dict:
-    # BATTLE PREPARATIONS:
     lancelot = Character(
         name_knight="lancelot",
         knight=knights_config
@@ -25,15 +24,10 @@ def battle(knights_config: dict) -> dict:
         knight=knights_config
     ).new_character()
 
-    # -------------------------------------------------------------------------------
-    # BATTLE:
+    Battle(one_knight=lancelot, two_knight=mordred).battle_knight()
+    Battle(one_knight=arthur, two_knight=red_knight).battle_knight()
 
-    return Battle(
-        lancelot=lancelot,
-        arthur=arthur,
-        mordred=mordred,
-        red_knight=red_knight
-    ).battle_knight()
+    return Battle.result
 
 
 print(battle(KNIGHTS))

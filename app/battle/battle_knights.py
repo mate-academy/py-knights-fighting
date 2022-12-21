@@ -1,49 +1,30 @@
 class Battle:
 
+    result = {}
+
     def __init__(
             self,
-            lancelot: dict,
-            arthur: dict,
-            mordred: dict,
-            red_knight: dict
+            one_knight: dict,
+            two_knight: dict,
     ) -> None:
 
-        self.lancelot = lancelot
-        self.arthur = arthur
-        self.mordred = mordred
-        self.red_knight = red_knight
+        self.one_knight = one_knight
+        self.two_knight = two_knight
 
     def battle_knight(self) -> dict:
 
-        self.lancelot["hp"] -= \
-            self.mordred["power"] - self.lancelot["protection"]
-        self.mordred["hp"] -= \
-            self.lancelot["power"] - self.mordred["protection"]
+        self.one_knight["hp"] -= \
+            self.two_knight["power"] - self.one_knight["protection"]
+        self.two_knight["hp"] -= \
+            self.one_knight["power"] - self.two_knight["protection"]
 
-        # check if someone fell in battle
-        if self.lancelot["hp"] <= 0:
-            self.lancelot["hp"] = 0
+        if self.one_knight["hp"] <= 0:
+            self.one_knight["hp"] = 0
 
-        if self.mordred["hp"] <= 0:
-            self.mordred["hp"] = 0
+        if self.two_knight["hp"] <= 0:
+            self.two_knight["hp"] = 0
 
-        # 2 Arthur vs Red Knight:
-        self.arthur["hp"] -= \
-            self.red_knight["power"] - self.arthur["protection"]
-        self.red_knight["hp"] -= \
-            self.arthur["power"] - self.red_knight["protection"]
+        Battle.result[self.one_knight["name"]] = self.one_knight["hp"]
+        Battle.result[self.two_knight["name"]] = self.two_knight["hp"]
 
-        # check if someone fell in battle
-        if self.arthur["hp"] <= 0:
-            self.arthur["hp"] = 0
-
-        if self.red_knight["hp"] <= 0:
-            self.red_knight["hp"] = 0
-
-        # Return battle results:
-        return {
-            self.lancelot["name"]: self.lancelot["hp"],
-            self.arthur["name"]: self.arthur["hp"],
-            self.mordred["name"]: self.mordred["hp"],
-            self.red_knight["name"]: self.red_knight["hp"],
-        }
+        return Battle.result
