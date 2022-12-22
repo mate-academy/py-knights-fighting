@@ -92,7 +92,6 @@ KNIGHTS = {
 
 def battle(knights_config: dict) -> dict:
     # BATTLE PREPARATIONS:
-
     knights = knights_get_ready_to_battle(knights_config)
 
     lancelot = knights["lancelot"]
