@@ -1,3 +1,6 @@
+
+LIST_KNIGHT = ["lancelot", "arthur", "mordred", "red_knight"]
+
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",

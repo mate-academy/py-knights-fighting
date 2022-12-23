@@ -1,5 +1,5 @@
 from app.knights_dict import KNIGHTS
-from app.battle_preparation.knights.knights_config import knight_config
+from app.battle_preparation.knights_config import knight_config
 
 
 def battle(knights_config: dict) -> dict:
@@ -33,4 +33,4 @@ def battle(knights_config: dict) -> dict:
     }
 
 
-battle(KNIGHTS)
+print(battle(KNIGHTS))
