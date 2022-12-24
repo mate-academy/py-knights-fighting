@@ -24,3 +24,7 @@ class KnightsPrepareToBattle:
                 self.hp += knight.potion["effect"]["hp"]
             if "protection" in knight.potion["effect"]:
                 self.protection += knight.potion["effect"]["protection"]
+
+    def check_hp_after_battle(self) -> None:
+        if self.hp < 0:
+            self.hp = 0

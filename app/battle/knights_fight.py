@@ -11,11 +11,8 @@ class BattleRound:
         first_knight.hp -= second_knight.power - first_knight.protection
         second_knight.hp -= first_knight.power - second_knight.protection
 
-        if first_knight.hp <= 0:
-            first_knight.hp = 0
-
-        if second_knight.hp <= 0:
-            second_knight.hp = 0
+        first_knight.check_hp_after_battle()
+        second_knight.check_hp_after_battle()
 
         return {
             first_knight.name: first_knight.hp,
