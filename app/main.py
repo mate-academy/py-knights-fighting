@@ -91,16 +91,16 @@ KNIGHTS = {
 
 def battle(knightsconfig: dict) -> dict:
     # BATTLE PREPARATIONS:
-    lancelot = KnightPreparation(knightsconfig["lancelot"])
+    lancelot = KnightPreparation(**knightsconfig["lancelot"])
     lancelot.prepare_knight()
 
-    arthur = KnightPreparation(knightsconfig["arthur"])
+    arthur = KnightPreparation(**knightsconfig["arthur"])
     arthur.prepare_knight()
 
-    mordred = KnightPreparation(knightsconfig["mordred"])
+    mordred = KnightPreparation(**knightsconfig["mordred"])
     mordred.prepare_knight()
 
-    red_knight = KnightPreparation(knightsconfig["red_knight"])
+    red_knight = KnightPreparation(**knightsconfig["red_knight"])
     red_knight.prepare_knight()
 
     # -------------------------------------------------------------------------------

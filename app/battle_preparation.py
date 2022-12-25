@@ -1,13 +1,21 @@
+from __future__ import annotations
+
+
 class KnightPreparation:
 
-    def __init__(self, knight_info: dict) -> None:
-        self.knight_info = knight_info
-        self.name = knight_info["name"]
-        self.hp = knight_info["hp"]
-        self.power = knight_info["power"]
-        self.armour = knight_info["armour"]
-        self.weapon = knight_info["weapon"]
-        self.potion = knight_info["potion"]
+    def __init__(self,
+                 name: str,
+                 hp: int,
+                 power: int,
+                 armour: list,
+                 weapon: dict,
+                 potion: dict | None) -> None:
+        self.name = name
+        self.hp = hp
+        self.power = power
+        self.armour = armour
+        self.weapon = weapon
+        self.potion = potion
         self.protection = 0
 
     def apply_armour(self) -> None:
