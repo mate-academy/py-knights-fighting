@@ -1,4 +1,4 @@
-from app.khights import Knight
+from app.khights import Knight, duel
 
 base_knights_config = {
     "lancelot": {
@@ -117,26 +117,16 @@ def battle(base_knights_config: dict) -> dict:
                         weapon=base_knights_config["red_knight"]["weapon"],
                         potion=base_knights_config["red_knight"]["potion"])
 
-    lancelot_stats = lancelot.prepare_for_battle()
-    arthur_stats = arthur.prepare_for_battle()
-    mordred_stats = mordred.prepare_for_battle()
-    red_knight_stats = red_knight.prepare_for_battle()
+    for knight in (lancelot, arthur, mordred, red_knight):
+        knight.prepare_for_battle()
 
-    lancelot_stats["hp"] -= mordred_stats["power"] -\
-        lancelot_stats["protection"]
-    lancelot.is_dead(lancelot_stats["hp"])
+    duel(lancelot, mordred)
 
-    arthur_stats["hp"] -= red_knight_stats["power"] -\
-        arthur_stats["protection"]
-    arthur.is_dead(arthur_stats["hp"])
+    duel(arthur, red_knight)
 
-    mordred_stats["hp"] -= lancelot_stats["power"] -\
-        mordred_stats["protection"]
-    mordred.is_dead(mordred_stats["hp"])
-
-    red_knight_stats["hp"] -= arthur_stats["power"] -\
-        red_knight_stats["protection"]
-    red_knight.is_dead(red_knight_stats["hp"])
+    for knight in (lancelot, arthur, mordred, red_knight):
+        if knight.is_dead():
+            knight.hp = 0
 
     return {lancelot.name: lancelot.hp,
             arthur.name: arthur.hp,

@@ -16,6 +16,7 @@ class Knight:
         self.armour = armour
         self.weapon = weapon
         self.potion = potion
+        self.protection = 0
 
     def prepare_for_battle(self) -> dict:
         if self.potion:
@@ -32,14 +33,20 @@ class Knight:
         armour_list = Armour(self.armour)
         total_protection = potion.drink_potion()["effect_protection"] + \
             armour_list.equip_armour()
+        self.hp = total_hp
+        self.power = total_power
+        self.protection = total_protection
+        # return {"hp": total_hp,
+        #         "protection": total_protection,
+        #         "power": total_power}
 
-        return {"hp": total_hp,
-                "protection": total_protection,
-                "power": total_power}
-
-    def is_dead(self, hp: int) -> None:
-        if hp < 0:
+    def is_dead(self) -> bool:
+        if self.hp < 0:
             print(f"{self.name} is dead!")
-            self.hp = 0
-        else:
-            self.hp = hp
+            return True
+        return False
+
+
+def duel(knight1: Knight, knight2: Knight) -> None:
+    knight1.hp -= knight2.power - knight1.protection
+    knight2.hp -= knight1.power - knight2.protection
