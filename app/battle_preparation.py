@@ -27,17 +27,9 @@ class KnightPreparation:
 
     def apply_potion(self) -> None:
         if self.potion is not None:
-            if "power" in self.potion["effect"]:
-                self.power += \
-                    self.potion["effect"]["power"]
-
-            if "protection" in self.potion["effect"]:
-                self.protection += \
-                    self.potion["effect"]["protection"]
-
-            if "hp" in self.potion["effect"]:
-                self.hp += \
-                    self.potion["effect"]["hp"]
+            for prop in self.potion["effect"]:
+                value = getattr(self, prop) + self.potion["effect"][prop]
+                setattr(self, prop, value)
 
     def prepare_knight(self) -> None:
         self.apply_armour()
