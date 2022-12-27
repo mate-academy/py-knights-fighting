@@ -1,19 +1,13 @@
-from app.model.armour import Armour
 from app.model.battle import Battle
 from app.model.knight import Knight
-from app.model.potion import Potion
-from app.model.weapon import Weapon
 
 
-def battle(knightsConfig):
+def battle(knights_config: dict) -> dict:
     # BATTLE PREPARATIONS:
-    lancelot = Knight("Lancelot", 35, 100, [], Weapon("Metal Sword", 50), Potion())
-    arthur = Knight("Arthur", 45, 75, [Armour("helmet", 15), Armour("breastplate", 20), Armour("boots", 10)],
-                    Weapon("Two-handed Sword", 55), Potion())
-    mordred = Knight("Mordred", 30, 90, [Armour("breastplate", 15), Armour("boots", 10)], Weapon("Poisoned Sword", 60),
-                     Potion("Berserk", {"power": 15, "hp": -5, "protection": 10}))
-    red_knight = Knight("Red Knight", 40, 70, [Armour("breastplate", 25)], Weapon("Sword", 45),
-                       Potion("Blessing", {"power": 5, "hp": 10}))
+    lancelot = Knight().parse_knight_stats("lancelot", knights_config)
+    arthur = Knight().parse_knight_stats("arthur", knights_config)
+    mordred = Knight().parse_knight_stats("mordred", knights_config)
+    red_knight = Knight().parse_knight_stats("red_knight", knights_config)
 
     # lancelot
     lancelot.calculate_final_stats()
