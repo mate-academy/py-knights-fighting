@@ -1,4 +1,4 @@
-import knight
+import app.knight as knight
 
 KNIGHTS = {
     "lancelot": {
