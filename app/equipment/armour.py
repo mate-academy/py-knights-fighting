@@ -2,9 +2,9 @@ from .armour_part import ArmourPart
 
 
 class Armour:
-    def __init__(self, armour_cfg: dict) -> None:
+    def __init__(self, armour_dict: dict) -> None:
         self._armour_parts = []
-        for armour in armour_cfg:
+        for armour in armour_dict:
             self._armour_parts.append(
                 ArmourPart(armour["part"], armour["protection"])
             )

@@ -2,15 +2,15 @@ import app.equipment as equip
 
 
 class Knight:
-    def __init__(self, knight_cfg: dict) -> None:
-        self.name = knight_cfg["name"]
-        self.power = knight_cfg["power"]
-        self.hp = knight_cfg["hp"]
-        self.armour = equip.Armour(knight_cfg["armour"])
-        self.weapon = equip.Weapon(knight_cfg["weapon"])
+    def __init__(self, knight_dict: dict) -> None:
+        self.name = knight_dict["name"]
+        self.power = knight_dict["power"]
+        self.hp = knight_dict["hp"]
+        self.armour = equip.Armour(knight_dict["armour"])
+        self.weapon = equip.Weapon(knight_dict["weapon"])
         self.potion = (
-            equip.Potion(knight_cfg["potion"])
-            if knight_cfg["potion"]
+            equip.Potion(knight_dict["potion"])
+            if knight_dict["potion"]
             else None
         )
 
