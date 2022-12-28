@@ -91,63 +91,39 @@ knights = {
 
 def battle(knights_config: dict) -> dict:
 
-    lancelot = Knights(
-        name=knights_config["lancelot"]["name"],
-        power=knights_config["lancelot"]["power"],
-        hp=knights_config["lancelot"]["hp"],
-        armours=knights_config["lancelot"]["armour"],
-        weapon=knights_config["lancelot"]["weapon"],
-        potion=knights_config["lancelot"]["potion"]
-    )
+    list_knights = []
+    for knight in knights_config:
+        list_knights.append(Knights(
+            name=knights_config[knight]["name"],
+            power=knights_config[knight]["power"],
+            hp=knights_config[knight]["hp"],
+            armours=knights_config[knight]["armour"],
+            weapon=knights_config[knight]["weapon"],
+            potion=knights_config[knight]["potion"]
+        ))
 
-    arthur = Knights(
-        name=knights_config["arthur"]["name"],
-        power=knights_config["arthur"]["power"],
-        hp=knights_config["arthur"]["hp"],
-        armours=knights_config["arthur"]["armour"],
-        weapon=knights_config["arthur"]["weapon"],
-        potion=knights_config["arthur"]["potion"]
-    )
+    list_knights[0].preparing_knight_battle()
+    list_knights[1].preparing_knight_battle()
+    list_knights[2].preparing_knight_battle()
+    list_knights[3].preparing_knight_battle()
 
-    mordred = Knights(
-        name=knights_config["mordred"]["name"],
-        power=knights_config["mordred"]["power"],
-        hp=knights_config["mordred"]["hp"],
-        armours=knights_config["mordred"]["armour"],
-        weapon=knights_config["mordred"]["weapon"],
-        potion=knights_config["mordred"]["potion"]
-    )
+    list_knights[0].hp -= list_knights[2].power - list_knights[0].protection
+    list_knights[2].hp -= list_knights[0].power - list_knights[2].protection
 
-    red_knight = Knights(
-        name=knights_config["red_knight"]["name"],
-        power=knights_config["red_knight"]["power"],
-        hp=knights_config["red_knight"]["hp"],
-        armours=knights_config["red_knight"]["armour"],
-        weapon=knights_config["red_knight"]["weapon"],
-        potion=knights_config["red_knight"]["potion"]
-    )
-    lancelot.preparing_knight_battle()
-    arthur.preparing_knight_battle()
-    mordred.preparing_knight_battle()
-    red_knight.preparing_knight_battle()
+    list_knights[0].check_if_someone_fell_in_battle()
+    list_knights[2].check_if_someone_fell_in_battle()
 
-    lancelot.hp -= mordred.power - lancelot.protection
-    mordred.hp -= lancelot.power - mordred.protection
+    list_knights[1].hp -= list_knights[3].power - list_knights[1].protection
+    list_knights[3].hp -= list_knights[1].power - list_knights[3].protection
 
-    lancelot.check_if_someone_fell_in_battle()
-    mordred.check_if_someone_fell_in_battle()
-
-    arthur.hp -= red_knight.power - arthur.protection
-    red_knight.hp -= arthur.power - red_knight.protection
-
-    arthur.check_if_someone_fell_in_battle()
-    red_knight.check_if_someone_fell_in_battle()
+    list_knights[1].check_if_someone_fell_in_battle()
+    list_knights[3].check_if_someone_fell_in_battle()
 
     return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
+        list_knights[0].name: list_knights[0].hp,
+        list_knights[1].name: list_knights[1].hp,
+        list_knights[2].name: list_knights[2].hp,
+        list_knights[3].name: list_knights[3].hp,
     }
 
 
