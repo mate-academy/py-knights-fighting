@@ -18,12 +18,10 @@ class KnightsPrepareToBattle:
 
     def apply_potion(self, knight: Knight) -> None:
         if knight.potion is not None:
-            if "power" in knight.potion["effect"]:
-                self.power += knight.potion["effect"]["power"]
-            if "hp" in knight.potion["effect"]:
-                self.hp += knight.potion["effect"]["hp"]
-            if "protection" in knight.potion["effect"]:
-                self.protection += knight.potion["effect"]["protection"]
+            for potion_effect in knight.potion["effect"]:
+                setattr(self, potion_effect,
+                        getattr(self, potion_effect)
+                        + knight.potion["effect"][potion_effect])
 
     def check_hp_after_battle(self) -> None:
         if self.hp < 0:
