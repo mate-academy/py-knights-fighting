@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Optional
+
 from app.armour import Armour
 from app.potion import Potion
 from app.weapon import Weapon
@@ -13,7 +15,7 @@ class Knight:
             hp: int,
             armours: list[Armour],
             weapon: Weapon,
-            potion: None | Potion
+            potion: Optional[Potion]
     ) -> None:
         self.name = name
         self.power = power
@@ -23,15 +25,16 @@ class Knight:
         self.potion = potion
         self.protection = 0
 
-    @staticmethod
-    def create_knight(knight_source: dict) -> Knight:
-        armours = []
-        for armour in knight_source["armour"]:
-            armours.append(Armour(armour["part"], armour["protection"]))
+    @classmethod
+    def create_knight(cls, knight_source: dict) -> Knight:
+        armours = [
+            Armour(armour["part"], armour["protection"])
+            for armour in knight_source["armour"]
+        ]
 
         weapon = Weapon.create_weapon(knight_source["weapon"])
         potion = Potion.create_potion(knight_source["potion"])
-        knight = Knight(
+        knight = cls(
             knight_source["name"],
             knight_source["power"],
             knight_source["hp"],
@@ -48,12 +51,7 @@ class Knight:
 
         if self.potion is not None:
             for name, score in self.potion.effect.items():
-                if name == "power":
-                    self.power += score
-                elif name == "hp":
-                    self.hp += score
-                elif name == "protection":
-                    self.protection += score
+                setattr(self, name, getattr(self, name) + score)
         return self
 
     def __add__(self, other: Knight) -> None:

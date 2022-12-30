@@ -6,6 +6,6 @@ class Weapon:
         self.name = name
         self.power = power
 
-    @staticmethod
-    def create_weapon(weapon: dict) -> Weapon:
-        return Weapon(weapon["name"], weapon["power"])
+    @classmethod
+    def create_weapon(cls, weapon: dict) -> Weapon:
+        return cls(weapon["name"], weapon["power"])

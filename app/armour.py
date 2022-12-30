@@ -6,6 +6,6 @@ class Armour:
         self.part = part
         self.protection = protection
 
-    @staticmethod
-    def create_armour(armour: dict) -> Armour:
-        return Armour(armour["part"], armour["protection"])
+    @classmethod
+    def create_armour(cls, armour: dict) -> Armour:
+        return cls(armour["part"], armour["protection"])

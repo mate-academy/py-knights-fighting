@@ -1,13 +1,15 @@
 from __future__ import annotations
 
+from typing import Optional
+
 
 class Potion:
     def __init__(self, name: str, effect: dict) -> None:
         self.name = name
         self.effect = effect
 
-    @staticmethod
-    def create_potion(potion: dict) -> None | Potion:
+    @classmethod
+    def create_potion(cls, potion: dict) -> Optional[Potion]:
         if potion is None:
             return None
-        return Potion(potion["name"], potion["effect"])
+        return cls(potion["name"], potion["effect"])
