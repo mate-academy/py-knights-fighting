@@ -5,14 +5,27 @@ class Knights:
 
     all_created_knights = {}
 
-    def __init__(self, name: str, power: int, hp: int, armour: list, weapon: dict, potion: Union[dict, None]) -> None:
+    def __init__(
+        self,
+        name: str,
+        power: int,
+        hp: int,
+        armour: list,
+        weapon: dict,
+        potion: Union[dict, None],
+    ) -> None:
         self.name = name
         self.power = power
         self.hp = hp
         self.armour = armour
         self.weapon = weapon
         self.potion = potion
-        self.protection = sum([i["protection"] if "protection" in i.keys() else 0 for i in armour]) if self.armour else 0
+        self.protection = (
+            sum([i["protection"] if "protection" in i.keys()
+                 else 0 for i in armour])
+            if self.armour
+            else 0
+        )
         if self.weapon:
             self.power += self.weapon["power"]
         if self.potion is not None:
