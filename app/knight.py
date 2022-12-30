@@ -13,9 +13,6 @@ class Knight:
             self.protection += part_of_armour["protection"]
         self.power += self.weapon["power"]
         if self.potion is not None:
-            # I used if method because if I do it with loops like
-            # for baff in self.potion["effect"]
-            # then I won't be able to write self.baff
             if "power" in self.potion["effect"]:
                 self.power += self.potion["effect"]["power"]
             if "hp" in self.potion["effect"]:
