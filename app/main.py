@@ -102,10 +102,8 @@ def battle(knights_config: dict) -> dict:
             potion=knights_config[knight]["potion"]
         ))
 
-    list_knights[0].preparing_knight_battle()
-    list_knights[1].preparing_knight_battle()
-    list_knights[2].preparing_knight_battle()
-    list_knights[3].preparing_knight_battle()
+    for i in range(len(knights_config)):
+        list_knights[i].preparing_knight_battle()
 
     list_knights[0].hp -= list_knights[2].power - list_knights[0].protection
     list_knights[2].hp -= list_knights[0].power - list_knights[2].protection
@@ -120,10 +118,8 @@ def battle(knights_config: dict) -> dict:
     list_knights[3].check_if_someone_fell_in_battle()
 
     return {
-        list_knights[0].name: list_knights[0].hp,
-        list_knights[1].name: list_knights[1].hp,
-        list_knights[2].name: list_knights[2].hp,
-        list_knights[3].name: list_knights[3].hp,
+        list_knights[i].name: list_knights[i].hp
+        for i in range(len(knights_config))
     }
 
 
