@@ -11,23 +11,20 @@ def battle(knights_config: dict) -> dict:
         prepare_to_the_battle(knight)
         knight_list.append(name)
 
-    knight1 = knights_config[knight_list[0]]
-    knight2 = knights_config[knight_list[1]]
-    knight3 = knights_config[knight_list[2]]
-    knight4 = knights_config[knight_list[3]]
+    knight_d = {i + 1: knights_config[knight_list[i]] for i in range(4)}
 
-    knight1["hp"] -= knight3["power"] - knight1["protection"]
-    knight3["hp"] -= knight1["power"] - knight3["protection"]
-    knight2["hp"] -= knight4["power"] - knight2["protection"]
-    knight4["hp"] -= knight2["power"] - knight4["protection"]
+    knight_d[1]["hp"] -= knight_d[3]["power"] - knight_d[1]["protection"]
+    knight_d[3]["hp"] -= knight_d[1]["power"] - knight_d[3]["protection"]
+    knight_d[2]["hp"] -= knight_d[4]["power"] - knight_d[2]["protection"]
+    knight_d[4]["hp"] -= knight_d[2]["power"] - knight_d[4]["protection"]
 
-    defeat_check([knight1, knight2, knight3, knight4])
+    defeat_check([knight_d[1], knight_d[2], knight_d[3], knight_d[4]])
 
     return {
-        knight1["name"]: knight1["hp"],
-        knight2["name"]: knight2["hp"],
-        knight3["name"]: knight3["hp"],
-        knight4["name"]: knight4["hp"],
+        knight_d[1]["name"]: knight_d[1]["hp"],
+        knight_d[2]["name"]: knight_d[2]["hp"],
+        knight_d[3]["name"]: knight_d[3]["hp"],
+        knight_d[4]["name"]: knight_d[4]["hp"],
     }
 
 
