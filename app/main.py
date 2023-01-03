@@ -15,9 +15,7 @@ def prepare_knights(knights_config: dict) -> list:
             armour = Armour(armour["part"], armour["protection"])
             armour.apply_armour(knight)
         if info["potion"] is not None:
-            potion = Potion(
-                info["potion"]["name"]
-            )
+            potion = Potion(info["potion"]["name"])
             potion.check_effect(info["potion"]["effect"])
             potion.apply_potion(knight)
         knights_list.append(knight)

@@ -17,12 +17,9 @@ class Potion:
 
     def check_effect(self, effects: dict) -> None:
         for effect in effects:
-            if effect == "hp":
-                self.hp = effects["hp"]
-            elif effect == "power":
-                self.power = effects["power"]
-            elif effect == "protection":
-                self.protection = effects["protection"]
+            for attr in self.__dict__:
+                if attr == effect:
+                    self.__dict__[attr] = effects[effect]
 
     def apply_potion(self, knight: Knight) -> None:
         knight.hp += self.hp
