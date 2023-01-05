@@ -11,7 +11,7 @@ def battle(knights: dict) -> dict:
         ready_knight.append(knight)
     knight_d = {i + 1: knight for i, knight in enumerate(ready_knight)}
     battles([knight_d[1], knight_d[3]], [knight_d[2], knight_d[4]])
-    return {knight_d[i]["name"]: knight_d[i]["hp"] for i in range(1, 5)}
+    return {knight_d[i]["name"]: knight_d[i]["hp"] for i in knight_d}
 
 
 print(battle(KNIGHTS))
