@@ -1,4 +1,4 @@
-def single_battle(*args) -> None:
+def battles(*args) -> None:
     for knights in args:
         hp1 = knights[0]["hp"] - knights[1]["power"] + knights[0]["protection"]
         hp2 = knights[1]["hp"] - knights[0]["power"] + knights[1]["protection"]
