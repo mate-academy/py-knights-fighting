@@ -26,26 +26,9 @@ class Knight:
     def get_potion(self) -> None:
         """Method adds potion effect to the knight"""
         if self.potion is not None:
-            skills = [self.power, self.hp, self.protection]
-            for skill in skills:
-                if skill in self.potion["effect"]:
-                    skill += self.potion["effect"][skill]
-
-    # def battle_preparation(self) -> None:
-    #     self.get_armour()
-
-#
-# lancelot = Knight("lancelot", KNIGHTS)
-# print(KNIGHTS["lancelot"]["weapon"]["name"])
-# print(f"protection: {lancelot.protection}")
-# print(f"power: {lancelot.power}")
-# print(f"hp: {lancelot.hp}")
-# lancelot.get_armour()
-# lancelot.get_weapon()
-# lancelot.get_potion()
-# print("---------------")
-# print(f"protection: {lancelot.protection}")
-# print(f"power: {lancelot.power}")
-# print(f"hp: {lancelot.hp}")
-# print(lancelot.__dict__)
-# mordred = Knight("mordred", KNIGHTS)
+            if "power" in self.potion["effect"]:
+                self.power += self.potion["effect"]["power"]
+            if "protection" in self.potion["effect"]:
+                self.protection += self.potion["effect"]["protection"]
+            if "hp" in self.potion["effect"]:
+                self.hp += self.potion["effect"]["hp"]
