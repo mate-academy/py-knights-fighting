@@ -3,7 +3,7 @@ class Knight:
 
     def __init__(self, name: str, knights: dict) -> None:
         """Method constructs knight instance"""
-        self.name = name
+        self.name = knights.keys()
         self.power = knights[name]["power"]
         self.hp = knights[name]["hp"]
         self.protection = 0
@@ -22,12 +22,16 @@ class Knight:
     def get_potion(self, potion: dict | None) -> None:
         """Method adds potion effect to the knight"""
         if potion is not None:
-            if "power" in potion["effect"]:
-                self.power += potion["effect"]["power"]
-            if "hp" in potion["effect"]:
-                self.hp += potion["effect"]["hp"]
-            if "protection" in potion["effect"]:
-                self.protection += potion["effect"]["protection"]
+            skills = [self.power, self.hp, self.protection]
+            for skil in skills:
+                if skil in potion["effect"]:
+                    skil += potion["effect"][skil]
+            # if "power" in potion["effect"]:
+            #     self.power += potion["effect"]["power"]
+            # if "hp" in potion["effect"]:
+            #     self.hp += potion["effect"]["hp"]
+            # if "protection" in potion["effect"]:
+            #     self.protection += potion["effect"]["protection"]
 
 
 KNIGHTS = {
@@ -56,15 +60,15 @@ KNIGHTS = {
     }
 }
 
-# lancelot = Knight("lancelot", KNIGHTS)
-# print(KNIGHTS["lancelot"]["weapon"]["name"])
-# print(f"protection: {lancelot.protection}")
-# print(f"power: {lancelot.power}")
-# print(f"hp: {lancelot.hp}")
-# lancelot.get_armour(KNIGHTS["lancelot"]["armour"])
-# lancelot.get_weapon(KNIGHTS["lancelot"]["weapon"])
-# lancelot.get_potion(KNIGHTS["lancelot"]["potion"])
-# print("---------------")
-# print(f"protection: {lancelot.protection}")
-# print(f"power: {lancelot.power}")
-# print(f"hp: {lancelot.hp}")
+lancelot = Knight("lancelot", KNIGHTS)
+print(KNIGHTS["lancelot"]["weapon"]["name"])
+print(f"protection: {lancelot.protection}")
+print(f"power: {lancelot.power}")
+print(f"hp: {lancelot.hp}")
+lancelot.get_armour(KNIGHTS["lancelot"]["armour"])
+lancelot.get_weapon(KNIGHTS["lancelot"]["weapon"])
+lancelot.get_potion(KNIGHTS["lancelot"]["potion"])
+print("---------------")
+print(f"protection: {lancelot.protection}")
+print(f"power: {lancelot.power}")
+print(f"hp: {lancelot.hp}")
