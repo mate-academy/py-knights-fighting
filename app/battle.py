@@ -1,114 +1,50 @@
 from knight import Knight
+from main import KNIGHTS
 
 
-def battle_preparation(participants: dict):
-    lancelot = Knight("lancelot", participants)
-    arthur = Knight("arthur", participants)
-    mordred = Knight("mordred", participants)
-    red_knight = Knight("red_knight", participants)
+lancelot = Knight("lancelot", KNIGHTS)
+arthur = Knight("arthur", KNIGHTS)
+mordred = Knight("mordred", KNIGHTS)
+red_knight = Knight("red_knight", KNIGHTS)
 
-    print(f"protection: {lancelot.protection}")
-    print(f"power: {lancelot.power}")
-    print(f"hp: {lancelot.hp}")
-    lancelot.get_armour(participants["lancelot"]["armour"])
-    lancelot.get_weapon(participants["lancelot"]["weapon"])
-    lancelot.get_potion(KNIGHTS["lancelot"]["potion"])
-    print("---------------")
-    print(f"protection: {lancelot.protection}")
-    print(f"power: {lancelot.power}")
-    print(f"hp: {lancelot.hp}")
-    mordred.get_armour(KNIGHTS["mordred"]["armour"])
-    mordred.get_weapon(KNIGHTS["mordred"]["weapon"])
-    mordred.get_potion(KNIGHTS["mordred"]["potion"])
+
+def battle_preparation(knight: Knight) -> None:
+    """Function prepare knight for a battle"""
+    knight.get_armour()
+    knight.get_weapon()
+    knight.get_potion()
+
+
+def duel(knight_1: Knight, knight_2: Knight) -> None:
+    knight_1.hp -= knight_2.power - knight_1.protection
+    knight_2.hp -= knight_1.power - knight_2.protection
+
+
+def check_if_fell(knight: Knight) -> None:
+    if knight.hp <= 0:
+        knight.hp = 0
+
+
+def battle_results(knights: list[Knight]) -> dict:
+    return {knight.real_name: knight.hp for knight in knights}
+
+
+battle_preparation(lancelot)
+battle_preparation(arthur)
+battle_preparation(mordred)
+battle_preparation(red_knight)
+
+duel(lancelot, mordred)
+duel(arthur, red_knight)
+
+check_if_fell(lancelot)
+check_if_fell(arthur)
+check_if_fell(mordred)
+check_if_fell(red_knight)
+
+print(battle_results([lancelot, arthur, mordred, red_knight]))
 
 
 # 1 Lancelot vs Mordred:
 # 2 Arthur vs Red Knight:
 # Return battle results:
-KNIGHTS = {
-    "lancelot": {
-        "name": "Lancelot",
-        "power": 35,
-        "hp": 100,
-        "armour": [],
-        "weapon": {
-            "name": "Metal Sword",
-            "power": 50,
-        },
-        "potion": None,
-    },
-    "arthur": {
-        "name": "Artur",
-        "power": 45,
-        "hp": 75,
-        "armour": [
-            {
-                "part": "helmet",
-                "protection": 15,
-            },
-            {
-                "part": "breastplate",
-                "protection": 20,
-            },
-            {
-                "part": "boots",
-                "protection": 10,
-            }
-        ],
-        "weapon": {
-            "name": "Two-handed Sword",
-            "power": 55,
-        },
-        "potion": None,
-    },
-    "mordred": {
-        "name": "Mordred",
-        "power": 30,
-        "hp": 90,
-        "armour": [
-            {
-                "part": "breastplate",
-                "protection": 15,
-            },
-            {
-                "part": "boots",
-                "protection": 10,
-            }
-        ],
-        "weapon": {
-            "name": "Poisoned Sword",
-            "power": 60,
-        },
-        "potion": {
-            "name": "Berserk",
-            "effect": {
-                "power": +15,
-                "hp": -5,
-                "protection": +10,
-            }
-        }
-    },
-    "red_knight": {
-        "name": "Red Knight",
-        "power": 40,
-        "hp": 70,
-        "armour": [
-            {
-                "part": "breastplate",
-                "protection": 25,
-            }
-        ],
-        "weapon": {
-            "name": "Sword",
-            "power": 45
-        },
-        "potion": {
-            "name": "Blessing",
-            "effect": {
-                "hp": +10,
-                "power": +5,
-            }
-        }
-    }
-}
-battle_preparation(KNIGHTS)
