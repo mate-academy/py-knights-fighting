@@ -44,33 +44,3 @@ class Knight:
             self.armour_addition_stats(armour)
         if potion is not None:
             self.potion_addition_stats(potion)
-
-    @classmethod
-    def completed_stats(cls) -> None:
-        for name in cls.knights:
-            print(f"The knight's name: {name}")
-            print(f"Power: {cls.knights[name].power}")
-            print(f"Health: {cls.knights[name].health}")
-            print(f"Protection: {cls.knights[name].protection}")
-            print(f"Weapon: {cls.knights[name].weapon}")
-            print(f"Armour: {cls.knights[name].armour}")
-            print(f"Used potion: {cls.knights[name].potion}")
-            print("-" * 20)
-
-
-# lancelot = Knight("Lancelot", power=35, health=100)
-# lancelot.geather_addition_stats(Weapon.weapons["Metal Sword"], None, None)
-# artur = Knight("Artur", power=45, health=75)
-# artur.geather_addition_stats(Weapon.weapons["Two-handed Sword"],
-#                              [Armour.armours["helmet"],
-#                              Armour.armours["breastplate20"],
-#                              Armour.armours["boots"]], None)
-# mordred = Knight("Mordred", power=30, health=90)
-# mordred.geather_addition_stats(Weapon.weapons["Poisoned Sword"],
-#                                [Armour.armours["breastplate15"],
-#                                 Armour.armours["boots"]],
-#                                Potion.potions["Berserk"])
-# red_knight = Knight("Red Knight", power=40, health=70)
-# red_knight.geather_addition_stats(Weapon.weapons["Sword"],
-#                                   [Armour.armours["breastplate25"]],
-#                                   Potion.potions["Blessing"])
