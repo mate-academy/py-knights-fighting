@@ -32,3 +32,4 @@ class Knight:
                 self.protection += self.potion["effect"]["protection"]
             if "hp" in self.potion["effect"]:
                 self.hp += self.potion["effect"]["hp"]
+

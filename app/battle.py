@@ -9,39 +9,42 @@ def battle_preparation(knight: Knight) -> None:
 
 
 def duel(knight_1: Knight, knight_2: Knight) -> None:
+    """
+    Function imitates a duel between two knights
+    and changes knight`s health_points by results
+    """
     knight_1.hp += (knight_1.protection - knight_2.power)
     knight_2.hp += (knight_2.protection - knight_1.power)
 
 
 def check_if_fell(knight: Knight) -> None:
+    """Function checks if knight fell"""
     if knight.hp <= 0:
         knight.hp = 0
 
 
-def battle_results(knights: list[Knight]) -> dict:
+def battle_results(knights: dict) -> dict:
+    """Function returns a dictionary with results of a knights battle"""
     return {knight.real_name: knight.hp for knight in knights}
 
 
 def battle(knights: dict) -> dict:
-    lancelot = Knight("lancelot", knights)
-    arthur = Knight("arthur", knights)
-    mordred = Knight("mordred", knights)
-    red_knight = Knight("red_knight", knights)
 
-    battle_preparation(lancelot)
-    battle_preparation(arthur)
-    battle_preparation(mordred)
-    battle_preparation(red_knight)
+    participants = {
+        knight: Knight(knight, knights)
+        for knight in knights
+    }
 
-    duel(lancelot, mordred)
-    duel(arthur, red_knight)
+    for participant in participants.values():
+        battle_preparation(participant)
 
-    check_if_fell(lancelot)
-    check_if_fell(arthur)
-    check_if_fell(mordred)
-    check_if_fell(red_knight)
+    duel(participants["lancelot"], participants["mordred"])
+    duel(participants["arthur"], participants["red_knight"])
 
-    return battle_results([lancelot, arthur, mordred, red_knight])
+    for participant in participants.values():
+        check_if_fell(participant)
+
+    return battle_results(participants.values())
 
 # 1 Lancelot vs Mordred:
 # 2 Arthur vs Red Knight:
