@@ -3,8 +3,7 @@ class Knight:
 
     def __init__(self, name: str, knights: dict) -> None:
         """Method constructs knight instance"""
-        self.name = name
-        self.real_name = knights[name]["name"]
+        self.name = knights[name]["name"]
         self.power = knights[name]["power"]
         self.hp = knights[name]["hp"]
         self.armour = knights[name]["armour"]
