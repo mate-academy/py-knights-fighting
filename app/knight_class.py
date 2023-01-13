@@ -1,14 +1,14 @@
 class Knight:
     """Class creates the knight instance and necessary methods"""
 
-    def __init__(self, name: str, knights: dict) -> None:
+    def __init__(self, name: str, knight: dict) -> None:
         """Method constructs knight instance"""
-        self.name = knights[name]["name"]
-        self.power = knights[name]["power"]
-        self.hp = knights[name]["hp"]
-        self.armour = knights[name]["armour"]
-        self.weapon = knights[name]["weapon"]
-        self.potion = knights[name]["potion"]
+        self.name = knight[name]["name"]
+        self.power = knight[name]["power"]
+        self.hp = knight[name]["hp"]
+        self.armour = knight[name]["armour"]
+        self.weapon = knight[name]["weapon"]
+        self.potion = knight[name]["potion"]
         self.protection = 0
 
     def get_armour(self) -> None:
@@ -24,10 +24,12 @@ class Knight:
 
     def get_potion(self) -> None:
         """Method adds potion effect to the knight"""
+        values = ["power", "protection", "hp"]
         if self.potion is not None:
-            if "power" in self.potion["effect"]:
-                self.power += self.potion["effect"]["power"]
-            if "protection" in self.potion["effect"]:
-                self.protection += self.potion["effect"]["protection"]
-            if "hp" in self.potion["effect"]:
-                self.hp += self.potion["effect"]["hp"]
+            for value in values:
+                if value in self.potion["effect"]:
+                    setattr(
+                        self,
+                        value,
+                        (getattr(self, value) + self.potion["effect"][value])
+                    )

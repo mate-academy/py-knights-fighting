@@ -24,7 +24,7 @@ def check_if_fell(knight: Knight) -> None:
         knight.hp = 0
 
 
-def battle_results(knights: dict) -> dict:
+def battle_results(knights: dict[Knight]) -> dict:
     """Function returns a dictionary with results of a knights battle"""
     return {knight.name: knight.hp for knight in knights}
 
