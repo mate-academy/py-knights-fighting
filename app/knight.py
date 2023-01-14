@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Optional
 
 
 class Knight:
@@ -9,7 +9,7 @@ class Knight:
         hp: int,
         armour: list[dict],
         weapon: dict,
-        potion: Union[None, dict],
+        potion: Optional[dict],
     ) -> None:
 
         self.name = name

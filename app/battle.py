@@ -14,7 +14,10 @@ class Battle:
             self.participant.power - self.opponent.protection
         )
 
-        if self.participant.hp <= 0:
-            self.participant.hp = 0
-        if self.opponent.hp <= 0:
-            self.opponent.hp = 0
+        self.check_hp(self.participant)
+        self.check_hp(self.opponent)
+
+    @staticmethod
+    def check_hp(knight: Knight) -> None:
+        if knight.hp < 0:
+            knight.hp = 0
