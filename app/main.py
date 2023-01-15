@@ -4,76 +4,42 @@ from app.Ammunition.potions import Potion
 from app.Ammunition.weapons import Weapon
 
 
-def classes_creation(knights_config: dict) -> None:
-    for knight in knights_config:
-        Knight(knights_config[knight]["name"],
-               knights_config[knight]["power"],
-               knights_config[knight]["hp"])
-        Weapon(knights_config[knight]["weapon"]["name"],
-               knights_config[knight]["weapon"]["power"])
-        if [] not in knights_config[knight]["armour"]:
-            for i in range(len(knights_config[knight]["armour"])):
-                Armour(knights_config[knight]["armour"][i]["part"],
-                       knights_config[knight]["armour"][i]["protection"])
-        if knights_config[knight]["potion"] is not None:
-            _power = 0
-            _health = 0
-            _protection = 0
-            for eff in knights_config[knight]["potion"]["effect"]:
-                if eff == "power":
-                    _power = knights_config[knight][
-                        "potion"]["effect"]["power"]
-                elif eff == "hp":
-                    _health = knights_config[knight][
-                        "potion"]["effect"]["hp"]
-                elif eff == "protection":
-                    _protection = knights_config[knight][
-                        "potion"]["effect"]["protection"]
-            Potion(knights_config[knight]["potion"]["name"],
-                   _power, _health, _protection)
+def knights_creation_config(config: dict, knight: str) -> Knight:
+    name = config[knight]["name"]
+    power = config[knight]["power"]
+    health = config[knight]["hp"]
+    weapon = Weapon(config[knight]["weapon"]["name"],
+                    config[knight]["weapon"]["power"])
+    armour = []
+    for _armour in config[knight]["armour"]:
+        armour.append(Armour(_armour["part"], _armour["protection"]))
+    potion = None
+    if config[knight]["potion"] is not None:
+        effect = config[knight]["potion"]["effect"]
+        potion = Potion(config[knight]["potion"]["name"],
+                        effect["power"] if "power" in effect else 0,
+                        effect["hp"] if "hp" in effect else 0,
+                        effect["protection"] if "protection" in effect else 0)
+    return Knight(name, power, health, weapon, armour, potion)
 
 
-def fighters_with_completed_stats(knights_config: dict) -> None:
-    for name in knights_config:
-        knight_armour = []
-        knight_potion = None
-        knight_weapon = Weapon.weapons[
-            knights_config[name]["weapon"]["name"]
-        ]
-        if [] not in knights_config[name]["armour"]:
-            for i in range(len(knights_config[name]["armour"])):
-                knight_armour.append(
-                    Armour.armours[
-                        knights_config[name]["armour"][i]["part"]
-                        + str(knights_config[name]["armour"][i]["protection"])
-                    ]
-                )
-        if knights_config[name]["potion"] is not None:
-            knight_potion = Potion.potions[
-                knights_config[name]["potion"]["name"]
-            ]
-        Knight.knights[knights_config[name]["name"]].geather_addition_stats(
-            knight_weapon, knight_armour, knight_potion
-        )
+def health_update(knight: Knight) -> None:
+    if knight.health < 0:
+        knight.health = 0
 
 
-def royal_battle(first_fighter: Knight, second_fighter: Knight) -> None:
-    first_fighter.health -= second_fighter.power - first_fighter.protection
-    second_fighter.health -= first_fighter.power - second_fighter.protection
-    if first_fighter.health < 0:
-        first_fighter.health = 0
-    if second_fighter.health < 0:
-        second_fighter.health = 0
+def royal_battle(fighter_1: Knight, fighter_2: Knight) -> None:
+    fighter_1.health -= fighter_2.power - fighter_1.protection
+    fighter_2.health -= fighter_1.power - fighter_2.protection
+    health_update(fighter_1)
+    health_update(fighter_2)
 
 
 def battle(knights_config: dict) -> dict:
-    classes_creation(knights_config)
-    fighters_with_completed_stats(knights_config)
-
-    lancelot = Knight.knights["Lancelot"]
-    arthur = Knight.knights["Artur"]
-    mordred = Knight.knights["Mordred"]
-    red_knight = Knight.knights["Red Knight"]
+    lancelot = knights_creation_config(knights_config, "lancelot")
+    arthur = knights_creation_config(knights_config, "arthur")
+    mordred = knights_creation_config(knights_config, "mordred")
+    red_knight = knights_creation_config(knights_config, "red_knight")
 
     royal_battle(lancelot, mordred)
     royal_battle(arthur, red_knight)
