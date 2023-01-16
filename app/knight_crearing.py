@@ -16,13 +16,13 @@ class Knight:
         self.power += weapons["weapon"]["power"]
 
     def apply_potion(self, potion: dict) -> None:
-        if potion is not None:
-            if "power" in potion["effect"]:
-                self.power += potion["effect"]["power"]
-            if "protection" in potion["effect"]:
-                self.protection += potion["effect"]["protection"]
-            if "hp" in potion["effect"]:
-                self.hp += potion["effect"]["hp"]
+        if potion:
+            power = potion["effect"].get("power", 0)
+            self.power += power
+            protection = potion["effect"].get("protection", 0)
+            self.protection += protection
+            hp = potion["effect"].get("hp", 0)
+            self.hp += hp
 
 
 def create_knight(knights: dict) -> Knight:
