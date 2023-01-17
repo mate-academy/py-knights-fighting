@@ -4,22 +4,22 @@ from app.Ammunition.potions import Potion
 from app.Ammunition.weapons import Weapon
 
 
-def knights_creation_config(config: dict, knight: str) -> Knight:
-    name = config[knight]["name"]
-    power = config[knight]["power"]
-    health = config[knight]["hp"]
-    weapon = Weapon(config[knight]["weapon"]["name"],
-                    config[knight]["weapon"]["power"])
+def create_knight(config: dict) -> Knight:
+    name = config["name"]
+    power = config["power"]
+    health = config["hp"]
+    weapon = Weapon(config["weapon"]["name"],
+                    config["weapon"]["power"])
     armour = []
-    for _armour in config[knight]["armour"]:
+    for _armour in config["armour"]:
         armour.append(Armour(_armour["part"], _armour["protection"]))
-    potion = None
-    if config[knight]["potion"] is not None:
-        effect = config[knight]["potion"]["effect"]
-        potion = Potion(config[knight]["potion"]["name"],
-                        effect["power"] if "power" in effect else 0,
-                        effect["hp"] if "hp" in effect else 0,
-                        effect["protection"] if "protection" in effect else 0)
+    potion = config["potion"]
+    if potion is not None:
+        effect = potion["effect"]
+        potion = Potion(potion["name"],
+                        effect.get("power", 0),
+                        effect.get("hp", 0),
+                        effect.get("protection", 0))
     return Knight(name, power, health, weapon, armour, potion)
 
 
@@ -36,17 +36,17 @@ def royal_battle(fighter_1: Knight, fighter_2: Knight) -> None:
 
 
 def battle(knights_config: dict) -> dict:
-    lancelot = knights_creation_config(knights_config, "lancelot")
-    arthur = knights_creation_config(knights_config, "arthur")
-    mordred = knights_creation_config(knights_config, "mordred")
-    red_knight = knights_creation_config(knights_config, "red_knight")
+    knights = {
+        knight: create_knight(knights_config[knight])
+        for knight in knights_config
+    }
+    for knight in knights:
+        knights[knight].potion_increasing()
 
-    royal_battle(lancelot, mordred)
-    royal_battle(arthur, red_knight)
+    royal_battle(knights["lancelot"], knights["mordred"])
+    royal_battle(knights["arthur"], knights["red_knight"])
 
     return {
-        lancelot.name: lancelot.health,
-        arthur.name: arthur.health,
-        mordred.name: mordred.health,
-        red_knight.name: red_knight.health
+        knights[knight].name: knights[knight].health
+        for knight in knights
     }
