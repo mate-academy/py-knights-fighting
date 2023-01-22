@@ -1,6 +1,5 @@
-from knights.knight import Knight
-from knights import stats
-
+from app.knights.knight import Knight
+from app.knights import stats
 
 KNIGHTS = {
     "lancelot": {
@@ -89,33 +88,17 @@ KNIGHTS = {
     }
 }
 
-lancelot = Knight(
-    name=stats.get_name(KNIGHTS["lancelot"]),
-    hp=stats.get_hp(KNIGHTS["lancelot"]),
-    power=stats.get_power(KNIGHTS["lancelot"]),
-    protection=stats.get_protection(KNIGHTS["lancelot"])
-)
-arthur = Knight(
-    name=stats.get_name(KNIGHTS["arthur"]),
-    hp=stats.get_hp(KNIGHTS["arthur"]),
-    power=stats.get_power(KNIGHTS["arthur"]),
-    protection=stats.get_protection(KNIGHTS["arthur"])
-)
-mordred = Knight(
-    name=stats.get_name(KNIGHTS["mordred"]),
-    hp=stats.get_hp(KNIGHTS["mordred"]),
-    power=stats.get_power(KNIGHTS["mordred"]),
-    protection=stats.get_protection(KNIGHTS["mordred"])
-)
-red_knight = Knight(
-    name=stats.get_name(KNIGHTS["red_knight"]),
-    hp=stats.get_hp(KNIGHTS["red_knight"]),
-    power=stats.get_power(KNIGHTS["red_knight"]),
-    protection=stats.get_protection(KNIGHTS["red_knight"])
-)
 
-battle_1 = lancelot.battle(mordred)
-battle_2 = arthur.battle(red_knight)
+def battle(knights: dict) -> None:
+    knights_list = []
 
-print(battle_1)
-print(battle_2)
+    for knight in knights:
+        knights_list.append(Knight(
+            name=stats.get_name(KNIGHTS[knight]),
+            hp=stats.get_hp(KNIGHTS[knight]),
+            power=stats.get_power(KNIGHTS[knight]),
+            protection=stats.get_protection(KNIGHTS[knight])
+        ))
+
+    print(knights_list[0].get_battle(knights_list[1]))
+    print(knights_list[2].get_battle(knights_list[3]))

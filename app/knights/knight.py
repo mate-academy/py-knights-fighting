@@ -14,7 +14,7 @@ class Knight:
         self.hp = hp
         self.protection = protection
 
-    def battle(self, other: Knight) -> str:
+    def get_battle(self, other: Knight) -> str:
         self.hp = self.hp - other.power + self.protection
         other.hp = other.hp - self.power + other.protection
 
@@ -28,7 +28,3 @@ class Knight:
                            f"{self.name} has {self.hp} hp\n" \
                            f"{other.name} has {other.hp} hp\n"
         return result_of_battle
-
-    # 1 Lancelot vs Mordred
-    # 2 Arthur vs Red Knight
-    # {'Lancelot': 0, 'Artur': 30, 'Mordred': 35, 'Red Knight': 5}
