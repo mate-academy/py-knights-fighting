@@ -89,16 +89,19 @@ KNIGHTS = {
 }
 
 
-def battle(knights: dict) -> None:
+def battle(knights: dict) -> dict:
     knights_list = []
 
     for knight in knights:
         knights_list.append(Knight(
-            name=stats.get_name(KNIGHTS[knight]),
-            hp=stats.get_hp(KNIGHTS[knight]),
-            power=stats.get_power(KNIGHTS[knight]),
-            protection=stats.get_protection(KNIGHTS[knight])
+            name=stats.get_name(knights[knight]),
+            hp=stats.get_hp(knights[knight]),
+            power=stats.get_power(knights[knight]),
+            protection=stats.get_protection(knights[knight])
         ))
+    knights_list[0].get_battle(knights_list[2])
+    knights_list[1].get_battle(knights_list[3])
 
-    print(knights_list[0].get_battle(knights_list[1]))
-    print(knights_list[2].get_battle(knights_list[3]))
+    return {
+        warrior.name: warrior.hp for warrior in knights_list
+    }
