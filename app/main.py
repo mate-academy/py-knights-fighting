@@ -1,5 +1,17 @@
 from __future__ import annotations
-from app.knights import ready_to_battle
+from app.knights import Knights
+
+
+def ready_to_battle(knight_param: dict) -> Knights:
+    knight = Knights(
+        name=knight_param["name"],
+        hp=knight_param["hp"],
+        power=knight_param["power"]
+    )
+    knight.use_weapon(knight_param["weapon"])
+    knight.use_armour(knight_param["armour"])
+    knight.use_potion(knight_param["potion"])
+    return knight
 
 
 def battle(knight: dict) -> dict:
