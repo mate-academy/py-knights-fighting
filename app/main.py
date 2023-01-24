@@ -15,17 +15,16 @@ def ready_to_battle(knight_param: dict) -> Knights:
 
 
 def battle(knight: dict) -> dict:
-    lancelot = ready_to_battle(knight_param=knight["lancelot"])
-    mordred = ready_to_battle(knight_param=knight["mordred"])
-    artur = ready_to_battle(knight_param=knight["arthur"])
-    red_knight = ready_to_battle(knight_param=knight["red_knight"])
+    all_knight = {}
+    for name in knight:
+        all_knight[name] = ready_to_battle(knight_param=knight[name])
 
-    lancelot.fight(other=mordred)
-    artur.fight(other=red_knight)
+    all_knight["lancelot"].fight(other=all_knight["mordred"])
+    all_knight["arthur"].fight(other=all_knight["red_knight"])
 
     return {
-        lancelot.name: lancelot.hp,
-        artur.name: artur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
+        all_knight["lancelot"].name: all_knight["lancelot"].hp,
+        all_knight["arthur"].name: all_knight["arthur"].hp,
+        all_knight["mordred"].name: all_knight["mordred"].hp,
+        all_knight["red_knight"].name: all_knight["red_knight"].hp,
     }
