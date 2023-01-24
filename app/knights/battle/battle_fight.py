@@ -21,4 +21,3 @@ def fighting_function(knights_ready: dict) -> None:
             knights_ready["arthur"].power
             - knights_ready["red_knight"].armour)
     KNIGHTS["red_knight"]["hp"] = 0 if red_knight_hp < 0 else red_knight_hp
-

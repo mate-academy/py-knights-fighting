@@ -3,8 +3,8 @@ from typing import Callable, Any
 from app.knights.knight_constructor import KnightFighter
 
 
-def armour(func) -> Any:
-    def wrapper(item: KnightFighter):
+def armour(func: Callable) -> Any:
+    def wrapper(item: KnightFighter) -> Any:
         protection = 0
         if item.armour is not False:
             for value in item.armour:
@@ -14,15 +14,15 @@ def armour(func) -> Any:
     return wrapper
 
 
-def power(func) -> Any:
-    def wrapper(item: KnightFighter):
+def power(func: Callable) -> Any:
+    def wrapper(item: KnightFighter) -> Any:
         item.power += item.weapon["power"]
         return func(item)
     return wrapper
 
 
-def potion_apply(func) -> Callable[[KnightFighter], Any]:
-    def wrapper(item: KnightFighter):
+def potion_apply(func: Callable) -> Any:
+    def wrapper(item: KnightFighter) -> Any:
         if item.potion is not None:
             if "power" in item.potion["effect"]:
                 item.power += item.potion["effect"]["power"]
