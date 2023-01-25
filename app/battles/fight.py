@@ -20,6 +20,5 @@ class Fight:
 
     @staticmethod
     def no_negative_health(participant: Knight) -> None:
-
         if participant.hp < 0:
             participant.hp = 0

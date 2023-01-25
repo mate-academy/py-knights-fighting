@@ -5,7 +5,6 @@ class Knight:
         self.protection = 0
 
     def armour_on(self, armour: list) -> None:
-
         for piece_of_equip in armour:
             self.protection += piece_of_equip["protection"]
 
@@ -13,7 +12,6 @@ class Knight:
         self.power += weapon["power"]
 
     def potion_in(self, potion: dict) -> None:
-
         for effect, strength in potion.items():
             with_buff = getattr(self, effect) + strength
             setattr(self, effect, with_buff)
