@@ -1,19 +1,21 @@
 from __future__ import annotations
-from typing import Union
+from typing import Optional
 
 
 class Knights:
 
     def __init__(
-            self, name: str,
-            power: int, hp: int,
+            self,
+            name: str,
+            power: int,
+            hp: int,
     ) -> None:
         self.name = name
         self.power = power
         self.hp = hp
         self.protection = 0
 
-    def use_potion(self, potions: Union[dict, None]) -> None:
+    def use_potion(self, potions: Optional[dict] = None) -> None:
         if potions is not None:
             if "hp" in potions["effect"]:
                 self.hp += potions["effect"]["hp"]
@@ -22,7 +24,7 @@ class Knights:
             if "protection" in potions["effect"]:
                 self.protection += potions["effect"]["protection"]
 
-    def use_armour(self, armours: Union[dict, None]) -> None:
+    def use_armour(self, armours: Optional[dict] = None) -> None:
         if armours is not None:
             for armor in armours:
                 self.protection += armor["protection"]
