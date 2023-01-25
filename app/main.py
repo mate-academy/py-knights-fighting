@@ -32,5 +32,4 @@ def battle(list_of_knights: dict) -> dict:
     return Table.results(participants=participants)
 
 
-# main battle: {'Lancelot': 0, 'Artur': 30, 'Mordred': 35, 'Red Knight': 5}
 print(battle(KNIGHTS))
