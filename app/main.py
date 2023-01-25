@@ -16,8 +16,8 @@ def ready_to_battle(knight_param: dict) -> Knights:
 
 def battle(knight: dict) -> dict:
     all_knight = {}
-    for name in knight:
-        all_knight[name] = ready_to_battle(knight_param=knight[name])
+    for name, stats in knight.items():
+        all_knight[name] = ready_to_battle(knight_param=stats)
 
     all_knight["lancelot"].fight(other=all_knight["mordred"])
     all_knight["arthur"].fight(other=all_knight["red_knight"])
