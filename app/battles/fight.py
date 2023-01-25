@@ -6,14 +6,20 @@ class Fight:
     @staticmethod
     def battle(first_opponent: Knight, second_opponent: Knight) -> None:
 
-        first_opponent.health -= (second_opponent.power
-                                  - first_opponent.protection)
+        first_opponent.hp -= (
+            second_opponent.power - first_opponent.protection
+        )
 
-        if first_opponent.health < 0:
-            first_opponent.health = 0
+        Fight.no_negative_health(first_opponent)
 
-        second_opponent.health -= (first_opponent.power
-                                   - second_opponent.protection)
+        second_opponent.hp -= (
+            first_opponent.power - second_opponent.protection
+        )
 
-        if second_opponent.health < 0:
-            second_opponent.health = 0
+        Fight.no_negative_health(second_opponent)
+
+    @staticmethod
+    def no_negative_health(participant: Knight) -> None:
+
+        if participant.hp < 0:
+            participant.hp = 0
