@@ -1,46 +1,45 @@
 from typing import Callable, Any
-
 from app.knights.knight_constructor import KnightFighter
 
 
-def armour(func: Callable) -> Any:
-    def wrapper(item: KnightFighter) -> Any:
+def apply_armour(func: Callable) -> Any:
+    def wrapper(knight: KnightFighter) -> Any:
         protection = 0
-        if item.armour is not False:
-            for value in item.armour:
+        if knight.armour is not False:
+            for value in knight.armour:
                 protection += value["protection"]
-        item.armour = protection
-        return func(item)
+        knight.armour = protection
+        return func(knight)
     return wrapper
 
 
-def power(func: Callable) -> Any:
-    def wrapper(item: KnightFighter) -> Any:
-        item.power += item.weapon["power"]
-        return func(item)
+def apply_power(func: Callable) -> Any:
+    def wrapper(knight: KnightFighter) -> Any:
+        knight.power += knight.weapon["power"]
+        return func(knight)
     return wrapper
 
 
-def potion_apply(func: Callable) -> Any:
-    def wrapper(item: KnightFighter) -> Any:
-        if item.potion is not None:
-            if "power" in item.potion["effect"]:
-                item.power += item.potion["effect"]["power"]
-            if "protection" in item.potion["effect"]:
-                item.armour += item.potion["effect"]["protection"]
-            if "hp" in item.potion["effect"]:
-                item.hp += item.potion["effect"]["hp"]
-        return func(item)
+def apply_potion(func: Callable) -> Any:
+    def wrapper(knight: KnightFighter) -> Any:
+        if knight.potion is not None:
+            if "power" in knight.potion["effect"]:
+                knight.power += knight.potion["effect"]["power"]
+            if "protection" in knight.potion["effect"]:
+                knight.armour += knight.potion["effect"]["protection"]
+            if "hp" in knight.potion["effect"]:
+                knight.hp += knight.potion["effect"]["hp"]
+        return func(knight)
     return wrapper
 
 
-@armour
-@power
-@potion_apply
+@apply_armour
+@apply_power
+@apply_potion
 def apply_values_before_fight(knight: KnightFighter) -> Any:
     return knight.__dict__
 
 
-def knight_ready_for_fight(knight_dict: list) -> Any:
-    for fighter in knight_dict:
-        apply_values_before_fight(knight_dict[fighter])
+def knight_ready_for_fight(knight_dict: dict[KnightFighter]) -> Any:
+    for knight in knight_dict:
+        apply_values_before_fight(knight_dict[knight])

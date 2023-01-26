@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+
 class KnightFighter:
     def __init__(
             self,
@@ -14,3 +17,7 @@ class KnightFighter:
         self.armour = armour
         self.weapon = weapon
         self.potion = potion
+
+    def fight(self, opponent: KnightFighter) -> None:
+        self.hp = self.hp - (opponent.power - self.armour)
+        self.hp = 0 if self.hp < 0 else self.hp
