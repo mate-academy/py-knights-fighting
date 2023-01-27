@@ -7,9 +7,9 @@ class KnightFighter:
             name: str,
             power: int,
             hp: int,
-            armour: list = None,
-            weapon: dict = None,
-            potion: dict = None
+            armour: list[dict[str, int]] = None,
+            weapon: dict[dict[str, int]] = None,
+            potion: dict[dict[dict[str, int]]] = None
     ) -> None:
         self.name = name
         self.power = power
