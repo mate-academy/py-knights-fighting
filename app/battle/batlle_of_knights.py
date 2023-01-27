@@ -1,9 +1,9 @@
-from app.knight.knight import Knight
+from app.knight.knight_model import Knight
 
 
 def battle_for_two(first_knight: Knight, second_knight: Knight) -> dict:
-    first_knight.hp = first_knight.hp - second_knight.power
-    second_knight.hp = second_knight.hp - first_knight.power
+    first_knight.hp -= second_knight.power - first_knight.protection
+    second_knight.hp -= first_knight.power - second_knight.protection
 
 # check if someone fell in battle
     if first_knight.hp < 0:
