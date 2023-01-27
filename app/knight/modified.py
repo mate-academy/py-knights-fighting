@@ -1,22 +1,22 @@
-class ModifiedKnight:
+class Knight:
 
     def __init__(self, name: str, power: int, hp: int) -> None:
         self.name = name
         self.power = power
         self.hp = hp
 
-    def mod_armour(self, armour_list: list) -> int:
+    def armour(self, armour_list: list) -> int:
         for armor in armour_list:
             self.hp += armor["protection"]
 
         return self.hp
 
-    def mod_weapon(self, weapon: dict) -> int:
+    def weapon(self, weapon: dict) -> int:
         self.power += weapon["power"]
 
         return self.power
 
-    def mod_potion(self, potion: dict) -> int:
+    def potion(self, potion: dict) -> int:
         if potion is not None:
 
             if potion["effect"].get("protection"):

@@ -1,19 +1,19 @@
 from app.battle import knights_battle
 from app.knight.data import KNIGHTS
-from app.knight.modified import ModifiedKnight
+from app.knight.modified import Knight
 
 
 def battle(knights_config: dict) -> dict:
     knights_dict = {}
 
     for knight, knight_config in knights_config.items():
-        knight = ModifiedKnight(knight,
-                                knight_config["power"],
-                                knight_config["hp"])
+        knight = Knight(knight,
+                        knight_config["power"],
+                        knight_config["hp"])
 
-        knight.mod_armour(knight_config["armour"])
-        knight.mod_weapon(knight_config["weapon"])
-        knight.mod_potion(knight_config["potion"])
+        knight.armour(knight_config["armour"])
+        knight.weapon(knight_config["weapon"])
+        knight.potion(knight_config["potion"])
 
         knights_dict[knight.name] = knight
 
