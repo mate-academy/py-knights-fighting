@@ -1,4 +1,4 @@
-from app.knight.knight_model import Knight
+from app.knight.model import Knight
 
 
 def battle_for_two(first_knight: Knight, second_knight: Knight) -> dict:

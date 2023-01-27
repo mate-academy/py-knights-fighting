@@ -1,5 +1,5 @@
 from app.battle.batlle_of_knights import battle_for_two
-from app.knight.knight_model import Knight
+from app.knight.model import Knight
 from app.knight.knight_data import KNIGHTS
 
 
@@ -8,8 +8,8 @@ def battle(knights_config: dict) -> dict:
 
     for knight, knight_info in knights_config.items():
         knight = Knight(knight, knight_info["power"], knight_info["hp"])
-        knight.armour(knight_info["armour"])
-        knight.weapon(knight_info["weapon"]["power"])
+        knight.apply_armour(knight_info["armour"])
+        knight.apply_weapon(knight_info["weapon"]["power"])
         knight.apply_potion(knight_info["potion"])
         knight_dict[knight.name] = knight
 
