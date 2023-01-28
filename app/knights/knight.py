@@ -17,6 +17,7 @@ class Knight:
         self.armour = armour
         self.weapon = weapon
         self.potion = potion
+        self.gear_up()
 
     def apply_armour(self) -> None:
         self.protection = 0
@@ -39,8 +40,6 @@ class Knight:
         self.apply_weapon()
         self.result_hp()
         return self
-
-    # ініціюємо метод для битви між двома лицарями
 
     def check_hp(self) -> None:
         if self.hp <= 0:

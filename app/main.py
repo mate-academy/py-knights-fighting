@@ -10,7 +10,7 @@ ready_knights = knights.copy()
 def battle(ready_knights: dict) -> dict:
 
     for each in ready_knights:
-        ready_knights[each] = create_knight(each, ready_knights).gear_up()
+        ready_knights[each] = create_knight(each, ready_knights)
 
     # проведемо двобої та виведемо їх результати:
 
