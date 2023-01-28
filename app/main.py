@@ -2,31 +2,27 @@ from app.knights.data_knights import knights
 from app.knights.ready_knights import create_knight
 
 
-def battle(knights: dict) -> dict:
+# задля збереження даних вихідного словника створимо його копію:
 
-    # створимо кожного з лицарів та спорядимо їх до бою:
+ready_knights = knights.copy()
 
-    lancelot = create_knight("lancelot", knights)
-    mordred = create_knight("mordred", knights)
-    arthur = create_knight("arthur", knights)
-    red_knight = create_knight("red_knight", knights)
 
-    lancelot.gear_up()
-    mordred.gear_up()
-    arthur.gear_up()
-    red_knight.gear_up()
+def battle(ready_knights: dict) -> dict:
+
+    for each in ready_knights:
+        ready_knights[each] = create_knight(each, ready_knights).gear_up()
 
     # проведемо двобої та виведемо їх результати:
 
-    lancelot.fight(mordred)
-    arthur.fight(red_knight)
+    ready_knights["lancelot"].fight(ready_knights["mordred"])
+    ready_knights["arthur"].fight(ready_knights["red_knight"])
 
-    return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp
-    }
+    battle_result = {}
+
+    for each in ready_knights.values():
+        battle_result[each.name] = each.hp
+
+    return battle_result
 
 
-print(battle(knights))
+print(battle(ready_knights))

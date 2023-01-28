@@ -18,8 +18,6 @@ class Knight:
         self.weapon = weapon
         self.potion = potion
 
-    # створимо методи для спорядження лицарів:
-
     def apply_armour(self) -> None:
         self.protection = 0
         for kind in self.armour:
@@ -36,17 +34,21 @@ class Knight:
         if self.potion is not None:
             self.hp += self.potion["effect"]["hp"]
 
-    def gear_up(self) -> None:
+    def gear_up(self) -> Knight:
         self.apply_armour()
         self.apply_weapon()
         self.result_hp()
+        return self
 
     # ініціюємо метод для битви між двома лицарями
+
+    def check_hp(self) -> None:
+        if self.hp <= 0:
+            self.hp = 0
 
     def fight(self, other: Knight) -> None:
         self.hp -= other.power - self.protection
         other.hp -= self.power - other.protection
-        if self.hp <= 0:
-            self.hp = 0
-        if other.hp <= 0:
-            other.hp = 0
+
+        self.check_hp()
+        other.check_hp()
