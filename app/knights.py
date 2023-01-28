@@ -10,18 +10,14 @@ class Knight:
 
         self.power += knight["weapon"]["power"]
 
-        for armour in knight["armour"]:
-            self.protection += armour["protection"]
+        if len(knight["armour"]) != 0:
+            for one in knight["armour"]:
+                self.protection += one["protection"]
 
-        if knight["potion"]:
-            if "power" in knight["potion"]["effect"]:
-                self.power += knight["potion"]["effect"]["power"]
-
-            if "protection" in knight["potion"]["effect"]:
-                self.protection += knight["potion"]["effect"]["protection"]
-
-            if "hp" in knight["potion"]["effect"]:
-                self.hp += knight["potion"]["effect"]["hp"]
+        if knight.get("potion") is not None:
+            self.power += knight["potion"]["effect"].get("power", 0)
+            self.protection += knight["potion"]["effect"].get("protection", 0)
+            self.hp += knight["potion"]["effect"].get("hp", 0)
 
     def battle_knight(self, other: Knight) -> None:
         self.hp -= other.power - self.protection
