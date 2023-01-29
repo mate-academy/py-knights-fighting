@@ -88,7 +88,7 @@ KNIGHTS = {
 }
 
 
-def battle(knights: dict) -> None:
+def battle(knights: dict) -> dict:
     players = create_players(knights)
     players["Lancelot"].duel(players["Mordred"])
     players["Artur"].duel(players["Red Knight"])
@@ -104,9 +104,13 @@ def battle(knights: dict) -> None:
 def create_players(knights: dict) -> dict:
     players = {}
     for knight in knights.values():
-        players[knight["name"]] = Knight(knight["name"], knight["power"],
-                                         knight["hp"], knight["armour"],
-                                         knight["weapon"], knight["potion"])
+        players[knight["name"]] = \
+            Knight(knight["name"],
+                   knight["power"],
+                   knight["hp"],
+                   knight["armour"],
+                   knight["weapon"],
+                   knight["potion"])
     return players
 
 
