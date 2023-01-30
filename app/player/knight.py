@@ -1,4 +1,6 @@
 from __future__ import annotations
+from typing import Any
+from app.player.knight_obj import KnightObj as KObj
 
 
 class Knight:
@@ -9,7 +11,7 @@ class Knight:
                  hp: int,
                  armour: list,
                  weapon: dict,
-                 potion: dict
+                 potion: Any
                  ) -> None:
 
         self.name = name
@@ -18,18 +20,15 @@ class Knight:
         self.protection = 0
 
         for item in armour:
-            self.protection += item["protection"]
+            self.protection += item[KObj.PROTECTION]
 
-        self.power += weapon["power"]
-
-        potion_item = ["power", "protection", "hp"]
+        self.power += weapon[KObj.POWER]
 
         if potion is not None:
-            for item in potion_item:
-                if item in potion["effect"]:
-                    setattr(self,
-                            item,
-                            getattr(self, item) + potion["effect"][item])
+            for effect, value in potion["effect"].items():
+                setattr(self,
+                        effect,
+                        getattr(self, effect) + value)
 
     def duel(self, other: Knight) -> None:
         self.hp -= other.power - self.protection

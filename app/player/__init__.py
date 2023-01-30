@@ -1,2 +1,4 @@
 from app.player.knight import Knight
-__all__ = ["Knight", ]
+from app.player.knight_obj import KnightObj
+from app.player.players_name import PlayersName
+__all__ = ["Knight", "KnightObj", "PlayersName", ]
