@@ -1,6 +1,5 @@
 from app.player import Knight
-from app.player import KnightObj
-from app.player import PlayersName as Pn
+from app.player import consts
 
 KNIGHTS = {
     "lancelot": {
@@ -92,28 +91,28 @@ KNIGHTS = {
 
 def battle(knights: dict) -> dict:
     players = create_players(knights)
-    players[Pn.LANCELOT].duel(players[Pn.MORDRED])
-    players[Pn.ARTHUR].duel(players[Pn.RED_KNIGHT])
+    players[consts.LANCELOT].duel(players[consts.MORDRED])
+    players[consts.ARTHUR].duel(players[consts.RED_KNIGHT])
 
     return {
-        players[Pn.LANCELOT].name: players[Pn.LANCELOT].hp,
-        players[Pn.ARTHUR].name: players[Pn.ARTHUR].hp,
-        players[Pn.MORDRED].name: players[Pn.MORDRED].hp,
-        players[Pn.RED_KNIGHT].name: players[Pn.RED_KNIGHT].hp,
+        players[consts.LANCELOT].name: players[consts.LANCELOT].hp,
+        players[consts.ARTHUR].name: players[consts.ARTHUR].hp,
+        players[consts.MORDRED].name: players[consts.MORDRED].hp,
+        players[consts.RED_KNIGHT].name: players[consts.RED_KNIGHT].hp,
     }
 
 
 def create_players(knights: dict) -> dict:
     players = {}
-    knight_obj = KnightObj()
     for knight in knights.values():
-        players[knight[knight_obj.NAME]] = \
-            Knight(knight[knight_obj.NAME],
-                   knight[knight_obj.POWER],
-                   knight[knight_obj.HP],
-                   knight[knight_obj.ARMOUR],
-                   knight[knight_obj.WEAPON],
-                   knight[knight_obj.POTION])
+        players[knight[consts.NAME]] = \
+            Knight(knight[consts.NAME],
+                   knight[consts.POWER],
+                   knight[consts.HP],
+                   knight[consts.ARMOUR],
+                   knight[consts.WEAPON][consts.POWER],
+                   )
+        players[knight[consts.NAME]].apply_potion(knight[consts.POTION])
     return players
 
 
