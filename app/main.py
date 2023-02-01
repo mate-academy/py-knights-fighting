@@ -94,24 +94,29 @@ def battle(knights: dict) -> dict:
     players[consts.LANCELOT].duel(players[consts.MORDRED])
     players[consts.ARTHUR].duel(players[consts.RED_KNIGHT])
 
-    return {
-        players[consts.LANCELOT].name: players[consts.LANCELOT].hp,
-        players[consts.ARTHUR].name: players[consts.ARTHUR].hp,
-        players[consts.MORDRED].name: players[consts.MORDRED].hp,
-        players[consts.RED_KNIGHT].name: players[consts.RED_KNIGHT].hp,
-    }
+    knights_names = [consts.LANCELOT,
+                     consts.ARTHUR,
+                     consts.MORDRED,
+                     consts.RED_KNIGHT]
+
+    result = {}
+    for knight in knights_names:
+        result[players[knight].name] = players[knight].hp
+    return result
 
 
 def create_players(knights: dict) -> dict:
     players = {}
     for knight in knights.values():
-        players[knight[consts.NAME]] = \
-            Knight(knight[consts.NAME],
-                   knight[consts.POWER],
-                   knight[consts.HP],
-                   knight[consts.ARMOUR],
-                   knight[consts.WEAPON][consts.POWER],
-                   )
+        players[knight[consts.NAME]] = (
+            Knight(
+                knight[consts.NAME],
+                knight[consts.POWER],
+                knight[consts.HP],
+                knight[consts.ARMOUR],
+                knight[consts.WEAPON][consts.POWER],
+            )
+        )
         players[knight[consts.NAME]].apply_potion(knight[consts.POTION])
     return players
 

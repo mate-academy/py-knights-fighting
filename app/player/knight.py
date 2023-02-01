@@ -36,6 +36,8 @@ class Knight:
     def apply_potion(self, potion: Any) -> None:
         if potion is not None:
             for effect, value in potion["effect"].items():
-                setattr(self,
-                        effect,
-                        getattr(self, effect) + value)
+                setattr(
+                    self,
+                    effect,
+                    getattr(self, effect) + value
+                )
