@@ -1,3 +1,4 @@
 from app.player.knight import Knight
-from app.player import consts
-__all__ = ["Knight", "consts", ]
+from app.player.knight_attribute import KnightAttribute
+from app.player.knight_name import KnightName
+__all__ = ["Knight", "KnightAttribute", "KnightName", ]

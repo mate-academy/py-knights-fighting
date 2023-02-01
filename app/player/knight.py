@@ -1,6 +1,6 @@
 from __future__ import annotations
 from typing import Any
-from app.player import consts
+from app.player.knight_attribute import KnightAttribute
 
 
 class Knight:
@@ -19,7 +19,7 @@ class Knight:
         self.protection = 0
 
         for item in armour:
-            self.protection += item[consts.PROTECTION]
+            self.protection += item[KnightAttribute.PROTECTION.value]
 
         self.power += weapon_power
 

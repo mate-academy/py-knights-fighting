@@ -1,5 +1,6 @@
 from app.player import Knight
-from app.player import consts
+from app.player.knight_name import KnightName
+from app.player.knight_attribute import KnightAttribute
 
 KNIGHTS = {
     "lancelot": {
@@ -91,13 +92,13 @@ KNIGHTS = {
 
 def battle(knights: dict) -> dict:
     players = create_players(knights)
-    players[consts.LANCELOT].duel(players[consts.MORDRED])
-    players[consts.ARTHUR].duel(players[consts.RED_KNIGHT])
+    players[KnightName.LANCELOT.value].duel(players[KnightName.MORDRED.value])
+    players[KnightName.ARTHUR.value].duel(players[KnightName.RED_KNIGHT.value])
 
-    knights_names = [consts.LANCELOT,
-                     consts.ARTHUR,
-                     consts.MORDRED,
-                     consts.RED_KNIGHT]
+    knights_names = [KnightName.LANCELOT.value,
+                     KnightName.ARTHUR.value,
+                     KnightName.MORDRED.value,
+                     KnightName.RED_KNIGHT.value]
 
     result = {}
     for knight in knights_names:
@@ -108,16 +109,18 @@ def battle(knights: dict) -> dict:
 def create_players(knights: dict) -> dict:
     players = {}
     for knight in knights.values():
-        players[knight[consts.NAME]] = (
+        players[knight[KnightAttribute.NAME.value]] = (
             Knight(
-                knight[consts.NAME],
-                knight[consts.POWER],
-                knight[consts.HP],
-                knight[consts.ARMOUR],
-                knight[consts.WEAPON][consts.POWER],
+                knight[KnightAttribute.NAME.value],
+                knight[KnightAttribute.POWER.value],
+                knight[KnightAttribute.HP.value],
+                knight[KnightAttribute.ARMOUR.value],
+                knight[KnightAttribute.WEAPON.value]
+                [KnightAttribute.POWER.value],
             )
         )
-        players[knight[consts.NAME]].apply_potion(knight[consts.POTION])
+        players[knight[KnightAttribute.NAME.value]]\
+            .apply_potion(knight[KnightAttribute.POTION.value])
     return players
 
 
