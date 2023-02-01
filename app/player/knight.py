@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Any
+from typing import Optional
 from app.player.knight_attribute import KnightAttribute
 
 
@@ -33,7 +33,7 @@ class Knight:
         if self.hp <= 0:
             self.hp = 0
 
-    def apply_potion(self, potion: Any) -> None:
+    def apply_potion(self, potion: Optional[dict]) -> None:
         if potion is not None:
             for effect, value in potion["effect"].items():
                 setattr(
