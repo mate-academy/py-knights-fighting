@@ -13,5 +13,7 @@ def knight_battle(
     if second_knight_hp <= 0:
         second_knight_hp = 0
 
-    return {first_knight.name: first_knight_hp,
-            second_knight.name: second_knight_hp}
+    return {
+        first_knight.name: first_knight_hp,
+        second_knight.name: second_knight_hp
+    }
