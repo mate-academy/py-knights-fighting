@@ -1,25 +1,13 @@
-from app.knights import Knight
 from app.fight import Arena
 
 
-def battle(knights: dict) -> dict:
-    list_knights = []
-    for key, value in knights.items():
-        knight = Knight(value["name"], value["power"], value["hp"])
-        knight.use_weapon(value["weapon"]["power"])
-        if value["armour"] is not None:
-            knight.use_armour(value["armour"])
-        if value["potion"] is not None:
-            knight.use_potion(value["potion"]["effect"])
-        list_knights.append(knight)
-
-    Arena.battle(list_knights)
-    knights_dict = {}
-    for knight in list_knights:
+def battle(knighs: dict) -> dict:
+    result_dict = {}
+    for knight in Arena.opposition(knighs).values():
         if knight.hp <= 0:
             knight.hp = 0
-        knights_dict[knight.name] = knight.hp
-    return knights_dict
+        result_dict[knight.name] = knight.hp
+    return result_dict
 
 
 KNIGHTS = {
@@ -108,4 +96,5 @@ KNIGHTS = {
         }
     }
 }
+
 print(battle(KNIGHTS))
