@@ -35,9 +35,6 @@ class Knight:
 
     def apply_potion(self) -> None:
         if self.potion:
-            # print("POTION HP",self.potion.effect.hp)
-            # print(f"Potion of: {self.name}")
-            # print(f"======================")
             self.potion_buff_hp = self.potion.effect.hp
             self.potion_buff_protection = self.potion.effect.protection
             self.potion_buff_power = self.potion.effect.power
