@@ -12,5 +12,7 @@ class Potion:
             self.protection = 0
 
     def __str__(self) -> str:
-        return f"{self.name} potion  with effect {self.hp}," \
-               f" {self.power}, {self.protection} "
+        return (
+            f"{self.name} potion  with effect {self.hp},"
+            f"{self.power}, {self.protection} "
+        )

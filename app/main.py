@@ -16,11 +16,17 @@ def battle(knights_config: dict) -> dict:
         opponent_stats.hp = max(opponent_stats.hp, 0)
 
     _update_hp(knights["lancelot"], knights["mordred"])
-    result = {"Lancelot": knights["lancelot"].hp,
-              "Mordred": knights["mordred"].hp}
+    result = {
+        "Lancelot": knights["lancelot"].hp,
+        "Mordred": knights["mordred"].hp
+    }
 
     _update_hp(knights["arthur"], knights["red_knight"])
-    result.update({"Artur": knights["arthur"].hp,
-                   "Red Knight": knights["red_knight"].hp})
+    result.update(
+        {
+            "Artur": knights["arthur"].hp,
+            "Red Knight": knights["red_knight"].hp
+        }
+    )
 
     return result
