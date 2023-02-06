@@ -3,11 +3,11 @@ from app.battle_preparation.knight import Knight
 
 def battle(knights_config: dict) -> dict:
     knights = {}
-    for key, value in knights_config.items():
-        knight = Knight.dict_read(value)
+    for name, knight in knights_config.items():
+        knight = Knight.dict_read(knight)
         knight.apply_power()
         knight.apply_potion()
-        knights.update({key: knight})
+        knights.update({name: knight})
 
     def _update_hp(knight_stats: Knight, opponent_stats: Knight) -> None:
         knight_stats.hp -= opponent_stats.power - knight_stats.protection
