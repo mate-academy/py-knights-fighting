@@ -1,4 +1,3 @@
-from app.Knights.KNIGHTS import KNIGHTS
 from app.Knights.Preparation import PrepareKnight
 from app.Knights.BATTLE import Battle
 
