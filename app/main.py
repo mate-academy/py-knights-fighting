@@ -21,6 +21,3 @@ def battle(knights_config: dict) -> dict:
     Battle.fight(first=PrepareKnight.knights_dict["Artur"],
                  second=PrepareKnight.knights_dict["Red Knight"])
     return Battle.battle_result(PrepareKnight.knights_dict)
-
-
-print(battle(KNIGHTS))
