@@ -6,23 +6,23 @@ from app.buttle.preparations_classes import Knight, Weapon, Effect, Potion, \
 def list_of_knight_instances_from_dict(knights_config: dict) -> list[Knight]:
     knights_instances = []
     for knight_name in knights_config:
-
+        knight_dict = knights_config[knight_name]
         # armour
 
         armours_list = []
-        if knights_config[knight_name].get("armour"):
+        if knight_dict.get("armour"):
             armours_list = make_armour(
-                knights_config[knight_name].get("armour"))
+                knight_dict.get("armour"))
 
         # weapon
-        weapon = Weapon(name=knights_config[knight_name]["weapon"]["name"],
-                        power=knights_config[knight_name]["weapon"]["power"])
+        weapon = Weapon(name=knight_dict["weapon"]["name"],
+                        power=knight_dict["weapon"]["power"])
         # potion
         potion = None
-        if knights_config[knight_name].get("potion"):
+        if knight_dict.get("potion"):
             # effect
-            potion = make_potion(knights_config[knight_name].get("potion"))
-        knight_dict = knights_config[knight_name]
+            potion = make_potion(knight_dict.get("potion"))
+
         new_knight = Knight(name=knight_dict["name"],
                             power=knight_dict["power"],
                             hp=knight_dict["hp"],
@@ -33,12 +33,8 @@ def list_of_knight_instances_from_dict(knights_config: dict) -> list[Knight]:
 
         if potion:
             new_knight.potion_bonus(potion)
-
-        for armour in new_knight.armour:
-            new_knight.protection += armour.protection
-
-        new_knight.power += new_knight.weapon.power
-
+        new_knight.calculate_protection()
+        new_knight.calculate_power()
         knights_instances.append(new_knight)
     return knights_instances
 
