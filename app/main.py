@@ -1,9 +1,11 @@
+from typing import Dict
+
 from app.items import Weapon, Armour, Potion
 from app.warriors import Knight
 from app.data import KNIGHTS
 
 
-def battle(knights_config: dict) -> dict:
+def battle(knights_config: Dict[str, dict]) -> Dict[str, int]:
     knights = {}
 
     for warrior, config in knights_config.items():
@@ -19,13 +21,8 @@ def battle(knights_config: dict) -> dict:
                                     protection=armour["protection"]))
 
         if config["potion"]:
-            power = config["potion"]["effect"].get("power", 0)
-            hp = config["potion"]["effect"].get("hp", 0)
-            protection = config["potion"]["effect"].get("protection", 0)
             knight.use_potion(Potion(name=config["potion"]["name"],
-                                     power=power,
-                                     hp=hp,
-                                     protection=protection))
+                                     effects=config["potion"]["effect"]))
 
         knights[warrior] = knight
 
