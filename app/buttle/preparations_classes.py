@@ -12,6 +12,14 @@ class Knight:
         self.weapon = weapon
         self.potion = potion
 
+    def potion_bonus(self, potion: Potion) -> None:
+        if potion.effect.power:
+            self.power += self.potion.effect.power
+        if potion.effect.protection:
+            self.protection += self.potion.effect.protection
+        if potion.effect.hp:
+            self.hp += self.potion.effect.hp
+
 
 class Armour:
     def __init__(self, part: str, protection: int) -> None:

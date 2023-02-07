@@ -30,7 +30,7 @@ def list_of_knight_instances_from_dict(knights_config: dict) -> list[Knight]:
         new_knight.protection = 0
 
         if potion:
-            potion_bonus(new_knight, potion)
+            new_knight.potion_bonus(potion)
 
         for armour in new_knight.armour:
             new_knight.protection += armour.protection
@@ -68,12 +68,3 @@ def make_potion(potion_dict: dict) -> Potion:
                     effect=effect)
 
     return potion
-
-
-def potion_bonus(knight: Knight, potion: Potion) -> None:
-    if potion.effect.power:
-        knight.power += knight.potion.effect.power
-    if potion.effect.protection:
-        knight.protection += knight.potion.effect.protection
-    if potion.effect.hp:
-        knight.hp += knight.potion.effect.hp
