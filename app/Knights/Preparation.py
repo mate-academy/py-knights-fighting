@@ -1,4 +1,4 @@
-class PrepareKnight:
+class Prepare:
     knights_dict = {}
 
     def __init__(self, name: str, power: int, hp: int) -> None:

@@ -1,10 +1,10 @@
-from app.Knights.Preparation import PrepareKnight
+from app.Knights.Preparation import Prepare
 
 
 class Battle:
 
     @staticmethod
-    def fight(first: PrepareKnight, second: PrepareKnight) -> None:
+    def fight(first: Prepare, second: Prepare) -> None:
         first.hp -= second.power - first.armour
         second.hp -= first.power - second.armour
         if first.hp <= 0:
