@@ -1,5 +1,5 @@
-from app.actions.combat import fights
+from app.actions.combat import fight
 
 
 def battle(knights: dict) -> dict:
-    return fights(knights)
+    return fight(knights)

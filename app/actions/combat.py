@@ -1,36 +1,25 @@
-from .preparations import preparations as prepare
+from app.actions.preparations import make_pairs
+from app.people.knights import Knight
 
 
-def fights(config: dict) -> dict:
-    prepare_knights_list = prepare(config)
+def fight(knights: dict) -> dict:
+    result = {}
 
-    # make Knight object
-    lancelot = prepare_knights_list.get("Lancelot")
-    arthur = prepare_knights_list.get("Artur")
-    mordred = prepare_knights_list.get("Mordred")
-    red_knight = prepare_knights_list.get("Red Knight")
+    for pair in make_pairs(knights):
+        first_knight = pair[0]
+        second_knight = pair[1]
 
-    # actions 1
-    lancelot.hp -= mordred.power - lancelot.armour
-    mordred.hp -= lancelot.power - mordred.armour
+        first_knight.hit(second_knight)
+        second_knight.hit(first_knight)
+        check_hp(first_knight)
+        check_hp(second_knight)
 
-    # actions 2
-    arthur.hp -= red_knight.power - arthur.armour
-    red_knight.hp -= arthur.power - red_knight.armour
+        result[first_knight.name] = first_knight.hp
+        result[second_knight.name] = second_knight.hp
 
-    # check if someone fell in actions
-    if lancelot.hp <= 0:
-        lancelot.hp = 0
-    if mordred.hp <= 0:
-        mordred.hp = 0
-    if arthur.hp <= 0:
-        arthur.hp = 0
-    if red_knight.hp <= 0:
-        red_knight.hp = 0
+    return result
 
-    return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
-    }
+
+def check_hp(knight: Knight) -> None:
+    if knight.hp <= 0:
+        knight.hp = 0

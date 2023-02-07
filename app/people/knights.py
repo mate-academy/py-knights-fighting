@@ -10,9 +10,9 @@ class Knight:
             name: str,
             power: int,
             hp: int,
-            armour: list[Armour] = 0,
-            weapon: Weapon = None,
-            potion: Potion = None) -> None:
+            armour: list = 0,
+            weapon: dict = None,
+            potion: dict = None) -> None:
 
         self.name = name
         self.power = power
@@ -20,26 +20,42 @@ class Knight:
         self.armour = armour
         self.weapon = weapon
         self.potion = potion
+        self.protection: int = 0
 
     # apply armour
-    def add_armour(self, armour: list[Armour]) -> None:
+    def wear_armour(self, armour: list[Armour]) -> None:
         for item in armour:
-            self.armour += item.protection
+            self.protection += item.protection
 
     # apply weapon
-    def add_weapon(self, weapon: Weapon) -> None | Weapon:
-        if self.weapon:
-            return self.weapon
-        else:
-            self.weapon = weapon
-            self.power += weapon.power
+    def take_weapon(self, weapon: Weapon) -> None:
+        self.weapon = weapon
+        self.power += weapon.power
 
     # apply potion
-    def add_potion(self, potion: Potion) -> None:
-        for effect_name, value in potion.effects.items():
-            if effect_name == "power":
-                self.power += value
-            if effect_name == "hp":
-                self.hp += value
-            if effect_name == "protection":
-                self.armour += value
+    def drink_potion(self, potion: Potion) -> None:
+        if potion:
+            for effect_name, value in potion.effects.items():
+                if effect_name == "power":
+                    self.power += value
+                if effect_name == "hp":
+                    self.hp += value
+                if effect_name == "protection":
+                    self.protection += value
+
+    # prepare to battle
+    def preparation(self) -> None:
+        self.wear_armour([Armour(armour.get("part"),
+                                 armour.get("protection"))
+                          for armour in self.armour])
+
+        self.take_weapon(Weapon(self.weapon.get("name"),
+                                self.weapon.get("power")))
+
+        if self.potion:
+            self.drink_potion(Potion(self.potion.get("name"),
+                                     self.potion.get("effect")))
+
+    # hit other knight
+    def hit(self, other_knight: Knight) -> None:
+        self.hp -= other_knight.power - self.protection

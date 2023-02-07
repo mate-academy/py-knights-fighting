@@ -1,35 +1,27 @@
 from app.people.knights import Knight
-from app.ammunition.armours import Armour
-from app.ammunition.potions import Potion
-from app.ammunition.weapons import Weapon
 
 
-def preparations(config: dict) -> dict:
-    prepare_knights_list = {}
-    for knight_name, knight_data in config.items():
-        armour_list = []
-        if knight_data.get("armour"):
-            for armour in knight_data.get("armour"):
-                armour_list.append(Armour(armour.get("part"),
-                                          armour.get("protection")))
-
-        weapon = Weapon(knight_data.get("weapon").get("name"),
-                        knight_data.get("weapon").get("power"))
-
+def make_participants_list(participants: dict) -> dict:
+    participants_list = {}
+    for knight_name, knight_data in participants.items():
         knight = Knight(
             name=knight_data.get("name"),
             power=knight_data.get("power"),
             hp=knight_data.get("hp"),
+            armour=knight_data.get("armour"),
+            weapon=knight_data.get("weapon"),
+            potion=knight_data.get("potion"),
         )
+        knight.preparation()
+        participants_list[knight.name] = knight
 
-        knight.add_armour(armour_list)
-        knight.add_weapon(weapon)
+    return participants_list
 
-        if knight_data.get("potion"):
-            potion = Potion(knight_data.get("potion").get("name"),
-                            knight_data.get("potion").get("effect"))
-            knight.add_potion(potion)
 
-        prepare_knights_list[knight.name] = knight
+def make_pairs(participants_list: dict) -> list:
+    pairs_list = []
+    participants = make_participants_list(participants_list)
+    pairs_list.append((participants["Lancelot"], participants["Mordred"]))
+    pairs_list.append((participants["Artur"], participants["Red Knight"]))
 
-    return prepare_knights_list
+    return pairs_list
