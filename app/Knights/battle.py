@@ -2,7 +2,6 @@ from app.Knights.preparation import Knight
 
 
 class Battle:
-
     @staticmethod
     def fight(first: Knight, second: Knight) -> None:
         first.hp -= second.power - first.armour
