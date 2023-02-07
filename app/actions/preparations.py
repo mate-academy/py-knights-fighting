@@ -1,4 +1,4 @@
-from app.people.warriors import Knight
+from app.people.knights import Knight
 from app.ammunition.armours import Armour
 from app.ammunition.potions import Potion
 from app.ammunition.weapons import Weapon

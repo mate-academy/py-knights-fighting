@@ -10,15 +10,15 @@ def fights(config: dict) -> dict:
     mordred = prepare_knights_list.get("Mordred")
     red_knight = prepare_knights_list.get("Red Knight")
 
-    # battle 1
+    # actions 1
     lancelot.hp -= mordred.power - lancelot.armour
     mordred.hp -= lancelot.power - mordred.armour
 
-    # battle 2
+    # actions 2
     arthur.hp -= red_knight.power - arthur.armour
     red_knight.hp -= arthur.power - red_knight.armour
 
-    # check if someone fell in battle
+    # check if someone fell in actions
     if lancelot.hp <= 0:
         lancelot.hp = 0
     if mordred.hp <= 0:
