@@ -5,7 +5,9 @@ from app.people.knights import Knight
 def fight(knights: dict) -> dict:
     result = {}
 
-    for pair in make_pairs(knights):
+    pairs = make_pairs(knights)
+
+    for pair in pairs:
         first_knight = pair[0]
         second_knight = pair[1]
 
