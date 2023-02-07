@@ -22,11 +22,13 @@ def list_of_knight_instances_from_dict(knights_config: dict) -> list[Knight]:
         if knights_config[knight_name].get("potion"):
             # effect
             potion = make_potion(knights_config[knight_name].get("potion"))
-
-        new_knight = Knight(name=knights_config[knight_name]["name"],
-                            power=knights_config[knight_name]["power"],
-                            hp=knights_config[knight_name]["hp"],
-                            armour=armours_list, weapon=weapon, potion=potion)
+        knight_dict = knights_config[knight_name]
+        new_knight = Knight(name=knight_dict["name"],
+                            power=knight_dict["power"],
+                            hp=knight_dict["hp"],
+                            armour=armours_list,
+                            weapon=weapon,
+                            potion=potion)
         new_knight.protection = 0
 
         if potion:
