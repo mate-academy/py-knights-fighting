@@ -1,5 +1,3 @@
-import time
-from random import randint
 from typing import Any
 from app.king_garden.knights import Knight
 from app.armory.weapons import Weapon
@@ -35,9 +33,7 @@ class Squire:
         }
 
     def enarm(self, name: str, knight: Knight) -> None:
-        time.sleep(randint(1, 3))
         print(f"{self} enarms {knight} with a {self.weapons[name].name}.")
-        time.sleep(randint(2, 5))
         knight.weapon = self.weapons[name].name
         knight.power += self.weapons[name].power
 
@@ -45,12 +41,10 @@ class Squire:
             print(f"{self} places armour on {knight.name.capitalize()}.")
             knight.protection += sum(armour.protection
                                      for armour in self.armours[name])
-            time.sleep(randint(2, 5))
 
     def knights_enarm(self, knights: list[tuple[str | dict, Any]]) -> None:
         for name, knight in knights:
             self.enarm(name=name, knight=knight)
-            time.sleep(randint(2, 5))
             print(f"{knight.name} is totally equipped.")
 
     def __str__(self) -> str:

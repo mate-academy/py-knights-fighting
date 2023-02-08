@@ -1,22 +1,17 @@
-from time import sleep
-from random import choice, randint
+from random import choice
 from app.king_garden.knights import Knight
 
 
 def duel(knight: Knight, enemy: Knight) -> None:
-    sleep(randint(1, 2))
     print("Knights approaching the battlefield...")
-    sleep(randint(1, 2))
     print("......................................")
     print("......................................")
-    sleep(randint(0, 1))
     print("......................................")
 
     print(f"{knight.name.capitalize()} {choice(duel_approach())}")
     print("......................................")
     print(f"{enemy.name.capitalize()} {choice(duel_approach())}")
     print("**************************************")
-    sleep(randint(1, 6))
     print(f"Suddenly {choice([knight, enemy])} runs on his enemy!!!")
     print("And the fight has started...")
     knight.fight_enemy(enemy)
@@ -27,7 +22,6 @@ def duel(knight: Knight, enemy: Knight) -> None:
     print("......................................")
     print("......................................")
     print("......................................")
-    sleep(randint(1, 2))
     print("......................................")
     print("......................................")
     print(".......................some time later")
