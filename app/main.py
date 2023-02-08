@@ -7,7 +7,7 @@ def battle(knights_config: dict) -> dict:
         knight = Knight.dict_read(knight)
         knight.apply_power()
         knight.apply_potion()
-        knights.update({name: knight})
+        knights[name] = knight
 
     def _update_hp(knight_stats: Knight, opponent_stats: Knight) -> None:
         knight_stats.hp -= opponent_stats.power - knight_stats.protection
