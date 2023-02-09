@@ -27,3 +27,15 @@ class Knight:
         self.protection_update(armour)
         self.apply_weapon(weapon)
         self.apply_potion(potion)
+
+    @staticmethod
+    def upgrade(knights_config: dict) -> None:
+        for knight, info in knights_config.items():
+            knight = Knight(name=info["name"],
+                            power=info["power"],
+                            hp=info["hp"])
+            Knight.knights_dict[info["name"]] = knight
+            knight_update = Knight.knights_dict[info["name"]]
+            knight_update.update(armour=info["armour"],
+                                 weapon=info["weapon"],
+                                 potion=info["potion"])

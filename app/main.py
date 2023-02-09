@@ -3,15 +3,7 @@ from app.Knights.battle import Battle
 
 
 def battle(knights_config: dict) -> dict:
-    for knight, info in knights_config.items():
-        knight = Knight(name=info["name"],
-                        power=info["power"],
-                        hp=info["hp"])
-        Knight.knights_dict[info["name"]] = knight
-        knight_update = Knight.knights_dict[info["name"]]
-        knight_update.update(armour=info["armour"],
-                             weapon=info["weapon"],
-                             potion=info["potion"])
+    Knight.upgrade(knights_config=knights_config)
 
     # BATTLE STAGE
 
