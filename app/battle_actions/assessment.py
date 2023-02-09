@@ -4,7 +4,7 @@ from app.battle_actions import check, fight
 
 
 def assessment(knights_config: dict) -> dict:
-    warriors = {}
+    warriors = []
     for knight_name, knight_data in knights_config.items():
         knight = Knight(
             name=knight_data.get("name"),
@@ -14,15 +14,13 @@ def assessment(knights_config: dict) -> dict:
             weapon=knight_data.get("weapon"),
             potion=knight_data.get("potion"),
         )
-        knight.equip()
-        warriors[knight.name] = knight
+        warriors.append(knight)
 
-    duels = [[warriors["Lancelot"], warriors["Mordred"]],
-             [warriors["Artur"], warriors["Red Knight"]]]
+    duels = [[warriors[0], warriors[2]],
+             [warriors[1], warriors[3]]]
 
-    for duel in duels:
-        fight.fight(duel)
-        check.check_hp(duel[0])
-        check.check_hp(duel[1])
+    for pair in duels:
+        fight.fight(pair)
+        check.check_hp(pair)
 
-    return {knight.name: knight.hp for knight in warriors.values()}
+    return {knight.name: knight.hp for knight in warriors}
