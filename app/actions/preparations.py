@@ -12,7 +12,6 @@ def make_participants_list(participants: dict) -> dict:
             weapon=knight_data.get("weapon"),
             potion=knight_data.get("potion"),
         )
-        knight.preparation()
         participants_list[knight.name] = knight
 
     return participants_list

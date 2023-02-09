@@ -1,7 +1,5 @@
 from __future__ import annotations
-from app.ammunition.armours import Armour
-from app.ammunition.potions import Potion
-from app.ammunition.weapons import Weapon
+from app.equipment.equip import Armour, Potion, Weapon
 
 
 class Knight:
@@ -21,6 +19,7 @@ class Knight:
         self.weapon = weapon
         self.potion = potion
         self.protection: int = 0
+        self.preparation()
 
     # apply armour
     def wear_armour(self, armour: list[Armour]) -> None:
