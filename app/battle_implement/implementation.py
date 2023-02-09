@@ -10,7 +10,6 @@ def crete_armour(armours: list) -> SetArmourScope | list:
                                    armour.get("protection"))
                         for armour in armours]
         armour_scope = SetArmourScope(armour_parts)
-        armour_scope.protection_level = armour_scope.calc_protection_level()
         return armour_scope
     return SetArmourScope([])
 

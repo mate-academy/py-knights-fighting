@@ -20,7 +20,7 @@ class SetArmourScope:
         if self.armour_parts:
             return sum([armour.protection_level
                         for armour in self.armour_parts])
-        return 0
+        return self.protection_level
 
     def show_armour_scope(self) -> list | str:
         if self.armour_parts:

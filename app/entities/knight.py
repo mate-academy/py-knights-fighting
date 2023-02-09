@@ -30,7 +30,13 @@ class Knight:
         if protection:
             self.armour.protection_level += protection
 
-    def battle_preparation(self) -> None:
+    def take_weapon(self) -> None:
+        self.set_power_level(self.weapon.power)
+
+    def put_armour(self) -> None:
+        self.armour.protection_level = self.armour.calc_protection_level()
+
+    def take_potion(self) -> None:
         if self.potion:
             hp = self.potion.effect.get("hp")
             power = self.potion.effect.get("power")
@@ -39,7 +45,11 @@ class Knight:
             self.set_hp_level(hp)
             self.set_power_level(power)
             self.set_protection_level(protection)
-        self.set_power_level(self.weapon.power)
+
+    def battle_preparation(self) -> None:
+        self.put_armour()
+        self.take_potion()
+        self.take_weapon()
 
     def is_defeated(self) -> None:
         if self.hp < 0:
