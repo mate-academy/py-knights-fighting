@@ -3,6 +3,7 @@ class Armour:
         self.name = name
         self.protection = protection
 
+
 class Weapon:
     def __init__(self, name: str, power: dict) -> None:
         self.name = name
