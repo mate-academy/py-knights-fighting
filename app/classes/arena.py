@@ -16,14 +16,12 @@ class Arena:
         cls.fighting_result[participant_a.title().replace("h", "")] = \
             (
                 instances[participant_a].hp
-                - instances[participant_b].power
-            )
+                - instances[participant_b].power)
 
         cls.fighting_result[participant_b.title().replace("_", " ")] = \
             (
                 instances[participant_b].hp
-                - instances[participant_a].power
-            )
+                - instances[participant_a].power)
 
     @classmethod
     def death_check(cls) -> None:
