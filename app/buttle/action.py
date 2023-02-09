@@ -1,26 +1,23 @@
 from __future__ import annotations
-from app.buttle.preparations_classes import Knight, Weapon, Effect, Potion, \
-    Armour
+from app.buttle.models import Knight, Weapon, Effect, Potion, Armour
 
 
-def list_of_knight_instances_from_dict(knights_config: dict) -> list[Knight]:
+def make_knights(knights_config: dict) -> list[Knight]:
     knights_instances = []
+
     for knight_name in knights_config:
         knight_dict = knights_config[knight_name]
-        # armour
 
         armours_list = []
         if knight_dict.get("armour"):
             armours_list = make_armour(
                 knight_dict.get("armour"))
 
-        # weapon
         weapon = Weapon(name=knight_dict["weapon"]["name"],
                         power=knight_dict["weapon"]["power"])
-        # potion
+
         potion = None
         if knight_dict.get("potion"):
-            # effect
             potion = make_potion(knight_dict.get("potion"))
 
         new_knight = Knight(name=knight_dict["name"],
@@ -33,13 +30,14 @@ def list_of_knight_instances_from_dict(knights_config: dict) -> list[Knight]:
 
         if potion:
             new_knight.potion_bonus(potion)
+
         new_knight.calculate_protection()
         new_knight.calculate_power()
         knights_instances.append(new_knight)
     return knights_instances
 
 
-def list_of_knights_to_dict(knights_instances: list[Knight]) -> dict:
+def knights_to_dict(knights_instances: list[Knight]) -> dict:
     return {
         knights_instances[0].name: knights_instances[0].hp,
         knights_instances[1].name: knights_instances[1].hp,

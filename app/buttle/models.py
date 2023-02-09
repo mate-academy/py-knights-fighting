@@ -2,9 +2,14 @@ from __future__ import annotations
 
 
 class Knight:
-    def __init__(self, name: str, power: int, hp: int,
-                 armour: list[Armour] = None, weapon: Weapon = None,
+    def __init__(self,
+                 name: str,
+                 power: int,
+                 hp: int,
+                 armour: list[Armour] = None,
+                 weapon: Weapon = None,
                  potion: Potion = None) -> None:
+
         self.name = name
         self.power = power
         self.hp = hp
@@ -26,6 +31,10 @@ class Knight:
 
     def calculate_power(self) -> None:
         self.power += self.weapon.power
+
+    def hp_checker(self) -> None:
+        if self.hp <= 0:
+            self.hp = 0
 
 
 class Armour:
