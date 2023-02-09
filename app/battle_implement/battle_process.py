@@ -3,7 +3,7 @@ from __future__ import annotations
 from app.entities.knight import Knight
 
 
-def battle(first_knight: Knight, second_knight: Knight) -> None:
+def battle_process(first_knight: Knight, second_knight: Knight) -> None:
     first_knight.battle_preparation()
     second_knight.battle_preparation()
     first_knight - second_knight
