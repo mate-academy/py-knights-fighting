@@ -13,6 +13,7 @@ class Knight:
         self.weapon: dict = knight_config["weapon"]
         self.potion: dict = knight_config["potion"]
         self.protection: int = 0
+        self.prepare_for_battle()
 
     def put_on_armour(self) -> None:
         armour_list = [Armour(armour_part) for armour_part in self.armour]
