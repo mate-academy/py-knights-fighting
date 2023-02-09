@@ -3,12 +3,13 @@ from __future__ import annotations
 
 class KnightStats:
     knights = {}
-    def __init__(self, name: str, power: int, hp: int, armour: list, weapon: dict, potion: dict) -> None:
+    def __init__(self, name: str, power: int, hp: int, armour: list, weapon: dict, potions: dict) -> None:
         self.name = name
         self.power = power + weapon["power"]
         self.hp = hp
         self.protection = self.wearing_armour(armour)
-        self.potion = potion
+        self.potion = potions
+        self.potions_apply()
         KnightStats.knights[name] = self
 
     @staticmethod
@@ -20,7 +21,7 @@ class KnightStats:
             return block
         return 0
 
-    def potion(self) -> None:
+    def potions_apply(self) -> None:
         if self.potion:
             if self.potion["effect"]["hp"] is not None:
                 self.hp += self.potion["effect"]["hp"]

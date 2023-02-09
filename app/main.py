@@ -8,13 +8,11 @@ def battle(knightsconfig: dict) -> dict:
     for stats in knightsconfig.values():
         knight = KnightStats(stats["name"], stats["power"], stats["hp"],
                              stats["armour"], stats["weapon"], stats["potion"])
-        KnightStats.potion(KnightStats.knights[stats["name"]])
         knights[stats["name"]] = Knight(knight)
-    knightsconfig = knights
-    knightsconfig["Lancelot"] - knightsconfig["Mordred"]
-    knightsconfig["Artur"] - knightsconfig["Red Knight"]
-    # print(knightsConfig)
-    return {name: stats.hp for name, stats in knightsconfig.items()}
+    knights["Lancelot"] - knights["Mordred"]
+    knights["Artur"] - knights["Red Knight"]
+    print(knights)
+    return {name: stats.hp for name, stats in knights.items()}
 
 
 print(battle(KNIGHTS))
