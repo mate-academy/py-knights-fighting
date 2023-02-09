@@ -5,6 +5,7 @@ class Knight:
         self.hp = hp
         self.power = power
         self.gear = kwargs
+        self.gear_converter()
 
     def gear_converter(self) -> None:
         self.potion_converter()
