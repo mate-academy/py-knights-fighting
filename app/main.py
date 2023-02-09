@@ -1,6 +1,6 @@
 from app.data.knights_data import KNIGHTS
-from app.classes.knights import Knight
-from app.classes.arena import Arena
+from app.main_app_units.knights import Knight
+from app.main_app_units.arena import Arena
 
 
 def battle(knights_dict: dict) -> dict:

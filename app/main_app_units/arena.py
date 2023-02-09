@@ -1,4 +1,4 @@
-from app.classes.knights import Knight
+from app.main_app_units.knights import Knight
 
 
 class Arena:
