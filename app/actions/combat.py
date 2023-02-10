@@ -13,7 +13,7 @@ def fight(knights: dict) -> dict:
 
         first_knight.hit(second_knight)
         second_knight.hit(first_knight)
-        check_hp([first_knight, second_knight])
+        check_hp(pair)
 
         result[first_knight.name] = first_knight.hp
         result[second_knight.name] = second_knight.hp
