@@ -45,5 +45,6 @@ class Knight:
             self.protection += potion.protection
             return potion
 
-    def strike_enemy(self, enemy: Knight) -> None:
+    def fight(self, enemy: Knight) -> None:
         enemy.hp = max(0, enemy.hp + enemy.protection - self.power)
+        self.hp = max(0, self.hp + self.protection - enemy.power)

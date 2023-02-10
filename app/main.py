@@ -16,10 +16,8 @@ def battle(knights_config: Dict[str, dict]) -> Dict[str, int]:
                         potion=config["potion"])
         knights[warrior] = knight
 
-    knights["lancelot"].strike_enemy(knights["mordred"])
-    knights["mordred"].strike_enemy(knights["lancelot"])
-    knights["arthur"].strike_enemy(knights["red_knight"])
-    knights["red_knight"].strike_enemy(knights["arthur"])
+    knights["lancelot"].fight(knights["mordred"])
+    knights["arthur"].fight(knights["red_knight"])
 
     return {data.name: data.hp for data in knights.values()}
 
