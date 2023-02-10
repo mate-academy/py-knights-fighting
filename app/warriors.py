@@ -10,33 +10,40 @@ class Knight:
             name: str,
             power: int,
             hp: int,
+            weapon: dict,
+            armour: list,
+            potion: dict,
             protection: int = 0,
-            weapon: Weapon = None,
-            armour: List[Armour] = None,
     ) -> None:
         self.name = name
         self.power = power
         self.hp = hp
-        self.armour = armour
         self.protection = protection
-        self.weapon = weapon
+        self.weapon = self.weapon_up(weapon)
+        self.armour = self.armour_up(armour)
+        self.potion = self.use_potion(potion)
 
-    def armour_up(self, armour: Armour) -> None:
-        if not self.armour:
-            self.armour = [armour]
-        else:
-            self.armour.append(armour)
+    def armour_up(self, armours: list) -> List[Armour] | None:
+        equip = []
+        for armour in armours:
+            armour = Armour(part=armour["part"],
+                            protection=armour["protection"])
+            equip.append(armour)
+            self.protection += armour.protection
+        return equip
 
-        self.protection += armour.protection
-
-    def weapon_up(self, weapon: Weapon) -> None:
-        self.weapon = weapon
+    def weapon_up(self, weapon: dict) -> Weapon:
+        weapon = Weapon(name=weapon["name"], power=weapon["power"])
         self.power += weapon.power
+        return weapon
 
-    def use_potion(self, potion: Potion) -> None:
-        self.hp += potion.hp
-        self.power += potion.power
-        self.protection += potion.protection
+    def use_potion(self, potion: dict) -> Potion:
+        if potion:
+            potion = Potion(name=potion["name"], effects=potion["effect"])
+            self.hp += potion.hp
+            self.power += potion.power
+            self.protection += potion.protection
+            return potion
 
     def strike_enemy(self, enemy: Knight) -> None:
         enemy.hp = max(0, enemy.hp + enemy.protection - self.power)
