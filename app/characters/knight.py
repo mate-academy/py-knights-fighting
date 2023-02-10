@@ -19,7 +19,7 @@ class Knight:
         self.weapon = weapon
         self.potion = potion
         self.protection: int = 0
-        Knight.equip(self)
+        self.equip()
 
     def apply_armour(self, armour: list[Armour]) -> None:
         for unit in armour:
