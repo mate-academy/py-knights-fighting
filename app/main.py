@@ -12,4 +12,6 @@ def battle(knights_data: dict) -> dict:
             Knight.knights_arr[Battle.battle_net[couple][1]]
         )
 
-    return Battle.return_results()
+    result = Battle.return_results()
+    Battle.clear_data()
+    return result

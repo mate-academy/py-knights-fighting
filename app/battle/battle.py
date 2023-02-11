@@ -1,4 +1,7 @@
 from app.knights.knight import Knight
+from app.equipment.potion import Potion
+from app.equipment.weapon import Weapon
+from app.equipment.armour import Armour
 
 
 class Battle:
@@ -27,3 +30,10 @@ class Battle:
                 Knight.knights_arr[participant].hp
             for participant in Knight.knights_arr
         }
+
+    @staticmethod
+    def clear_data() -> None:
+        Knight.knights_arr.clear()
+        Potion.potions_arr.clear()
+        Weapon.weapons_arr.clear()
+        Armour.armours_arr.clear()
