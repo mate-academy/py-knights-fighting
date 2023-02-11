@@ -39,6 +39,3 @@ class Knight:
 
         # apply weapon
         self.power += self.weapon.power
-
-
-

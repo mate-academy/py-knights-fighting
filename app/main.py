@@ -1,4 +1,3 @@
-from app.data.knights_data import KNIGHTS
 from app.data.read_data import ReadData
 from app.battle.battle import Battle
 from app.knights.knight import Knight
@@ -14,6 +13,3 @@ def battle(knights_data: dict) -> dict:
         )
 
     return Battle.return_results()
-
-
-print(battle(KNIGHTS))

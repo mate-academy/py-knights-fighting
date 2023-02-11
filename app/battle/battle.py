@@ -8,7 +8,7 @@ class Battle:
     }
 
     @staticmethod
-    def fight(knight1: Knight, knight2: Knight):
+    def fight(knight1: Knight, knight2: Knight) -> None:
         knight1.get_ready_for_fight()
         knight2.get_ready_for_fight()
 
@@ -23,6 +23,7 @@ class Battle:
     @staticmethod
     def return_results() -> dict:
         return {
-            Knight.knights_arr[participant].name: Knight.knights_arr[participant].hp
+            Knight.knights_arr[participant].name:
+                Knight.knights_arr[participant].hp
             for participant in Knight.knights_arr
         }
