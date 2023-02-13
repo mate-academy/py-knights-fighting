@@ -1,5 +1,5 @@
-from app.characters.items.equipment import Weapon, Armour
-from app.characters.items.potion import Potion
+from __future__ import annotations
+from app.items.equipment import Weapon, Armour, Potion
 
 
 class Knight:
@@ -27,3 +27,6 @@ class Knight:
 
     def add_armour(self, armour: Armour) -> None:
         self.protection += armour.protection
+
+    def hit(self, knight: Knight) -> None:
+        self.hp -= knight.power - self.protection

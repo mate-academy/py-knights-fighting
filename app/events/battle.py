@@ -4,21 +4,22 @@ from app.characters.knight import Knight
 class Battle:
     fighters = []
 
-    def __init__(self, first: Knight, second: Knight) -> None:
-        self.first = first
-        self.second = second
-        Battle.fighters.extend([self.first, self.second])
+    def __init__(self, first_knight: Knight, second_knight: Knight) -> None:
+        self.first_knight = first_knight
+        self.second_knight = second_knight
+        self.knights = [self.first_knight, self.second_knight]
+        Battle.fighters.extend(self.knights)
 
     def fight(self) -> None:
-        self.first.hp -= self.second.power - self.first.protection
-        self.second.hp -= self.first.power - self.second.protection
-        self.check_for_hp()
+        self.first_knight.hit(self.second_knight)
+        self.second_knight.hit(self.first_knight)
+        self.check_for_hp(self.knights)
 
-    def check_for_hp(self) -> None:
-        if self.first.hp <= 0:
-            self.first.hp = 0
-        if self.second.hp <= 0:
-            self.second.hp = 0
+    @staticmethod
+    def check_for_hp(knights: list[Knight]) -> None:
+        for knight in knights:
+            if knight.hp <= 0:
+                knight.hp = 0
 
     @classmethod
     def get_result(cls) -> dict:

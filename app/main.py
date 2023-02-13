@@ -1,6 +1,5 @@
 from app.characters.knight import Knight
-from app.characters.items.equipment import Armour, Weapon
-from app.characters.items.potion import Potion
+from app.items.equipment import Armour, Weapon, Potion
 from app.events.battle import Battle
 from app.config import KNIGHTS
 
