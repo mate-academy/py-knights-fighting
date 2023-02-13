@@ -23,8 +23,9 @@ def create_potions_arr(knights: dict) -> None:
             if "power" in knights[knight]["potion"]["effect"]:
                 potion_power = knights[knight]["potion"]["effect"]["power"]
             if "protection" in knights[knight]["potion"]["effect"]:
-                potion_protection = \
+                potion_protection = (
                     knights[knight]["potion"]["effect"]["protection"]
+                )
 
             Potion(potion_name, potion_hp, potion_power, potion_protection)
 
@@ -52,11 +53,13 @@ def create_knights_arr(knights: dict) -> None:
                 Armour.armours_arr[f'{knight}\'s {arm["part"]}']
                 for arm in knights[knight]["armour"]
             ]
-        knight_weapon = \
+        knight_weapon = (
             Weapon.weapons_arr[knights[knight]["weapon"]["name"]]
+        )
         if knights[knight]["potion"]:
-            knight_potion = \
+            knight_potion = (
                 Potion.potions_arr[knights[knight]["potion"]["name"]]
+            )
 
         Knight(
             knight_name,
