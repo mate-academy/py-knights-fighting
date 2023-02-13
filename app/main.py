@@ -1,5 +1,5 @@
-from app.fight import Fight
 from app.characters import Character
+from app.fight import Fight
 
 KNIGHTS = {
     "lancelot": {

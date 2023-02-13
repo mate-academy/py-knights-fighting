@@ -13,12 +13,10 @@ class Character:
             for item in armour:
                 self.hp += item["protection"]
 
-    def use_potion(self, potion: dict) -> None:
+    def use_potion(self, potion: dict):
         if potion is not None:
             for key, value in potion["effect"].items():
                 if key == "power":
                     self.power += value
-                if key == "protection":
-                    self.hp += value
-                if key == "hp":
+                if key == "protection" or key == "hp":
                     self.hp += value
