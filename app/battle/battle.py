@@ -1,7 +1,7 @@
+from app.equipment.armour import Armour
 from app.knights.knight import Knight
 from app.equipment.potion import Potion
 from app.equipment.weapon import Weapon
-from app.equipment.armour import Armour
 
 
 battle_net = {
