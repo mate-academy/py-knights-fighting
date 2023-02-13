@@ -53,11 +53,11 @@ def get_items(knight_info: dict) -> list:
     return item_list
 
 
-def fight_duel(knight1: Knight, knight2: Knight) -> None:
+def fight_duel(first_knight: Knight, second_knight: Knight) -> None:
     """
     simple function for both sides perform their action
     may be modified into cycle if death dueling is allowed
     (in such case apropriate check should be implemented in Knight class)
     """
-    knight1.get_strike(knight2.power)
-    knight2.get_strike(knight1.power)
+    first_knight.get_strike(second_knight.power)
+    second_knight.get_strike(first_knight.power)

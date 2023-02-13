@@ -24,8 +24,8 @@ class Knight:
         self.inventory = list()    # also depends on result of take_items call
 
     def __repr__(self) -> str:
-        return f"This is {self.name} " \
-               f"with {self.hp} hp, {self.power} power, {self.ap} protection."
+        return (f"This is {self.name} with {self.hp} hp, "
+                f"{self.power} power, {self.ap} protection.")
 
     def take_items(self, items: list(Item)) -> None:
         """

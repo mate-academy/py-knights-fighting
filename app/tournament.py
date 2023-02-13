@@ -1,4 +1,3 @@
-# from __future__ import annotations
 from app.helpers import get_knights, fight_duel
 from app.knight import Knight
 
@@ -25,24 +24,28 @@ class Tournamet:
     def battle(self) -> dict:
         """main tournament flow function"""
         for pair in self.dueling_pairs:
-            knight_one, knight_two = self.ready_knights(pair)
-            if knight_one and knight_two:
-                fight_duel(knight_one, knight_two)
-                self.resolve_fight(knight_one, knight_two)
+            first_knight, second_knight = self.ready_knights(pair)
+            if first_knight and second_knight:
+                fight_duel(first_knight, second_knight)
+                self.resolve_fight(first_knight, second_knight)
         return self.tournament_journal
 
-    def ready_knights(self, knight_pair: str) -> tuple:
-        knight_one_name, knight_two_name = knight_pair.split(" vs ")
-        knight_one = self.knights[knight_one_name]
-        knight_two = self.knights[knight_two_name]
-        knight_one.use_items()
-        knight_two.use_items()
-        return knight_one, knight_two
+    def ready_knights(self, knight_pair: tuple) -> tuple:
+        first_knight_name, second_knight_name = knight_pair
+        first_knight = self.knights[first_knight_name]
+        second_knight = self.knights[second_knight_name]
+        first_knight.use_items()
+        second_knight.use_items()
+        return first_knight, second_knight
 
-    def resolve_fight(self, knight_one: Knight, knight_two: Knight) -> None:
+    def resolve_fight(
+        self,
+        first_knight: Knight,
+        second_knight: Knight
+    ) -> None:
         """
         get results of the fight to store in tournament_journal
         may be modified to get needed format and info
         """
-        self.tournament_journal[knight_one.name] = knight_one.hp
-        self.tournament_journal[knight_two.name] = knight_two.hp
+        self.tournament_journal[first_knight.name] = first_knight.hp
+        self.tournament_journal[second_knight.name] = second_knight.hp

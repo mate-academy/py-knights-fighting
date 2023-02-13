@@ -14,5 +14,5 @@ class Item:
         self.stats = stats
 
     def __repr__(self) -> str:
-        return f"{self.item_kind} this {self.name} " \
-               f"to get such effects: {self.stats}"
+        return (f"{self.item_kind} this {self.name} "
+                f"to get such effects: {self.stats}")

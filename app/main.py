@@ -89,7 +89,7 @@ KNIGHTS = {
 
 
 def battle(knights_config: dict) -> dict:
-    duels = ["Lancelot vs Mordred", "Artur vs Red Knight"]
+    duels = [("Lancelot", "Mordred"), ("Artur", "Red Knight")]
     new_tournament = Tournamet(knights_config, duels)
     return new_tournament.battle()
 
