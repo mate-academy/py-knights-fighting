@@ -100,9 +100,5 @@ def battle(knightsconfig: dict) -> dict:
     fight(knights_to_fight[0], knights_to_fight[2])
     fight(knights_to_fight[1], knights_to_fight[3])
 
-    return {
-        knights_to_fight[0].name: knights_to_fight[0].hp,
-        knights_to_fight[1].name: knights_to_fight[1].hp,
-        knights_to_fight[2].name: knights_to_fight[2].hp,
-        knights_to_fight[3].name: knights_to_fight[3].hp
-    }
+    return {knights_to_fight[warrior].name: knights_to_fight[warrior].hp
+            for warrior in range(len(knights_to_fight))}
