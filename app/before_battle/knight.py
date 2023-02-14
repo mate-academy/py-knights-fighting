@@ -4,6 +4,7 @@ class Knight:
         self.hp = hp
         self.power = power
         self.ammunition = kwargs
+        self.apply_ammunition()
 
     def apply_ammunition(self) -> None:
         self.potion_of_knight()

@@ -93,7 +93,6 @@ def battle(knights_config: dict) -> dict:
     knightss = {}
     for name in knights_config:
         knightss[name] = Knight(**knights_config.get(name))
-        knightss[name].apply_ammunition()
 
     Battle.fight(knightss["lancelot"], knightss["mordred"])
     Battle.fight(knightss["arthur"], knightss["red_knight"])
