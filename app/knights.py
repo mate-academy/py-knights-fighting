@@ -29,9 +29,7 @@ class Knight:
             if "hp" in self.potion["effect"]:
                 self.hp += self.potion["effect"]["hp"]
 
-    def knight_stats(self) -> dict:
+    def to_battle(self) -> None:
         self.knight_protection()
         self.knight_power()
         self.knight_poution()
-        return {"hp": self.hp, "power": self.power,
-                "protection": self.protection}

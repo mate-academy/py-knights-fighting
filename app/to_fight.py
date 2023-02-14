@@ -1,5 +1,10 @@
-def fight(fighter1: dict, fighter2: dict) -> int:
-    fighter1["hp"] -= fighter2["power"] - fighter1["protection"]
-    if fighter1["hp"] <= 0:
-        fighter1["hp"] = 0
-    return fighter1["hp"]
+from app.knights import Knight
+
+
+def fight(fighter_first: Knight, fighter_second: Knight) -> None:
+    fighter_first.hp -= fighter_second.power - fighter_first.protection
+    if fighter_first.hp <= 0:
+        fighter_first.hp = 0
+    fighter_second.hp -= fighter_first.power - fighter_second.protection
+    if fighter_second.hp <= 0:
+        fighter_second.hp = 0

@@ -90,22 +90,19 @@ KNIGHTS = {
 
 
 def battle(knightsconfig: dict) -> dict:
-    list_knights = []
-    dict_knight = {}
-    knight_name = []
-    result_fight = {}
+    knights_to_fight = []
+
     for knights in knightsconfig.items():
-        list_knights.append(Knight(knights[1]))
-        knight_name.append(Knight(knights[1]).name)
-    for knight_instance in list_knights:
-        dict_knight[knight_instance.name] = knight_instance.knight_stats()
-    for vs in range(2):
-        result_fight[knight_name[vs]] = fight(dict_knight[knight_name[vs]],
-                                              dict_knight[knight_name[vs + 2]])
-    for vs in range(2, 4):
-        result_fight[knight_name[vs]] = fight(dict_knight[knight_name[vs]],
-                                              dict_knight[knight_name[vs - 2]])
-    return result_fight
+        knight_instance = Knight(knights[1])
+        knight_instance.to_battle()
+        knights_to_fight.append(knight_instance)
 
+    fight(knights_to_fight[0], knights_to_fight[2])
+    fight(knights_to_fight[1], knights_to_fight[3])
 
-print(battle(KNIGHTS))
+    return {
+        knights_to_fight[0].name: knights_to_fight[0].hp,
+        knights_to_fight[1].name: knights_to_fight[1].hp,
+        knights_to_fight[2].name: knights_to_fight[2].hp,
+        knights_to_fight[3].name: knights_to_fight[3].hp
+    }
