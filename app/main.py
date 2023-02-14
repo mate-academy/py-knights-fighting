@@ -90,13 +90,8 @@ KNIGHTS = {
 
 
 def battle(knightsconfig: dict) -> dict:
-    knights_to_fight = []
-
-    for knights in knightsconfig.items():
-        knight_instance = Knight(knights[1])
-        knight_instance.to_battle()
-        knights_to_fight.append(knight_instance)
-
+    knights_to_fight = [Knight(knights[1])
+                        for knights in knightsconfig.items()]
     fight(knights_to_fight[0], knights_to_fight[2])
     fight(knights_to_fight[1], knights_to_fight[3])
 

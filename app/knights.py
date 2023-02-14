@@ -7,6 +7,7 @@ class Knight:
         self.armour = info["armour"]
         self.weapon = info["weapon"]
         self.potion = info["potion"]
+        self.to_battle()
 
     def knight_protection(self) -> None:
         self.protection = 0
