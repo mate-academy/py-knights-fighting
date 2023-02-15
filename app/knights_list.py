@@ -1,10 +1,5 @@
-class Knights:
-    features = {}
-
-    def __init__(self, name: str, feature: dict) -> None:
-        self.name = name
-        self.feature = feature
-        Knights.features[self.name] = self.feature
+def knights_list(participants_list: dict) -> dict:
+    return participants_list
 
 
 knights = {
@@ -93,6 +88,5 @@ knights = {
         }
     }
 }
-# creation of knights
-for key, value in knights.items():
-    Knights(key, value)
+
+participants = knights_list(knights)

@@ -1,5 +1,5 @@
 def battle_preparations(knights_config: dict) -> dict:
-    new_knights = knights_config
+    new_knights = knights_config.copy()
     for key, value in knights_config.items():
         # apply armour
         value["protection"] = 0

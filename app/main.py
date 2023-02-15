@@ -1,4 +1,4 @@
-from app.knights_list import Knights
+from app.knights_list import participants
 from app.actions.preparations import battle_preparations
 from app.actions.battle import action
 
@@ -24,4 +24,4 @@ def battle(knights_config: dict) -> dict:
     }
 
 
-print(battle(Knights.features))
+print(battle(participants))
