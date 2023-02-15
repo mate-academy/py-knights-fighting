@@ -8,10 +8,8 @@ def battle(knights_config: dict[dict]) -> dict:
 
     championship.initialize_items(knights_config)
     championship.initialize_knights(knights_config)
-    championship.apply_item_effects(Knight.knight_dict)
-
-    # knight_dict is a dict of instances of Knight
     knight_dict = Knight.knight_dict
+    championship.apply_item_effects(knight_dict)
 
     match_1 = Battle.match(knight_dict["Lancelot"], knight_dict["Mordred"])
     match_2 = Battle.match(knight_dict["Artur"], knight_dict["Red Knight"])
@@ -24,4 +22,5 @@ def battle(knights_config: dict[dict]) -> dict:
     }
 
 
-print(battle(knights))
+if __name__ == "__main__":
+    print(battle(knights))

@@ -26,37 +26,33 @@ class Knight:
         self.protection = 0
         Knight.knight_dict[name] = self
 
-    # Apply potion effects
     def drink_potion(self, potion: Potion) -> None:
-        # Bool for message printing
+        """Apply potion effects"""
         positive_potion_effect = True
 
-        for stat, effect in potion.effect.items():
+        for attribute, effect in potion.effect.items():
             if effect < 0:
                 positive_potion_effect = False
-            # Get current "stat" attribute
-            knight_stat = getattr(self, stat)
+            knight_stat = getattr(self, attribute)
             if knight_stat + effect < 0:
                 knight_stat = 0
             else:
                 knight_stat += effect
-            # Set new "stat" attribute
-            setattr(self, stat, knight_stat)
+            setattr(self, attribute, knight_stat)
 
-        # Print message
-        msg = f"{self.name} drinks a {potion.name} potion."
+        message = f"{self.name} drinks a {potion.name} potion."
         if positive_potion_effect:
-            msg += " Their stats are fortified!"
-        print(msg)
+            message += " Their attributes are fortified!"
+        print(message)
 
-    # Attack other Knight
     def attack(self, other: Knight) -> None:
-        dmg = self.power - other.protection
-        other.hp -= dmg
-        print(f"{self.name} delivers a blow! {other.name} loses {dmg} HP.")
+        """Attack the other knight"""
+        damage = self.power - other.protection
+        other.hp -= damage
+        print(f"{self.name} delivers a blow! {other.name} loses {damage} HP.")
 
-    # Check if the knight has fallen
     def has_fallen(self) -> bool:
+        """Check if the knight has fallen"""
         if self.hp > 0:
             return False
         return True
