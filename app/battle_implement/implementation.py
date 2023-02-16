@@ -37,9 +37,12 @@ def create_knight(knight_info: dict) -> Knight:
     armour_scope = crete_armour(knight_info.get("armour"))
     weapon = create_weapon(knight_info.get("weapon"))
     potion = create_potion(knight_info.get("potion"))
-    knight = Knight(name=name,
-                    power=power, hp=hp,
-                    armour=armour_scope,
-                    weapon=weapon,
-                    potion=potion)
+    knight = Knight(
+        name=name,
+        power=power,
+        hp=hp,
+        armour=armour_scope,
+        weapon=weapon,
+        potion=potion
+    )
     return knight
