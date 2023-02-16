@@ -10,10 +10,10 @@ class ArmourPart:
         self.protection_level = protection_level
 
 
-class SetArmourScope:
+class ArmourScope:
 
-    def __init__(self, armour_parts: list[ArmourPart]) -> None:
-        self.armour_parts = armour_parts
+    def __init__(self, armour_parts: list[ArmourPart] = None) -> None:
+        self.armour_parts = armour_parts if armour_parts is not None else []
         self.protection_level = 0
 
     def calc_protection_level(self) -> int:

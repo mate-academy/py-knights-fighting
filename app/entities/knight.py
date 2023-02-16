@@ -1,5 +1,5 @@
 from __future__ import annotations
-from app.entities.stuff import Weapon, SetArmourScope, Potion
+from app.entities.stuff import Weapon, ArmourScope, Potion
 
 
 class Knight:
@@ -9,7 +9,7 @@ class Knight:
                  power: int,
                  hp: int,
                  weapon: Weapon,
-                 armour: SetArmourScope,
+                 armour: ArmourScope,
                  potion: Potion | None) -> None:
         self.name = name
         self.power = power
