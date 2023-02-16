@@ -4,8 +4,11 @@ from app.battle_implement.battle_process import battle_process, battles_result
 
 
 def battle(knights_dict: dict) -> dict:
-    knights = {knight.get("name"): create_knight(knight)
-               for knight in knights_dict.values()}
+    knights = {
+        knight.get("name"): create_knight(knight)
+        for knight
+        in knights_dict.values()
+    }
 
     lancelot = knights.get("Lancelot")
     artur = knights.get("Artur")
