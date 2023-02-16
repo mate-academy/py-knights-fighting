@@ -34,3 +34,8 @@ class Knight:
         if self.ammunition["armour"]:
             for arm in self.ammunition["armour"]:
                 self.hp += arm["protection"]
+
+    def check_hp(self) -> int:
+        if self.hp <= 0:
+            self.hp = 0
+            return self.hp
