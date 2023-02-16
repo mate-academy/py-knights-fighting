@@ -90,11 +90,11 @@ KNIGHTS = {
 
 
 def battle(knights_config: dict) -> dict:
-    knightss = {}
+    knights = {}
     for name in knights_config:
-        knightss[name] = Knight(**knights_config.get(name))
+        knights[name] = Knight(**knights_config.get(name))
 
-    Battle.fight(knightss["lancelot"], knightss["mordred"])
-    Battle.fight(knightss["arthur"], knightss["red_knight"])
+    Battle.fight(knights["lancelot"], knights["mordred"])
+    Battle.fight(knights["arthur"], knights["red_knight"])
 
     return Battle.result_dict

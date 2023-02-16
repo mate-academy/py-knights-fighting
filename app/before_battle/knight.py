@@ -18,12 +18,17 @@ class Knight:
     def potion_of_knight(self) -> None:
         if self.ammunition["potion"]:
             for item in self.ammunition["potion"]["effect"]:
+                stat = ["hp", "protection"]
+                if item in stat:
+                    setattr(self,
+                            "hp",
+                            self.hp
+                            + self.ammunition["potion"]["effect"][item])
                 if item == "power":
-                    self.power += self.ammunition["potion"]["effect"][item]
-                if item == "hp":
-                    self.hp += self.ammunition["potion"]["effect"][item]
-                if item == "protection":
-                    self.hp += self.ammunition["potion"]["effect"][item]
+                    setattr(self,
+                            "power",
+                            self.power
+                            + self.ammunition["potion"]["effect"][item])
 
     def armor_of_knight(self) -> None:
         if self.ammunition["armour"]:
