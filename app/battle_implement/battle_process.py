@@ -11,5 +11,5 @@ def battle_process(first_knight: Knight, second_knight: Knight) -> None:
     second_knight.is_defeated()
 
 
-def battles_result(knights: list[Knight]) -> dict:
-    return {knight.name: knight.hp for knight in knights}
+def battles_result(knights: dict) -> dict:
+    return {knight.name: knight.hp for knight in knights.values()}

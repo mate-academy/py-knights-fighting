@@ -4,15 +4,16 @@ from app.battle_implement.battle_process import battle_process, battles_result
 
 
 def battle(knights_dict: dict) -> dict:
-    knights = [create_knight(knights_dict.get(knight))
-               for knight in knights_dict]
+    knights = {knight.get("name"): create_knight(knight)
+               for knight in knights_dict.values()}
 
-    lancelot = knights[0]
-    arthur = knights[1]
-    mordred = knights[2]
-    red_knight = knights[3]
+    lancelot = knights.get("Lancelot")
+    artur = knights.get("Artur")
+    mordred = knights.get("Mordred")
+    red_knight = knights.get("Red Knight")
+
     battle_process(lancelot, mordred)
-    battle_process(arthur, red_knight)
+    battle_process(artur, red_knight)
 
     return battles_result(knights)
 
