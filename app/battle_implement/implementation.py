@@ -6,9 +6,12 @@ from app.entities.stuff import Weapon, ArmourPart, SetArmourScope, Potion
 
 def crete_armour(armours: list) -> SetArmourScope | list:
     if armours:
-        armour_parts = [ArmourPart(armour.get("part"),
-                                   armour.get("protection"))
-                        for armour in armours]
+        armour_parts = [
+            ArmourPart(
+                armour.get("part"), armour.get("protection")
+            )
+            for armour in armours
+        ]
         armour_scope = SetArmourScope(armour_parts)
         return armour_scope
     return SetArmourScope([])
