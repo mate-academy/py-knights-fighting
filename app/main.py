@@ -24,8 +24,10 @@ def battle(knights_config: dict) -> dict:
             hp,
             power,
             all_armour,
-            Weapon(weapon["name"], weapon["power"])
         ]
+
+        if weapon is not None:
+            params.append(Weapon(weapon["name"], weapon["power"]))
 
         if potion is not None:
             params.append(Potion(potion["name"], potion["effect"]))
