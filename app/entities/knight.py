@@ -17,6 +17,7 @@ class Knight:
         self.weapon = weapon
         self.armour = armour
         self.potion = potion
+        self.battle_preparation()
 
     def set_hp_level(self, hp: int) -> None:
         if hp:
