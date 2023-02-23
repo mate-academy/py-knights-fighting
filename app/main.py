@@ -3,34 +3,19 @@ from app.arena.preparation import Prepare
 from app.arena.fight import Battle
 
 
-def battle(knights: list) -> dict:
+def battle(knights: dict) -> dict:
     fighters_list = []
-    result = {}
+    battle_result = {}
 
     for key, value in knights.items():
-        locals()[key] = Fighters(
-            value["name"],
-            value["power"],
-            value["hp"],
-            value["armour"],
-            value["weapon"],
-            value["potion"]
-        )
+        globals()[key] = Fighters(value)
+        Prepare.fighter_preparation(globals()[key])
+        fighters_list.append(globals()[key])
 
-        Prepare.armour_prepare(locals()[key])
-        Prepare.weapon_prepare(locals()[key])
-        Prepare.potion_prepare(locals()[key])
+    Battle.fight(fighters_list[0], fighters_list[2])
+    Battle.fight(fighters_list[1], fighters_list[3])
 
-        fighters_list.append(locals()[key])
+    for i in range(len(fighters_list)):
+        battle_result[fighters_list[i].name] = fighters_list[i].hp
 
-    for fighter_1 in fighters_list:
-
-        for fighter_2 in fighters_list:
-            if fighter_1.name == "Lancelot" and fighter_2.name == "Mordred":
-                Battle.fight(fighter_1, fighter_2)
-            elif fighter_1.name == "Artur" and fighter_2.name == "Red Knight":
-                Battle.fight(fighter_1, fighter_2)
-
-        result[fighter_1.name] = fighter_1.hp
-
-    return result
+    return battle_result

@@ -3,6 +3,12 @@ from app.hall.fighters import Fighters
 
 class Prepare:
     @staticmethod
+    def fighter_preparation(fighter: Fighters) -> None:
+        Prepare.armour_prepare(fighter)
+        Prepare.weapon_prepare(fighter)
+        Prepare.potion_prepare(fighter)
+
+    @staticmethod
     def armour_prepare(fighter: Fighters) -> None:
         for armour in fighter.armour:
             fighter.protection += armour["protection"]
@@ -14,11 +20,6 @@ class Prepare:
     @staticmethod
     def potion_prepare(fighter: Fighters) -> None:
         if fighter.potion is not None:
-            if "power" in fighter.potion["effect"]:
-                fighter.power += fighter.potion["effect"]["power"]
-
-            if "protection" in fighter.potion["effect"]:
-                fighter.protection += fighter.potion["effect"]["protection"]
-
-            if "hp" in fighter.potion["effect"]:
-                fighter.hp += fighter.potion["effect"]["hp"]
+            for key, value in fighter.potion["effect"].items():
+                old_value = getattr(fighter, key)
+                setattr(fighter, key, old_value + value)
