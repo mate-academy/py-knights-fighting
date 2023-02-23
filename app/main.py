@@ -32,4 +32,5 @@ def battle(knights_config: dict) -> dict:
         knights[member].name: knights[member].hp for member in knights
     }
 
+
 print(battle(KNIGHTS))
