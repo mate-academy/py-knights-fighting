@@ -1,4 +1,3 @@
-from app.hall.fighters import Fighters
 from app.arena.preparation import Prepare
 from app.arena.fight import Battle
 
@@ -8,9 +7,10 @@ def battle(knights: dict) -> dict:
     battle_result = {}
 
     for key, value in knights.items():
-        globals()[key] = Fighters(value)
-        Prepare.fighter_preparation(globals()[key])
-        fighters_list.append(globals()[key])
+
+        key = Prepare(value)
+        key.fighter_preparation()
+        fighters_list.append(key)
 
     Battle.fight(fighters_list[0], fighters_list[2])
     Battle.fight(fighters_list[1], fighters_list[3])
