@@ -15,5 +15,6 @@ class Knight:
 
         if info["potion"] is not None:
             for effect in info["potion"]["effect"]:
-                self.__dict__[effect] += \
+                self.__dict__[effect] += (
                     info["potion"]["effect"].get(effect, 0)
+                )
