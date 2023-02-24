@@ -1,36 +1,25 @@
-from knight import Knight
-
-
 class Armour:
-    def __init__(self, part: str, protection: int) -> None:
-        self.part = part
-        self.protection = protection
-
-    def wear_armour(self, knight: Knight) -> None:
-        knight.protection += self.protection
-        print(f"{knight.name} wear {self.part} and get {self.protection} protection")
+    def __init__(self, armour_conf: dict) -> None:
+        self.part = armour_conf["part"]
+        self.protection = armour_conf["protection"]
 
 
 class Potion:
-    def __init__(self, name: str, effect: int) -> None:
-        self.name = name
-        self.hp_effect = effect["hp"]
-        self.power_effect = effect["power"]
-        self.protection_effect = effect["protection"]
-
-    def drink_potion(self, knight: Knight) -> None:
-        knight.hp += self.hp_effect
-        knight.power += self.power_effect
-        knight.protection += self.protection_effect
-        print(f"{knight.name} drink {self.name} and get:"
-              f" {self.protection_effect} protection")
+    def __init__(self, potion_conf: dict) -> None:
+        self.name = potion_conf["name"]
+        self.protection_effect = None
+        self.power_effect = None
+        self.hp_effect = None
+        for key, value in potion_conf["effect"].items():
+            if key == "hp":
+                self.hp_effect = value
+            if key == "power":
+                self.power_effect = value
+            if key == "protection":
+                self.protection_effect = value
 
 
 class Weapon:
-    def __init__(self, name: str, power: int) -> None:
-        self.name = name
-        self.power = power
-
-    def wear_weapon(self, knight: Knight) -> None:
-        knight.power += self.power
-        print(f"{knight.name} wear {self.name} and get {self.power} power")
+    def __init__(self, weapon_conf: dict) -> None:
+        self.name = weapon_conf["name"]
+        self.power = weapon_conf["power"]
