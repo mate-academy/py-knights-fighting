@@ -1,3 +1,6 @@
+from typing import Union
+
+
 class Knight:
     def __init__(self, info: dict) -> None:
         self.name = info["name"]
@@ -5,6 +8,12 @@ class Knight:
         self.hp = info["hp"]
         self.protection = 0
         self.preparing(info)
+
+    def __setitem__(self, key: str, value: Union[int, str]) -> None:
+        self.__dict__[key] = value
+
+    def __getitem__(self, key: str) -> Union[int, str]:
+        return self.__dict__[key]
 
     def preparing(self, info: dict) -> None:
         self.power += info["weapon"]["power"]
@@ -15,6 +24,4 @@ class Knight:
 
         if info["potion"] is not None:
             for effect in info["potion"]["effect"]:
-                self.__dict__[effect] += (
-                    info["potion"]["effect"].get(effect, 0)
-                )
+                self[effect] += info["potion"]["effect"].get(effect, 0)

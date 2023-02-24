@@ -2,14 +2,14 @@ from app.knight_class import Knight
 from app.knights_info import KNIGHTS
 
 
-def duel(member_1: Knight, member_2: Knight) -> None:
-    member_1.hp -= member_2.power - member_1.protection
-    member_2.hp -= member_1.power - member_2.protection
+def duel(first_knight: Knight, second_knight: Knight) -> None:
+    first_knight.hp -= second_knight.power - first_knight.protection
+    second_knight.hp -= first_knight.power - second_knight.protection
 
-    if member_1.hp <= 0:
-        member_1.hp = 0
-    if member_2.hp <= 0:
-        member_2.hp = 0
+    if first_knight.hp <= 0:
+        first_knight.hp = 0
+    if second_knight.hp <= 0:
+        second_knight.hp = 0
 
 
 def battle(knights_config: dict) -> dict:
