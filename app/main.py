@@ -13,21 +13,11 @@ def duel(member_1: Knight, member_2: Knight) -> None:
 
 
 def battle(knights_config: dict) -> dict:
-    # BATTLE PREPARATIONS:
     knights = {
         member: Knight(knights_config[member]) for member in knights_config
     }
-
-    # -------------------------------------------------------------------------------
-    # BATTLE:
-
-    # # 1 Lancelot vs Mordred:
     duel(knights["lancelot"], knights["mordred"])
-    #
-    # # 2 Arthur vs Red Knight:
     duel(knights["arthur"], knights["red_knight"])
-
-    # Return battle results:
     return {
         knights[member].name: knights[member].hp for member in knights
     }
