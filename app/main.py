@@ -9,11 +9,12 @@ def battle_preparation(knights: dict):
 
             # set protection to 0 if no armour is applied
         if "protection" not in knights[knight_name]:
-            knights["lancelot"].get("protection", 0)
+            knights[knight_name].get("protection", 0)
 
     # apply weapon
     for knight_name in knights:
         knight = knights[knight_name]
+        Weapon.apply_weapon(knight)
         Weapon.power_calculation(knight)
 
     # apply potion if exist
@@ -28,7 +29,7 @@ def battle(knights):
 
     # 1 Lancelot vs Mordred:
     knights["lancelot"]["hp"] -= knights["mordred"]["power"] - knights["lancelot"].get("protection", 0)
-    knights["mordred"]["hp"] -= knights["lancelot"]["power"] - knights["mordred"]["protection"]
+    knights["mordred"]["hp"] -= knights["lancelot"]["power"] - knights["mordred"].get("protection", 0)
 
 
     # check if someone fell in battle
@@ -41,7 +42,10 @@ def battle(knights):
     # Return battle results:
     return {
         knights["lancelot"]["name"]: knights["lancelot"]["hp"],
+        knights["arthur"]["name"]: knights["arthur"]["hp"],
         knights["mordred"]["name"]: knights["mordred"]["hp"],
+        knights["red_knight"]["name"]: knights["red_knight"]["hp"],
+
     }
 
 

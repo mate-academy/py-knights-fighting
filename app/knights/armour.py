@@ -8,16 +8,8 @@ class Armour:
         self.protection = protection
 
     def check_armour(self, knight: Knight) -> None:
-        knight.armour = self
-
+        knight.armour = Armour(name=self.name, protection=self.protection)
 
     def update_protection(self, knight: Knight, effect: int) -> None:
         if knight.armour is self:
             self.protection += effect
-
-
-
-
-
-
-

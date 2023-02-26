@@ -8,17 +8,14 @@ class Potion:
         self.effect = effect
 
     def apply_potion(self, knight: Knight) -> None:
-        if self:
+        if self.effect > 0:
             knight.power += self.effect
             knight.hp += self.effect
-            for armour in knight.armours:
+            for armour in knight.armour:
                 armour.update_protection(knight, self.effect)
 
-        elif self.effect < 0:
+        else:
             knight.power -= self.effect
             knight.hp -= self.effect
-            for armour in knight.armours:
+            for armour in knight.armour:
                 armour.update_protection(knight, self.effect)
-
-
-
