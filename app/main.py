@@ -1,50 +1,30 @@
-from __future__ import annotations
+from app.knights import knights
+from app.preparation import preparation
 
-from app.class_knights import knights_list, Knight
 
-
-def battle(knights: list) -> dict:
-    # battle preparations
-    for knight in knights:
-        knight.apply_equipment()
-
-    def check_death(member: Knight) -> None:
-        if member.hp <= 0:
-            member.hp = 0
-
-    def local_battle(first_member: Knight, second_member: Knight) -> None:
-        first_member.hp -= \
-            second_member.power - first_member.protection
-        second_member.hp -= \
-            first_member.power - second_member.protection
-
-    lancelot = knights[0]
-    arthur = knights[1]
-    mordred = knights[2]
-    red_knight = knights[3]
-    # BATTLE:
+@preparation
+def battle(members: dict) -> dict:
 
     # 1 Lancelot vs Mordred:
-    local_battle(lancelot, mordred)
-
-    # check if someone fell in battle
-    check_death(lancelot)
-    check_death(mordred)
+    members["lancelot"]["hp"] -= \
+        members["mordred"]["power"] - members["lancelot"]["protection"]
+    members["mordred"]["hp"] -= \
+        members["lancelot"]["power"] - members["mordred"]["protection"]
 
     # 2 Arthur vs Red Knight:
-    local_battle(arthur, red_knight)
+    members["arthur"]["hp"] -= \
+        members["red_knight"]["power"] - members["arthur"]["protection"]
+    members["red_knight"]["hp"] -= \
+        members["arthur"]["power"] - members["red_knight"]["protection"]
 
     # check if someone fell in battle
-    check_death(arthur)
-    check_death(red_knight)
+    for knight, attributes in members.items():
+        if attributes["hp"] <= 0:
+            attributes["hp"] = 0
 
     # Return battle results:
-    return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
-    }
+    return {attributes["name"]: attributes["hp"]
+            for _, attributes in members.items()}
 
 
-battle(knights_list)
+print(battle(knights))
