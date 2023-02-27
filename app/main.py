@@ -1,20 +1,20 @@
-from app.dictionary_of_knights import KNIGHTS
 from app.create_knights import create_knights
-from app.knights import CreateKnights
+from app.dictionary_of_knights import KNIGHTS
+from app.knights import Knights
 
 
 def battle(dict_of_knights: dict) -> dict[str: int]:
-    knights: dict[str, CreateKnights] = create_knights(dict_of_knights)
+    knights: dict[str, Knights] = create_knights(dict_of_knights)
 
-    lancelot: CreateKnights = knights["Lancelot"]
-    mordred: CreateKnights = knights["Mordred"]
-    arthur: CreateKnights = knights["Artur"]
-    red_knight: CreateKnights = knights["Red Knight"]
+    lancelot: Knights = knights["Lancelot"]
+    mordred: Knights = knights["Mordred"]
+    arthur: Knights = knights["Artur"]
+    red_knight: Knights = knights["Red Knight"]
 
-    CreateKnights.fight(lancelot, mordred)
-    CreateKnights.fight(mordred, lancelot)
-    CreateKnights.fight(arthur, red_knight)
-    CreateKnights.fight(red_knight, arthur)
+    Knights.fight(lancelot, mordred)
+    Knights.fight(mordred, lancelot)
+    Knights.fight(arthur, red_knight)
+    Knights.fight(red_knight, arthur)
 
     return {
         lancelot.name: lancelot.hp,

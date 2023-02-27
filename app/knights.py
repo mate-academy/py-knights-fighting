@@ -1,4 +1,4 @@
-class CreateKnights:
+class Knights:
     def __init__(self,
                  name: str,
                  power: int,
@@ -10,14 +10,13 @@ class CreateKnights:
         self.protection: int = protection
         self.hp: int = hp
 
-    @staticmethod
-    def fight(knights_one: object, knights_two: object) -> None:
-        if knights_one.protection < knights_two.power:
-            knights_one.hp -= knights_two.power - knights_one.protection
-            if knights_one.hp <= 0:
-                knights_one.hp = 0
+    def fight(self: object, knights_two: "Knights") -> None:
+        if self.protection < knights_two.power:
+            self.hp -= knights_two.power - self.protection
+            if self.hp <= 0:
+                self.hp = 0
 
-        if knights_two.protection > knights_one.power:
-            knights_two.hp -= knights_one.power - knights_two.protection
+        if knights_two.protection > self.power:
+            knights_two.hp -= self.power - knights_two.protection
             if knights_two.hp <= 0:
                 knights_two.hp = 0
