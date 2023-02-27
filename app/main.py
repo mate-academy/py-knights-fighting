@@ -1,27 +1,27 @@
-from app.knights.potion import Potion
-from app.knights.weapon import Weapon
+from app.knights.knight import Knight
+
+
+def knight_config(knights: dict):
+    for knight_name, knight_data in knights.items():
+        knights[knight_name] = Knight()
 
 
 def battle_preparation(knights: dict):
-    for knight_name in knights:
-        for armour in knights[knight_name]["armour"]:
-            knights[knight_name]["protection"] += armour["protection"]
+    for knight_name, knight_data in knights.items():
+        knight_data["protection"] = 0
+        for armour in knight_data["armour"]:
+            knight_data["protection"] += Knight.apply_armour(armour)
 
-            # set protection to 0 if no armour is applied
-        if "protection" not in knights[knight_name]:
-            knights[knight_name].get("protection", 0)
+        # set protection to 0 if no armour is applied
+        if "protection" not in knight_data:
+            knight_data["protection"] = 0
 
-    # apply weapon
-    for knight_name in knights:
-        knight = knights[knight_name]
-        Weapon.apply_weapon(knight)
-        Weapon.power_calculation(knight)
+        # apply weapon
+        knight_data.apply_weapon(knight_data)
 
-    # apply potion if exist
-    for knight_name in knights:
-        knight = knights[knight_name]
-        if knight.potion is not None:
-            Potion.apply_potion(knight)
+        # apply potion if exist
+        if knight_data["potion"] is not None:
+            knight_data.apply_potion(knight_data)
 
     # -------------------------------------------------------------------------------
     # BATTLE:
@@ -30,7 +30,6 @@ def battle(knights):
     # 1 Lancelot vs Mordred:
     knights["lancelot"]["hp"] -= knights["mordred"]["power"] - knights["lancelot"].get("protection", 0)
     knights["mordred"]["hp"] -= knights["lancelot"]["power"] - knights["mordred"].get("protection", 0)
-
 
     # check if someone fell in battle
     if knights["lancelot"]["hp"] <= 0:
@@ -42,10 +41,7 @@ def battle(knights):
     # Return battle results:
     return {
         knights["lancelot"]["name"]: knights["lancelot"]["hp"],
-        knights["arthur"]["name"]: knights["arthur"]["hp"],
         knights["mordred"]["name"]: knights["mordred"]["hp"],
-        knights["red_knight"]["name"]: knights["red_knight"]["hp"],
-
     }
 
 
