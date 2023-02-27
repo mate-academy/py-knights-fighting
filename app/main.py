@@ -11,10 +11,10 @@ def battle(dict_of_knights: dict) -> dict[str: int]:
     arthur: Knights = knights["Artur"]
     red_knight: Knights = knights["Red Knight"]
 
-    Knights.fight(lancelot, mordred)
-    Knights.fight(mordred, lancelot)
-    Knights.fight(arthur, red_knight)
-    Knights.fight(red_knight, arthur)
+    lancelot.fight(mordred)
+    mordred.fight(lancelot)
+    arthur.fight(red_knight)
+    red_knight.fight(arthur)
 
     return {
         lancelot.name: lancelot.hp,

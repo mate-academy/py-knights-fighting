@@ -10,7 +10,7 @@ class Knights:
         self.protection: int = protection
         self.hp: int = hp
 
-    def fight(self: object, knights_two: "Knights") -> None:
+    def fight(self, knights_two: "Knights") -> None:
         if self.protection < knights_two.power:
             self.hp -= knights_two.power - self.protection
             if self.hp <= 0:
