@@ -12,10 +12,12 @@ def battle(members: dict) -> dict:
         members["lancelot"]["power"] - members["mordred"]["protection"]
 
     # 2 Arthur vs Red Knight:
-    members["arthur"]["hp"] -= \
+    members["arthur"]["hp"] -= (
         members["red_knight"]["power"] - members["arthur"]["protection"]
-    members["red_knight"]["hp"] -= \
+    )
+    members["red_knight"]["hp"] -= (
         members["arthur"]["power"] - members["red_knight"]["protection"]
+    )
 
     # check if someone fell in battle
     for knight, attributes in members.items():
