@@ -6,10 +6,12 @@ from app.preparation import preparation
 def battle(members: dict) -> dict:
 
     # 1 Lancelot vs Mordred:
-    members["lancelot"]["hp"] -= \
+    members["lancelot"]["hp"] -= (
         members["mordred"]["power"] - members["lancelot"]["protection"]
-    members["mordred"]["hp"] -= \
+    )
+    members["mordred"]["hp"] -= (
         members["lancelot"]["power"] - members["mordred"]["protection"]
+    )
 
     # 2 Arthur vs Red Knight:
     members["arthur"]["hp"] -= (
