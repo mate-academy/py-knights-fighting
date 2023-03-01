@@ -16,15 +16,10 @@ def preparation(func: Callable) -> Callable:
 
             # apply potion if exist
             if attributes["potion"] is not None:
-                if "power" in attributes["potion"]["effect"]:
-                    attributes["power"] += \
-                        attributes["potion"]["effect"]["power"]
+                for attribute in ["power", "protection", "hp"]:
+                    if attribute in attributes["potion"]["effect"]:
+                        attributes[attribute] += \
+                            attributes["potion"]["effect"][attribute]
 
-                if "protection" in attributes["potion"]["effect"]:
-                    attributes["protection"] += \
-                        attributes["potion"]["effect"]["protection"]
-
-                if "hp" in attributes["potion"]["effect"]:
-                    attributes["hp"] += attributes["potion"]["effect"]["hp"]
         return func(knights)
     return inner
