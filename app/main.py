@@ -1,5 +1,5 @@
 from app.knights_config import KNIGHTS
-from app.knight_crearing import create_knight
+from app.knight_crearing import create_knight, Knight
 
 
 def check_hp(hp: int) -> int:
@@ -8,34 +8,32 @@ def check_hp(hp: int) -> int:
     return hp
 
 
+def fight(first_knight: Knight, second_knight: Knight) -> None:
+    first_knight.hp -= second_knight.power - first_knight.protection
+    second_knight.hp -= first_knight.power - second_knight.protection
+
+
 def battle(knights: dict) -> dict:
-    list_of_knights = []
+    dict_of_knights = {}
     for knight in knights:
         knight_ = create_knight(knights[knight])
         knight_.apply_armour(knights[knight])
         knight_.apply_weapon(knights[knight])
         knight_.apply_potion(knights[knight]["potion"])
-        list_of_knights.append(knight_)
+        dict_of_knights[knight] = knight_
 
-    list_of_knights[0].hp -= \
-        list_of_knights[2].power - list_of_knights[0].protection
-    list_of_knights[2].hp -= \
-        list_of_knights[0].power - list_of_knights[2].protection
+    fight(dict_of_knights["lancelot"], dict_of_knights["mordred"])
+    fight(dict_of_knights["arthur"], dict_of_knights["red_knight"])
 
-    list_of_knights[1].hp -= \
-        list_of_knights[3].power - list_of_knights[1].protection
-    list_of_knights[3].hp -= \
-        list_of_knights[1].power - list_of_knights[3].protection
-
-    for knight in list_of_knights:
-        knight.hp = check_hp(knight.hp)
+    for knight in dict_of_knights:
+        dict_of_knights[knight].hp = check_hp(dict_of_knights[knight].hp)
 
     return {
-        list_of_knights[0].name: list_of_knights[0].hp,
-        list_of_knights[1].name: list_of_knights[1].hp,
-        list_of_knights[2].name: list_of_knights[2].hp,
-        list_of_knights[3].name: list_of_knights[3].hp,
+        dict_of_knights["lancelot"].name: dict_of_knights["lancelot"].hp,
+        dict_of_knights["arthur"].name: dict_of_knights["arthur"].hp,
+        dict_of_knights["mordred"].name: dict_of_knights["mordred"].hp,
+        dict_of_knights["red_knight"].name: dict_of_knights["red_knight"].hp
     }
 
 
-print(battle(KNIGHTS))
+battle(KNIGHTS)
