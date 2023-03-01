@@ -14,7 +14,6 @@ class Knight:
         self.potion = potion
 
     def apply_armour(self) -> None:
-        # print(f"test 01 - {self.name}")
         for arm in self.armour:
             self.protection += arm["protection"]
 

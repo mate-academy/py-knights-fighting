@@ -97,9 +97,9 @@ def battle(knights_config: dict[dict]) -> dict:
     # Knight class initialisation, store in knights dict
     knights = {}
     for key, value in knights_config.items():
-        # print(f"test 00 - {i['name']}")
         knights[key] = Knight(value["name"], value["power"], value["hp"],
-                              value["armour"], value["weapon"], value["potion"])
+                              value["armour"], value["weapon"],
+                              value["potion"])
 
     # apply armour, weapon, potion if exist
     for value in knights.values():
