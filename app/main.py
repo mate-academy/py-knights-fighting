@@ -15,7 +15,7 @@ def battle(knights: dict) -> dict:
     Battle.fight(fighters_list[0], fighters_list[2])
     Battle.fight(fighters_list[1], fighters_list[3])
 
-    for i in range(len(fighters_list)):
-        battle_result[fighters_list[i].name] = fighters_list[i].hp
+    for fighter in fighters_list:
+        battle_result[fighter.name] = fighter.hp
 
     return battle_result
