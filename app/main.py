@@ -27,8 +27,10 @@ def battle(members: dict) -> dict:
             attributes["hp"] = 0
 
     # Return battle results:
-    return {attributes["name"]: attributes["hp"]
-            for _, attributes in members.items()}
+    return {
+        attributes["name"]: attributes["hp"]
+        for attributes in members.values()
+    }
 
 
 print(battle(knights))
