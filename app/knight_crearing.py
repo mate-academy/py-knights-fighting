@@ -1,7 +1,12 @@
-
 class Knight:
-    def __init__(self, name: str, power: int, hp: int,
-                 protection: int = 0, potion: int = None) -> None:
+    def __init__(
+            self,
+            name: str,
+            power: int,
+            hp: int,
+            protection: int = 0,
+            potion: int = None
+    ) -> None:
         self.name = name
         self.power = power
         self.hp = hp
@@ -17,12 +22,15 @@ class Knight:
 
     def apply_potion(self, potion: dict) -> None:
         if potion:
-            power = potion["effect"].get("power", 0)
-            self.power += power
-            protection = potion["effect"].get("protection", 0)
-            self.protection += protection
-            hp = potion["effect"].get("hp", 0)
-            self.hp += hp
+            effects = potion["effect"]
+            list_of_potion = ["power", "protection", "hp"]
+            for potion_effect in list_of_potion:
+                effect = getattr(self, potion_effect)
+                setattr(
+                    self,
+                    potion_effect,
+                    effect + effects.get(potion_effect, 0)
+                )
 
 
 def create_knight(knights: dict) -> Knight:
