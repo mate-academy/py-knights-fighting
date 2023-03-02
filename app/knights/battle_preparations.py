@@ -10,14 +10,14 @@ class Knight:
         self.hp = knight["hp"]
 
     def __repr__(self) -> str:
-        return f"{self.hp}"
+        return str(self.hp)
 
     def apply_potion(self, knight: dict) -> Knight:
         if knight["potion"] is not None:
-            if "power" in knight["potion"]["effect"]:
-                self.power += knight["potion"]["effect"]["power"]
-            if "protection" in knight["potion"]["effect"]:
-                self.protection += knight["potion"]["effect"]["protection"]
-            if "hp" in knight["potion"]["effect"]:
-                self.hp += knight["potion"]["effect"]["hp"]
+            for effect in knight["potion"]["effect"]:
+                self.__setattr__(
+                    effect,
+                    (self.__getattribute__(effect)
+                     + knight["potion"]["effect"][effect])
+                )
         return self

@@ -1,12 +1,15 @@
-def battle_round(knights: dict) -> dict:
+from __future__ import annotations
 
-    knights["Lancelot"].hp -= (knights["Mordred"].power
-                               - knights["Lancelot"].protection)
-    knights["Mordred"].hp -= (knights["Lancelot"].power
-                              - knights["Mordred"].protection)
-    knights["Artur"].hp -= (knights["Red Knight"].power
-                            - knights["Artur"].protection)
-    knights["Red Knight"].hp -= (knights["Artur"].power
-                                 - knights["Red Knight"].protection)
+from app.knights.battle_preparations import Knight
+
+
+def battle_round(knights: dict) -> dict:
+    battle(knights["Lancelot"], knights["Mordred"])
+    battle(knights["Artur"], knights["Red Knight"])
 
     return knights
+
+
+def battle(first_knight: Knight, second_knight: Knight) -> None:
+    first_knight.hp -= second_knight.power - first_knight.protection
+    second_knight.hp -= first_knight.power - second_knight.protection
