@@ -9,11 +9,7 @@ def apply(knight: dict) -> None:
 
     # apply potion if exist
     if knight["potion"] is not None:
-        if "power" in knight["potion"]["effect"]:
-            knight["power"] += knight["potion"]["effect"]["power"]
-
-        if "protection" in knight["potion"]["effect"]:
-            knight["protection"] += knight["potion"]["effect"]["protection"]
-
-        if "hp" in knight["potion"]["effect"]:
-            knight["hp"] += knight["potion"]["effect"]["hp"]
+        characteristics = ["power", "protection", "hp"]
+        for character in characteristics:
+            if character in knight["potion"]["effect"]:
+                knight[character] += knight["potion"]["effect"][character]
