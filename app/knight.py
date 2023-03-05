@@ -14,17 +14,18 @@ class Knight:
         self.potion = potion
 
     def apply_armour(self) -> None:
-        for arm in self.armour:
-            self.protection += arm["protection"]
+        for armour_piece in self.armour:
+            self.protection += armour_piece["protection"]
 
     def apply_weapon(self) -> None:
         self.power += self.weapon["power"]
 
     def apply_potion_if_exist(self) -> None:
         if self.potion is not None:
-            if "power" in self.potion["effect"]:
-                self.power += self.potion["effect"]["power"]
-            if "protection" in self.potion["effect"]:
-                self.protection += self.potion["effect"]["protection"]
-            if "hp" in self.potion["effect"]:
-                self.hp += self.potion["effect"]["hp"]
+            for potion_effect, value in self.potion["effect"].items():
+                if potion_effect == "power":
+                    self.power += value
+                if potion_effect == "protection":
+                    self.protection += value
+                if potion_effect == "hp":
+                    self.hp += value
