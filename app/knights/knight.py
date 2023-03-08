@@ -15,7 +15,7 @@ class Knight:
     def apply_armour(self, armour: list[dict[str, int]]) -> None:
         for part in armour:
             if "protection" in part:
-                self.armour += [part["protection"]]
+                self.protection += part["protection"]
 
     def apply_weapon(self, weapon: dict[str, int]) -> None:
         if "power" in weapon:
@@ -40,6 +40,7 @@ class Knight:
                 else:
                     self.protection -= abs(effect["protection"])
 
-    def attack(self, other: Knight) -> None:
-        damage = self.power - other.protection
-        other.hp = max(0, other.hp - damage)
+    def check_hp(self) -> int:
+        if self.hp <= 0:
+            self.hp = 0
+        return self.hp

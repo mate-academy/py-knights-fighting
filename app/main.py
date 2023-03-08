@@ -1,12 +1,14 @@
+from __future__ import annotations
+
 from app.knights.knight import Knight
 
 
 # creation of knights
 
 
-def knights_config(knights_data: dict) -> dict:
+def knights_config(knights: dict[str, any]) -> dict:
     knights_dict = {}
-    for knight_name, knight_data in knights_data.items():
+    for knight_name, knight_data in knights.items():
         knight = Knight(
             knight_data["name"],
             knight_data["power"],
@@ -21,18 +23,33 @@ def knights_config(knights_data: dict) -> dict:
 
 
 # BATTLE
-def battle(knights_dict: dict[str, Knight]) -> dict[str, int]:
+def battle(knights: dict[str, any]) -> dict[str, int]:
+    ready_knights = knights_config(knights)
 
-    knight1 = knights_dict["lancelot"]
-    knight2 = knights_dict["mordred"]
+    lancelot = ready_knights["lancelot"]
+    arthur = ready_knights["arthur"]
+    mordred = ready_knights["mordred"]
+    red_knight = ready_knights["red_knight"]
 
-    knight1.attack(knight2)
-    knight2.attack(knight1)
-    return {knight1.name: knight1.hp, knight2.name: knight2.hp}
+    lancelot.hp -= mordred.power - lancelot.protection
+    mordred.hp -= lancelot.power - mordred.protection
+    red_knight.hp -= arthur.power - red_knight.protection
+    arthur.hp -= red_knight.power - arthur.protection
+
+    Knight.check_hp(lancelot)
+    Knight.check_hp(mordred)
+    Knight.check_hp(red_knight)
+    Knight.check_hp(arthur)
+
+    return {
+        lancelot.name: lancelot.hp,
+        arthur.name: arthur.hp,
+        mordred.name: mordred.hp,
+        red_knight.name: red_knight.hp
+    }
 
 
-
-knights_data = {
+knights = {
     "lancelot": {
         "name": "Lancelot",
         "power": 35,
@@ -118,10 +135,3 @@ knights_data = {
         }
     }
 }
-
-knights_dict = knights_config(knights_data)
-
-
-battle_result = battle(knights_dict)
-print(battle_result)
-
