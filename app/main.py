@@ -21,11 +21,15 @@ def knights_config(knights_data: dict) -> dict:
 
 
 # BATTLE
-def battle(knight_1: Knight, knight_2: Knight) -> dict[str, int]:
-    while knight_1.hp > 0 and knight_2.hp > 0:
-        knight_1.attack(knight_2)
-        knight_2.attack(knight_1)
-    return {knight_1.name: knight_1.hp, knight_2.name: knight_2.hp}
+def battle(knights_dict: dict[str, Knight]) -> dict[str, int]:
+
+    knight1 = knights_dict["lancelot"]
+    knight2 = knights_dict["mordred"]
+
+    knight1.attack(knight2)
+    knight2.attack(knight1)
+    return {knight1.name: knight1.hp, knight2.name: knight2.hp}
+
 
 
 knights_data = {
@@ -117,9 +121,7 @@ knights_data = {
 
 knights_dict = knights_config(knights_data)
 
-knight1 = knights_dict["lancelot"]
-knight2 = knights_dict["mordred"]
 
-battle_result = battle(knight1, knight2)
-
+battle_result = battle(knights_dict)
 print(battle_result)
+

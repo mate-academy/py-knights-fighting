@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+
 class Knight:
 
     def __init__(self, name: str, power: int, hp: int) -> None:
