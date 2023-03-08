@@ -1,51 +1,34 @@
 from app.knights.knight import Knight
 
 
-def knight_config(knights: dict):
-    for knight_name, knight_data in knights.items():
-        knights[knight_name] = Knight()
+# creation of knights
 
 
-def battle_preparation(knights: dict):
-    for knight_name, knight_data in knights.items():
-        knight_data["protection"] = 0
-        for armour in knight_data["armour"]:
-            knight_data["protection"] += Knight.apply_armour(armour)
-
-        # set protection to 0 if no armour is applied
-        if "protection" not in knight_data:
-            knight_data["protection"] = 0
-
-        # apply weapon
-        knight_data.apply_weapon(knight_data)
-
-        # apply potion if exist
-        if knight_data["potion"] is not None:
-            knight_data.apply_potion(knight_data)
-
-    # -------------------------------------------------------------------------------
-    # BATTLE:
-def battle(knights):
-
-    # 1 Lancelot vs Mordred:
-    knights["lancelot"]["hp"] -= knights["mordred"]["power"] - knights["lancelot"].get("protection", 0)
-    knights["mordred"]["hp"] -= knights["lancelot"]["power"] - knights["mordred"].get("protection", 0)
-
-    # check if someone fell in battle
-    if knights["lancelot"]["hp"] <= 0:
-        knights["lancelot"]["hp"] = 0
-
-    if knights["mordred"]["hp"] <= 0:
-        knights["mordred"]["hp"] = 0
-
-    # Return battle results:
-    return {
-        knights["lancelot"]["name"]: knights["lancelot"]["hp"],
-        knights["mordred"]["name"]: knights["mordred"]["hp"],
-    }
+def knights_config(knights_data: dict) -> dict:
+    knights_dict = {}
+    for knight_name, knight_data in knights_data.items():
+        knight = Knight(
+            knight_data["name"],
+            knight_data["power"],
+            knight_data["hp"],
+        )
+        knight.protection = 0
+        knight.apply_armour(knight_data["armour"])
+        knight.apply_weapon(knight_data["weapon"])
+        knight.apply_potion(knight_data["potion"])
+        knights_dict[knight_name] = knight
+    return knights_dict
 
 
-knights = {
+# BATTLE
+def battle(knight_1: Knight, knight_2: Knight) -> dict[str, int]:
+    while knight_1.hp > 0 and knight_2.hp > 0:
+        knight_1.attack(knight_2)
+        knight_2.attack(knight_1)
+    return {knight_1.name: knight_1.hp, knight_2.name: knight_2.hp}
+
+
+knights_data = {
     "lancelot": {
         "name": "Lancelot",
         "power": 35,
@@ -58,7 +41,7 @@ knights = {
         "potion": None,
     },
     "arthur": {
-        "name": "Artur",
+        "name": "Arthur",
         "power": 45,
         "hp": 75,
         "armour": [
@@ -132,4 +115,11 @@ knights = {
     }
 }
 
-print(battle(knights))
+knights_dict = knights_config(knights_data)
+
+knight1 = knights_dict["lancelot"]
+knight2 = knights_dict["mordred"]
+
+battle_result = battle(knight1, knight2)
+
+print(battle_result)
