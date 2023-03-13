@@ -7,45 +7,38 @@ from app.knights.knight import Knight
 
 
 def knights_config(knights: dict[str, any]) -> dict:
-    knights_dict = {}
-    for knight_name, knight_data in knights.items():
-        knight = Knight(
+    return {knight_name: Knight(
             knight_data["name"],
             knight_data["power"],
             knight_data["hp"],
-        )
-        knight.protection = 0
-        knight.apply_armour(knight_data["armour"])
-        knight.apply_weapon(knight_data["weapon"])
-        knight.apply_potion(knight_data["potion"])
-        knights_dict[knight_name] = knight
-    return knights_dict
+            knight_data["armour"],
+            knight_data["weapon"],
+            knight_data["potion"]) for
+            knight_name, knight_data in knights.items()}
 
 
 # BATTLE
 def battle(knights: dict[str, any]) -> dict[str, int]:
     ready_knights = knights_config(knights)
+    for attacker, defender in [
+        ("lancelot", "mordred"),
+        ("arthur", "red_knight")
+    ]:
+        attacker_knight = ready_knights[attacker]
+        defender_knight = ready_knights[defender]
 
-    lancelot = ready_knights["lancelot"]
-    arthur = ready_knights["arthur"]
-    mordred = ready_knights["mordred"]
-    red_knight = ready_knights["red_knight"]
+        defender_knight.hp -= (
+            attacker_knight.power - defender_knight.protection
+        )
+        attacker_knight.hp -= (
+            defender_knight.power - attacker_knight.protection
+        )
 
-    lancelot.hp -= mordred.power - lancelot.protection
-    mordred.hp -= lancelot.power - mordred.protection
-    red_knight.hp -= arthur.power - red_knight.protection
-    arthur.hp -= red_knight.power - arthur.protection
-
-    Knight.check_hp(lancelot)
-    Knight.check_hp(mordred)
-    Knight.check_hp(red_knight)
-    Knight.check_hp(arthur)
+        Knight.check_hp(attacker_knight)
+        Knight.check_hp(defender_knight)
 
     return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp
+        knight.name: knight.hp for knight in ready_knights.values()
     }
 
 

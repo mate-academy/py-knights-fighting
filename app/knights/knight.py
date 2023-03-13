@@ -3,42 +3,37 @@ from __future__ import annotations
 
 class Knight:
 
-    def __init__(self, name: str, power: int, hp: int) -> None:
+    def __init__(self, name: str, power: int, hp: int,
+                 armour: list[dict[str, int]],
+                 weapon: dict[str, int],
+                 potion: dict[str, dict[str, int]]) -> None:
         self.name = name
         self.power = power
         self.hp = hp
         self.protection = 0
-        self.armour = []
-        self.weapon = None
-        self.potion = None
+        self.apply_armour(armour)
+        self.apply_weapon(weapon)
+        self.apply_potion(potion)
 
-    def apply_armour(self, armour: list[dict[str, int]]) -> None:
+    def apply_armour(self,
+                     armour: list[dict[str, int]]) -> list[dict[str, int]]:
         for part in armour:
             if "protection" in part:
                 self.protection += part["protection"]
+        return armour
 
-    def apply_weapon(self, weapon: dict[str, int]) -> None:
+    def apply_weapon(self, weapon: dict[str, int]) -> dict[str, int]:
         if "power" in weapon:
             self.power += weapon["power"]
+        return weapon
 
     def apply_potion(self, potion: dict[str, dict[str, int]]) -> None:
         if potion is not None and "effect" in potion:
             effect = potion["effect"]
-            if "hp" in effect:
-                if effect["hp"] > 0:
-                    self.hp += effect["hp"]
-                else:
-                    self.hp -= abs(effect["hp"])
-            if "power" in effect:
-                if effect["power"] > 0:
-                    self.power += effect["power"]
-                else:
-                    self.power -= abs(effect["power"])
-            if "protection" in effect:
-                if effect["protection"] > 0:
-                    self.protection += effect["protection"]
-                else:
-                    self.protection -= abs(effect["protection"])
+            for attribute, value in effect.items():
+                if hasattr(self, attribute):
+                    current_value = getattr(self, attribute)
+                    setattr(self, attribute, current_value + value)
 
     def check_hp(self) -> int:
         if self.hp <= 0:
