@@ -3,7 +3,6 @@ from app.Knight import Knight
 
 def battle(knights_config: dict) -> dict:
     for knight in knights_config:
-        # Transform into objects
         object_knight = Knight(
             knights_config[knight]["name"],
             knights_config[knight]["power"],
@@ -15,17 +14,14 @@ def battle(knights_config: dict) -> dict:
 
         knights_config[knight] = object_knight
 
-        # BATTLE PREPARATIONS:
         knights_config[knight].apply_armour()
         knights_config[knight].apply_weapon()
         if knights_config[knight].potion is not None:
             knights_config[knight].apply_potion()
 
-    # BATTLE:
     knights_config["lancelot"].battle(knights_config["mordred"])
     knights_config["arthur"].battle(knights_config["red_knight"])
 
-    # Return battle results:
     return {
         knight[1].name: knight[1].hp
         for knight in knights_config.items()
