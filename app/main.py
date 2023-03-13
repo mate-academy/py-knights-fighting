@@ -34,8 +34,8 @@ def battle(knights: dict[str, any]) -> dict[str, int]:
             defender_knight.power - attacker_knight.protection
         )
 
-        Knight.check_hp(attacker_knight)
-        Knight.check_hp(defender_knight)
+        attacker_knight.check_hp()
+        defender_knight.check_hp()
 
     return {
         knight.name: knight.hp for knight in ready_knights.values()

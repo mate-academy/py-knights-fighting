@@ -18,13 +18,11 @@ class Knight:
     def apply_armour(self,
                      armour: list[dict[str, int]]) -> list[dict[str, int]]:
         for part in armour:
-            if "protection" in part:
-                self.protection += part["protection"]
+            self.protection += part.get("protection", 0)
         return armour
 
     def apply_weapon(self, weapon: dict[str, int]) -> dict[str, int]:
-        if "power" in weapon:
-            self.power += weapon["power"]
+        self.power += weapon.get("power", 0)
         return weapon
 
     def apply_potion(self, potion: dict[str, dict[str, int]]) -> None:
