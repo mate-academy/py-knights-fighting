@@ -1,4 +1,5 @@
 from __future__ import annotations
+from typing import Any
 
 from app.knights.knight import Knight
 
@@ -6,7 +7,7 @@ from app.knights.knight import Knight
 # creation of knights
 
 
-def knights_config(knights: dict[str, any]) -> dict:
+def knights_config(knights: dict[str, Any]) -> dict:
     return {knight_name: Knight(
             knight_data["name"],
             knight_data["power"],
@@ -18,7 +19,7 @@ def knights_config(knights: dict[str, any]) -> dict:
 
 
 # BATTLE
-def battle(knights: dict[str, any]) -> dict[str, int]:
+def battle(knights: dict[str, Any]) -> dict[str, int]:
     ready_knights = knights_config(knights)
     for attacker, defender in [
         ("lancelot", "mordred"),
