@@ -5,8 +5,15 @@ from app.stats.potion import Potion
 
 
 class Knight:
-
-    def __init__(self, name: str, power: int, hp: int, armour: List[Armour], weapon: Weapon, potion: Potion) -> None:
+    def __init__(
+        self,
+        name: str,
+        power: int,
+        hp: int,
+        armour: List[Armour],
+        weapon: Weapon,
+        potion: Potion,
+    ) -> None:
         self.name = name
         self.power = power
         self.hp = hp
