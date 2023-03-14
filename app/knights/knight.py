@@ -17,8 +17,7 @@ class Knight:
 
     def apply_armour(self,
                      armour: list[dict[str, int]]) -> list[dict[str, int]]:
-        for part in armour:
-            self.protection += part.get("protection", 0)
+        self.protection += sum(part.get("protection", 0) for part in armour)
         return armour
 
     def apply_weapon(self, weapon: dict[str, int]) -> dict[str, int]:
@@ -37,3 +36,11 @@ class Knight:
         if self.hp <= 0:
             self.hp = 0
         return self.hp
+
+    @staticmethod
+    def attack(attacker_knight: Knight, defender_knight: Knight) -> None:
+        damage_to_defender = attacker_knight.power - defender_knight.protection
+        damage_to_attacker = defender_knight.power - attacker_knight.protection
+
+        defender_knight.hp -= damage_to_defender
+        attacker_knight.hp -= damage_to_attacker

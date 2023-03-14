@@ -27,12 +27,7 @@ def battle(knights: dict[str, any]) -> dict[str, int]:
         attacker_knight = ready_knights[attacker]
         defender_knight = ready_knights[defender]
 
-        defender_knight.hp -= (
-            attacker_knight.power - defender_knight.protection
-        )
-        attacker_knight.hp -= (
-            defender_knight.power - attacker_knight.protection
-        )
+        Knight.attack(attacker_knight, defender_knight)
 
         attacker_knight.check_hp()
         defender_knight.check_hp()
