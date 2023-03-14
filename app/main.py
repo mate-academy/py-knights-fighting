@@ -1,36 +1,26 @@
-from app.knights import knights
-from app.preparation import preparation
+from app.combat import Arena
+from app.preparation import Knight
+from app.knights import KNIGHTS
 
 
-@preparation
-def battle(members: dict) -> dict:
+def battle(knights: dict) -> dict:
+    list_knights = []
+    for key, value in knights.items():
+        knight = Knight(value["name"], value["power"], value["hp"])
+        knight.use_weapon(value["weapon"]["power"])
+        knight.use_armour(value["armour"])
+        knight.use_potion(value["potion"])
+        list_knights.append(knight)
 
-    # 1 Lancelot vs Mordred:
-    members["lancelot"]["hp"] -= (
-        members["mordred"]["power"] - members["lancelot"]["protection"]
-    )
-    members["mordred"]["hp"] -= (
-        members["lancelot"]["power"] - members["mordred"]["protection"]
-    )
+    fight_1 = Arena.fight(list_knights[0], list_knights[2])
+    fight_2 = Arena.fight(list_knights[1], list_knights[3])
 
-    # 2 Arthur vs Red Knight:
-    members["arthur"]["hp"] -= (
-        members["red_knight"]["power"] - members["arthur"]["protection"]
-    )
-    members["red_knight"]["hp"] -= (
-        members["arthur"]["power"] - members["red_knight"]["protection"]
-    )
-
-    # check if someone fell in battle
-    for knight, attributes in members.items():
-        if attributes["hp"] <= 0:
-            attributes["hp"] = 0
-
-    # Return battle results:
     return {
-        attributes["name"]: attributes["hp"]
-        for attributes in members.values()
+        "Lancelot": fight_1["Lancelot"],
+        "Artur": fight_2["Artur"],
+        "Mordred": fight_1["Mordred"],
+        "Red Knight": fight_2["Red Knight"],
     }
 
 
-print(battle(knights))
+print(battle(KNIGHTS))
