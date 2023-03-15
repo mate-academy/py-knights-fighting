@@ -4,23 +4,22 @@ from app.knights import KNIGHTS
 
 
 def battle(knights: dict) -> dict:
-    list_knights = []
-    for key, value in knights.items():
-        knight = Knight(value["name"], value["power"], value["hp"])
-        knight.use_weapon(value["weapon"]["power"])
-        knight.use_armour(value["armour"])
-        knight.use_potion(value["potion"])
-        list_knights.append(knight)
+    knights_instances = {}
+    for knight_name, knight_data in knights.items():
+        knight_instance = Knight(knight_data["name"],
+                                 knight_data["power"],
+                                 knight_data["hp"])
+        knight_instance.use_weapon(knight_data["weapon"]["power"])
+        knight_instance.use_armour(knight_data["armour"])
+        knight_instance.use_potion(knight_data["potion"])
+        knights_instances[knight_name] = knight_instance
 
-    fight_1 = Arena.fight(list_knights[0], list_knights[2])
-    fight_2 = Arena.fight(list_knights[1], list_knights[3])
+    fight_1 = Arena.fight(knights_instances["lancelot"],
+                          knights_instances["mordred"])
+    fight_2 = Arena.fight(knights_instances["arthur"],
+                          knights_instances["red_knight"])
 
-    return {
-        "Lancelot": fight_1["Lancelot"],
-        "Artur": fight_2["Artur"],
-        "Mordred": fight_1["Mordred"],
-        "Red Knight": fight_2["Red Knight"],
-    }
+    return {**fight_1, **fight_2}
 
 
 print(battle(KNIGHTS))
