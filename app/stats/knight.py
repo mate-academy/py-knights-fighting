@@ -21,13 +21,21 @@ class Knight:
         self.weapon = weapon
         self.potion = potion
         self.protection = 0
-        for _ in self.armour:
-            self.protection += self.protection
-        self.power += self.weapon.power
+
+    def apply_armour(self) -> int:
+        protection = sum(i.protection for i in self.armour)
+        self.protection = protection
+
+    def apply_weapon(self) -> int:
+        power = self.power + self.weapon.power
+        self.power = power
+
+    def apply_potion(self) -> None:
         if self.potion:
-            if "hp" in self.potion.effect:
-                self.hp += self.potion.effect["hp"]
-            if "power" in self.potion.effect:
-                self.power += self.potion.effect["power"]
-            if "protection" in self.potion.effect:
-                self.protection += self.potion.effect["protection"]
+            for stat, value in self.potion.effect.items():
+                if stat == "hp":
+                    self.hp += value
+                if stat == "power":
+                    self.power += value
+                if stat == "protection":
+                    self.protection += value

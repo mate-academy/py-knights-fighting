@@ -1,7 +1,5 @@
 import pytest
 
-from app.basic.main import battle
-
 
 @pytest.fixture()
 def base_knights_config():
