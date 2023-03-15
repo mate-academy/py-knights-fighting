@@ -20,7 +20,6 @@ def battle(knight_config: dict) -> Knight:
     return dict_with_knight
 
 
-
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
@@ -65,6 +64,3 @@ KNIGHTS = {
         "potion": {"name": "Blessing", "effect": {"hp": +10, "power": +5}},
     },
 }
-print(battle(KNIGHTS))
-
-
