@@ -15,10 +15,8 @@ class Knight:
 
     def use_potion(self, potion: dict) -> None:
         if potion is not None:
-            for key, value in potion["effect"].items():
-                if key == "power":
-                    self.power += value
-                if key == "protection":
-                    self.hp += value
-                if key == "hp":
-                    self.hp += value
+            effect = potion.get("effect", {})
+
+            self.power += effect.get("power", 0)
+            self.hp += effect.get("hp", 0)
+            self.hp += effect.get("protection", 0)
