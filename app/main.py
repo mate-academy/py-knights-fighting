@@ -6,11 +6,9 @@ from app.knights import KNIGHTS
 def battle(knights: dict) -> dict:
     knights_instances = {}
     for knight_name, knight_data in knights.items():
-        knight_instance = Knight(
-            knight_data["name"],
-            knight_data["power"],
-            knight_data["hp"]
-        )
+        knight_instance = Knight(knight_data["name"],
+                                 knight_data["power"],
+                                 knight_data["hp"])
         knight_instance.use_weapon(knight_data["weapon"]["power"])
         knight_instance.use_armour(knight_data["armour"])
         knight_instance.use_potion(knight_data["potion"])

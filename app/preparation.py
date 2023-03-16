@@ -11,7 +11,7 @@ class Knight:
     def use_armour(self, armour: list) -> None:
         if armour is not None:
             for item in armour:
-                self.hp += item["protection"]
+                setattr(self, "hp", getattr(self, "hp", 0) + item.get("protection", 0))
 
     def use_potion(self, potion: dict) -> None:
         if potion is not None:
