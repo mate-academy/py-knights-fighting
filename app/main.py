@@ -4,7 +4,6 @@ from app.knight_class import create_knight
 
 
 def battle(knights: dict) -> dict:
-
     knights = {
         knight["name"]: battle_preparation(create_knight(knight), knight)
         for knight in knights.values()
