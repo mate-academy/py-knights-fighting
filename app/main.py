@@ -2,6 +2,13 @@ from app.stats.knight import Knight
 
 
 def knight_fight(knight1: Knight, knight2: Knight) -> dict:
+    knight1.apply_potion()
+    knight2.apply_potion()
+    knight2.apply_armour()
+    knight1.apply_armour()
+    knight1.apply_weapon()
+    knight2.apply_weapon()
+
     knight2.hp -= knight1.power - knight2.protection
     knight1.hp -= knight2.power - knight1.protection
     if knight1.hp < 0:
@@ -11,13 +18,18 @@ def knight_fight(knight1: Knight, knight2: Knight) -> dict:
     return {knight1.name: knight1.hp, knight2.name: knight2.hp}
 
 
-def battle(knight_config: dict) -> Knight:
+def battle(knight_config: dict) -> dict:
     dict_with_knight = {}
-    for knight_name, knight in knight_config.items():
-        dict_with_knight[knight_name] = knight.Knight(**knight)
+    for knight_name, attributes in knight_config.items():
+        dict_with_knight[knight_name] = Knight(**attributes)
     knight_fight(dict_with_knight["lancelot"], dict_with_knight["mordred"])
     knight_fight(dict_with_knight["arthur"], dict_with_knight["red_knight"])
-    return dict_with_knight
+    return {
+        "Lancelot": dict_with_knight.get("lancelot").hp,
+        "Artur": dict_with_knight.get("arthur").hp,
+        "Mordred": dict_with_knight.get("mordred").hp,
+        "Red Knight": dict_with_knight.get("red_knight").hp,
+    }
 
 
 KNIGHTS = {
@@ -64,3 +76,4 @@ KNIGHTS = {
         "potion": {"name": "Blessing", "effect": {"hp": +10, "power": +5}},
     },
 }
+battle(KNIGHTS)

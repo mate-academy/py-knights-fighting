@@ -1,5 +1,7 @@
 import pytest
 
+from app.main import battle
+
 
 @pytest.fixture()
 def base_knights_config():
@@ -177,4 +179,3 @@ def test_arthur_and_lancelot_have_potion(base_knights_config):
         "Mordred": 10,
         "Red Knight": 0,
     }
-
