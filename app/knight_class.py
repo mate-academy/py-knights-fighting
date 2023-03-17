@@ -11,7 +11,7 @@ class Knight:
         self.protection = protection
 
 
-def create_knight(knight: dict) -> object:
+def create_knight(knight: dict) -> Knight:
     knight = Knight(
         name=knight["name"],
         power=knight["power"],
