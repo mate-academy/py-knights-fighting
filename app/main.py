@@ -1,8 +1,8 @@
+from app.battle.knights_fight import round_n
+from app.information_from import game
+from app.information_from import user
 from app.players.knights import Knights
 from app.preparation.fight import prepare
-from app.battle.knights_fight import round_n
-from app.information_from import user
-from app.information_from import game
 
 
 knights = game.Game.KNIGHTS

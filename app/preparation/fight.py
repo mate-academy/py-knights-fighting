@@ -8,16 +8,16 @@ def prepare(
         equipment = next(hortach)
         knight.protection = 0
 
-        for specimen in equipment["armour"]:
-            knight.protection += specimen["protection"]
+        for specimen in equipment.get("armour", []):
+            knight.protection += specimen.get("protection")
 
-        knight.power += equipment["weapon"]["power"]
+        knight.power += equipment.get("weapon").get("power")
 
-        if equipment["potion"] is not None:
-            potion = equipment["potion"]["effect"]
+        if equipment.get("potion") is not None:
+            potion = equipment.get("potion").get("effect")
             if "power" in potion:
-                knight.power += potion["power"]
+                knight.power += potion.get("power")
             if "protection" in potion:
-                knight.protection += potion["protection"]
+                knight.protection += potion.get("protection")
             if "hp" in potion:
-                knight.hp += potion["hp"]
+                knight.hp += potion.get("hp")
