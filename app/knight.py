@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Union
+from typing import Optional
 
 
 class Knight:
@@ -9,9 +9,9 @@ class Knight:
             name: str,
             power: int,
             hp: int,
-            armour: list,
+            armour: list[dict],
             weapon: dict,
-            potion: Union[dict, None]
+            potion: Optional[dict] = None
     ) -> None:
         self.name = name
         self.power = power
