@@ -21,7 +21,7 @@ KNIGHTS = {
                 "protection": 25,
             }
         ],
-        "weapon_and_armour": {"name": "Sword", "power": 45},
+        "weapon": {"name": "Sword", "power": 45},
         "potion": {
             "name": "Blessing",
             "effect": {

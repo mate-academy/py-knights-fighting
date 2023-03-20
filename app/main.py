@@ -15,7 +15,7 @@ def battle(knights_config: dict) -> dict:
     # apply armour
     ApplyArmour(lancelot)
 
-    # apply weapon_and_armour
+    # apply weapon
     ApplyWeapon(lancelot)
 
     # apply potion if exist
@@ -27,7 +27,7 @@ def battle(knights_config: dict) -> dict:
     # apply armour
     ApplyArmour(arthur)
 
-    # apply weapon_and_armour
+    # apply weapon
     ApplyWeapon(arthur)
 
     # apply potion if exist
@@ -39,7 +39,7 @@ def battle(knights_config: dict) -> dict:
     # apply armour
     ApplyArmour(mordred)
 
-    # apply weapon_and_armour
+    # apply weapon
     ApplyWeapon(mordred)
 
     # apply potion if exist
@@ -51,7 +51,7 @@ def battle(knights_config: dict) -> dict:
     # apply armour
     ApplyArmour(red_knight)
 
-    # apply weapon_and_armour
+    # apply weapon
     ApplyWeapon(red_knight)
 
     # apply potion if exist

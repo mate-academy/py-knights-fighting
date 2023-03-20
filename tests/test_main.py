@@ -11,7 +11,7 @@ def base_knights_config():
             "power": 35,
             "hp": 100,
             "armour": [],
-            "weapon_and_armour": {
+            "weapon": {
                 "name": "Metal Sword",
                 "power": 50,
             },
@@ -35,7 +35,7 @@ def base_knights_config():
                     "protection": 10,
                 },
             ],
-            "weapon_and_armour": {
+            "weapon": {
                 "name": "Two-handed Sword",
                 "power": 55,
             },
@@ -55,7 +55,7 @@ def base_knights_config():
                     "protection": 10,
                 },
             ],
-            "weapon_and_armour": {
+            "weapon": {
                 "name": "Poisoned Sword",
                 "power": 60,
             },
@@ -78,7 +78,7 @@ def base_knights_config():
                     "protection": 25,
                 }
             ],
-            "weapon_and_armour": {"name": "Sword", "power": 45},
+            "weapon": {"name": "Sword", "power": 45},
             "potion": {
                 "name": "Blessing",
                 "effect": {
@@ -135,8 +135,8 @@ def test_lancelot_has_armour(base_knights_config):
 
 
 def test_mordred_sword_is_not_poisoned(base_knights_config):
-    base_knights_config["mordred"]["weapon_and_armour"]["name"] = "Common Sword"
-    base_knights_config["mordred"]["weapon_and_armour"]["power"] -= 15
+    base_knights_config["mordred"]["weapon"]["name"] = "Common Sword"
+    base_knights_config["mordred"]["weapon"]["power"] -= 15
     assert battle(base_knights_config) == {
         "Lancelot": 10,
         "Artur": 30,

@@ -4,7 +4,7 @@ KNIGHTS = {
         "power": 35,
         "hp": 100,
         "armour": [],
-        "weapon_and_armour": {
+        "weapon": {
             "name": "Metal Sword",
             "power": 50,
         },
@@ -28,7 +28,7 @@ KNIGHTS = {
                 "protection": 10,
             }
         ],
-        "weapon_and_armour": {
+        "weapon": {
             "name": "Two-handed Sword",
             "power": 55,
         },
@@ -48,7 +48,7 @@ KNIGHTS = {
                 "protection": 10,
             }
         ],
-        "weapon_and_armour": {
+        "weapon": {
             "name": "Poisoned Sword",
             "power": 60,
         },
@@ -71,7 +71,7 @@ KNIGHTS = {
                 "protection": 25,
             }
         ],
-        "weapon_and_armour": {
+        "weapon": {
             "name": "Sword",
             "power": 45
         },
