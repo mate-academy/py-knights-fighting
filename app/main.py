@@ -10,8 +10,6 @@ knights = game.Game.KNIGHTS
 
 def battle(knightsconfig: dict) -> dict:
 
-    # BATTLE PREPARATIONS:
-
     list_knights = [
         Knights(
             knight["name"],
@@ -21,8 +19,6 @@ def battle(knightsconfig: dict) -> dict:
         for knight in knightsconfig.values()
     ]
     prepare(list_knights, knightsconfig)
-
-    # BATTLE:
 
     return round_n(list_knights, user.UserInput.standard_order)
 

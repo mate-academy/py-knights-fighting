@@ -3,9 +3,10 @@ def round_n(list_of_fighters: list, order_of_battle: list) -> dict:
         for losses in range(len(fight)):
             player = fight[losses] - 1
             opponent = fight[1 - losses] - 1
-            list_of_fighters[player].hp -=\
-                list_of_fighters[opponent].power -\
-                list_of_fighters[player].protection
+            list_of_fighters[player].hp -= (
+                list_of_fighters[opponent].power
+                - list_of_fighters[player].protection
+            )
             if list_of_fighters[player].hp < 0:
                 list_of_fighters[player].hp = 0
 
