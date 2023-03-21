@@ -1,6 +1,6 @@
 from app.knigths.knigth import Knight
 from app.knigths.battle import fight
-from app.knigths.check_hp import is_dead
+from app.knigths.check_hp import change_dead_knight_hp_to_0
 
 
 KNIGHTS = {
@@ -101,7 +101,7 @@ def battle(knights_config: dict) -> dict:
     fight(arthur, red_knight)
 
     for knight in (lancelot, mordred, arthur, red_knight):
-        is_dead(knight)
+        change_dead_knight_hp_to_0(knight)
 
     return {
         lancelot.name: lancelot.hp,

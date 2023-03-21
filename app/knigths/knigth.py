@@ -1,6 +1,6 @@
 from __future__ import annotations
-from app.additional.armour import get_armor
-from app.additional.weapon import get_weapon
+from app.util.armour import get_armor
+from app.util.weapon import get_weapon
 
 
 class Knight:
