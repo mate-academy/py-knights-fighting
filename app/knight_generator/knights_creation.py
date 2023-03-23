@@ -48,3 +48,4 @@ def armour_pick(max_amount):
 
 
 armour_pick(9)
+#
