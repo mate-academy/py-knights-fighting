@@ -1,5 +1,7 @@
 import random
+
 print("Knight __main__")
+
 
 class Knight:
     def __init__(self,
@@ -19,8 +21,30 @@ class Knight:
 
 def knight_creation():
     names_of_knights = ["Lancelot", "Artur", "Mordred", "Red Knight"]
-    knights_instances_list = []
+    knights_instances = {}
     for name in names_of_knights:
-        knights_instances_list.append({"name": name})
-    return knights_instances_list
+        current_knight = {name: {
+            "name": "Lancelot",
+            "power": random.randint(10, 20),
+            "hp": random.randint(100, 150),
+            "armour": armour_pick(9),
+            "weapon": {},
+            "potion": {}}}
 
+        knights_instances.update(current_knight)
+    return knights_instances
+
+
+def armour_pick(max_amount):
+    gear = ["Helmet", "pauldrons", "breastplate", "vambrace",
+            "gauntlets", "cuisses", "poleyns", "greaves", "sabatons"]
+    knight_gear = [] # list[{"part": "s", "protection": 1}, {"part": "s", "protection": 1}]
+    amount = random.randint(0, max_amount)
+    if amount == 0:
+        return []
+    for pick in range(0, amount):
+
+        return knight_gear
+
+
+armour_pick(9)
