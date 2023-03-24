@@ -7,16 +7,9 @@ class Armour:
 class Potion:
     def __init__(self, potion_conf: dict) -> None:
         self.name = potion_conf["name"]
-        self.protection_effect = None
-        self.power_effect = None
-        self.hp_effect = None
-        for key, value in potion_conf["effect"].items():
-            if key == "hp":
-                self.hp_effect = value
-            if key == "power":
-                self.power_effect = value
-            if key == "protection":
-                self.protection_effect = value
+        self.protection_effect = potion_conf["effect"].get("protection")
+        self.power_effect = potion_conf["effect"].get("power")
+        self.hp_effect = potion_conf["effect"].get("hp")
 
 
 class Weapon:
