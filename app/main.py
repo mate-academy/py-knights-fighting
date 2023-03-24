@@ -123,7 +123,7 @@ from knights_creation import knight_creation
 
 
 knights = knight_creation()
-print(f"Our knights: {knights}")
+print(f"Our knights: {knights['Lancelot']}")
 
 def battle(knightsConfig):
     # BATTLE PREPARATIONS:

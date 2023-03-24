@@ -1,6 +1,6 @@
 import random
 
-from libraries import names_of_knights,gear,weapons,potions
+from libraries import names_of_knights,perks,gear,weapons,potions
 
 
 class Knight:
@@ -35,14 +35,12 @@ def knight_creation():
 
 
 def armour_pick(max_amount):
-    knight_gear = []  # list[{"part": "s", "protection": 1}, {"part": "s", "protection": 1}]
-    amount = random.randint(0, max_amount)
-    if amount == 0:
-        return []
-    for pick in range(0, amount):
-        return knight_gear
+    knight_gear = []
+    return knight_gear
 
+def weapon_pick:
+    pass
 
-print(f"Names : {names_of_knights}")
-print(f"Gear : {gear}")
-print(f"Weapons : {weapons}")
+def potion_pick:
+    pass
+

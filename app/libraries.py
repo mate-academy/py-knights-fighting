@@ -1,15 +1,6 @@
-names_of_knights = [
+names_of_knights = ["Lancelot", "Artur", "Mordred", "Red Knight"]
 
-    "Sir Gawain",
-    "Henry Percy",
-    "Sir Galahad",
-    "Sir Tristan",
-    "Sir Bedevere",
-    "Sir Lancelot",
-    "William Marshal",
-    "Robert the Bruce",
-    "Richard the Lionheart",
-    "Edward the Black Prince"]
+perks = [""]
 
 gear = ["helmet", "pauldrons", "breastplate", "vambrace",
         "gauntlets", "cuisses", "poleyns", "greaves", "sabatons"]
