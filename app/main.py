@@ -16,6 +16,7 @@ class Knight:
         self.armour = armour
         self.weapon = weapon
         self.potion = potion
+        self.protection = 0
 
     def __str__(self) -> str:
         return f"(" \
@@ -27,7 +28,6 @@ class Knight:
                f"{self.potion})"
 
     def wear_armour(self) -> None:
-        self.protection = 0
         for armour_piece in self.armour:
             self.protection += armour_piece["protection"]
 
@@ -36,12 +36,8 @@ class Knight:
 
     def drink_potion(self) -> None:
         if self.potion is not None:
-            if "power" in self.potion["effect"]:
-                self.power += self.potion["effect"]["power"]
-            if "hp" in self.potion["effect"]:
-                self.hp += self.potion["effect"]["hp"]
-            if "protection" in self.potion["effect"]:
-                self.protection += self.potion["effect"]["protection"]
+            for effect, value in self.potion["effect"].items():
+                setattr(self, effect, getattr(self, effect, 0) + value)
 
     def battle_results(self: Knight, other: Knight) -> None:
         self.hp -= other.power - self.protection
@@ -141,26 +137,25 @@ KNIGHTS = {
 
 
 def battle(dict_with_knights: dict) -> dict:
-    for knight in dict_with_knights:
+    for knight, knight_config in dict_with_knights.items():
         prepared_knight = Knight(
-            dict_with_knights[knight]["name"],
-            dict_with_knights[knight]["power"],
-            dict_with_knights[knight]["hp"],
-            dict_with_knights[knight]["armour"],
-            dict_with_knights[knight]["weapon"],
-            dict_with_knights[knight]["potion"]
+            knight_config["name"],
+            knight_config["power"],
+            knight_config["hp"],
+            knight_config["armour"],
+            knight_config["weapon"],
+            knight_config["potion"]
         )
 
         dict_with_knights[knight] = prepared_knight
         prepared_knight.wear_armour()
         prepared_knight.take_weapon()
-        if dict_with_knights[knight] is not None:
-            dict_with_knights[knight].drink_potion()
+        dict_with_knights[knight].drink_potion()
 
     dict_with_knights["lancelot"].battle_results(dict_with_knights["mordred"])
     dict_with_knights["arthur"].battle_results(dict_with_knights["red_knight"])
 
     return {
-        knight[1].name: knight[1].hp
-        for knight in dict_with_knights.items()
+        knight.name: knight.hp
+        for knight in dict_with_knights.values()
     }
