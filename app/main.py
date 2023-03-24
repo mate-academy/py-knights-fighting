@@ -120,7 +120,9 @@ KNIGHTS = {
 }
 
 
-from knight_generator.knights_creation import knight_creation
+from knight_generator.knights_creation import knight_creation, armour_pick
+from knight_generator.libraries import names_of_knights, gear, weapons, potions
+
 knights = knight_creation()
 print(f"Our knights: {knights}")
 

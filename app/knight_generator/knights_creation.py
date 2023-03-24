@@ -1,6 +1,6 @@
 import random
 
-from .libraries import names_of_knights, gear, weapons
+from knight_generator.libraries import names_of_knights, gear, weapons
 
 
 class Knight:

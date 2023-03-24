@@ -1,4 +1,5 @@
 names_of_knights = [
+
     "Sir Gawain",
     "Henry Percy",
     "Sir Galahad",
@@ -18,7 +19,7 @@ weapons = ["axe", "mace", "sword", "polearm"]
 potions = [
     "Vicious Boar Potion",
     "Stone Skin Potion",
-    '"price-quality" potion',
+    '"Price-quality" potion',
     "fortified ale",
-    "fake potion"
+    "Fake potion"
 ]
