@@ -1,4 +1,4 @@
-from typing import Callable, Any
+from typing import Callable
 
 
 def preparation(func: Callable) -> Callable:
