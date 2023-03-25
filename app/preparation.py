@@ -1,4 +1,7 @@
-def preparation(func) -> None:
+from typing import Callable, Any
+
+
+def preparation(func: Callable) -> Callable:
     def inner(knights: None) -> None:
         for knight, attributes in knights.items():
 
@@ -20,3 +23,8 @@ def preparation(func) -> None:
                 if "protection" in attributes["potion"]["effect"]:
                     attributes["protection"] \
                         += attributes["potion"]["effect"]["protection"]
+
+                if "hp" in attributes["potion"]["effect"]:
+                    attributes["hp"] += attributes["potion"]["effect"]["hp"]
+        return func(knights)
+    return inner
