@@ -1,5 +1,5 @@
 def preparation(func) -> None:
-    def inner(knights: dict) -> None:
+    def inner(knights: None) -> None:
         for knight, attributes in knights.items():
 
             # apply weapon
