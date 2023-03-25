@@ -8,18 +8,15 @@ def preparation(func) -> None:
             # apply armour
             attributes["protection"] = 0
             if attributes["armour"] != []:
-                for a in attributes["armour"]:
-                    attributes["protection"] += a["protection"]
+                for arm in attributes["armour"]:
+                    attributes["protection"] += arm["protection"]
 
             # apply potion if exist
             if attributes["potion"] is not None:
                 if "power" in attributes["potion"]["effect"]:
-                    attributes["power"] += attributes["potion"]["effect"]["power"]
+                    attributes["power"] \
+                        += attributes["potion"]["effect"]["power"]
 
                 if "protection" in attributes["potion"]["effect"]:
-                    attributes["protection"] += attributes["potion"]["effect"]["protection"]
-
-                if "hp" in attributes["potion"]["effect"]:
-                    attributes["hp"] += attributes["potion"]["effect"]["hp"]
-        return func(knights)
-    return inner
+                    attributes["protection"] \
+                        += attributes["potion"]["effect"]["protection"]
