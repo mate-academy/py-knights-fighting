@@ -4,8 +4,6 @@ from app.preparation import preparation
 
 @preparation
 def battle(knights: dict) -> dict:
-
-
     # 1 Lancelot vs Mordred:
     knights["lancelot"]["hp"] -= (knights["mordred"]["power"]
                                   - knights["lancelot"]["protection"])
