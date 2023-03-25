@@ -21,5 +21,6 @@ def battle(knights: dict) -> dict:
     # Return battle results:
     return {attributes["name"]: attributes["hp"]
             for _, attributes in knights.items()}
-print(battle(knights))
 
+
+print(battle(knights))
