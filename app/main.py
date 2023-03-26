@@ -1,5 +1,5 @@
-from app.battle_preparation.battle_preparation import get_equipment
-from app.fight import fight
+from app.battle.battle_preparation import get_equipment
+from app.battle.fighting import fight
 
 
 KNIGHTS = {
