@@ -1,37 +1,3 @@
-"""
-knights_gen_assist
-1. knight generation
-2. equipment generation
-3. tournament generation
-4. return result
-KNIGHTS = {"lancelot/arthur/mordred/red_knight":
-            {
-            name : name
-            power : int
-            hp: int
-            armour: list LEN = 2
-                [
-                {part: helmet / pauldrons / breastplate / vambrace / gauntlets / cuisses /
-                 poleyns / greaves / sabatons},
-                {protection: int}
-                ]
-            weapon: dict LEN = 2
-                {name: axe / mace / sword / polearm ,
-                power: int}
-
-            potion: dict LEN = 2
-                {
-                name: ???,
-                effect:
-                    {
-                    hp: int
-                    power: int
-                    prot: int
-                    }
-                }
-                                                                                                }
-
-"""
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
@@ -118,12 +84,18 @@ KNIGHTS = {
         }
     }
 }
-import random
-from knights_creation import knight_creation
+import knights_creation
+from  marshal import testt
+testt()
 
 
-knights = knight_creation()
-print(f"Our knights: {knights['Lancelot']}") # {knights['Lancelot']}
+if __name__ == "__main__":
+    print("qwe")
+
+kni = knights_creation.knight_creation()
+print(kni)
+ger = marshal.hola()
+ger()
 
 def battle(knightsConfig):
     # BATTLE PREPARATIONS:

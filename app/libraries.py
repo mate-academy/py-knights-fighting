@@ -1,5 +1,5 @@
-names_of_knights = ["Lancelot", "Artur",
-                    "Mordred", "Red Knight"]
+names_of_knights = ["lancelot", "artur",
+                    "mordred", "red Knight"]
 
 perks = [["Honey badger", 25],
          ["Chimera Ferocity", 20],

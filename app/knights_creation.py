@@ -1,6 +1,6 @@
 import random
-
-from libraries import names_of_knights, perks, gear, weapons, potions
+#from app import libraries
+import libraries
 
 
 class Knight:
@@ -21,14 +21,14 @@ class Knight:
 
 def knight_creation():
     knights_instances = {}
-    for name in names_of_knights:
+    for name in libraries.names_of_knights:
         current_knight = {name: {
             "name": name,
             "power": random.randint(10, 15),
             "hp": random.randint(80, 100),
             "armour": armour_pick(),
             "weapon": weapon_pick(),
-            "potion": random.choice(potions)}}
+            "potion": random.choice(libraries.potions)}}
 
         knights_instances.update(current_knight)
     return knights_instances
@@ -37,8 +37,8 @@ def knight_creation():
 def armour_pick():
     knight_gear = []
 
-    for part in gear:
-        perk = random.choice(perks)
+    for part in libraries.gear:
+        perk = random.choice(libraries.perks)
         knight_gear.append({
             "part": f"{part} of {perk[0]}",
             "protection": perk[1]
@@ -48,8 +48,7 @@ def armour_pick():
 
 def weapon_pick():
     knight_weapon = {}
-    perk = random.choice(perks)
-    knight_weapon["name"] = f"{random.choice(weapons)} of {perk[0]}"
+    perk = random.choice(libraries.perks)
+    knight_weapon["name"] = f"{random.choice(libraries.weapons)} of {perk[0]}"
     knight_weapon["power"] = 10 + perk[1]
     return knight_weapon
-
