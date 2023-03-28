@@ -15,8 +15,7 @@ perks = [["Honey badger", 25],
          ["Eagle Eye", 9],
          ["Snake Strike", 8],
          ["Wolf Pack", 7],
-         ["Cerberus Guardian", 6]
-         ]
+         ["Cerberus Guardian", 6]]
 
 gear = ["Helmet", "Pauldrons", "Breastplate", "Vambrace",
         "Gauntlets", "Cuisses", "Poleyns", "Greaves", "Sabatons"]
