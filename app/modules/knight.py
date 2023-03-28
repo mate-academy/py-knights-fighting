@@ -40,6 +40,5 @@ def create_knight(knights: dict) -> list:
                 knight.damage += potion["power"]
             if "protection" in potion.keys():
                 knight.protection += potion["protection"]
-        print(knight.name, knight.hp, knight.damage, knight.protection)
         list_of_knights.append(knight)
     return list_of_knights
