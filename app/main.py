@@ -1,4 +1,5 @@
-from app.modules import knight
+from app.modules.knight import create_knight
+
 
 KNIGHTS = {
     "lancelot": {
@@ -89,10 +90,9 @@ KNIGHTS = {
 
 
 def battle(knights_config: dict) -> dict:
-    knights_list = knight.create_knight(knights_config)
-    versus = knight.Knight.battle
-    first_battle = versus(knights_list[0], knights_list[2])
-    second_battle = versus(knights_list[1], knights_list[3])
+    knights_list = create_knight(knights_config)
+    first_battle = knights_list[0].battle(knights_list[2])
+    second_battle = knights_list[1].battle(knights_list[3])
     first_battle.update(second_battle)
     return first_battle
 
