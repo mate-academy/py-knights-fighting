@@ -18,25 +18,26 @@ class Knight:
 
 def create_knight(knights: dict) -> list:
     list_of_knights = []
-    for knight in knights.keys():
-        stats = knights[knight]
-        name = stats["name"]
-        power = stats["power"]
-        hp = stats["hp"]
-        armour = 0
+    for knight_data in knights.keys():
+        knight = Knight(
+            name=knights[knight_data]["name"],
+            hp=knights[knight_data]["hp"],
+            power=knights[knight_data]["power"],
+            protection=0
+        )
+        stats = knights[knight_data]
         if len(stats["armour"]) > 0:
             for piece in stats["armour"]:
-                armour += piece["protection"]
-        weapon = stats["weapon"]["power"]
+                knight.protection += piece["protection"]
+        knight.damage += stats["weapon"]["power"]
         if stats["potion"]:
             potion = stats["potion"]["effect"]
             if "hp" in potion.keys():
-                hp += potion["hp"]
+                knight.hp += potion["hp"]
             if "power" in potion.keys():
-                power += potion["power"]
+                knight.damage += potion["power"]
             if "protection" in potion.keys():
-                armour += potion["protection"]
-        kn = Knight(name, hp, power, armour)
-        print(kn.name, kn.hp, kn.damage, kn.protection)
-        list_of_knights.append(Knight(name, hp, power, armour))
+                knight.protection += potion["protection"]
+        print(knight.name, knight.hp, knight.damage, knight.protection)
+        list_of_knights.append(knight)
     return list_of_knights
