@@ -118,12 +118,12 @@ KNIGHTS = {
         }
     }
 }
-
+import random
 from knights_creation import knight_creation
 
 
 knights = knight_creation()
-print(f"Our knights: {knights['Lancelot']}")
+print(f"Our knights: {knights['Lancelot']}") # {knights['Lancelot']}
 
 def battle(knightsConfig):
     # BATTLE PREPARATIONS:
