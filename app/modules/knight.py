@@ -2,17 +2,19 @@ from __future__ import annotations
 
 
 class Knight:
-    def __init__(self, name: str, hp: int, power: int, protection: int) -> None:
+    def __init__(
+            self, name: str, hp: int, power: int, protection: int
+    ) -> None:
         self.name = name
         self.hp = hp
         self.damage = power
         self.protection = protection
 
-    def battle(self, other: Knight):
+    def battle(self, other: Knight) -> dict:
         self.hp -= other.damage - self.protection
         other.hp -= self.damage - other.protection
-        # self.hp = 0 if self.hp <= 0 else self.hp
-        # other.hp = 0 if other.hp <= 0 else other.hp
+        self.hp = 0 if self.hp <= 0 else self.hp
+        other.hp = 0 if other.hp <= 0 else other.hp
         return {self.name: self.hp, other.name: other.hp}
 
 
