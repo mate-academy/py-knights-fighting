@@ -1,6 +1,8 @@
 import random
-
 import libraries, event_master
+
+# from app import libraries
+# from app import event_master
 
 knights_obj_list = []
 
@@ -15,7 +17,8 @@ def knight_dict_creation():
             "hp": random.randint(80, 100),
             "armour": armour_pick(),
             "weapon": weapon_pick(),
-            "potion": random.choice(libraries.potions)}}
+            "potion": random.choice(libraries.potions),
+            "name": "Artur" if name == "arthur" else name.capitalize()}} #🩼
 
         knights_instances_dict.update(current_knight)
     return knights_instances_dict
@@ -53,14 +56,13 @@ def weapon_pick():
 
 
 def knight_fight(participant_1,participant_2):
-    knights = []
-    for knight_obj in knights_obj_list:
-        if knight_obj.get(participant_1) is not None:
-            knights.append(knight_obj.get(participant_1))
-        if knight_obj.get(participant_2) is not None:
-            knights.append(knight_obj.get(participant_2))
-    knights[0].hp -= knights[1].power
-    knights[1].hp -= knights[0].power
+    print(knights_obj_list)
+
+    for knight_dict in knights_obj_list:
+        print(participant_1)
+        if participant_1 in knight_dict.keys():
+            print(" here )")
+
 
 def tournament_result():
     result = {}
@@ -90,16 +92,18 @@ class Knight:
     def stats_calculation():
         for knight_dict in knights_obj_list:
             for characteristics in knight_dict.values():
-
                 for equipment in characteristics.armour:
                     if equipment is not None:
                         characteristics.hp += equipment["protection"]
                 characteristics.power += characteristics.weapon["power"]
                 if characteristics.potion is not None:
-                    characteristics.potion["effect"]["power"]
-                    characteristics.power += characteristics.potion["effect"]["power"]
-                    characteristics.hp += characteristics.potion["effect"]["hp"]
-                    characteristics.hp += characteristics.potion["effect"]["protection"]
+                    if "power" in characteristics.potion["effect"]:
+                        characteristics.power += characteristics.potion["effect"]["power"]
+                    if "hp" in characteristics.potion["effect"]:
+                        characteristics.hp += characteristics.potion["effect"]["hp"]
+                    if "protection" in characteristics.potion["effect"]:
+                        characteristics.hp += characteristics.potion["effect"]["hp"]
+
 
     def knight_obj_creation(participants_dict):
         global knights_obj_list

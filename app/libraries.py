@@ -1,24 +1,25 @@
 names_of_knights = ["lancelot", "arthur", "mordred", "red_knight"]
 
-perks = [["Honey badger", 25],
-         ["Chimera Ferocity", 20],
-         ["Leviathan Force", 19],
-         ["Kraken Fury", 18],
-         ["Gorgon Petrification", 17],
-         ["Medusa Gaze", 16],
-         ["Griffin Grace", 15],
-         ["Minotaur Rage", 14],
-         ["Dragon Breath", 13],
-         ["Tiger Fury", 12],
-         ["Elephant Stance", 11],
-         ["Eagle Eye", 9],
-         ["Snake Strike", 8],
-         ["Wolf Pack", 7],
-         ["Cerberus Guardian", 6],
-         None]
-
-gear = ["Helmet", "Pauldrons", "Breastplate", "Vambrace",
-        "Gauntlets", "Cuisses", "Poleyns", "Greaves", "Sabatons"]
+perks = [None]
+# perks = [["Honey badger", 25],
+#          ["Chimera Ferocity", 20],
+#          ["Leviathan Force", 19],
+#          ["Kraken Fury", 18],
+#          ["Gorgon Petrification", 17],
+#          ["Medusa Gaze", 16],
+#          ["Griffin Grace", 15],
+#          ["Minotaur Rage", 14],
+#          ["Dragon Breath", 13],
+#          ["Tiger Fury", 12],
+#          ["Elephant Stance", 11],
+#          ["Eagle Eye", 9],
+#          ["Snake Strike", 8],
+#          ["Wolf Pack", 7],
+#          ["Cerberus Guardian", 6],
+#          None]
+gear = ["Helmet"]
+# gear = ["Helmet", "Pauldrons", "Breastplate", "Vambrace",
+#         "Gauntlets", "Cuisses", "Poleyns", "Greaves", "Sabatons"]
 
 weapons = ["Axe", "Mace", "Sword", "Polearm"]
 
