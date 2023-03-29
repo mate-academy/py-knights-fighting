@@ -10,17 +10,18 @@ knights_obj_list = []
 def knight_dict_creation():
     knights_instances_dict = {}
     for name in libraries.names_of_knights:
+        name = name.capitalize() if "_" not in name else name.replace("_", " ").title()
         current_knight = {name: {
-            "name": name.capitalize() if "_" not in name
-            else name.replace("_", " ").title(),
+            "name": name,
             "power": random.randint(10, 15),
             "hp": random.randint(80, 100),
             "armour": armour_pick(),
             "weapon": weapon_pick(),
             "potion": random.choice(libraries.potions),
-            "name": "Artur" if name == "arthur" else name.capitalize()}} #🩼
+            "name": "Artur" if name == "arthur" else name}} #🩼
 
         knights_instances_dict.update(current_knight)
+    print(knights_instances_dict)
     return knights_instances_dict
 
 
@@ -56,12 +57,20 @@ def weapon_pick():
 
 
 def knight_fight(participant_1,participant_2):
-    print(knights_obj_list)
 
+
+    knight_1, knight_2 = None, None
     for knight_dict in knights_obj_list:
-        print(participant_1)
-        if participant_1 in knight_dict.keys():
-            print(" here )")
+        for name, characteristics in knight_dict.items():
+            if name == participant_1:
+                knight_1 = characteristics
+    for knight_dict in knights_obj_list:
+        for name, characteristics in knight_dict.items():
+            if name == participant_2:
+                knight_2 = characteristics
+
+
+
 
 
 def tournament_result():

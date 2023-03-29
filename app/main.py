@@ -95,11 +95,11 @@ KNIGHTS = {
 def battle(participants_dict):
     Knight.knight_obj_creation(participants_dict)
     Knight.stats_calculation()
-    knight_fight("Lancelot", "Mordred")
-    knight_fight("Arthur", "Red Knight")
-    return "end"#tournament_result()
+
+    # knight_fight("Lancelot", "Mordred")
+    # knight_fight("Artur", "Red Knight")
+    return tournament_result()
 
 
-print(battle(KNIGHTS))
+print(battle(knight_dict_creation()))
 
-print()
