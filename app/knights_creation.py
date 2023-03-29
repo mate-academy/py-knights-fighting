@@ -3,6 +3,8 @@ import random
 import libraries
 
 knights_obj_list = []
+
+
 class Knight:
     def __init__(self,
                  name: str,
@@ -19,9 +21,23 @@ class Knight:
         self.potion = potion
 
     def stats_calculation():
-        for knight in knights_obj_list:
-            print(knight)
+        for knight_dict in knights_obj_list:
+            for name, characteristics in knight_dict.items():
 
+                # print("name", characteristics.name)
+                # print("power", characteristics.power)
+                # print("hp", characteristics.hp)
+                # print("armour", characteristics.armour)
+                for equipment in characteristics.armour:
+                    if equipment is not None:
+                        characteristics.hp += equipment["protection"]
+                characteristics.power += characteristics.weapon["power"]
+                if characteristics.potion is not None:
+
+                    characteristics.potion["effect"]["power"]
+                    characteristics.power += characteristics.potion["effect"]["power"]
+                    characteristics.hp += characteristics.potion["effect"]["hp"]
+                    characteristics.hp += characteristics.potion["effect"]["protection"]
 
 def knight_dict_creation():
     knights_instances_dict = {}
@@ -60,16 +76,27 @@ def armour_pick():
 
     for part in libraries.gear:
         perk = random.choice(libraries.perks)
-        knight_gear.append({
-            "part": f"{part} of {perk[0]}",
-            "protection": perk[1]
-        })
+        if perk is not None:
+            knight_gear.append({
+                "part": f"{part} of {perk[0]}",
+                "protection": perk[1]
+            })
+        else:
+            knight_gear.append({
+                "part": f"{part}",
+                "protection": 5
+            })
+
     return knight_gear
 
 
 def weapon_pick():
     knight_weapon = {}
     perk = random.choice(libraries.perks)
-    knight_weapon["name"] = f"{random.choice(libraries.weapons)} of {perk[0]}"
-    knight_weapon["power"] = 10 + perk[1]
+    if perk is not None:
+        knight_weapon["name"] = f"{random.choice(libraries.weapons)} of {perk[0]}"
+        knight_weapon["power"] = 10 + perk[1]
+    else:
+        knight_weapon["name"] = f"{random.choice(libraries.weapons)}"
+        knight_weapon["power"] = 10
     return knight_weapon

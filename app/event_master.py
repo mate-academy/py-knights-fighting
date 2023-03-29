@@ -1,7 +1,7 @@
 import time
 
-def event_start():
 
+def event_start():
     text = "Ladies and gentlemen, welcome to the grandest knight tournament in the entire " \
            "kingdom!" \
            "\nHere, the most powerful and brave knights will come together to " \
@@ -18,5 +18,4 @@ def event_start():
         print(char, end='', flush=True)
         time.sleep(1 / cps)
 
-
-    #scenario = input("\nWhat will you choose?:                                                   ")
+    # scenario = input("\nWhat will you choose?:                                                   ")

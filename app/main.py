@@ -7,15 +7,23 @@ from knights_creation import (
     )
 
 participants_dict = knight_dict_creation()
-
+# print(participants_dict)
 def battle(participants_dict):
     #Lancelot is battling versus Mordred and Arthur versus Red Knight
     knight_obj_creation(participants_dict)
     Knight.stats_calculation()
 
-    # apply armour
-    # apply weapon
-    # apply potion if exist
+    print(knights_obj_list[0]["lancelot"].power)
+    print(knights_obj_list[0]["arthur"].power)
+    print(knights_obj_list[0]["mordred"].power)
+    print(knights_obj_list[0]["red_knight"].power)
+    # knights_obj_list[0]["Lancelot"].hp -= knights_obj_list[0]["Mordred"].power
+    # knights_obj_list[0]["Mordred"].hp -= knights_obj_list[0]["Lancelot"].power
+    # knights_obj_list[0]["Arthur"].hp -= knights_obj_list[0]["Red knight"].power
+    # knights_obj_list[0]["Red knight"].hp -= knights_obj_list[0]["Arthur"].power
+
+    #!!!!!!!(knights_obj_list[0]["Lancelot"].hp)
+
 
 
     # -------------------------------------------------------------------------------
