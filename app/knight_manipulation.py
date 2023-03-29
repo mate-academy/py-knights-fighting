@@ -1,6 +1,6 @@
 import random
 
-import libraries
+import libraries, event_master
 
 knights_obj_list = []
 
@@ -52,6 +52,26 @@ def weapon_pick():
     return knight_weapon
 
 
+def knight_fight(participant_1,participant_2):
+    knights = []
+    for knight_obj in knights_obj_list:
+        if knight_obj.get(participant_1) is not None:
+            knights.append(knight_obj.get(participant_1))
+        if knight_obj.get(participant_2) is not None:
+            knights.append(knight_obj.get(participant_2))
+    knights[0].hp -= knights[1].power
+    knights[1].hp -= knights[0].power
+
+def tournament_result():
+    result = {}
+    for knight_obj in knights_obj_list:
+        for knight_name, characteristics in knight_obj.items():
+            result[knight_name] = characteristics.hp if characteristics.hp > 0 else 0
+
+    return result
+
+
+
 class Knight:
     def __init__(self,
                  name: str,
@@ -69,8 +89,6 @@ class Knight:
 
     def stats_calculation():
         for knight_dict in knights_obj_list:
-
-
             for characteristics in knight_dict.values():
 
                 for equipment in characteristics.armour:
