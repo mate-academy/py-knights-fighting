@@ -1,5 +1,5 @@
-names_of_knights = ["test1", "arthur", "test2", "test_three"]
-#names_of_knights = ["lancelot", "arthur", "mordred", "red_knight"]
+#names_of_knights = ["test1", "arthur", "test2", "test_three"]
+names_of_knights = ["lancelot", "arthur", "mordred", "red_knight"]
 
 #perks = [None]
 perks = [["Honey badger", 25],
@@ -37,3 +37,4 @@ potions = [{"name": "Potion of titanic stamina",
            {"name": "Mad slug potion",
             "effect": {"power": 200, "hp": -30, "protection": -20}},
            None]
+

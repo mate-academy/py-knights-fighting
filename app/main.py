@@ -1,7 +1,12 @@
-from knight_manipulation import (Knight, knight_dict_creation,
-                                 knight_fight,tournament_result)
-# from app.knight_manipulation import (Knight, knight_dict_creation,
-#                                      knight_fight,tournament_result)
+from knight_manipulation import (Knight,
+                                 knight_dict_creation,
+                                 knight_fight,
+                                 tournament_result,
+                                 test_names)
+# from app.knight_manipulation import (Knight,
+#                                      knight_dict_creation,
+#                                      knight_fight,
+#                                      tournament_result)
 
 KNIGHTS = {
     "lancelot": {
@@ -96,10 +101,12 @@ def battle(participants_dict):
     Knight.knight_obj_creation(participants_dict)
     Knight.stats_calculation()
 
-    # knight_fight("Lancelot", "Mordred")
-    # knight_fight("Artur", "Red Knight")
+    knight_fight("Lancelot", "Mordred")
+    knight_fight("Artur", "Red Knight")
     return tournament_result()
 
 
-print(battle(knight_dict_creation()))
+#print(battle(knight_dict_creation()))
+print(battle(KNIGHTS))
+#print(test_names())
 

@@ -1,27 +1,29 @@
 import random
-import libraries, event_master
+import libraries
 
 # from app import libraries
 # from app import event_master
-
+# import random
 knights_obj_list = []
 
 
 def knight_dict_creation():
     knights_instances_dict = {}
     for name in libraries.names_of_knights:
-        name = name.capitalize() if "_" not in name else name.replace("_", " ").title()
+        inner_name = name
+        if "_" in inner_name:
+            inner_name = inner_name.replace("_", " ").title()
+
+        if name == "arthur":
+            inner_name = "Artur"
         current_knight = {name: {
-            "name": name,
+            "name": inner_name.capitalize(),
             "power": random.randint(10, 15),
             "hp": random.randint(80, 100),
             "armour": armour_pick(),
             "weapon": weapon_pick(),
-            "potion": random.choice(libraries.potions),
-            "name": "Artur" if name == "arthur" else name}} #🩼
-
+            "potion": random.choice(libraries.potions)}}
         knights_instances_dict.update(current_knight)
-    print(knights_instances_dict)
     return knights_instances_dict
 
 
@@ -56,9 +58,7 @@ def weapon_pick():
     return knight_weapon
 
 
-def knight_fight(participant_1,participant_2):
-
-
+def knight_fight(participant_1, participant_2):
     knight_1, knight_2 = None, None
     for knight_dict in knights_obj_list:
         for name, characteristics in knight_dict.items():
@@ -70,9 +70,6 @@ def knight_fight(participant_1,participant_2):
                 knight_2 = characteristics
 
 
-
-
-
 def tournament_result():
     result = {}
     for knight_obj in knights_obj_list:
@@ -80,7 +77,6 @@ def tournament_result():
             result[knight_name] = characteristics.hp if characteristics.hp > 0 else 0
 
     return result
-
 
 
 class Knight:
@@ -113,7 +109,6 @@ class Knight:
                     if "protection" in characteristics.potion["effect"]:
                         characteristics.hp += characteristics.potion["effect"]["hp"]
 
-
     def knight_obj_creation(participants_dict):
         global knights_obj_list
 
@@ -128,3 +123,15 @@ class Knight:
             knights_obj_list.append(
                 {participant["name"]: prepared_knight})
         return knights_obj_list
+
+
+def test_names():
+    print("_________________________________________________")
+    print(f"libraries.names_of_knights: {libraries.names_of_knights}")
+    testo = []
+
+    for i in knights_obj_list:
+        for k, v in i.items():
+            testo.append(k)
+
+    print(f"knights_obj_list name of dicts: {testo}")
