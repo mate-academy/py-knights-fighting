@@ -70,8 +70,7 @@ def tournament_result():
 
         for knight_name, characteristics in knight_obj.items():
             result[knight_name] = characteristics.hp if characteristics.hp > 0 else 0
-    print(knights_obj_list)
-    print(result)
+    print(f"\n\n\n{result}")
 
     return result
 

@@ -12,7 +12,7 @@ def event_start():
            "\"Take part!\" ->                                                    enter " \
            "\"yes\"\n\"Refuse and " \
            "choose a place with a better view\" " \
-           "->                  enter \"no\""
+           "->                  enter \"no\" \n"
     cps = 10000
     for char in text:
         print(char, end='', flush=True)
