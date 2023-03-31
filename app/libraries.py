@@ -1,5 +1,11 @@
 #names_of_knights = ["test1", "arthur", "test2", "test_three"]
+start_names_of_knights = ["lancelot", "arthur", "mordred", "red_knight"]
 names_of_knights = ["lancelot", "arthur", "mordred", "red_knight"]
+# for name in start_names_of_knights:
+#     names_of_knights.append(name.replace("_"," ").title())
+
+
+print(names_of_knights)
 
 #perks = [None]
 perks = [["Honey badger", 25],
