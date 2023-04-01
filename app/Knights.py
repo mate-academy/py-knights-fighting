@@ -28,11 +28,10 @@ class Knights:
 
         # add potion
         if self.potion is not None:
-            if "power" in self.potion["effect"]:
-                self.power += self.potion["effect"]["power"]
+            for effect, value in self.potion["effect"].items():
+                setattr(self, effect, getattr(self, effect) + value)
 
-            if "protection" in self.potion["effect"]:
-                self.protection += self.potion["effect"]["protection"]
 
-            if "hp" in self.potion["effect"]:
-                self.hp += self.potion["effect"]["hp"]
+
+
+

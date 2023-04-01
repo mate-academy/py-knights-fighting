@@ -3,23 +3,24 @@ from app.Battle import Battle
 
 
 def battle(knights: dict) -> dict:
-    competitors = [
-        Knights(knight["name"],
-                knight["power"],
-                knight["hp"],
-                knight["armour"],
-                knight["weapon"],
-                knight["potion"])
-        for knight in knights.values()
-    ]
-    for knight in competitors:
+    competitors = {knight["name"]: Knights(knight["name"],
+                                           knight["power"],
+                                           knight["hp"],
+                                           knight["armour"],
+                                           knight["weapon"],
+                                           knight["potion"])
+                   for knight in knights.values()
+                   }
+
+    for knight in competitors.values():
         knight.add_equipment()
-    Battle.competition(competitors[0], competitors[2])
-    Battle.competition(competitors[1], competitors[3])
+
+    Battle.competition(competitors["Lancelot"], competitors["Mordred"])
+    Battle.competition(competitors["Artur"], competitors["Red Knight"])
 
     return {
-        competitors[0].name: competitors[0].hp,
-        competitors[1].name: competitors[1].hp,
-        competitors[2].name: competitors[2].hp,
-        competitors[3].name: competitors[3].hp
+        competitors["Lancelot"].name: competitors["Lancelot"].hp,
+        competitors["Artur"].name: competitors["Artur"].hp,
+        competitors["Mordred"].name: competitors["Mordred"].hp,
+        competitors["Red Knight"].name: competitors["Red Knight"].hp
     }
