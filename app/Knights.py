@@ -30,8 +30,3 @@ class Knights:
         if self.potion is not None:
             for effect, value in self.potion["effect"].items():
                 setattr(self, effect, getattr(self, effect) + value)
-
-
-
-
-
