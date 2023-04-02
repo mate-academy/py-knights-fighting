@@ -35,3 +35,5 @@ potions = [{"name": "Potion of titanic stamina",
            {"name": "Mad slug potion",
             "effect": {"power": 200, "hp": -30, "protection": -20}},
            None]
+
+

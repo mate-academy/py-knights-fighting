@@ -2,17 +2,19 @@ from knight_manipulation import (Knight,
                                  knight_dict_creation,
                                  knight_fight,
                                  tournament_result, knight_obj_creation)
-from event_master import event_start
+
+from event_master import Event
+
 
 # from app.knight_manipulation import (Knight, knight_obj_creation,
 #                                      knight_dict_creation,
 #                                      knight_fight,
 #                                      tournament_result)
-# from app.event_master import event_start
+# from app.event_master import Event
 
 
 def battle(participants_dict):
-    event_start()
+    Event.event_start()
     knight_obj_creation(participants_dict)
     Knight.stats_calculation()
     knight_fight("Lancelot", "Mordred")
@@ -21,3 +23,4 @@ def battle(participants_dict):
 
 
 battle(knight_dict_creation())
+
