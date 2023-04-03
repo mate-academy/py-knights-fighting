@@ -1,4 +1,5 @@
 import random
+
 import libraries
 
 # import random
@@ -8,19 +9,21 @@ knights_obj_list = []
 
 
 def knight_dict_creation():
-    knights_instances_dict = {}
+    knights_full_equip = {}
     for name in libraries.names_of_knights:
         if name == "arthur":
             name = "Artur"
-        current_knight = {name: {
+
+        knights_full_equip[name] = {
             "name": name.replace("_", " ").title(),
             "power": random.randint(10, 15),
             "hp": random.randint(80, 100),
             "armour": armour_pick(),
             "weapon": weapon_pick(),
-            "potion": random.choice(libraries.potions)}}
-        knights_instances_dict.update(current_knight)
-    return knights_instances_dict
+            "potion": random.choice(libraries.potions)
+        }
+
+    return knights_full_equip
 
 
 def armour_pick():
@@ -111,13 +114,13 @@ class Knight:
 
 def knight_obj_creation(participants_dict):
     global knights_obj_list
-    for participant in participants_dict.values():
-        prepared_knight = Knight(name=participant["name"],
-                                 power=participant["power"],
-                                 hp=participant["hp"],
-                                 armour=participant["armour"],
-                                 weapon=participant["weapon"],
-                                 potion=participant["potion"])
-        knights_obj_list.append(
-            {participant["name"]: prepared_knight})
-    return knights_obj_list
+
+    knights_obj_list = [{participant["name"]:
+                             Knight(name=participant["name"],
+                                    power=participant["power"],
+                                    hp=participant["hp"],
+                                    armour=participant["armour"],
+                                    weapon=participant["weapon"],
+                                    potion=participant["potion"])}
+                        for participant in participants_dict.values()]
+
