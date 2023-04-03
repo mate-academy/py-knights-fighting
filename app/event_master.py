@@ -5,6 +5,7 @@ os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 
 
+
 class Event:
 
     def narrative_speed(cps):
@@ -19,22 +20,35 @@ class Event:
 
         return decorator
 
-    @narrative_speed(cps=1000)
-    def event_start():
+    @staticmethod
+    def ambience():
         pygame.init()
         pygame.mixer.music.load('CR_TourneyBattle01UniWalk.mp3')
         pygame.mixer.music.play()
-        text = "Ladies and gentlemen, welcome to the grandest knight tournament in the entire " \
-               "kingdom!\n" \
-               "Here, the most powerful and brave knights will come together to determine who will\n" \
-               "become the true hero!"
-        time.sleep(0.0000000001)
 
-        # "\nDear guests, if you believe that you have the spirit of a " \
-        # "true knight,\nyou can join our fighters! \nChoose your equipment and head to the arena!"
+    @narrative_speed(cps=1000)
+    @staticmethod
+    def event_start():
+        print("In the Kingdom of Mateland, in the mid to late XI-th century,\non a sunny spring "
+              "day, a huge gatekeeper, a knight,\nasks for your name before allowing entry to the "
+              "tournament")
+        user_name = input("Enter your name: ")
+        text = "\n\nLadies and gentlemen, welcome to the knight's tournament!\nMy name is Roman " \
+               "the " \
+               "Apostle and I will be hosting this thrilling tournament.\nToday is a special " \
+               "day as we are honored to have with us the KING himself,\nMATEthew the " \
+               "PYTHONheart, whose kindness and support have helped us to organize this " \
+               "tournament at the highest level!\nThank you all for joining us today, and I hope you enjoy the show!"
+        time.sleep(0.000001)
+
         return text
 
-    # scenario = input("\nWhat will you choose?:                                                   ")
+    @narrative_speed(cps=1000)
+    @staticmethod
+    def knights_preparing():
+        pass
 
-
-event = Event
+    @narrative_speed(cps=1000)
+    @staticmethod
+    def knights_fight():
+        pass
