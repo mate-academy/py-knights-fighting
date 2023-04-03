@@ -30,52 +30,73 @@ def armour_pick():
     knight_gear = []
     for part in libraries.gear:
         perk = random.choice(libraries.perks)
-        if perk is not None:
-            knight_gear.append({
-                "part": f"{part} of {perk[0]}",
-                "protection": perk[1]})
-        else:
-            knight_gear.append({
-                "part": f"{part}",
-                "protection": 5})
+        part_name = f"{part} of {perk[0]}" if perk is not None else part
+        protection = perk[1] if perk is not None else 5
+        gear = {"part": part_name, "protection": protection}
+        knight_gear.append(gear)
     return knight_gear
 
-
 def weapon_pick():
-    knight_weapon = {}
     perk = random.choice(libraries.perks)
     if perk is not None:
-        knight_weapon["name"] = f"{random.choice(libraries.weapons)} of {perk[0]}"
-        knight_weapon["power"] = 10 + perk[1]
+        weapon_name = f"{random.choice(libraries.weapons)} of {perk[0]}"
+        power = perk[1] + 10
     else:
-        knight_weapon["name"] = f"{random.choice(libraries.weapons)}"
-        knight_weapon["power"] = 10
-    return knight_weapon
-
+        weapon_name = random.choice(libraries.weapons)
+        power = 10
+    return {"name": weapon_name, "power": power}
 
 def knight_fight(participant_1, participant_2):
     knight_1, knight_2 = None, None
     for knight_dict in knights_obj_list:
-        for name, characteristics in knight_dict.items():
+        for name, knight in knight_dict.items():
             if name.lower() == participant_1.lower():
-                knight_1 = characteristics
-    for knight_dict in knights_obj_list:
-        for name, characteristics in knight_dict.items():
+                knight_1 = knight
             if name.lower() == participant_2.lower():
-                knight_2 = characteristics
+                knight_2 = knight
     knight_1.hp -= knight_2.power
     knight_2.hp -= knight_1.power
+    return knight_1, knight_2
+
 
 
 def tournament_result():
     result = {}
     for knight_obj in knights_obj_list:
-
         for knight_name, characteristics in knight_obj.items():
-            result[knight_name] = characteristics.hp if characteristics.hp > 0 else 0
+            result[knight_name] = (
+                characteristics.hp if characteristics.hp > 0 else 0
+            )
     print(f"\n\n\n{result}")
-
     return result
+
+
+def apply_armour(characteristics):
+    for equipment in characteristics.armour:
+        if equipment is not None:
+            characteristics.hp += equipment["protection"]
+
+
+def apply_weapon(characteristics):
+    characteristics.power += characteristics.weapon["power"]
+
+
+def apply_potion(characteristics):
+    if characteristics.potion is not None:
+        if "power" in characteristics.potion["effect"]:
+            characteristics.power += characteristics.potion["effect"]["power"]
+        if "hp" in characteristics.potion["effect"]:
+            characteristics.hp += characteristics.potion["effect"]["hp"]
+        if "protection" in characteristics.potion["effect"]:
+            characteristics.hp += characteristics.potion["effect"]["protection"]
+
+
+def stats_calculation():
+    for knight_dict in knights_obj_list:
+        for characteristics in knight_dict.values():
+            apply_armour(characteristics)
+            apply_weapon(characteristics)
+            apply_potion(characteristics)
 
 
 class Knight:
@@ -93,24 +114,6 @@ class Knight:
         self.weapon = weapon
         self.potion = potion
 
-    def stats_calculation():
-        for knight_dict in knights_obj_list:
-            for characteristics in knight_dict.values():
-                for equipment in characteristics.armour:
-                    if equipment is not None:
-                        characteristics.hp += equipment["protection"]
-                characteristics.power += characteristics.weapon["power"]
-                if characteristics.potion is not None:
-                    if "power" in characteristics.potion["effect"]:
-                        characteristics.power += \
-                            characteristics.potion["effect"]["power"]
-                    if "hp" in characteristics.potion["effect"]:
-                        characteristics.hp += \
-                            characteristics.potion["effect"]["hp"]
-                    if "protection" in characteristics.potion["effect"]:
-                        characteristics.hp += \
-                            characteristics.potion["effect"]["protection"]
-
 
 def knight_obj_creation(participants_dict):
     global knights_obj_list
@@ -123,4 +126,3 @@ def knight_obj_creation(participants_dict):
                                     weapon=participant["weapon"],
                                     potion=participant["potion"])}
                         for participant in participants_dict.values()]
-
