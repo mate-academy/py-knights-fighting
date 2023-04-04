@@ -66,14 +66,14 @@ class Event:
                    f"glory and honor of our kingdom!\nIn the first " \
                    f"match,{knight_1.name} and {knight_2.name} will " \
                    f"meet,\nready to demonstrate their warrior skills!\n\n" \
-                   f"Armed to the teeth, {knight_1.name} prepares to\n" \
-                   f"fight with a{knight_1.weapon['name']}, while\n" \
-                   f"{knight_2.name} has chosen trusty\n" \
-                   f"{knight_2.weapon['name']} to engage their\n" \
-                   f"opponent. By the power of" \
+                   f"Armed to the teeth, {knight_1.name} prepares to" \
+                   f"fight with a {knight_1.weapon['name']},\nwhile" \
+                   f" {knight_2.name} has chosen trusty" \
+                   f" {knight_2.weapon['name']} to engage their" \
+                   f" opponent.\n\nBy the power of" \
                    f"{knight_1.name if knight_1.hp > knight_2.hp else knight_2.name}'s " \
                    f"mightieststrike, {knight_1.name if knight_1.hp < knight_2.hp else knight_2.name}" \
-                   f"barely stand on his feet! The victory is declared " \
+                   f"barely stand on his feet!\nThe victory is declared " \
                    f"to belong to" \
                    f"{knight_1.name if knight_1.hp > knight_2.hp else knight_2.name}!"
 
@@ -81,17 +81,17 @@ class Event:
             return text
 
         else: #2
-            text = f"\n\n Attention, noble guests and subjects! " \
+            text = f"\n\nAttention, noble guests and subjects!\n" \
                    f"The first battle of our " \
-                   f"tournament was so fiery that even the dragon on " \
-                   f"our coat of arms wondered if it should join the " \
-                   f"fray. However, we have yet another clash before " \
-                   f"us, in which two unwavering knights will face " \
-                   f"off.{knight_1.name} and {knight_2.name}, raise " \
+                   f"tournament was so fiery that even the dragon\non"\
+                   f" our coat of arms wondered if it should join the " \
+                   f"fray.\nHowever, we have yet another clash before " \
+                   f"us, in which two\nunwavering knights will face " \
+                   f"off.\n{knight_1.name} and {knight_2.name}, raise " \
                    f"your weapons and fight on the honorable " \
-                   f"battlefield, without shields but with all the " \
-                   f"chivalrous manners!In this battle, the winner " \
-                   f"will be the one who demonstrates the highest " \
+                   f"battlefield,\nwithout shields but with all the " \
+                   f"chivalrous manners!\nIn this battle, the winner " \
+                   f"will be the one who demonstrates\nthe highest " \
                    f"agility and mastery of their weapon."
             return text
 
