@@ -1,90 +1,93 @@
-# KNIGHTS = {
-#     "lancelot": {
-#         "name": "Lancelot",
-#         "power": 35,
-#         "hp": 100,
-#         "armour": [],
-#         "weapon": {
-#             "name": "Metal Sword",
-#             "power": 50,
-#         },
-#         "potion": None,
-#     },
-#     "arthur": {
-#         "name": "Artur",
-#         "power": 45,
-#         "hp": 75,
-#         "armour": [
-#             {
-#                 "part": "helmet",
-#                 "protection": 15,
-#             },
-#             {
-#                 "part": "breastplate",
-#                 "protection": 20,
-#             },
-#             {
-#                 "part": "boots",
-#                 "protection": 10,
-#             }
-#         ],
-#         "weapon": {
-#             "name": "Two-handed Sword",
-#             "power": 55,
-#         },
-#         "potion": None,
-#     },
-#     "mordred": {
-#         "name": "Mordred",
-#         "power": 30,
-#         "hp": 90,
-#         "armour": [
-#             {
-#                 "part": "breastplate",
-#                 "protection": 15,
-#             },
-#             {
-#                 "part": "boots",
-#                 "protection": 10,
-#             }
-#         ],
-#         "weapon": {
-#             "name": "Poisoned Sword",
-#             "power": 60,
-#         },
-#         "potion": {
-#             "name": "Berserk",
-#             "effect": {
-#                 "power": +15,
-#                 "hp": -5,
-#                 "protection": +10,
-#             }
-#         }
-#     },
-#     "red_knight": {
-#         "name": "Red Knight",
-#         "power": 40,
-#         "hp": 70,
-#         "armour": [
-#             {
-#                 "part": "breastplate",
-#                 "protection": 25,
-#             }
-#         ],
-#         "weapon": {
-#             "name": "Sword",
-#             "power": 45
-#         },
-#         "potion": {
-#             "name": "Blessing",
-#             "effect": {
-#                 "hp": +10,
-#                 "power": +5,
-#             }
-#         }
-#     }
-# }
-#
+from app.game.khights import Knight
+from app.game.khights import Armour
+
+KNIGHTS = {
+    "lancelot": {
+        "name": "Lancelot",
+        "power": 35,
+        "hp": 100,
+        "armour": [],
+        "weapon": {
+            "name": "Metal Sword",
+            "power": 50,
+        },
+        "potion": None,
+    },
+    "arthur": {
+        "name": "Artur",
+        "power": 45,
+        "hp": 75,
+        "armour": [
+            {
+                "part": "helmet",
+                "protection": 15,
+            },
+            {
+                "part": "breastplate",
+                "protection": 20,
+            },
+            {
+                "part": "boots",
+                "protection": 10,
+            }
+        ],
+        "weapon": {
+            "name": "Two-handed Sword",
+            "power": 55,
+        },
+        "potion": None,
+    },
+    "mordred": {
+        "name": "Mordred",
+        "power": 30,
+        "hp": 90,
+        "armour": [
+            {
+                "part": "breastplate",
+                "protection": 15,
+            },
+            {
+                "part": "boots",
+                "protection": 10,
+            }
+        ],
+        "weapon": {
+            "name": "Poisoned Sword",
+            "power": 60,
+        },
+        "potion": {
+            "name": "Berserk",
+            "effect": {
+                "power": +15,
+                "hp": -5,
+                "protection": +10,
+            }
+        }
+    },
+    "red_knight": {
+        "name": "Red Knight",
+        "power": 40,
+        "hp": 70,
+        "armour": [
+            {
+                "part": "breastplate",
+                "protection": 25,
+            }
+        ],
+        "weapon": {
+            "name": "Sword",
+            "power": 45
+        },
+        "potion": {
+            "name": "Blessing",
+            "effect": {
+                "hp": +10,
+                "power": +5,
+            }
+        }
+    }
+}
+
 #
 # def battle(knightsConfig):
 #     # BATTLE PREPARATIONS:
@@ -217,58 +220,25 @@
 #
 # print(battle(KNIGHTS))
 
-from app.game.khights import Knight
-from app.game.khights import Armour
-
-
 # Define knights using Knight and Armour classes
-lancelot = Knight("Lancelot", 35, 100, weapon={
-            "name": "Metal Sword",
-            "power": 50,
-})
+knights = []
+for i, objects in KNIGHTS.items():
+    name = objects["name"]
+    power = objects["power"]
+    hp = objects["hp"]
+    armour = ([Armour(item["part"], item["protection"])
+               for item in objects["armour"]])
+    weapon = objects["weapon"]
+    potion = objects["potion"]
+    knight = Knight(name, power, hp, armour, weapon, potion)
+    knights.append(knight)
 
-arthur = Knight("Arthur", 45, 75, armour=[
-        Armour("helmet", 15),
-        Armour("breastplate", 20),
-        Armour("boots", 10)
-    ], weapon={
-        "name": "Two-handed Sword",
-        "power": 55,
-})
+print(knights[0].battle(knights[2]))
+print(knights[1].battle(knights[3]))
 
-mordred = Knight("Mordred", 30, 90, armour=[
-        Armour("breastplate", 15),
-        Armour("boots", 10)
-    ], weapon={
-        "name": "Poisoned Sword",
-        "power": 60,
-    }, potion={
-        "name": "Berserk",
-        "effect": {
-            "power": 15,
-            "hp": -5,
-            "protection": 10,
-        }
-})
 
-red_knight = Knight("Red Knight", 40, 70, armour=[
-        Armour("breastplate", 25),
-    ], weapon={
-        "name": "Sword",
-        "power": 45
-    }, potion={
-        "name": "Blessing",
-        "effect": {
-            "hp": 10,
-            "power": 5,
-        }
-})
-
-print(lancelot.battle(mordred))
-print(arthur.battle(red_knight))
-
-battle1_winner = lancelot if mordred.hp < lancelot.hp else mordred
-battle2_winner = arthur if red_knight.hp < arthur.hp else red_knight
+battle1_winner = max([knights[0], knights[2]], key=lambda knights: knights.hp)
+battle2_winner = max([knights[1], knights[3]], key=lambda knights: knights.hp)
 
 print(f"In the final:\n      {battle1_winner.name} and {battle2_winner.name}")
 print(f"The result of the final is:\n"

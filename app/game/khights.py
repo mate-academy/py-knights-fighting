@@ -1,16 +1,17 @@
 class Knight:
-    def __init__(self, name, power, hp, armour=None, weapon=None, potion=None):
+    def __init__(self, name: str, power: int, hp: int,
+                 armour=None, weapon=None, potion=None) -> None:
         self.name = name
         self.power = power
         self.hp = hp
-        self.weapon = weapon if weapon is not None else {}
-        self.potion = potion if potion is not None else {}
-        self.armour = armour if armour is not None else []
+        self.weapon = weapon
+        self.potion = potion
+        self.armour = armour
 
-    def apply_weapon(self):
+    def apply_weapon(self) -> None:
         self.power += self.weapon["power"]
 
-    def apply_potion(self):
+    def apply_potion(self) -> None:
         if self.potion is not None:
             effect = self.potion["effect"]
             if "power" in effect:
@@ -18,16 +19,15 @@ class Knight:
             if "hp" in effect:
                 self.hp += effect["hp"]
 
-    def calculate_total_protection(self):
+    def calculate_total_protection(self) -> int:
         total_protection = sum(armour.protection for armour in self.armour)
         if self.potion is not None and "effect" in self.potion \
-                and "protection" in \
-                self.potion["effect"]:
+                and "protection" in self.potion["effect"]:
             total_protection += self.potion["effect"]["protection"]
 
         return total_protection
 
-    def battle(self, opponent):
+    def battle(self, opponent) -> str:
         damage_to_opponent = max(0, self.power -
                                  opponent.calculate_total_protection())
         damage_to_self = max(0, opponent.power -
@@ -35,8 +35,8 @@ class Knight:
         self.hp -= damage_to_self
         opponent.hp -= damage_to_opponent
 
-        result = f"{self.name} dealt {damage_to_opponent} damage to " \
-                 f"{opponent.name} and received {damage_to_self} damage"
+        result = (f"{self.name} dealt {damage_to_opponent} damage to "
+                  f"{opponent.name} and received {damage_to_self} damage")
         if self.hp <= 0:
             result += f"\n{self.name} has been defeated"
         if opponent.hp <= 0:
@@ -46,6 +46,6 @@ class Knight:
 
 
 class Armour:
-    def __init__(self, part, protection):
+    def __init__(self, part: str, protection: int) -> None:
         self.part = part
         self.protection = protection
