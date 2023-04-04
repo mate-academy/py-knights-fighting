@@ -1,6 +1,7 @@
 import random
 
 import libraries
+from event_master import Event
 
 # import random
 # from app import libraries
@@ -58,6 +59,7 @@ def knight_fight(participant_1, participant_2):
                 knight_2 = knight
     knight_1.hp -= knight_2.power
     knight_2.hp -= knight_1.power
+    Event.knights_fight(knight_1, knight_2)
     return knight_1, knight_2
 
 
@@ -99,6 +101,7 @@ def stats_calculation():
             apply_armour(characteristics)
             apply_weapon(characteristics)
             apply_potion(characteristics)
+
 
 
 class Knight:
