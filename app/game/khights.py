@@ -28,11 +28,11 @@ class Knight:
 
         return total_protection
 
-    def battle(self, opponent: Knight) -> str:
-        damage_to_opponent = max(0, self.power -
-                                 opponent.calculate_total_protection())
-        damage_to_self = max(0, opponent.power -
-                             self.calculate_total_protection())
+    def battle(self, opponent) -> str:
+        damage_to_opponent = max(0, self.power
+                                 - opponent.calculate_total_protection())
+        damage_to_self = max(0, opponent.power
+                             - self.calculate_total_protection())
         self.hp -= damage_to_self
         opponent.hp -= damage_to_opponent
 
