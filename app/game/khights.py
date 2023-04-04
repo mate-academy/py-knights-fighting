@@ -1,6 +1,7 @@
 class Knight:
     def __init__(self, name: str, power: int, hp: int,
-                 armour=None, weapon=None, potion=None) -> None:
+                 armour: list = None, weapon: dict = None,
+                 potion: dict = None) -> None:
         self.name = name
         self.power = power
         self.hp = hp
@@ -27,7 +28,7 @@ class Knight:
 
         return total_protection
 
-    def battle(self, opponent) -> str:
+    def battle(self, opponent: Knight) -> str:
         damage_to_opponent = max(0, self.power -
                                  opponent.calculate_total_protection())
         damage_to_self = max(0, opponent.power -
