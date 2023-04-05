@@ -1,8 +1,5 @@
-from app.calculation_stats.apply_armour import ApplyArmour
-from app.calculation_stats.apply_potion import ApplyPotion
-from app.calculation_stats.apply_weapon import ApplyWeapon
-from app.battle_knights.check_death import CheckDeath
-from app.battle_knights.mortal_combat import Combat
+from app.battle_knights.fighting import Battle
+from app.creation_knights.knights_stats import Knight
 
 
 Knights = {
@@ -94,77 +91,41 @@ Knights = {
 
 
 def battle(knights_config: dict) -> dict:
-    # BATTLE PREPARATIONS:
+    # creation of a dictionary generator of class knights
+    knights_list = {
+        name: Knight(
+            characteristics["name"],
+            characteristics["power"],
+            characteristics["hp"],
+            characteristics["armour"],
+            characteristics["weapon"],
+            characteristics["potion"])
+        for name, characteristics in knights_config.items()
+    }
 
-    # lancelot
-    lancelot = knights_config["lancelot"]
+    # application of characteristics
+    for characteristics in knights_list.values():
+        Knight.apply_weapon(characteristics)
+        Knight.apply_armour(characteristics)
+        Knight.apply_potion(characteristics)
 
-    # apply armour
-    ApplyArmour(lancelot)
-
-    # apply weapon
-    ApplyWeapon(lancelot)
-
-    # apply potion if exist
-    ApplyPotion(lancelot)
-
-    # arthur
-    arthur = knights_config["arthur"]
-
-    # apply armour
-    ApplyArmour(arthur)
-
-    # apply weapon
-    ApplyWeapon(arthur)
-
-    # apply potion if exist
-    ApplyPotion(arthur)
-
-    # mordred
-    mordred = knights_config["mordred"]
-
-    # apply armour
-    ApplyArmour(mordred)
-
-    # apply weapon
-    ApplyWeapon(mordred)
-
-    # apply potion if exist
-    ApplyPotion(mordred)
-
-    # red_knight
-    red_knight = knights_config["red_knight"]
-
-    # apply armour
-    ApplyArmour(red_knight)
-
-    # apply weapon
-    ApplyWeapon(red_knight)
-
-    # apply potion if exist
-    ApplyPotion(red_knight)
-
-    # -------------------------------------------------------------------------------
     # BATTLE:
 
     # 1 Lancelot vs Mordred:
-    Combat(lancelot, mordred)
-
-    # check if someone fell in battle
-    CheckDeath(lancelot, mordred)
+    Battle.combat(knights_list["lancelot"], knights_list["mordred"])
 
     # 2 Arthur vs Red Knight:
-    Combat(arthur, red_knight)
+    Battle.combat(knights_list["arthur"], knights_list["red_knight"])
 
     # check if someone fell in battle
-    CheckDeath(arthur, red_knight)
+    Battle.check_death(knights_list)
 
     # Return battle results:
     return {
-        lancelot["name"]: lancelot["hp"],
-        arthur["name"]: arthur["hp"],
-        mordred["name"]: mordred["hp"],
-        red_knight["name"]: red_knight["hp"],
+        knights_list["lancelot"].name: knights_list["lancelot"].hp,
+        knights_list["arthur"].name: knights_list["arthur"].hp,
+        knights_list["mordred"].name: knights_list["mordred"].hp,
+        knights_list["red_knight"].name: knights_list["red_knight"].hp,
     }
 
 
