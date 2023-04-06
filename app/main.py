@@ -228,4 +228,3 @@ def battle(knightsconfig: dict, ls: list = ls) -> dict:
 
 
 print(battle(KNIGHTS))
-
