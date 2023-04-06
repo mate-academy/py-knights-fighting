@@ -5,6 +5,7 @@ from event_master import Event
 
 # import random
 # from app import libraries
+# from app import event_master
 
 knights_obj_list = []
 
@@ -59,7 +60,8 @@ def knight_fight(participant_1, participant_2):
                 knight_2 = knight
     knight_1.hp -= knight_2.power
     knight_2.hp -= knight_1.power
-    Event.knights_fight(knight_1, knight_2)
+    #event_master.Event.event_fight(knight_1, knight_2)
+    Event.event_fight(knight_1, knight_2)
     return knight_1, knight_2
 
 
@@ -70,7 +72,8 @@ def tournament_result():
             result[knight_name] = (
                 characteristics.hp if characteristics.hp > 0 else 0
             )
-    print(f"\n\n\n{result}")
+    #event_master.Event.event_result(result)
+    Event.event_result(result)
     return result
 
 

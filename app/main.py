@@ -10,7 +10,8 @@ from knight_manipulation import (knight_dict_creation,
 
 
 
-#Event.ambience()
+
+Event.ambience()
 Event.event_start()
 
 def battle(participants_dict):
@@ -18,7 +19,6 @@ def battle(participants_dict):
     stats_calculation()
     knight_fight("Lancelot", "Mordred")
     knight_fight("Artur", "Red Knight")
-
 
     return tournament_result()
 battle(knight_dict_creation())
