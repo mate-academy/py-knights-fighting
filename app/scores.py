@@ -1,15 +1,22 @@
-class Scores:
-    knight1 = {}
-    knight2 = {}
+from app.knights_stats1 import TheKnight
 
-    @classmethod
-    def battle_scores(cls, knight1, knight2) -> dict:
-        knight1["hp"] -= knight2["power"] - knight1["protection"]
-        knight2["hp"] -= knight1["power"] - knight2["protection"]
-        if knight1["hp"] <= 0:
-            knight1["hp"] = 0
-            print(f"{knight1['name']} defeated! Congratulations to {knight2['name']}!")
-        elif knight2["hp"] <= 0:
-            knight2["hp"] = 0
-            print(f"{knight2['name']} defeated! Congratulations to {knight1['name']}!")
-        return {knight1["name"]: knight1["hp"], knight2["name"]: knight2["hp"]}
+
+class Scores:
+
+    @staticmethod
+    def battle_scores(contender1: TheKnight, contender2: TheKnight) -> dict:
+        print(f"The battle between {contender1.name} "
+              f"and {contender2.name} started!")
+        contender1.hp -= contender2.power - contender1.protection
+        contender2.hp -= contender1.power - contender2.protection
+        if contender1.hp < 0:
+            contender1.hp = 0
+            print(f"{contender1.name} fell! "
+                  f"Congratulations to {contender2.name}!")
+        elif contender2.hp < 0:
+            contender2.hp = 0
+            print(f"{contender2.name} fell! "
+                  f"Congratulations to {contender1.name}!")
+        else:
+            print("Both knights survived in this battle")
+        return {contender1.name: contender1.hp, contender2.name: contender2.hp}
