@@ -90,7 +90,7 @@ KNIGHTS = {
 
 def battle(knights_config: dict) -> dict:
     # Preparations
-    list_of_knights = []
+    dict_of_knights = {}
     for knight_name, value in knights_config.items():
         knight = Knight(
             value.get("name"),
@@ -100,14 +100,19 @@ def battle(knights_config: dict) -> dict:
         knight.apply_armour(value.get("armour"))
         knight.apply_weapon(value.get("weapon"))
         knight.apply_potion(value.get("potion"))
-        list_of_knights.append(knight)
+        dict_of_knights[value.get("name")] = knight
 
     # Battle
-
-    for i in range(len(list_of_knights) // 2):
-        Knight.battle(list_of_knights[i], list_of_knights[i + 2])
+    Knight.battle(
+        dict_of_knights.get("Lancelot"),
+        dict_of_knights.get("Mordred")
+    )
+    Knight.battle(
+        dict_of_knights.get("Artur"),
+        dict_of_knights.get("Red Knight")
+    )
 
     return {
-        knight.name: knight.hp
-        for knight in list_of_knights
+        dict_of_knights.get(knight).name: dict_of_knights.get(knight).hp
+        for knight in dict_of_knights
     }
