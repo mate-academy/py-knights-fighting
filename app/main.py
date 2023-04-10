@@ -98,7 +98,9 @@ def battle(knights: dict) -> dict:
                 value.get("hp")
             )
         )
+
     # preparations
+
     for i, knight in enumerate(knights):
         list_of_knights[i].apply_potion(knights.get(knight).get("potion"))
         list_of_knights[i].apply_armour(knights.get(knight).get("armour"))
@@ -107,17 +109,8 @@ def battle(knights: dict) -> dict:
     # Battle
 
     for i in range(len(list_of_knights) // 2):
-        list_of_knights[i].hp -= (
-            list_of_knights[i + 2].power - list_of_knights[i].protection
-        )
-        list_of_knights[i + 2].hp -= (
-            list_of_knights[i].power - list_of_knights[i + 2].protection
-        )
-        if list_of_knights[i].hp <= 0:
-            list_of_knights[i].hp = 0
-        if list_of_knights[i + 2].hp <= 0:
-            list_of_knights[i + 2].hp = 0
-    # return battle results
+        Knight.battle(list_of_knights[i], list_of_knights[i + 2])
+
     return {
         list_of_knights[i].name: list_of_knights[i].hp
         for i in range(len(list_of_knights))
