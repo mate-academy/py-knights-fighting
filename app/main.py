@@ -108,6 +108,6 @@ def battle(knights_config: dict) -> dict:
         Knight.battle(list_of_knights[i], list_of_knights[i + 2])
 
     return {
-        list_of_knights[i].name: list_of_knights[i].hp
-        for i in range(len(list_of_knights))
+        knight.name: knight.hp
+        for knight in list_of_knights
     }
