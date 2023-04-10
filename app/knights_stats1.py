@@ -20,17 +20,20 @@ class TheKnight:
     def count_stats(stats: dict) -> list:
         contenders = []
         for knight in stats.values():
-            name = knight["name"]
-            hp = knight["hp"]
-            power = knight["power"] + knight["weapon"]["power"]
+            name = knight.get("name")
+            hp = knight.get("hp")
+            power = 0
+            if knight["weapon"] is not None:
+                weapon = knight["weapon"]
+                power = knight.get("power") + weapon.get("power")
             protection = 0
-            for armour in knight["armour"]:
-                protection += armour["protection"]
+            for armour in knight.get("armour"):
+                protection += armour.get("protection")
             if knight["potion"] is not None:
                 eff = knight["potion"]["effect"]
-                hp += eff["hp"]
-                power += eff["power"]
+                hp += eff.get("hp")
+                power += eff.get("power")
                 if "protection" in eff:
-                    protection += eff["protection"]
+                    protection += eff.get("protection")
             contenders.append(TheKnight(name, hp, power, protection))
         return contenders
