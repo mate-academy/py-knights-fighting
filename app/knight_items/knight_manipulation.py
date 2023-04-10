@@ -14,7 +14,7 @@ class Knight:
                  hp: int,
                  armour: List[Dict[str, Any]],
                  weapon: Dict[str, Any],
-                 potion: Dict[str, Any]):
+                 potion: Dict[str, Any]) -> None:
         self.name = name
         self.power = power
         self.hp = hp

@@ -13,4 +13,3 @@ IV   {result[3][0]}: {result[3][1]}
 Ladies and gentlemen, it is my honor to declare the winner of the tournament:
 Sir {result[0][0]}!!!
 
-

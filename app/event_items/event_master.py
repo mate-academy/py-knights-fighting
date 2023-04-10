@@ -1,10 +1,7 @@
-import os
-os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "hide"
 import time
 from typing import Callable
 
 import pygame
-
 
 event_counter = 0
 
@@ -14,7 +11,7 @@ class Event:
     def narrative_speed(cps: float) -> Callable[[Callable[..., str]],
                                                 Callable[..., None]]:
         def decorator(func: Callable[..., str]) -> Callable[..., None]:
-            def wrapper(*args, **kwargs):
+            def wrapper(*args, **kwargs) -> str:
                 text = str(func(*args, **kwargs))
                 for char in text:
                     if char != "*":
@@ -28,7 +25,7 @@ class Event:
         return decorator
 
     @staticmethod
-    def ambience():
+    def ambience() -> None:
         pygame.init()
         pygame.mixer.music.load(r"app\event_items\EVENT_AMBIENCE.mp3")
         pygame.mixer.music.play()
@@ -46,7 +43,7 @@ class Event:
 
     @narrative_speed(cps=55)
     @staticmethod
-    def event_fight(knight_1: "Knight", knight_2: "Knight") -> str:
+    def event_fight(knight_1: object, knight_2: object) -> str:
         if knight_1.hp > knight_2.hp:
             winner = knight_1.name
             loser = knight_2.name

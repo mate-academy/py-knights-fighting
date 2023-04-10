@@ -7,10 +7,6 @@ if __name__ == "__main__":
                                                       stats_calculation)
     from typing import Dict
 
-
-
-
-
     Event.ambience()
     Event.event_start()
 
@@ -24,5 +20,3 @@ if __name__ == "__main__":
 
 
     battle(knight_dict_creation())
-
-
