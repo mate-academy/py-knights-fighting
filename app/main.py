@@ -1,12 +1,14 @@
-from event_master import Event
-from knight_manipulation import (knight_dict_creation,
-                                 knight_fight,
-                                 tournament_result, knight_obj_creation,
-                                 stats_calculation)
-
-# from app.knight_manipulation import (Knight, knight_fight,stats_calculation, knight_dict_creation, \
-#                                                           knight_obj_creation,tournament_result)
-# from app.event_master import Event
+if __name__ == "__main__":
+    from event_master import Event
+    from knight_manipulation import (knight_dict_creation,
+                                     knight_fight,
+                                     tournament_result, knight_obj_creation,
+                                     stats_calculation)
+else:
+    from app.knight_manipulation import (Knight, knight_fight,stats_calculation,
+                                         knight_dict_creation,knight_obj_creation,
+                                         tournament_result)
+    from app.event_master import Event
 
 
 
