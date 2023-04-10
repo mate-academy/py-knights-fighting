@@ -88,23 +88,19 @@ KNIGHTS = {
 }
 
 
-def battle(knights: dict) -> dict:
+def battle(knights_config: dict) -> dict:
+    # Preparations
     list_of_knights = []
-    for knight_name, value in knights.items():
-        list_of_knights.append(
-            Knight(
-                value.get("name"),
-                value.get("power"),
-                value.get("hp")
-            )
+    for knight_name, value in knights_config.items():
+        knight = Knight(
+            value.get("name"),
+            value.get("power"),
+            value.get("hp")
         )
-
-    # preparations
-
-    for i, knight in enumerate(knights):
-        list_of_knights[i].apply_potion(knights.get(knight).get("potion"))
-        list_of_knights[i].apply_armour(knights.get(knight).get("armour"))
-        list_of_knights[i].apply_weapon(knights.get(knight).get("weapon"))
+        knight.apply_armour(value.get("armour"))
+        knight.apply_weapon(value.get("weapon"))
+        knight.apply_potion(value.get("potion"))
+        list_of_knights.append(knight)
 
     # Battle
 
