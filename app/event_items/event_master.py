@@ -1,20 +1,27 @@
 import os
+os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "hide"
 import time
+from typing import Callable
 
-os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
+
 
 event_counter = 0
 
 
 class Event:
-    def narrative_speed(cps):
-        def decorator(func):
+    @staticmethod
+    def narrative_speed(cps: float) -> Callable[[Callable[..., str]],
+                                                Callable[..., None]]:
+        def decorator(func: Callable[..., str]) -> Callable[..., None]:
             def wrapper(*args, **kwargs):
                 text = str(func(*args, **kwargs))
                 for char in text:
-                    print(char, end='', flush=True)
-                    time.sleep(1 / cps)
+                    if char != "*":
+                        print(char, end="", flush=True)
+                        time.sleep(1 / cps)
+                    else:
+                        print(char, end="", flush=True)
 
             return wrapper
 
@@ -23,21 +30,23 @@ class Event:
     @staticmethod
     def ambience():
         pygame.init()
-        pygame.mixer.music.load('CR_TourneyBattle01UniWalk.mp3')
+        pygame.mixer.music.load(r"app\event_items\EVENT_AMBIENCE.mp3")
         pygame.mixer.music.play()
 
-    @narrative_speed(cps=1000)
+    @narrative_speed(cps=40)
     @staticmethod
-    def event_start():
+    def event_start() -> str:
         print("*" * 79)
-        print("\nIn the Kingdom of Mateland, in the mid to late XI-th century\n")
-        with open('event_start.txt', 'r') as file:
+        print("\nIn the Kingdom of Mateland, "
+              "in the mid to late XI-th century\n")
+        with open(r"app\event_items\event_start.txt", "r") as file:
             text = file.read()
+        time.sleep(3)
         return text
 
-    @narrative_speed(cps=1000)
+    @narrative_speed(cps=55)
     @staticmethod
-    def event_fight(knight_1, knight_2):
+    def event_fight(knight_1: "Knight", knight_2: "Knight") -> str:
         if knight_1.hp > knight_2.hp:
             winner = knight_1.name
             loser = knight_2.name
@@ -46,10 +55,10 @@ class Event:
             loser = knight_1.name
         global event_counter
         if event_counter == 0:
-            event_path = 'event_fight_1.txt'
+            event_path = r"app\event_items\event_fight_1.txt"
         else:
-            event_path = 'event_fight_2.txt'
-        with open(event_path, 'r') as file:
+            event_path = r"app\event_items\event_fight_2.txt"
+        with open(event_path, "r") as file:
             text = file.read().format(
                 knight_1=knight_1.name,
                 knight_1_hp=knight_1.hp,
@@ -60,15 +69,19 @@ class Event:
                 winner=winner,
                 loser=loser)
         event_counter += 1
+        time.sleep(3)
         return text
 
-    @narrative_speed(cps=1000)
+    @narrative_speed(cps=40)
     @staticmethod
-    def event_result(result):
+    def event_result(result: dict) -> str:
+        pygame.mixer.music.load(r"app\event_items\CHEERING_LOOP.ogg")
+        pygame.mixer.music.play()
         items = result.items()
         result = [[k, v] for k, v in items]
         result.sort(key=lambda x: x[1], reverse=True)
-        with open('event_result.txt', 'r') as file:
+        with open(r"app\event_items\event_result.txt", "r") as file:
             text = file.read().format(
                 result=result)
+
         return text
