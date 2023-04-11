@@ -2,7 +2,7 @@ import json
 import os
 from typing import Dict
 
-from app.battle import fight
+from app.fight import fight
 from app.create_knights_list import create_knights_list
 from app.update_knights_list import update_knights_list
 
