@@ -24,13 +24,9 @@ class UnpreparedKnight:
         print(f"{self.name} prepared his weapon")
 
         if self.potion:
-            if "power" in self.potion["effect"]:
-                self.power += self.potion["effect"]["power"]
-            if "hp" in self.potion["effect"]:
-                self.hp += self.potion["effect"]["hp"]
-            if "protection" in self.potion["effect"]:
-                self.protection += self.potion["effect"]["protection"]
-            print(f"{self.name} activated all his potions")
+            for effect, value in self.potion["effect"].items():
+                setattr(self, effect, getattr(self, effect) + value)
+                print(f"{self.name} activated all his potions")
         else:
             print(f"{self.name} needs no potion for fight")
 

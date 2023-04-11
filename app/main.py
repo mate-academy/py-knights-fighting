@@ -1,13 +1,15 @@
-from app.knights.raw_data import knights
+from app.knights.raw_data import knights_info
 from app.knights.unprepared_knight import UnpreparedKnight
 
 
-def battle(knights: dict) -> dict:
+def battle(knights_info: dict) -> dict:
 
-    lancelot = UnpreparedKnight(knights["lancelot"]).battle_preparation()
-    arthur = UnpreparedKnight(knights["arthur"]).battle_preparation()
-    mordred = UnpreparedKnight(knights["mordred"]).battle_preparation()
-    red_knight = UnpreparedKnight(knights["red_knight"]).battle_preparation()
+    lancelot = UnpreparedKnight(knights_info["lancelot"]).battle_preparation()
+    arthur = UnpreparedKnight(knights_info["arthur"]).battle_preparation()
+    mordred = UnpreparedKnight(knights_info["mordred"]).battle_preparation()
+    red_knight = UnpreparedKnight(
+        knights_info["red_knight"]
+    ).battle_preparation()
 
     return {
         lancelot.name: lancelot.duel(mordred),
@@ -17,4 +19,4 @@ def battle(knights: dict) -> dict:
     }
 
 
-print(battle(knights))
+print(battle(knights_info))
