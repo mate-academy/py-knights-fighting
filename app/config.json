@@ -3,7 +3,7 @@
         "name": "Lancelot",
         "power": 35,
         "hp": 100,
-        "armour": [],
+        "armour": null,
         "weapon": {
             "name": "Metal Sword",
             "power": 50
