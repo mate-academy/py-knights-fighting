@@ -30,17 +30,11 @@ class Knight:
         self.apply_potion()
 
     def battle_vs(self, other_knight: Knight) -> None:
-        if not isinstance(other_knight, Knight):
-            raise TypeError(
-                f"unsupported operand type(s) for -: "
-                f"'Knights' and {type(other_knight)}"
-            )
-
         self.hp -= other_knight.power - self.protection
         other_knight.hp -= self.power - other_knight.protection
+        self.check_hp()
+        other_knight.check_hp()
 
+    def check_hp(self) -> None:
         if self.hp <= 0:
             self.hp = 0
-
-        if other_knight.hp <= 0:
-            other_knight.hp = 0
