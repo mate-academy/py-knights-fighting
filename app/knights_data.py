@@ -1,4 +1,4 @@
-knights = {
+knights_dict = {
     "lancelot": {
         "name": "Lancelot",
         "power": 35,
