@@ -1,6 +1,5 @@
 from typing import Dict, Any
 
-from app.knights_data import knights_dict
 from app.knights_logic import create_knights, duels, tournament_result
 
 
