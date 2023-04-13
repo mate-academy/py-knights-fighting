@@ -3,6 +3,7 @@ from app.methods import Knight
 
 from app.data import KNIGHTS
 
+
 # creating class objects using Knight and Armour classes
 knights = []
 for i, objects in KNIGHTS.items():
@@ -13,10 +14,11 @@ for i, objects in KNIGHTS.items():
                for item in objects["armour"]])
     weapon = objects["weapon"]
     potion = objects["potion"]
+
     knight = Knight(name, power, hp, armour, weapon, potion)
 
-    knight.apply_weapon()
     knight.apply_potion()
+    knight.apply_weapon()
 
     knights.append(knight)
 
