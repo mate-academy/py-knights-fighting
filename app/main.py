@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from app.methods import Armour
 from app.methods import Knight
 
