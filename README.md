@@ -1,6 +1,6 @@
 # Knights Fighting
 
-- Read [the guideline](https://github.com/mate-academy/py-task-guideline/blob/main/README.md) before start
+Read [the guideline](https://github.com/mate-academy/py-task-guideline/blob/main/README.md) before starting.
 
 ## Story
 
@@ -110,3 +110,5 @@ Obligations:
   correctly after all your changes applied to the project.
 
 P.S: You could add your own logic to this project, if you want: just be creative here :)
+
+### Note: Check your code using this [checklist](checklist.md) before pushing your solution.
