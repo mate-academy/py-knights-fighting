@@ -21,13 +21,15 @@ class Knight:
         self.calculate_stats()
 
     def __str__(self) -> str:
-        return f"{'*' * 79}\n" \
-               f"name = {self.name}\n" \
-               f"power = {self.power}\n" \
-               f"hp = {self.hp}\n" \
-               f"armour = {self.armour}\n" \
-               f"weapon = {self.weapon}\n" \
-               f"potion = {self.potion}\n"
+        return (
+            f"{'*' * 79}\n"
+            f"name = {self.name}\n"
+            f"power = {self.power}\n"
+            f"hp = {self.hp}\n"
+            f"armour = {self.armour}\n"
+            f"weapon = {self.weapon}\n"
+            f"potion = {self.potion}\n"
+        )
 
     def calculate_stats(self) -> None:
 
@@ -47,12 +49,14 @@ class Knight:
 
 def create_knights(knight_data_dict: Dict[str, Dict[str, Any]]) -> Knight:
     for knight in knight_data_dict.values():
-        knight_class_obj = Knight(name=knight["name"],
-                                  power=knight["power"],
-                                  hp=knight["hp"],
-                                  armour=knight["armour"],
-                                  weapon=knight["weapon"],
-                                  potion=knight["potion"])
+        knight_class_obj = Knight(
+            name=knight["name"],
+            power=knight["power"],
+            hp=knight["hp"],
+            armour=knight["armour"],
+            weapon=knight["weapon"],
+            potion=knight["potion"]
+        )
         Knight.instances[knight["name"]] = knight_class_obj
     return knight_class_obj
 
