@@ -1,31 +1,26 @@
 import json
 import os
-from typing import Dict
+from typing import Dict, Any
 
 from app.fight import fight
 from app.create_knights_list import create_knights_list
 from app.calculate_knights_stats import calculate_knights_stats
 
 
-def battle(kingdom_knights: Dict[str, dict]) -> Dict[str, int]:
+def battle(kingdom_knights: Dict[str, Any]) -> Dict[str, int]:
     knights_list = create_knights_list(kingdom_knights)
 
     calculate_knights_stats(knights_list)
 
-    lancelot, mordred, artur, red_knight = None, None, None, None
+    knights_dict = {knight.name: knight for knight in knights_list}
 
-    for knight in knights_list:
-        if knight.name == "Lancelot":
-            lancelot = knight
-        if knight.name == "Artur":
-            artur = knight
-        if knight.name == "Mordred":
-            mordred = knight
-        if knight.name == "Red Knight":
-            red_knight = knight
+    lancelot = knights_dict.get("Lancelot")
+    artur = knights_dict.get("Artur")
+    mordred = knights_dict.get("Mordred")
+    red_knight = knights_dict.get("Red Knight")
 
-    fight([lancelot, mordred])
-    fight([artur, red_knight])
+    fight(lancelot, mordred)
+    fight(artur, red_knight)
 
     return {
         lancelot.name: lancelot.hp,

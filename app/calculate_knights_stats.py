@@ -12,7 +12,8 @@ def calculate_knights_stats(knights_list: List[Knight]) -> None:
         our_knight.power += our_knight.weapon["power"]
 
         if our_knight.potion is not None:
-            our_knight.power += our_knight.potion["effect"].get("power", 0)
-            our_knight.hp += our_knight.potion["effect"].get("hp", 0)
-            our_knight.protection += \
-                our_knight.potion["effect"].get("protection", 0)
+            effect = our_knight.potion.get("effect")
+
+            our_knight.power += effect.get("power", 0)
+            our_knight.hp += effect.get("hp", 0)
+            our_knight.protection += effect.get("protection", 0)
