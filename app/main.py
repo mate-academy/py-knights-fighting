@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from app.metods import Armour
-from app.metods import Knight
+from app.methods import Armour
+from app.methods import Knight
 
 from app.data import KNIGHTS
 
@@ -16,11 +16,16 @@ for i, objects in KNIGHTS.items():
                for item in objects["armour"]])
     weapon = objects["weapon"]
     potion = objects["potion"]
+
     knight = Knight(name, power, hp, armour, weapon, potion)
+
+    knight.apply_potion()
+    knight.apply_weapon()
+
     knights.append(knight)
 
 
-def battle(knights) -> str:
+def battle(knights: list[Knight]) -> str:
     # 1 Lancelot vs Mordred:
     damage_to_0 = getattr(knights[2], "power") \
         - knights[0].calculate_total_protection()
