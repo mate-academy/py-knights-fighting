@@ -30,7 +30,11 @@ def battle(knights: list[Knight]) -> str:
     damage_to_2 = getattr(knights[0], "power") \
         - knights[2].calculate_total_protection()
     hp_0 = getattr(knights[0], "hp") - damage_to_0
+    if hp_0 < 0:
+        hp_0 = 0
     hp_2 = getattr(knights[2], "hp") - damage_to_2
+    if hp_2 < 0:
+        hp_2 = 0
 
     # 2 Arthur vs Red Knight:
     damage_to_1 = getattr(knights[3], "power") \
@@ -38,7 +42,11 @@ def battle(knights: list[Knight]) -> str:
     damage_to_3 = getattr(knights[1], "power") \
         - knights[3].calculate_total_protection()
     hp_1 = getattr(knights[1], "hp") - damage_to_1
+    if hp_1 < 0:
+        hp_1 = 0
     hp_3 = getattr(knights[3], "hp") - damage_to_3
+    if hp_3 < 0:
+        hp_3 = 0
 
     result = f"{knights[0].name} dealt {damage_to_2} damage to " \
              f"{knights[2].name}; and has hp after the battle: {hp_0}\n" \
