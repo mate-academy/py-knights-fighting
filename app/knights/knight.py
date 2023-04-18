@@ -16,11 +16,9 @@ class Knight:
 
     def apply_armor(self, armor: list[dict]) -> list[dict]:
         self.protection += sum(part.get("protection") for part in armor)
-        return armor
 
     def apply_weapon(self, weapon: dict) -> dict:
         self.power += weapon.get("power")
-        return weapon
 
     def apply_potion(self, potion: dict[dict]) -> dict[dict]:
         if potion is not None and "effect" in potion:
@@ -30,4 +28,3 @@ class Knight:
                 self.power += potion["effect"]["power"]
             if "protection" in potion["effect"]:
                 self.protection += potion["effect"]["protection"]
-        return potion
