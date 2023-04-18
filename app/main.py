@@ -106,12 +106,16 @@ def create_knight(knight_config: dict[str, Any]) -> dict[str, Knight]:
 def battle(knight_config: dict[str, Any]) -> dict[str, int]:
     ready_knights = create_knight(knight_config)
     print(ready_knights["lancelot"].hp)
+    print(ready_knights["lancelot"].power)
+    print(ready_knights["lancelot"].protection)
     knight_fight(ready_knights["lancelot"], ready_knights["mordred"])
     print(ready_knights["lancelot"].hp)
+    print(ready_knights["lancelot"].power)
+    print(ready_knights["lancelot"].protection)
     knight_fight(ready_knights["arthur"], ready_knights["red_knight"])
     return {
         "Lancelot": ready_knights["lancelot"].hp,
-        "Arthur": ready_knights["arthur"].hp,
+        "Artur": ready_knights["arthur"].hp,
         "Mordred": ready_knights["mordred"].hp,
         "Red Knight": ready_knights["red_knight"].hp
     }

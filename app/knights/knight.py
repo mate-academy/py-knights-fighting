@@ -26,8 +26,8 @@ class Knight:
         if potion is not None and "effect" in potion:
             if "hp" in potion["effect"]:
                 self.hp += potion["effect"]["hp"]
-            elif "power" in potion["effect"]:
+            if "power" in potion["effect"]:
                 self.power += potion["effect"]["power"]
-            elif "protection" in potion["effect"]:
+            if "protection" in potion["effect"]:
                 self.protection += potion["effect"]["protection"]
         return potion
