@@ -24,5 +24,6 @@ def battle(knights_config: dict) -> dict:
     results = {}
     for knight in knights.values():
         results[knight.name] = knight.hp
+        knight.check_hp()
 
     return results
