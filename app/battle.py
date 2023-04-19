@@ -3,26 +3,26 @@ from participant.knight import Knight
 
 def battle(knights_config: dict) -> dict:
     # BATTLE PREPARATIONS:
-    knights = []
+    knights = {}
 
     # create knights and apply equipment
-    for knight in knights_config.values():
-        new_knight = Knight(knight)
+    for name, config in knights_config.items():
+        new_knight = Knight(config)
         new_knight.apply_all_equipment()
-        knights.append(new_knight)
+        knights[name] = new_knight
 
     # -------------------------------------------------------------------------------
     # BATTLE:
 
     # 1 Lancelot vs Mordred:
-    knights[0].battle_vs(knights[2])
+    knights["lancelot"].battle_vs(knights["mordred"])
 
     # 2 Arthur vs Red Knight:
-    knights[1].battle_vs(knights[3])
+    knights["arthur"].battle_vs(knights["red_knight"])
 
     # Return battle results:
     results = {}
-    for knight in knights:
+    for knight in knights.values():
         results[knight.name] = knight.hp
 
     return results
