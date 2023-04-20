@@ -9,14 +9,8 @@ def preparation(knight: dict) -> dict:
 
     # apply potion if exist
     if knight["potion"] is not None:
-        if "power" in knight["potion"]["effect"]:
-            knight["power"] += knight["potion"]["effect"]["power"]
-
-        if "protection" in knight["potion"]["effect"]:
-            knight["protection"] += knight["potion"]["effect"][
-                "protection"]
-
-        if "hp" in knight["potion"]["effect"]:
-            knight["hp"] += knight["potion"]["effect"]["hp"]
-
+        affected_attributes = ["power", "protection", "hp"]
+        for attribute in affected_attributes:
+            if attribute in knight["potion"]["effect"]:
+                knight[attribute] += knight["potion"]["effect"][attribute]
     return knight
