@@ -1,8 +1,9 @@
 def get_equipment(knight: dict) -> dict:
     # apply armour
-    knight["protection"] = 0
+    protection = 0
     for char in knight["armour"]:
-        knight["protection"] += char["protection"]
+        protection += char["protection"]
+    knight["protection"] = protection
 
     # apply weapon
     knight["power"] += knight["weapon"]["power"]
@@ -18,4 +19,4 @@ def get_equipment(knight: dict) -> dict:
         if "hp" in knight["potion"]["effect"]:
             knight["hp"] += knight["potion"]["effect"]["hp"]
 
-        return knight
+    return knight

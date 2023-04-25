@@ -1,23 +1,17 @@
 from app.battle_preparations import get_equipment
 from app.battle import fight
-from app.knights_characteristics import KNIGHTS
 
 
 def battle(knights_config: dict) -> dict:
-    lancelot = knights_config["lancelot"]
-    get_equipment(lancelot)
-    arthur = knights_config["arthur"]
-    get_equipment(arthur)
-    mordred = knights_config["mordred"]
-    get_equipment(mordred)
-    red_knight = knights_config["red_knight"]
-    get_equipment(red_knight)
-    fight(lancelot, mordred)
-    fight(arthur, red_knight)
+    for knight_name, knight_data in knights_config.items():
+        get_equipment(knight_data)
+
+    fights = [("lancelot", "mordred"), ("arthur", "red_knight")]
+    for knight1_name, knight2_name in fights:
+        knight1 = knights_config[knight1_name]
+        knight2 = knights_config[knight2_name]
+        fight(knight1, knight2)
+
     return {
-        lancelot["name"]: lancelot["hp"],
-        arthur["name"]: arthur["hp"],
-        mordred["name"]: mordred["hp"],
-        red_knight["name"]: red_knight["hp"],
+        knight["name"]: knight["hp"] for knight in knights_config.values()
     }
-    print(battle(KNIGHTS))
