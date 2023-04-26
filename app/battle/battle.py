@@ -1,6 +1,6 @@
 class Battle:
     battles_result = {"Lancelot": 0,
-                      "Artur": 0,
+                      "Arthur": 0,
                       "Mordred": 0,
                       "Red Knight": 0}
 
