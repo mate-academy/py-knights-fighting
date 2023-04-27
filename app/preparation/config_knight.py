@@ -1,17 +1,19 @@
 def config_knight(all_knights: dict) -> dict:
-    for person in all_knights.items():
+    knight_dict = {}
+    for name, stats in all_knights.items():
+        knight_dict.update({name: stats})
         # apply armour
-        person[1]["protection"] = 0
-        for armour in person[1]["armour"]:
-            person[1]["protection"] += armour["protection"]
+        stats["protection"] = 0
+        for armour in stats["armour"]:
+            stats["protection"] += armour["protection"]
 
         # apply weapon
-        person[1]["power"] += person[1]["weapon"]["power"]
+        stats["power"] += stats["weapon"]["power"]
 
         # apply potion
-        if person[1]["potion"] is not None:
-            for potion in person[1]["potion"]["effect"]:
-                if potion in person[1]["potion"]["effect"]:
-                    person[1][potion] += person[1]["potion"]["effect"][potion]
+        if stats["potion"] is not None:
+            for potion in stats["potion"]["effect"]:
+                if potion in stats["potion"]["effect"]:
+                    stats[potion] += stats["potion"]["effect"][potion]
 
-    return all_knights
+    return knight_dict

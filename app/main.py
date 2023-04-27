@@ -88,7 +88,10 @@ KNIGHTS = {
 
 
 def fighting(fighters: dict) -> dict:
+    # Preparation
     creation = config_knight(fighters)
+
+    # Battle
     battle(creation)
 
     # Return battle results:
