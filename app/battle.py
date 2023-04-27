@@ -62,4 +62,4 @@ def battle(knightsconfig: dict) -> int:
         arthur["name"]: arthur["hp"],
         mordred["name"]: mordred["hp"],
         red_knight["name"]: red_knight["hp"],
-}
+    }
