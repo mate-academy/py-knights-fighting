@@ -1,8 +1,8 @@
 def battle(knightsconfig: dict) -> int:
     def apply_items(knight: dict) -> int:
         knight["protection"] = 0
-        for aa in knight["armour"]:
-            knight["protection"] += aa["protection"]
+        for armour_list in knight["armour"]:
+            knight["protection"] += armour_list["protection"]
 
         knight["power"] += knight["weapon"]["power"]
 
@@ -62,4 +62,4 @@ def battle(knightsconfig: dict) -> int:
         arthur["name"]: arthur["hp"],
         mordred["name"]: mordred["hp"],
         red_knight["name"]: red_knight["hp"],
-    }
+}
