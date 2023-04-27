@@ -92,7 +92,9 @@ def fighting(fighters: dict) -> dict:
     battle(creation)
 
     # Return battle results:
-    return {creation[knight]["name"]: creation[knight]["hp"] for knight in creation}
+    return {
+        creation[knight]["name"]: creation[knight]["hp"] for knight in creation
+    }
 
 
 print(fighting(KNIGHTS))
