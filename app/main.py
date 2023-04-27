@@ -1,6 +1,6 @@
 from app.preparation.config_knight import config_knight
 from app.battle.fight import battle
-from app.knights import KNIGHTS
+from app.knights_variable import KNIGHTS
 
 
 def fighting(fighters: dict) -> dict:
