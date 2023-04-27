@@ -1,30 +1,24 @@
-from app.preparation.create_knight import Knight
-
-
-def config_knight(all_knights: dict) -> list:
-    knight_list = []
+def config_knight(all_knights: dict) -> dict:
     for knight in all_knights:
-        knight = all_knights[knight]
-        person = Knight(knight["name"], knight["power"], knight["hp"])
-
+        person = all_knights[knight]
+        all_knights.update({knight: person})
         # apply armour
-        person.protection = 0
-        for armour in knight["armour"]:
-            person.protection += armour["protection"]
+        person["protection"] = 0
+        for armour in person["armour"]:
+            person["protection"] += armour["protection"]
 
         # apply weapon
-        person.power += knight["weapon"]["power"]
-        knight_list.append(person)
+        person["power"] += person["weapon"]["power"]
 
         # apply potion
-        if knight["potion"] is not None:
-            if "power" in knight["potion"]["effect"]:
-                person.power += knight["potion"]["effect"]["power"]
+        if person["potion"] is not None:
+            if "power" in person["potion"]["effect"]:
+                person["power"] += person["potion"]["effect"]["power"]
 
-            if "protection" in knight["potion"]["effect"]:
-                person.protection += knight["potion"]["effect"]["protection"]
+            if "protection" in person["potion"]["effect"]:
+                person["protection"] += person["potion"]["effect"]["protection"]
 
-            if "hp" in knight["potion"]["effect"]:
-                person.hp += knight["potion"]["effect"]["hp"]
+            if "hp" in person["potion"]["effect"]:
+                person["hp"] += person["potion"]["effect"]["hp"]
 
-    return knight_list
+    return all_knights
