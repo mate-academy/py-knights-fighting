@@ -25,7 +25,7 @@ def battle(knightsconfig: dict) -> int:
     mordred = apply_items(knightsconfig["mordred"])
     red_knight = apply_items(knightsconfig["red_knight"])
 
-    # BATTLE:
+    # BATTLE :
     # 1 Lancelot vs Mordred:
     fight(lancelot, mordred)
 
