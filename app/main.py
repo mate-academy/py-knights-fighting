@@ -1,14 +1,14 @@
 from app.preparation.config_knight import config_knight
-from app.battle.fight import battle
+from app.battle.fight import fighting
 from app.knights_variable import KNIGHTS
 
 
-def fighting(fighters: dict) -> dict:
+def battle(fighters: dict) -> dict:
     # Preparation
     creation = config_knight(fighters)
 
     # Battle
-    battle(creation)
+    fighting(creation)
 
     # Return battle results:
     return {
@@ -16,4 +16,4 @@ def fighting(fighters: dict) -> dict:
     }
 
 
-print(fighting(KNIGHTS))
+print(battle(KNIGHTS))

@@ -7,7 +7,7 @@ def combat(combatants: dict, name1: str, name2: str) -> None:
     )
 
 
-def battle(battlers: dict) -> None:
+def fighting(battlers: dict) -> None:
     # 1 Lancelot vs Mordred:
     combat(battlers, "lancelot", "mordred")
 
