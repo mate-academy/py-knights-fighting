@@ -12,7 +12,7 @@ class Knight:
         weapon: dict,
         armour: list[dict],
         potion: Optional[dict] = None,
-    ):
+    ) -> None:
         self.name = name
         self._base_power = power
         self.power = self._base_power
