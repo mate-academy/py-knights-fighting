@@ -23,7 +23,7 @@ def battle(resulting_dict: dict) -> dict:
     results.update(arthur.battle(red_knight))
     # Return battle results:
     return {
-        "Artur": results.get(arthur),
+        "Arthur": results.get(arthur),
         "Lancelot": results.get(lancelot),
         "Mordred": results.get(mordred),
         "Red Knight": results.get(red_knight),
