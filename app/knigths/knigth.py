@@ -14,11 +14,11 @@ class Knight:
 
     def get_potion(self, knight: dict) -> None:
         if knight["potion"]:
-            if "power" in knight["potion"]["effect"]:
-                self.power += knight["potion"]["effect"]["power"]
-
-            if "protection" in knight["potion"]["effect"]:
-                self.protection += knight["potion"]["effect"]["protection"]
-
-            if "hp" in knight["potion"]["effect"]:
-                self.hp += knight["potion"]["effect"]["hp"]
+            potion_effect = knight["potion"]["effect"]
+            for effect in potion_effect:
+                if effect == "power":
+                    self.power += potion_effect[effect]
+                if effect == "protection":
+                    self.protection += potion_effect[effect]_
+                if effect == "hp":
+                    self.hp += potion_effect[effect]
