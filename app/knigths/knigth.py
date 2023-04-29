@@ -19,6 +19,6 @@ class Knight:
                 if effect == "power":
                     self.power += potion_effect[effect]
                 if effect == "protection":
-                    self.protection += potion_effect[effect]_
+                    self.protection += potion_effect[effect]
                 if effect == "hp":
                     self.hp += potion_effect[effect]
