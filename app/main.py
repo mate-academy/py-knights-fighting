@@ -116,10 +116,12 @@ def battle(knights_config: dict) -> dict:
     for members in battles:
         members[0].hp -= (members[1].power - members[0].protection)
         members[1].hp -= members[0].power - members[1].protection
-        for position in range(2):
-            if members[position].hp < 0:
-                members[position].hp = 0
-            result_hp[members[position].name] = members[position].hp
+        if members[0].hp < 0:
+            members[0].hp = 0
+        if members[1].hp < 0:
+            members[1].hp = 0
+        result_hp[members[0].name] = members[0].hp
+        result_hp[members[1].name] = members[1].hp
 
     # Results
     return result_hp
