@@ -2,7 +2,7 @@ from app.knights import get_knights
 from app.knights import Knight
 
 
-def battle(resulting_dict):
+def battle(resulting_dict: dict) -> dict:
     results = {}
     # BATTLE PREPARATIONS:
     lancelot = Knight(**resulting_dict["lancelot"])
@@ -30,6 +30,6 @@ def battle(resulting_dict):
     }
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     resulting_dict_ = get_knights()
     battle(resulting_dict_)

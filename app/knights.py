@@ -10,7 +10,11 @@ def get_knights() -> dict:
             45,
             75,
             Weapon("Two-handed Sword", 55),
-            [Armour("helmet", 15), Armour("breastplate", 20), Armour("boots", 10)],
+            [
+                Armour("helmet", 15),
+                Armour("breastplate", 20),
+                Armour("boots", 10),
+            ],
         ),
         "mordred": Knight(
             "Mordred",

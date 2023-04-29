@@ -2,6 +2,7 @@ from typing import Optional
 
 from app.items import Weapon, Armour, Potion
 
+
 class Knight:
     def __init__(
         self,
@@ -23,14 +24,15 @@ class Knight:
         if not armour:
             self.armour = []
         else:
-            self.armour: list[Armour] = [Armour(**armour_item) for armour_item in armour]
+            self.armour: list[Armour] = [Armour(**armour_item)
+                                         for armour_item in armour]
         if not potion:
             self.potion = None
         else:
             self.potion: Potion = Potion(**potion)
         self.apply_stats()
 
-    def apply_stats(self):
+    def apply_stats(self) -> None:
         self.hp = self._base_hp
         self.protection = self._base_protection
         self.power = self._base_power
@@ -48,7 +50,7 @@ class Knight:
             self.power += self.potion.effect.power
             self.protection += self.potion.effect.protection
 
-    def battle(self, enemy):
+    def battle(self, enemy: object) -> None:
         results = {enemy: max(enemy.hp - self.power + enemy.protection, 0)}
         self.hp = max(self.hp - enemy.power + self.protection, 0)
 
@@ -56,5 +58,5 @@ class Knight:
         print(f"{self.name} Battle result: {results}")
         return results
 
-    def __repr__(self):
+    def __repr__(self) -> None:
         return self.name
