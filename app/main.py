@@ -4,29 +4,25 @@ from app.knights import Knight
 
 def battle(resulting_dict: dict) -> dict:
     results = {}
+    knights = {}
     # BATTLE PREPARATIONS:
-    lancelot = Knight(**resulting_dict["lancelot"])
-    lancelot.apply_stats()
-    arthur = Knight(**resulting_dict["arthur"])
-    arthur.apply_stats()
-    mordred = Knight(**resulting_dict["mordred"])
-    mordred.apply_stats()
-    red_knight = Knight(**resulting_dict["red_knight"])
-    red_knight.apply_stats()
+    # print(resulting_dict)
+    for knight_name, knight_stats in resulting_dict.items():
+        knight = Knight(**knight_stats)
+        knight.apply_stats()
+        knights[knight_name] = knight
 
     # -------------------------------------------------------------------------------
     # BATTLE:
 
     # 1 Lancelot vs Mordred:
-    results.update(lancelot.battle(mordred))
+    results.update(knights["lancelot"].battle(knights["mordred"]))
     # 2 Arthur vs Red Knight:
-    results.update(arthur.battle(red_knight))
+    results.update(knights["arthur"].battle(knights["red_knight"]))
     # Return battle results:
     return {
-        "Arthur": results.get(arthur),
-        "Lancelot": results.get(lancelot),
-        "Mordred": results.get(mordred),
-        "Red Knight": results.get(red_knight),
+        str(knight): results.get(knight, {})
+        for knight_name, knight in knights.items()
     }
 
 
