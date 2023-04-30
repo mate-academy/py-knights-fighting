@@ -1,6 +1,6 @@
 from app.info import KNIGHTS
-from app.preparation import preparation
 from app.battle import knight_battle
+from app.preparation import preparation
 
 
 def battle(knights_config: dict) -> dict:
