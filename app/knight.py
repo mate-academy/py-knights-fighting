@@ -2,16 +2,17 @@ from __future__ import annotations
 
 
 class Knight:
-    def __init__(self, ser: dict) -> None:
-        self.name = ser["name"]
-        self.power = ser["power"] + ser["weapon"].get("power")
-        self.hp = ser["hp"]
-        self.protection = sum([armour["protection"]
-                               for armour in ser["armour"]])
-        if ser["potion"] is not None:
-            self.power += ser["potion"].get("effect").get("power", 0)
-            self.hp += ser["potion"].get("effect").get("hp", 0)
-            self.protection += ser["potion"].get("effect").get("protection", 0)
+    def __init__(self, knight: dict) -> None:
+        self.name = knight["name"]
+        self.power = knight["power"] + knight["weapon"].get("power")
+        self.hp = knight["hp"]
+        self.protection = sum(armour["protection"]
+                              for armour in knight["armour"])
+        if knight["potion"] is not None:
+            self.power += knight["potion"].get("effect").get("power", 0)
+            self.hp += knight["potion"].get("effect").get("hp", 0)
+            self.protection += knight["potion"].get("effect").\
+                get("protection", 0)
 
     @staticmethod
     def duel(knight1: Knight, knight2: Knight) -> dict:
