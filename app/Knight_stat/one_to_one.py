@@ -1,17 +1,10 @@
-def one_to_one(knights: list[tuple]) -> list[int]:
-    lancelot_hp_after = knights[0][0] - knights[2][1]
-    mordred_hp_after = knights[2][0] - knights[0][1]
-    if lancelot_hp_after <= 0:
-        lancelot_hp_after += abs(lancelot_hp_after)
-    if mordred_hp_after <= 0:
-        mordred_hp_after += abs(mordred_hp_after)
-    arthur_hp_after = knights[1][0] - knights[3][1]
-    red_knight_hp_after = knights[3][0] - knights[1][1]
-    if arthur_hp_after <= 0:
-        arthur_hp_after += abs(arthur_hp_after)
-    if red_knight_hp_after <= 0:
-        red_knight_hp_after += abs(red_knight_hp_after)
-    return [lancelot_hp_after,
-            arthur_hp_after,
-            mordred_hp_after,
-            red_knight_hp_after]
+def one_to_one(knights: list[dict]) -> list[int]:
+    fight = []
+    fight.append(knights[0]["hp"] - knights[2]["power"])
+    fight.append(knights[1]["hp"] - knights[3]["power"])
+    fight.append(knights[2]["hp"] - knights[0]["power"])
+    fight.append(knights[3]["hp"] - knights[1]["power"])
+    for fighter in range(len(fight)):
+        if fight[fighter] <= 0:
+            fight[fighter] = 0
+    return fight

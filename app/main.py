@@ -7,5 +7,6 @@ def battle(knights_main: dict) -> dict:
     knights = []
     for knight in knights_main.values():
         knights.append(knight_stat(knight))
+    print(knights)
     return {knights_main[knight]["name"]: one_to_one(knights)[number]
             for number, knight in enumerate(knights_main)}

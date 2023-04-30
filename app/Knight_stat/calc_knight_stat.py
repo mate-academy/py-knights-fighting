@@ -1,4 +1,4 @@
-def knight_stat(knight: dict) -> tuple:
+def knight_stat(knight: dict) -> dict:
     hp = 0
     power = 0
     hp += knight["hp"]
@@ -11,4 +11,4 @@ def knight_stat(knight: dict) -> tuple:
                 power += knight["potion"]["effect"]["power"]
             else:
                 hp += knight["potion"]["effect"][potion]
-    return (hp, power)
+    return {"hp": hp, "power": power}
