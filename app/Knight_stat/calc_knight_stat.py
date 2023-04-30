@@ -6,10 +6,9 @@ def knight_stat(knight: dict) -> tuple:
     for armour in knight["armour"]:
         hp += armour["protection"]
     if knight["potion"] is not None:
-        if "power" in knight["potion"]["effect"]:
-            power += knight["potion"]["effect"]["power"]
-        if "protection" in knight["potion"]["effect"]:
-            hp += knight["potion"]["effect"]["protection"]
-        if "hp" in knight["potion"]["effect"]:
-            hp += knight["potion"]["effect"]["hp"]
+        for potion in knight["potion"]["effect"]:
+            if potion == "power":
+                power += knight["potion"]["effect"]["power"]
+            else:
+                hp += knight["potion"]["effect"][potion]
     return (hp, power)
