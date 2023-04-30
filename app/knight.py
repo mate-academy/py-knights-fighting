@@ -19,11 +19,9 @@ class Knight:
         self._base_protection = 0
         self.protection = self._base_protection
         self.weapon: Weapon = Weapon(**weapon)
-        if not armour:
-            self.armour = []
-        else:
-            self.armour: list[Armour] = [Armour(**armour_item)
-                                         for armour_item in armour]
+        self.armour = [
+            Armour(**armour_item) for armour_item in armour
+        ]
         self.potion = None
         if potion is not None:
             self.potion = Potion(**potion)
