@@ -48,7 +48,7 @@ class Knight:
                 attr_value = getattr(self.potion.effect, attr)
                 setattr(self, attr, getattr(self, attr) + attr_value)
 
-    def battle(self, enemy: "Enemy") -> None:
+    def battle(self, enemy: "Knight") -> None:
         results = {self: None, enemy: None}
         enemy_damage = max(enemy.hp - self.power + enemy.protection, 0)
         self_damage = max(self.hp - enemy.power + self.protection, 0)
