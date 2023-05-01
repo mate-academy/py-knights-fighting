@@ -1,12 +1,10 @@
-from app.knights import get_knights
-from app.knights import Knight
+from app.knight import Knight
 
 
 def battle(resulting_dict: dict) -> dict:
     results = {}
     knights = {}
     # BATTLE PREPARATIONS:
-    # print(resulting_dict)
     for knight_name, knight_stats in resulting_dict.items():
         knight = Knight(**knight_stats)
         knight.apply_stats()
@@ -24,8 +22,3 @@ def battle(resulting_dict: dict) -> dict:
         str(knight): results.get(knight, {})
         for knight_name, knight in knights.items()
     }
-
-
-if __name__ == "__main__":
-    resulting_dict_ = get_knights()
-    battle(resulting_dict_)

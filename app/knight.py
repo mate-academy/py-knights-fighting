@@ -19,9 +19,11 @@ class Knight:
         self._base_protection = 0
         self.protection = self._base_protection
         self.weapon: Weapon = Weapon(**weapon)
-        self.armour = [
-            Armour(**armour_item) for armour_item in armour
-        ]
+        if not armour:
+            self.armour = []
+        else:
+            self.armour: list[Armour] = [Armour(**armour_item)
+                                         for armour_item in armour]
         self.potion = None
         if potion is not None:
             self.potion = Potion(**potion)
@@ -48,15 +50,12 @@ class Knight:
                 attr_value = getattr(self.potion.effect, attr)
                 setattr(self, attr, getattr(self, attr) + attr_value)
 
-    def battle(self, enemy: "Knight") -> None:
-        results = {self: None, enemy: None}
-        enemy_damage = max(enemy.hp - self.power + enemy.protection, 0)
-        self_damage = max(self.hp - enemy.power + self.protection, 0)
-        results[self] = self_damage
-        results[enemy] = enemy_damage
-        self.hp = max(self.hp - enemy_damage, 0)
-        enemy.hp = max(enemy.hp - self_damage, 0)
-        print(f"{self.name} Battle {enemy.name} result: {results}")
+    def battle(self, enemy: object) -> None:
+        results = {enemy: max(enemy.hp - self.power + enemy.protection, 0)}
+        self.hp = max(self.hp - enemy.power + self.protection, 0)
+
+        results[self] = self.hp
+        print(f"{self.name} Battle result: {results}")
         return results
 
     def __repr__(self) -> None:
