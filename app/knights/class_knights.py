@@ -31,14 +31,13 @@ class Knight:
     # apply potion if exist
     def apply_potion(self) -> None:
         if self.potion is not None:
-            if "power" in self.potion["effect"]:
-                self.power += self.potion["effect"]["power"]
-
-            if "protection" in self.potion["effect"]:
-                self.protection += self.potion["effect"]["protection"]
-
-            if "hp" in self.potion["effect"]:
-                self.hp += self.potion["effect"]["hp"]
+            for effect, value in self.potion["effect"].items():
+                if effect == "power":
+                    self.power += value
+                if effect == "protection":
+                    self.protection += value
+                if effect == "hp":
+                    self.hp += value
 
     def battle(self, other: Knight) -> None:
         self.hp -= other.power - self.protection
