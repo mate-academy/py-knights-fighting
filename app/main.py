@@ -121,49 +121,29 @@ class Knight:
             if "hp" in self.potion["effect"]:
                 self.hp += self.potion["effect"]["hp"]
 
+    def check_fall(self) -> None:
+        if self.hp <= 0:
+            self.hp = 0
+
 
 def battle(knightsconfig: dict) -> dict:
     # BATTLE PREPARATIONS:
-
     # lancelot
-    lancelot = Knight(knightsconfig["lancelot"]["name"],
-                      knightsconfig["lancelot"]["power"],
-                      knightsconfig["lancelot"]["hp"],
-                      knightsconfig["lancelot"]["armour"],
-                      knightsconfig["lancelot"]["weapon"],
-                      knightsconfig["lancelot"]["potion"])
+    knights = {}
+    for key, value in knightsconfig.items():
+        knight = Knight(value.get("name"),
+                        value.get("power"),
+                        value.get("hp"),
+                        value.get("armour"),
+                        value.get("weapon"),
+                        value.get("potion"))
+        knight.preparation()
+        knights[key] = knight
 
-    lancelot.preparation()
-
-    # arthur
-    arthur = Knight(knightsconfig["arthur"]["name"],
-                    knightsconfig["arthur"]["power"],
-                    knightsconfig["arthur"]["hp"],
-                    knightsconfig["arthur"]["armour"],
-                    knightsconfig["arthur"]["weapon"],
-                    knightsconfig["arthur"]["potion"])
-
-    arthur.preparation()
-
-    # mordred
-    mordred = Knight(knightsconfig["mordred"]["name"],
-                     knightsconfig["mordred"]["power"],
-                     knightsconfig["mordred"]["hp"],
-                     knightsconfig["mordred"]["armour"],
-                     knightsconfig["mordred"]["weapon"],
-                     knightsconfig["mordred"]["potion"])
-
-    mordred.preparation()
-
-    # red_knight
-    red_knight = Knight(knightsconfig["red_knight"]["name"],
-                        knightsconfig["red_knight"]["power"],
-                        knightsconfig["red_knight"]["hp"],
-                        knightsconfig["red_knight"]["armour"],
-                        knightsconfig["red_knight"]["weapon"],
-                        knightsconfig["red_knight"]["potion"])
-
-    red_knight.preparation()
+    lancelot = knights.get("lancelot")
+    arthur = knights.get("arthur")
+    mordred = knights.get("mordred")
+    red_knight = knights.get("red_knight")
 
     # -------------------------------------------------------------------------------
     # BATTLE:
@@ -172,21 +152,17 @@ def battle(knightsconfig: dict) -> dict:
     lancelot.hp -= mordred.power - lancelot.protection
     mordred.hp -= lancelot.power - mordred.protection
     # check if someone fell in battle
-    if lancelot.hp <= 0:
-        lancelot.hp = 0
+    lancelot.check_fall()
 
-    if mordred.hp <= 0:
-        mordred.hp = 0
+    mordred.check_fall()
 
     # 2 Arthur vs Red Knight:
     arthur.hp -= red_knight.power - arthur.protection
     red_knight.hp -= arthur.power - red_knight.protection
     # check if someone fell in battle
-    if arthur.hp <= 0:
-        arthur.hp = 0
+    arthur.check_fall()
 
-    if red_knight.hp <= 0:
-        red_knight.hp = 0
+    red_knight.check_fall()
 
     # Return battle results:
     return {
