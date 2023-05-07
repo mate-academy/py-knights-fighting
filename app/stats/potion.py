@@ -14,16 +14,16 @@ class Potion:
         self.hp = hp
         self.power = power
 
-    @staticmethod
-    def potion_registration(
-            knights_potion: Optional[dict] = None
-    ) -> Union["Potion", None]:
+    @classmethod
+    def potion_registration(cls,
+                            knights_potion: Optional[dict] = None
+                            ) -> Union["Potion", None]:
         if knights_potion is not None:
             effect = knights_potion["effect"]
             protection = effect["protection"] if "protection" in effect else 0
             hp = effect["hp"] if "hp" in effect else 0
             power = effect["power"] if "power" in effect else 0
-            return Potion(
+            return cls(
                 name=knights_potion["name"],
                 protection=protection,
                 hp=hp,

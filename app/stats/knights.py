@@ -25,17 +25,16 @@ class Knights:
         self.potion = potion
         Knights.knights[name] = self
 
-    @staticmethod
-    def registration(knights: dict) -> "Knights":
-        for knight, stat in knights.items():
-            Knights(
-                name=stat["name"],
-                power=stat["power"],
-                hp=stat["hp"],
-                armour=Armour.armour_registration(stat["armour"]),
-                weapon=Weapon.weapon_registration(stat["weapon"]),
-                potion=Potion.potion_registration(stat["potion"])
-            )
+    @classmethod
+    def registration(cls, knights: dict) -> list:
+        return [cls(
+            name=stat["name"],
+            power=stat["power"],
+            hp=stat["hp"],
+            armour=Armour.armour_registration(stat["armour"]),
+            weapon=Weapon.weapon_registration(stat["weapon"]),
+            potion=Potion.potion_registration(stat["potion"]))
+            for knight, stat in knights.items()]
 
     def apply_armour(self) -> int:
         for armour in self.armour:
@@ -59,6 +58,6 @@ class Knights:
     @staticmethod
     def battle_preparations(knights: list["Knights"]) -> None:
         for knight in knights:
-            knight.protection = Knights.apply_armour(knight)
-            knight.power = Knights.apply_weapon(knight)
-            Knights.apply_potion(knight)
+            knight.protection = knight.apply_armour()
+            knight.power = knight.apply_weapon()
+            knight.apply_potion()

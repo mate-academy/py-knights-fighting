@@ -3,6 +3,6 @@ class Weapon:
         self.name = name
         self.power = power
 
-    @staticmethod
-    def weapon_registration(knights_weapons: dict) -> "Weapon":
-        return Weapon(knights_weapons["name"], knights_weapons["power"])
+    @classmethod
+    def weapon_registration(cls, knights_weapons: dict) -> "Weapon":
+        return cls(knights_weapons["name"], knights_weapons["power"])
