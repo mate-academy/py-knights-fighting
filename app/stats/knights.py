@@ -1,3 +1,4 @@
+from typing import Optional
 from app.stats.armor import Armour
 from app.stats.weapon import Weapon
 from app.stats.potion import Potion
@@ -11,9 +12,9 @@ class Knights:
             name: str,
             power: int,
             hp: int,
-            armour: list["Armour"] = None,
-            weapon: "Weapon" = None,
-            potion: "Potion" = None
+            armour: Optional[list[Armour]] = None,
+            weapon: Optional[Weapon] = None,
+            potion: Optional[Potion] = None
     ) -> None:
         self.protection = 0
         self.name = name

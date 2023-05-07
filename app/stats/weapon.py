@@ -4,5 +4,5 @@ class Weapon:
         self.power = power
 
     @staticmethod
-    def weapon_registration(knights_weapons: dir) -> "Weapon":
+    def weapon_registration(knights_weapons: dict) -> "Weapon":
         return Weapon(knights_weapons["name"], knights_weapons["power"])
