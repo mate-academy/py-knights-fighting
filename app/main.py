@@ -91,12 +91,12 @@ knights = {
 
 def battle(knights_config: dict) -> dict:
     # BATTLE PREPARATIONS:
-    Knights.registration(knights_config)
+    knights_register = Knights.registration(knights_config)
 
-    lancelot = Knights.knights["Lancelot"]
-    arthur = Knights.knights["Arthur"]
-    mordred = Knights.knights["Mordred"]
-    red_knight = Knights.knights["Red Knight"]
+    lancelot = knights_register["Lancelot"]
+    arthur = knights_register["Arthur"]
+    mordred = knights_register["Mordred"]
+    red_knight = knights_register["Red Knight"]
 
     Knights.battle_preparations([lancelot, arthur, mordred, red_knight])
 
@@ -104,22 +104,18 @@ def battle(knights_config: dict) -> dict:
     # BATTLE:
 
     # 1 Lancelot vs Mordred:
-    lancelot.hp -= mordred.power - lancelot.protection
-    mordred.hp -= lancelot.power - mordred.protection
+    lancelot.fight_vs(mordred)
 
     # check if someone fell in battle
-    Knights.battle_check(lancelot)
-
-    Knights.battle_check(mordred)
+    lancelot.battle_check()
+    mordred.battle_check()
 
     # 2 Arthur vs Red Knight:
-    arthur.hp -= red_knight.power - arthur.protection
-    red_knight.hp -= arthur.power - red_knight.protection
+    arthur.fight_vs(red_knight)
 
     # check if someone fell in battle
-    Knights.battle_check(arthur)
-
-    Knights.battle_check(red_knight)
+    arthur.battle_check()
+    red_knight.battle_check()
 
     # Return battle results:
     return {

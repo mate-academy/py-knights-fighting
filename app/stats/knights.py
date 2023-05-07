@@ -5,8 +5,6 @@ from app.stats.potion import Potion
 
 
 class Knights:
-    knights = {}
-
     def __init__(
             self,
             name: str,
@@ -23,27 +21,24 @@ class Knights:
         self.armour = armour
         self.weapon = weapon
         self.potion = potion
-        Knights.knights[name] = self
 
     @classmethod
-    def registration(cls, knights: dict) -> list:
-        return [cls(
+    def registration(cls, knights: dict) -> dict:
+        return {stat["name"]: cls(
             name=stat["name"],
             power=stat["power"],
             hp=stat["hp"],
             armour=Armour.armour_registration(stat["armour"]),
             weapon=Weapon.weapon_registration(stat["weapon"]),
             potion=Potion.potion_registration(stat["potion"]))
-            for knight, stat in knights.items()]
+            for knight, stat in knights.items()}
 
-    def apply_armour(self) -> int:
+    def apply_armour(self) -> None:
         for armour in self.armour:
             self.protection += armour.protection
-        return self.protection
 
-    def apply_weapon(self) -> int:
+    def apply_weapon(self) -> None:
         self.power += self.weapon.power
-        return self.power
 
     def apply_potion(self) -> None:
         if self.potion is not None:
@@ -58,6 +53,10 @@ class Knights:
     @staticmethod
     def battle_preparations(knights: list["Knights"]) -> None:
         for knight in knights:
-            knight.protection = knight.apply_armour()
-            knight.power = knight.apply_weapon()
+            knight.apply_armour()
+            knight.apply_weapon()
             knight.apply_potion()
+
+    def fight_vs(self, other: "Knights") -> None:
+        self.hp -= other.power - self.protection
+        other.hp -= self.power - other.protection

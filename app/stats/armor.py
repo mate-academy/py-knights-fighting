@@ -3,8 +3,8 @@ class Armour:
         self.part = part
         self.protection = protection
 
-    @staticmethod
-    def armour_registration(knights_armour: list[dict]) -> list["Armour"]:
+    @classmethod
+    def armour_registration(cls, knights_armour: list[dict]) -> list["Armour"]:
         return [
-            Armour(part["part"], part["protection"]) for part in knights_armour
+            cls(part["part"], part["protection"]) for part in knights_armour
         ]
