@@ -35,8 +35,8 @@ def apply_items(knight: dict) -> int:
 
     # apply potion if exists
     if knight["potion"] is not None:
-        for key in knight["potion"]["effect"]:
-            if key in knight:
-                knight[key] += knight["potion"]["effect"][key]
+        for main_stats in knight["potion"]["effect"]:
+            if main_stats in knight:
+                knight[main_stats] += knight["potion"]["effect"][main_stats]
 
     return knight
