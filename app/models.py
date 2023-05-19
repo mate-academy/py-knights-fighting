@@ -1,34 +1,40 @@
-from dataclasses import dataclass
 from typing import Any
 
 
-@dataclass
 class Knight:
-    name: str
-    human_power: int
-    human_hp: int
-    armour: list[dict]
-    weapon: dict
-    potion: dict or None
+
+    def __init__(self, config: dict) -> None:
+        self.name = config["name"]
+        self.human_power = config["power"]
+        self.human_hp = config["hp"]
+        self.armour = config["armour"]
+        self.weapon = config["weapon"]
+        self.potion = config["potion"]
 
     def __setattr__(self, key: str, value: Any) -> None:
         if key == "human_hp" and value < 0:
             value = 0
         self.__dict__[key] = value
+        print(type(self.name))
+
+    def effect_calculation(self, suma: int, attribute: str) -> int:
+        if self.potion is not None and self.potion["effect"].get(attribute):
+            return suma + self.potion["effect"][attribute]
+        return suma
 
     def protection(self) -> int:
         sum_prot = sum([armour["protection"] for armour in self.armour])
-        if self.potion is not None and self.potion["effect"].get("protection"):
-            return sum_prot + self.potion["effect"]["protection"]
-        return sum_prot
+        return self.effect_calculation(
+            suma=sum_prot, attribute="protection"
+        )
 
     def power(self) -> int:
         sum_power = self.human_power + self.weapon["power"]
-        if self.potion is not None and self.potion["effect"].get("power"):
-            return sum_power + self.potion["effect"]["power"]
-        return sum_power
+        return self.effect_calculation(
+            suma=sum_power, attribute="power"
+        )
 
     def hp(self) -> int:
-        if self.potion is not None and self.potion["effect"].get("hp"):
-            return self.human_hp + self.potion["effect"]["hp"]
-        return self.human_hp
+        return self.effect_calculation(
+            suma=self.human_hp, attribute="hp"
+        )

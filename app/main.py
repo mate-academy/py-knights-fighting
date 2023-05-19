@@ -9,28 +9,21 @@ def create_fighters() -> dict:
     return config
 
 
+def duel(first: Knight, second: Knight) -> None:
+    first.human_hp = first.hp() - (second.power() - first.protection())
+    second.human_hp = second.hp() - (first.power() - second.protection())
+
+
 def battle(configuration: dict) -> dict:
-    data = {name: Knight(
-        name=configuration[name]["name"],
-        human_power=configuration[name]["power"],
-        human_hp=configuration[name]["hp"],
-        armour=configuration[name]["armour"],
-        weapon=configuration[name]["weapon"],
-        potion=configuration[name]["potion"],
-    ) for name in configuration}
+    data = {name: Knight(value) for name, value in configuration.items()}
 
     lancelot = data["lancelot"]
     mordred = data["mordred"]
     arthur = data["arthur"]
     red_knight = data["red_knight"]
 
-    lancelot.human_hp = \
-        lancelot.hp() - (mordred.power() - lancelot.protection())
-    mordred.human_hp = mordred.hp() - (lancelot.power() - mordred.protection())
-
-    arthur.human_hp = arthur.hp() - (red_knight.power() - arthur.protection())
-    red_knight.human_hp = \
-        red_knight.hp() - (arthur.power() - red_knight.protection())
+    duel(lancelot, mordred)
+    duel(arthur, red_knight)
 
     return {
         lancelot.name: lancelot.human_hp,
