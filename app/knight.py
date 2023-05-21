@@ -17,11 +17,8 @@ class Knight:
 
     def apply_equipment(self) -> None:
         self.protection = sum(
-            [
-                armour.get("protection")
-                for armour
-                in self.armour
-            ]
+            armour.get("protection")
+            for armour in self.armour
         )
         self.power += self.weapon.get("power")
         if self.potion:
