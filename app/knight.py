@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 
-class Chivalry:
+class Knight:
 
     def __init__(
             self,
@@ -17,22 +17,31 @@ class Chivalry:
 
     def apply_equipment(self) -> None:
         self.protection = sum(
-            [armour.get("protection") for armour in self.armour]
+            [
+                armour.get("protection")
+                for armour
+                in self.armour
+            ]
         )
         self.power += self.weapon.get("power")
         if self.potion:
             for key in self.potion["effect"]:
-                self.__dict__[key] += self.potion["effect"][key]
+                setattr(self, key, getattr(self, key)
+                        + self.potion["effect"][key])
 
-    def duel(self, other: Chivalry) -> None:
+    def duel(self, other: Knight) -> dict:
         self.apply_equipment()
         other.apply_equipment()
-        self.hp = Chivalry.health_checker(
+        self.hp = Knight.health_checker(
             self.hp - (other.power - self.protection)
         )
-        other.hp = Chivalry.health_checker(
+        other.hp = Knight.health_checker(
             other.hp - (self.power - other.protection)
         )
+        return {
+            self.name: self.hp,
+            other.name: other.hp
+        }
 
     @staticmethod
     def health_checker(hp: int) -> int:
