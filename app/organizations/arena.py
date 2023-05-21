@@ -16,4 +16,4 @@ def fight(first_name: str, second_name: str) -> None:
     for everybody in (knight_first, knight_second):
         if everybody.hp < 0:
             everybody.hp = 0
-        everybody.__class__.fighters.append(everybody)
+        Participant.fighters.append(everybody)
