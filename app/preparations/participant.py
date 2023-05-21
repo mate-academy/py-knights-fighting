@@ -17,7 +17,7 @@ class Participant:
         self.name = name
         self.power = power
         self.hp = hp
-        self.__class__.people[name] = self
+        self.people[name] = self
         self.extras = []
         self.weapon = None
         self.armors = {}
