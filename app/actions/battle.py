@@ -1,42 +1,34 @@
-from app.people.knight import Knight
+from app.actions.calculation import calculation
 
 
-def attack(knight1: "Knight", knight2: "Knight") -> int:
-    if knight2.battle_stats["power"] <= knight1.battle_stats["protection"]:
-        return knight1.battle_stats["hp"]
-    elif knight1.battle_stats["hp"] \
-            - knight2.battle_stats["power"] \
-            + knight1.battle_stats["protection"] <= 0:
-        return 0
-    else:
-        return knight1.battle_stats["hp"] \
-            - knight2.battle_stats["power"] \
-            + knight1.battle_stats["protection"]
+def duel(knight1: dict, knight2: dict) -> None:
+    knight1["hp"] -= knight2["power"] - knight1["protection"]
+    knight2["hp"] -= knight1["power"] - knight2["protection"]
+
+    if knight1["hp"] <= 0:
+        knight1["hp"] = 0
+
+    if knight2["hp"] <= 0:
+        knight2["hp"] = 0
 
 
 # preset battle
-def battle(dict_of_knights: dict) -> dict:
-    list_of_knight_instances = []
-    for knight_key, knight_data in dict_of_knights.items():
-        knight = Knight(knight_data["name"],
-                        knight_data["power"],
-                        knight_data["hp"],
-                        knight_data["armour"],
-                        knight_data["weapon"],
-                        knight_data["potion"])
-        list_of_knight_instances.append(knight)
-    lancelot = list_of_knight_instances[0]
-    arthur = list_of_knight_instances[1]
-    mordred = list_of_knight_instances[2]
-    red_knight = list_of_knight_instances[3]
+def battle(knight_dict: dict) -> dict:
+    lancelot = knight_dict["lancelot"]
+    arthur = knight_dict["arthur"]
+    mordred = knight_dict["mordred"]
+    red_knight = knight_dict["red_knight"]
+    knights = [lancelot, arthur, mordred, red_knight]
 
-    # returns hp of knight1 after hit from knight2
+    for knight in knights:
+        calculation(knight)
 
-    result_of_battle = {
-        lancelot.name: attack(lancelot, mordred),
-        arthur.name: attack(arthur, red_knight),
-        mordred.name: attack(mordred, lancelot),
-        red_knight.name: attack(red_knight, arthur)
+    duel(lancelot, mordred)
+    duel(arthur, red_knight)
+
+    return {
+        lancelot["name"]: lancelot["hp"],
+        arthur["name"]: arthur["hp"],
+        mordred["name"]: mordred["hp"],
+        red_knight["name"]: red_knight["hp"],
     }
-
-    return result_of_battle
