@@ -27,8 +27,5 @@ def battle(knight_dict: dict) -> dict:
     duel(arthur, red_knight)
 
     return {
-        lancelot["name"]: lancelot["hp"],
-        arthur["name"]: arthur["hp"],
-        mordred["name"]: mordred["hp"],
-        red_knight["name"]: red_knight["hp"],
+        knight["name"]: knight["hp"] for knight in knights
     }
