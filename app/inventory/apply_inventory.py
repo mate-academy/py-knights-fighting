@@ -1,10 +1,9 @@
 from app.knights.knights import KNIGHTS
-from typing import List
 
 
 class Inventory:
     @staticmethod
-    def inventory_application(knights: List[KNIGHTS]) -> None:
+    def inventory_application(knights: KNIGHTS) -> None:
         for knight in knights:
 
             knight["protection"] = 0
