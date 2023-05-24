@@ -5,7 +5,7 @@ from app.attributes_of_knights.potion import Potion
 
 class Knight:
     def __init__(self, name: str, power: int,
-                 hp: int, armour: list,
+                 hp: int, armour: list[dict],
                  weapon: dict, potion: dict) -> None:
         self.name = name
         self.power = power
@@ -24,8 +24,9 @@ class Knight:
         return protection
 
     def calculate_power(self) -> int:
-        power = self.power + self.weapon.power \
-            if self.weapon.power else self.power
+        power = self.power
+        if self.weapon and self.weapon.power:
+            power += self.weapon.power
         if self.potion and self.potion.effect.get("power"):
             power += self.potion.effect.get("power")
         return power
