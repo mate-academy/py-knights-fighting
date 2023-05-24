@@ -2,7 +2,7 @@ from app.attributes_of_knights.knights import Knight
 from app.config.knights import KNIGHTS
 
 
-def prepare_knights(knights_data) -> dict:
+def prepare_knights(knights_data: dict) -> dict:
     prepared_knights = {}
     for knight_name, knight_data in knights_data.items():
         knight = Knight(
@@ -27,7 +27,7 @@ def prepare_knights(knights_data) -> dict:
     return prepared_knights
 
 
-def battle(knights_data) -> dict:
+def battle(knights_data: dict) -> dict:
     prepared_knights = prepare_knights(knights_data)
 
     # -------------------------------------------------------------------------------
