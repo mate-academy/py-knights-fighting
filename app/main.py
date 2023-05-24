@@ -1,9 +1,11 @@
+from typing import Dict
+
 from app.knights.knights import KNIGHTS
 from app.battle.battle_logic import Battle
 from app.inventory.apply_inventory import Inventory
 
 
-def battle(knights_config: dict) -> dict:
+def battle(knights_config: Dict[str, dict]) -> dict:
     # BATTLE PREPARATIONS:
 
     # lancelot
