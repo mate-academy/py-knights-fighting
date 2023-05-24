@@ -1,6 +1,6 @@
-from weapon import Weapon
-from armour import Armour
-from potion import Potion
+from app.attributes_of_knights.weapon import Weapon
+from app.attributes_of_knights.armour import Armour
+from app.attributes_of_knights.potion import Potion
 
 
 class Knight:
