@@ -20,5 +20,8 @@ arthur_config = {
         "name": "Two-handed Sword",
         "power": 55,
     },
-    "potion": None,
+    "potion": {
+        "name": "No Potion",
+        "effect": {}
+    }
 }

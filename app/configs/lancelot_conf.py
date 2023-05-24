@@ -7,5 +7,8 @@ lancelot_config = {
         "name": "Metal Sword",
         "power": 50,
     },
-    "potion": None,
+    "potion": {
+        "name": "No Potion",
+        "effect": {}
+    }
 }

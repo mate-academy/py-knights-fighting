@@ -25,4 +25,3 @@ mordred_config = {
         }
     }
 }
-
