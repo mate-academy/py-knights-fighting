@@ -6,8 +6,10 @@ class Knight:
         self.name = knight["name"]
         self.power = knight["power"] + knight["weapon"]["power"]
         self.hp = knight["hp"]
-        self.protection = sum([armour["protection"]
-                               for armour in knight["armour"]])
+        self.protection = sum(
+            [armour["protection"] for armour in knight["armour"]]
+        )
+
         if knight["potion"]:
             effect = knight["potion"]["effect"]
             self.power += effect.get("power", 0)
