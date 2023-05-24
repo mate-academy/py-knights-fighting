@@ -32,6 +32,6 @@ class Knight:
 
     def calculate_hp(self) -> int:
         hp = self.hp
-        if self.potion.effect.get("hp"):
+        if self.potion and self.potion.effect.get("hp"):
             hp += self.potion.effect.get("hp")
         return hp

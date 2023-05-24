@@ -1,20 +1,41 @@
-from app.preparation_for_battle.prepare_lancelot import prepare_lancelot
-from app.preparation_for_battle.prepare_arthur import prepare_arthur
-from app.preparation_for_battle.prepare_mordered import prepare_mordred
-from app.preparation_for_battle.prepare_red_knight import prepare_red_knight
+from app.attributes_of_knights.knights import Knight
+from app.config.knights import KNIGHTS
 
 
-def battle() -> dict:
-    # Prepare knights
-    lancelot = prepare_lancelot()
-    arthur = prepare_arthur()
-    mordred = prepare_mordred()
-    red_knight = prepare_red_knight()
+def prepare_knights(knights_data) -> dict:
+    prepared_knights = {}
+    for knight_name, knight_data in knights_data.items():
+        knight = Knight(
+            name=knight_data["name"],
+            power=knight_data["power"],
+            hp=knight_data["hp"],
+            armour=knight_data["armour"],
+            weapon=knight_data["weapon"],
+            potion=knight_data["potion"]
+        )
+        # Apply armour
+        knight.protection = knight.calculate_protection()
+
+        # Apply weapon
+        knight.power = knight.calculate_power()
+
+        # Apply hp
+        knight.hp = knight.calculate_hp()
+
+        prepared_knights[knight_name] = knight
+
+    return prepared_knights
+
+
+def battle(knights_data) -> dict:
+    prepared_knights = prepare_knights(knights_data)
 
     # -------------------------------------------------------------------------------
     # BATTLE:
 
     # 1 Lancelot vs Mordred:
+    lancelot = prepared_knights["lancelot"]
+    mordred = prepared_knights["mordred"]
     lancelot.hp -= mordred.power - lancelot.protection
     mordred.hp -= lancelot.power - mordred.protection
 
@@ -26,6 +47,8 @@ def battle() -> dict:
         mordred.hp = 0
 
     # 2 Arthur vs Red Knight:
+    arthur = prepared_knights["arthur"]
+    red_knight = prepared_knights["red_knight"]
     arthur.hp -= red_knight.power - arthur.protection
     red_knight.hp -= arthur.power - red_knight.protection
 
@@ -45,4 +68,4 @@ def battle() -> dict:
     }
 
 
-print(battle())
+print(battle(KNIGHTS))
