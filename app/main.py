@@ -10,6 +10,7 @@ KNIGHTS = {
         },
         "potion": None,
     },
+
     "arthur": {
         "name": "Arthur",
         "power": 45,
