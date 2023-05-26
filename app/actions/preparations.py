@@ -9,12 +9,5 @@ def prepare(character: dict) -> None:
 
     # apply potion if exist
     if character["potion"] is not None:
-        if "power" in character["potion"]["effect"]:
-            character["power"] += character["potion"]["effect"]["power"]
-
-        if "protection" in character["potion"]["effect"]:
-            character["protection"] \
-                += character["potion"]["effect"]["protection"]
-
-        if "hp" in character["potion"]["effect"]:
-            character["hp"] += character["potion"]["effect"]["hp"]
+        for key in character["potion"]["effect"]:
+            character[key] += character["potion"]["effect"][key]

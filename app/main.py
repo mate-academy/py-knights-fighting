@@ -8,33 +8,28 @@ from app.actions.fight import fight
 
 
 def battle(knightsconfig: dict) -> dict:
-    lancelot = knightsconfig["lancelot"]
-    prepare(lancelot)
 
-    arthur = knightsconfig["arthur"]
-    prepare(arthur)
+    knights = [knightsconfig["lancelot"],
+               knightsconfig["arthur"],
+               knightsconfig["mordred"],
+               knightsconfig["red_knight"]]
 
-    mordred = knightsconfig["mordred"]
-    prepare(mordred)
-
-    red_knight = knightsconfig["red_knight"]
-    prepare(red_knight)
+    for knight in knights:
+        prepare(knight)
 
     # -------------------------------------------------------------------------------
     # BATTLE:
 
     # 1 Lancelot vs Mordred:
-    fight(lancelot, mordred)
+    fight(knights[0], knights[2])
 
     # 2 Arthur vs Red Knight:
-    fight(arthur, red_knight)
+    fight(knights[1], knights[3])
 
     # Return battle results:
     return {
-        lancelot["name"]: lancelot["hp"],
-        arthur["name"]: arthur["hp"],
-        mordred["name"]: mordred["hp"],
-        red_knight["name"]: red_knight["hp"],
+        knight["name"]: knight["hp"]
+        for knight in knights
     }
 
 
