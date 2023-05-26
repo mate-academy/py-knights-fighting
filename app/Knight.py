@@ -1,5 +1,4 @@
 from __future__ import annotations
-from app.Knight_data import KNIGHTS
 
 
 class Knight:
@@ -29,25 +28,20 @@ class Knight:
                 self.hp += self.potion["effect"]["hp"]
 
     def __repr__(self) -> str:
-        return f"{self.name} = " \
-               f"'hp': {self.hp}, " \
-               f"'power': {self.power}, " \
-               f"'protection': {self.protection}"
+        return (
+            f"{self.name} = 'hp': {self.hp},"
+            f" 'power': {self.power},"
+            f" 'protection': {self.protection}"
+        )
 
     def duel(self, opponent: Knight) -> dict:
-        shot1 = self.power - opponent.protection
-        shot2 = opponent.power - self.protection
-        self.hp -= shot2
-        opponent.hp -= shot1
-        if self.hp < 0:
-            self.hp = 0
-        if opponent.hp < 0:
-            opponent.hp = 0
+        opponent.hp -= self.power - opponent.protection
+        self.hp -= opponent.power - self.protection
+
+        self.hp = max(0, self.hp)
+        opponent.hp = max(0, opponent.hp)
+
         return {
             self.name: self.hp,
             opponent.name: opponent.hp
         }
-
-
-lancelot = Knight(KNIGHTS["lancelot"])
-mordred = Knight(KNIGHTS["mordred"])
