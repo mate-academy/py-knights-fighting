@@ -1,7 +1,4 @@
-from app.knights.red_knight import red_knight
-from app.knights.mordred import mordred
-from app.knights.arthur import arthur
-from app.knights.lancelot import lancelot
+from app.knights import KNIGHTS
 
 from app.actions.preparations import prepare
 from app.actions.fight import fight
@@ -33,7 +30,7 @@ def battle(knightsconfig: dict) -> dict:
     }
 
 
-print(battle({"lancelot": lancelot,
-              "arthur": arthur,
-              "mordred": mordred,
-              "red_knight": red_knight}))
+print(battle({"lancelot": KNIGHTS["lancelot"],
+              "arthur": KNIGHTS["arthur"],
+              "mordred": KNIGHTS["mordred"],
+              "red_knight": KNIGHTS["red_knight"]}))
