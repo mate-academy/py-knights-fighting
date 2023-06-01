@@ -1,33 +1,22 @@
-from typing import Dict
-
-from app.knights.knights import KNIGHTS
-from app.battle.battle_logic import Battle
-from app.inventory.apply_inventory import Inventory
+from app.knights.config import KNIGHTS
+from app.knights.knight import Knight
+from app.battle.battle import Battle
 
 
-def battle(knights_config: Dict[str, dict]) -> dict:
+def battle(knight_config: dict) -> dict:
 
-    lancelot = knights_config["lancelot"]
-    Inventory.inventory_application([lancelot])
+    knight_dict = {}
 
-    arthur = knights_config["arthur"]
-    Inventory.inventory_application([arthur])
+    for name, value in knight_config.items():
+        knight = Knight(**value)
+        knight_dict[name] = knight
 
-    mordred = knights_config["mordred"]
-    Inventory.inventory_application([mordred])
+    Battle.battle(knight_dict["lancelot"], knight_dict["mordred"])
+    Battle.battle(knight_dict["arthur"], knight_dict["red_knight"])
 
-    red_knight = knights_config["red_knight"]
-    Inventory.inventory_application([red_knight])
-
-    Battle.battle(lancelot, mordred)
-
-    Battle.battle(arthur, red_knight)
-
+    # Return battle results:
     return {
-        lancelot["name"]: lancelot["hp"],
-        arthur["name"]: arthur["hp"],
-        mordred["name"]: mordred["hp"],
-        red_knight["name"]: red_knight["hp"],
+        value.name: value.hp for name, value in knight_dict.items()
     }
 
 
