@@ -62,7 +62,3 @@ class Knight:
         self.wear_armour()
         self.take_weapon()
         self.drink_potion()
-
-    def show_stats(self) -> None:
-        self.prepare_to_battle()
-        print(self.stats)
