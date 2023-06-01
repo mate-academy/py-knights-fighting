@@ -93,53 +93,19 @@ def battle(knights_config: dict) -> dict:
     # BATTLE PREPARATIONS:
 
     # lancelot
-    lancelot = Knight.from_dict(knights_config["lancelot"])
-
-    # lancelot prepare to battle
-    lancelot.prepare_to_battle()
-
-    # arthur
-    arthur = Knight.from_dict(knights_config["arthur"])
-
-    # arthur prepare to battle
-    arthur.prepare_to_battle()
-
-    # mordred
-    mordred = Knight.from_dict(knights_config["mordred"])
-
-    # mordred prepare to battle
-    mordred.prepare_to_battle()
-
-    # red_knight
-    red_knight = Knight.from_dict(knights_config["red_knight"])
-
-    # red_knight prepare to battle
-    red_knight.prepare_to_battle()
+    lancelot, arthur, mordred, red_knight = (
+        Knight.from_dict(knights_config[name])
+        for name in knights_config
+    )
 
     # -------------------------------------------------------------------------------
     # BATTLE:
 
     # 1 Lancelot vs Mordred:
-    lancelot.hp -= mordred.power - lancelot.protection
-    mordred.hp -= lancelot.power - mordred.protection
-
-    # check if someone fell in battle
-    if lancelot.hp <= 0:
-        lancelot.hp = 0
-
-    if mordred.hp <= 0:
-        mordred.hp = 0
+    Knight.fight(lancelot, mordred)
 
     # 2 Arthur vs Red Knight:
-    arthur.hp -= red_knight.power - arthur.protection
-    red_knight.hp -= arthur.power - red_knight.protection
-
-    # check if someone fell in battle
-    if arthur.hp <= 0:
-        arthur.hp = 0
-
-    if red_knight.hp <= 0:
-        red_knight.hp = 0
+    Knight.fight(arthur, red_knight)
 
     # Return battle results:
     return {

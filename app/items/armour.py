@@ -16,7 +16,5 @@ class Armour:
 
     @staticmethod
     def from_list_to_list(armour_list: list) -> list:
-        new_list = []
-        for item in armour_list:
-            new_list.append(Armour.from_dict(item))
+        new_list = [Armour.from_dict(item) for item in armour_list]
         return new_list

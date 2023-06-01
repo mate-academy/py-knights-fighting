@@ -24,25 +24,17 @@ class Knight:
             "power": self.power,
             "protection": self.protection
         }
+        self.prepare_to_battle()
 
     @classmethod
     def from_dict(cls, knight_dict: dict) -> Knight:
-        if knight_dict["potion"]:
-            return cls(
-                knight_dict["name"],
-                knight_dict["power"],
-                knight_dict["hp"],
-                Armour.from_list_to_list(knight_dict["armour"]),
-                Weapon.from_dict(knight_dict["weapon"]),
-                Potion.from_dict(knight_dict["potion"])
-            )
         return cls(
             knight_dict["name"],
             knight_dict["power"],
             knight_dict["hp"],
             Armour.from_list_to_list(knight_dict["armour"]),
             Weapon.from_dict(knight_dict["weapon"]),
-            None
+            Potion.from_dict(knight_dict["potion"])
         )
 
     def wear_armour(self) -> None:
@@ -62,3 +54,14 @@ class Knight:
         self.wear_armour()
         self.take_weapon()
         self.drink_potion()
+
+    def after_fight(self) -> None:
+        if self.hp <= 0:
+            self.hp = 0
+
+    @staticmethod
+    def fight(knight_1: Knight, knight_2: Knight) -> None:
+        knight_1.hp -= knight_2.power - knight_1.protection
+        knight_2.hp -= knight_1.power - knight_2.protection
+        knight_1.after_fight()
+        knight_2.after_fight()

@@ -14,9 +14,10 @@ class Potion:
 
     @classmethod
     def from_dict(cls, potion_dict: dict) -> Potion:
-        return cls(
-            potion_dict["name"],
-            potion_dict["effect"].get("hp", 0),
-            potion_dict["effect"].get("power", 0),
-            potion_dict["effect"].get("protection", 0)
-        )
+        if potion_dict:
+            return cls(
+                potion_dict["name"],
+                potion_dict["effect"].get("hp", 0),
+                potion_dict["effect"].get("power", 0),
+                potion_dict["effect"].get("protection", 0)
+            )
