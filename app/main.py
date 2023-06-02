@@ -16,7 +16,7 @@ def battle(knight_config: dict) -> dict:
 
     # Return battle results:
     return {
-        value.name: value.hp for name, value in knight_dict.items()
+        value.name: value.hp for value in knight_dict.values()
     }
 
 
