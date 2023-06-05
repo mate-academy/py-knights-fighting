@@ -8,4 +8,4 @@ def battle(knights_config: dict) -> dict:
     return initialized_battle.start()
 
 
-print(battle(KNIGHTS))
+battle(KNIGHTS)
