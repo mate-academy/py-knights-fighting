@@ -25,6 +25,10 @@ class Knight:
         self.power += potion.power
         self.protection += potion.protection
 
+    def check_hp(self) -> None:
+        if self.hp <= 0:
+            self.hp = 0
+
 
 class Weapon:
     def __init__(self, weapon_name: str, weapon_power: int) -> None:

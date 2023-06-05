@@ -31,7 +31,6 @@ def create_knight(knight: dict) -> Knight:
 
 def preparations(knights: dict) -> tuple:
     knights_dict = {}
-    print("------------------\n")
     for person in knights:
         knights_dict[person] = create_knight(knights[person])
 

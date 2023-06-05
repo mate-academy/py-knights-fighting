@@ -8,20 +8,12 @@ def battle(knights_config: dict) -> dict:
     lancelot.hp -= mordred.power - lancelot.protection
     mordred.hp -= lancelot.power - mordred.protection
 
-    if lancelot.hp <= 0:
-        lancelot.hp = 0
-
-    if mordred.hp <= 0:
-        mordred.hp = 0
-
     # ROUND 2
     arthur.hp -= red_knight.power - arthur.protection
     red_knight.hp -= arthur.power - red_knight.protection
-    if arthur.hp <= 0:
-        arthur.hp = 0
 
-    if red_knight.hp <= 0:
-        red_knight.hp = 0
+    for knight in [lancelot, mordred, arthur, red_knight]:
+        knight.check_hp()
 
     return {
         lancelot.name: lancelot.hp,
