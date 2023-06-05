@@ -57,7 +57,5 @@ class Knight:
         self.hp -= opponent.power - self.protection
         opponent.hp -= self.power - opponent.protection
 
-        if self.hp < 0:
-            self.hp = 0
-        if opponent.hp < 0:
-            opponent.hp = 0
+        self.hp = max(self.hp, 0)
+        opponent.hp = max(opponent.hp, 0)
