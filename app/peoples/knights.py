@@ -24,7 +24,9 @@ class Knight:
             "power": self.power,
             "protection": self.protection
         }
-        self.prepare_to_battle()
+        self.wear_armour()
+        self.take_weapon()
+        self.drink_potion()
 
     @classmethod
     def from_dict(cls, knight_dict: dict) -> Knight:
@@ -49,11 +51,6 @@ class Knight:
             self.hp += self.potion.change_hp
             self.power += self.potion.change_power
             self.protection += self.potion.change_protection
-
-    def prepare_to_battle(self) -> None:
-        self.wear_armour()
-        self.take_weapon()
-        self.drink_potion()
 
     def after_fight(self) -> None:
         if self.hp <= 0:
