@@ -24,9 +24,6 @@ class Knight:
         self.weapon = Weapon(**weapon)
         self.potion = Potion(**potion) if potion else None
         self.protection = 0
-        self.prepared_for_fight()
-
-    def prepared_for_fight(self) -> None:
         self.__dress_armor()
         self.__wield_weapon()
         self.__drink_potion()

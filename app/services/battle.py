@@ -11,23 +11,16 @@ class Battle:
         self.knights = self.__sort_knights()
 
         for i in range(0, len(self.knights) - 1, 2):
-            self.knights[i] = self.__hit(
-                self.knights[i], self.knights[i + 1].power
+            self.knights[i].hp = max(
+                self.knights[i].hp
+                - (self.knights[i + 1].power - self.knights[i].protection), 0
             )
-
-            self.knights[i + 1] = self.__hit(
-                self.knights[i + 1], self.knights[i].power
+            self.knights[i + 1].hp = max(
+                self.knights[i + 1].hp
+                - (self.knights[i].power - self.knights[i + 1].protection), 0
             )
 
         return {knight.name: knight.hp for knight in self.knights}
-
-    @staticmethod
-    def __hit(knight: Knight, power: int) -> Knight:
-        knight.hp -= power - knight.protection
-
-        if knight.hp < 0:
-            knight.hp = 0
-        return knight
 
     def __sort_knights(self) -> List[Knight]:
         return sum(
