@@ -21,16 +21,16 @@ class Knight:
         self.armour = [Armour(armour_info["part"],
                               armour_info["protection"])
                        for armour_info in armour]
-        self.weapon = Weapon(weapon.get("name"), weapon.get("power"))
+        self.weapon = Weapon(**weapon)
         if potion is not None:
-            self.potion = Potion(potion.get("name"), potion.get("effect"))
+            self.potion = Potion(**potion)
         else:
             self.potion = potion
 
     def apply_armour(self) -> None:
         protection = 0
         if self.armour:
-            protection = sum([part.protection for part in self.armour])
+            protection = sum(part.protection for part in self.armour)
         self.protection += protection
 
     def apply_weapon(self) -> None:
