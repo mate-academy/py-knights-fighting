@@ -8,17 +8,17 @@ class Knight:
                  hp: int,
                  armour: list[dict],
                  weapon: dict,
-                 potion: dict,
+                 potion: dict | None,
                  protection: int = 0) -> None:
         self.name = name
         self.power = power
         self.hp = hp
-        self.protection = protection
         self.armour = armour
         self.weapon = weapon
         self.potion = potion
+        self.protection = protection
 
-    def preparations(self) -> None:
+    def preparations(self) -> tuple:
         for item in self.armour:
             self.protection += item["protection"]
 
@@ -28,6 +28,7 @@ class Knight:
             self.power += self.potion["effect"].get("power", 0)
             self.protection += self.potion["effect"].get("protection", 0)
             self.hp += self.potion["effect"].get("hp", 0)
+        return self.power, self.protection, self.hp
 
     def battle_result(self, opposition: Knight) -> dict:
         self.hp -= opposition.power - self.protection
@@ -35,4 +36,3 @@ class Knight:
 
         return {self.name: max(self.hp, 0),
                 opposition.name: max(opposition.hp, 0)}
-

@@ -10,7 +10,7 @@ def battle(knights_config: dict) -> dict:
                                  knights_config[key]["armour"],
                                  knights_config[key]["weapon"],
                                  knights_config[key]["potion"])
-
+        knight_instance.preparations()
         KNIGHTS[key] = knight_instance
 
     return KNIGHTS["lancelot"].battle_result(KNIGHTS["mordred"]) | \
@@ -18,4 +18,3 @@ def battle(knights_config: dict) -> dict:
 
 
 print(battle(KNIGHTS))
-
