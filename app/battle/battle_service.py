@@ -3,17 +3,16 @@ from app.knights_person.knight import Knight
 
 class Battle:
     @staticmethod
-    def fight(first: Knight, second: Knight) -> Knight:
+    def fight(first: Knight, second: Knight) -> None:
         first.hp -= second.power - first.protection
+        second.hp -= first.power - second.protection
 
-        if first.hp <= 0:
+        if first.hp < 0:
             first.hp = 0
-        return first
+
+        if second.hp < 0:
+            second.hp = 0
 
     @staticmethod
     def results(knights: list) -> dict:
-        results = {}
-        for knight in knights:
-            results[knight.name] = knight.hp
-
-        return results
+        return {knight.name: knight.hp for knight in knights}
