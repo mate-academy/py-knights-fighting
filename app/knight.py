@@ -16,13 +16,13 @@ class Knight:
         self.name = name
         self.power = power
         self.hp = hp
-        self.armour = [Armour(part=arm["part"],
-                              protection=arm["protection"]) for arm in armour]
+        self.armour = [Armour(part=arm["part"], protection=arm["protection"])
+                       for arm in armour]
         self.weapon = Weapon(name=weapon["name"], power=weapon["power"])
-        if potion is not None:
+        if potion:
             self.potion = Potion(name=potion["name"], effect=potion["effect"])
         else:
-            self.potion = None
+            self.potion = potion
         self.protection = 0
 
         self.apply_weapon()
@@ -38,13 +38,15 @@ class Knight:
 
     def apply_potion(self) -> None:
         if self.potion:
-            if self.potion.effect.power:
-                self.power += self.potion.effect.power
-            if self.potion.effect.protection:
-                self.protection += self.potion.effect.protection
-            if self.potion.effect.hp:
-                self.hp += self.potion.effect.hp
+            effect = self.potion.effect
+            self.power += getattr(effect, "power", 0)
+            self.protection += getattr(effect, "protection", 0)
+            self.hp += getattr(effect, "hp", 0)
 
     def battle_result(self) -> None:
         if self.hp <= 0:
             self.hp = 0
+
+    def attack(self, opponent: Knight) -> None:
+        damage = opponent.power - self.protection
+        self.hp -= damage

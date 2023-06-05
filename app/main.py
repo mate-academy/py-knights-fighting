@@ -88,7 +88,7 @@ KNIGHTS = {
 }
 
 
-def battle(knights_config: dict) -> dict:
+def create_knight(knights_config: dict) -> dict:
     knights = {}
     for name, character in knights_config.items():
         knights[name] = Knight(name=character["name"],
@@ -98,40 +98,21 @@ def battle(knights_config: dict) -> dict:
                                weapon=character["weapon"],
                                potion=character["potion"])
 
-    lancelot = knights["lancelot"]
+    return knights
 
-    arthur = knights["arthur"]
 
-    mordred = knights["mordred"]
-
-    red_knight = knights["red_knight"]
-
+def battle(knights_config: dict) -> dict:
+    knights = create_knight(knights_config)
     # -------------------------------------------------------------------------------
     # BATTLE:
+    battle_schedule = [[knights["lancelot"], knights["mordred"]],
+                       [knights["arthur"], knights["red_knight"]]]
 
-    lancelot.hp -= mordred.power - lancelot.protection
-    mordred.hp -= lancelot.power - mordred.protection
-
-    # check if someone fell in battle
-    lancelot.battle_result()
-    mordred.battle_result()
-
-    # 2 Arthur vs Red Knight:
-
-    arthur.hp -= red_knight.power - arthur.protection
-    red_knight.hp -= arthur.power - red_knight.protection
-
-    # check if someone fell in battle
-    arthur.battle_result()
-    red_knight.battle_result()
+    for pair in battle_schedule:
+        for i in range(len(pair)):
+            pair[i].attack(pair[len(pair) - i - 1])
+            pair[i].battle_result()
 
     # Return battle results:
-    return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
-    }
-
-
-print(battle(KNIGHTS))
+    res = [knights[name] for name in knights]
+    return {knight.name: knight.hp for knight in res}
