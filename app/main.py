@@ -1,7 +1,7 @@
 from app.knights_info.knights import Knight
 
 
-def battle(knights_config: dict) -> dict:
+def summon_knights(knights_config: dict) -> dict:
     knights = {}
     for knight_name, knight_info in knights_config.items():
         knights[knight_name] = Knight(knight_info["name"],
@@ -10,6 +10,11 @@ def battle(knights_config: dict) -> dict:
                                       knight_info["armour"],
                                       knight_info["weapon"],
                                       knight_info["potion"])
+    return knights
+
+
+def battle(knights_config: dict) -> dict:
+    knights = summon_knights(knights_config)
 
     lancelot = knights["lancelot"]
     arthur = knights["arthur"]
@@ -20,9 +25,5 @@ def battle(knights_config: dict) -> dict:
     lancelot.battle(mordred)
     arthur.battle(red_knight)
 
-    return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp
-    }
+    return {character.name: character.hp
+            for character in [lancelot, arthur, mordred, red_knight]}
