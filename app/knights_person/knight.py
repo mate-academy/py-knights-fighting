@@ -1,4 +1,6 @@
 class Knight:
+    Armour = list[dict]
+
     def __init__(self, name: str, hp: int, power: int) -> None:
         self.name = name
         self.hp = hp
@@ -6,10 +8,12 @@ class Knight:
         self.power = power
 
     def __str__(self) -> str:
-        return f"name: {self.name}, hp: {self.hp}, " \
-               f"protection: {self.protection}, power: {self.power}"
+        return (
+            f"name: {self.name}, hp: {self.hp}, "
+            f"protection: {self.protection}, power: {self.power}"
+        )
 
-    def set_protection(self, armours: list) -> None:
+    def set_protection(self, armours: list[Armour]) -> None:
         for armour in armours:
             self.protection += armour["protection"]
 

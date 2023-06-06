@@ -1,6 +1,5 @@
 from app.knights_person.knight import Knight
 from app.battle.battle_service import Battle
-from app.data.data_service import data
 
 
 def battle(knights_config: dict) -> dict:
@@ -16,7 +15,3 @@ def battle(knights_config: dict) -> dict:
         Battle.fight(knights[i], knights[i + 2])
 
     return Battle.results(knights)
-
-
-Knights = data()
-print(battle(Knights))

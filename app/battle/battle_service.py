@@ -14,5 +14,5 @@ class Battle:
             second.hp = 0
 
     @staticmethod
-    def results(knights: list) -> dict:
+    def results(knights: list[Knight]) -> dict:
         return {knight.name: knight.hp for knight in knights}
