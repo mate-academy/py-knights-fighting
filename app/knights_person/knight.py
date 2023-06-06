@@ -1,5 +1,5 @@
 class Knight:
-    Armour = list[dict]
+    Armour = [dict]
 
     def __init__(self, name: str, hp: int, power: int) -> None:
         self.name = name
