@@ -16,20 +16,21 @@ def create_knight(knight: dict) -> Knight:
                     weapon_power=knight["weapon"]["power"])
     knight_stats.apply_weapon(weapon)
     if knight["potion"]:
-        hp = knight["potion"]["effect"].get("hp", 0)
-        power = knight["potion"]["effect"].get("power", 0)
-        protection = knight["potion"]["effect"].get("protection", 0)
+        potion_effect = knight["potion"]["effect"]
+        hp = potion_effect.get("hp", 0)
+        power = potion_effect.get("power", 0)
+        protection = potion_effect.get("protection", 0)
 
         potion = Potion(name=knight["potion"]["name"],
                         hp=hp,
                         power=power,
                         protection=protection)
         knight_stats.use_potion(potion)
-    print("\n------------------\n")
+
     return knight_stats
 
 
-def preparations(knights: dict) -> tuple:
+def prepare_knight(knights: dict) -> tuple:
     knights_dict = {}
     for person in knights:
         knights_dict[person] = create_knight(knights[person])

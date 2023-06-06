@@ -1,26 +1,18 @@
-from app.knights_stats.create_knights import preparations
+from app.knights_stats.create_knights import prepare_knight
 from app.knights_stats.general import KNIGHTS
 
 
 def battle(knights_config: dict) -> dict:
-    lancelot, mordred, arthur, red_knight = preparations(knights_config)
-    # ROUND 1
-    lancelot.hp -= mordred.power - lancelot.protection
-    mordred.hp -= lancelot.power - mordred.protection
+    lancelot, mordred, arthur, red_knight = prepare_knight(knights_config)
+    knights_pairs = [(lancelot, mordred), (arthur, red_knight)]
+    for first_knight, second_knight in knights_pairs:
+        first_knight.hp -= second_knight.power - first_knight.protection
+        second_knight.hp -= first_knight.power - second_knight.protection
+        first_knight.check_hp()
+        second_knight.check_hp()
 
-    # ROUND 2
-    arthur.hp -= red_knight.power - arthur.protection
-    red_knight.hp -= arthur.power - red_knight.protection
-
-    for knight in [lancelot, mordred, arthur, red_knight]:
-        knight.check_hp()
-
-    return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
-    }
+    knights = [lancelot, mordred, arthur, red_knight]
+    return {knight.name: knight.hp for knight in knights}
 
 
 if __name__ == "__main__":
