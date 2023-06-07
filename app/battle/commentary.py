@@ -1,12 +1,16 @@
+from __future__ import annotations
+from app.battle.preparation import Knights
+
+
 class Commentary:
     battle_counter = 0
     battle_list = ["first", "second"]
     power_stats = []
 
-    def __init__(self, knight: [str, int]) -> None:
+    def __init__(self, knight: Knights) -> None:
         self.name = knight.name
         self.power = knight.power
-        Commentary.power_stats.append(self.power)
+        self.power_stats.append(self.power)
 
     @staticmethod
     def opening_com() -> None:
@@ -25,8 +29,7 @@ class Commentary:
               "Here are the results of today's brave fighting:")
 
     @classmethod
-    def battle_com(cls, knight1: [str, int, str],
-                   knight2: [str, int, str]) -> None:
+    def battle_com(cls, knight1: Knights, knight2: Knights) -> None:
         print(f"\nIn {Commentary.battle_list[Commentary.battle_counter]} "
               f"battle we have {knight1.name} vs {knight2.name}")
 
@@ -58,7 +61,7 @@ class Commentary:
             Commentary.battle_counter = 0
 
     @staticmethod
-    def introduction(knight: [str, int]) -> None:
+    def introduction(knight: Commentary) -> None:
         print(f"\n{knight.name}!")
         if knight.power == min(Commentary.power_stats):
             print("*crowd booing*")

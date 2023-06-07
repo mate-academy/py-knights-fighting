@@ -1,14 +1,16 @@
+from typing import Dict
+
 from app.battle.battle import Battle
 from app.battle.commentary import Commentary
-from app.battle.preparation import KnightPrep
+from app.battle.preparation import Knights, KnightType
 # from app.knights_data.knights import KNIGHTS  # uncomment to use KNIGHTS file
 
 
-def battle(knights_config: dict) -> dict:
+def battle(knights_config: Dict[str, KnightType]) -> Dict[str, int]:
     Commentary.opening_com()
 
     knight_objects = {
-        knight_name: KnightPrep(*knight_stats.values())
+        knight_name: Knights(*knight_stats.values())
         for knight_name, knight_stats in knights_config.items()
     }
 
@@ -16,7 +18,7 @@ def battle(knights_config: dict) -> dict:
 
     for knight in knight_objects.values():
         commentary_objects.append(Commentary(knight))
-        KnightPrep.get_ready_for_battle(knight)
+        Knights.get_ready_for_battle(knight)
 
     for knight in commentary_objects:
         Commentary.introduction(knight)

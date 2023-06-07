@@ -84,6 +84,3 @@ KNIGHTS = {
         }
     }
 }
-
-KNIGHTS["lancelot"]["hp"] += 50
-KNIGHTS["lancelot"]["power"] += 50
