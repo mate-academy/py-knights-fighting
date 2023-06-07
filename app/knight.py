@@ -18,7 +18,7 @@ class Knight:
         self.potion = potion
         self.protection = protection
 
-    def preparations(self) -> tuple:
+    def preparations(self) -> None:
         for item in self.armour:
             self.protection += item["protection"]
 
@@ -28,7 +28,6 @@ class Knight:
             self.power += self.potion["effect"].get("power", 0)
             self.protection += self.potion["effect"].get("protection", 0)
             self.hp += self.potion["effect"].get("hp", 0)
-        return self.power, self.protection, self.hp
 
     def battle_result(self, opposition: Knight) -> dict:
         self.hp -= opposition.power - self.protection
