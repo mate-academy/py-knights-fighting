@@ -118,6 +118,3 @@ def battle(knights_config: dict) -> dict:
         for knight in knights_list
     }
     return battle_results
-
-
-print(battle(KNIGHTS))
