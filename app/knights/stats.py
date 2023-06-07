@@ -1,23 +1,23 @@
-def calculate_knight_stats(current_knight: dict) -> dict:
+def calculate_knight_stats(curr_knight: dict) -> dict:
 
     # apply armour
-    current_knight["protection"] = 0
-    for part in current_knight["armour"]:
-        current_knight["protection"] += part["protection"]
+    curr_knight["protection"] = 0
+    for part in curr_knight["armour"]:
+        curr_knight["protection"] += part["protection"]
 
     # apply weapon
-    current_knight["power"] += current_knight["weapon"]["power"]
+    curr_knight["power"] += curr_knight["weapon"]["power"]
 
     # apply potion if exist
-    if current_knight["potion"] is not None:
+    if curr_knight["potion"] is not None:
         stat_list = ["power", "protection", "hp"]
-        for stat_unit in stat_list:
-            if stat_unit in current_knight["potion"]["effect"]:
-                current_knight[stat_unit] += current_knight["potion"]["effect"][stat_unit]
+        for stat in stat_list:
+            if stat in curr_knight["potion"]["effect"]:
+                curr_knight[stat] += curr_knight["potion"]["effect"][stat]
 
     return {
-        "name": current_knight["name"],
-        "hp": current_knight["hp"],
-        "power": current_knight["power"],
-        "protection": current_knight["protection"]
+        "name": curr_knight["name"],
+        "hp": curr_knight["hp"],
+        "power": curr_knight["power"],
+        "protection": curr_knight["protection"]
     }
