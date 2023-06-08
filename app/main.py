@@ -3,14 +3,14 @@ from app.knights_info import KNIGHTS
 
 
 def battle(knights_config: dict) -> dict:
-    list_of_instances = []
+    inst_dict = {}
     for hero in knights_config:
         knight_instance = Knight(*knights_config[hero].values())
         knight_instance.preparations()
-        list_of_instances.append(knight_instance)
+        inst_dict[hero] = knight_instance
 
-    return (list_of_instances[0].battle_result(list_of_instances[2])
-            | list_of_instances[1].battle_result(list_of_instances[3]))
+    return (inst_dict["lancelot"].battle_result(inst_dict["mordred"])
+            | inst_dict["arthur"].battle_result(inst_dict["red_knight"]))
 
 
 print(battle(KNIGHTS))
