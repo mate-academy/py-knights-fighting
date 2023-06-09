@@ -1,6 +1,7 @@
-class Knight:
-    Armour = [dict]
+Armour = [dict]
 
+
+class Knight:
     def __init__(self, name: str, hp: int, power: int) -> None:
         self.name = name
         self.hp = hp

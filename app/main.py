@@ -3,15 +3,15 @@ from app.battle.battle_service import Battle
 
 
 def battle(knights_config: dict) -> dict:
-    knights = []
-    for knight in knights_config.values():
+    knights = {}
+    for key, knight in knights_config.items():
         person = Knight(knight["name"], knight["hp"], knight["power"])
         person.set_protection(knight["armour"])
         person.set_power(knight["weapon"])
         person.set_potion(knight["potion"])
-        knights.append(person)
+        knights[key] = person
 
-    for i in range(len(knights) // 2):
-        Battle.fight(knights[i], knights[i + 2])
+    Battle.fight(knights.get("lancelot"), knights.get("mordred"))
+    Battle.fight(knights.get("arthur"), knights.get("red_knight"))
 
     return Battle.results(knights)
