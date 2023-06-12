@@ -21,4 +21,4 @@ def red_knight() -> dict:
             }
         }
     }
-    return
+    return data
