@@ -19,7 +19,6 @@ def calculate_knight_stats(curr_knight: dict) -> dict:
     }
 
 
-
 curr_knight = {
     "name": "Arthur",
     "power": 45,
@@ -45,8 +44,6 @@ curr_knight = {
     "potion": None,
 }
 
-
 knight_stats = calculate_knight_stats(curr_knight)
-
 
 print(knight_stats)
