@@ -21,7 +21,8 @@ def battle(knights_config: dict) -> dict:
     }
     return battle_results
 
-knights_config =KNIGHTS = {
+
+knights_config = KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
         "power": 35,

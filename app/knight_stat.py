@@ -17,3 +17,36 @@ def calculate_knight_stats(curr_knight: dict) -> dict:
         "power": curr_knight["power"],
         "protection": curr_knight["protection"]
     }
+
+
+
+curr_knight = {
+    "name": "Arthur",
+    "power": 45,
+    "hp": 75,
+    "armour": [
+        {
+            "part": "helmet",
+            "protection": 15,
+        },
+        {
+            "part": "breastplate",
+            "protection": 20,
+        },
+        {
+            "part": "boots",
+            "protection": 10,
+        }
+    ],
+    "weapon": {
+        "name": "Two-handed Sword",
+        "power": 55,
+    },
+    "potion": None,
+}
+
+
+knight_stats = calculate_knight_stats(curr_knight)
+
+
+print(knight_stats)
