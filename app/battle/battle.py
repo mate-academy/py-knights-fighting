@@ -1,7 +1,7 @@
-from __future__ import annotations
+from app.battle.preparation import Preparation
 
 
-def battle_versus(knight1: annotations, knight2: annotations) -> None:
+def battle_versus(knight1: Preparation, knight2: Preparation) -> None:
     knight1.knight["hp"] -=\
         knight2.knight["power"] - knight1.knight["protection"]
 

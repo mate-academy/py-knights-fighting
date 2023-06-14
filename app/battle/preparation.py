@@ -1,6 +1,3 @@
-from __future__ import annotations
-
-
 class Preparation:
     def __init__(self, knight: dict) -> None:
         self.knight = knight
