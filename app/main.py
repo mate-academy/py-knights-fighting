@@ -29,33 +29,17 @@ def battle(knightsconfig: dict) -> dict:
     # red_knight
     red_knight = Preparation(knightsconfig["red_knight"])
 
+    knights = [lancelot, arthur, mordred, red_knight]
     # -------------------------------------------------------------------------------
     # BATTLE:
-
-    # 1 Lancelot vs Mordred:
-    lancelot.knight["hp"] = battle_versus(lancelot.knight["hp"],
-                                          mordred.knight["power"],
-                                          lancelot.knight["protection"])
-
-    mordred.knight["hp"] = battle_versus(mordred.knight["hp"],
-                                         lancelot.knight["power"],
-                                         mordred.knight["protection"])
+    battle_versus(lancelot, mordred)
 
     # 2 Arthur vs Red Knight:
-    arthur.knight["hp"] = battle_versus(arthur.knight["hp"],
-                                        red_knight.knight["power"],
-                                        arthur.knight["protection"])
-
-    red_knight.knight["hp"] = battle_versus(red_knight.knight["hp"],
-                                            arthur.knight["power"],
-                                            red_knight.knight["protection"])
+    battle_versus(arthur, red_knight)
 
     # Return battle results:
     return {
-        lancelot.knight["name"]: lancelot.knight["hp"],
-        arthur.knight["name"]: arthur.knight["hp"],
-        mordred.knight["name"]: mordred.knight["hp"],
-        red_knight.knight["name"]: red_knight.knight["hp"],
+        knight.knight["name"]: knight.knight["hp"] for knight in knights
     }
 
 

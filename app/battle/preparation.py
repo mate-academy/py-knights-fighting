@@ -18,13 +18,5 @@ class Preparation:
 
     def apply_potion_if_exist(self) -> None:
         if self.knight["potion"] is not None:
-            if "power" in self.knight["potion"]["effect"]:
-                self.knight["power"] +=\
-                    self.knight["potion"]["effect"]["power"]
-
-            if "protection" in self.knight["potion"]["effect"]:
-                self.knight["protection"] +=\
-                    self.knight["potion"]["effect"]["protection"]
-
-            if "hp" in self.knight["potion"]["effect"]:
-                self.knight["hp"] += self.knight["potion"]["effect"]["hp"]
+            for effect, value in self.knight["potion"]["effect"].items():
+                self.knight[effect] += value
