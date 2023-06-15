@@ -4,12 +4,14 @@ from app.preparation import Knight
 def create_knights(attributes: dict) -> list:
     knights = []
     for attr in attributes.values():
-        knight = Knight(name=attr["name"],
-                        power=attr["power"],
-                        hp=attr["hp"],
-                        armour=attr["armour"],
-                        weapon=attr["weapon"],
-                        potion=attr["potion"])
+        knight = Knight(
+            name=attr["name"],
+            power=attr["power"],
+            hp=attr["hp"],
+            armour=attr["armour"],
+            weapon=attr["weapon"],
+            potion=attr["potion"]
+        )
         knight.preparation()
         knights.append(knight)
     return knights
