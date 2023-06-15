@@ -1,4 +1,138 @@
+
 from app.preparation import Knight
+=======
+KNIGHTS = {
+    "lancelot": {
+        "name": "Lancelot",
+        "power": 35,
+        "hp": 100,
+        "armour": [],
+        "weapon": {
+            "name": "Metal Sword",
+            "power": 50,
+        },
+        "potion": None,
+    },
+    "arthur": {
+        "name": "Arthur",
+        "power": 45,
+        "hp": 75,
+        "armour": [
+            {
+                "part": "helmet",
+                "protection": 15,
+            },
+            {
+                "part": "breastplate",
+                "protection": 20,
+            },
+            {
+                "part": "boots",
+                "protection": 10,
+            }
+        ],
+        "weapon": {
+            "name": "Two-handed Sword",
+            "power": 55,
+        },
+        "potion": None,
+    },
+    "mordred": {
+        "name": "Mordred",
+        "power": 30,
+        "hp": 90,
+        "armour": [
+            {
+                "part": "breastplate",
+                "protection": 15,
+            },
+            {
+                "part": "boots",
+                "protection": 10,
+            }
+        ],
+        "weapon": {
+            "name": "Poisoned Sword",
+            "power": 60,
+        },
+        "potion": {
+            "name": "Berserk",
+            "effect": {
+                "power": +15,
+                "hp": -5,
+                "protection": +10,
+            }
+        }
+    },
+    "red_knight": {
+        "name": "Red Knight",
+        "power": 40,
+        "hp": 70,
+        "armour": [
+            {
+                "part": "breastplate",
+                "protection": 25,
+            }
+        ],
+        "weapon": {
+            "name": "Sword",
+            "power": 45
+        },
+        "potion": {
+            "name": "Blessing",
+            "effect": {
+                "hp": +10,
+                "power": +5,
+            }
+        }
+    }
+}
+
+
+def battle(knightsConfig):
+    # BATTLE PREPARATIONS:
+
+    # lancelot
+    lancelot = knightsConfig["lancelot"]
+
+    # apply armour
+    lancelot["protection"] = 0
+    for a in lancelot["armour"]:
+        lancelot["protection"] += a["protection"]
+
+    # apply weapon
+    lancelot["power"] += lancelot["weapon"]["power"]
+
+    # apply potion if exist
+    if lancelot["potion"] is not None:
+        if "power" in lancelot["potion"]["effect"]:
+            lancelot["power"] += lancelot["potion"]["effect"]["power"]
+
+        if "protection" in lancelot["potion"]["effect"]:
+            lancelot["protection"] += lancelot["potion"]["effect"]["protection"]
+
+        if "hp" in lancelot["potion"]["effect"]:
+            lancelot["hp"] += lancelot["potion"]["effect"]["hp"]
+
+    # arthur
+    arthur = knightsConfig["arthur"]
+
+    # apply armour
+    arthur["protection"] = 0
+    for a in arthur["armour"]:
+        arthur["protection"] += a["protection"]
+
+    # apply weapon
+    arthur["power"] += arthur["weapon"]["power"]
+
+    # apply potion if exist
+    if arthur["potion"] is not None:
+        if "power" in arthur["potion"]["effect"]:
+            arthur["power"] += arthur["potion"]["effect"]["power"]
+
+        if "protection" in arthur["potion"]["effect"]:
+            arthur["protection"] += arthur["potion"]["effect"]["protection"]
+
 
 
 def create_knights(attributes: dict) -> list:
