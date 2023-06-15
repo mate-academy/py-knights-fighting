@@ -32,10 +32,10 @@ def battle(knightsconfig: dict) -> dict:
     knights = [lancelot, arthur, mordred, red_knight]
     # -------------------------------------------------------------------------------
     # BATTLE:
-    battle_versus(lancelot, mordred)
+    battle_versus(lancelot.knight, mordred.knight)
 
     # 2 Arthur vs Red Knight:
-    battle_versus(arthur, red_knight)
+    battle_versus(arthur.knight, red_knight.knight)
 
     # Return battle results:
     return {

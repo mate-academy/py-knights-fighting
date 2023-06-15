@@ -1,17 +1,10 @@
-from app.battle.preparation import Preparation
+def battle_versus(knight1: dict, knight2: dict) -> None:
+    knight1["hp"] -= knight2["power"] - knight1["protection"]
 
-
-def battle_versus(knight1: Preparation, knight2: Preparation) -> None:
-    knight1.knight["hp"] -= (
-            knight2.knight["power"] - knight1.knight["protection"]
-    )
-
-    knight2.knight["hp"] -= (
-            knight1.knight["power"] - knight2.knight["protection"]
-    )
+    knight2["hp"] -= knight1["power"] - knight2["protection"]
 
     knights = [knight1, knight2]
 
     for knight in knights:
-        if knight.knight["hp"] <= 0:
-            knight.knight["hp"] = 0
+        if knight["hp"] <= 0:
+            knight["hp"] = 0
