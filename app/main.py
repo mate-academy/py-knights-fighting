@@ -1,8 +1,8 @@
 from app.preparation import Knight
 
 
-def create_knights(attributes: dict) -> list:
-    knights = []
+def create_knights(attributes: dict) -> dict:
+    knights = {}
     for attr in attributes.values():
         knight = Knight(
             name=attr["name"],
@@ -13,7 +13,7 @@ def create_knights(attributes: dict) -> list:
             potion=attr["potion"]
         )
         knight.preparation()
-        knights.append(knight)
+        knights[knight.name] = knight
     return knights
 
 
@@ -31,12 +31,7 @@ def fight(knight1: Knight, knight2: Knight) -> None:
 
 def battle(knights: dict) -> dict:
     knights = create_knights(knights)
-    fight(knights[0], knights[2])
-    fight(knights[1], knights[3])
+    fight(knights["Lancelot"], knights["Mordred"])
+    fight(knights["Artur"], knights["Red Knight"])
 
-    return {
-        knights[0].name: knights[0].hp,
-        knights[1].name: knights[1].hp,
-        knights[2].name: knights[2].hp,
-        knights[3].name: knights[3].hp
-    }
+    return {knight.name: knight.hp for knight in knights.values()}
