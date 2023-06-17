@@ -4,6 +4,7 @@ class Potion:
         self.name = stats.get("name")
         effect = stats.get("effect")
         if effect is not None:
+
             if effect.get("hp") is not None:
                 self.hp = effect.get("hp")
             else:
