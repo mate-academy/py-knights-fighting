@@ -10,21 +10,22 @@ def preparation(func: Callable) -> Callable:
 
             # apply armour
             attributes["protection"] = 0
-            if attributes["armour"] != []:
+            if len(attributes["armour"]) > 0:
                 for parameter in attributes["armour"]:
                     attributes["protection"] += parameter["protection"]
 
             # apply potion if exist
-            if attributes["potion"] is not None:
-                if "power" in attributes["potion"]["effect"]:
-                    attributes["power"] += \
-                        attributes["potion"]["effect"]["power"]
+            if (attributes["potion"] is not None
+                    and "effect" in attributes["potion"]):
+                potion_effects = attributes["potion"]["effect"]
 
-                if "protection" in attributes["potion"]["effect"]:
-                    attributes["protection"] += \
-                        attributes["potion"]["effect"]["protection"]
+                for attribute in potion_effects:
+                    if attribute == "power":
+                        attributes["power"] += potion_effects[attribute]
+                    elif attribute == "protection":
+                        attributes["protection"] += potion_effects[attribute]
+                    elif attribute == "hp":
+                        attributes["hp"] += potion_effects[attribute]
 
-                if "hp" in attributes["potion"]["effect"]:
-                    attributes["hp"] += attributes["potion"]["effect"]["hp"]
         return func(knights)
     return inner
