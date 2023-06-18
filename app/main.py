@@ -1,41 +1,28 @@
-from app.knights.knight_dict import knights
-from app.knights.knight import CamelotKnights
+from app.knights.knight import Knights
+
+
+def winner(knight_1: Knights, knight_2: Knights) -> None:
+    knight_1.hp -= knight_2.power - knight_1.protection
+    knight_2.hp -= knight_1.power - knight_2.protection
+    if knight_1.hp <= 0:
+        knight_1.hp = 0
+        return knight_1
+    if knight_2.hp <= 0:
+        knight_2.hp = 0
+        return knight_2
 
 
 def battle(knights: dict) -> dict:
-    for i in knights:
-        knights[i] = CamelotKnights(
-            name=knights[i]["name"],
-            power=knights[i]["power"],
-            hp=knights[i]["hp"],
-            armour=knights[i]["armour"],
-            weapon=knights[i]["weapon"],
-            potion=knights[i]["potion"]
-        )
-        knights[i].battle_preparation()
+    for elem in knights:
+        knights[elem] = Knights(**knights[elem])
 
     lanc = knights["lancelot"]
     morde = knights["mordred"]
     arte = knights["arthur"]
     red_k = knights["red_knight"]
 
-    lanc.hp -= morde.power - lanc.protection
-    morde.hp -= lanc.power - morde.protection
-
-    if lanc.hp <= 0:
-        lanc.hp = 0
-
-    if morde.hp <= 0:
-        morde.hp = 0
-
-    arte.hp -= red_k.power - arte.protection
-    red_k.hp -= arte.power - red_k.protection
-
-    if arte.hp <= 0:
-        arte.hp = 0
-
-    if red_k.hp <= 0:
-        red_k.hp = 0
+    winner(lanc, morde)
+    winner(arte, red_k)
 
     return {
         lanc.name: lanc.hp,
@@ -43,6 +30,3 @@ def battle(knights: dict) -> dict:
         morde.name: morde.hp,
         red_k.name: red_k.hp,
     }
-
-
-print(battle(knights))

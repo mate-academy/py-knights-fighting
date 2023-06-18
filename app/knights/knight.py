@@ -1,4 +1,4 @@
-class CamelotKnights:
+class Knights:
     def __init__(self,
                  name: str,
                  power: int,
@@ -13,18 +13,19 @@ class CamelotKnights:
         self.weapon = weapon
         self.potion = potion
         self.protection = 0
+        for elem in self.armour:
+            self.protection += getattr(
+                Knights, "protection", elem["protection"]
+            )
+        self.battle_preparation()
+
+    def __str__(self) -> str:
+        return f"name = {self.name}, power = {self.power}, hp = {self.hp}"
 
     def battle_preparation(self) -> None:
-        for elem in self.armour:
-            self.protection += elem["protection"]
-
         self.power += self.weapon["power"]
         if self.potion is not None:
-            if "power" in self.potion["effect"]:
-                self.power += self.potion["effect"]["power"]
-
-            if "protection" in self.potion["effect"]:
-                self.protection += self.potion["effect"]["protection"]
-
-            if "hp" in self.potion["effect"]:
-                self.hp += self.potion["effect"]["hp"]
+            effects = self.potion["effect"]
+            self.power += effects.get("power", 0)
+            self.protection += effects.get("protection", 0)
+            self.hp += effects.get("hp", 0)
