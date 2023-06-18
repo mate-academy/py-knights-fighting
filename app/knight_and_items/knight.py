@@ -14,23 +14,29 @@ class Knight:
 
         self.armour = []
         self.protection = 0
+        self.weapon = None
+        self.potion = None
 
-        # wear armour
-        for new_armour_dict in stats.get("armour"):
+        self.wear_armour(stats.get("armour"))
+        self.wear_weapon(stats.get("weapon"))
+        self.use_potion(stats.get("potion"))
+
+    def wear_armour(self, armours: list) -> None:
+        for new_armour_dict in armours:
             new_armour = Armour(new_armour_dict)
             if not any([worn_armour.part == new_armour.part
                         for worn_armour in self.armour]):
                 self.armour.append(new_armour)
                 self.protection += new_armour.protection
 
-        # wear weapon
-        if stats.get("weapon") is not None:
-            self.weapon = Weapon(stats.get("weapon"))
+    def wear_weapon(self, weapon: dict) -> None:
+        if weapon is not None:
+            self.weapon = Weapon(weapon)
             self.power += self.weapon.power
 
-        # use potion
-        if stats.get("potion") is not None:
-            self.potion = Potion(stats.get("potion"))
+    def use_potion(self, potion: dict) -> None:
+        if potion is not None:
+            self.potion = Potion(potion)
             self.hp += self.potion.hp
             self.power += self.potion.power
             self.protection += self.potion.protection
