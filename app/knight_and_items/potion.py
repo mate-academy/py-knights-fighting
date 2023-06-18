@@ -10,7 +10,7 @@ class Potion:
         self.apply_effects(stats.get("effect"))
 
     def apply_effects(self, effects: dict) -> None:
-        for effect in effects:
-            effects_value = effects.get(effect)
+        for effect in effect:
+            effects_value = effect.get(effect)
             if effects_value is not None:
                 setattr(self, effect, effects_value)
