@@ -39,11 +39,12 @@ class Knight:
             if protection := effect.get("protection"):
                 self.protection += protection
 
-    def equip_knight(self,
-                     armour: list[dict],
-                     weapon: dict,
-                     potion: dict
-                     ) -> None:
+    def equip_knight(
+            self,
+            armour: list[dict],
+            weapon: dict,
+            potion: dict
+    ) -> None:
         print(f"----------Equip {self.name}----------")
         time.sleep(0.5)
         self.apply_armour(armour)

@@ -1,7 +1,6 @@
 import time
 
 from app.Knight.knight import Knight
-from app.Knight.knight_stats import KNIGHTS
 
 
 def create_knights(knight_stats: dict) -> dict:
@@ -64,6 +63,3 @@ def battle(knight_stats: dict[dict]) -> dict:
     time.sleep(0.5)
     print("---------       Result      -----------")
     return {**lancelot_vs_mordred_result, **arthur_vs_red_knight_result}
-
-
-print(battle(KNIGHTS))
