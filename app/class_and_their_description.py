@@ -5,14 +5,17 @@ class KnightCreator:
         self.hp = knights["hp"]
         self.power = knights["power"]
         self.protection = 0
+        self.potion = knights["potion"]
 
     def __str__(self) -> str:
-        return f"name: {self.name}, " \
-               f"hp: {self.hp}, " \
-               f"power: {self.power}, " \
-               f"protection: {self.protection}"
+        return (
+            f"name: {self.name}, "
+            f"hp: {self.hp}, "
+            f"power: {self.power}, "
+            f"protection: {self.protection}"
+        )
 
-    def upgrading_knight(self, stats: dict) -> "KnightCreator":
+    def upgrading_knight_before_battle(self, stats: dict) -> "KnightCreator":
         self.power += stats["weapon"].get("power")
         self.protection += sum(
             [
@@ -21,16 +24,14 @@ class KnightCreator:
             ]
         )
 
-        if stats["potion"] is not None:
-            self.hp += stats["potion"].get("effect").get("hp", 0)
-            self.power += stats["potion"].get("effect").get("power", 0)
-            self.protection += \
-                stats["potion"].get("effect").get("protection", 0)
+        if self.potion is not None:
+            for effect, value in self.potion["effect"].items():
+                setattr(self, effect, getattr(self, effect, 0) + value)
 
         return self
 
     @staticmethod
-    def duel(
+    def battle_rules(
             first_knight: "KnightCreator",
             second_knight: "KnightCreator"
     ) -> dict:
