@@ -2,7 +2,7 @@ from app.primary_received_info import KNIGHTS
 from app.class_and_their_description import KnightCreator
 
 
-def main_fight(knights_config: dict) -> dict:
+def battle(knights_config: dict) -> dict:
     list_of_knights_with_upgrade: [name for name in knights_config] = (
         [
             KnightCreator(knights_config.get(key)).
@@ -26,4 +26,4 @@ def main_fight(knights_config: dict) -> dict:
     return first_round
 
 
-print(main_fight(KNIGHTS))
+print(battle(KNIGHTS))

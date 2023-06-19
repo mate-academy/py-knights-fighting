@@ -9,9 +9,9 @@ class KnightCreator:
 
     def __str__(self) -> str:
         return (
-            f"name: {self.name}, "
-            f"hp: {self.hp}, "
-            f"power: {self.power}, "
+            f"name: {self.name},"
+            f"hp: {self.hp},"
+            f"power: {self.power},"
             f"protection: {self.protection}"
         )
 
