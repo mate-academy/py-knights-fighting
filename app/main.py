@@ -1,7 +1,7 @@
 from app.knights.knight import Knights
 
 
-def winner(knight_1: Knights, knight_2: Knights) -> None:
+def winner(knight_1: Knights, knight_2: Knights) -> Knights:
     knight_1.hp -= knight_2.power - knight_1.protection
     knight_2.hp -= knight_1.power - knight_2.protection
     if knight_1.hp <= 0:
