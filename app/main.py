@@ -1,4 +1,3 @@
-<<<<<<< develop
 from app.knights.knight import Knights
 
 
