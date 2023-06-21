@@ -16,7 +16,7 @@ def battle(knights: dict) -> dict:
     knights["red_knight"]["hp"] -= \
         knights["arthur"]["power"] - knights["red_knight"]["protection"]
 
-    # check if someone fell in battle
+    # check if someone fell in battle:
     for knight, attributes in knights.items():
         if attributes["hp"] <= 0:
             attributes["hp"] = 0
