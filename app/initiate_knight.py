@@ -2,7 +2,7 @@ from app.knight import Knight
 
 
 def initiate_the_knight(knight: dict) -> Knight:
-    new_knight = Knight(
+    knight_obj = Knight(
         name=knight["name"],
         power=knight["power"],
         hp=knight["hp"],
@@ -10,8 +10,8 @@ def initiate_the_knight(knight: dict) -> Knight:
         weapon=knight["weapon"],
         potion=knight["potion"]
     )
-    new_knight.apply_armour()
-    new_knight.apply_weapon()
-    if new_knight.potion is not None:
-        new_knight.apply_potion()
-    return new_knight
+    knight_obj.apply_armour()
+    knight_obj.apply_weapon()
+    if knight_obj.potion is not None:
+        knight_obj.apply_potion()
+    return knight_obj

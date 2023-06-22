@@ -11,6 +11,5 @@ def duel_of_knights(first_knight: dict, second_knight: dict) -> dict:
         if knight.hp <= 0:
             knight.hp = 0
     return {
-        knights[0].name: knights[0].hp,
-        knights[1].name: knights[1].hp
+        knight.name: knight.hp for knight in knights
     }

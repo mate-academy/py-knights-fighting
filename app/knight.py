@@ -24,9 +24,6 @@ class Knight:
         if self.potion:
             effect = self.potion["effect"]
             for attribute, value in effect.items():
-                if attribute == "power":
-                    self.power += value
-                if attribute == "protection":
-                    self.protection += value
-                if attribute == "hp":
-                    self.hp += value
+                if hasattr(self, attribute):
+                    current_value = getattr(self, attribute)
+                    setattr(self, attribute, current_value + value)
