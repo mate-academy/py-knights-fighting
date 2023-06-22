@@ -127,8 +127,6 @@ class Knight:
 
 
 def battle(knightsconfig: dict) -> dict:
-    # BATTLE PREPARATIONS:
-    # lancelot
     knights = {}
     for key, value in knightsconfig.items():
         knight = Knight(value.get("name"),
@@ -145,26 +143,20 @@ def battle(knightsconfig: dict) -> dict:
     mordred = knights.get("mordred")
     red_knight = knights.get("red_knight")
 
-    # -------------------------------------------------------------------------------
-    # BATTLE:
-
-    # 1 Lancelot vs Mordred:
     lancelot.hp -= mordred.power - lancelot.protection
     mordred.hp -= lancelot.power - mordred.protection
-    # check if someone fell in battle
+
     lancelot.check_fall()
 
     mordred.check_fall()
 
-    # 2 Arthur vs Red Knight:
     arthur.hp -= red_knight.power - arthur.protection
     red_knight.hp -= arthur.power - red_knight.protection
-    # check if someone fell in battle
+
     arthur.check_fall()
 
     red_knight.check_fall()
 
-    # Return battle results:
     return {
         lancelot.name: lancelot.hp,
         arthur.name: arthur.hp,
