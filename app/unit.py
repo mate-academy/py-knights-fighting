@@ -13,11 +13,10 @@ class Knight:
         self.potion = knights["potion"]
 
         if knights["potion"] is not None:
-            self.power += knights["potion"].get("effect").get("power", 0)
-            self.hp += knights["potion"].get("effect").get("hp", 0)
-            self.protection += knights["potion"].get("effect").get(
-                "protection", 0
-            )
+            effects = knights["potion"]["effect"]
+            for attribute, value in effects.items():
+                current_value = getattr(self, attribute, 0)
+                setattr(self, attribute, current_value + value)
 
     @staticmethod
     def duel(knight1: Knight, knight2: Knight) -> dict:
