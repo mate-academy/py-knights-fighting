@@ -18,9 +18,11 @@ class Knight:
         self.protection = 0
 
     def drink(self) -> None:
-        self.hp += self.potion["effect"].get("hp", 0)
-        self.power += self.potion["effect"].get("power", 0)
-        self.protection += self.potion["effect"].get("protection", 0)
+        potion_effect = self.potion.get("effect")
+        if potion_effect:
+            self.hp += potion_effect.get("hp", 0)
+            self.power += potion_effect.get("power", 0)
+            self.protection += potion_effect.get("protection", 0)
 
     def preparation(self) -> None:
         self.power += self.weapon.get("power")
