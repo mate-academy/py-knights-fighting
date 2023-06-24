@@ -5,14 +5,7 @@ from app.knight import Knight
 
 def battle(knight_data: dict) -> dict:
     data = {
-        name: Knight(
-            name=information["name"],
-            power=information["power"],
-            hp=information["hp"],
-            armour=information["armour"],
-            weapon=information["weapon"],
-            potion=information["potion"]
-        )
+        name: Knight(**information)
         for name, information in knight_data.items()
     }
 

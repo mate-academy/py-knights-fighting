@@ -36,7 +36,7 @@ class Knight:
         if self.potion:
             self.drink()
 
-    def duel(self, other: Callable) -> None:
+    def duel(self, other: Knight) -> None:
         self.hp -= other.power - self.protection
         other.hp -= self.power - other.protection
         self.hp = max(self.hp, 0)
