@@ -1,19 +1,18 @@
-from app.unit import Knight
+from app.knight import Knight
 
 
-def battle(dict_of_knights: dict) -> dict:
-    knights = {
-        name: Knight(knight_data)
-        for name, knight_data in dict_of_knights.items()
+def battle(knights: dict) -> dict:
+    lancelot = Knight(knights["lancelot"])
+    mordred = Knight(knights["mordred"])
+    arthur = Knight(knights["arthur"])
+    red_knight = Knight(knights["red_knight"])
+
+    lancelot.fight_with(mordred)
+    arthur.fight_with(red_knight)
+
+    return {
+        lancelot.name: lancelot.hp,
+        arthur.name: arthur.hp,
+        mordred.name: mordred.hp,
+        red_knight.name: red_knight.hp,
     }
-
-    red_knight = knights.get("red_knight")
-    lancelot = knights.get("lancelot")
-    arthur = knights.get("arthur")
-    mordred = knights.get("mordred")
-
-    first_duel = Knight.duel(lancelot, mordred)
-    second_duel = Knight.duel(arthur, red_knight)
-    first_duel.update(second_duel)
-
-    return first_duel

@@ -1,86 +1,34 @@
-KNIGHTS = {
-    "lancelot": {
-        "name": "Lancelot",
-        "power": 35,
-        "hp": 100,
-        "armour": [],
-        "weapon": {
-            "name": "Metal Sword",
-            "power": 50,
-        },
-        "potion": None,
-    },
-    "arthur": {
-        "name": "Arthur",
-        "power": 45,
-        "hp": 75,
-        "armour": [
-            {
-                "part": "helmet",
-                "protection": 15,
-            },
-            {
-                "part": "breastplate",
-                "protection": 20,
-            },
-            {
-                "part": "boots",
-                "protection": 10,
-            }
-        ],
-        "weapon": {
-            "name": "Two-handed Sword",
-            "power": 55,
-        },
-        "potion": None,
-    },
-    "mordred": {
-        "name": "Mordred",
-        "power": 30,
-        "hp": 90,
-        "armour": [
-            {
-                "part": "breastplate",
-                "protection": 15,
-            },
-            {
-                "part": "boots",
-                "protection": 10,
-            }
-        ],
-        "weapon": {
-            "name": "Poisoned Sword",
-            "power": 60,
-        },
-        "potion": {
-            "name": "Berserk",
-            "effect": {
-                "power": +15,
-                "hp": -5,
-                "protection": +10,
-            }
-        }
-    },
-    "red_knight": {
-        "name": "Red Knight",
-        "power": 40,
-        "hp": 70,
-        "armour": [
-            {
-                "part": "breastplate",
-                "protection": 25,
-            }
-        ],
-        "weapon": {
-            "name": "Sword",
-            "power": 45
-        },
-        "potion": {
-            "name": "Blessing",
-            "effect": {
-                "hp": +10,
-                "power": +5,
-            }
-        }
-    }
-}
+from __future__ import annotations
+
+
+class Knight:
+    def __init__(self, knight: dict) -> None:
+        self.name = knight["name"]
+        self.power = knight["power"]
+        self.hp = knight["hp"]
+        self.protection = 0
+
+        self.power += knight["weapon"]["power"]
+
+        for armour in knight["armour"]:
+            self.protection += armour["protection"]
+
+        if knight["potion"]:
+            if "power" in knight["potion"]["effect"]:
+                self.power += knight["potion"]["effect"]["power"]
+
+            if "protection" in knight["potion"]["effect"]:
+                self.protection += knight["potion"]["effect"]["protection"]
+
+            if "hp" in knight["potion"]["effect"]:
+                self.hp += knight["potion"]["effect"]["hp"]
+
+    def fight_with(self, other: Knight) -> None:
+        self.hp -= other.power - self.protection
+        other.hp -= self.power - other.protection
+
+        if self.hp <= 0:
+            self.hp = 0
+
+        if other.hp <= 0:
+            other.hp = 0
