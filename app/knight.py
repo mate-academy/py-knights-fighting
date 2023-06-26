@@ -14,14 +14,17 @@ class Knight:
             self.protection += armour["protection"]
 
         if knight["potion"]:
-            if "power" in knight["potion"]["effect"]:
-                self.power += knight["potion"]["effect"]["power"]
+            potion_effect = knight["potion"]["effect"]
+            attributes = ["power", "protection", "hp"]
 
-            if "protection" in knight["potion"]["effect"]:
-                self.protection += knight["potion"]["effect"]["protection"]
-
-            if "hp" in knight["potion"]["effect"]:
-                self.hp += knight["potion"]["effect"]["hp"]
+            for attribute in attributes:
+                if attribute in potion_effect:
+                    current_value = getattr(self, attribute)
+                    setattr(
+                        self,
+                        attribute,
+                        current_value + potion_effect[attribute]
+                    )
 
     def fight_with(self, other: Knight) -> None:
         self.hp -= other.power - self.protection
