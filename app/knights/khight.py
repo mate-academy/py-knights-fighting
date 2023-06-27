@@ -5,13 +5,13 @@ from app.knights.weapon import Weapon
 
 class Knight:
     def __init__(
-            self,
-            name: str,
-            power: int,
-            hp: int,
-            armour: list[Armour],
-            weapon: Weapon,
-            potion: Potion
+        self,
+        name: str,
+        power: int,
+        hp: int,
+        armour: list[Armour],
+        weapon: Weapon,
+        potion: Potion,
     ) -> None:
         self.name = name
         self.power = power
@@ -31,9 +31,4 @@ class Knight:
     def apply_potion(self) -> None:
         if self.potion:
             for key, value in self.potion.effect.items():
-                if key == "power":
-                    self.power += value
-                if key == "hp":
-                    self.hp += value
-                if key == "protection":
-                    self.protection += value
+                setattr(self, key, getattr(self, key) + value)
