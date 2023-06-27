@@ -23,14 +23,7 @@ class Knight:
             "protection": None
         }
 
-    @classmethod
-    def create_knights(cls, knights_param: dict) -> list[Knight]:
-        return [
-            cls(**knight_param)
-            for knight_param in knights_param
-        ]
-
-    def set_knight_statistics(self) -> None:
+    def get_knight_statistics(self) -> dict:
         hp = self.hp
         power = self.power + self.weapon["power"]
         protection = 0
@@ -44,7 +37,7 @@ class Knight:
             protection += effect.get("protection", 0)
             hp += effect.get("hp", 0)
 
-        self.knight_statistics = {
+        return {
             "hp": hp,
             "power": power,
             "protection": protection
@@ -57,10 +50,6 @@ class Battle:
         self.second_fighter = second_fighter
         self.result = {}
 
-    def preparation_for_battle(self) -> None:
-        self.first_fighter.set_knight_statistics()
-        self.second_fighter.set_knight_statistics()
-
     @staticmethod
     def normalize_hp(hp: int) -> int:
         if hp < 0:
@@ -69,8 +58,8 @@ class Battle:
         return hp
 
     def battle(self) -> None:
-        f_fighter = self.first_fighter.knight_statistics
-        s_fighter = self.second_fighter.knight_statistics
+        f_fighter = self.first_fighter.get_knight_statistics()
+        s_fighter = self.second_fighter.get_knight_statistics()
 
         first_fighter_hp = (
             f_fighter["hp"] + f_fighter["protection"] - s_fighter["power"]
@@ -106,13 +95,12 @@ class Championship:
 
     def start_championship(self) -> None:
         for battle in self.battles_instance:
-            battle.preparation_for_battle()
             battle.battle()
 
-    def result_championship(self) -> dict:
+    def result_championship(self) -> None:
         result = {}
 
         for battle in self.battles_instance:
             result.update(battle.result)
 
-        return result
+        self.result = result
