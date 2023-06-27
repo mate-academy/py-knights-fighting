@@ -17,11 +17,6 @@ class Knight:
         self.armour = armour
         self.weapon = weapon
         self.potion = potion
-        self.knight_statistics = {
-            "hp": None,
-            "power": None,
-            "protection": None
-        }
 
     def get_knight_statistics(self) -> dict:
         hp = self.hp
@@ -79,7 +74,6 @@ class Championship:
         self.knights = knights
         self.battle_pairs = battle_pairs
         self.battles_instance = []
-        self.result = {}
 
     def preparation_championship(self) -> None:
 
@@ -97,10 +91,10 @@ class Championship:
         for battle in self.battles_instance:
             battle.battle()
 
-    def result_championship(self) -> None:
+    def result_championship(self) -> dict:
         result = {}
 
         for battle in self.battles_instance:
             result.update(battle.result)
 
-        self.result = result
+        return result

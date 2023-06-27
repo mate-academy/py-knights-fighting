@@ -6,8 +6,7 @@ def battle(knights_config: dict) -> dict:
     championship = Championship(knights_config, BATTLE_PAIRS)
     championship.preparation_championship()
     championship.start_championship()
-    championship.result_championship()
-    return championship.result
+    return championship.result_championship()
 
 
 print(battle(KNIGHTS))
