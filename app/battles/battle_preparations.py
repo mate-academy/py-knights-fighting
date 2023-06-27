@@ -8,15 +8,13 @@ def get_prepared_knights(knights_data: dict[str, dict]) -> dict[str, Knight]:
     knights = {}
 
     for knight_name, knight_data in knights_data.items():
-        armour = []
-
-        for armour_item in knight_data.get("armour"):
-            armour.append(
-                Armour(
-                    part=armour_item.get("part"),
-                    protection=armour_item.get("protection"),
-                )
+        armour = [
+            Armour(
+                part=armour_item.get("part"),
+                protection=armour_item.get("protection"),
             )
+            for armour_item in knight_data.get("armour")
+        ]
 
         weapon = Weapon(
             name=knight_data.get("weapon").get("name"),
