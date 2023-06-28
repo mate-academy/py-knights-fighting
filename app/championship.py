@@ -43,7 +43,6 @@ class Battle:
     def __init__(self, first_fighter: Knight, second_fighter: Knight) -> None:
         self.first_fighter = first_fighter
         self.second_fighter = second_fighter
-        self.result = {}
 
     @staticmethod
     def normalize_hp(hp: int) -> int:
@@ -52,7 +51,7 @@ class Battle:
 
         return hp
 
-    def battle(self) -> None:
+    def battle(self) -> dict:
         f_fighter = self.first_fighter.get_knight_statistics()
         s_fighter = self.second_fighter.get_knight_statistics()
 
@@ -63,7 +62,7 @@ class Battle:
             s_fighter["hp"] + s_fighter["protection"] - f_fighter["power"]
         )
 
-        self.result = {
+        return {
             self.first_fighter.name: self.normalize_hp(first_fighter_hp),
             self.second_fighter.name: self.normalize_hp(second_fighter_hp),
         }
@@ -95,6 +94,6 @@ class Championship:
         result = {}
 
         for battle in self.battles_instance:
-            result.update(battle.result)
+            result.update(battle.battle())
 
         return result
