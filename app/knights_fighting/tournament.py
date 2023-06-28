@@ -1,6 +1,25 @@
 from __future__ import annotations
 
+from app.knights_fighting.boosts import Potion
+from app.knights_fighting.equipment import Armour, Weapon
 from app.knights_fighting.knight import Knight
+
+
+def convert_knight_from_dict(dict_: dict) -> Knight:
+    knight = Knight(dict_["name"], dict_["power"], dict_["hp"])
+
+    for armour in dict_["armour"]:
+        knight.armour.append(Armour(**armour))
+
+    weapon = dict_["weapon"]
+    if weapon:
+        knight.weapon = Weapon(**weapon)
+
+    potion = dict_["potion"]
+    if potion:
+        knight.potion = Potion(**potion)
+
+    return knight
 
 
 class Tournament:
@@ -10,16 +29,19 @@ class Tournament:
             opponents_board: list[tuple[str, str]]
     ) -> None:
         """
-        opponents_board - List[Tuple[opponent_name, opponent_name]]
+        Tournament initialization.
 
-        All opponent names must be contained in knights.keys()
+        :param knights: dict with all the data about the knights
+            participating in the tournament.
+        :param opponents_board: List[Tuple[opponent_name, opponent_name]].
+            All opponent names must be contained in knights.keys()
         """
         self.knights: dict[str, Knight] = dict()
         self.opponents_board = opponents_board
 
         for knight_name in knights:
             data = knights[knight_name]
-            self.knights[knight_name] = Knight.convert_from_dict(data)
+            self.knights[knight_name] = convert_knight_from_dict(data)
 
     def prepare(self) -> None:
         """Applies boosts and abilities"""

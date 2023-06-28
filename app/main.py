@@ -98,10 +98,8 @@ def battle(knights_config: dict) -> dict[str, int]:
     ]
     tournament = Tournament(knights_config, opponents_board)
 
-    # BATTLE PREPARATIONS:
     tournament.prepare()
 
-    # BATTLE:
     battle_result = tournament.battle()
 
     return battle_result
