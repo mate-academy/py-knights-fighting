@@ -59,6 +59,6 @@ class Knight:
                 setattr(self, stat, getattr(
                     self, stat) + self.potion.effect[stat])
 
-    def battle(self, other: None) -> None:
+    def battles(self, other: None) -> None:
         self.hp = max(0, self.hp - other.power + self.protection)
         other.hp = max(0, other.hp - self.power + other.protection)
