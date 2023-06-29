@@ -1,4 +1,3 @@
-from app.config import KNIGHTS
 from app.players.knight import Knight
 
 
