@@ -14,7 +14,7 @@ class Knight:
             armour: List[Armour],
             weapon: Weapon,
             potion: Potion,
-    ):
+    ) -> None:
         self.name = name
         self.power = power
         self.hp = hp
@@ -28,10 +28,13 @@ class Knight:
         self.apply_potion()
 
     @classmethod
-    def from_dict(cls, knight_data: dict):
-        armour = [Armour(**armour_data) for armour_data in knight_data.pop("armour")]
+    def from_dict(cls, knight_data: dict) -> None:
+        armour = [
+            Armour(**armour_data) for armour_data in knight_data.pop("armour")
+        ]
         weapon = Weapon(**knight_data.pop("weapon"))
-        potion = None if (potion_data := knight_data.pop("potion")) is None else Potion(**potion_data)
+        potion = None if (potion_data := knight_data.pop("potion")
+                          ) is None else Potion(**potion_data)
 
         return cls(
             **knight_data,
@@ -40,21 +43,22 @@ class Knight:
             potion=potion
         )
 
-    def apply_armour(self):
+    def apply_armour(self) -> None:
         self.protection += sum(armour.protection for armour in self.armour)
 
-    def apply_weapon(self):
+    def apply_weapon(self) -> None:
         self.power += self.weapon.power
 
-    def apply_potion(self):
+    def apply_potion(self) -> None:
         if self.potion is None:
             return
 
         stats = ("power", "hp", "protection")
         for stat in stats:
             if stat in self.potion.effect:
-                setattr(self, stat, getattr(self, stat) + self.potion.effect[stat])
+                setattr(self, stat, getattr(
+                    self, stat) + self.potion.effect[stat])
 
-    def battle(self, other):
+    def battle(self, other: None) -> None:
         self.hp = max(0, self.hp - other.power + self.protection)
         other.hp = max(0, other.hp - self.power + other.protection)

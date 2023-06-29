@@ -2,8 +2,10 @@ from app.config import KNIGHTS
 from app.players.knight import Knight
 
 
-def battle(knights_config: dict):
-    lancelot, arthur, mordred, red_knight = (Knight.from_dict(knight) for knight in knights_config.values())
+def battle(knights_config: dict) -> dict:
+    lancelot, arthur, mordred, red_knight = (
+        Knight.from_dict(knight) for knight in knights_config.values()
+    )
     lancelot.battle(mordred)
     arthur.battle(red_knight)
     return {
@@ -14,5 +16,5 @@ def battle(knights_config: dict):
     }
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(battle(KNIGHTS))
