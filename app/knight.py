@@ -19,15 +19,15 @@ class Knight:
 
     def apply_potion_effects(self, potion: dict) -> None:
         effects = potion.get("effect", {})
-        self.power += effects.get("power", 0)
-        self.hp += effects.get("hp", 0)
-        self.protection += effects.get("protection", 0)
+
+        for attribute, value in effects.items():
+            current_value = getattr(self, attribute, 0)
+            setattr(self, attribute, current_value + value)
 
     @staticmethod
     def fight(knight1: Knight, knight2: Knight) -> None:
-        if knight1.protection < knight2.power:
-            damage = knight2.power - knight1.protection
-            knight1.hp = max(0, knight1.hp - damage)
-        if knight2.protection < knight1.power:
-            damage = knight1.power - knight2.protection
-            knight2.hp = max(0, knight2.hp - damage)
+        damage_knight1 = max(0, knight2.power - knight1.protection)
+        damage_knight2 = max(0, knight1.power - knight2.protection)
+
+        knight1.hp = max(0, knight1.hp - damage_knight1)
+        knight2.hp = max(0, knight2.hp - damage_knight2)
