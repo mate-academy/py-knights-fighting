@@ -1,13 +1,11 @@
-from app.constants.property_list import PROPERTY_LIST
+from app.constants.lists import PROPERTY_LIST
 
 
-def battle_prepare(knight: dict, config: dict) -> None:
+def battle_prepare(knight: dict) -> None:
     def add_potion_effect(prop: str) -> None:
-        potion_effect = knight["potion"]["effect"]
+        potion_effect = knight.get("potion", {}).get("effect")
         if prop in potion_effect:
             knight[prop] += potion_effect[prop]
-
-    knight = config[knight]
 
     # apply armour
     knight["protection"] = 0
@@ -15,9 +13,9 @@ def battle_prepare(knight: dict, config: dict) -> None:
         knight["protection"] += armour["protection"]
 
     # apply weapon
-    knight["power"] += knight["weapon"]["power"]
+    knight["power"] += knight.get("weapon", {}).get("power")
 
     # apply potion if exist
-    if knight["potion"] is not None:
+    if "potion" in knight and knight["potion"] is not None:
         for prop in PROPERTY_LIST:
             add_potion_effect(prop)
