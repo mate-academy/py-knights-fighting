@@ -5,8 +5,8 @@ def battle(knights_config: dict) -> dict:
     lancelot, arthur, mordred, red_knight = (
         Knight.from_dict(knight) for knight in knights_config.values()
     )
-    lancelot.battle(mordred)
-    arthur.battle(red_knight)
+    lancelot.battles(mordred)
+    arthur.battles(red_knight)
     return {
         lancelot.name: lancelot.hp,
         arthur.name: arthur.hp,
