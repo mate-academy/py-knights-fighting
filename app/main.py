@@ -5,15 +5,15 @@ from app.battle_process.battle_process import battle_process
 
 
 def battle(config: dict) -> dict:
-    for knight in config:
-        battle_prepare(config[knight])
+    for knight in config.values():
+        battle_prepare(knight)
 
     for pair in DUEL_PAIRS:
         battle_process(list(pair), config)
 
     return {
-        config[knight]["name"]: config[knight]["hp"]
-        for knight in config
+        knight["name"]: knight["hp"]
+        for knight in config.values()
     }
 
 
