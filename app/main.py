@@ -17,6 +17,6 @@ def battle(config: dict) -> dict:
     }
 
 
-with open("../app/knights_dict.json") as f:
+with open("app/knights_dict.json") as f:
     data = json.load(f)
     print(battle(data["KNIGHTS"]))
