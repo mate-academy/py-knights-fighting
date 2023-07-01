@@ -1,3 +1,6 @@
+import json
+
+
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
@@ -84,3 +87,6 @@ KNIGHTS = {
         }
     }
 }
+
+with open("knights_info.json", "w") as outfile:
+    json.dump(KNIGHTS, outfile)
