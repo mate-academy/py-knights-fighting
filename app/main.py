@@ -8,14 +8,14 @@ def battle(knights_config: dict) -> dict:
     mordred = Knight(**knights_config["mordred"])
     red_knight = Knight(**knights_config["red_knight"])
 
-    lancelot.hp -= mordred.power - lancelot.protection
-    mordred.hp -= lancelot.power - mordred.protection
-    arthur.hp -= red_knight.power - arthur.protection
-    red_knight.hp -= arthur.power - red_knight.protection
+    def fight(attacker: Knight, defender: Knight) -> None:
+        damage = max(0, attacker.power - defender.protection)
+        defender.hp = max(0, defender.hp - damage)
 
-    after_battle = [lancelot, mordred, arthur, red_knight]
-    for knight in after_battle:
-        knight.hp = max(0, knight.hp)
+    fight(lancelot, mordred)
+    fight(mordred, lancelot)
+    fight(arthur, red_knight)
+    fight(red_knight, arthur)
 
     return {
         lancelot.name: lancelot.hp,

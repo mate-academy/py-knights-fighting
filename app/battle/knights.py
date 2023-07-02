@@ -87,6 +87,6 @@ KNIGHTS = {
         }
     }
 }
-
 with open("knights_info.json", "w") as outfile:
     json.dump(KNIGHTS, outfile)
+    outfile.write("\n")
