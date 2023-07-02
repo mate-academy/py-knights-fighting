@@ -1,5 +1,5 @@
+import json
 from app.battle.prep_and_fight import Knight
-from app.battle.knights import KNIGHTS
 
 
 def battle(knights_config: dict) -> dict:
@@ -21,4 +21,8 @@ def battle(knights_config: dict) -> dict:
     }
 
 
-print(battle(KNIGHTS))
+if __name__ == "__main__":
+    file_path = "knights_info.json"
+    with open(file_path, "r") as file:
+        data = json.load(file)
+    print(data)
