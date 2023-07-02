@@ -1,4 +1,4 @@
-from app.battle.before_battle import Knight
+from app.battle.prep_and_fight import Knight
 from app.battle.knights import KNIGHTS
 
 
@@ -8,14 +8,10 @@ def battle(knights_config: dict) -> dict:
     mordred = Knight(**knights_config["mordred"])
     red_knight = Knight(**knights_config["red_knight"])
 
-    def fight(attacker: Knight, defender: Knight) -> None:
-        damage = max(0, attacker.power - defender.protection)
-        defender.hp = max(0, defender.hp - damage)
-
-    fight(lancelot, mordred)
-    fight(mordred, lancelot)
-    fight(arthur, red_knight)
-    fight(red_knight, arthur)
+    lancelot.fight(mordred)
+    mordred.fight(lancelot)
+    arthur.fight(red_knight)
+    red_knight.fight(arthur)
 
     return {
         lancelot.name: lancelot.hp,
