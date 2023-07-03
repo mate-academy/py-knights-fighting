@@ -84,3 +84,5 @@ KNIGHTS = {
         }
     }
 }
+
+# print({name: body for name, body in KNIGHTS.items()})

@@ -1,8 +1,7 @@
 class Knight:
     protection = 0
-    list_of_knights = {}
 
-    def __init__(self, knight: object) -> None:
+    def __init__(self, knight: dict) -> None:
         # Major values
         self.name = knight["name"]
         self.power = knight["power"]
@@ -13,33 +12,22 @@ class Knight:
         self.add_power_of_weapon(knight["weapon"])
         self.add_properties_of_potion(knight["potion"])
 
-        # Adding all knights in the class list
-        self.list_of_knights[self.name] = self
-
     def __repr__(self) -> str:
         return f"{self.hp}"
 
-    def search_addition_armor(self, armor: object) -> None:
-        sum_of_armor = 0
-
+    def search_addition_armor(self, armor: dict) -> None:
         for part in armor:
-            sum_of_armor += part["protection"]
+            self.protection += part["protection"]
 
-        self.protection += sum_of_armor
-
-    def add_power_of_weapon(self, weapon: object) -> None:
+    def add_power_of_weapon(self, weapon: dict) -> None:
         self.power += weapon["power"]
 
-    def add_properties_of_potion(self, potion: object) -> None:
+    def add_properties_of_potion(self, potion: dict) -> None:
         if potion is not None:
-            if "power" in potion["effect"]:
-                self.power += potion["effect"]["power"]
-
-            if "protection" in potion["effect"]:
-                self.protection += potion["effect"]["protection"]
-
-            if "hp" in potion["effect"]:
-                self.hp += potion["effect"]["hp"]
+            for name, value in potion["effect"].items():
+                self.power += value if name == "power" else 0
+                self.protection += value if name == "protection" else 0
+                self.hp += value if name == "hp" else 0
 
     def versus(self, rival: "Knight") -> None:
         self.hp -= rival.power - self.protection
