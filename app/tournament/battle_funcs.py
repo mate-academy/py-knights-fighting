@@ -6,7 +6,7 @@ from app.knights.knight_cls import Knight
 class Battle:
     def __init__(self,
                  first_fighter: Knight,
-                 second_fighter: Knight):
+                 second_fighter: Knight) -> None:
         self.fighter1 = first_fighter
         self.fighter2 = second_fighter
         self.fighters = [first_fighter, second_fighter]

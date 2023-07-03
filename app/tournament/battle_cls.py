@@ -11,7 +11,7 @@ class Tournament:
     def __init__(self, knights: list[Knight]) -> None:
         self.knights = knights
 
-    def __print_knights__(self, pop_knight_name="") -> None:
+    def __print_knights__(self, pop_knight_name: str = "") -> None:
         for knight in self.knights:
             print(f"{knight.name}!")
             sleep(1)
@@ -45,10 +45,10 @@ class Tournament:
 
     def battle(self) -> dict:
         if self.__knights_greetings__():
-            for index in range(len(self.knights)//2):
+            for index in range(len(self.knights) // 2):
                 battle = Battle(self.knights[index],
                                 self.knights[index + 2])
-                battle.fight(battle_round=index+1)
+                battle.fight(battle_round=index + 1)
                 sleep(1)
         print("The results:")
         return {
@@ -57,8 +57,7 @@ class Tournament:
         }
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     knights = Knight.create_knight(KNIGHTS)
     tournament = Tournament(knights=knights)
     print(tournament.battle())
-

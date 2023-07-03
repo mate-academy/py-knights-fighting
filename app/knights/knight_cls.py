@@ -57,7 +57,7 @@ class Knight:
         return knights_objs
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     knights = Knight.create_knight(KNIGHTS)
     for knight in knights:
         print(knight.name, [knight.hp,

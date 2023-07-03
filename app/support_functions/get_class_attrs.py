@@ -18,5 +18,5 @@ def get_class_attribute(cls: Type) -> dict:
     }
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(get_class_attribute(TestClass))
