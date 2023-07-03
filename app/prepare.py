@@ -3,7 +3,7 @@ def prepare(knight: dict) -> dict:
     knight["power"] += knight["weapon"]["power"]
 
     if knight["potion"]:
-        knight.update({key: knight.get(key, 0) + value
+        knight.update({key: knight[key] + value
                        for key, value in knight["potion"]["effect"].items()})
 
     return knight
