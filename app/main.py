@@ -8,7 +8,14 @@ from app.battle import perform_battle
 lancelot_armour = []
 lancelot_weapon = Weapon("Metal Sword", 50)
 lancelot_potion = None
-lancelot = Knight("Lancelot", 35, 100, lancelot_armour, lancelot_weapon, lancelot_potion)
+lancelot = Knight(
+    "Lancelot",
+    35,
+    100,
+    lancelot_armour,
+    lancelot_weapon,
+    lancelot_potion
+)
 
 arthur_armour = [
     Armor("helmet", 15),
@@ -25,14 +32,28 @@ mordred_armour = [
 ]
 mordred_weapon = Weapon("Poisoned Sword", 60)
 mordred_potion = Potion("Berserk", {"power": +15, "hp": -5, "protection": +10})
-mordred = Knight("Mordred", 30, 90, mordred_armour, mordred_weapon, mordred_potion)
+mordred = Knight(
+    "Mordred",
+    30,
+    90,
+    mordred_armour,
+    mordred_weapon,
+    mordred_potion
+)
 
 red_knight_armour = [
     Armor("breastplate", 25)
 ]
 red_knight_weapon = Weapon("Sword", 45)
 red_knight_potion = Potion("Blessing", {"hp": +10, "power": +5})
-red_knight = Knight("Red Knight", 40, 70, red_knight_armour, red_knight_weapon, red_knight_potion)
+red_knight = Knight(
+    "Red Knight",
+    40,
+    70,
+    red_knight_armour,
+    red_knight_weapon,
+    red_knight_potion
+)
 
 knights = {
     "lancelot": lancelot,

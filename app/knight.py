@@ -1,6 +1,20 @@
 
+from typing import List
+from .armor import Armor
+from .weapon import Weapon
+from .potion import Potion
+
+
 class Knight:
-    def __init__(self, name, power, hp, armour, weapon, potion=None):
+    def __init__(
+            self,
+            name: str,
+            power: int,
+            hp: int,
+            armour: List[Armor],
+            weapon: Weapon,
+            potion: Potion = None
+    ) -> None:
         self.name = name
         self.power = power
         self.hp = hp
@@ -8,14 +22,14 @@ class Knight:
         self.weapon = weapon
         self.potion = potion
 
-    def apply_armour(self):
+    def apply_armour(self) -> int:
         total_protection = sum([piece.protection for piece in self.armour])
         return total_protection
 
-    def apply_weapon(self):
+    def apply_weapon(self) -> int:
         return self.power + self.weapon.power
 
-    def apply_potion(self):
+    def apply_potion(self) -> None:
         if self.potion:
             effect = self.potion.get_effect()
             if "power" in effect:
