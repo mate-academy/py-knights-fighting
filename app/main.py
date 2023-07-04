@@ -156,7 +156,8 @@ def battle(knightsconfig: dict) -> dict:
     fight(lancelot, mordred)
     fight(arthur, red_knight)
 
-    return {knights.get(knight).name: knights.get(knight).hp for knight in knights}
+    return {knights.get(knight).name:
+            knights.get(knight).hp for knight in knights}
 
 
 print(battle(KNIGHTS))
