@@ -104,8 +104,8 @@ class Knight:
 
     def preparation(self) -> None:
         # apply armour
-        for i in self.armour:
-            self.protection += i["protection"]
+        for effect in self.armour:
+            self.protection += effect["protection"]
 
         # apply weapon
         self.power += self.weapon["power"]
@@ -156,12 +156,7 @@ def battle(knightsconfig: dict) -> dict:
     fight(lancelot, mordred)
     fight(arthur, red_knight)
 
-    return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
-    }
+    return {knights.get(knight).name: knights.get(knight).hp for knight in knights}
 
 
 print(battle(KNIGHTS))
