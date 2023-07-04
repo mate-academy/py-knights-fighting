@@ -112,50 +112,49 @@ class Knight:
 
         # apply potion if exist
         if self.potion is not None:
-            if "power" in self.potion["effect"]:
-                self.power += self.potion["effect"]["power"]
-
-            if "protection" in self.potion["effect"]:
-                self.protection += self.potion["effect"]["protection"]
-
-            if "hp" in self.potion["effect"]:
-                self.hp += self.potion["effect"]["hp"]
+            for effect, value in self.potion["effect"].items():
+                setattr(self, effect, getattr(self, effect, 0) + value)
+            # if "power" in self.potion["effect"]:
+            #     self.power += self.potion["effect"]["power"]
+            #
+            # if "protection" in self.potion["effect"]:
+            #     self.protection += self.potion["effect"]["protection"]
+            #
+            # if "hp" in self.potion["effect"]:
+            #     self.hp += self.potion["effect"]["hp"]
 
     def check_fall(self) -> None:
         if self.hp <= 0:
             self.hp = 0
 
 
+def fight(first_knight: Knight, second_knight: Knight) -> None:
+    first_knight.hp -= second_knight.power - first_knight.protection
+    second_knight.hp -= first_knight.power - second_knight.protection
+
+    first_knight.check_fall()
+    second_knight.check_fall()
+
+
 def battle(knightsconfig: dict) -> dict:
     knights = {}
-    for key, value in knightsconfig.items():
-        knight = Knight(value.get("name"),
-                        value.get("power"),
-                        value.get("hp"),
-                        value.get("armour"),
-                        value.get("weapon"),
-                        value.get("potion"))
+    for name, stats in knightsconfig.items():
+        knight = Knight(stats.get("name"),
+                        stats.get("power"),
+                        stats.get("hp"),
+                        stats.get("armour"),
+                        stats.get("weapon"),
+                        stats.get("potion"))
         knight.preparation()
-        knights[key] = knight
+        knights[name] = knight
 
     lancelot = knights.get("lancelot")
     arthur = knights.get("arthur")
     mordred = knights.get("mordred")
     red_knight = knights.get("red_knight")
 
-    lancelot.hp -= mordred.power - lancelot.protection
-    mordred.hp -= lancelot.power - mordred.protection
-
-    lancelot.check_fall()
-
-    mordred.check_fall()
-
-    arthur.hp -= red_knight.power - arthur.protection
-    red_knight.hp -= arthur.power - red_knight.protection
-
-    arthur.check_fall()
-
-    red_knight.check_fall()
+    fight(lancelot, mordred)
+    fight(arthur, red_knight)
 
     return {
         lancelot.name: lancelot.hp,
