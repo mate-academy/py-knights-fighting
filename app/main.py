@@ -1,68 +1,91 @@
-from app.knight import Knight
-from app.armor import Armor
-from app.weapon import Weapon
-from app.potion import Potion
-from app.battle import perform_battle
+from app.knights.knight import Knight
+from app.knights.weapon import Weapon
+from app.knights.potion import Potion
 
-# Конфігурація лицарів
-lancelot_armour = []
-lancelot_weapon = Weapon("Metal Sword", 50)
-lancelot_potion = None
-lancelot = Knight(
-    "Lancelot",
-    35,
-    100,
-    lancelot_armour,
-    lancelot_weapon,
-    lancelot_potion
-)
 
-arthur_armour = [
-    Armor("helmet", 15),
-    Armor("breastplate", 20),
-    Armor("boots", 10)
-]
-arthur_weapon = Weapon("Two-handed Sword", 55)
-arthur_potion = None
-arthur = Knight("Arthur", 45, 75, arthur_armour, arthur_weapon, arthur_potion)
+def battle(knights_config):
+    knights = []
 
-mordred_armour = [
-    Armor("breastplate", 15),
-    Armor("boots", 10)
-]
-mordred_weapon = Weapon("Poisoned Sword", 60)
-mordred_potion = Potion("Berserk", {"power": +15, "hp": -5, "protection": +10})
-mordred = Knight(
-    "Mordred",
-    30,
-    90,
-    mordred_armour,
-    mordred_weapon,
-    mordred_potion
-)
+    for knight_config in knights_config.values():
+        name = knight_config["name"]
+        power = knight_config["power"]
+        hp = knight_config["hp"]
+        armour = knight_config["armour"]
+        weapon = Weapon(knight_config["weapon"]["name"], knight_config["weapon"]["power"])
+        potion_config = knight_config["potion"]
+        potion = None
 
-red_knight_armour = [
-    Armor("breastplate", 25)
-]
-red_knight_weapon = Weapon("Sword", 45)
-red_knight_potion = Potion("Blessing", {"hp": +10, "power": +5})
-red_knight = Knight(
-    "Red Knight",
-    40,
-    70,
-    red_knight_armour,
-    red_knight_weapon,
-    red_knight_potion
-)
+        if potion_config is not None:
+            potion = Potion(potion_config["name"], potion_config["effect"])
 
-knights = {
-    "lancelot": lancelot,
-    "arthur": arthur,
-    "mordred": mordred,
-    "red_knight": red_knight
-}
+        knight = Knight(name, power, hp, armour, weapon, potion)
+        knight.apply_armour()
+        knight.apply_weapon()
+        knight.apply_potion()
 
-# Виклик функції для битви
-knights_list = list(knights.values())
-battle_result = perform_battle(knights_list)
-print(battle_result)
+        knights.append(knight)
+
+    results = {}
+
+    for knight in knights:
+        remaining_knights = knights.copy()
+        remaining_knights.remove(knight)
+
+        for opponent in remaining_knights:
+            knight_hp = max(knight.hp - opponent.power + knight.protection, 0)
+            opponent_hp = max(opponent.hp - knight.power + opponent.protection, 0)
+
+            results[knight.name] = knight_hp
+            results[opponent.name] = opponent_hp
+
+    return results
+
+
+if __name__ == "__main__":
+    KNIGHTS = {
+        "lancelot": {
+            "name": "Lancelot",
+            "power": 35,
+            "hp": 100,
+            "armour": [],
+            "weapon": {"name": "Metal Sword", "power": 50},
+            "potion": None,
+        },
+        "arthur": {
+            "name": "Arthur",
+            "power": 45,
+            "hp": 75,
+            "armour": [
+                {"part": "helmet", "protection": 15},
+                {"part": "breastplate", "protection": 20},
+                {"part": "boots", "protection": 10},
+            ],
+            "weapon": {"name": "Two-handed Sword", "power": 55},
+            "potion": None,
+        },
+        "mordred": {
+            "name": "Mordred",
+            "power": 30,
+            "hp": 90,
+            "armour": [
+                {"part": "breastplate", "protection": 15},
+                {"part": "boots", "protection": 10},
+            ],
+            "weapon": {"name": "Poisoned Sword", "power": 60},
+            "potion": {
+                "name": "Berserk",
+                "effect": {"power": 15, "hp": -5, "protection": 10},
+            },
+        },
+        "red_knight": {
+            "name": "Red Knight",
+            "power": 40,
+            "hp": 70,
+            "armour": [{"part": "breastplate", "protection": 25}],
+            "weapon": {"name": "Sword", "power": 45},
+            "potion": {"name": "Blessing", "effect": {"hp": 10, "power": 5}},
+        },
+    }
+
+    battle_result = battle(KNIGHTS)
+    print(battle_result)
