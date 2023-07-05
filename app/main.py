@@ -114,14 +114,6 @@ class Knight:
         if self.potion is not None:
             for effect, value in self.potion["effect"].items():
                 setattr(self, effect, getattr(self, effect, 0) + value)
-            # if "power" in self.potion["effect"]:
-            #     self.power += self.potion["effect"]["power"]
-            #
-            # if "protection" in self.potion["effect"]:
-            #     self.protection += self.potion["effect"]["protection"]
-            #
-            # if "hp" in self.potion["effect"]:
-            #     self.hp += self.potion["effect"]["hp"]
 
     def check_fall(self) -> None:
         if self.hp <= 0:
