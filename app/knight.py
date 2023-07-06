@@ -14,7 +14,7 @@ class Knight:
         self.name = name
         self.power = power + weapon["power"]
         self.hp = hp
-        self.protection = sum(element["protection"]for element in armour)
+        self.protection = sum(element["protection"] for element in armour)
         self.weapon = weapon
         if potion is not None:
             self.apply_potion_effect(potion)
