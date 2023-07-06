@@ -1,19 +1,23 @@
-from app.modules.battle import Battleground
 from app.modules.knights import Knight
 
 
-def battle(knightsConfig: dict) -> dict | str:
-    knights = []
+def fight(knight_1: Knight, knight_2: Knight) -> None:
+    knight_1.hp -= knight_2.power - knight_1.protection
+    knight_2.hp -= knight_1.power - knight_2.protection
 
-    # transforming input to Knight
-    for k in knightsConfig:
-        knights.append(Knight(k))
+    # check if someone fell in battle
+    if knight_1.hp <= 0:
+        knight_1.hp = 0
+
+    if knight_2.hp <= 0:
+        knight_2.hp = 0
+
+
+def battle(knights_config: dict) -> dict | str:
+    knights = {knight["name"]: Knight(knight) for knight in knights_config}
 
     # LET THE BATTLE BEGIN
-    if len(knights) % 2 == 0:
-        for index in range(0, len(knights)-2, 2):
-            Battleground.fight(knights[index], knights[index+2])
-    else:
-        return "Not enough knights this year"
+    fight(knights["lancelot"], knights["mordred"])
+    fight(knights["arthur"], knights["red_knight"])
 
-    return {knights[index].name: knights[index].hp for index in range(len(knights))}
+    return {knight.name: knight.hp for knight in knights}

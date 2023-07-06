@@ -9,20 +9,14 @@ class Knight:
         self.protection = 0
 
         # add "protection" stats from "armor" items
-        for a in self.armour:
-            self.protection += a["protection"]
+        for armour_part in self.armour:
+            self.protection += armour_part["protection"]
 
         # add "power" stats from "weapon" items
-        for w in self.weapon:
-            self.power += w[self.weapon]
+        self.power += self.weapon["power"]
 
         # add all stats from "potion" items
         if self.potion is not None:
-            if "power" in self.potion["effect"]:
-                self.power += self.potion["effect"]["power"]
-
-            if "protection" in self.potion["effect"]:
-                self.protection += self.potion["effect"]["protection"]
-
-            if "hp" in self.potion["effect"]:
-                self.hp += self.potion["effect"]["hp"]
+            for key, value in self.potion["effect"].items():
+                current_value = getattr(self, key)
+                setattr(self, key, current_value + value)
