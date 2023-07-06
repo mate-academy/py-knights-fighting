@@ -8,7 +8,7 @@ class Knight:
             name: str,
             power: int,
             hp: int,
-            armour: [Armour],
+            armour: list[Armour],
             weapon: Weapon,
             potion: Potion
     ) -> None:

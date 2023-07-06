@@ -1,5 +1,4 @@
 from __future__ import annotations
-from app.config import KNIGHTS
 from app.knight.knight import Knight
 
 
@@ -10,6 +9,3 @@ def battle(knights_config: dict) -> dict:
     red_knight = Knight.from_dict(knights_config["red_knight"])
 
     return lancelot.fight(mordred) | arthur.fight(red_knight)
-
-
-print(battle(KNIGHTS))
