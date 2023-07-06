@@ -14,10 +14,19 @@ def fight(knight_1: Knight, knight_2: Knight) -> None:
 
 
 def battle(knights_config: dict) -> dict | str:
-    knights = {knight["name"]: Knight(knight) for knight in knights_config}
+    # knights = {knight["name"]: Knight(knight) for knight in knights_config}
+    knights = {}
+
+    for knight, value in knights_config.items():
+        knights[knight] = Knight(value)
 
     # LET THE BATTLE BEGIN
     fight(knights["lancelot"], knights["mordred"])
     fight(knights["arthur"], knights["red_knight"])
 
-    return {knight.name: knight.hp for knight in knights}
+    return {
+        "Lancelot": knights["lancelot"].hp,
+        "Arthur": knights["arthur"].hp,
+        "Mordred": knights["mordred"].hp,
+        "Red Knight": knights["red_knight"].hp
+    }
