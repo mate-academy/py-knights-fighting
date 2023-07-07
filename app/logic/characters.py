@@ -75,5 +75,6 @@ class Knight:
         self.dressed_up.append(armor)
 
     def __str__(self) -> str:
-        return f"name {self.name}, " + f"power {self.power}, " \
-               + f"hp {self.hp}, " + f"defence {self.protection}"
+        first = f"name {self.name}, " + f"power {self.power}, "
+        second = f"hp {self.hp}, " + f"defence {self.protection}"
+        return first + second
