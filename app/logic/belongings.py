@@ -37,7 +37,7 @@ class Potion:
         self.effect = effect
 
     @staticmethod
-    def check_effect(effect_dict: dict) -> Effect:
+    def check_effect(effect_dict: dict) -> Effect | bool:
         result = Effect.find_effect(Effect.make_key(effect_dict))
         if result:
             return result
@@ -49,7 +49,7 @@ class Potion:
 
     @staticmethod
     def initialize(
-            potion: dict | list
+            potion: dict | list[dict]
     ) -> Potion | list[Potion]:
         if isinstance(potion, dict):
             return [
@@ -86,7 +86,7 @@ class Effect:
 
     @staticmethod
     def make_key(
-            effect_dict: dict
+            effect_dict: dict[str: int]
     ) -> str:
         hp = "0"
         power = "0"

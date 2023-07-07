@@ -50,8 +50,8 @@ class Knight:
 
     @staticmethod
     def init_armor(
-            armor_list: list
-    ) -> list[Armor]:
+            armor_list: list[dict]
+    ) -> list[Armor] | []:
         if armor_list:
             armours = []
             for armour in armor_list:
