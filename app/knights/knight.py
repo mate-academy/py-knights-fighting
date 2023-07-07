@@ -20,12 +20,11 @@ class Knight:
         return self._hp
 
     @hp.setter
-    def hp(self, value: int) -> int:
+    def hp(self, value: int) -> None:
         if value <= 0:
             self._hp = 0
-
-        else:
-            self._hp = value
+            return
+        self._hp = value
 
     def __post_init__(self) -> None:
         self.__apply_stats()

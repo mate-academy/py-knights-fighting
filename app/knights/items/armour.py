@@ -9,7 +9,4 @@ class Armour:
     @classmethod
     def create(cls, dict_: dict) -> list | None:
         if dict_["armour"]:
-            res = []
-            for piece in dict_["armour"]:
-                res.append(cls(piece["part"], piece["protection"]))
-            return res
+            return [cls(piece["part"], piece["protection"]) for piece in dict_["armour"]]
