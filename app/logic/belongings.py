@@ -42,7 +42,7 @@ class Potion:
         if result:
             return result
         return Effect(
-            hp=effect_dict.get("hp") or 0,
+            health_points=effect_dict.get("hp") or 0,
             power=effect_dict.get("power") or 0,
             protection=effect_dict.get("protection") or 0
         )
@@ -74,14 +74,14 @@ class Effect:
 
     def __init__(
             self,
-            hp: int = 0,
+            health_points: int = 0,
             power: int = 0,
             protection: int = 0
     ) -> None:
-        self.hp = hp
+        self.health_points = health_points
         self.power = power
         self.protection = protection
-        self.key = str(hp) + str(power) + str(protection)
+        self.key = str(health_points) + str(power) + str(protection)
         self.effects.append(self)
 
     @staticmethod

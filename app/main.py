@@ -31,8 +31,8 @@ def battle(
 
     # Return battle results:
     return {
-        knights["lancelot"].name: knights["lancelot"].hp,
-        knights["arthur"].name: knights["arthur"].hp,
-        knights["mordred"].name: knights["mordred"].hp,
-        knights["red_knight"].name: knights["red_knight"].hp,
+        knights["lancelot"].name: knights["lancelot"].health_points,
+        knights["arthur"].name: knights["arthur"].health_points,
+        knights["mordred"].name: knights["mordred"].health_points,
+        knights["red_knight"].name: knights["red_knight"].health_points,
     }

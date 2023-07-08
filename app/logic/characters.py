@@ -8,14 +8,14 @@ class Knight:
             self,
             name: str,
             power: int,
-            hp: int,
+            health_points: int,
             armour: list[Armor],
             weapon: Weapon,
             potion: list[Potion]
     ) -> None:
         self.name = name
         self.power = power
-        self.hp = hp
+        self.health_points = health_points
         self.protection = 0
         self.armour = armour
         self.weapon = weapon
@@ -41,12 +41,12 @@ class Knight:
             self,
             rival: Knight
     ) -> None:
-        self.hp -= (rival.power - self.protection)
-        rival.hp -= (self.power - rival.protection)
-        if self.hp < 0:
-            self.hp = 0
-        if rival.hp < 0:
-            rival.hp = 0
+        self.health_points -= (rival.power - self.protection)
+        rival.health_points -= (self.power - rival.protection)
+        if self.health_points < 0:
+            self.health_points = 0
+        if rival.health_points < 0:
+            rival.health_points = 0
 
     @staticmethod
     def init_armor(
@@ -63,7 +63,7 @@ class Knight:
             self,
             effect: Effect
     ) -> None:
-        self.hp += effect.hp
+        self.health_points += effect.health_points
         self.power += effect.power
         self.protection += effect.protection
 
@@ -75,6 +75,6 @@ class Knight:
         self.dressed_up.append(armor)
 
     def __str__(self) -> str:
-        first = f"name {self.name}, " + f"power {self.power}, "
-        second = f"hp {self.hp}, " + f"defence {self.protection}"
-        return first + second
+        first_part_ = f"name {self.name}, power {self.power}, "
+        second_part = f"hp {self.health_points}, defence {self.protection}"
+        return first_part_ + second_part
