@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 
 class Knight:
     def __init__(self, knights: dict) -> None:

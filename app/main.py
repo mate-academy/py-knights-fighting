@@ -8,7 +8,6 @@ def fight(knight1: Knight, knight2: Knight) -> dict:
 
     if knight1.hp <= 0:
         knight1.hp = 0
-
     if knight2.hp <= 0:
         knight2.hp = 0
 

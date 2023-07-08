@@ -1,3 +1,4 @@
+
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
