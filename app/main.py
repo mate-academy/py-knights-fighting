@@ -4,7 +4,7 @@ from logic.belongings import Weapon, Potion
 
 def parse_dict(
         knights_dict: dict
-) -> dict[str: Knight]:
+) -> dict[str, Knight]:
     participants = {}
     for knight, value in knights_dict.items():
         new_knight = Knight(value["name"],

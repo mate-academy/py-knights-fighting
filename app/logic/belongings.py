@@ -86,7 +86,7 @@ class Effect:
 
     @staticmethod
     def make_key(
-            effect_dict: dict[str: int]
+            effect_dict: dict[str, int]
     ) -> str:
         hp = "0"
         power = "0"
