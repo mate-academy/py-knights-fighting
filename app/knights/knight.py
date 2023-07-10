@@ -23,8 +23,8 @@ class Knight:
     def hp(self, value: int) -> None:
         if value <= 0:
             self._hp = 0
-            return
-        self._hp = value
+        else:
+            self._hp = value
 
     def __post_init__(self) -> None:
         self.__apply_stats()
