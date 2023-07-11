@@ -2,6 +2,7 @@ from __future__ import annotations
 
 
 class Knight:
+    res = dict()
 
     def __init__(self, knight: dict) -> None:
         self.name = knight["name"]
@@ -12,6 +13,8 @@ class Knight:
         self.apply_armour(knight["armour"])
         self.apply_weapon(knight["weapon"])
         self.apply_potion(knight["potion"])
+
+        self.res.update({self.name: self})
 
     def apply_armour(self, armour: list) -> None:
         for part in armour:
