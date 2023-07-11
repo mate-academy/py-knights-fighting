@@ -6,19 +6,17 @@ from app.pages.class_knight import Knight
 
 def battle(knights_config: dict) -> dict:
 
-    lancelot = Knight(knights_config["lancelot"])
-    arthur = Knight(knights_config["arthur"])
-    mordred = Knight(knights_config["mordred"])
-    red_knight = Knight(knights_config["red_knight"])
+    res = dict()
 
-    lancelot.fighting(mordred)
-    arthur.fighting(red_knight)
+    for key, value in knights_config.items():
+        res.update({key: Knight(knights_config[key])})
+
+    res["lancelot"].fighting(res["mordred"])
+    res["arthur"].fighting(res["red_knight"])
 
     return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
+        val.name: val.hp
+        for key, val in res.items()
     }
 
 

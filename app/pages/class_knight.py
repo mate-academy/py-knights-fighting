@@ -26,12 +26,9 @@ class Knight:
         for elem in prop_list:
             if potion is not None:
                 if elem in potion["effect"]:
-                    if elem == "power":
-                        self.power += potion["effect"][elem]
-                    if elem == "protection":
-                        self.protection += potion["effect"]["protection"]
-                    if elem == "hp":
-                        self.hp += potion["effect"]["hp"]
+                    setattr(self,
+                            elem,
+                            getattr(self, elem) + potion["effect"][elem])
 
     def check_hp(self) -> None:
         if self.hp <= 0:
