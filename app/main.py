@@ -9,12 +9,12 @@ def battle(knights_config: dict) -> dict:
     for key, value in knights_config.items():
         Knight(knights_config[key])
 
-    Knight.res["Lancelot"].fighting(Knight.res["Mordred"])
-    Knight.res["Arthur"].fighting(Knight.res["Red Knight"])
+    Knight.dic.get("Lancelot").fighting(Knight.dic.get("Mordred"))
+    Knight.dic.get("Arthur").fighting(Knight.dic.get("Red Knight"))
 
     return {
-        val.name: val.hp
-        for key, val in Knight.res.items()
+        value.name: value.hp
+        for key, value in Knight.dic.items()
     }
 
 
