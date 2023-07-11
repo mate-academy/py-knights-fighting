@@ -2,8 +2,8 @@ from __future__ import annotations
 
 
 class Knight:
-    def __init__(self, name: str, config: dict) -> None:
-        self.name = name.replace("_", " ").title()
+    def __init__(self, config: dict) -> None:
+        self.name = config["name"]
         self.power = config["power"] + config["weapon"]["power"]
         self.hp = config["hp"]
         self._apply_armour(armour=config["armour"])
