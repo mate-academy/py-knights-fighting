@@ -1,6 +1,6 @@
-from app.Data_knights.knights_info import KNIGHTS
-from app.Battle.battle import Battle
-from app.Character.knight_konfiguration import Character
+from app.data_knights.knights_info import KNIGHTS
+from app.battle.battle import Battle
+from app.character.knight_konfiguration import Character
 
 
 def battle(knights_config: dict) -> dict:
