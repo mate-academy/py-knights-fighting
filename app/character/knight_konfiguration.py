@@ -15,8 +15,8 @@ class Character:
                 self.power += data_knight[name]["potion"]["effect"]["power"]
 
             if "protection" in data_knight[name]["potion"]["effect"]:
-                self.protection += \
-                    data_knight[name]["potion"]["effect"]["protection"]
+                self.protection += (
+                    data_knight[name]["potion"]["effect"]["protection"])
 
             if "hp" in data_knight[name]["potion"]["effect"]:
                 self.hp += data_knight[name]["potion"]["effect"]["hp"]

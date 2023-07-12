@@ -10,8 +10,8 @@ KNIGHTS = {
         },
         "potion": None,
     },
-    "Arthur": {
-        "name": "Artur",
+    "arthur": {
+        "name": "Arthur",
         "power": 45,
         "hp": 75,
         "armour": [

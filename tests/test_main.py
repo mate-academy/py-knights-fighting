@@ -17,8 +17,8 @@ def base_knights_config():
             },
             "potion": None,
         },
-        "Arthur": {
-            "name": "Artur",
+        "arthur": {
+            "name": "Arthur",
             "power": 45,
             "hp": 75,
             "armour": [
@@ -146,9 +146,9 @@ def test_mordred_sword_is_not_poisoned(base_knights_config):
 
 
 def test_arthur_armour_weak(base_knights_config):
-    base_knights_config["Arthur"]["armour"][0]["protection"] -= 10
-    base_knights_config["Arthur"]["armour"][1]["protection"] -= 10
-    base_knights_config["Arthur"]["armour"][0]["protection"] -= 10
+    base_knights_config["arthur"]["armour"][0]["protection"] -= 10
+    base_knights_config["arthur"]["armour"][1]["protection"] -= 10
+    base_knights_config["arthur"]["armour"][0]["protection"] -= 10
     assert battle(base_knights_config) == {
         "Lancelot": 0,
         "Arthur": 0,
@@ -158,7 +158,7 @@ def test_arthur_armour_weak(base_knights_config):
 
 
 def test_arthur_and_lancelot_have_potion(base_knights_config):
-    base_knights_config["Arthur"]["potion"] = {
+    base_knights_config["arthur"]["potion"] = {
         "name": "Dragon's heart",
         "effect": {
             "protection": +20,

@@ -5,7 +5,7 @@ from app.character.knight_konfiguration import Character
 
 def battle(knights_config: dict) -> dict:
     lancelot = Character(name="lancelot", data_knight=knights_config)
-    arthur = Character(name="Arthur", data_knight=knights_config)
+    arthur = Character(name="arthur", data_knight=knights_config)
     mordred = Character(name="mordred", data_knight=knights_config)
     red_knight = Character(name="red_knight", data_knight=knights_config)
 
@@ -14,7 +14,7 @@ def battle(knights_config: dict) -> dict:
 
     result = {
         "Lancelot": Battle.result["lancelot"],
-        "Arthur": Battle.result["Arthur"],
+        "Arthur": Battle.result["arthur"],
         "Mordred": Battle.result["mordred"],
         "Red Knight": Battle.result["red_knight"]
     }
