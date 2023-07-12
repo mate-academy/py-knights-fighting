@@ -13,7 +13,7 @@ class Battle:
 
     def battle_of_knights(self) -> dict:
         self.first_knight.hp -= \
-           self.second_knight.power - self.first_knight.protection
+            self.second_knight.power - self.first_knight.protection
         self.second_knight.hp -= \
             self.first_knight.power - self.second_knight.protection
 
