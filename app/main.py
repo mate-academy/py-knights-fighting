@@ -1,4 +1,4 @@
-from app.data import knights_dict
+import json
 from app.knight import Knight
 
 
@@ -12,8 +12,14 @@ def duel(rival1: Knight, rival2: Knight) -> dict:
 
 def battle(knights_config: dict) -> dict:
     knights = {name: Knight(knights_config[name]) for name in knights_config}
-    return (duel(knights["lancelot"], knights["mordred"])
-            | duel(knights["arthur"], knights["red_knight"]))
+    return duel(knights["lancelot"], knights["mordred"]) | duel(knights["arthur"], knights["red_knight"])
 
 
-print(battle(knights_dict))
+def load_knights_from_json(file_path):
+    with open(file_path, "r") as file:
+        return json.load(file)
+
+
+if __name__ == "__main__":
+    knights_dict = load_knights_from_json("data.json")
+    print(battle(knights_dict))
