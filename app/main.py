@@ -12,10 +12,14 @@ def duel(rival1: Knight, rival2: Knight) -> dict:
 
 def battle(knights_config: dict) -> dict:
     knights = {name: Knight(knights_config[name]) for name in knights_config}
-    return duel(knights["lancelot"], knights["mordred"]) | duel(knights["arthur"], knights["red_knight"])
+    return duel(
+        knights["lancelot"],
+        knights["mordred"]) | duel(knights["arthur"],
+                                   knights["red_knight"]
+                                   )
 
 
-def load_knights_from_json(file_path):
+def load_knights_from_json(file_path: str) -> dict:
     with open(file_path, "r") as file:
         return json.load(file)
 
