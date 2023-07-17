@@ -12,5 +12,9 @@ class Knight:
             self.protection = sum(item["protection"]
                                   for item in data["armour"])
         if data["potion"]:
-            for stat in (["power", "hp", "protection"]):
-                self.__dict__[stat] += data["potion"]["effect"].get(stat, 0)
+            for stat in ["power", "hp", "protection"]:
+                setattr(
+                    self,
+                    stat,
+                    getattr(self, stat) + data["potion"]["effect"].get(stat, 0)
+                )
