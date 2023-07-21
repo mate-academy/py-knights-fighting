@@ -2,39 +2,26 @@ from app.knights import Knight
 from app.list_knights import KNIGHTS
 
 
+def fighting(knight_1: Knight, knight_2: Knight) -> None:
+    knight_1.prepare()
+    knight_2.prepare()
+    knight_1.hp -= knight_2.power - knight_1.protection
+    knight_2.hp -= knight_1.power - knight_2.protection
+
+    if knight_1.hp <= 0:
+        knight_1.hp = 0
+    if knight_2.hp <= 0:
+        knight_2.hp = 0
+
+
 def battle(knights: dict) -> dict:
-    # BATTLE PREPARATIONS:
     lancelot = Knight(*knights.get("lancelot").values())
     arthur = Knight(*knights.get("arthur").values())
     mordred = Knight(*knights.get("mordred").values())
     red_knight = Knight(*knights.get("red_knight").values())
 
-    lancelot.prepare()
-    arthur.prepare()
-    mordred.prepare()
-    red_knight.prepare()
-
-    # 1 Lancelot vs Mordred:
-    lancelot.hp -= mordred.power - lancelot.protection
-    mordred.hp -= lancelot.power - mordred.protection
-
-    # check if someone fell in battle
-    if lancelot.hp <= 0:
-        lancelot.hp = 0
-
-    if mordred.hp <= 0:
-        mordred.hp = 0
-
-    # 2 Arthur vs Red Knight:
-    arthur.hp -= red_knight.power - arthur.protection
-    red_knight.hp -= arthur.power - red_knight.protection
-
-    # check if someone fell in battle
-    if arthur.hp <= 0:
-        arthur.hp = 0
-
-    if red_knight.hp <= 0:
-        red_knight.hp = 0
+    fighting(lancelot, mordred)
+    fighting(arthur, red_knight)
 
     return {
         lancelot.name: lancelot.hp,
