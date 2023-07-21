@@ -1,5 +1,5 @@
 from app.knights import Knight
-from app.list_knights import KNIGHTS
+import json
 
 
 def fighting(knight_1: Knight, knight_2: Knight) -> None:
@@ -31,4 +31,6 @@ def battle(knights: dict) -> dict:
     }
 
 
-print(battle(KNIGHTS))
+with open("app/list_knights.json") as k:
+    knights_data = json.load(k)
+    print(battle(knights_data))

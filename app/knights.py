@@ -2,9 +2,9 @@ class Knight:
     def __init__(self, name: str,
                  power: int,
                  hp: int,
-                 armour: list[dict] = None,
-                 weapon: dict = None,
-                 potion: dict = None,
+                 armour: list,
+                 weapon: dict,
+                 potion: None,
                  protection: int = 0
                  ) -> None:
         self.name = name
