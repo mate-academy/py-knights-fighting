@@ -12,8 +12,5 @@ class Knight:
                 self.protection += armour_parts["protection"]
 
         if knight_config["potion"]:
-            self.power += knight_config["potion"]["effect"].get("power", 0)
-            self.hp += knight_config["potion"]["effect"].get("hp", 0)
-            self.protection += (
-                knight_config["potion"]["effect"].get("protection", 0)
-            )
+            for attr_name, value in knight_config["potion"]["effect"].items():
+                setattr(self, attr_name, getattr(self, attr_name) + value)
