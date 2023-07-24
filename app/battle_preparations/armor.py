@@ -12,7 +12,7 @@ class Armour:
             self.protection += armor_protect["protection"]
 
         if self.potion is not None:
-            for i in self.potion["effect"]:a
+            for i in self.potion["effect"]:
                 knight[i] += self.potion["effect"][i]
 
         self.protection += knight["protection"]
