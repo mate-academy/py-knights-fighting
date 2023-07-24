@@ -4,7 +4,6 @@ class Armour:
     def __init__(self, knight: dict) -> None:
         self.name = knight["name"]
         self.armour = knight["armour"]
-        self.weapon = knight["weapon"]
         self.potion = knight["potion"]
         knight["protection"] = 0
 
