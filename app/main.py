@@ -1,4 +1,3 @@
-# main.py
 from .battles import battle
 from .knights import KNIGHTS
 
