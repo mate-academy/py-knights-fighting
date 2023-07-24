@@ -1,5 +1,5 @@
 from typing import Dict
-from .knights import apply_armour, apply_weapon, apply_potion
+from app.knights import apply_armour, apply_weapon, apply_potion
 
 
 def battle(knights_config: Dict[str, dict]) -> Dict:
