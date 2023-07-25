@@ -5,15 +5,15 @@ from app.battle.results import results
 
 
 def battle(data: dict) -> dict:
-    """PREPARATION"""
+    # Preparation for battle
     for name in KNIGHTS:
         preparations(data, name)
 
-    """FIGHTING"""
+    # The fight
     fighting("lancelot", "mordred", data)
     fighting("arthur", "red_knight", data)
 
-    """RESULTS"""
+    # Results of the fight
     return {
         results(data, knight)[0]: results(data, knight)[1]
         for knight in data
