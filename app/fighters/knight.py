@@ -9,7 +9,7 @@ class Knight:
         armour: list[dict],
         weapon: dict,
         potion: dict,
-    ) -> object:
+    ) -> None:
         self.name = name
         self.power = power
         self.hp = hp
@@ -23,13 +23,6 @@ class Knight:
     def create_dict_of_knights_instances(knights: dict) -> dict:
         dict_of_knights_instances = {}
         for knight in knights.values():
-            new_knight = Knight(
-                knight["name"],
-                knight["power"],
-                knight["hp"],
-                knight["armour"],
-                knight["weapon"],
-                knight["potion"],
-            )
+            new_knight = Knight(**knight)
             dict_of_knights_instances[knight["name"]] = new_knight
         return dict_of_knights_instances
