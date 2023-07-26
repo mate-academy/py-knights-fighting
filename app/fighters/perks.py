@@ -4,13 +4,10 @@ from app.fighters.knight import Knight
 class Perk:
     @staticmethod
     def apply_armour(knight: Knight) -> None:
-        armour_effect = 0
-        for part in knight.armour:
-            armour_effect += part["protection"]
-
-        knight.protection += armour_effect
-        if armour_effect != 0:
-            print(f"+ armour effect: {armour_effect} protection")
+        knight.protection = sum(part["protection"]
+                                for part in knight.armour)
+        if knight.protection != 0:
+            print(f"+ armour effect: {knight.protection} protection")
 
     @staticmethod
     def apply_weapon(knight: Knight) -> None:
