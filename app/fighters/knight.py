@@ -31,7 +31,5 @@ class Knight:
                 knight["weapon"],
                 knight["potion"],
             )
-            dict_of_knights_instances[knight["name"]] = knight.get(
-                knight["name"], new_knight
-            )
+            dict_of_knights_instances[knight["name"]] = new_knight
         return dict_of_knights_instances

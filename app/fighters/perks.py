@@ -7,6 +7,7 @@ class Perk:
         armour_effect = 0
         for part in knight.armour:
             armour_effect += part["protection"]
+
         knight.protection += armour_effect
         if armour_effect != 0:
             print(f"+ armour effect: {armour_effect} protection")
@@ -20,20 +21,13 @@ class Perk:
 
     @staticmethod
     def apply_potion(knight: Knight) -> None:
-        potion_effects_result = "potion effects: "
         if knight.potion is not None:
-            potion_effects = knight.potion["effect"]
-            for effect, value in potion_effects.items():
-                if effect == "power":
-                    knight.power += value
-                    potion_effects_result += f"+ power: {value}, "
-                if effect == "hp":
-                    knight.hp += value
-                    potion_effects_result += f"+ hp: {value}, "
-                if effect == "protection":
-                    knight.protection += value
-                    potion_effects_result += f"+ protection: {value} "
-            print(f"{potion_effects_result}")
+            potion_effects_result = []
+            for effect, value in knight.potion["effect"].items():
+                if effect in ("power", "hp", "protection"):
+                    setattr(knight, effect, getattr(knight, effect) + value)
+                    potion_effects_result.append(f"+ {effect}: {value}")
+            print("potion effects: " + ", ".join(potion_effects_result))
 
     @staticmethod
     def apply_all_perks(knight: Knight) -> None:

@@ -4,7 +4,11 @@ from app.battle.fight import Fight
 
 def battle(base_knights_config: dict) -> dict:
     fighters = Knight.create_dict_of_knights_instances(base_knights_config)
-    lancelot, arthur, mordred, red_knight = fighters.values()
+
+    lancelot = fighters["Lancelot"]
+    arthur = fighters["Arthur"]
+    mordred = fighters["Mordred"]
+    red_knight = fighters["Red Knight"]
 
     print("FIRST FIGHT - Lancelot VS Mordred\n")
     Fight.fight(lancelot, mordred)
