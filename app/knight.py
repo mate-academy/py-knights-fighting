@@ -1,5 +1,7 @@
+from __future__ import annotations
+
+
 class Knight:
-    protection = 0
 
     def __init__(
         self,
@@ -16,6 +18,7 @@ class Knight:
         self.armour = armour
         self.weapon = weapon
         self.potion = potion
+        self.protection = 0
 
     def set_armour(self) -> None:
         if self.armour:
@@ -27,14 +30,19 @@ class Knight:
 
     def set_potion(self) -> None:
         if self.potion:
-            if "power" in self.potion.get("effect"):
-                self.power += self.potion.get("effect").get("power")
-            if "protection" in self.potion.get("effect"):
-                self.protection += self.potion.get("effect").get("protection")
-            if "hp" in self.potion.get("effect"):
-                self.hp += self.potion.get("effect").get("hp")
+            for effect, value in self.potion.get("effect").items():
+                setattr(self, effect, getattr(self, effect) + value)
 
-    def preparation(self) -> None:
+    def prepare(self) -> None:
         self.set_armour()
         self.set_weapon()
         self.set_potion()
+
+    @staticmethod
+    def fight(first_knight: Knight, second_knight: Knight) -> None:
+        first_knight.hp -= second_knight.power - first_knight.protection
+        second_knight.hp -= first_knight.power - second_knight.protection
+        if first_knight.hp <= 0:
+            first_knight.hp = 0
+        if second_knight.hp <= 0:
+            second_knight.hp = 0
