@@ -29,9 +29,8 @@ class Knight:
     def potion_shot(self, dict_knight: dict) -> None:
         potion = dict_knight.get("potion")
         if potion:
-            self.power += potion["effect"].get("power", 0)
-            self.hp += potion["effect"].get("hp", 0)
-            self.protection += potion["effect"].get("protection", 0)
+            for effect, value in potion["effect"].items():
+                setattr(self, effect, getattr(self, effect) + value)
 
     def _do_damage(self, other: Knight) -> None:
         final_hp_damage = (
