@@ -6,8 +6,6 @@ from app.potion.potion import Potion
 
 class Knight:
 
-    knights: list[Knight] = []
-
     def __init__(
         self,
         name: str,
@@ -22,8 +20,6 @@ class Knight:
         self.weapon = weapon
         self.armours = []
         self.potion = None
-
-        Knight.knights.append(self)
 
     def add_armour(self, armour: Armour) -> Knight:
         if armour not in self.armours:

@@ -40,16 +40,13 @@ def create_knight(knight_config: dict) -> Knight:
 
 def battle(knights_config: dict) -> dict:
     knights = {}
-    for key, knight_config in knights_config.items():
-        knights[key] = create_knight(knight_config)
+    for knight_alias, knight_config in knights_config.items():
+        knights[knight_alias] = create_knight(knight_config)
 
+    knight_pairs = [("lancelot", "mordred"), ("arthur", "red_knight")]
     battle_results = {}
-    for i in range(0, 2):
-        if i == 0:
-            battle_obj = Battle(knights["lancelot"], knights["mordred"])
-        else:
-            battle_obj = Battle(knights["arthur"], knights["red_knight"])
-
+    for knight1, knight2 in knight_pairs:
+        battle_obj = Battle(knights.get(knight1), knights.get(knight2))
         battle_results.update(battle_obj.fight())
 
     return battle_results
