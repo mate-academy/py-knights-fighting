@@ -12,15 +12,10 @@ def apply_weapon(knight: Dict[str, any]) -> Dict:
     knight["power"] += knight["weapon"]["power"]
 
 
-def apply_potion(knight: Dict[str, any]) -> Dict:
-    if knight["potion"] is not None:
-        potion_effect = knight["potion"]["effect"]
-        if "power" in potion_effect:
-            knight["power"] += potion_effect["power"]
-        if "protection" in potion_effect:
-            knight["protection"] += potion_effect["protection"]
-        if "hp" in potion_effect:
-            knight["hp"] += potion_effect["hp"]
+ef apply_potion(knight: Dict[str, Any]) -> Dict:
+    if knight.get("potion") is not None:
+        potion_effect = knight["potion"].get("effect", {})
+        attributes_to_update = ["power", "protection", "hp"]
 
 
 KNIGHTS = {
