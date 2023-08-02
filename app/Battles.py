@@ -17,7 +17,6 @@ def battle(knights_config: Dict[str, dict]) -> Dict[str, int]:
     arthur = knights_config["arthur"]
     red_knight = knights_config["red_knight"]
 
-    # -------------------------------------------------------------------------------
     # BATTLE:
 
     # 1 Lancelot vs Mordred:
