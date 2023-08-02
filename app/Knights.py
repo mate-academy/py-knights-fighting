@@ -1,7 +1,7 @@
 from typing import Dict, Any
 
 
-def apply_potion(knight: Dict[str, Any]) -> Dict:
+def apply_potion(knight: Dict[str, Any]) -> Dict[str, Any]:
     if knight.get("potion") is not None:
         potion_effect = knight["potion"].get("effect", {})
         attributes_to_update = ["power", "protection", "hp"]
@@ -13,7 +13,7 @@ def apply_potion(knight: Dict[str, Any]) -> Dict:
     return knight
 
 
-def apply_weapon(knight: Dict[str, Any]) -> Dict:
+def apply_weapon(knight: Dict[str, Any]) -> Dict[str, Any]:
     if "weapon" in knight:
         knight["power"] += knight["weapon"].get("power", 0)
 
@@ -77,9 +77,9 @@ KNIGHTS = {
         "potion": {
             "name": "Berserk",
             "effect": {
-                "power": +15,
+                "power": 15,
                 "hp": -5,
-                "protection": +10,
+                "protection": 10,
             }
         }
     },
@@ -100,8 +100,8 @@ KNIGHTS = {
         "potion": {
             "name": "Blessing",
             "effect": {
-                "hp": +10,
-                "power": +5,
+                "hp": 10,
+                "power": 5,
             }
         }
     }
