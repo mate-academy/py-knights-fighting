@@ -38,11 +38,9 @@ def battle(knights_config: Dict[str, dict]) -> Dict[str, int]:
         if knight["hp"] <= 0:
             knight["hp"] = 0
 
-    # Return battle results:
     return {
         lancelot["name"]: lancelot["hp"],
         arthur["name"]: arthur["hp"],
         mordred["name"]: mordred["hp"],
         red_knight["name"]: red_knight["hp"],
     }
-  
