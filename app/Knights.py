@@ -1,5 +1,6 @@
 from typing import Dict, Any
 
+
 def apply_potion(knight: Dict[str, Any]) -> Dict:
     if knight.get("potion") is not None:
         potion_effect = knight["potion"].get("effect", {})
