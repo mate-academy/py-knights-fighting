@@ -1,11 +1,10 @@
 from typing import Dict, Any
 
-
 def apply_potion(knight: Dict[str, Any]) -> Dict:
     if knight.get("potion") is not None:
         potion_effect = knight["potion"].get("effect", {})
         attributes_to_update = ["power", "protection", "hp"]
-        
+
         for attribute in attributes_to_update:
             if attribute in potion_effect:
                 knight[attribute] += potion_effect[attribute]
@@ -13,14 +12,11 @@ def apply_potion(knight: Dict[str, Any]) -> Dict:
     return knight
 
 
-def apply_weapon(knight: Dict[str, any]) -> Dict:
-    knight["power"] += knight["weapon"]["power"]
+def apply_weapon(knight: Dict[str, Any]) -> Dict:
+    if "weapon" in knight:
+        knight["power"] += knight["weapon"].get("power", 0)
 
-
-def apply_potion(knight: Dict[str, Any]) -> Dict:
-    if knight.get("potion") is not None:
-        potion_effect = knight["potion"].get("effect", {})
-        attributes_to_update = ["power", "protection", "hp"]
+    return knight
 
 
 KNIGHTS = {
