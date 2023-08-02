@@ -2,8 +2,7 @@ from typing import Dict
 from app.knights import apply_armour, apply_weapon, apply_potion
 
 
-def calculate_damage(attacker: Dict[str, int], 
-                     defender: Dict[str, int]) -> int:
+def calculate_damage(attacker: Dict[str, int], defender: Dict[str, int]) -> int:
     return max(attacker["power"] - defender["protection"], 0)
 
 
