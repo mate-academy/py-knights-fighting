@@ -1,11 +1,16 @@
 from typing import Dict, Any
 
 
-def apply_armour(knight: Dict[str, any]) -> Dict:
-    protection_total = 0
-    for arm in knight["armour"]:
-        protection_total += arm["protection"]
-    knight["protection"] = protection_total
+def apply_potion(knight: Dict[str, Any]) -> Dict:
+    if knight.get("potion") is not None:
+        potion_effect = knight["potion"].get("effect", {})
+        attributes_to_update = ["power", "protection", "hp"]
+        
+        for attribute in attributes_to_update:
+            if attribute in potion_effect:
+                knight[attribute] += potion_effect[attribute]
+
+    return knight
 
 
 def apply_weapon(knight: Dict[str, any]) -> Dict:
