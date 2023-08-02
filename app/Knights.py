@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, Any
 
 
 def apply_armour(knight: Dict[str, any]) -> Dict:
