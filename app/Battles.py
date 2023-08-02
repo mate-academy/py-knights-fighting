@@ -42,4 +42,6 @@ def battle(knights_config: Dict[str, dict]) -> Dict[str, int]:
         lancelot["name"]: lancelot["hp"],
         arthur["name"]: arthur["hp"],
         mordred["name"]: mordred["hp"],
-        red_knight["name"]: red_knight["hp"],}   
+        red_knight["name"]: red_knight["hp"],
+    }
+  
