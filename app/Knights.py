@@ -1,4 +1,19 @@
-from app.knights_functions import apply_effects
+def apply_effects(knight: dict) -> None:
+    # Apply armour
+    knight["protection"] = sum(a["protection"] for a in knight["armour"])
+
+    # Apply weapon
+    knight["power"] += knight["weapon"]["power"]
+
+    # Apply potion if it exists
+    if knight["potion"] is not None:
+        potion_effects = knight["potion"]["effect"]
+        if "power" in potion_effects:
+            knight["power"] += potion_effects["power"]
+        if "protection" in potion_effects:
+            knight["protection"] += potion_effects["protection"]
+        if "hp" in potion_effects:
+            knight["hp"] += potion_effects["hp"]
 
 
 def knight_battle(knight1: dict, knight2: dict) -> None:
