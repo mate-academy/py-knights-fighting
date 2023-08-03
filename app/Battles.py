@@ -1,6 +1,6 @@
 from typing import Dict
 from app.knights import apply_armour, apply_weapon, apply_potion
-from app.knights_data import KNIGHTS
+from knights_data import KNIGHTS
 
 
 def calculate_damage(attacker: Dict[str, int], 
