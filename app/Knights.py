@@ -1,22 +1,16 @@
-from typing import Dict, Any
-from knights_data import KNIGHTS
+def apply_effects(knight):
+    # Apply armour
+    knight["protection"] = sum(a["protection"] for a in knight["armour"])
 
+    # Apply weapon
+    knight["power"] += knight["weapon"]["power"]
 
-def apply_potion(knight: Dict[str, Any]) -> Dict[str, Any]:
-    if knight.get("potion") is not None:
-        potion_effect = knight["potion"].get("effect", {})
-        attributes_to_update = ["power", "protection", "hp"]
-
-        for attribute in attributes_to_update:
-            if attribute in potion_effect:
-                knight[attribute] += potion_effect[attribute]
-
-    return knight
-
-
-def apply_weapon(knight: Dict[str, Any]) -> Dict[str, Any]:
-    if "weapon" in knight:
-        knight["power"] += knight["weapon"].get("power", 0)
-
-    return knight
-    
+    # Apply potion if it exists
+    if knight["potion"] is not None:
+        potion_effects = knight["potion"]["effect"]
+        if "power" in potion_effects:
+            knight["power"] += potion_effects["power"]
+        if "protection" in potion_effects:
+            knight["protection"] += potion_effects["protection"]
+        if "hp" in potion_effects:
+            knight["hp"] += potion_effects["hp"]
