@@ -1,5 +1,5 @@
 # main.py
-from app.beta.knights_data import KNIGHTS
+from beta.knights_data import KNIGHTS
 from app.battles import battle
 
 if __name__ == "__main__":
