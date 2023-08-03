@@ -1,47 +1,26 @@
-from typing import Dict
-from app.knights import apply_armour, apply_weapon, apply_potion
-from knights_data import KNIGHTS
+from app.Knights import apply_effects
 
 
-def calculate_damage(attacker: Dict[str, int], 
-                     defender: Dict[str, int]) -> int:
-    return max(attacker["power"] - defender["protection"], 0)
+def knight_battle(knight1, knight2):
+    # Knight1 attacks Knight2
+    knight2["hp"] -= max(0, knight1["power"] - knight2["protection"])
+
+    # Knight2 attacks Knight1
+    knight1["hp"] -= max(0, knight2["power"] - knight1["protection"])
+
+    # Make sure HP is non-negative
+    knight1["hp"] = max(0, knight1["hp"])
+    knight2["hp"] = max(0, knight2["hp"])
 
 
-def battle(knights_config: Dict[str, dict]) -> Dict[str, int]:
-    for knight_name, knight in knights_config.items():
-        apply_armour(knight)
-        apply_weapon(knight)
-        apply_potion(knight)
+def battle(knightsConfig):
+    # Apply effects for each knight
+    for knight in knightsConfig.values():
+        apply_effects(knight)
 
-    lancelot = knights_config["lancelot"]
-    mordred = knights_config["mordred"]
-    arthur = knights_config["arthur"]
-    red_knight = knights_config["red_knight"]
+    # Knight battles
+    knight_battle(knightsConfig["lancelot"], knightsConfig["mordred"])
+    knight_battle(knightsConfig["arthur"], knightsConfig["red_knight"])
 
-    # -------------------------------------------------------------------------------
-    # BATTLE:
-
-    # 1 Lancelot vs Mordred:
-    lancelot_damage = calculate_damage(lancelot, mordred)
-    mordred_damage = calculate_damage(mordred, lancelot)
-    lancelot["hp"] -= mordred_damage
-    mordred["hp"] -= lancelot_damage
-
-    # 2 Arthur vs Red Knight:
-    arthur_damage = calculate_damage(arthur, red_knight)
-    red_knight_damage = calculate_damage(red_knight, arthur)
-    arthur["hp"] -= red_knight_damage
-    red_knight["hp"] -= arthur_damage
-
-    # check if someone fell in battle
-    for knight in [lancelot, mordred, arthur, red_knight]:
-        if knight["hp"] <= 0:
-            knight["hp"] = 0
-
-    return {
-        lancelot["name"]: lancelot["hp"],
-        arthur["name"]: arthur["hp"],
-        mordred["name"]: mordred["hp"],
-        red_knight["name"]: red_knight["hp"],
-    }
+    # Return battle results:
+    return {knight["name"]: knight["hp"] for knight in knightsConfig.values()}
