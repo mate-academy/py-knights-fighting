@@ -1,5 +1,5 @@
-from app.knights_data import KNIGHTS
-from app.Battles import battle
+from knights_data import KNIGHTS
+from Battles import battle
 
 if __name__ == "__main__":
     print(battle(KNIGHTS))
