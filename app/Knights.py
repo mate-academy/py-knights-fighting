@@ -1,5 +1,5 @@
 from typing import Dict, Any
-from app.knights_data import KNIGHTS
+from knights_data import KNIGHTS
 
 
 def apply_potion(knight: Dict[str, Any]) -> Dict[str, Any]:
