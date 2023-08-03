@@ -1,4 +1,4 @@
-from app.Knights import apply_effects
+from app.knights import apply_effects
 
 
 def knight_battle(knight1: dict, knight2: dict) -> None:
