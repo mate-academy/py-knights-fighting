@@ -13,8 +13,11 @@ def apply_effects(knight: dict) -> None:
 
 
 def knight_battle(knight1: dict, knight2: dict) -> None:
-    knight2["hp"] -= max(0, knight1["power"] - knight2["protection"])
-    knight1["hp"] -= max(0, knight2["power"] - knight1["protection"])
+    damage_to_knight2 = max(0, knight1["power"] - knight2["protection"])
+    damage_to_knight1 = max(0, knight2["power"] - knight1["protection"])
+
+    knight2["hp"] -= damage_to_knight2
+    knight1["hp"] -= damage_to_knight1
 
 
 def battle(knights_config: dict) -> dict:
