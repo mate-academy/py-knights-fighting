@@ -1,5 +1,4 @@
 def apply_effects(knight: dict) -> None:
-    # Apply armour
     knight["protection"] = sum(a["protection"] for a in knight["armour"])
 
     # Apply weapon
