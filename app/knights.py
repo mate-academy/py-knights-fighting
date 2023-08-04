@@ -16,7 +16,6 @@ def apply_effects(knight: dict) -> None:
             knight["hp"] += potion_effects["hp"]
 
 
-
 def knight_battle(knight1: dict, knight2: dict) -> None:
     # Knight1 attacks Knight2
     knight2["hp"] -= max(0, knight1["power"] - knight2["protection"])
