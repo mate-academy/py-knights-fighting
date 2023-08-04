@@ -1,4 +1,3 @@
-# main.py
 from beta.knights_data import KNIGHTS
 from app.knights import battle
 
