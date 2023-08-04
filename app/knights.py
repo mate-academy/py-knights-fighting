@@ -7,13 +7,15 @@ def apply_effects(knight: dict) -> None:
 
     # Apply potion if it exists
     if knight["potion"] is not None:
-        potion_effects = knight["potion"]["effect"]
-        if "power" in potion_effects:
-            knight["power"] += potion_effects["power"]
-        if "protection" in potion_effects:
-            knight["protection"] += potion_effects["protection"]
-        if "hp" in potion_effects:
-            knight["hp"] += potion_effects["hp"]
+    potion_effects = knight["potion"]["effect"]
+    for effect, value in potion_effects.items():
+        if effect == "power":
+            knight["power"] += value
+        elif effect == "protection":
+            knight["protection"] += value
+        elif effect == "hp":
+            knight["hp"] += value
+
 
 
 def knight_battle(knight1: dict, knight2: dict) -> None:
