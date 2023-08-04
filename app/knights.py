@@ -24,8 +24,8 @@ def battle(knights_config: dict) -> dict:
     for knight in knights_config.values():
         apply_effects(knight)
 
-    
     knight_battle(knights_config["lancelot"], knights_config["mordred"])
     knight_battle(knights_config["arthur"], knights_config["red_knight"])
 
     return {knight["name"]: knight["hp"] for knight in knights_config.values()}
+    
