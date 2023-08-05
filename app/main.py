@@ -1,5 +1,15 @@
+from typing import List, Dict, Any
+
+
 class Knight:
-    def __init__(self, name, power, hp, armour, weapon, potion):
+    def __init__(self,
+                 name: str,
+                 power: int,
+                 hp: int,
+                 armour: List[Dict[str, int]],
+                 weapon: Dict[str, Any],
+                 potion: Dict[str, Any]
+                 ) -> None:
         self.name = name
         self.base_power = power
         self.hp = hp
@@ -11,14 +21,14 @@ class Knight:
         self.calculate_stats()
 
     def calculate_stats(self) -> None:
-        # Calculate the protection and power for the knight
-        self.protection = sum(part["protection"] for part in self.armour)
+        self.protection = sum(
+            part["protection"] for part in self.armour
+        )
         self.power = self.base_power + self.weapon["power"]
         if self.potion:
             self.apply_potion_effects()
 
     def apply_potion_effects(self) -> None:
-        # Apply potion effects to the knight's power, protection, and HP
         if "power" in self.potion["effect"]:
             self.power += self.potion["effect"]["power"]
         if "protection" in self.potion["effect"]:
@@ -29,20 +39,27 @@ class Knight:
 
 class Battle:
     @staticmethod
-    def simulate_battle(attacker, defender) -> None:
-        # Simulate battle between an attacker and a defender
-        damage_to_defender = max(0, attacker.power - defender.protection)
+    def simulate_battle(
+            attacker: Knight,
+            defender: Knight
+    ) -> None:
+        damage_to_defender = max(
+            0, attacker.power - defender.protection
+        )
         defender.hp -= damage_to_defender
 
     @staticmethod
-    def run_battle(knight1, knight2) -> None:
-        # Run a battle between two knights
+    def run_battle(
+            knight1: Knight,
+            knight2: Knight
+    ) -> None:
         Battle.simulate_battle(knight1, knight2)
         Battle.simulate_battle(knight2, knight1)
 
     @staticmethod
-    def get_battle_results(knights) -> dict:
-        # Get the battle results for all knights
+    def get_battle_results(
+            knights: List[Knight]
+    ) -> Dict[str, int]:
         return {knight.name: max(knight.hp, 0) for knight in knights}
 
 
@@ -259,20 +276,23 @@ def battle(knights):
     }
 
 
-def battle_main(config):
-    # Create instances of the Knight class using the provided configuration
+def battle_main(
+        config: Dict[str, Any]
+) -> Dict[str, int]:
     lancelot = Knight(**config["lancelot"])
     arthur = Knight(**config["arthur"])
     mordred = Knight(**config["mordred"])
     red_knight = Knight(**config["red_knight"])
 
-    # Simulate battles between pairs of knights
     Battle.run_battle(lancelot, mordred)
     Battle.run_battle(arthur, red_knight)
 
-    # Get and return the battle results for all knights
-    return Battle.get_battle_results([lancelot, arthur, mordred, red_knight])
+    return Battle.get_battle_results(
+        [lancelot,
+         arthur,
+         mordred,
+         red_knight]
+    )
 
 
-# Run the main battle function with the provided knight data
-print(battle(KNIGHTS))
+print(battle_main(KNIGHTS))
