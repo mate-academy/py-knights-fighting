@@ -1,3 +1,51 @@
+class Knight:
+    def __init__(self, name, power, hp, armour, weapon, potion):
+        self.name = name
+        self.base_power = power
+        self.hp = hp
+        self.armour = armour
+        self.weapon = weapon
+        self.potion = potion
+        self.protection = 0
+        self.power = 0
+        self.calculate_stats()
+
+    def calculate_stats(self) -> None:
+        # Calculate the protection and power for the knight
+        self.protection = sum(part["protection"] for part in self.armour)
+        self.power = self.base_power + self.weapon["power"]
+        if self.potion:
+            self.apply_potion_effects()
+
+    def apply_potion_effects(self) -> None:
+        # Apply potion effects to the knight's power, protection, and HP
+        if "power" in self.potion["effect"]:
+            self.power += self.potion["effect"]["power"]
+        if "protection" in self.potion["effect"]:
+            self.protection += self.potion["effect"]["protection"]
+        if "hp" in self.potion["effect"]:
+            self.hp += self.potion["effect"]["hp"]
+
+
+class Battle:
+    @staticmethod
+    def simulate_battle(attacker, defender) -> None:
+        # Simulate battle between an attacker and a defender
+        damage_to_defender = max(0, attacker.power - defender.protection)
+        defender.hp -= damage_to_defender
+
+    @staticmethod
+    def run_battle(knight1, knight2) -> None:
+        # Run a battle between two knights
+        Battle.simulate_battle(knight1, knight2)
+        Battle.simulate_battle(knight2, knight1)
+
+    @staticmethod
+    def get_battle_results(knights) -> dict:
+        # Get the battle results for all knights
+        return {knight.name: max(knight.hp, 0) for knight in knights}
+
+
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
@@ -86,11 +134,11 @@ KNIGHTS = {
 }
 
 
-def battle(knightsConfig):
+def battle(knights):
     # BATTLE PREPARATIONS:
 
     # lancelot
-    lancelot = knightsConfig["lancelot"]
+    lancelot = knights["lancelot"]
 
     # apply armour
     lancelot["protection"] = 0
@@ -112,7 +160,7 @@ def battle(knightsConfig):
             lancelot["hp"] += lancelot["potion"]["effect"]["hp"]
 
     # arthur
-    arthur = knightsConfig["arthur"]
+    arthur = knights["arthur"]
 
     # apply armour
     arthur["protection"] = 0
@@ -134,7 +182,7 @@ def battle(knightsConfig):
             arthur["hp"] += arthur["potion"]["effect"]["hp"]
 
     # mordred
-    mordred = knightsConfig["mordred"]
+    mordred = knights["mordred"]
 
     # apply armour
     mordred["protection"] = 0
@@ -156,7 +204,7 @@ def battle(knightsConfig):
             mordred["hp"] += mordred["potion"]["effect"]["hp"]
 
     # red_knight
-    red_knight = knightsConfig["red_knight"]
+    red_knight = knights["red_knight"]
 
     # apply armour
     red_knight["protection"] = 0
@@ -211,4 +259,20 @@ def battle(knightsConfig):
     }
 
 
+def battle_main(config):
+    # Create instances of the Knight class using the provided configuration
+    lancelot = Knight(**config["lancelot"])
+    arthur = Knight(**config["arthur"])
+    mordred = Knight(**config["mordred"])
+    red_knight = Knight(**config["red_knight"])
+
+    # Simulate battles between pairs of knights
+    Battle.run_battle(lancelot, mordred)
+    Battle.run_battle(arthur, red_knight)
+
+    # Get and return the battle results for all knights
+    return Battle.get_battle_results([lancelot, arthur, mordred, red_knight])
+
+
+# Run the main battle function with the provided knight data
 print(battle(KNIGHTS))
