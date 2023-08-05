@@ -151,7 +151,7 @@ KNIGHTS = {
 }
 
 
-def battle(knights):
+def battle(knights: dict) -> dict:
     # BATTLE PREPARATIONS:
 
     # lancelot
@@ -159,8 +159,8 @@ def battle(knights):
 
     # apply armour
     lancelot["protection"] = 0
-    for a in lancelot["armour"]:
-        lancelot["protection"] += a["protection"]
+    for arm in lancelot["armour"]:
+        lancelot["protection"] += arm["protection"]
 
     # apply weapon
     lancelot["power"] += lancelot["weapon"]["power"]
@@ -170,8 +170,9 @@ def battle(knights):
         if "power" in lancelot["potion"]["effect"]:
             lancelot["power"] += lancelot["potion"]["effect"]["power"]
 
-        if "protection" in lancelot["potion"]["effect"]:
-            lancelot["protection"] += lancelot["potion"]["effect"]["protection"]
+        potion_effect = lancelot["potion"]["effect"]
+        if "protection" in potion_effect:
+            lancelot["protection"] += potion_effect["protection"]
 
         if "hp" in lancelot["potion"]["effect"]:
             lancelot["hp"] += lancelot["potion"]["effect"]["hp"]
@@ -181,8 +182,8 @@ def battle(knights):
 
     # apply armour
     arthur["protection"] = 0
-    for a in arthur["armour"]:
-        arthur["protection"] += a["protection"]
+    for arm in arthur["armour"]:
+        arthur["protection"] += arm["protection"]
 
     # apply weapon
     arthur["power"] += arthur["weapon"]["power"]
@@ -203,8 +204,8 @@ def battle(knights):
 
     # apply armour
     mordred["protection"] = 0
-    for a in mordred["armour"]:
-        mordred["protection"] += a["protection"]
+    for mor in mordred["armour"]:
+        mordred["protection"] += mor["protection"]
 
     # apply weapon
     mordred["power"] += mordred["weapon"]["power"]
@@ -225,8 +226,8 @@ def battle(knights):
 
     # apply armour
     red_knight["protection"] = 0
-    for a in red_knight["armour"]:
-        red_knight["protection"] += a["protection"]
+    for arm in red_knight["armour"]:
+        red_knight["protection"] += arm["protection"]
 
     # apply weapon
     red_knight["power"] += red_knight["weapon"]["power"]
@@ -236,8 +237,9 @@ def battle(knights):
         if "power" in red_knight["potion"]["effect"]:
             red_knight["power"] += red_knight["potion"]["effect"]["power"]
 
-        if "protection" in red_knight["potion"]["effect"]:
-            red_knight["protection"] += red_knight["potion"]["effect"]["protection"]
+        potion_effect = red_knight["potion"]["effect"]
+        if "protection" in potion_effect:
+            red_knight["protection"] += potion_effect["protection"]
 
         if "hp" in red_knight["potion"]["effect"]:
             red_knight["hp"] += red_knight["potion"]["effect"]["hp"]
