@@ -20,7 +20,6 @@ def knight_battle(knight1: dict, knight2: dict) -> None:
     knight2["hp"] = max(0, knight2["hp"])
 
 
-
 def battle(knights_config: dict) -> dict:
     for knight in knights_config.values():
         apply_effects(knight)
