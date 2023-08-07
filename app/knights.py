@@ -12,12 +12,16 @@ def apply_effects(knight: dict) -> None:
             knight["hp"] += potion_effects["hp"]
 
 
-def knight_battle(knight1: dict, knight2: dict) -> None:
-    knight2["hp"] -= max(0, knight1["power"] - knight2["protection"])
-    knight1["hp"] -= max(0, knight2["power"] - knight1["protection"])
+def damage_calculation(attacker: dict, defender: dict) -> int:
+    return max(0, attacker["power"] - defender["protection"])
 
-    knight1["hp"] = max(0, knight1["hp"])
-    knight2["hp"] = max(0, knight2["hp"])
+
+def knight_battle(knight1: dict, knight2: dict) -> None:
+    damage_to_knight2 = damage_calculation(knight1, knight2)
+    damage_to_knight1 = damage_calculation(knight2, knight1)
+
+    knight2["hp"] = max(0, knight2["hp"] - damage_to_knight2)
+    knight1["hp"] = max(0, knight1["hp"] - damage_to_knight1)
 
 
 def battle(knights_config: dict) -> dict:
