@@ -92,6 +92,12 @@ KNIGHTS = {
 
 
 def dict_to_classes(dictionary: dict) -> list["Knight"]:
+    """
+    Transform incoming Config dictionary
+    into list of 4 elements -
+    each dictionary packed
+    into class "Knight"
+    """
     knights = []
     for knight, stats in dictionary.items():
         armour = []

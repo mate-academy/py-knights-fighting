@@ -4,6 +4,10 @@ from app.knights import Knight
 
 
 def battle(knights: list["Knight"] | dict) -> dict:
+    """
+    Main function of required process,
+    class methods are used here
+    """
     if not isinstance(knights, list):
         knights = dict_to_classes(knights)
 
@@ -11,7 +15,6 @@ def battle(knights: list["Knight"] | dict) -> dict:
         knight.prepare_for_battle()
 
     arena = Arena()
-    # Lancelot, Arthur, Mordred, Red Knight
     arena.fight(knights[0], knights[2])
     arena.fight(knights[1], knights[3])
     arena.check_hp(knights)

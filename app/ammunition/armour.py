@@ -1,4 +1,10 @@
 class Armour:
+    """
+    Class of single Armour that equipped on knight
+
+    Usually each instance of knight has several armour
+    """
+
     def __init__(self, part: str, protection: int) -> None:
         self.part = part
         self.protection = protection
