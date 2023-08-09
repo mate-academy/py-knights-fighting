@@ -211,4 +211,5 @@ def battle(knightsConfig):
     }
 
 
-print(battle(KNIGHTS))
+if __name__ == "__main__":
+    print(battle(KNIGHTS))
