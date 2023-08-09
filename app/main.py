@@ -103,12 +103,10 @@ def battle(knights_config: dict) -> dict:
     # BATTLE:
 
     # 1 Lancelot vs Mordred:
-    lancelot_vs_mordred = Battle(lancelot, mordred)
-    lancelot_vs_mordred.battle()
+    Battle.battle(lancelot, mordred)
 
     # 2 Arthur vs Red Knight:
-    arthur_vs_red_knight = Battle(arthur, red_knight)
-    arthur_vs_red_knight.battle()
+    Battle.battle(arthur, red_knight)
 
     return {
         knight.name: knight.hp for _, knight in knights_instances.items()
