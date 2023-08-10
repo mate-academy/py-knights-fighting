@@ -19,7 +19,7 @@ def fill_knight_info(knight_dict: dict) -> dict:
     current_knight["power"] += knight_dict["weapon"]["power"]
 
     # apply potion if exist
-    if knight_dict["potion"] is not None:
+    if knight_dict["potion"]:
         apply_potion(current_knight, knight_dict["potion"]["effect"])
 
     return current_knight
