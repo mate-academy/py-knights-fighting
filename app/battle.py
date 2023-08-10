@@ -17,7 +17,7 @@ class Battle:
             knights[fighter2].power - knights[fighter1].protection
         )
         knights[fighter2].hp -= (
-                knights[fighter1].power - knights[fighter2].protection
+            knights[fighter1].power - knights[fighter2].protection
         )
 
     @staticmethod
