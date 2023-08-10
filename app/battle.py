@@ -1,9 +1,15 @@
+from __future__ import annotations  # Enable forward annotations
+
+from typing import Dict
+
 from app.Knights import Knight
 
 
 class Battle:
     @staticmethod
-    def make_ready_2_battle(knights_dic: dict[Knight]) -> None:
+    def make_ready_2_battle(
+            knights_dic: Dict[str, Knight]
+    ) -> None:
         for knight in knights_dic.values():
             if knight.potion:
                 knight.potion_effect()
@@ -12,7 +18,9 @@ class Battle:
             knight.apply_weapon()
 
     @staticmethod
-    def make_fight(knights: dict[Knight]) -> dict:
+    def make_fight(
+            knights: Dict[str, Knight]
+    ) -> None:
         # 1 Lancelot vs Mordred:
         knights["Lancelot"].hp -= (
             knights["Mordred"].power - knights["Lancelot"].protection
@@ -30,13 +38,17 @@ class Battle:
         )
 
     @staticmethod
-    def is_anyone_alive(knights: dict[Knight]) -> None:
+    def is_anyone_alive(
+            knights: Dict[str, Knight]
+    ) -> None:
         for fighter in knights.values():
             if fighter.hp <= 0:
                 fighter.hp = 0
 
     @staticmethod
-    def return_result(knights: dict[Knight]) -> dict:
+    def return_result(
+            knights: Dict[str, Knight]
+    ) -> Dict[str, int]:
         return {
             "Lancelot": knights["Lancelot"].hp,
             "Arthur": knights["Arthur"].hp,

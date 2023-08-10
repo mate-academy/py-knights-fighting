@@ -1,5 +1,6 @@
-from __future__ import annotations
+from __future__ import annotations  # Enable forward annotations
 
+from typing import List, Optional
 
 from app.armour import Armour
 from app.weapon import Weapon
@@ -12,9 +13,9 @@ class Knight:
         name: str,
         power: int,
         hp: int,
-        armour: list[dict] = None,
-        weapon: dict = None,
-        potion: list[dict] = None,
+        armour: Optional[List[dict]] = None,
+        weapon: Optional[dict] = None,
+        potion: Optional[dict] = None,
     ) -> None:
         self.name = name
         self.power = power
@@ -24,9 +25,7 @@ class Knight:
         self.potion = potion
         self.protection = 0
 
-    def potion_effect(
-        self,
-    ) -> None:
+    def potion_effect(self) -> None:
         for effect, value in self.potion.effect.items():
             if effect == "hp":
                 self.hp += value
