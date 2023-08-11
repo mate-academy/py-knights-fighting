@@ -26,14 +26,13 @@ class Knight:
         self.power += self.weapon["power"]
 
         if self.potion is not None:
-            if "power" in self.potion["effect"]:
-                self.power += self.potion["effect"]["power"]
-
-            if "protection" in self.potion["effect"]:
-                self.protection += self.potion["effect"]["protection"]
-
-            if "hp" in self.potion["effect"]:
-                self.hp += self.potion["effect"]["hp"]
+            for effect in self.potion["effect"]:
+                if effect == "power":
+                    self.power += self.potion["effect"]["power"]
+                if effect == "protection":
+                    self.protection += self.potion["effect"]["protection"]
+                if effect == "hp":
+                    self.hp += self.potion["effect"]["hp"]
 
     def fight(self, defender: Knight) -> None:
         damage = max(0, self.power - defender.protection)
