@@ -1,16 +1,15 @@
-from app.championship.battles import Battle
+from app.championship.battle_functions import duel, results
 from app.championship.knights import Knight
-from app.championship.battle_results import results
 
 
-def battle(knights_config: dict) -> None:
+def battle(knights_config: dict) -> dict:
     # Create fighters:
     for stat in knights_config.values():
-        Knight.add_knights(stat)
+        Knight.add_knight(stat)
 
     # Battles:
-    Battle.duel("Lancelot", "Mordred")
-    Battle.duel("Arthur", "Red Knight")
+    duel("Lancelot", "Mordred")
+    duel("Arthur", "Red Knight")
 
     # Return battle results:
     return results(Knight.knights)

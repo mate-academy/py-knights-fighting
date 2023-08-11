@@ -15,7 +15,7 @@ class Knight:
         self.protection = protection
 
     @classmethod
-    def add_knights(cls, knight_stat: dict) -> None:
+    def add_knight(cls, knight_stat: dict) -> None:
         # apply base stat
         name = knight_stat["name"]
         hp = knight_stat["hp"]
@@ -25,7 +25,7 @@ class Knight:
         # apply armour
         if knight_stat["armour"]:
             protection = sum(
-                [part["protection"] for part in knight_stat["armour"]]
+                part["protection"] for part in knight_stat["armour"]
             )
 
         # apply weapon
