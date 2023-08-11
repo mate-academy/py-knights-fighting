@@ -25,8 +25,7 @@ class Battle:
             knights: Dict[str, Knight]
     ) -> None:
         for fighter in knights.values():
-            if fighter.hp <= 0:
-                fighter.hp = 0
+            fighter.hp = 0 if fighter.hp <= 0 else fighter.hp
 
     @staticmethod
     def return_result(

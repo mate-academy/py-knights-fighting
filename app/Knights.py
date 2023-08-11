@@ -13,7 +13,7 @@ class Knight:
         name: str,
         power: int,
         hp: int,
-        armour: Optional[List[dict]] = None,
+        armour: Optional[List[dict]] = [],
         weapon: Optional[dict] = None,
         potion: Optional[dict] = None,
     ) -> None:
@@ -56,9 +56,8 @@ class Knight:
     def apply_armour(
         self,
     ) -> None:
-        if self.armour:
-            for armour_add in self.armour:
-                self.protection += armour_add.protection
+        for armour_add in self.armour:
+            self.protection += armour_add.protection
 
     @staticmethod
     def create_dict_of_knghtes(
