@@ -24,8 +24,7 @@ class Battle:
     def is_anyone_alive(
             knights: Dict[str, Knight]
     ) -> None:
-        for fighter in knights.values():
-            fighter.hp = 0 if fighter.hp <= 0 else fighter.hp
+        for fighter in knights.values(): fighter.hp = 0 if fighter.hp <= 0 else fighter.hp
 
     @staticmethod
     def return_result(
