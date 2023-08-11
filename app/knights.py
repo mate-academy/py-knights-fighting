@@ -5,13 +5,15 @@ from app.ammunition.weapon import Weapon
 
 class Knight:
     """"Knight transformed from incoming dict key to class"""
-    def __init__(self,
-                 name: str,
-                 power: int,
-                 hp: int,
-                 armour: list["Armour"],
-                 weapon: "Weapon",
-                 potion: "Potion") -> None:
+    def __init__(
+        self,
+        name: str,
+        power: int,
+        hp: int,
+        armour: list["Armour"],
+        weapon: "Weapon",
+        potion: "Potion"
+    ) -> None:
         self.name = name
         self.power = power
         self.hp = hp

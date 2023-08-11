@@ -2,19 +2,14 @@ class Potion:
     """"
     Knight's potion.
 
-    Something can be not mentioned, so checked for None.
+    Instead of None default value set to 0
     """
+
     def __init__(self, name: str, effect: dict) -> None:
         self.name = name
-        self.hp_boost = effect.get("hp")
-        self.power_boost = effect.get("power")
-        self.protection_boost = effect.get("protection")
-        if self.hp_boost is None:
-            self.hp_boost = 0
-        if self.power_boost is None:
-            self.power_boost = 0
-        if self.protection_boost is None:
-            self.protection_boost = 0
+        self.hp_boost = effect.get("hp", 0)
+        self.power_boost = effect.get("power", 0)
+        self.protection_boost = effect.get("protection", 0)
 
     def to_dict(self) -> dict:
         """"Used to add values from potion in knight's class"""
