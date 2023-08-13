@@ -6,5 +6,7 @@ class Armour:
     @staticmethod
     def from_list(armour: list) -> list:
         if armour:
-            return [Armour(item["part"], item["protection"])
-                    for item in armour]
+            return [
+                Armour(item["part"], item["protection"])
+                for item in armour
+            ]

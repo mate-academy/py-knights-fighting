@@ -24,12 +24,14 @@ class Knight:
 
     @staticmethod
     def from_dict(knight: dict) -> Knight:
-        return Knight(knight["name"],
-                      knight["power"],
-                      knight["hp"],
-                      Weapon.from_dict(knight["weapon"]),
-                      Armour.from_list(knight["armour"]),
-                      Potion.from_dict(knight["potion"]))
+        return Knight(
+            knight["name"],
+            knight["power"],
+            knight["hp"],
+            Weapon.from_dict(knight["weapon"]),
+            Armour.from_list(knight["armour"]),
+            Potion.from_dict(knight["potion"])
+        )
 
     def equip_weapon(self) -> None:
         self.power += self.weapon.power
