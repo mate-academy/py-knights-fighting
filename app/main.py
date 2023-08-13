@@ -1,4 +1,4 @@
-from app.action import action
+from app.action import fight
 from app.knights import KNIGHTS
 from app.preparation import preparations
 from app.final_health import final_health
@@ -13,7 +13,8 @@ def battle(knights: dict) -> dict:
         knights_dict[name] = knight_for_battle
 
     # knights are fighting here
-    action(knights_dict)
+    fight(knights_dict["lancelot"], knights_dict["mordred"])
+    fight(knights_dict["arthur"], knights_dict["red_knight"])
 
     # if life < 0, bring to the correct value
     final_health(knights_dict)
