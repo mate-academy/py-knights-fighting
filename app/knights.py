@@ -82,5 +82,54 @@ KNIGHTS = {
                 "power": +5,
             }
         }
+    },
+    "mordred2": {
+        "name": "Mordred2",
+        "power": 30,
+        "hp": 90,
+        "armour": [
+            {
+                "part": "breastplate",
+                "protection": 15,
+            },
+            {
+                "part": "boots",
+                "protection": 10,
+            }
+        ],
+        "weapon": {
+            "name": "Poisoned Sword",
+            "power": 60,
+        },
+        "potion": {
+            "name": "Berserk",
+            "effect": {
+                "power": +15,
+                "hp": -5,
+                "protection": +10,
+            }
+        }
+    },
+    "red_knight2": {
+        "name": "Red Knight2",
+        "power": 40,
+        "hp": 70,
+        "armour": [
+            {
+                "part": "breastplate",
+                "protection": 25,
+            }
+        ],
+        "weapon": {
+            "name": "Sword",
+            "power": 45
+        },
+        "potion": {
+            "name": "Blessing",
+            "effect": {
+                "hp": +10,
+                "power": +5,
+            }
+        }
     }
 }
