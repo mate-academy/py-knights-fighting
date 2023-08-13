@@ -18,6 +18,4 @@ def battle(knights: dict) -> dict:
     return result_dict
 
 
-
-
 print(battle(KNIGHTS))
