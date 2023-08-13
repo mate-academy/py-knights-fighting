@@ -1,6 +1,6 @@
 from typing import Dict, Any
-from knight import Knight
-from battle import Battle
+from app.knight import Knight
+from app.battle import Battle
 
 
 KNIGHTS = {
@@ -91,7 +91,7 @@ KNIGHTS = {
 }
 
 
-def battle_main(
+def battle(
         config: Dict[str, Any]
 ) -> Dict[str, int]:
     lancelot = Knight(**config["lancelot"])
@@ -110,4 +110,4 @@ def battle_main(
     )
 
 
-print(battle_main(KNIGHTS))
+print(battle(KNIGHTS))

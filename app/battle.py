@@ -1,5 +1,5 @@
 from typing import Dict, List
-from knight import Knight
+from app.knight import Knight
 
 
 class Battle:
