@@ -1,15 +1,23 @@
-from app.logic import Knight
+from app.knight.equipment.armour import Armour
+from app.knight.equipment.weapon import Weapon
+from app.knight.equipment.potion import Potion
+from app.knight.knights import Knights
+from app.knight.fight import Battle
+from app.knight.data import KNIGHTS
 
 
-def battle(dict_knights: dict) -> dict:
+def battle(config: dict) -> dict:
+    all_knights = [Knights(characteristics["name"],
+                           name,
+                           characteristics["power"],
+                           characteristics["hp"]
+                           ) for name, characteristics in config.items()]
+    for knight in all_knights:
+        Potion.apply_potion(config[knight.name_in_dict]["potion"], knight)
+        Armour.all_armour(config[knight.name_in_dict]["armour"], knight)
+        Weapon.add_weapon(config[knight.name_in_dict]["weapon"], knight)
+    Battle.battle(all_knights)
+    return {knight.name: knight.hp for knight in all_knights}
 
-    red_knight = Knight(dict_knights.get("red_knight"))
-    lancelot = Knight(dict_knights.get("lancelot"))
-    arthur = Knight(dict_knights.get("arthur"))
-    mordred = Knight(dict_knights.get("mordred"))
 
-    first_fight = Knight.fight(lancelot, mordred)
-    second_fight = Knight.fight(arthur, red_knight)
-    first_fight.update(second_fight)
-
-    return first_fight
+print(battle(KNIGHTS))
