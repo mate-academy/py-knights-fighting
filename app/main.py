@@ -7,11 +7,14 @@ from app.knight.data import KNIGHTS
 
 
 def battle(config: dict) -> dict:
-    all_knights = [Knights(characteristics["name"],
-                           name,
-                           characteristics["power"],
-                           characteristics["hp"]
-                           ) for name, characteristics in config.items()]
+    all_knights = [
+        Knights(characteristics["name"],
+                name,
+                characteristics["power"],
+                characteristics["hp"]
+                )
+        for name, characteristics in config.items()
+    ]
     for knight in all_knights:
         Potion.apply_potion(config[knight.name_in_dict]["potion"], knight)
         Armour.all_armour(config[knight.name_in_dict]["armour"], knight)
