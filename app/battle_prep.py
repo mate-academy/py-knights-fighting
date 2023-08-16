@@ -15,11 +15,10 @@ def apply_weapon(knights: list[Knight]) -> None:
 def apply_potion(knights: list[Knight]) -> None:
     for knight in knights:
         if knight.potion is not None:
-            if "power" in knight.potion["effect"]:
-                knight.power += knight.potion["effect"]["power"]
-
-            if "protection" in knight.potion["effect"]:
-                knight.protection += knight.potion["effect"]["protection"]
-
-            if "hp" in knight.potion["effect"]:
-                knight.hp += knight.potion["effect"]["hp"]
+            for attribute, value in knight.potion["effect"].items():
+                if attribute == "power":
+                    knight.power += value
+                elif attribute == "protection":
+                    knight.protection += value
+                elif attribute == "hp":
+                    knight.hp += value

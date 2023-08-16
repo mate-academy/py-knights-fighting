@@ -90,10 +90,7 @@ KNIGHTS = {
 
 
 def battle(knights_config: dict) -> dict:
-    knights = []
-    for knight_element in knights_config.keys():
-        knight = Knight(**knights_config[knight_element])
-        knights.append(knight)
+    knights = [Knight(**knights_config[knight_element]) for knight_element in knights_config.keys()]
     # BATTLE PREPARATIONS:
     apply_armour(knights)
     apply_weapon(knights)
