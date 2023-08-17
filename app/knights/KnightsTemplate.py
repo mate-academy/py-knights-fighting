@@ -7,7 +7,7 @@ class KnightsTemplate:
             armour: list,
             weapon: dict,
             potion: dict
-    ):
+    ) -> None:
         self.name = name
         self.power = power
         self.hp = hp
@@ -16,17 +16,12 @@ class KnightsTemplate:
         self.potion = potion
         self.protection = 0
 
-    def __str__(self):
-        return (f"{self.name} - {self.power} - {self.hp} "
-                f"- {self.armour} - {self.weapon} -"
-                f" {self.potion}")
-
-    def add_protection(self):
+    def add_protection(self) -> "KnightsTemplate":
         for elem in self.armour:
             self.protection += elem["protection"]
         return self
 
-    def add_power(self):
+    def add_power(self) -> "KnightsTemplate":
         self.power += self.weapon["power"]
         return self
 
