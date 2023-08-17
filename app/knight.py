@@ -23,7 +23,8 @@ class Knight:
 
     def calculate_stats(self) -> None:
         self.protection = sum(
-            part["protection"] for part in self.armour
+            part["protection"]
+            for part in self.armour
         )
         self.power = self.base_power + self.weapon["power"]
         if self.potion:

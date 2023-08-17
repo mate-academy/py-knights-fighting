@@ -25,4 +25,5 @@ class Battle:
     def get_battle_results(
             knights: List[Knight]
     ) -> Dict[str, int]:
-        return {knight.name: max(knight.hp, 0) for knight in knights}
+        return {knight.name: max(knight.hp, 0)
+                for knight in knights}
