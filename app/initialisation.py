@@ -12,8 +12,8 @@ def prepare_for_battle(knight: dict) -> Knight:
         "protection": 0
     }
     bonus = check_for_perks(knight)
-    for key, value in bonus.items():
-        characteristics[key] += value
+    for char, value in bonus.items():
+        characteristics[char] += value
     return Knight(
         name,
         characteristics["power"],
@@ -31,6 +31,6 @@ def check_for_perks(knight: dict) -> dict:
     for armour_piece in knight["armour"]:
         bonus["protection"] += armour_piece["protection"]
     if knight["potion"] is not None:
-        for key, value in knight["potion"]["effect"].items():
-            bonus[key] += value
+        for char, value in knight["potion"]["effect"].items():
+            bonus[char] += value
     return bonus
