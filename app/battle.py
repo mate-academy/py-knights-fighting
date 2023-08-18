@@ -15,11 +15,11 @@ class Battle:
 
     @staticmethod
     def run_battle(
-            knight1: Knight,
-            knight2: Knight
+            knight_1: Knight,
+            knight_2: Knight
     ) -> None:
-        Battle.simulate_battle(knight1, knight2)
-        Battle.simulate_battle(knight2, knight1)
+        Battle.simulate_battle(knight_1, knight_2)
+        Battle.simulate_battle(knight_2, knight_1)
 
     @staticmethod
     def get_battle_results(

@@ -31,9 +31,10 @@ class Knight:
             self.apply_potion_effects()
 
     def apply_potion_effects(self) -> None:
-        if "power" in self.potion["effect"]:
-            self.power += self.potion["effect"]["power"]
-        if "protection" in self.potion["effect"]:
-            self.protection += self.potion["effect"]["protection"]
-        if "hp" in self.potion["effect"]:
-            self.hp += self.potion["effect"]["hp"]
+        for effect_type, effect_value in self.potion["effect"].items():
+            if effect_type == "power":
+                self.power += effect_value
+            elif effect_type == "protection":
+                self.protection += effect_value
+            elif effect_type == "hp":
+                self.hp += effect_value

@@ -92,12 +92,12 @@ KNIGHTS = {
 
 
 def battle(
-        config: Dict[str, Any]
+        configur: Dict[str, Any]
 ) -> Dict[str, int]:
-    lancelot = Knight(**config["lancelot"])
-    arthur = Knight(**config["arthur"])
-    mordred = Knight(**config["mordred"])
-    red_knight = Knight(**config["red_knight"])
+    lancelot = Knight(**configur["lancelot"])
+    arthur = Knight(**configur["arthur"])
+    mordred = Knight(**configur["mordred"])
+    red_knight = Knight(**configur["red_knight"])
 
     Battle.run_battle(lancelot, mordred)
     Battle.run_battle(arthur, red_knight)
