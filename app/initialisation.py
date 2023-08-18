@@ -1,7 +1,7 @@
 """
 This module configures Knight instances.
 """
-from knight import Knight
+from app.knight import Knight
 
 
 def prepare_for_battle(knight: dict) -> Knight:
