@@ -4,26 +4,18 @@ class Knight:
 
     def preparing(self: dict) -> dict:
         result_of_preparing = {}
-        for person, values in self.items():
-            protection = values["protection"] = 0
-            power = values["power"]
-            hp = values["hp"]
-            for value in values["armour"]:
-                protection += value["protection"]
-            power += values["weapon"]["power"]
-            if values["potion"] is not None:
-                if "power" in values["potion"]["effect"]:
-                    power += values["potion"]["effect"]["power"]
-
-                if "protection" in values["potion"]["effect"]:
-                    protection += \
-                        values["potion"]["effect"]["protection"]
-
-                if "hp" in values["potion"]["effect"]:
-                    hp += \
-                        values["potion"]["effect"]["hp"]
+        for name, data in self.items():
+            data["protection"] = 0
+            for value in data["armour"]:
+                data["protection"] += value["protection"]
+            data["power"] += data["weapon"]["power"]
+            ls = ["power", "protection", "hp"]
+            if data["potion"] is not None:
+                for new_value in ls:
+                    if new_value in data["potion"]["effect"]:
+                        data[new_value] += data["potion"]["effect"][new_value]
             result_of_preparing.update({
-                person: {"hp": hp,
-                         "power": power,
-                         "protection": protection}})
+                name: {"hp": data["hp"],
+                       "power": data["power"],
+                       "protection": data["protection"]}})
         return result_of_preparing
