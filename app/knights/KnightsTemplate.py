@@ -6,7 +6,8 @@ class KnightsTemplate:
             hp: int,
             armour: list,
             weapon: dict,
-            potion: dict
+            potion: dict,
+            protection: int = 0
     ) -> None:
         self.name = name
         self.power = power
@@ -14,7 +15,7 @@ class KnightsTemplate:
         self.armour = armour
         self.weapon = weapon
         self.potion = potion
-        self.protection = 0
+        self.protection = protection
 
     def add_protection(self) -> "KnightsTemplate":
         for elem in self.armour:
