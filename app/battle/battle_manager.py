@@ -32,29 +32,19 @@ class BattleManager:
             knight.apply_potion()
 
     def battle(self) -> dict[str, int]:
-        lancelot = self.knights[0]
-        mordred = self.knights[2]
-        arthur = self.knights[1]
-        red_knight = self.knights[3]
+        for attacker, defender in [(0, 2), (1, 3)]:
+            attacker_knight = self.knights[attacker]
+            defender_knight = self.knights[defender]
 
-        lancelot.hp -= mordred.power - lancelot.protection
-        mordred.hp -= lancelot.power - mordred.protection
+            defender_knight.hp -= \
+                attacker_knight.power - defender_knight.protection
+            attacker_knight.hp -= \
+                defender_knight.power - attacker_knight.protection
 
-        if lancelot.hp <= 0:
-            lancelot.hp = 0
+            if defender_knight.hp <= 0:
+                defender_knight.hp = 0
 
-        if mordred.hp <= 0:
-            mordred.hp = 0
+            if attacker_knight.hp <= 0:
+                attacker_knight.hp = 0
 
-        arthur.hp -= red_knight.power - arthur.protection
-        red_knight.hp -= arthur.power - red_knight.protection
-
-        if arthur.hp <= 0:
-            arthur.hp = 0
-
-        if red_knight.hp <= 0:
-            red_knight.hp = 0
-
-        return {
-            knight.name: knight.hp for knight in self.knights
-        }
+        return {knight.name: knight.hp for knight in self.knights}
