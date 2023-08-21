@@ -28,7 +28,7 @@ battle result and store information
 
         self.power += weapon["power"]
 
-    def using_potion(self):
+    def using_potion(self) -> None:
 
         if self.potion is not None:
 
