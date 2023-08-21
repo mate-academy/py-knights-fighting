@@ -8,11 +8,12 @@ from app.knight.data import KNIGHTS
 
 def battle(config: dict) -> dict:
     all_knights = [
-        Knights(characteristics["name"],
-                name,
-                characteristics["power"],
-                characteristics["hp"]
-                )
+        Knights(
+            characteristics["name"],
+            name,
+            characteristics["power"],
+            characteristics["hp"]
+        )
         for name, characteristics in config.items()
     ]
     for knight in all_knights:
