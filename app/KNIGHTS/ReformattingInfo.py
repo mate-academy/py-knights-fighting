@@ -19,4 +19,7 @@ def making_knight(knight: dict) -> Knight:
         potion=knight["potion"],
 
     )
+
+    knight_adj.using_potion()
+
     return knight_adj

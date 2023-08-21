@@ -18,7 +18,7 @@ battle result and store information
         self.power = power
         self.hp = hp
         self.protection = 0
-
+        self.potion = potion
         # Preparation to the fight
 
         for item in armour:
@@ -28,15 +28,15 @@ battle result and store information
 
         self.power += weapon["power"]
 
-        # Using potion
+    def using_potion(self):
 
-        if potion is not None:
+        if self.potion is not None:
 
-            if "protection" in potion["effect"]:
-                self.protection += potion["effect"]["protection"]
+            if "protection" in self.potion["effect"]:
+                self.protection += self.potion["effect"]["protection"]
 
-            if "power" in potion["effect"]:
-                self.power += potion["effect"]["power"]
+            if "power" in self.potion["effect"]:
+                self.power += self.potion["effect"]["power"]
 
-            if "hp" in potion["effect"]:
-                self.hp += potion["effect"]["hp"]
+            if "hp" in self.potion["effect"]:
+                self.hp += self.potion["effect"]["hp"]

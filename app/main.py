@@ -2,28 +2,25 @@ from app.KNIGHTS.KnightsInfo import KNIGHTS
 from app.KNIGHTS.ReformattingInfo import making_knight
 
 
-def battle(knights_config: dict) -> None:
+def battle(knights_config: dict) -> dict:
     # Reformatting info about the Knights
 
     # lancelot
-    lancelot = knights_config["lancelot"]
 
-    lancelot = making_knight(lancelot)
+    lancelot = making_knight(knights_config["lancelot"])
 
     # arthur
-    arthur = knights_config["arthur"]
-
-    arthur = making_knight(arthur)
+    arthur = making_knight(knights_config["arthur"])
 
     # mordred
-    mordred = knights_config["mordred"]
 
-    mordred = making_knight(mordred)
+    mordred = making_knight(knights_config["mordred"])
 
     # red_knight
-    red_knight = knights_config["red_knight"]
 
-    red_knight = making_knight(red_knight)
+    red_knight = making_knight(knights_config["red_knight"])
+
+    knights_list = [lancelot, arthur, mordred, red_knight]
 
 # BATTLE------------------------------------------------
 
@@ -39,17 +36,9 @@ def battle(knights_config: dict) -> None:
 
     # check if someone fell in battle
 
-    if lancelot.hp <= 0:
-        lancelot.hp = 0
-
-    if mordred.hp <= 0:
-        mordred.hp = 0
-
-    if arthur.hp <= 0:
-        arthur.hp = 0
-
-    if red_knight.hp <= 0:
-        red_knight.hp = 0
+    for knight in knights_list:
+        if knight.hp <= 0:
+            knight.hp = 0
 
     return {
         lancelot.name: lancelot.hp,
