@@ -2,7 +2,7 @@ from app.KNIGHTS.KnightsInfo import KNIGHTS
 from app.KNIGHTS.ReformattingInfo import making_knight
 
 
-def battle(knights_config):
+def battle(knights_config: dict) -> None:
     # Reformatting info about the Knights
 
     # lancelot
