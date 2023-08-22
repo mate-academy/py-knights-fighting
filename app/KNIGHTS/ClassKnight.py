@@ -44,6 +44,6 @@ battle result and store information
 
         # checking if someone fell in the battle
 
-        self.hp = 0 if self.hp <= 0 else self.hp
+        self.hp = 0 if self.hp < 0 else self.hp
 
-        enemy.hp = 0 if enemy.hp <= 0 else enemy.hp
+        enemy.hp = 0 if enemy.hp < 0 else enemy.hp
