@@ -20,12 +20,6 @@ def battle(knights_config: dict) -> dict:
 
     knights["arthur"].fight(knights["red_knight"])
 
-    # check if someone fell in battle
-
-    for knight in knights.values():
-        if knight.hp <= 0:
-            knight.hp = 0
-
     return {
         knight.name: knight.hp
         for knight in knights.values()

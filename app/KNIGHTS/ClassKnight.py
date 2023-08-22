@@ -41,3 +41,9 @@ battle result and store information
     def fight(self, enemy: Knight) -> None:
         self.hp -= enemy.power - self.protection
         enemy.hp -= self.power - enemy.protection
+
+        # checking if someone fell in the battle
+
+        self.hp = 0 if self.hp <= 0 else self.hp
+
+        enemy.hp = 0 if enemy.hp <= 0 else enemy.hp
