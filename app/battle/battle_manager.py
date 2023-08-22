@@ -33,6 +33,13 @@ class BattleManager:
             knight.apply_potion()
 
     def battle(self) -> dict[str, int]:
+        def duel(knight_1: Knight, knight_2: Knight) -> None:
+            knight_2.hp -= knight_1.power - knight_2.protection
+            knight_1.hp -= knight_2.power - knight_1.protection
+
+            knight_1.hp = 0 if knight_1.hp <= 0 else knight_1.hp
+            knight_2.hp = 0 if knight_2.hp <= 0 else knight_2.hp
+
         lancelot = self.knights[0]
         mordred = self.knights[2]
         arthur = self.knights[1]
@@ -42,14 +49,7 @@ class BattleManager:
 
         for knight in range(0, len(knights), 2):
             if knight + 1 < len(knights):
-                knights[knight].hp -= \
-                    knights[knight + 1].power - knights[knight].protection
-                knights[knight + 1].hp -= \
-                    knights[knight].power - knights[knight + 1].protection
-                if knights[knight].hp <= 0:
-                    knights[knight].hp = 0
-                if knights[knight + 1].hp <= 0:
-                    knights[knight + 1].hp = 0
+                duel(knights[knight], knights[knight + 1])
 
         return {
             knight.name: knight.hp for knight in self.knights
