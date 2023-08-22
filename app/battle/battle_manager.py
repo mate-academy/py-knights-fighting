@@ -12,8 +12,9 @@ class BattleManager:
                 knight_data["power"],
                 knight_data["hp"],
                 [
-                    Armour(a["part"],
-                           a["protection"]) for a in knight_data["armour"]
+                    Armour(armour["part"],
+                           armour["protection"])
+                    for armour in knight_data["armour"]
                 ],
                 Weapon(knight_data["weapon"]["name"],
                        knight_data["weapon"]["power"]),
@@ -32,19 +33,23 @@ class BattleManager:
             knight.apply_potion()
 
     def battle(self) -> dict[str, int]:
-        for attacker, defender in [(0, 2), (1, 3)]:
-            attacker_knight = self.knights[attacker]
-            defender_knight = self.knights[defender]
+        lancelot = self.knights[0]
+        mordred = self.knights[2]
+        arthur = self.knights[1]
+        red_knight = self.knights[3]
 
-            defender_knight.hp -= \
-                attacker_knight.power - defender_knight.protection
-            attacker_knight.hp -= \
-                defender_knight.power - attacker_knight.protection
+        knights = [lancelot, mordred, arthur, red_knight]
 
-            if defender_knight.hp <= 0:
-                defender_knight.hp = 0
+        lancelot.hp -= mordred.power - lancelot.protection
+        mordred.hp -= lancelot.power - mordred.protection
 
-            if attacker_knight.hp <= 0:
-                attacker_knight.hp = 0
+        arthur.hp -= red_knight.power - arthur.protection
+        red_knight.hp -= arthur.power - red_knight.protection
 
-        return {knight.name: knight.hp for knight in self.knights}
+        for knight in knights:
+            if knight.hp <= 0:
+                knight.hp = 0
+
+        return {
+            knight.name: knight.hp for knight in self.knights
+        }
