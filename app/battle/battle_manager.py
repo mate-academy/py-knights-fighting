@@ -40,15 +40,16 @@ class BattleManager:
 
         knights = [lancelot, mordred, arthur, red_knight]
 
-        lancelot.hp -= mordred.power - lancelot.protection
-        mordred.hp -= lancelot.power - mordred.protection
-
-        arthur.hp -= red_knight.power - arthur.protection
-        red_knight.hp -= arthur.power - red_knight.protection
-
-        for knight in knights:
-            if knight.hp <= 0:
-                knight.hp = 0
+        for knight in range(0, len(knights), 2):
+            if knight + 1 < len(knights):
+                knights[knight].hp -= \
+                    knights[knight + 1].power - knights[knight].protection
+                knights[knight + 1].hp -= \
+                    knights[knight].power - knights[knight + 1].protection
+                if knights[knight].hp <= 0:
+                    knights[knight].hp = 0
+                if knights[knight + 1].hp <= 0:
+                    knights[knight + 1].hp = 0
 
         return {
             knight.name: knight.hp for knight in self.knights
