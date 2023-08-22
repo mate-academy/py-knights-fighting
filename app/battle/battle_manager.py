@@ -32,13 +32,15 @@ class BattleManager:
             knight.apply_weapon()
             knight.apply_potion()
 
-    def battle(self) -> dict[str, int]:
-        def duel(knight_1: Knight, knight_2: Knight) -> None:
-            knight_2.hp -= knight_1.power - knight_2.protection
-            knight_1.hp -= knight_2.power - knight_1.protection
+    @staticmethod
+    def duel(knight_1: Knight, knight_2: Knight) -> None:
+        knight_2.hp -= knight_1.power - knight_2.protection
+        knight_1.hp -= knight_2.power - knight_1.protection
 
-            knight_1.hp = 0 if knight_1.hp <= 0 else knight_1.hp
-            knight_2.hp = 0 if knight_2.hp <= 0 else knight_2.hp
+        knight_1.hp = 0 if knight_1.hp <= 0 else knight_1.hp
+        knight_2.hp = 0 if knight_2.hp <= 0 else knight_2.hp
+
+    def battle(self) -> dict[str, int]:
 
         lancelot = self.knights[0]
         mordred = self.knights[2]
@@ -49,7 +51,7 @@ class BattleManager:
 
         for knight in range(0, len(knights), 2):
             if knight + 1 < len(knights):
-                duel(knights[knight], knights[knight + 1])
+                self.duel(knights[knight], knights[knight + 1])
 
         return {
             knight.name: knight.hp for knight in self.knights
