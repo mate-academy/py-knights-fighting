@@ -15,10 +15,7 @@ def battle(knights_dict: dict) -> dict:
 
     for knight, opponent in rounds:
         knight.hp -= opponent.power - knight.protection
-
-    for knight in knights_list:
-        if knight.hp <= 0:
-            knight.hp = 0
+        knight.hp = 0 if knight.hp < 0 else knight.hp
 
     # Return battle results:
     return {
