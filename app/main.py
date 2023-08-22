@@ -8,7 +8,7 @@ def battle(knights_config: dict) -> dict:
     knights = {
         name: making_knight(knight)
         for name, knight in knights_config.items()
-        }
+    }
 
 # BATTLE------------------------------------------------
 
