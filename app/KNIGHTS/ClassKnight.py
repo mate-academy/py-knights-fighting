@@ -29,14 +29,15 @@ battle result and store information
         self.power += weapon["power"]
 
     def using_potion(self) -> None:
+        effects_list = ["protection", "power", "hp"]
+        status = [self.protection, self.power, self.hp]
+        if self.potion:
 
-        if self.potion is not None:
+            for i in range(len(effects_list)):
 
-            if "protection" in self.potion["effect"]:
-                self.protection += self.potion["effect"]["protection"]
+                if effects_list[i] in self.potion["effect"]:
+                    status[i] += self.potion["effect"][effects_list[i]]
 
-            if "power" in self.potion["effect"]:
-                self.power += self.potion["effect"]["power"]
-
-            if "hp" in self.potion["effect"]:
-                self.hp += self.potion["effect"]["hp"]
+        self.protection = status[0]
+        self.power = status[1]
+        self.hp = status[2]

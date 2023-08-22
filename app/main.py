@@ -4,47 +4,33 @@ from app.KNIGHTS.ReformattingInfo import making_knight
 
 def battle(knights_config: dict) -> dict:
     # Reformatting info about the Knights
+    knights_names = ["lancelot", "mordred", "arthur", "red_knight"]
 
-    # lancelot
-
-    lancelot = making_knight(knights_config["lancelot"])
-
-    # arthur
-    arthur = making_knight(knights_config["arthur"])
-
-    # mordred
-
-    mordred = making_knight(knights_config["mordred"])
-
-    # red_knight
-
-    red_knight = making_knight(knights_config["red_knight"])
-
-    knights_list = [lancelot, arthur, mordred, red_knight]
+    knights = [making_knight(knights_config[knight]) for knight in knights_names]
 
 # BATTLE------------------------------------------------
 
     # 1 Lancelot vs Mordred:
 
-    lancelot.hp -= mordred.power - lancelot.protection
-    mordred.hp -= lancelot.power - mordred.protection
+    knights[0].hp -= knights[1].power - knights[0].protection
+    knights[1].hp -= knights[0].power - knights[1].protection
 
     # 2 Arthur vs Red Knight:
 
-    arthur.hp -= red_knight.power - arthur.protection
-    red_knight.hp -= arthur.power - red_knight.protection
+    knights[2].hp -= knights[3].power - knights[2].protection
+    knights[3].hp -= knights[2].power - knights[3].protection
 
     # check if someone fell in battle
 
-    for knight in knights_list:
+    for knight in knights:
         if knight.hp <= 0:
             knight.hp = 0
 
     return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
+        knights[0].name: knights[0].hp,
+        knights[1].name: knights[1].hp,
+        knights[2].name: knights[2].hp,
+        knights[3].name: knights[3].hp,
     }
 
 
