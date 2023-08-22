@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+
 class Knight:
 
     """
@@ -29,15 +32,12 @@ battle result and store information
         self.power += weapon["power"]
 
     def using_potion(self) -> None:
-        effects_list = ["protection", "power", "hp"]
-        status = [self.protection, self.power, self.hp]
+
         if self.potion:
 
-            for i in range(len(effects_list)):
+            for effect, value in self.potion["effect"].items():
+                setattr(self, effect, getattr(self, effect, 0) + value)
 
-                if effects_list[i] in self.potion["effect"]:
-                    status[i] += self.potion["effect"][effects_list[i]]
-
-        self.protection = status[0]
-        self.power = status[1]
-        self.hp = status[2]
+    def fight(self, enemy: Knight) -> None:
+        self.hp -= enemy.power - self.protection
+        enemy.hp -= self.power - enemy.protection
