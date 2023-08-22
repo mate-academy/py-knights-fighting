@@ -1,42 +1,33 @@
-from app.Battle.Fight import fight
-from app.knights.Create_Knight import Knight
+from app.Battle.fight import fight
+from app.knights.create_knight import CreateKnight
+from app.knights.knight_prep import knight_preparation
 
 
 def battle(knights: dict) -> dict:
-    lancelot = Knight(
+    lancelot = CreateKnight(
         knights["lancelot"]["name"],
         knights["lancelot"]["power"],
         knights["lancelot"]["hp"]
     )
-    arthur = Knight(
+    arthur = CreateKnight(
         knights["arthur"]["name"],
         knights["arthur"]["power"],
         knights["arthur"]["hp"]
     )
-    mordred = Knight(
+    mordred = CreateKnight(
         knights["mordred"]["name"],
         knights["mordred"]["power"],
         knights["mordred"]["hp"]
     )
-    red_knight = Knight(
+    red_knight = CreateKnight(
         knights["red_knight"]["name"],
         knights["red_knight"]["power"],
         knights["red_knight"]["hp"]
     )
 
     list_of_knights = [lancelot, arthur, mordred, red_knight]
-    list_of_actions = ["weapon", "armour", "potion"]
 
-    for action in list_of_actions:
-        for knight in list_of_knights:
-            knight_name = knight.name.lower().replace(" ", "_")
-            if action == "weapon":
-                knight.apply_weapon(knights[knight_name][action])
-            elif action == "armour":
-                knight.apply_armour(knights[knight_name][action])
-            elif action == "potion":
-                if knights[knight_name]["potion"] is not None:
-                    knight.apply_potion(knights[knight_name][action])
+    knight_preparation(list_of_knights, knights)
 
     fight(lancelot, mordred)
     fight(arthur, red_knight)

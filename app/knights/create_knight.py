@@ -1,4 +1,4 @@
-class Knight():
+class CreateKnight():
     def __init__(
             self,
             name: str,

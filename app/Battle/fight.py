@@ -1,7 +1,10 @@
-from app.knights.Create_Knight import Knight
+from app.knights.create_knight import CreateKnight
 
 
-def fight(knight_number_1: Knight, knight_number_2: Knight) -> None:
+def fight(
+        knight_number_1: CreateKnight,
+        knight_number_2: CreateKnight
+) -> None:
     knight_number_1.hp -= knight_number_2.power - knight_number_1.protection
     knight_number_2.hp -= knight_number_1.power - knight_number_2.protection
 
