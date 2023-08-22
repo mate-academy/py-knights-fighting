@@ -6,7 +6,10 @@ def battle(knights_config: dict) -> dict:
     # Reformatting info about the Knights
     knights_names = ["lancelot", "mordred", "arthur", "red_knight"]
 
-    knights = [making_knight(knights_config[knight]) for knight in knights_names]
+    knights = [
+        making_knight(knights_config[knight])
+        for knight in knights_names
+    ]
 
 # BATTLE------------------------------------------------
 
