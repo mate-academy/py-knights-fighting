@@ -7,11 +7,14 @@ def battle(knights_dict: dict) -> dict:
 
     [lancelot, arthur, mordred, red_knight] = \
         [knights_list[0], knights_list[1], knights_list[2], knights_list[3]]
-    knight = [lancelot, arthur, mordred, red_knight]
-    opponent = [mordred, red_knight, lancelot, arthur]
 
-    for index in range(4):
-        knight[index].hp -= opponent[index].power - knight[index].protection
+    rounds = [(lancelot, mordred),
+              (arthur, red_knight),
+              (mordred, lancelot),
+              (red_knight, arthur)]
+
+    for knight, opponent in rounds:
+        knight.hp -= opponent.power - knight.protection
 
     for knight in knights_list:
         if knight.hp <= 0:
