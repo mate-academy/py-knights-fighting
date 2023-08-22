@@ -8,9 +8,9 @@ def apply_armour(knights_dict: dict) -> list:
 
     for index, knight in enumerate(knights):
         if knight["armour"]:
-            for item in range(len(knight["armour"])):
+            for item in knight["armour"]:
                 armoured_knights[index].protection = (
                     armoured_knights[index].protection
-                    + knight["armour"][item]["protection"])
+                    + item["protection"])
 
     return armoured_knights
