@@ -1,5 +1,5 @@
-from My_knights import Knight
-from data import persons
+from knight import Knight
+from data import one
 
 
 def fight(first: dict, second: dict) -> None:
@@ -19,9 +19,9 @@ def battle_function(prepared_heroes: dict) -> dict:
     }
 
 
-def battle(people: dict) -> dict:
-    hero = Knight(people).preparing()
+def battle(many: dict) -> dict:
+    hero = Knight(many).preparing()
     return battle_function(hero)
 
 
-print(battle(persons))
+print(battle(one))

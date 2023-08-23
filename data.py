@@ -1,4 +1,4 @@
-persons = {"lancelot": {
+one = {"lancelot": {
     "name": "Lancelot",
     "power": 35,
     "hp": 100,
