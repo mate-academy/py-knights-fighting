@@ -1,10 +1,10 @@
 class Knight:
     def __init__(self, people: dict) -> None:
-        self.persons = people
+        self.people = people
 
     def preparing(self) -> dict:
         result_of_preparing = {}
-        for name, data in self.persons.items():
+        for name, data in self.people.items():
             self.apply_protection(data)
             data["power"] += data["weapon"]["power"]
             self.apply_potion(data)
