@@ -1,6 +1,6 @@
 class Knight:
-    def __init__(self, persons: dict) -> None:
-        self.persons = persons
+    def __init__(self, people: dict) -> None:
+        self.persons = people
 
     def preparing(self) -> dict:
         result_of_preparing = {}
