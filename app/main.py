@@ -1,25 +1,25 @@
-from app.Battle.fight import fight
-from app.knights.create_knight import CreateKnight
-from app.knights.knight_prep import knight_preparation
+from app.battle.fight import fight
+from app.characters.knight import Knight
+from app.characters.utils import prepare_knights
 
 
 def battle(knights: dict) -> dict:
-    lancelot = CreateKnight(
+    lancelot = Knight(
         knights["lancelot"]["name"],
         knights["lancelot"]["power"],
         knights["lancelot"]["hp"]
     )
-    arthur = CreateKnight(
+    arthur = Knight(
         knights["arthur"]["name"],
         knights["arthur"]["power"],
         knights["arthur"]["hp"]
     )
-    mordred = CreateKnight(
+    mordred = Knight(
         knights["mordred"]["name"],
         knights["mordred"]["power"],
         knights["mordred"]["hp"]
     )
-    red_knight = CreateKnight(
+    red_knight = Knight(
         knights["red_knight"]["name"],
         knights["red_knight"]["power"],
         knights["red_knight"]["hp"]
@@ -27,7 +27,7 @@ def battle(knights: dict) -> dict:
 
     list_of_knights = [lancelot, arthur, mordred, red_knight]
 
-    knight_preparation(list_of_knights, knights)
+    prepare_knights(list_of_knights, knights)
 
     fight(lancelot, mordred)
     fight(arthur, red_knight)
