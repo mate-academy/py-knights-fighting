@@ -1,24 +1,102 @@
 from app.knights.KnightsTemplate import KnightsTemplate
 
 
-def battle() -> dict:
-    lancelot = KnightsTemplate(
-        name="Lancelot",
-        power=35,
-        hp=75,
-        armour=[],
-        weapon={
+def battle(knights_list: dict) -> dict:
+    fighters = {}
+    for knight_name, knight_config in knights_list.items():
+        instantiated_knight = KnightsTemplate(
+            name=knight_config["name"],
+            power=knight_config["power"],
+            hp=knight_config["hp"],
+            armour=knight_config["armour"],
+            weapon=knight_config["weapon"],
+            potion=knight_config["potion"],
+            protection=knight_config.get("protection", 0)
+        )
+
+        fighters[knight_name] = instantiated_knight
+    print(fighters)
+    for knight in fighters.values():
+        knight.add_power()
+        knight.apply_potion()
+        knight.add_protection()
+    fighters["lancelot"].hp -= (fighters["mordred"].power
+                                - fighters["lancelot"].protection)
+    fighters["mordred"].hp -= (fighters["lancelot"].power
+                               - fighters["mordred"].protection)
+    if fighters["lancelot"].hp <= 0:
+        fighters["lancelot"].hp = 0
+
+    if fighters["mordred"].hp <= 0:
+        fighters["mordred"].hp = 0
+    fighters["arthur"].hp -= (fighters["red_knight"].power
+                              - fighters["arthur"].protection)
+    fighters["red_knight"].hp -= (fighters["arthur"].power
+                                  - fighters["red_knight"].protection)
+    if fighters["arthur"].hp <= 0:
+        fighters["arthur"].hp = 0
+
+    if fighters["red_knight"].hp <= 0:
+        fighters["red_knight"].hp = 0
+    return {
+        fighters["lancelot"].name:
+            fighters["lancelot"].hp,
+
+        fighters["mordred"].name:
+            fighters["mordred"].hp,
+
+        fighters["arthur"].name:
+            fighters["arthur"].hp,
+
+        fighters["red_knight"].name:
+            fighters["red_knight"].hp,
+    }
+
+
+knight_configs = {
+    "lancelot": {
+        "name": "Lancelot",
+        "power": 35,
+        "hp": 75,
+        "armour": [],
+        "weapon": {
             "name": "Metal Sword",
             "power": 50,
         },
-        potion={},
-    )
-
-    arthur = KnightsTemplate(
-        name="Arthur",
-        power=45,
-        hp=75,
-        armour=[
+        "potion": {},
+    },
+    "mordred": {
+        "name": "Mordred",
+        "power": 30,
+        "hp": 90,
+        "armour": [
+            {
+                "part": "breastplate",
+                "protection": 15,
+            },
+            {
+                "part": "boots",
+                "protection": 10,
+            }
+        ],
+        "weapon": {
+            "name": "Poisoned Sword",
+            "power": 60,
+        },
+        "potion": {
+            "name": "Berserk",
+            "effect": {
+                "power": +15,
+                "hp": -5,
+                "protection": +10,
+            }
+        },
+    },
+    "arthur": {
+        "name": "Arthur",
+        "power": 45,
+        "hp": 75,
+        "armour": [
             {
                 "part": "helmet",
                 "protection": 15,
@@ -32,90 +110,34 @@ def battle() -> dict:
                 "protection": 10,
             }
         ],
-        weapon={
+        "weapon": {
             "name": "Two-handed Sword",
             "power": 55,
         },
-        potion={}
-    )
-
-    mordred = KnightsTemplate(
-        name="Mordred",
-        power=30,
-        hp=90,
-        armour=[
-            {
-                "part": "breastplate",
-                "protection": 15,
-            },
-            {
-                "part": "boots",
-                "protection": 10,
-            }
-        ],
-        weapon={
-            "name": "Poisoned Sword",
-            "power": 60,
-        },
-        potion={
-            "name": "Berserk",
-            "effect": {
-                "power": +15,
-                "hp": -5,
-                "protection": +10,
-            }
-        }
-    )
-
-    red_knight = KnightsTemplate(
-        name="Red Knight",
-        power=40,
-        hp=70,
-        armour=[
+        "potion": {},
+    },
+    "red_knight": {
+        "name": "Red Knight",
+        "power": 40,
+        "hp": 70,
+        "armour": [
             {
                 "part": "breastplate",
                 "protection": 25,
             }
         ],
-        weapon={
+        "weapon": {
             "name": "Sword",
-            "power": 45
+            "power": 45,
         },
-        potion={
+        "potion": {
             "name": "Blessing",
             "effect": {
                 "hp": +10,
                 "power": +5,
             }
-        }
-    )
-    fighters_types = [lancelot, mordred, arthur, red_knight]
-    knight: KnightsTemplate
-    for knight in fighters_types:
-        knight.add_power()
-        knight.add_protection()
-        knight.apply_potion()
+        },
+    },
+}
 
-    lancelot.hp -= mordred.power - lancelot.protection
-    mordred.hp -= lancelot.power - mordred.protection
-    if lancelot.hp <= 0:
-        lancelot.hp = 0
-    if mordred.hp <= 0:
-        mordred.hp = 0
-    # 2 Arthur vs Red Knight:
-    arthur.hp -= red_knight.power - arthur.protection
-    red_knight.hp -= arthur.power - red_knight.protection
-    if arthur.hp <= 0:
-        arthur.hp = 0
-
-    if red_knight.hp <= 0:
-        red_knight.hp = 0
-    return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
-    }
-
-
-print(battle())
+print(battle(knights_list=knight_configs))

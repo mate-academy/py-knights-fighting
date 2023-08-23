@@ -27,9 +27,8 @@ class KnightsTemplate:
         return self
 
     def apply_potion(self) -> "KnightsTemplate":
-        if "effect" in self.potion and self.potion["effect"] is not None:
+        if self.potion is not None and "effect" in self.potion:
             effect = self.potion["effect"]
-
             if "hp" in effect and effect["hp"] is not None:
                 self.hp += effect["hp"]
             if "power" in effect and effect["power"] is not None:
