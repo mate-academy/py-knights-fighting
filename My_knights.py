@@ -2,20 +2,30 @@ class Knight:
     def __init__(self, persons: dict) -> None:
         self.persons = persons
 
-    def preparing(self: dict) -> dict:
+    def preparing(self) -> dict:
         result_of_preparing = {}
-        for name, data in self.items():
-            data["protection"] = 0
-            for value in data["armour"]:
-                data["protection"] += value["protection"]
+        for name, data in self.persons.items():
+            self.apply_protection(data)
             data["power"] += data["weapon"]["power"]
-            ls = ["power", "protection", "hp"]
-            if data["potion"] is not None:
-                for new_value in ls:
-                    if new_value in data["potion"]["effect"]:
-                        data[new_value] += data["potion"]["effect"][new_value]
+            self.apply_potion(data)
             result_of_preparing.update({
-                name: {"hp": data["hp"],
-                       "power": data["power"],
-                       "protection": data["protection"]}})
+                name: {
+                    "hp": data["hp"],
+                    "power": data["power"],
+                    "protection": data["protection"],
+                    "name": data["name"]
+                }
+            })
         return result_of_preparing
+
+    @staticmethod
+    def apply_protection(data: dict) -> None:
+        data["protection"] = 0
+        for value in data["armour"]:
+            data["protection"] += value["protection"]
+
+    @staticmethod
+    def apply_potion(data: dict) -> None:
+        if data["potion"] is not None:
+            for effect, new_value in data["potion"]["effect"].items():
+                data[effect] += new_value

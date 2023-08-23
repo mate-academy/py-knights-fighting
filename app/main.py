@@ -2,38 +2,25 @@ from My_knights import Knight
 from data import persons
 
 
+def fight(first: dict, second: dict) -> None:
+    first["hp"] -= second["power"] - first["protection"]
+    second["hp"] -= first["power"] - second["protection"]
+
+
 def battle_function(prepared_heroes: dict) -> dict:
-    value = prepared_heroes
-    value["lancelot"]["hp"] -=\
-        value["mordred"]["power"] - value["lancelot"]["protection"]
-    value["mordred"]["hp"] -=\
-        value["lancelot"]["power"] - value["mordred"]["protection"]
-
-    if value["lancelot"]["hp"] <= 0:
-        value["lancelot"]["hp"] = 0
-
-    if value["mordred"]["hp"] <= 0:
-        value["mordred"]["hp"] = 0
-    value["arthur"]["hp"] -=\
-        value["red_knight"]["power"] - value["arthur"]["protection"]
-    value["red_knight"]["hp"] -=\
-        value["arthur"]["power"] - value["red_knight"]["protection"]
-
-    if value["arthur"]["hp"] <= 0:
-        value["arthur"]["hp"] = 0
-
-    if value["red_knight"]["hp"] <= 0:
-        value["red_knight"]["hp"] = 0
-
+    fight(prepared_heroes["lancelot"], prepared_heroes["mordred"])
+    fight(prepared_heroes["arthur"], prepared_heroes["red_knight"])
+    for knight in prepared_heroes.values():
+        if knight["hp"] <= 0:
+            knight["hp"] = 0
     return {
-        "Lancelot": value["lancelot"]["hp"],
-        "Arthur": value["arthur"]["hp"],
-        "Mordred": value["mordred"]["hp"],
-        "Red Knight": value["red_knight"]["hp"]}
+        knight["name"]: knight["hp"]
+        for knight in prepared_heroes.values()
+    }
 
 
 def battle(people: dict) -> dict:
-    hero = Knight.preparing(people)
+    hero = Knight(people).preparing()
     return battle_function(hero)
 
 
