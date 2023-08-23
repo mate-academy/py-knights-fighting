@@ -1,5 +1,5 @@
-from app.KNIGHTS.KnightsInfo import KNIGHTS
-from app.KNIGHTS.ReformattingInfo import making_knight
+from app.knights.knights_info import KNIGHTS
+from app.knights.reformatting_info import making_knight
 
 
 def battle(knights_config: dict) -> dict:

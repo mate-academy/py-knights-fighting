@@ -1,4 +1,4 @@
-from app.KNIGHTS.ClassKnight import Knight
+from app.knights.class_knight import Knight
 
 """
 
