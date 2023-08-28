@@ -1,4 +1,4 @@
-from app.knights.initialisation import prepare_for_battle
+from app.knights.battle_preparation import prepare_for_battle
 
 
 KNIGHTS = {
