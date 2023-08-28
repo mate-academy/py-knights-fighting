@@ -1,11 +1,7 @@
-
 class Knight:
-    def __init__(self,
-                 name: str,
-                 power: int,
-                 hp: int,
-                 protection: int
-                 ) -> None:
+    def __init__(
+        self, name: str, power: int, hp: int, protection: int
+    ) -> None:
         self.name = name
         self.power = power
         self.hp = hp
@@ -21,11 +17,9 @@ class Knight:
             hp = cur_knight["hp"]
             protection = 0
 
-            # apply armour
             for armour in cur_knight["armour"]:
                 protection += armour["protection"]
 
-            # apply potion if exist
             if cur_knight["potion"] is not None:
                 if "power" in cur_knight["potion"]["effect"]:
                     power += cur_knight["potion"]["effect"]["power"]
@@ -38,10 +32,6 @@ class Knight:
 
             key = name.lower().replace(" ", "_")
 
-            knights_instances[key] = (
-                cls(
-                    name, power, hp, protection
-                )
-            )
+            knights_instances[key] = cls(name, power, hp, protection)
 
         return knights_instances
