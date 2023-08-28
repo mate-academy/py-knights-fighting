@@ -19,7 +19,7 @@ class Knight:
         self.attack = self.power
         self.defence = 0
 
-    def change_weapon(self, weapon_stat: dict) -> None:
+    def add_weapon(self, weapon_stat: dict) -> None:
         weapon = Weapon(
             weapon_stat.get("name"),
             weapon_stat.get("power"),
@@ -40,13 +40,12 @@ class Knight:
     def drink_potion(self) -> None:
         if self.potion:
             for effect in self.potion.effects:
-                match effect.attr:
-                    case "hp":
-                        self.hp += effect.power
-                    case "power":
-                        self.power += effect.power
-                    case "protection":
-                        self.defence += effect.power
+                if effect.attr == "hp":
+                    self.hp += effect.power
+                elif effect.attr == "power":
+                    self.power += effect.power
+                elif effect.attr == "protection":
+                    self.defence += effect.power
 
     def fight(self, other: Knight) -> bool:
         if self.defence < other.power:
@@ -74,7 +73,7 @@ class Knight:
                 stats.get("hp")
             )
             knight.add_armour(stats.get("armour"))
-            knight.change_weapon(stats.get("weapon"))
+            knight.add_weapon(stats.get("weapon"))
             knight.add_potion(stats.get("potion"))
             list_knights.append(knight)
 
