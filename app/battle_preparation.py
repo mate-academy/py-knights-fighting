@@ -10,7 +10,7 @@ def battle_preparation(knight: dict) -> dict:
     # apply potion if exist
     if knight["potion"] is not None:
         attributes = ["power", "protection", "hp"]
-        for i in attributes:
-            if i in knight["potion"]["effect"]:
-                knight[i] += knight["potion"]["effect"][i]
+        for attribute in attributes:
+            if attribute in knight["potion"]["effect"]:
+                knight[attribute] += knight["potion"]["effect"][attribute]
     return knight
