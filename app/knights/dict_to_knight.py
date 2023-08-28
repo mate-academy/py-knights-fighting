@@ -11,7 +11,8 @@ def hero_initialise(information: dict) -> list[Knight]:
                                         information[f"{i}"]["hp"],
                                         information[f"{i}"]["armour"],
                                         information[f"{i}"]["weapon"],
-                                        information[f"{i}"]["potion"],))
+                                        information[f"{i}"]["potion"],)
+                                 )
 
     lancelot, arthur, mordred, red_knight = stat_of_character
 

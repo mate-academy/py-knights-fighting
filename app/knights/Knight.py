@@ -9,7 +9,8 @@ class Knight:
                  health_point: int,
                  armour: list | dict,
                  weapon: list | dict,
-                 potion: list | dict) -> None:
+                 potion: list | dict
+                 ) -> None:
         self.name = name
         self.power = power
         self.protection = protection
@@ -22,14 +23,13 @@ class Knight:
         stats = [self.weapon, self.armour, self.potion]
 
         for source in stats:
-            if source:
-                if isinstance(source, list):
-                    for piece in source:
-                        self.protection += piece.get("protection", 0)
-                        self.power += piece.get("power", 0)
-                        self.health_point += piece.get("hp", 0)
-                        self.apply_effect(piece.get("effect", {}))
-                    continue
+            if isinstance(source, list):
+                for piece in source:
+                    self.protection += piece.get("protection", 0)
+                    self.power += piece.get("power", 0)
+                    self.health_point += piece.get("hp", 0)
+                    self.apply_effect(piece.get("effect", {}))
+            if isinstance(source, dict):
                 self.protection += source.get("protection", 0)
                 self.power += source.get("power", 0)
                 self.health_point += source.get("hp", 0)
