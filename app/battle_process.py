@@ -15,12 +15,7 @@ def effects(knight: dict) -> None:
     if knight["potion"] is not None:
         potion_effects = knight["potion"]["effect"]
         for effect, value in potion_effects.items():
-            if effect == "power":
-                knight["power"] += value
-            elif effect == "protection":
-                knight["protection"] += value
-            elif effect == "hp":
-                knight["hp"] += value
+            knight[effect] += value
 
 
 def battle(knights_data: dict) -> dict:
