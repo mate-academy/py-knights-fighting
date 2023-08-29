@@ -19,8 +19,6 @@ class Knight:
 
     def fight(self, enemy: Knight) -> None:
         self.hp -= enemy.power - self.protection
-        if self.hp < 0:
-            self.hp = 0
+        self.hp = max(0, self.hp)
         enemy.hp -= self.power - enemy.protection
-        if enemy.hp < 0:
-            enemy.hp = 0
+        enemy.hp = max(0, enemy.hp)

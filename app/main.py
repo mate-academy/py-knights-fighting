@@ -1,7 +1,7 @@
 from app.knights.battle_preparation import prepare_for_battle
 
 
-KNIGHTS = {
+knights = {
     "lancelot": {
         "name": "Lancelot",
         "power": 35,
@@ -89,21 +89,16 @@ KNIGHTS = {
 }
 
 
-def battle(knights: dict) -> dict:
+def battle(challengers: dict) -> dict:
     # BATTLE PREPARATIONS:
-    lancelot = prepare_for_battle(knights["lancelot"])
-    arthur = prepare_for_battle(knights["arthur"])
-    mordred = prepare_for_battle(knights["mordred"])
-    red_knight = prepare_for_battle(knights["red_knight"])
+    knight_names = ["lancelot", "arthur", "mordred", "red_knight"]
+    fighters = [
+        prepare_for_battle(challengers[name]) for name in knight_names
+    ]
     # -------------------------------------------------------------------------------
     # BATTLE:
-    mordred.fight(lancelot)
-    arthur.fight(red_knight)
+    fighters[0].fight(fighters[2])
+    fighters[1].fight(fighters[3])
 
     # Return battle results:
-    return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
-    }
+    return {fighter.name: fighter.hp for fighter in fighters}
