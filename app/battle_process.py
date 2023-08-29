@@ -9,18 +9,18 @@ def health_points(knight_1: dict, knight_2: dict) -> None:
 
 def effects(knight: dict) -> None:
     knight["protection"] = sum(
-        armour["protection"]
-        for armour in knight["armour"])
+        armour["protection"] for armour in knight["armour"])
     knight["power"] += knight["weapon"]["power"]
 
     if knight["potion"] is not None:
         potion_effects = knight["potion"]["effect"]
-        if "power" in potion_effects:
-            knight["power"] += potion_effects["power"]
-        if "protection" in potion_effects:
-            knight["protection"] += potion_effects["protection"]
-        if "hp" in potion_effects:
-            knight["hp"] += potion_effects["hp"]
+        for effect, value in potion_effects.items():
+            if effect == "power":
+                knight["power"] += value
+            elif effect == "protection":
+                knight["protection"] += value
+            elif effect == "hp":
+                knight["hp"] += value
 
 
 def battle(knights_data: dict) -> dict:
