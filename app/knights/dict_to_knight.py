@@ -5,14 +5,17 @@ def hero_initialise(information: dict) -> list[Knight]:
     heroes_name = ["lancelot", "arthur", "mordred", "red_knight"]
     stat_of_character = []
     for i in heroes_name:
-        stat_of_character.append(Knight(information[f"{i}"]["name"],
-                                        information[f"{i}"]["power"],
-                                        0,
-                                        information[f"{i}"]["hp"],
-                                        information[f"{i}"]["armour"],
-                                        information[f"{i}"]["weapon"],
-                                        information[f"{i}"]["potion"],)
-                                 )
+        stat_of_character.append(
+            Knight(
+                information[f"{i}"]["name"],
+                information[f"{i}"]["power"],
+                0,
+                information[f"{i}"]["hp"],
+                information[f"{i}"]["armour"],
+                information[f"{i}"]["weapon"],
+                information[f"{i}"]["potion"]
+            )
+        )
 
     lancelot, arthur, mordred, red_knight = stat_of_character
 

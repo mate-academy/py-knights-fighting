@@ -2,15 +2,16 @@ from __future__ import annotations
 
 
 class Knight:
-    def __init__(self,
-                 name: str,
-                 power: int,
-                 protection: int,
-                 health_point: int,
-                 armour: list | dict,
-                 weapon: list | dict,
-                 potion: list | dict
-                 ) -> None:
+    def __init__(
+            self,
+            name: str,
+            power: int,
+            protection: int,
+            health_point: int,
+            armour: list | dict,
+            weapon: list | dict,
+            potion: list | dict
+    ) -> None:
         self.name = name
         self.power = power
         self.protection = protection
