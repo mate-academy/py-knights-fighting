@@ -17,17 +17,17 @@ def prepare_knight(knight: dict) -> None:
         apply_effects(knight, knight["potion"]["effect"])
 
 
-def battle(knightsConfig: dict) -> dict:
+def battle(knights_config: dict) -> dict:
     knights = ["lancelot", "arthur", "mordred", "red_knight"]
 
     for knight_name in knights:
-        knight = knightsConfig[knight_name]
+        knight = knights_config[knight_name]
         prepare_knight(knight)
 
-    lancelot = knightsConfig["lancelot"]
-    arthur = knightsConfig["arthur"]
-    mordred = knightsConfig["mordred"]
-    red_knight = knightsConfig["red_knight"]
+    lancelot = knights_config["lancelot"]
+    arthur = knights_config["arthur"]
+    mordred = knights_config["mordred"]
+    red_knight = knights_config["red_knight"]
 
     lancelot["hp"] -= mordred["power"] - lancelot["protection"]
     mordred["hp"] -= lancelot["power"] - mordred["protection"]
