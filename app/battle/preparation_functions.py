@@ -1,4 +1,4 @@
-from app.Knights.knight_class import Knight
+from app.knights.knight_class import Knight
 
 
 def apply_armour(knight: Knight) -> None:

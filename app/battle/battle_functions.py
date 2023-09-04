@@ -1,7 +1,7 @@
-from app.Knights.knight_class import Knight
+from app.knights.knight_class import Knight
 
 
-def battle_action_phase(knight_1: Knight, knight_2: Knight) -> None:
+def perform_fight(knight_1: Knight, knight_2: Knight) -> None:
 
     damage_for_first_knight = knight_2.power - knight_1.protection
     damage_for_second_knight = knight_1.power - knight_2.protection
