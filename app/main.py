@@ -30,6 +30,3 @@ def battle(knights_config: Dict[str, Any] = KNIGHTS) -> Dict[str, int]:
         knight.name: knight.hp
         for knight in knights
     }
-
-
-print(battle())
