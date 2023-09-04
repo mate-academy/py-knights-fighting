@@ -30,9 +30,11 @@ class Knight:
             self.apply_potion_effects()
 
     def apply_potion_effects(self) -> None:
-        if "power" in self.potion["effect"]:
-            self.power += self.potion["effect"]["power"]
-        if "protection" in self.potion["effect"]:
-            self.protection += self.potion["effect"]["protection"]
-        if "hp" in self.potion["effect"]:
-            self.hp += self.potion["effect"]["hp"]
+        if self.potion is None:
+            return
+
+        effect = self.potion.get("effect", {})
+        for attribute, value in effect.items():
+            current_value = getattr(self, attribute, None)
+            if current_value is not None:
+                setattr(self, attribute, current_value + value)
