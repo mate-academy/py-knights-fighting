@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 
-class Knights:
+class Knight:
     def __init__(self, name: str, power: int, hp: int) -> None:
         self.name = name
         self.power = power
@@ -20,7 +20,7 @@ class Knights:
             for attribute, value in potion["effect"].items():
                 self.__dict__[attribute] += value
 
-    def knight_battle(self, opponent: Knights) -> None:
+    def knight_battle(self, opponent: Knight) -> None:
         opponent.hp -= self.power - opponent.protection
         self.hp -= opponent.power - self.protection
 

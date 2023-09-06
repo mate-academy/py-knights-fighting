@@ -1,4 +1,4 @@
-from app.participants.admitting import creating_knights
+from app.participants.admitting import create_knights
 
 KNIGHTS = {
     "lancelot": {
@@ -90,7 +90,7 @@ KNIGHTS = {
 
 def battle(knights_config: dict) -> dict:
     knight_classes = {
-        knight["name"]: creating_knights(knight)
+        knight["name"]: create_knights(knight)
         for knight in knights_config.values()
     }
 

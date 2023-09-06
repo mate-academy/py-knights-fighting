@@ -1,10 +1,10 @@
 from __future__ import annotations
 
-from app.participants.knights import Knights
+from app.participants.knight import Knight
 
 
-def creating_knights(knight_config: dict) -> Knights:
-    knight = Knights(
+def create_knights(knight_config: dict) -> Knight:
+    knight = Knight(
         knight_config["name"],
         knight_config["power"],
         knight_config["hp"]
