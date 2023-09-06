@@ -1,4 +1,4 @@
-from app.participants.admitting import create_knights
+from app.participants.admit import create_knights
 
 KNIGHTS = {
     "lancelot": {
