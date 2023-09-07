@@ -8,7 +8,7 @@ class Knight:
         self.hp = hp
         self.protection = 0
 
-    def attribute_counter(
+    def apply_attributes(
             self, armour: list,
             weapon: dict,
             potion: dict | None
@@ -20,7 +20,7 @@ class Knight:
             for attribute, value in potion["effect"].items():
                 self.__dict__[attribute] += value
 
-    def knight_battle(self, opponent: Knight) -> None:
+    def perform_battle(self, opponent: Knight) -> None:
         opponent.hp -= self.power - opponent.protection
         self.hp -= opponent.power - self.protection
 
