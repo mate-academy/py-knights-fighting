@@ -47,7 +47,7 @@ Additionally, knights have:
 - `potion` with `name` and `effect` (effects may be somehow positive and somehow negative). Potion may exist, but may be just `None` also.
   - Potion (if exists) is applied to each knight before entering the battle.
   - Potion `effect` may improve/worsen one of 3 main stats of knight: `hp`, `power` or `protection`.
-  - If `effect` value is positive - it improves this stat on that value, if negative - worsen.
+  - If `effect` value is positive - it improves this stat on that value, if negative - worsen.410
 
 So, for `red_knight` we have before the battle next stats:
 ```python
