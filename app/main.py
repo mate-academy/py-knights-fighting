@@ -1,43 +1,19 @@
-from app.knights_dict.config import KNIGHTS
-from app.knights_dict.knights import Knights
+from app.knights_dict.config import KNIGHTS, battle_table
+from app.knights_dict.knights import Knight
 
 
-knight = Knights(KNIGHTS)
+def battle(config: dict) -> dict:
+    result = {}
+    for first_name, second_name in battle_table.items():
+        knight_1 = Knight(config[first_name])
+        knight_2 = Knight(config[second_name])
+        knight_1.arm_the_warrior()
+        knight_2.arm_the_warrior()
+        hp_1 = knight_1.hp - (knight_2.power - knight_1.protection)
+        hp_2 = knight_2.hp - (knight_1.power - knight_2.protection)
+        result[knight_1.name] = hp_1 if hp_1 > 0 else 0
+        result[knight_2.name] = hp_2 if hp_2 > 0 else 0
+    return result
 
-lancelot = knight.knight_kingdom("lancelot")
-arthur = knight.knight_kingdom("arthur")
-mordred = knight.knight_kingdom("mordred")
-red_knight = knight.knight_kingdom("red_knight")
 
-# -------------------------------------------------------------------------------
-# BATTLE:
-
-# 1 Lancelot vs Mordred:
-lancelot["hp"] -= mordred["power"] - lancelot["protection"]
-mordred["hp"] -= lancelot["power"] - mordred["protection"]
-
-# check if someone fell in battle
-if lancelot["hp"] <= 0:
-    lancelot["hp"] = 0
-
-if mordred["hp"] <= 0:
-    mordred["hp"] = 0
-
-# 2 Arthur vs Red Knight:
-arthur["hp"] -= red_knight["power"] - arthur["protection"]
-red_knight["hp"] -= arthur["power"] - red_knight["protection"]
-
-# check if someone fell in battle
-if arthur["hp"] <= 0:
-    arthur["hp"] = 0
-
-if red_knight["hp"] <= 0:
-    red_knight["hp"] = 0
-
-# Print battle results:
-print({
-    lancelot["name"]: lancelot["hp"],
-    arthur["name"]: arthur["hp"],
-    mordred["name"]: mordred["hp"],
-    red_knight["name"]: red_knight["hp"],
-})
+print(battle(KNIGHTS))

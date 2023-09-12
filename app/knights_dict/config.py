@@ -1,3 +1,8 @@
+battle_table = {
+    "lancelot": "mordred",
+    "arthur": "red_knight"
+}
+
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
