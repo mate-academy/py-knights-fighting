@@ -1,4 +1,4 @@
-from app.Challengers.Knight import Hero
+from app.challengers.Knight import Hero
 
 
 def fight(first_fighter: Hero, second_fighter: Hero) -> None:

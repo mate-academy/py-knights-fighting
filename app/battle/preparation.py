@@ -1,4 +1,4 @@
-from app.Challengers.Knight import Hero
+from app.challengers.Knight import Hero
 
 
 class PreparedKnights:
@@ -12,7 +12,7 @@ class PreparedKnights:
 
     @staticmethod
     def prepare_knights(
-            knights_to_dict: dict,
+            dict_of_knights: dict,
             knights_data: dict
     ) -> dict:
 
@@ -28,11 +28,11 @@ class PreparedKnights:
                 fighter["hp"] += potion_effect.get("hp", 0)
                 fighter["armour"] += potion_effect.get("protection", 0)
 
-        for knight in knights_to_dict.values():
+        for knight in dict_of_knights.values():
             for data in knights_data.values():
                 if knight.name == data["name"]:
                     knight.armour = data["armour"]
                     knight.power = data["power"]
                     knight.hp = data["hp"]
 
-        return knights_to_dict
+        return dict_of_knights
