@@ -5,7 +5,6 @@ class PreparedKnights:
 
     @staticmethod
     def knights_to_dict(knight_data: dict) -> dict:
-        """Create a list of Hero instances from a knights_data dictionary."""
         return {data["name"]: Hero(
             data["name"], data["power"], data["hp"]
         ) for data in knight_data.values()
@@ -16,10 +15,7 @@ class PreparedKnights:
             knights_to_dict: dict,
             knights_data: dict
     ) -> dict:
-        """
-        Changes Hero instances of all_knights list
-        with data from knights_data dictionary.
-        """
+
         for fighter in knights_data.values():
             fighter["armour"] = sum(
                 part["protection"] for part in fighter["armour"]

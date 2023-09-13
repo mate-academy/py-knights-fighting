@@ -91,11 +91,7 @@ KNIGHTS = {
 
 
 def battle(knights_data: dict) -> dict:
-    """
-    Transforms knights_data dictionary to prepared_heroes list
-    with Hero instances, changes their parameters with fight function
-    and returns dictionary with Hero "name" key with hero "hp" value.
-    """
+
     prepared_heroes = Prepared.prepare_knights(
         Prepared.knights_to_dict(knights_data),
         knights_data
