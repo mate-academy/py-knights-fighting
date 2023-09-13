@@ -1,5 +1,6 @@
-from app.championship_setup.championship_class import Championship
-from app.knights_setup.knights_data import KNIGHTS
+from app.championship.championship_class import Championship
+from app.knight.knights_data import KNIGHTS
+from app.knight.knight_class import Knight
 
 
 def battle(knights_config: dict) -> dict:
@@ -8,11 +9,11 @@ def battle(knights_config: dict) -> dict:
     :param knights_config:
     :return: a dictionary of Knight instances
     """
-    championship = Championship(knights_config)
-    knights = championship.battle_preparation()
-    championship.single_battle(knights["lancelot"], knights["mordred"])
-    championship.single_battle(knights["arthur"], knights["red_knight"])
-    return championship.championship_results()
+    championship = Championship()
+    knights = Knight.get_knights(knights_config)
+    championship.fight(knights["Lancelot"], knights["Mordred"])
+    championship.fight(knights["Arthur"], knights["Red Knight"])
+    return championship.get_championship_results()
 
 
 print(battle(KNIGHTS))
