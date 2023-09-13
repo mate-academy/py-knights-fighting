@@ -97,17 +97,10 @@ def battle(knights_data: dict) -> dict:
     and returns dictionary with Hero "name" key with hero "hp" value.
     """
     prepared_heroes = Prepared.prepare_knights(
-        Prepared.list_knights(knights_data),
+        Prepared.knights_to_dict(knights_data),
         knights_data
     )
 
-    pairs = [
-        ("Lancelot", "Mordred"),
-        ("Arthur", "Red Knight")
-    ]
-
-    for knight1 in prepared_heroes:
-        for knight2 in prepared_heroes:
-            if (knight1.name, knight2.name) in pairs:
-                fight(knight1, knight2)
-    return {knight.name: knight.hp for knight in prepared_heroes}
+    fight(prepared_heroes["Lancelot"], prepared_heroes["Mordred"])
+    fight(prepared_heroes["Arthur"], prepared_heroes["Red Knight"])
+    return {knight.name: knight.hp for knight in prepared_heroes.values()}

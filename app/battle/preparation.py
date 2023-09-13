@@ -4,20 +4,18 @@ from app.Challengers.Knight import Hero
 class PreparedKnights:
 
     @staticmethod
-    def list_knights(knight_data: dict) -> list[Hero]:
+    def knights_to_dict(knight_data: dict) -> dict:
         """Create a list of Hero instances from a knights_data dictionary."""
-        return [
-            Hero(
-                knight_data[data]["name"],
-                knight_data[data]["power"],
-                knight_data[data]["hp"]) for data in knight_data
-        ]
+        return {data["name"]: Hero(
+            data["name"], data["power"], data["hp"]
+        ) for data in knight_data.values()
+        }
 
     @staticmethod
     def prepare_knights(
-            list_knights: list[Hero],
+            knights_to_dict: dict,
             knights_data: dict
-    ) -> list[Hero]:
+    ) -> dict:
         """
         Changes Hero instances of all_knights list
         with data from knights_data dictionary.
@@ -34,11 +32,11 @@ class PreparedKnights:
                 fighter["hp"] += potion_effect.get("hp", 0)
                 fighter["armour"] += potion_effect.get("protection", 0)
 
-        for knight in list_knights:
+        for knight in knights_to_dict.values():
             for data in knights_data.values():
                 if knight.name == data["name"]:
                     knight.armour = data["armour"]
                     knight.power = data["power"]
                     knight.hp = data["hp"]
 
-        return list_knights
+        return knights_to_dict
