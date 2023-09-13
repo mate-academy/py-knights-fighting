@@ -12,7 +12,8 @@ class Knight:
             self.power += weapon_pow
 
     def apply_armour(self) -> None:
-        self.protection = sum(i["protection"] for i in self.knights["armour"])
+        self.protection = \
+            sum(armour["protection"] for armour in self.knights["armour"])
 
     def apply_potion(self) -> None:
         stats = (
