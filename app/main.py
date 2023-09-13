@@ -1,4 +1,5 @@
 from app.battle.preparation import PreparedKnights as Prepared
+from app.challengers.Knight import Hero
 from app.battle.duel import fight
 
 
@@ -92,7 +93,7 @@ KNIGHTS = {
 
 def battle(knights_data: dict) -> dict:
 
-    prepared_heroes = Prepared.prepare_knights(
+    prepared_heroes = Hero.prepare_knights(
         Prepared.knights_to_dict(knights_data),
         knights_data
     )
