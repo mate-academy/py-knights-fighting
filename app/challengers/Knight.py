@@ -6,7 +6,7 @@ class Hero:
 
         self.name = name
         self.power = power
-        self.hp = hp
+        self._hp = hp
         self.armour = armour
 
     @property
