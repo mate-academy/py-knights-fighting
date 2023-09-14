@@ -1,7 +1,7 @@
 from app.knights.knight import Knight
 
 
-def constructor(knights: {dict}) -> dict:
+def knights_constructor(knights: {dict}) -> dict:
     knights_list = {}
     for knight in knights.values():
         knight_model = Knight(
