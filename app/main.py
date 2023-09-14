@@ -1,18 +1,13 @@
-from app.knights_dict.config import KNIGHTS, battle_table
-from app.knights_dict.knights import Knight
+from app.knights.config import KNIGHTS
+from app.knights.constuctor import constructor
 
 
-def battle(config: dict) -> dict:
+def battle(knights: {dict}) -> dict:
     result = {}
-    for first_name, second_name in battle_table.items():
-        knight_1 = Knight(config[first_name])
-        knight_2 = Knight(config[second_name])
-        knight_1.arm_the_warrior()
-        knight_2.arm_the_warrior()
-        hp_1 = knight_1.hp - (knight_2.power - knight_1.protection)
-        hp_2 = knight_2.hp - (knight_1.power - knight_2.protection)
-        result[knight_1.name] = hp_1 if hp_1 > 0 else 0
-        result[knight_2.name] = hp_2 if hp_2 > 0 else 0
+    knights_dict = constructor(knights)
+    fight1 = knights_dict["Lancelot"].knights_battle(knights_dict["Mordred"])
+    fight2 = knights_dict["Arthur"].knights_battle(knights_dict["Red Knight"])
+    result.update(**fight1, **fight2)
     return result
 
 
