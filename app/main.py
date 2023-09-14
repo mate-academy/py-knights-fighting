@@ -93,18 +93,12 @@ def battle(knights_info: dict) -> dict:
     knights = [Knight(name=info["name"], power=info["power"], hp=info["hp"])
                for knight, info in knights_info.items()]
 
-    lancelot = knights[0]
-    arthur = knights[1]
-    mordred = knights[2]
-    red_knight = knights[3]
+    for knight in knights:
+        knight_name = knight.name.replace(" ", "_").lower()
+        knight.fully_prepare_knight(knights_info[knight_name])
 
-    lancelot.fully_prepare_knight(knights_info["lancelot"])
-    arthur.fully_prepare_knight(knights_info["arthur"])
-    mordred.fully_prepare_knight(knights_info["mordred"])
-    red_knight.fully_prepare_knight(knights_info["red_knight"])
-
-    lancelot.battle(mordred)
-    arthur.battle(red_knight)
+    for i in range(int(len(knights) / 2)):
+        knights[i].battle(knights[i + 2])
 
     return {knight.name: knight.hp for knight in knights}
 

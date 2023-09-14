@@ -20,12 +20,8 @@ class Knight:
         self.power += weapon["power"]
 
     def apply_potion(self, effect: dict) -> None:
-        if "power" in effect:
-            self.power += effect["power"]
-        if "protection" in effect:
-            self.protection += effect["protection"]
-        if "hp" in effect:
-            self.hp += effect["hp"]
+        for effect_name, effect_value in effect.items():
+            self.__dict__[effect_name] += effect_value
 
     def fully_prepare_knight(self, knight_info: dict) -> None:
         self.apply_armour(armour=knight_info["armour"])
