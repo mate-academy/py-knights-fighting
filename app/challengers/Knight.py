@@ -18,6 +18,13 @@ class Hero:
         self._hp = value if value >= 0 else 0
 
     @staticmethod
+    def knights_to_dict(knight_data: dict) -> dict:
+        return {data["name"]: Hero(
+            data["name"], data["power"], data["hp"]
+        ) for data in knight_data.values()
+        }
+
+    @staticmethod
     def prepare_knights(
             dict_of_knights: dict,
             knights_data: dict
@@ -31,9 +38,14 @@ class Hero:
 
             if fighter["potion"]:
                 potion_effect = fighter["potion"]["effect"]
-                fighter["power"] += potion_effect.get("power", 0)
-                fighter["hp"] += potion_effect.get("hp", 0)
-                fighter["armour"] += potion_effect.get("protection", 0)
+
+                for effect_type, effect_bonus in potion_effect.items():
+                    if effect_type == "power":
+                        fighter["power"] += effect_bonus
+                    elif effect_type == "hp":
+                        fighter["hp"] += effect_bonus
+                    elif effect_type == "protection":
+                        fighter["armour"] += effect_bonus
 
         for knight in dict_of_knights.values():
             for data in knights_data.values():
