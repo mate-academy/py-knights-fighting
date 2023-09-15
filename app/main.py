@@ -97,8 +97,8 @@ def battle(knights_info: dict) -> dict:
         knight_name = knight.name.replace(" ", "_").lower()
         knight.fully_prepare_knight(knights_info[knight_name])
 
-    for i in range(int(len(knights) / 2)):
-        knights[i].battle(knights[i + 2])
+    for knight_index in range(int(len(knights) / 2)):
+        knights[knight_index].battle(knights[knight_index + 2])
 
     return {knight.name: knight.hp for knight in knights}
 
