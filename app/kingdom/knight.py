@@ -33,5 +33,5 @@ class Knight:
         self.hp -= other.power - self.protection
         other.hp -= self.power - other.protection
 
-        self.hp = 0 if self.hp <= 0 else self.hp
-        other.hp = 0 if other.hp <= 0 else other.hp
+        self.hp = max(0, self.hp)
+        other.hp = max(0, other.hp)
