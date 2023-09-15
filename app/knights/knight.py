@@ -18,7 +18,7 @@ class Knight:
         self.name = name
         self.power = power
         self.hp = hp
-        self.armour = [Armour(a.part, a.protection) for a in armour]
+        self.armour = armour
         self.weapon = weapon
         self.potion = potion
         self.protection = 0
@@ -31,14 +31,11 @@ class Knight:
             self.apply_potion()
 
     def apply_potion(self) -> None:
-        if self.potion.effect.power:
-            self.power += self.potion.effect.power
-
-        if self.potion.effect.protection:
-            self.protection += self.potion.effect.protection
-
-        if self.potion.effect.hp:
-            self.hp += self.potion.effect.hp
+        effect = self.potion.effect
+        for stat in ["power", "protection", "hp"]:
+            stat_effect = getattr(effect, stat, 0)
+            if stat_effect:
+                setattr(self, stat, getattr(self, stat) + stat_effect)
 
     def battle(self, opponent: Knight) -> None:
         self.hp -= max(0, opponent.power - self.protection)

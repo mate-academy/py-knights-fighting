@@ -97,13 +97,23 @@ KNIGHTS = {
 def initialize_knights(config: Dict[str, Dict]) -> Dict[str, Knight]:
     knights = {}
     for key, k_data in config.items():
-        armour = [Armour(a["part"], a["protection"]) for a in k_data["armour"]]
-        weapon = Weapon(k_data["weapon"]["name"], k_data["weapon"]["power"])
-        potion_effect_data = k_data["potion"]["effect"]\
-            if k_data["potion"] else {}
+        armour_data = k_data.get("armour", [])
+        armour = [Armour(a["part"], a["protection"]) for a in armour_data]
+
+        weapon_data = k_data["weapon"]
+        weapon = Weapon(weapon_data["name"], weapon_data["power"])
+
+        potion_data = k_data.get("potion", {})
+        potion_effect_data = (
+            potion_data.get("effect", {})
+            if potion_data is not None else {}
+        )
         potion_effect = PotionEffect(**potion_effect_data)
-        potion = Potion(k_data["potion"]["name"], potion_effect) \
-            if k_data["potion"] else None
+        potion = (
+            Potion(potion_data.get("name"), potion_effect)
+            if potion_data else None
+        )
+
         knight = Knight(
             k_data["name"],
             k_data["power"],
