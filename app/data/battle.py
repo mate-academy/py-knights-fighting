@@ -2,7 +2,7 @@ from __future__ import annotations
 from app.data.knight_class import Knight
 
 
-def knight_the_knight(data: dict) -> Knight:
+def create_knight(data: dict) -> Knight:
     knight = Knight(
         data["name"],
         data["power"],
