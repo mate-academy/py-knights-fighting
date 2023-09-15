@@ -1,10 +1,13 @@
+from __future__ import annotations
+
+
 class KnightInstances:
     instances = {}
 
     def __init__(
             self,
-            knight_name,
-            knight_data
+            knight_name: str,
+            knight_data: dict
     ) -> None:
         self.name = knight_data.get("name")
         self.power = knight_data.get("power", 0)
@@ -33,7 +36,7 @@ class KnightInstances:
             if "hp" in self.potion["effect"]:
                 self.hp += self.potion["effect"]["hp"]
 
-    def vs(self, other) -> None:
+    def vs(self, other: KnightInstances) -> None:
         self.hp -= other.power - self.protection
         if self.hp <= 0:
             self.hp = 0

@@ -2,7 +2,7 @@ from app.knights.class_Knights import KnightInstances
 from app.knights.knights import KNIGHTS
 
 
-def battle(knights) -> dict:
+def battle(knights: dict) -> dict:
     for knight_name, knight_data in knights.items():
         KnightInstances(knight_name, knight_data)
 
