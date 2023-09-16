@@ -1,25 +1,25 @@
-from app.knights.class_Knights import KnightInstances
+from app.knights.class_Knights import Knight
 from app.knights.knights import KNIGHTS
 
 
 def battle(knights: dict) -> dict:
     for knight_name, knight_data in knights.items():
-        KnightInstances(knight_name, knight_data)
+        Knight(knight_name, knight_data)
 
-    lancelot = KnightInstances.instances.get("lancelot")
-    mordred = KnightInstances.instances.get("mordred")
-    arthur = KnightInstances.instances.get("arthur")
-    red_knight = KnightInstances.instances.get("red_knight")
+    lancelot = Knight.instances.get("lancelot")
+    mordred = Knight.instances.get("mordred")
+    arthur = Knight.instances.get("arthur")
+    red_knight = Knight.instances.get("red_knight")
 
-    lancelot.enter_method()
-    mordred.enter_method()
-    arthur.enter_method()
-    red_knight.enter_method()
+    lancelot.prepare()
+    mordred.prepare()
+    arthur.prepare()
+    red_knight.prepare()
 
-    lancelot.vs(mordred)
-    mordred.vs(lancelot)
-    arthur.vs(red_knight)
-    red_knight.vs(arthur)
+    lancelot.fight(mordred)
+    mordred.fight(lancelot)
+    arthur.fight(red_knight)
+    red_knight.fight(arthur)
 
     return {
         lancelot.name: lancelot.hp,

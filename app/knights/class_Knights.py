@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 
-class KnightInstances:
+class Knight:
     instances = {}
 
     def __init__(
@@ -16,7 +16,7 @@ class KnightInstances:
         self.weapon = knight_data.get("weapon", {})
         self.potion = knight_data.get("potion", None)
         self.protection = 0
-        KnightInstances.instances[knight_name] = self
+        Knight.instances[knight_name] = self
 
     def apply_armour(self) -> None:
         for current_armour in self.armour:
@@ -27,21 +27,18 @@ class KnightInstances:
 
     def apply_potion_if_exist(self) -> None:
         if self.potion is not None:
-            if "power" in self.potion["effect"]:
-                self.power += self.potion["effect"]["power"]
+            effect = self.potion["effect"]
+            for attribute in ["power", "protection", "hp"]:
+                if attribute in effect:
+                    current_value = getattr(self, attribute)
+                    setattr(self, attribute, effect[attribute] + current_value)
 
-            if "protection" in self.potion["effect"]:
-                self.protection += self.potion["effect"]["protection"]
-
-            if "hp" in self.potion["effect"]:
-                self.hp += self.potion["effect"]["hp"]
-
-    def vs(self, other: KnightInstances) -> None:
+    def fight(self, other: Knight) -> None:
         self.hp -= other.power - self.protection
         if self.hp <= 0:
             self.hp = 0
 
-    def enter_method(self) -> None:
+    def prepare(self) -> None:
         self.apply_armour()
         self.apply_weapon()
         self.apply_potion_if_exist()
