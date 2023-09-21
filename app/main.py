@@ -1,5 +1,4 @@
 from app.knight_config.config import Knight
-from app.knight_config.knights import KNIGHTS
 from app.battle_preparations.apply_potion_if_exist import Potion
 from app.battle_preparations.apply_weapon import Weapon
 from app.battle_preparations.apply_armour import Armour
@@ -22,6 +21,3 @@ def battle(knights: dict) -> dict:
                 Battle.battle(knight_list[index], knight_list[index + 2])
             )
     return Check.result_dict
-
-
-print(battle(KNIGHTS))
