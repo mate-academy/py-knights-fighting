@@ -2,7 +2,7 @@ from __future__ import annotations
 from app.classes.class_knights import Knights
 
 
-def protection_calc(knight: Knights, armour: list) -> None:
+def protection_calc(knight: Knights, armour: list[dict]) -> None:
     for part in armour:
         knight.protection += part["protection"]
 

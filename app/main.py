@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from app.data.knights_config import KNIGHTS
 from app.classes.class_knights import Knights
 from app.battle.preparation import preparation
 from app.battle.fight import fight_vs
@@ -21,6 +20,3 @@ def battle(knights_config: dict) -> dict:
     fight_vs(arthur, red_knight)
 
     return {knight.name: knight.hp for knight in knights_instances}
-
-
-battle(KNIGHTS)
