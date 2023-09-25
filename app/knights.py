@@ -17,6 +17,8 @@ class Knight:
         self.armour = armour
         self.weapon = weapon
         self.potion = potion
+        self.initial_hp = hp
+        self.protection = self.apply_armor()  # Инициализация защиты
 
     def apply_armor(self) -> str:
         protection = sum(armor["protection"] for armor in self.armour)
@@ -29,7 +31,7 @@ class Knight:
         if self.potion:
             effect = self.potion["effect"]
             self.base_power += effect.get("power", 0)
-            self.base_hp += effect.get("hp", 0)
+            #self.base_hp += effect.get("hp", 0)
             self.protection += effect.get("protection", 0)
 
     def initialize(self) -> None:

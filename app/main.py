@@ -1,6 +1,6 @@
 # main.py
-from knights import Knight
-from battle import Battle
+from app.battle import Battle
+from app.knights import Knight
 
 # Конфигурация рыцарей
 KNIGHTS_CONFIG = {
@@ -100,6 +100,11 @@ battle = Battle(knights)
 # Запуск сражения между рыцарями с помощью метода start класса Battle
 results = battle.start()
 
-# Вывод результатов сражения, показывая имена рыцарей и их оставшееся здоровье
+# Создаем словарь для вывода результатов
+output_results = {}
 for name, hp in results.items():
-    print(f"{name}: {hp}")
+    output_results[name] = hp
+
+# Выводим результаты сражения в ожидаемом формате
+print(output_results)
+
