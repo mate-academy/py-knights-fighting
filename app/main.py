@@ -107,4 +107,3 @@ for name, hp in results.items():
 
 # Выводим результаты сражения в ожидаемом формате
 print(output_results)
-

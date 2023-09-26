@@ -25,13 +25,9 @@ class Battle:
                 # Применяем эффекты зелий (если есть) перед атакой
                 if knight1.potion:
                     damage1 += knight1.potion.get("effect", {}).get("power", 0)
-                    #knight1.hp += knight1.potion.get("effect", {}).get("hp", 0)
-                    #knight1.hp = min(knight1.hp, knight1.initial_hp)
 
                 if knight2.potion:
                     damage2 += knight2.potion.get("effect", {}).get("power", 0)
-                    #knight2.hp += knight2.potion.get("effect", {}).get("hp", 0)
-                    #knight2.hp = min(knight2.hp, knight2.initial_hp)
 
                 # Наносим урон друг другу
                 knight1.hp -= damage2

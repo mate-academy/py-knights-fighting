@@ -31,7 +31,6 @@ class Knight:
         if self.potion:
             effect = self.potion["effect"]
             self.base_power += effect.get("power", 0)
-            #self.base_hp += effect.get("hp", 0)
             self.protection += effect.get("protection", 0)
 
     def initialize(self) -> None:
