@@ -106,6 +106,3 @@ def battle(base_knights_config: dict) -> dict:
 
     # Return battle results:
     return Battle.get_results()
-
-
-# print(battle(KNIGHTS))
