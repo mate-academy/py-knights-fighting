@@ -1,9 +1,8 @@
 from app.battle import Battle
-from app.knights_list import KNIGHTS
 
-battle_instance = Battle(KNIGHTS)
-battle_instance.apply_knight_modifiers()
-results = battle_instance.fight()
-print(results)
 
-def battle(KnightConfig):
+def battle(knightconfig: dict) -> dict:
+    battle_instance = Battle(knightconfig)
+    battle_instance.apply_knight_modifiers()
+    results = battle_instance.fight()
+    return results
