@@ -66,4 +66,8 @@ def battle(knights: Dict[str, Dict[str, int]]) -> Dict[str, int]:
             knight["hp"] = 0
 
     # Возвращаем результаты битвы
-    return {name: knight["hp"] for name, knight in prepared_knights.items()}
+    return {
+        name.replace("_", " ").title(): knight["hp"]
+        for name,
+        knight in prepared_knights.items()
+    }
