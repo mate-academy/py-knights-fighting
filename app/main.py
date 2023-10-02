@@ -88,25 +88,24 @@ KNIGHTS = {
         }
     }
 }
-list_of_knights: list["Knight"] = []
-for key in KNIGHTS:
-    list_of_knights.append(
-        Knight
-        (
-            KNIGHTS[key]["name"],
-            KNIGHTS[key]["power"],
-            KNIGHTS[key]["hp"],
-            Knight.create_list_armour(KNIGHTS[key]["armour"]),
-            Weapon(KNIGHTS[key]["weapon"]["name"],
-                   KNIGHTS[key]["weapon"]["power"]),
-            Knight.create_potion(KNIGHTS[key]["potion"])
-        )
-    )
 
 
 # -------------------------------------------------------------------------------
-    # BATTLE:
-def battle(list_fighters: list[Knight]) -> dict:
+# BATTLE:
+def battle(list_knights: dict) -> dict:
+    list_fighters = []
+    for key in list_knights:
+        list_fighters.append(
+            Knight(
+                list_knights[key]["name"],
+                list_knights[key]["power"],
+                list_knights[key]["hp"],
+                Knight.create_list_armour(list_knights[key]["armour"]),
+                Weapon(list_knights[key]["weapon"]["name"],
+                       list_knights[key]["weapon"]["power"]),
+                Knight.create_potion(list_knights[key]["potion"])
+            )
+        )
 
     for knight in list_fighters:
         knight.prepare_for_battle()
@@ -138,4 +137,4 @@ def battle(list_fighters: list[Knight]) -> dict:
     }
 
 
-print(battle(list_of_knights))
+print(battle(KNIGHTS))
