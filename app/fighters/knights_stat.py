@@ -1,4 +1,6 @@
-from app.fighters import equipment
+from app.fighters.equipment import Armour
+from app.fighters.equipment import Weapon
+from app.fighters.equipment import Potion
 
 
 class Knight:
@@ -7,9 +9,9 @@ class Knight:
         name: str,
         power: int,
         hp: int,
-        armour: list[equipment.Armour] | None,
-        weapon: equipment.Weapon,
-        potion: equipment.Potion | None
+        armour: list[Armour] | None,
+        weapon: Weapon,
+        potion: Potion | None
     ) -> None:
         self.protection = 0
         self.name = name
@@ -20,20 +22,18 @@ class Knight:
         self.potion = potion
 
     @staticmethod
-    def create_list_armour(arm: list[dict] | None)\
-            -> list[equipment.Armour] | None:
+    def create_list_armour(arm: list[dict] | None) -> list[Armour] | None:
         if isinstance(arm, list):
             res_armour = []
             for value in arm:
-                res_armour.append(equipment.Armour(value["part"],
-                                                   value["protection"]))
+                res_armour.append(Armour(value["part"], value["protection"]))
             return res_armour
         return None
 
     @staticmethod
-    def create_potion(pot: dict | None) -> equipment.Potion | None:
+    def create_potion(pot: dict | None) -> Potion | None:
         if pot is not None:
-            return equipment.Potion(pot["name"], pot["effect"])
+            return Potion(pot["name"], pot["effect"])
         return None
 
     def prepare_for_battle(self) -> None:

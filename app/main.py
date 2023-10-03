@@ -1,7 +1,6 @@
 from app.fighters.knights_stat import Knight
 from app.fighters.equipment import Weapon
 
-
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
@@ -93,7 +92,9 @@ KNIGHTS = {
 # -------------------------------------------------------------------------------
 # BATTLE:
 def battle(list_knights: dict) -> dict:
+
     list_fighters = []
+
     for key in list_knights:
         list_fighters.append(
             Knight(
