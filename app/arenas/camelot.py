@@ -1,7 +1,7 @@
-from app.knight import Knight
+from app.knights.knight import Knight
 
 
-class Arena:
+class Camelot:
 
     battles_result_on_arena = {}
 
