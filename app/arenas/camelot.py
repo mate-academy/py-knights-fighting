@@ -3,7 +3,7 @@ from app.knights.knight import Knight
 
 class Camelot:
 
-    battles_result_on_arena = {}
+    battles_results = {}
 
     def __init__(self) -> None:
         pass
@@ -21,7 +21,7 @@ class Camelot:
             print(f"{knight_two.name} fall in battle!")
             knight_two.hp = 0
 
-        cls.battles_result_on_arena[knight_one.name] = knight_one.hp
-        cls.battles_result_on_arena[knight_two.name] = knight_two.hp
+        cls.battles_results[knight_one.name] = knight_one.hp
+        cls.battles_results[knight_two.name] = knight_two.hp
 
-        return cls.battles_result_on_arena
+        return cls.battles_results

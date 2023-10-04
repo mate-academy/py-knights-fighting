@@ -3,6 +3,8 @@ from __future__ import annotations
 
 class Knight:
 
+    knights_for_battle = {}
+
     def __init__(self,
                  name: str,
                  power: int,
@@ -10,12 +12,13 @@ class Knight:
                  armour: list = [],
                  weapon: dict = {},
                  potion: dict = {}) -> None:
-        self.name = name
+        self.name = name.title()
         self.power = power
         self.hp = hp
         self.armour = armour
         self.weapon = weapon
         self.potion = potion
+        Knight.knights_for_battle[self.name] = self
 
     def wear_armour(self) -> None:
         self.protection = 0
