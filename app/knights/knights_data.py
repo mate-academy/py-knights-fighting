@@ -1,6 +1,5 @@
-class Knights:
-
-    KNIGHTS = {
+KNIGHTS = \
+    {
         "lancelot": {
             "name": "Lancelot",
             "power": 35,
