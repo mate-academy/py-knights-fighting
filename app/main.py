@@ -1,7 +1,6 @@
 from app.knights.knight import Knight
 from app.fights.fight import fight
 from typing import Dict
-# from app.config_knights.config import KNIGHTS
 
 
 def battle(knights: Dict[str, dict]) -> Dict[str, int]:
