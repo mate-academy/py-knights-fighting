@@ -1,49 +1,87 @@
 
-from app.declarations.armour_parts import *
-from app.declarations.weapon_types import *
-from app.declarations.potions import *
-
-
-Default = [
-    {
+Knights = {
+    "lancelot": {
         "name": "Lancelot",
         "power": 35,
         "hp": 100,
         "armour": [],
-        "weapon": metal_sword,
+        "weapon": {
+            "name": "Metal Sword",
+            "power": 50,
+        },
         "potion": None,
     },
-    {
+    "arthur": {
         "name": "Arthur",
         "power": 45,
         "hp": 75,
         "armour": [
-            strong_helmet,
-            average_breastplate,
-            average_boots
+            {
+                "part": "helmet",
+                "protection": 15,
+            },
+            {
+                "part": "breastplate",
+                "protection": 20,
+            },
+            {
+                "part": "boots",
+                "protection": 10,
+            }
         ],
-        "weapon": two_handed_sword,
+        "weapon": {
+            "name": "Two-handed Sword",
+            "power": 55,
+        },
         "potion": None,
     },
-    {
+    "mordred": {
         "name": "Mordred",
         "power": 30,
         "hp": 90,
         "armour": [
-            weak_breastplate,
-            average_boots
+            {
+                "part": "breastplate",
+                "protection": 15,
+            },
+            {
+                "part": "boots",
+                "protection": 10,
+            }
         ],
-        "weapon": poisoned_sword,
-        "potion": berserk
+        "weapon": {
+            "name": "Poisoned Sword",
+            "power": 60,
+        },
+        "potion": {
+            "name": "Berserk",
+            "effect": {
+                "power": +15,
+                "hp": -5,
+                "protection": +10,
+            }
+        }
     },
-    {
+    "red_knight": {
         "name": "Red Knight",
         "power": 40,
         "hp": 70,
         "armour": [
-            strong_breastplate
+            {
+                "part": "breastplate",
+                "protection": 25,
+            }
         ],
-        "weapon": sword,
-        "potion": blessing
+        "weapon": {
+            "name": "Sword",
+            "power": 45
+        },
+        "potion": {
+            "name": "Blessing",
+            "effect": {
+                "hp": +10,
+                "power": +5,
+            }
+        }
     }
-]
+}
