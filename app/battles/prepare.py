@@ -1,9 +1,8 @@
 def preparing(temp_knight: dict) -> dict:
-    # apply armour
     temp_knight["protection"] = sum(
-        [armour["protection"] for armour in temp_knight["armour"]]
+        armour["protection"] for armour in temp_knight["armour"]
     )
-    # apply weapon, potion if exist
+
     temp_knight["power"] += temp_knight["weapon"]["power"]
     potion = temp_knight["potion"]
     if potion is not None:
