@@ -1,4 +1,4 @@
-def preparing(temp_knight: dict) -> dict:
+def prepare_for_battle(temp_knight: dict) -> dict:
     temp_knight["protection"] = sum(
         armour["protection"] for armour in temp_knight["armour"]
     )
