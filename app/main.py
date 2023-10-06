@@ -1,23 +1,21 @@
-import json
+from app.Knight_class import creation_of_knight_instances
+from app.action import all_battles, battle_final_result
 
-from Knight_class import creation_of_knight_instances
-from action import all_battles, battle
 
-with open("KNIGHTS.json", "r") as json_file:
-    KNIGHTS = json.load(json_file)
+def battle(knights_config: dict) -> dict:
 
-knights = creation_of_knight_instances(KNIGHTS)
+    knights = creation_of_knight_instances(knights_config)
 
-for knight in knights.values():
-    knight.apply_armour()
-    knight.apply_potion()
-    knight.apply_weapon()
+    for knight in knights.values():
+        knight.apply_armour()
+        knight.apply_potion()
+        knight.apply_weapon()
 
-knights_pairs = {
-    "lancelot": "mordred",
-    "arthur": "red_knight"
-}
+    knights_pairs = {
+        "lancelot": "mordred",
+        "arthur": "red_knight"
+    }
 
-all_battles(knights_pairs, knights)
+    all_battles(knights_pairs, knights)
 
-print(battle(knights))
+    return battle_final_result(knights)

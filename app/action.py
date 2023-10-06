@@ -1,4 +1,4 @@
-from Knight_class import Knight
+from app.Knight_class import Knight
 
 
 def check_hp(hp: int) -> int:
@@ -18,7 +18,7 @@ def all_battles(knights_pairs: dict, knights: dict) -> None:
         pairs_fight(knights[fighter_1], knights[fighter_2])
 
 
-def battle(knights_: dict) -> dict:
+def battle_final_result(knights_: dict) -> dict:
     return {
         knights_[knight].name: knights_[knight].hp
         for knight in knights_}
