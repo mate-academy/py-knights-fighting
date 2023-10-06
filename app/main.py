@@ -1,6 +1,11 @@
-from app.Knight_class import creation_of_knight_instances
+from app.knight_instances import creation_of_knight_instances
 from app.action import all_battles, battle_final_result
 
+
+KNIGHTS_PAIRS = {
+    "lancelot": "mordred",
+    "arthur": "red_knight"
+}
 
 def battle(knights_config: dict) -> dict:
 
@@ -11,11 +16,6 @@ def battle(knights_config: dict) -> dict:
         knight.apply_potion()
         knight.apply_weapon()
 
-    knights_pairs = {
-        "lancelot": "mordred",
-        "arthur": "red_knight"
-    }
-
-    all_battles(knights_pairs, knights)
+    all_battles(KNIGHTS_PAIRS, knights)
 
     return battle_final_result(knights)

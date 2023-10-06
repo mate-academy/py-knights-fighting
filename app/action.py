@@ -1,4 +1,4 @@
-from app.Knight_class import Knight
+from app.knight_instances import Knight
 
 
 def check_hp(hp: int) -> int:
