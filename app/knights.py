@@ -2,6 +2,7 @@ from __future__ import annotations
 from app.equipments.armour import Armour
 from app.equipments.potion import Potion
 from app.equipments.weapon import Weapon
+from typing import Optional
 
 
 class Knights:
@@ -11,12 +12,12 @@ class Knights:
             power: int,
             hp: int,
             weapon: Weapon,
-            armours: list[Armour] = [],
-            potion: Potion = None) -> None:
+            armours: list[Armour],
+            potion: Optional[Potion] = None) -> None:
         self.name = name
         self.power = power
         self.hp = hp
-        self.armours = armours
+        self.armours = armours if armours else []
         self.weapon = weapon
         self.potion = potion
 
