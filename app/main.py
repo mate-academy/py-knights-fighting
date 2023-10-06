@@ -5,16 +5,16 @@ from app.data import knights_info
 
 def battle(knights_config: dict) -> dict:
     # init knights
-    lancelot = Preparation.init_knight("lancelot", knights_config)
-    arthur = Preparation.init_knight("arthur", knights_config)
-    mordred = Preparation.init_knight("mordred", knights_config)
-    red_knight = Preparation.init_knight("red_knight", knights_config)
+    knights = []
+    for knight in knights_config:
+        knight = Preparation.init_knight(knight, knights_config)
+        knights.append(knight)
 
     # equip knights
-    Action.preparation(lancelot)
-    Action.preparation(arthur)
-    Action.preparation(mordred)
-    Action.preparation(red_knight)
+    for knight_name in range(len(knights_config)):
+        Action.preparation(knights[knight_name])
+
+    lancelot, arthur, mordred, red_knight = knights
 
     # battles
     Action.battle(lancelot, mordred)

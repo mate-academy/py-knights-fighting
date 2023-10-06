@@ -11,12 +11,15 @@ class Action:
         Preparation.apply_potion(knight)
 
     @staticmethod
+    def check_hp(hp: int) -> int:
+        if hp <= 0:
+            hp = 0
+        return hp
+
+    @staticmethod
     def battle(first_knight: Knight, second_knight: Knight) -> None:
         first_knight.hp -= second_knight.power - first_knight.protection
         second_knight.hp -= first_knight.power - second_knight.protection
 
-        if first_knight.hp <= 0:
-            first_knight.hp = 0
-
-        if second_knight.hp <= 0:
-            second_knight.hp = 0
+        first_knight.hp = Action.check_hp(first_knight.hp)
+        second_knight.hp = Action.check_hp(second_knight.hp)
