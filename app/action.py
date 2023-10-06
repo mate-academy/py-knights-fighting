@@ -13,12 +13,12 @@ def pairs_fight(fighter_1: Knight, fighter_2: Knight) -> None:
     fighter_2.hp = check_hp(fighter_2.hp)
 
 
-def all_battles(knights_pairs, knights):
+def all_battles(knights_pairs: dict, knights: dict) -> None:
     for fighter_1, fighter_2 in knights_pairs.items():
         pairs_fight(knights[fighter_1], knights[fighter_2])
 
 
-def battle(knights_):
+def battle(knights_: dict) -> dict:
     return {
         knights_[knight].name: knights_[knight].hp
         for knight in knights_}

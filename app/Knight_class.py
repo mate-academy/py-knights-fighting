@@ -17,7 +17,7 @@ class Knight:
         self.protection = 0
         self.armour = armour
 
-    def apply_potion(self):
+    def apply_potion(self) -> None:
         if self.potion:
             if "power" in self.potion["effect"]:
                 self.power += self.potion["effect"]["power"]
@@ -28,10 +28,10 @@ class Knight:
             if "hp" in self.potion["effect"]:
                 self.hp += self.potion["effect"]["hp"]
 
-    def apply_weapon(self):
+    def apply_weapon(self) -> None:
         self.power += self.weapon["power"]
 
-    def apply_armour(self):
+    def apply_armour(self) -> None:
         self.protection += sum(arm["protection"] for arm in self.armour)
 
 
