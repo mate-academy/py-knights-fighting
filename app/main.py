@@ -1,5 +1,5 @@
-from app.knight_instances import creation_of_knight_instances
-from app.action import all_battles, battle_final_result
+from app.build_instance.knights import creation_of_knight_instances
+from app.actions.fights import all_battles, battle_final_result
 
 
 KNIGHTS_PAIRS = {
