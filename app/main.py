@@ -7,6 +7,7 @@ KNIGHTS_PAIRS = {
     "arthur": "red_knight"
 }
 
+
 def battle(knights_config: dict) -> dict:
 
     knights = creation_of_knight_instances(knights_config)
