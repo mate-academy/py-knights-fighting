@@ -1,7 +1,7 @@
 from app.data import KNIGHTS
 from app.participants.knight import Knight
 from app.battle.battle_preparation import prepare_the_knight
-from app.battle.battle_simulator import battle
+from app.battle.battle import battle
 
 
 def tournament(knights_config):
