@@ -10,4 +10,3 @@ def battle(*args: list[Knight, Knight]) -> None:
             if knight.hp < 0:
                 knight.hp = 0
                 print(f"{knight.name} fell down in battle")
-
