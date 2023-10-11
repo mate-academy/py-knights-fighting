@@ -19,5 +19,5 @@ class TotalArmour:
         self.index += 1
         if self.index < len(self.armour):
             return self.armour[self.index]
-        else:
-            raise StopIteration
+        
+        raise StopIteration
