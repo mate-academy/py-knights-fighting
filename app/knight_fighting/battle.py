@@ -19,6 +19,9 @@ class Battle:
             self.winner = self.first.name
             self.second.hp = 0
 
+        if self.first.hp == 0 and self.second.hp == 0:
+            self.winner = None
+
     def get_winner(self) -> str:
         if self.winner:
             return f"The winner is {self.winner}!"
