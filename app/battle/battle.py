@@ -17,7 +17,7 @@ class Battle:
     @staticmethod
     def prepare_battle(knightsconfig: dict) -> dict:
         knights = {}
-        for value in knightsconfig:
+        for value, item in knightsconfig.items():
             knight = knightsconfig[value]
             # Create knights
             knights[knight["name"]] = Knight(
@@ -34,7 +34,6 @@ class Battle:
                     Armour(armour["part"], armour["protection"]))
 
             if knight["potion"] is not None:
-                # for potion in knight["potion"]["effect"]:
                 knights[knight["name"]].use_potion(
                     Potion(knight["potion"]["name"],
                            knight["potion"]["effect"]))
