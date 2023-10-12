@@ -1,21 +1,25 @@
+from __future__ import annotations
+
+
 class Knight:
     def __init__(self, knight: dict) -> None:
         self.name = knight["name"]
         self.hp = knight["hp"]
         self.power = knight["power"] + knight["weapon"].get("power", 0)
         self.protection = sum(arm["protection"] for arm in knight["armour"])
-
         if knight["potion"] is not None:
-            if "power" in knight["potion"]["effect"]:
-                self.power += knight["potion"]["effect"]["power"]
+            self.check_potion(knight["potion"])
 
-            if "protection" in knight["potion"]["effect"]:
-                self.protection += knight["potion"]["effect"]["protection"]
+    def check_potion(self, potion: dict) -> None:
+        if "power" in potion["effect"]:
+            self.power += potion["effect"]["power"]
 
-            if "hp" in knight["potion"]["effect"]:
-                self.hp += knight["potion"]["effect"]["hp"]
+        if "protection" in potion["effect"]:
+            self.protection += potion["effect"]["protection"]
 
-    @staticmethod
-    def battle_with_enemy(knight1: "Knight", knight2: "Knight") -> None:
-        knight1.hp = max(0, knight1.hp - (knight2.power - knight1.protection))
-        knight2.hp = max(0, knight2.hp - (knight1.power - knight2.protection))
+        if "hp" in potion["effect"]:
+            self.hp += potion["effect"]["hp"]
+
+    def battle_with_enemy(self: Knight, other: Knight) -> None:
+        self.hp = max(0, self.hp - (other.power - self.protection))
+        other.hp = max(0, other.hp - (self.power - other.protection))
