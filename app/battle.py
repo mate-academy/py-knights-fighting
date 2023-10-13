@@ -1,7 +1,7 @@
 from app.knight import Knight
 
 
-def fight(first_knight, second_knight) -> None:
+def fight(first_knight: Knight, second_knight: Knight) -> None:
     first_knight.hp -= second_knight.power - first_knight.protection
     second_knight.hp -= first_knight.power - second_knight.protection
     first_knight.check_hp()
