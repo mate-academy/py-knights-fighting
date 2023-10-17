@@ -15,30 +15,16 @@ def battle(knights_config: dict) -> dict:
             potion=knight["potion"])
         for knight in knights_config.values()]
 
-    lancelot_for_battle = (Knight
-                           .knights_for_battle
-                           .get("Lancelot")
-                           .prep_for_battle())
-    mordred_for_battle = (Knight
-                          .knights_for_battle
-                          .get("Mordred")
-                          .prep_for_battle())
+    first_battle_result = battle_arena.knight_battle(
+        Knight.knights_for_battle.get("Lancelot").prep_for_battle(),
+        Knight.knights_for_battle.get("Mordred").prep_for_battle())
 
-    first_battle_result = battle_arena.knight_battle(lancelot_for_battle,
-                                                     mordred_for_battle)
+    second_battle_result = battle_arena.knight_battle(
+        Knight.knights_for_battle.get("Arthur").prep_for_battle(),
+        Knight.knights_for_battle.get("Red Knight").prep_for_battle())
+
     battles_results.update(first_battle_result)
 
-    arthur_for_battle = (Knight
-                         .knights_for_battle
-                         .get("Arthur")
-                         .prep_for_battle())
-    red_knight_for_battle = (Knight
-                             .knights_for_battle
-                             .get("Red Knight")
-                             .prep_for_battle())
-
-    second_battle_result = battle_arena.knight_battle(arthur_for_battle,
-                                                      red_knight_for_battle)
     battles_results.update(second_battle_result)
 
     return battles_results
