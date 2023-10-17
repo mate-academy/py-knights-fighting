@@ -1,16 +1,25 @@
-def battle_preparation(knight: dict) -> dict:
-    # apply armour
-    knight["protection"] = 0
-    for item in knight["armour"]:
-        knight["protection"] += item["protection"]
+def calculate_total_protection(armour: list) -> int:
+    total_protection = 0
+    for item in armour:
+        total_protection += item["protection"]
+    return total_protection
 
-    # apply weapon
-    knight["power"] += knight["weapon"]["power"]
 
-    # apply potion if exist
-    if knight["potion"] is not None:
+def enhance_knight_power(knight: dict, weapon_power: int) -> None:
+    knight["power"] += weapon_power
+
+
+def apply_potion_effects(knight: dict,
+                         potion: dict) -> None:
+    if potion is not None:
         attributes = ["power", "protection", "hp"]
         for attribute in attributes:
-            if attribute in knight["potion"]["effect"]:
-                knight[attribute] += knight["potion"]["effect"][attribute]
+            if attribute in potion["effect"]:
+                knight[attribute] += potion["effect"][attribute]
+
+
+def battle_preparation(knight: dict) -> dict:
+    knight["protection"] = calculate_total_protection(knight["armour"])
+    enhance_knight_power(knight, knight["weapon"]["power"])
+    apply_potion_effects(knight, knight["potion"])
     return knight
