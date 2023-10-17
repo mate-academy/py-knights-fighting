@@ -16,12 +16,14 @@ def battle(knights_config: dict) -> dict:
         for knight in knights_config.values()]
 
     first_battle_result = battle_arena.knight_battle(
-        Knight.knights_for_battle.get("Lancelot").prep_for_battle(),
-        Knight.knights_for_battle.get("Mordred").prep_for_battle())
+        Knight.knights_for_battle["Lancelot"].prep_for_battle(),
+        Knight.knights_for_battle["Mordred"].prep_for_battle()
+    )
 
     second_battle_result = battle_arena.knight_battle(
-        Knight.knights_for_battle.get("Arthur").prep_for_battle(),
-        Knight.knights_for_battle.get("Red Knight").prep_for_battle())
+        Knight.knights_for_battle["Arthur"].prep_for_battle(),
+        Knight.knights_for_battle["Red Knight"].prep_for_battle()
+    )
 
     battles_results.update(first_battle_result)
 
