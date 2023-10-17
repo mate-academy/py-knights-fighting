@@ -40,7 +40,7 @@ class Knight:
             if "protection" in self.potion["effect"]:
                 self.protection += self.potion["effect"]["protection"]
 
-    def prepare_for_battle(self) -> Knight:
+    def prep_for_battle(self) -> Knight:
         self.wear_armour()
         self.take_weapon()
         self.drink_potion()

@@ -3,8 +3,6 @@ from app.knights.knight import Knight
 
 class Camelot:
 
-    battles_results = {}
-
     def __init__(self) -> None:
         pass
 
@@ -13,15 +11,15 @@ class Camelot:
         knight_one.hp -= knight_two.power - knight_one.protection
         knight_two.hp -= knight_one.power - knight_two.protection
 
-        if knight_one.hp < 0:
+        knight_one.hp = max(knight_one.hp, 0)
+        if knight_one.hp == 0:
             print(f"{knight_one.name} fall in battle!")
-            knight_one.hp = 0
 
-        if knight_two.hp < 0:
+        knight_two.hp = max(knight_two.hp, 0)
+        if knight_two.hp == 0:
             print(f"{knight_two.name} fall in battle!")
-            knight_two.hp = 0
 
-        cls.battles_results[knight_one.name] = knight_one.hp
-        cls.battles_results[knight_two.name] = knight_two.hp
-
-        return cls.battles_results
+        return {
+            knight_one.name : knight_one.hp,
+            knight_two.name : knight_two.hp
+        }

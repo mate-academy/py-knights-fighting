@@ -3,6 +3,9 @@ from app.knights.knight import Knight
 
 
 def battle(knights_config: dict) -> dict:
+
+    battles_results = {}
+
     battle_arena = Camelot()
     [Knight(name=knight["name"],
             hp=knight["hp"],
@@ -12,17 +15,30 @@ def battle(knights_config: dict) -> dict:
             potion=knight["potion"])
         for knight in knights_config.values()]
 
-    battle_arena.knight_battle(Knight.knights_for_battle
-                               .get("Lancelot")
-                               .prepare_for_battle(),
-                               Knight.knights_for_battle
-                               .get("Mordred")
-                               .prepare_for_battle())
-    battle_arena.knight_battle(Knight.knights_for_battle
-                               .get("Arthur")
-                               .prepare_for_battle(),
-                               Knight.knights_for_battle
-                               .get("Red Knight")
-                               .prepare_for_battle())
+    lancelot_for_battle = (Knight
+                           .knights_for_battle
+                           .get("Lancelot")
+                           .prep_for_battle())
+    mordred_for_battle = (Knight
+                          .knights_for_battle
+                          .get("Mordred")
+                          .prep_for_battle())
 
-    return battle_arena.battles_results
+    first_battle_result = battle_arena.knight_battle(lancelot_for_battle,
+                                                     mordred_for_battle)
+    battles_results.update(first_battle_result)
+
+    arthur_for_battle = (Knight
+                         .knights_for_battle
+                         .get("Arthur")
+                         .prep_for_battle())
+    red_knight_for_battle = (Knight
+                             .knights_for_battle
+                             .get("Red Knight")
+                             .prep_for_battle())
+
+    second_battle_result = battle_arena.knight_battle(arthur_for_battle,
+                                                      red_knight_for_battle)
+    battles_results.update(second_battle_result)
+
+    return battles_results
