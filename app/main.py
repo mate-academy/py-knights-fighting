@@ -3,7 +3,7 @@ from app.data.tournament import tournament
 from app.modules.knight import Knight
 
 
-def battle(knights_config: dict):
+def battle(knights_config: dict) -> dict:
 
     # PREPARE KNIGHTS DATA:
     participants = create_participants_list(knights_config)
@@ -13,6 +13,9 @@ def battle(knights_config: dict):
         left, right = opponents
         if left in participants and right in participants:
             fight(participants[left], participants[right])
+
+    # RETURN KNIGHTS HP INFO AFTER THE TOURNAMENT
+    return {knight.name: knight.hp for knight in participants.values()}
 
 
 def create_participants_list(knights_data: dict) -> dict:
