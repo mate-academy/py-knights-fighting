@@ -7,8 +7,8 @@ class Knight:
             name: str = "",
             power: int = 0,
             hp: int = 0,
-            armour: list[dict] = [],
-            weapon: dict = {},
+            armour: list[dict] | None = None,
+            weapon: dict | None = None,
             potion: dict | None = None,
     ) -> None:
 
