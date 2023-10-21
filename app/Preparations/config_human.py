@@ -1,5 +1,5 @@
 class Human:
-    def __init__(self, human):
+    def __init__(self, human: dict) -> None:
         self.human = human
 
     def change_config(self) -> dict:
@@ -20,14 +20,15 @@ class Human:
                     knight["power"] += knight["potion"]["effect"]["power"]
 
                 if "protection" in knight["potion"]["effect"]:
-                    knight["protection"] += knight["potion"]["effect"]["protection"]
+                    knight["protection"] +=\
+                        knight["potion"]["effect"]["protection"]
 
                 if "hp" in knight["potion"]["effect"]:
                     knight["hp"] += knight["potion"]["effect"]["hp"]
         dict_knights = {
-            "lancelot": self.human['lancelot'],
-            "arthur": self.human['arthur'],
-            "mordred": self.human['mordred'],
-            "red_knight": self.human['red_knight']
+            "lancelot": self.human["lancelot"],
+            "arthur": self.human["arthur"],
+            "mordred": self.human["mordred"],
+            "red_knight": self.human["red_knight"]
         }
         return dict_knights
