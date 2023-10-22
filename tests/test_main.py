@@ -1,6 +1,6 @@
 import pytest
 
-from app.main import battle
+from app.mainOLD import battle
 
 
 @pytest.fixture()
