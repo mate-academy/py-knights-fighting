@@ -4,17 +4,16 @@ class Fight:
         self.knight2 = knight2
 
     def battle(self) -> dict:
-        self.knight1["hp"] -= \
-            (self.knight2["power"] - self.knight1["protection"])
-        self.knight2["hp"] -= \
-            (self.knight1["power"] - self.knight2["protection"])
+        self.knight1["hp"] -= (
+                self.knight2["power"] - self.knight1["protection"]
+        )
+        self.knight2["hp"] -= (
+                self.knight1["power"] - self.knight2["protection"]
+        )
 
         # check if someone fell in battle
-        if self.knight1["hp"] <= 0:
-            self.knight1["hp"] = 0
-
-        if self.knight2["hp"] <= 0:
-            self.knight2["hp"] = 0
+        self.knight1["hp"] = max(0, self.knight1["hp"])
+        self.knight2["hp"] = max(0, self.knight2["hp"])
 
         # Return battle results:
         return {

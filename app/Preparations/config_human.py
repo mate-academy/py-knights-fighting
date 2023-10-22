@@ -1,4 +1,4 @@
-class Human:
+class Knight:
     def __init__(self, human: dict) -> None:
         self.human = human
 
