@@ -4,7 +4,7 @@ from app.Battle.fight import Fight
 
 
 def battle(knight: dict) -> dict:
-    # BATTLE PREPARATIONS:
+
     human_instance = Knight(knight)
 
     dict_knights = human_instance.change_config()
