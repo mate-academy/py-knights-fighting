@@ -26,7 +26,7 @@ class Knights:
             knight_2.hp = 0
 
 
-def return_result(knights_obj: list) -> dict:
+def return_knights_and_hp(knights_obj: list) -> dict:
     return {
         knights_obj[0].name: knights_obj[0].hp,
         knights_obj[1].name: knights_obj[1].hp,

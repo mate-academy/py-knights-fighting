@@ -1,4 +1,4 @@
-from app.knight_class import create_knights, return_result
+from app.knight_class import create_knights, return_knights_and_hp
 
 KNIGHTS = {
     "lancelot": {
@@ -92,7 +92,7 @@ def battle(knights: dict) -> any:
     knights_obj = create_knights(knights)
     knights_obj[0].fight(knights_obj[2])
     knights_obj[1].fight(knights_obj[3])
-    return return_result(knights_obj)
+    return return_knights_and_hp(knights_obj)
 
 
 battle(KNIGHTS)
