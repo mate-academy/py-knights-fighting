@@ -12,7 +12,7 @@ class Knight:
                  hp: int,
                  weapon: Weapon,
                  armour: list[Armour] = None,
-                 potion: Potion = None) -> None:
+                 potion: Potion = Potion("default_potion")) -> None:
 
         self.name = name
 
@@ -22,17 +22,29 @@ class Knight:
         self.armour = armour
         self.potion = potion
 
-        self.total_hp = 0
-        self.total_power = 0
-        self.total_protection = 0
+    @property
+    def total_hp(self) -> int:
+        hp_for_battle = self.hp + self.potion.hp
+        return hp_for_battle
 
-    def ready_for_battle(self) -> None:
-        self.total_hp = self.hp + self.potion.hp
-        self.total_power = self.power + self.weapon.power + self.potion.power
-        self.total_protection = self.potion.protection
+    @property
+    def total_power(self) -> int:
+        power_for_battle = self.power + self.weapon.power + self.potion.power
+        return power_for_battle
+
+    @property
+    def total_protection(self) -> int:
+        protection_for_battle = self.potion.protection
         for armour in self.armour:
-            self.total_protection += armour.protection
+            protection_for_battle += armour.protection
+        return protection_for_battle
 
     def fight(self, opponent: Knight) -> None:
-        self.total_hp = max(
-            self.total_hp - opponent.total_power + self.total_protection, 0)
+        get_damage = (opponent.total_power
+                      - self.total_protection)
+        if get_damage > self.potion.hp:
+            self.hp -= get_damage - self.potion.hp
+            self.potion.hp = 0
+            self.hp = max(self.hp, 0)
+        else:
+            self.potion.hp -= get_damage

@@ -7,8 +7,8 @@ from app.classes.knight import Knight
 def creating_knights(knights_config: dict) -> dict[str: Knight]:
     knights = {}
 
-    for key, knight in knights_config.items():
-        knights[key] = Knight(
+    for name, knight in knights_config.items():
+        knights[name] = Knight(
             knight["name"],
             knight["power"],
             knight["hp"],
@@ -18,13 +18,11 @@ def creating_knights(knights_config: dict) -> dict[str: Knight]:
         )
 
         if knight["potion"]:
-            knights[key].potion = Potion(
+            knights[name].potion = Potion(
                 knight["potion"]["name"],
                 knight["potion"]["effect"].get("power", 0),
                 knight["potion"]["effect"].get("hp", 0),
                 knight["potion"]["effect"].get("protection", 0)
             )
-        else:
-            knights[key].potion = Potion("None")
 
     return knights
