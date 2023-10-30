@@ -21,7 +21,6 @@ class Knight:
         self.knights.update({self.name: self})
 
     def drank_pot(self, potion: Potion) -> None:
-        print(potion.name, potion.effects)
         for attribute, value in potion.effects.items():
             new_value = self.__getattribute__(attribute) + value
             self.__setattr__(attribute, new_value)
