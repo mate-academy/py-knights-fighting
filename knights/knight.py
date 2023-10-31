@@ -24,7 +24,7 @@ class Knight:
         self.protection = protection
 
     def __str__(self) -> str:
-        return f"name: {self.name}, power: {self.power}, " \
-               f"hp: {self.hp}, protect: {self.protection}, " \
-               f"armour: {self.armour}, " \
-               f"weapon: {self.weapon}, potion: {self.potion}"
+        return (f"name: {self.name}, power: {self.power}, "
+                f"hp: {self.hp}, protect: {self.protection}, "
+                f"armour: {self.armour}, "
+                f"weapon: {self.weapon}, potion: {self.potion}")
