@@ -1,5 +1,7 @@
 from knights.knight import Knight
-from items.items_init import InitItems
+from items.potion import Potion
+from items.weapon import Weapon
+from items.armour import Armour
 
 
 class Preparation:
@@ -7,7 +9,7 @@ class Preparation:
     @staticmethod
     def apply_armour(knight: Knight) -> None:
         for element in knight.armour:
-            knight.protection += element.protect
+            knight.protection += element.protection
 
     @staticmethod
     def apply_weapon(knight: Knight) -> None:
@@ -24,10 +26,10 @@ class Preparation:
     def init_knight(name: str, knights_config: dict) -> Knight:
         knight = Knight(
             name.replace("_", " ").title(),
-            knights_config.get(name.lower()).get("power"),
-            knights_config.get(name.lower()).get("hp"),
-            InitItems.init_armour(name, knights_config),
-            InitItems.init_weapon(name, knights_config),
-            InitItems.init_potion(name, knights_config)
+            knights_config[name.lower()]["power"],
+            knights_config[name.lower()]["hp"],
+            Armour.create_armour(name, knights_config),
+            Weapon.create_weapon(name, knights_config),
+            Potion.crate_potion(name, knights_config)
         )
         return knight

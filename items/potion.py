@@ -6,3 +6,10 @@ class Potion:
 
     def __str__(self) -> str:
         return f"(name: {self.name}, effect: {self.effect})"
+
+    @staticmethod
+    def crate_potion(name: str, config: dict) -> "Potion":
+        knight = config[(str(name))]
+        potion = knight["potion"]
+        if knight["potion"]:
+            return Potion(**potion)
