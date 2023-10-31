@@ -39,9 +39,4 @@ class Knight:
         if potion is None:
             return
         for perk in potion["effect"]:
-            if perk == "power":
-                self.power += potion["effect"][perk]
-            if perk == "hp":
-                self.hp += potion["effect"][perk]
-            if perk == "protection":
-                self.protection += potion["effect"][perk]
+            setattr(self, perk, getattr(self, perk) + potion["effect"][perk])
