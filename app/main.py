@@ -4,10 +4,12 @@ from app.battle import knight_battle
 
 
 def battle(knights_config: dict) -> dict:
-    knights = {knight: knights_config[knight] for knight in ["lancelot",
-                                                             "arthur",
-                                                             "mordred",
-                                                             "red_knight"]}
+    knights = {
+        knight: knights_config[knight] for knight in ["lancelot",
+                                                      "arthur",
+                                                      "mordred",
+                                                      "red_knight"]
+    }
     for knight in knights.values():
         battle_preparation(knight)
     knight_battle(knights["lancelot"], knights["mordred"])
