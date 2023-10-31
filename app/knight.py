@@ -22,9 +22,11 @@ class Knight:
         self.apply_potion(potion)
         Knight.dict_knights[name] = self
 
-    def __sub__(self, other: Knight) -> None:
+    def fight(self, other: Knight) -> None:
         self.hp -= other.power - self.protection
-        self.hp = 0 if self.hp < 0 else self.hp
+        other.hp -= self.power - other.protection
+        self.hp = max(0, self.hp)
+        other.hp = max(0, other.hp)
 
     def put_armor(self, armour: list) -> None:
         for part in armour:
