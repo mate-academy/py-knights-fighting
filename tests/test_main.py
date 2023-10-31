@@ -91,7 +91,6 @@ def base_knights_config():
 
 
 def test_base_knights(base_knights_config):
-
     assert battle(base_knights_config) == {
         "Lancelot": 0,
         "Arthur": 30,
