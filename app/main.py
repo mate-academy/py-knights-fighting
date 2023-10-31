@@ -1,4 +1,3 @@
-from app.battle.all_knights import KNIGHTS
 from app.battle.knight_creator import Knight
 from app.battle.battle_creator import members_list
 from app.battle.battle_creator import pvp_list
@@ -26,7 +25,3 @@ def battle(knights_config: dict) -> object:
 
     # Create a dictionary with the names keys and health values
     return {knight.name: knight.hp for knight in result}
-
-
-# Print the battle simulation using the KNIGHTS dictionary
-print(dict(battle(KNIGHTS)))

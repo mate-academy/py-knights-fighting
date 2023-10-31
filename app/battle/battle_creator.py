@@ -2,40 +2,17 @@ from app.battle.knight_creator import Knight
 
 
 def members_list(members: dict, member_class: object) -> list:
-    """
-    Creates a list of knights from the dictionary.
-    Args:
-    - members (dict): Dictionary of knight parameters
-    - member_class (object): The class of the knight to be created.
-    Returns:
-    - list: List of created knights.
-    """
     output = []
-
-    for i, (nik, params) in enumerate(members.items()):
-        output.append(member_class(nik, params, i))
+    for i, params in members.items():
+        output.append(member_class(params, i))
     return output
 
 
 def members_sort(elem: Knight) -> int:
-    """
-    Sorts a list of knights by their list_order attribute.
-    Args:
-    - elem (Knight): A knight object
-    Returns:
-    - int: The value of the knight's list_order attribute.
-    """
     return elem.list_order
 
 
 def pvp_list(members: list) -> list:
-    """
-    Creates a list of pairs of knights from a list.
-    Args:
-    - members (list): A list of knights.
-    Returns:
-    - list: A list of lists, each containing two knights.
-    """
     output = []
 
     if len(members) % 2 != 0:
@@ -55,13 +32,7 @@ def pvp_list(members: list) -> list:
 
 
 def pvp_battle(fighters: list[Knight]) -> list:
-    """
-    Simulates a single PvP battle between two knights.
-    Args:
-    - fighters (list): A list of two knights.
-    Returns:
-    - list: A list of two knights with their updated HP values.
-    """
+
     fighter_1, fighter_2 = fighters
 
     fighter_1.use_potion()
