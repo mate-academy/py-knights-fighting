@@ -88,4 +88,12 @@ KNIGHTS = {
 
 
 def battle(knightsconfig: dict) -> dict:
-    return Battle(knightsconfig).battle()
+    actual_battle = Battle(knightsconfig)
+    actual_battle.prepare_all_knights()
+    actual_battle.fight(actual_battle.knights[0], actual_battle.knights[2])
+    actual_battle.fight(actual_battle.knights[1], actual_battle.knights[3])
+    actual_battle.update_knights_hp()
+    result_of_battle = {f"{knight.name}": knight.hp
+                        for knight in actual_battle.knights}
+    actual_battle.knights = []
+    return result_of_battle
