@@ -7,6 +7,6 @@ class Weapon:
         return f"(name: {self.name}, power: {self.power})"
 
     @staticmethod
-    def create_weapon(name: str, config: dict) -> "Weapon":
-        weapon = config[name]["weapon"]
+    def create_weapon(name: str, knight: dict) -> "Weapon":
+        weapon = knight["weapon"]
         return Weapon(**weapon)

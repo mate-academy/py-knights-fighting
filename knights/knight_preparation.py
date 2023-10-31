@@ -28,8 +28,8 @@ class Preparation:
             name.replace("_", " ").title(),
             knights_config[name.lower()]["power"],
             knights_config[name.lower()]["hp"],
-            Armour.create_armour(name, knights_config),
-            Weapon.create_weapon(name, knights_config),
-            Potion.crate_potion(name, knights_config)
+            Armour.create_armour(name, knights_config[name]),
+            Weapon.create_weapon(name, knights_config[name]),
+            Potion.crate_potion(name, knights_config[name])
         )
         return knight

@@ -8,8 +8,8 @@ class Armour:
         return f"part: {self.part}, protect: {self.protection}"
 
     @staticmethod
-    def create_armour(name: str, config: dict) -> list["Armour"]:
+    def create_armour(name: str, knight: dict) -> list["Armour"]:
         return [
-            Armour(**part_armour)
-            for part_armour in config[name]["armour"]
+            Armour(**part_arm)
+            for part_arm in knight["armour"]
         ]
