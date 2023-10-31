@@ -8,7 +8,7 @@ class Potion:
         return f"(name: {self.name}, effect: {self.effect})"
 
     @staticmethod
-    def crate_potion(name: str, knight: dict) -> "Potion":
+    def crate_potion(knight: dict) -> "Potion":
         potion = knight["potion"]
         if potion:
             return Potion(**potion)

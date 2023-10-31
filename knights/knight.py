@@ -28,3 +28,14 @@ class Knight:
                 f"hp: {self.hp}, protect: {self.protection}, "
                 f"armour: {self.armour}, "
                 f"weapon: {self.weapon}, potion: {self.potion}")
+
+    @classmethod
+    def create_knight(cls, name: str, knights_config: dict) -> "Knight":
+        return cls(
+            name.replace("_", " ").title(),
+            knights_config[name.lower()]["power"],
+            knights_config[name.lower()]["hp"],
+            Armour.create_armour(knights_config[name]),
+            Weapon.create_weapon(knights_config[name]),
+            Potion.crate_potion(knights_config[name])
+        )

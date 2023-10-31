@@ -1,11 +1,11 @@
-from knights.knight_preparation import Preparation
+from knights.knight import Knight
 from actions.action import Action
 from app.data import knights_info
 
 
 def battle(knights_config: dict) -> dict:
     knights = [
-        Preparation.init_knight(knight, knights_config)
+        Knight.create_knight(knight, knights_config)
         for knight in knights_config
     ]
 
