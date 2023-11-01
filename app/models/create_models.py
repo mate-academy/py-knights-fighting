@@ -1,17 +1,17 @@
 from app.models.models import Knight
 
 
-def create_knight(knight: dict) -> Knight:
-    result = Knight(
-        name=knight["name"],
-        power=knight["power"],
-        hp=knight["hp"]
+def create_knight(knight_data: dict) -> Knight:
+    knight = Knight(
+        name=knight_data["name"],
+        power=knight_data["power"],
+        hp=knight_data["hp"]
     )
-    if knight["armour"]:
-        result.add_armour(knight["armour"])
+    if knight_data["armour"]:
+        knight.add_armour(knight_data["armour"])
 
-    result.add_weapon(knight["weapon"])
+    knight.add_weapon(knight_data["weapon"])
 
-    if knight["potion"]:
-        result.add_potion(knight["potion"])
-    return result
+    if knight_data["potion"]:
+        knight.add_potion(knight_data["potion"])
+    return knight

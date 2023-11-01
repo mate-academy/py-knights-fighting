@@ -4,7 +4,7 @@ from app.fight.fight import fight
 
 def battle(knights_dict: dict) -> dict:
     knights = [
-        create_knight(knight=knight[1])
+        create_knight(knight_data=knight[1])
         for knight in knights_dict.items()
         if knight[0] is not None
     ]
