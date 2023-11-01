@@ -1,7 +1,10 @@
 class Knight:
     knights = {}
 
-    def __init__(self, knight_config: dir) -> None:
+    def __init__(
+            self,
+            knight_config: dir
+    ) -> None:
         for skill, skill_value in knight_config.items():
             setattr(self, skill, skill_value)
         self.protection = 0

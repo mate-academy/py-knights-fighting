@@ -1,5 +1,5 @@
 from app.knights.knights import Knight, become_a_knight
-from app.battle.battle import battle_ruler, battle_result
+from app.battle.battle import battle_principle, battle_result
 
 
 KNIGHTS = {
@@ -94,10 +94,9 @@ def battle(knights: dir) -> dir:
     become_a_knight(knights)
     dir_of_knights = Knight.knights
     for knight in dir_of_knights:
-        print(96, dir_of_knights.get(knight))
         dir_of_knights.get(knight).ready_to_fight()
-    battle_ruler(dir_of_knights["Lancelot"], dir_of_knights["Mordred"])
-    battle_ruler(dir_of_knights["Arthur"], dir_of_knights["Red Knight"])
+    battle_principle(dir_of_knights["Lancelot"], dir_of_knights["Mordred"])
+    battle_principle(dir_of_knights["Arthur"], dir_of_knights["Red Knight"])
     return battle_result(dir_of_knights)
 
 
