@@ -6,8 +6,8 @@ def apply_damage(knight1: Knight, knight2: Knight) -> tuple:
     damage_knight1 = knight2.power - knight1.protection
     damage_knight2 = knight1.power - knight2.protection
 
-    knight1.check_hp(damage_knight1)
-    knight2.check_hp(damage_knight2)
+    knight1.decrease_hp(damage_knight1)
+    knight2.decrease_hp(damage_knight2)
 
     return knight1, knight2
 
