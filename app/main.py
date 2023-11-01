@@ -42,21 +42,23 @@ def preparations(knights: dict) -> list[Knight]:
 
 
 def battle(knights: dict) -> dict:
-    result = {}
     base_knights = knight_initialization(knights)
-    prepared_knights = preparations(base_knights)
+    result = {}
+    opponent = {
+        "Lancelot": "Mordred",
+        "Mordred": "Lancelot",
+        "Arthur": "Red Knight",
+        "Red Knight": "Arthur"
+    }
 
-    for first in range(2):
-        second = first + 2
-        duelist = [prepared_knights[first], prepared_knights[second]]
+    for knight in preparations(base_knights):
+        print(knight.name)
+        Knight.knights[knight.name].hp -= \
+            (Knight.knights[opponent[knight.name]].power
+             - Knight.knights[knight.name].protection)
 
-        for _ in range(2):
-            duelist[0].hp -= (duelist[1].power - duelist[0].protection)
-
-            if duelist[0].hp <= 0:
-                duelist[0].hp = 0
-
-            result.update({duelist[0].name: duelist[0].hp})
-            duelist.reverse()
+        if knight.hp < 0:
+            knight.hp = 0
+        result.update({knight.name: knight.hp})
 
     return result
