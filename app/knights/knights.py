@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from ..ammunition.armour import Armour
 from ..ammunition.weapons import Weapon
 from ..ammunition.potions import Potion
@@ -35,7 +37,7 @@ class Knight:
         self.protection += self.potion.effect.get("protection", 0)
 
     @classmethod
-    def prepare_to_battle(cls, knight: dict) -> "Knight":
+    def prepare_to_battle(cls, knight: dict) -> Knight:
         knight_instance = Knight(knight["name"], knight["power"], knight["hp"])
         knight_instance.put_on_armour(knight["armour"])
         knight_instance.apply_weapon(knight["weapon"])
@@ -43,6 +45,6 @@ class Knight:
         return knight_instance
 
     @staticmethod
-    def knights_battle(knight1: "Knight", knigh2: "Knight") -> None:
+    def knights_battle(knight1: Knight, knigh2: Knight) -> None:
         knight1.hp = max(0, knight1.hp - (knigh2.power - knight1.protection))
         knigh2.hp = max(0, knigh2.hp - (knight1.power - knigh2.protection))
