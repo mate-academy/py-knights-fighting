@@ -25,9 +25,9 @@ class Knight:
     def add_potion(self) -> None:
         if self.potion is not None:
             effect = self.potion["effect"]
-            for attribute in effect.keys():
+            for attribute, value in effect.items():
                 current_value = getattr(self, attribute)
-                setattr(self, attribute, current_value + effect[attribute])
+                setattr(self, attribute, current_value + value)
 
     def decrease_hp(self, damage: int) -> None:
         self.hp -= max(0, damage)
