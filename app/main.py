@@ -1,15 +1,21 @@
-
-
 class Knight:
 
-    def __init__(self, knight: dict) -> None:
+    def __init__(
+            self,
+            name: str,
+            power: int,
+            hp: int,
+            armour: list,
+            weapon: dict,
+            potion: dict
+    ) -> None:
         self.protection = 0
-        self.name = knight["name"]
-        self.power = knight["power"]
-        self.hp = knight["hp"]
-        self.armour = knight["armour"]
-        self.weapon = knight["weapon"]
-        self.potion = knight["potion"]
+        self.name = name
+        self.power = power
+        self.hp = hp
+        self.armour = armour
+        self.weapon = weapon
+        self.potion = potion
 
     def take_weapon(self) -> None:
         self.power += self.weapon["power"]
@@ -22,7 +28,7 @@ class Knight:
         if self.potion:
             potion_effect = self.potion["effect"]
             for key, value in potion_effect.items():
-                if hasattr(self, key):  # Checking if the attribute exists
+                if hasattr(self, key):
                     current_value = getattr(self, key)
                     setattr(self, key, current_value + value)
 
@@ -150,5 +156,15 @@ KNIGHTS = {
 
 
 def battle(config_knigths: dict) -> dict:
-    warriors = [Knight(warrior) for warrior in config_knigths.values()]
+    warriors = [
+        Knight(
+            warrior["name"],
+            warrior["power"],
+            warrior["hp"],
+            warrior["armour"],
+            warrior["weapon"],
+            warrior["potion"]
+        )
+        for warrior in config_knigths.values()
+    ]
     return BattleArena.fight(warriors)
