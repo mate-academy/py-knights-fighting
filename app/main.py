@@ -150,7 +150,5 @@ KNIGHTS = {
 
 
 def battle(config_knigths: dict) -> dict:
-    warriors = []
-    for warrior in config_knigths.values():
-        warriors.append(Knight(warrior))
+    warriors = [Knight(warrior) for warrior in config_knigths.values()]
     return BattleArena.fight(warriors)
