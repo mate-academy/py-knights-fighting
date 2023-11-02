@@ -3,7 +3,7 @@ class PrepareForBattle:
         self.power += self.weapon["power"]
 
     def apply_armour(self) -> None:
-        self.protection = sum([armour["protection"] for armour in self.armour])
+        self.protection = sum(armour["protection"] for armour in self.armour)
 
     def apply_potion(self) -> None:
         if self.potion is not None:

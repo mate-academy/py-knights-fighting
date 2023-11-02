@@ -17,9 +17,4 @@ class BattleKnights:
 
     @staticmethod
     def battle_result(knights: list) -> dict:
-        return {
-            knights[0].name: knights[0].hp,
-            knights[1].name: knights[1].hp,
-            knights[2].name: knights[2].hp,
-            knights[3].name: knights[3].hp,
-        }
+        return {knight.name: knight.hp for knight in knights}
