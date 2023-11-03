@@ -111,9 +111,11 @@ def create_knight_by_config(config: dict) -> Knight:
             name: value
             for name, value in config["potion"]["effect"].items()
         }
-        knight.potions = Potion(
+        knight.potion = Potion(
             name=config["potion"]["name"],
-            effect=potion_effects
+            hp=potion_effects.get("hp"),
+            power=potion_effects.get("power"),
+            protection=potion_effects.get("protection")
         )
 
     return knight

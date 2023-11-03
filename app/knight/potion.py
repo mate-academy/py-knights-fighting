@@ -1,4 +1,11 @@
 class Potion:
-    def __init__(self, name: str, effect: dict) -> None:
+    def __init__(
+            self, name: str,
+            hp: int = 0,
+            power: int = 0,
+            protection: int = 0
+    ) -> None:
         self.name = name
-        self.effect = effect
+        self.hp = hp
+        self.power = power
+        self.protection = protection
