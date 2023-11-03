@@ -1,5 +1,5 @@
-from app.knights.knights import Knight, become_a_knight
-from app.battle.battle import battle_principle, battle_result
+from app.knights.knights import create_knights
+from app.battle.battle import do_battle, battle_result
 
 
 KNIGHTS = {
@@ -89,15 +89,19 @@ KNIGHTS = {
     }
 }
 
+DRAW_RESULT = [
+    ("Lancelot", "Mordred"),
+    ("Arthur", "Red Knight")
+]
+
 
 def battle(knights: dir) -> dir:
-    become_a_knight(knights)
-    dir_of_knights = Knight.knights
-    for knight in dir_of_knights:
-        dir_of_knights.get(knight).ready_to_fight()
-    battle_principle(dir_of_knights["Lancelot"], dir_of_knights["Mordred"])
-    battle_principle(dir_of_knights["Arthur"], dir_of_knights["Red Knight"])
-    return battle_result(dir_of_knights)
+    participants = create_knights(knights)
+    for knight in participants:
+        participants.get(knight).get_ready_to_fight()
+    for rivals in DRAW_RESULT:
+        do_battle(participants[rivals[0]], participants[rivals[1]])
+    return battle_result(participants)
 
 
 print(battle(KNIGHTS))

@@ -10,7 +10,7 @@ class Knight:
         self.protection = 0
         Knight.knights[self.name] = self
 
-    def ready_to_fight(self) -> None:
+    def get_ready_to_fight(self) -> None:
         for item in self.armour:
             self.protection += item["protection"]
         self.power += self.weapon["power"]
@@ -22,6 +22,7 @@ class Knight:
                     setattr(self, add_skill, current_value + effect[add_skill])
 
 
-def become_a_knight(knights: dir) -> None:
+def create_knights(knights: dir) -> dir:
     for knight in knights:
         Knight(knights[knight])
+    return Knight.knights
