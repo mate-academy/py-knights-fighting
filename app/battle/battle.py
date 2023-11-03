@@ -9,5 +9,5 @@ def do_battle(knight1: Knight, knight2: Knight) -> None:
             knight.hp = 0
 
 
-def battle_result(knights_dir: dir) -> dir:
-    return {name : knight.hp for name, knight in knights_dir.items()}
+def battle_result(knights_dict: dict) -> dict:
+    return {name : knight.hp for name, knight in knights_dict.items()}

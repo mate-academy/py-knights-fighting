@@ -95,7 +95,7 @@ DRAW_RESULT = [
 ]
 
 
-def battle(knights: dir) -> dir:
+def battle(knights: dict) -> dict:
     participants = create_knights(knights)
     for knight in participants:
         participants.get(knight).get_ready_to_fight()

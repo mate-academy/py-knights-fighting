@@ -3,7 +3,7 @@ class Knight:
 
     def __init__(
             self,
-            knight_config: dir
+            knight_config: dict
     ) -> None:
         for skill, skill_value in knight_config.items():
             setattr(self, skill, skill_value)
@@ -22,7 +22,7 @@ class Knight:
                     setattr(self, add_skill, current_value + effect[add_skill])
 
 
-def create_knights(knights: dir) -> dir:
+def create_knights(knights: dict) -> dict:
     for knight in knights:
         Knight(knights[knight])
     return Knight.knights
