@@ -14,35 +14,7 @@ def battle(knights_config: dict) -> dict:
             power=knight_details["power"]
         )
 
-        hp_in_potion = 0
-        power_in_weapon = 0
-        power_in_potion = 0
-        protection_in_armour = 0
-        protection_in_potion = 0
-
-        # apply armour
-        for part in knight_details["armour"]:
-            protection_in_armour += part["protection"]
-
-        # apply weapon
-        power_in_weapon += knight_details["weapon"]["power"]
-
-        # apply potion if exist
-        if knight_details["potion"]:
-            if "power" in knight_details["potion"]["effect"]:
-                power_in_potion += knight_details["potion"]["effect"]["power"]
-
-            if "protection" in knight_details["potion"]["effect"]:
-                protection_in_potion += (
-                    knight_details["potion"]["effect"]["protection"]
-                )
-
-            if "hp" in knight_details["potion"]["effect"]:
-                hp_in_potion += knight_details["potion"]["effect"]["hp"]
-
-        instance.all_hp(hp_in_potion)
-        instance.all_power(power_in_weapon, power_in_potion)
-        instance.all_protection(protection_in_armour, protection_in_potion)
+        instance.get_additional(knight_details)
 
         list_of_instances.append(instance)
 
@@ -63,10 +35,10 @@ def battle(knights_config: dict) -> dict:
 
     # Return battle results:
     return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
+        lancelot.name: max(lancelot.hp, 0),
+        arthur.name: max(arthur.hp, 0),
+        mordred.name: max(mordred.hp, 0),
+        red_knight.name: max(red_knight.hp, 0),
     }
 
 

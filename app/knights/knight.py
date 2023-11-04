@@ -9,25 +9,27 @@ class Knight:
         self.power = power
         self.protection = 0
 
-    def all_hp(self, hp_in_potion: int) -> int:
-        self.hp += hp_in_potion
-        return self.hp
+    def get_additional(self, knight_details: dict) -> None:
+        # apply armour
+        for part in knight_details["armour"]:
+            self.protection += part["protection"]
 
-    def all_power(self, power_in_weapon: int, power_in_potion: int) -> int:
-        self.power += power_in_weapon + power_in_potion
-        return self.power
+        # apply weapon
+        self.power += knight_details["weapon"]["power"]
 
-    def all_protection(
-            self,
-            protection_in_armour: int,
-            protection_in_potion: int
-    ) -> int:
-        self.protection += protection_in_armour + protection_in_potion
-        return self.protection
+        # apply potion if exist
+        if knight_details["potion"]:
+            if "power" in knight_details["potion"]["effect"]:
+                self.power += knight_details["potion"]["effect"]["power"]
 
-    # not sure, if possible
+            if "protection" in knight_details["potion"]["effect"]:
+                self.protection += (
+                    knight_details["potion"]["effect"]["protection"]
+                )
+
+            if "hp" in knight_details["potion"]["effect"]:
+                self.hp += knight_details["potion"]["effect"]["hp"]
+
     def __sub__(self, other: Knight) -> int:
         self.hp = self.hp - (other.power - self.protection)
-        if self.hp < 0:
-            self.hp = 0
-        return self.hp
+        return max(self.hp, 0)
