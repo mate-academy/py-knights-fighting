@@ -10,14 +10,11 @@ class Knight:
         self.protection = 0
 
     def get_additional(self, knight_details: dict) -> None:
-        # apply armour
         for part in knight_details["armour"]:
             self.protection += part["protection"]
 
-        # apply weapon
         self.power += knight_details["weapon"]["power"]
 
-        # apply potion if exist
         if knight_details["potion"]:
             if "power" in knight_details["potion"]["effect"]:
                 self.power += knight_details["potion"]["effect"]["power"]

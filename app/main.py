@@ -5,18 +5,19 @@ from app.knights.data import KNIGHTS
 def battle(knights_config: dict) -> dict:
     # BATTLE PREPARATIONS:
 
-    list_of_instances = []
-    for knight in knights_config:
-        knight_details = knights_config[knight]
-        instance = Knight(
-            name=knight_details["name"],
-            hp=knight_details["hp"],
-            power=knight_details["power"]
+    list_of_instances = [
+        Knight(
+            name=knights_config[knight]["name"],
+            hp=knights_config[knight]["hp"],
+            power=knights_config[knight]["power"]
         )
+        for knight in knights_config
+    ]
 
-        instance.get_additional(knight_details)
+    list_of_names = list(knights_config.keys())
 
-        list_of_instances.append(instance)
+    for index, knight in enumerate(list_of_instances):
+        knight.get_additional(knights_config[list_of_names[index]])
 
     # -------------------------------------------------------------------------------
     # BATTLE:
