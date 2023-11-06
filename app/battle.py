@@ -3,15 +3,15 @@ from app.knight import Knight
 
 class Battle:
     def __init__(self, first_knight: Knight, second_knight: Knight) -> None:
-        self.knight_1 = first_knight
-        self.knight_2 = second_knight
+        self.first_knight = first_knight
+        self.second_knight = second_knight
 
     def start(self) -> None:
-        hp_1 = self.knight_1.hp - (
-            self.knight_2.power - self.knight_1.protection
+        first_knight_hp = self.first_knight.hp - (
+            self.second_knight.power - self.first_knight.protection
         )
-        hp_2 = self.knight_2.hp - (
-            self.knight_1.power - self.knight_2.protection
+        second_knight_hp = self.second_knight.hp - (
+            self.first_knight.power - self.second_knight.protection
         )
-        self.knight_1.set_hp(hp_1)
-        self.knight_2.set_hp(hp_2)
+        self.first_knight.set_hp(first_knight_hp)
+        self.second_knight.set_hp(second_knight_hp)
