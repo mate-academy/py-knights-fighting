@@ -52,13 +52,9 @@ def battle(knights: dict) -> dict:
     }
 
     for knight in preparations(base_knights):
-        print(knight.name)
-        Knight.knights[knight.name].hp -= \
-            (Knight.knights[opponent[knight.name]].power
-             - Knight.knights[knight.name].protection)
-
+        knight.versus(Knight.knights[opponent[knight.name]])
         if knight.hp < 0:
             knight.hp = 0
-        result.update({knight.name: knight.hp})
+        result[knight.name] = knight.hp
 
     return result

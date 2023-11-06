@@ -26,3 +26,6 @@ class Knight:
             self.__setattr__(attribute, new_value)
         print(f"{self.name} drank potion of {potion.name}, and now his stats"
               f" {self.hp, self.power, self.protection}")
+
+    def versus(self, opponent: Knight) -> None:
+        self.hp -= opponent.power - self.protection
