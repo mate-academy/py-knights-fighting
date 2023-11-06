@@ -12,7 +12,7 @@ class Knight:
         self.hp = hp
         self.armour = armour or []
         self.weapon = weapon
-        self.protection = sum(a["protection"] for a in armour)
+        self.total_protection = sum(part["protection"] for part in self.armour)
 
         if potion:
             self.apply_potion(potion)
@@ -23,7 +23,7 @@ class Knight:
         if "power" in potion["effect"]:
             self.power += potion["effect"]["power"]
         if "protection" in potion["effect"]:
-            self.protection += potion["effect"]["protection"]
+            self.total_protection += potion["effect"]["protection"]
         if "hp" in potion["effect"]:
             self.hp += potion["effect"]["hp"]
 
@@ -31,6 +31,6 @@ class Knight:
         self.power += self.weapon["power"]
 
     def attack(self, other: "Knight") -> None:
-        other.hp -= self.power - other.protection
+        other.hp -= self.power - other.total_protection
         if other.hp < 0:
             other.hp = 0
