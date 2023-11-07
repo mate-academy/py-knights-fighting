@@ -1,12 +1,12 @@
-from app.check_stats import Battle as Battle
+from app.check_stats import Knight, Battle
 from app.knights_data import KNIGHTS
 
 
 def battle(knights: dict) -> dict:
-    mordred = Battle(knights["mordred"])
-    lancelot = Battle(knights["lancelot"])
-    red_knight = Battle(knights["red_knight"])
-    arthur = Battle(knights["arthur"])
+    mordred = Knight(knights["mordred"])
+    lancelot = Knight(knights["lancelot"])
+    red_knight = Knight(knights["red_knight"])
+    arthur = Knight(knights["arthur"])
 
     for knight in [lancelot, arthur, mordred, red_knight]:
         knight.check_all_attributes()

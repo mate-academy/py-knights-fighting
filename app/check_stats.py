@@ -1,4 +1,4 @@
-class Battle:
+class Knight:
 
     def __init__(self, knights: dict) -> None:
         self.knights = knights
@@ -27,8 +27,11 @@ class Battle:
             if "protection" in potion_effect:
                 self.hp += potion_effect["protection"]
 
+
+class Battle:
+
     @staticmethod
-    def battle_knight(knight1: "Battle", knight2: "Battle") -> tuple:
+    def battle_knight(knight1: "Knight", knight2: "Knight") -> tuple:
         knight1.hp -= knight2.power
         knight2.hp -= knight1.power
         if knight1.hp <= 0:
