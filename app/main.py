@@ -16,7 +16,7 @@ def knight_initialization(knights: dict) -> dict:
             0
         )
 
-        participants.update({knight: stats})
+        participants[knight] = stats
 
     return participants
 
@@ -33,8 +33,7 @@ def preparations(knights: dict) -> list[Knight]:
             piece.equip_armour(knight)
 
         if equipment["potion"]:
-            potion = Potion(equipment["potion"])
-            knight.drank_pot(potion)
+            knight.drank_pot(Potion(equipment["potion"]))
 
         prepared_knights.append(knight)
 

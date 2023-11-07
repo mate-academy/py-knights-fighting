@@ -18,7 +18,7 @@ class Knight:
         self.hp = hp
         self.power = power
         self.protection = defence
-        self.knights.update({self.name: self})
+        self.knights[self.name] = self
 
     def drank_pot(self, potion: Potion) -> None:
         for attribute, value in potion.effects.items():
