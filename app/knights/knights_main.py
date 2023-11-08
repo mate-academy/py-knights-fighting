@@ -18,32 +18,41 @@ class Knight:
         self.power_game = power_game
         self.hp_game = hp_game
 
-    @classmethod
-    def init_knights(cls, key_name: str, knights_list: dict) -> Knight:
+    @staticmethod
+    def protection_for_game(knights_list: dict) -> int:
         prot_game = 0
         for elem in knights_list["armour"]:
             prot_game += elem["protection"]
+        if (knights_list["potion"] is not None
+                and "protection" in knights_list["potion"]["effect"]):
+            prot_game += knights_list["potion"]["effect"]["protection"]
+        return prot_game
 
+    @staticmethod
+    def power_for_game(knights_list: dict) -> int:
         power_game = knights_list["power"] + knights_list["weapon"]["power"]
+        if (knights_list["potion"] is not None
+                and "power" in knights_list["potion"]["effect"]):
+            power_game += knights_list["potion"]["effect"]["power"]
+        return power_game
 
+    @staticmethod
+    def hp_for_game(knights_list: dict) -> int:
         hpgame = knights_list["hp"]
+        if (knights_list["potion"] is not None
+                and "hp" in knights_list["potion"]["effect"]):
+            hpgame += knights_list["potion"]["effect"]["hp"]
+        return hpgame
 
-        if knights_list["potion"] is not None:
-            if "power" in knights_list["potion"]["effect"]:
-                power_game += knights_list["potion"]["effect"]["power"]
-
-            if "protection" in knights_list["potion"]["effect"]:
-                prot_game += knights_list["potion"]["effect"]["protection"]
-
-            if "hp" in knights_list["potion"]["effect"]:
-                hpgame += knights_list["potion"]["effect"]["hp"]
+    @classmethod
+    def init_knights(cls, key_name: str, knights_list: dict) -> Knight:
 
         inst_ce = Knight(knights_list["name"],
                          knights_list["power"],
                          knights_list["hp"],
-                         prot_game,
-                         power_game,
-                         hpgame)
+                         Knight.protection_for_game(knights_list),
+                         Knight.power_for_game(knights_list),
+                         Knight.hp_for_game(knights_list))
         cls.whole_knights[key_name] = inst_ce
         return inst_ce
 
