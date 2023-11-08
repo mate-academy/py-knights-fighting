@@ -6,14 +6,18 @@ class Knight:
         self.power = knights["power"]
         self.hp = knights["hp"]
 
-    def check_all_attributes(self) -> None:
+    def check_weapon(self) -> None:
         # check weapon
         if self.knights["weapon"]:
             self.power += self.knights["weapon"]["power"]
+
+    def check_armour(self) -> None:
         # check armour
         if self.knights["armour"]:
             self.hp += sum(part["protection"] for part
                            in self.knights["armour"])
+
+    def check_potion(self) -> None:
         # check potion
         if self.knights["potion"] is not None:
             potion_effect = self.knights["potion"]["effect"]
