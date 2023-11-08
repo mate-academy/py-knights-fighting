@@ -1,3 +1,10 @@
+from knights.knight import Knight
+from armor.armor import Armor
+from weapons.weapons import Weapon
+from potions.potions import Potion
+from battle.battle import perform_battle
+
+
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
@@ -86,11 +93,11 @@ KNIGHTS = {
 }
 
 
-def battle(knightsConfig):
+def battle(knights_config):
     # BATTLE PREPARATIONS:
 
     # lancelot
-    lancelot = knightsConfig["lancelot"]
+    lancelot = knights_config["lancelot"]
 
     # apply armour
     lancelot["protection"] = 0
@@ -112,7 +119,7 @@ def battle(knightsConfig):
             lancelot["hp"] += lancelot["potion"]["effect"]["hp"]
 
     # arthur
-    arthur = knightsConfig["arthur"]
+    arthur = knights_config["arthur"]
 
     # apply armour
     arthur["protection"] = 0
@@ -134,7 +141,7 @@ def battle(knightsConfig):
             arthur["hp"] += arthur["potion"]["effect"]["hp"]
 
     # mordred
-    mordred = knightsConfig["mordred"]
+    mordred = knights_config["mordred"]
 
     # apply armour
     mordred["protection"] = 0
@@ -156,7 +163,7 @@ def battle(knightsConfig):
             mordred["hp"] += mordred["potion"]["effect"]["hp"]
 
     # red_knight
-    red_knight = knightsConfig["red_knight"]
+    red_knight = knights_config["red_knight"]
 
     # apply armour
     red_knight["protection"] = 0
