@@ -9,7 +9,9 @@ def battle(knights: dict) -> dict:
     arthur = Knight(knights["arthur"])
 
     for knight in [lancelot, arthur, mordred, red_knight]:
-        knight.check_all_attributes()
+        knight.check_weapon()
+        knight.check_armour()
+        knight.check_potion()
 
     Battle.battle_knight(arthur, red_knight)
     Battle.battle_knight(lancelot, mordred)
