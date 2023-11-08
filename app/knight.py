@@ -19,20 +19,12 @@ class Knight:
 
         self.equip_weapon()
 
-    def apply_potion(self, potion) -> None:
+    def apply_potion(self, potion: dict) -> None:
         if potion is not None:
             for stat, value in potion["effect"].items():
                 if hasattr(self, stat):
                     current_value = getattr(self, stat)
                     setattr(self, stat, current_value + value)
-
-    # def apply_potion(self, potion: dict) -> None:
-    #     if "power" in potion["effect"]:
-    #         self.power += potion["effect"]["power"]
-    #     if "protection" in potion["effect"]:
-    #         self.total_protection += potion["effect"]["protection"]
-    #     if "hp" in potion["effect"]:
-    #         self.hp += potion["effect"]["hp"]
 
     def equip_weapon(self) -> None:
         self.power += self.weapon["power"]
