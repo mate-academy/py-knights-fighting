@@ -71,6 +71,6 @@ class Knight:
 
     @classmethod
     def return_result(cls) -> dict:
-        return {cls.whole_knights[key].name:
-                cls.whole_knights[key].hp_game
-                for key in cls.whole_knights}
+        return {value.name:
+                value.hp_game
+                for key, value in cls.whole_knights.items()}

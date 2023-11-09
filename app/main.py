@@ -90,8 +90,8 @@ KNIGHTS = {
 
 
 def battle(input_d: dict) -> dict:
-    for key in input_d:
-        Knight.init_knights(key, input_d[key])
+    for key, value in input_d.items():
+        Knight.init_knights(key, value)
 
     Knight.battle_two_knights("lancelot", "mordred")
     Knight.battle_two_knights("arthur", "red_knight")
