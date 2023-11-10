@@ -1,4 +1,3 @@
-from preparation.knights import KNIGHTS
 from preparation.class_knight import Knight
 
 

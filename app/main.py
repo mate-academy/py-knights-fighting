@@ -1,6 +1,6 @@
-from battle.pre_battle import pre_battle
+from init_battle.pre_battle import pre_battle
 from preparation.knights import KNIGHTS
-from battle.main_battle import fighting
+from init_battle.main_battle import fighting
 
 
 def battle(knightsConfig: dict) -> dict:

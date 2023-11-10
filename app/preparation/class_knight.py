@@ -11,19 +11,15 @@ class Knight:
         self.weapon = knight["weapon"]
         self.potion = knight["potion"]
 
-
     def __str__(self):
         return f"Name: {self.name}, Power: {self.power}, HP: {self.hp}, Protection:{self.protection}"
-
 
     def calculate_protection(self) -> None:
         for value in self.armour:
             self.protection += value["protection"]
 
-
     def calculate_weapon_power(self) -> None:
         self.power += self.weapon["power"]
-
 
     def calculate_potion_buff(self) -> None:
         if self.potion is not None:
@@ -35,7 +31,6 @@ class Knight:
 
             if "protection" in self.potion["effect"]:
                 self.protection += self.potion["effect"]["protection"]
-
 
     def config(self) -> None:
         self.calculate_protection()
