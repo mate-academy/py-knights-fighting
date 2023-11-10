@@ -9,8 +9,8 @@ class Knight:
         self.potion = knight["potion"]
 
     def __str__(self) -> str:
-        return f"Name: {self.name}, Power: {self.power},
-                 HP: {self.hp}, Protection:{self.protection}"
+        return (f"Name: {self.name}, Power: {self.power}"
+                f"HP: {self.hp}, Protection:{self.protection}")
 
     def calculate_protection(self) -> None:
         for value in self.armour:
