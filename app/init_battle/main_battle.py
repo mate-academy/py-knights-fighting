@@ -1,4 +1,4 @@
-from preparation.class_knight import Knight
+from app.preparation.class_knight import Knight
 
 
 def fighting(knight1: Knight, knight2: Knight) -> None:

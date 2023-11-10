@@ -1,4 +1,4 @@
-from preparation.class_knight import Knight
+from app.preparation.class_knight import Knight
 
 
 def pre_battle(knights: dict) -> Knight:
