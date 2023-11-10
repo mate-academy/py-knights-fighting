@@ -1,6 +1,3 @@
-from preparation.knights import KNIGHTS
-
-
 class Knight:
     def __init__(self, knight: dict) -> None:
         self.name = knight["name"]
@@ -11,8 +8,9 @@ class Knight:
         self.weapon = knight["weapon"]
         self.potion = knight["potion"]
 
-    def __str__(self):
-        return f"Name: {self.name}, Power: {self.power}, HP: {self.hp}, Protection:{self.protection}"
+    def __str__(self) -> str:
+        return f"Name: {self.name}, Power: {self.power}, 
+                HP: {self.hp}, Protection:{self.protection}"
 
     def calculate_protection(self) -> None:
         for value in self.armour:

@@ -3,8 +3,8 @@ from preparation.knights import KNIGHTS
 from init_battle.main_battle import fighting
 
 
-def battle(knightsConfig: dict) -> dict:
-    lancelot, arthur, mordred, red_knight = pre_battle(knightsConfig)
+def battle(knights: dict) -> dict:
+    lancelot, arthur, mordred, red_knight = pre_battle(knights)
     fighting(lancelot, mordred)
     fighting(arthur, red_knight)
 
