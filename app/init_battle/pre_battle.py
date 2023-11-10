@@ -1,17 +1,17 @@
 from preparation.class_knight import Knight
 
 
-def pre_battle(KNIGHTS: dict) -> Knight:
-    lancelot = Knight(KNIGHTS["lancelot"])
+def pre_battle(knights: dict) -> Knight:
+    lancelot = Knight(knights["lancelot"])
     lancelot.config()
 
-    arthur = Knight(KNIGHTS["arthur"])
+    arthur = Knight(knights["arthur"])
     arthur.config()
 
-    mordred = Knight(KNIGHTS["mordred"])
+    mordred = Knight(knights["mordred"])
     mordred.config()
 
-    red_knight = Knight(KNIGHTS["red_knight"])
+    red_knight = Knight(knights["red_knight"])
     red_knight.config()
 
     return lancelot, arthur, mordred, red_knight
