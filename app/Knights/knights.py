@@ -27,10 +27,7 @@ class KnightBasic:
 
         # drink potion if you have one
         if self.potion:
-            for effect in self.potion.get("effect"):
-                if "power" == effect:
-                    self.power += self.potion.get("effect").get(effect)
-                if "hp" == effect:
-                    self.hp += self.potion.get("effect").get(effect)
-                if "protection" == effect:
-                    self.protection += self.potion.get("effect").get(effect)
+            for effect, value in self.potion.get("effect").items():
+                # Using getattr and setattr to dynamically update attributes
+                if hasattr(self, effect):
+                    setattr(self, effect, getattr(self, effect) + value)

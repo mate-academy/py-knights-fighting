@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-from app.Knights.Knights import KnightBasic
-from app.Fights.Fight_1 import fight_1
-from app.Knights.Knights_list import KNIGHTS
+from app.Knights.knights import KnightBasic
+from app.Fights.fight_1 import fight_1
+from app.Knights.knights_list import KNIGHTS
 
 
 def battle(tournament_dict: dict) -> dict:

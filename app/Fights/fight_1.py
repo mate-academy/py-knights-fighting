@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from app.Knights.Knights import KnightBasic
+from app.Knights.knights import KnightBasic
 
 # knight_1 = KnightBasic
 # knight_2 = KnightBasic
