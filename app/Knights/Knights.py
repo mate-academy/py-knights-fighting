@@ -1,26 +1,22 @@
+from __future__ import annotations
+
+
 class KnightBasic:
 
-    def __init__(self,
-                 name: str,
-                 power: int,
-                 hp: int,
-                 weapon: dict,
-                 armour: list[dict] = None,
-                 potion: dict = None
-                 ) -> None:
+    def __init__(self, knight: dict) -> None:
 
         # basic attributes
-        self.name = name
-        self.power = power
-        self.hp = hp
         self.protection = 0
-        self.weapon = weapon
+        self.hp = knight.get("hp")
+        self.name = knight.get("name")
+        self.power = knight.get("power")
+        self.weapon = knight.get("weapon")
 
         # additional attributes
-        self.armour = armour
-        self.potion = potion
+        self.armour = knight.get("armour")
+        self.potion = knight.get("potion")
 
-    def battle_preparing(self):
+    def battle_preparing(self) -> None:
         # take weapon to arms
         self.power += self.weapon["power"]
 
