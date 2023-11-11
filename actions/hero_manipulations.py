@@ -22,7 +22,7 @@ class HeroManipulations:
     def hero_status(warriors_class: Type[Knights]) -> dict:
         status = {}
 
-        for hero in warriors_class.list_of_heroes:
-            status[hero.name] = hero.hp
+        for key, value in warriors_class.heroes.items():
+            status[key] = value.hp
 
         return status

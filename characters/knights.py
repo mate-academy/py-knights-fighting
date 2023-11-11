@@ -1,5 +1,5 @@
 class Knights:
-    list_of_heroes = []
+    heroes = {}
 
     def __init__(self, stats: dict) -> None:
         self.name = stats["name"]
@@ -7,4 +7,4 @@ class Knights:
         self.hp = stats["hp"]
         self.protection = 0
 
-        Knights.list_of_heroes.append(self)
+        Knights.heroes[stats["name"]] = self

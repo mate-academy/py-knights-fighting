@@ -97,13 +97,14 @@ def battle(heroes: dict) -> dict:
     for hero in heroes.values():
         HeroManipulations.add_to_classes(hero)
 
-    for knight in Knights.list_of_heroes:
-        FightPreparations.apply_all(knight)
+    for value in Knights.heroes.values():
+        FightPreparations.apply_all(value)
 
-    for knight in Knights.list_of_heroes:
-        if knight.name == "Lancelot":
-            Fight.fight(knight, "Mordred")
-        if knight.name == "Arthur":
-            Fight.fight(knight, "Red Knight")
+    Fight.fight(Knights.heroes["Lancelot"], Knights.heroes["Mordred"])
+    Fight.fight(Knights.heroes["Arthur"], Knights.heroes["Red Knight"])
 
+    print(HeroManipulations.hero_status(Knights))
     return HeroManipulations.hero_status(Knights)
+
+
+battle(KNIGHTS)

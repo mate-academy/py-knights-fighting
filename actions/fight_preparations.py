@@ -7,23 +7,23 @@ from items.weapon import Weapon
 
 class FightPreparations:
 
-    def __init__(self, stats: dict) -> None:
-        super().__init__(stats)
+    def __init__(self) -> None:
+        pass
 
     @staticmethod
     def apply_potion(knight: Knights) -> None:
         potion_hp_bonus = sum(
-            [potion.hp for potion in Potion.list_of_potions
+            [potion.hp for potion in Potion.potions.values()
              if potion.owner == knight.name]
         )
 
         potion_power_bonus = sum(
-            [potion.power for potion in Potion.list_of_potions
+            [potion.power for potion in Potion.potions.values()
              if potion.owner == knight.name]
         )
 
         potion_protection_bonus = sum(
-            [potion.protection for potion in Potion.list_of_potions
+            [potion.protection for potion in Potion.potions.values()
              if "protection" in potion.__dict__
              and potion.owner == knight.name]
         )
@@ -44,7 +44,7 @@ class FightPreparations:
     @staticmethod
     def apply_weapon(knight: Knights) -> None:
         weapon_power_bonus = sum(
-            [weapon.power for weapon in Weapon.list_of_weapons
+            [weapon.power for weapon in Weapon.weapons.values()
              if weapon.owner == knight.name]
         )
 
