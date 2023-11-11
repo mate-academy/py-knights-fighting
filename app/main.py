@@ -86,11 +86,11 @@ KNIGHTS = {
 }
 
 
-def battle(knightsConfig):
+def battle(knightsconfig):
     # BATTLE PREPARATIONS:
 
     # lancelot
-    lancelot = knightsConfig["lancelot"]
+    lancelot = knightsconfig["lancelot"]
 
     # apply armour
     lancelot["protection"] = 0
@@ -112,7 +112,7 @@ def battle(knightsConfig):
             lancelot["hp"] += lancelot["potion"]["effect"]["hp"]
 
     # arthur
-    arthur = knightsConfig["arthur"]
+    arthur = knightsconfig["arthur"]
 
     # apply armour
     arthur["protection"] = 0
@@ -134,7 +134,7 @@ def battle(knightsConfig):
             arthur["hp"] += arthur["potion"]["effect"]["hp"]
 
     # mordred
-    mordred = knightsConfig["mordred"]
+    mordred = knightsconfig["mordred"]
 
     # apply armour
     mordred["protection"] = 0
@@ -156,7 +156,7 @@ def battle(knightsConfig):
             mordred["hp"] += mordred["potion"]["effect"]["hp"]
 
     # red_knight
-    red_knight = knightsConfig["red_knight"]
+    red_knight = knightsconfig["red_knight"]
 
     # apply armour
     red_knight["protection"] = 0
