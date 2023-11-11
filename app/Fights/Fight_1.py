@@ -2,8 +2,12 @@ from __future__ import annotations
 
 from app.Knights.Knights import KnightBasic
 
+# knight_1 = KnightBasic
+# knight_2 = KnightBasic
+
 
 def fight_1(knight_1: KnightBasic, knight_2: KnightBasic) -> None:
+
     # prepare before battle
     knight_1.battle_preparing()
     knight_2.battle_preparing()
@@ -18,4 +22,3 @@ def fight_1(knight_1: KnightBasic, knight_2: KnightBasic) -> None:
 
     if knight_2.hp <= 0:
         knight_2.hp = 0
-
