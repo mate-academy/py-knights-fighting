@@ -1,5 +1,3 @@
-from app.Knights.Knights import KnightBasic
-
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
@@ -85,11 +83,4 @@ KNIGHTS = {
             }
         }
     }
-}
-
-# Create a dict of knight (instances of KnightBAsic) for battle
-championship_knights_dict = {
-    KNIGHTS.get(knight).get("name"):
-        KnightBasic(KNIGHTS.get(knight))
-    for knight in KNIGHTS
 }
