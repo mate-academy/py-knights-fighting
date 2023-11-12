@@ -105,10 +105,10 @@ def battle(knights_config: dict) -> dict:
             power=knights_config[knight]["power"],
             hp=knights_config[knight]["hp"]
         )
-        for i in range(len(knights_config[knight]["armour"])):
+        for armour in knights_config[knight]["armour"]:
             temp_knight.set_armour(Armour(
-                knights_config[knight]["armour"][i]["part"],
-                protection=knights_config[knight]["armour"][i]["protection"]
+                armour["part"],
+                protection=armour["protection"]
             ))
         temp_knight.set_weapon(Weapon(
             knights_config[knight]["weapon"]["name"],
@@ -116,17 +116,18 @@ def battle(knights_config: dict) -> dict:
         ))
         if knights_config[knight]["potion"]:
             temp_potion = Potion(knights_config[knight]["potion"]["name"])
-            if "power" in knights_config[knight]["potion"]["effect"]:
+            potion_property = knights_config[knight]["potion"]["effect"]
+            if "power" in potion_property:
                 temp_potion.power += (
-                    knights_config[knight]["potion"]["effect"]["power"]
+                    potion_property["power"]
                 )
-            if "protection" in knights_config[knight]["potion"]["effect"]:
+            if "protection" in potion_property:
                 temp_potion.protection += (
-                    knights_config[knight]["potion"]["effect"]["protection"]
+                    potion_property["protection"]
                 )
-            if "hp" in knights_config[knight]["potion"]["effect"]:
+            if "hp" in potion_property:
                 temp_potion.hp += (
-                    knights_config[knight]["potion"]["effect"]["hp"]
+                    potion_property["hp"]
                 )
             temp_knight.set_potion(temp_potion)
         all_knights.append(temp_knight)
