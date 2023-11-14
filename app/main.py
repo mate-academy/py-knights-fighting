@@ -98,7 +98,7 @@ def knights_fight(first: Knight, second: Knight) -> None:
 
 
 def battle(knights_config: dict) -> dict:
-    all_knights = []
+    all_knights = dict()
     for knight in knights_config:
         temp_knight = Knight(
             name=knights_config[knight]["name"],
@@ -115,26 +115,36 @@ def battle(knights_config: dict) -> dict:
             power=knights_config[knight]["weapon"]["power"]
         ))
         if knights_config[knight]["potion"]:
-            temp_potion = Potion(knights_config[knight]["potion"]["name"])
             potion_property = knights_config[knight]["potion"]["effect"]
-            if "power" in potion_property:
-                temp_potion.power += (
-                    potion_property["power"]
+            for effect in potion_property:
+                temp_power = (
+                    potion_property["power"] if (
+                        "power" in potion_property
+                    ) else 0
                 )
-            if "protection" in potion_property:
-                temp_potion.protection += (
-                    potion_property["protection"]
+                temp_protection = (
+                    potion_property["protection"] if (
+                        "protection" in potion_property
+                    ) else 0
                 )
-            if "hp" in potion_property:
-                temp_potion.hp += (
-                    potion_property["hp"]
+                temp_hp = (
+                    potion_property["hp"] if (
+                        "hp" in potion_property
+                    ) else 0
                 )
+            temp_potion = Potion(
+                name=knights_config[knight]["potion"]["name"],
+                power=temp_power,
+                protection=temp_protection,
+                hp=temp_hp
+            )
             temp_knight.set_potion(temp_potion)
-        all_knights.append(temp_knight)
-    knights_fight(all_knights[0], all_knights[2])
-    knights_fight(all_knights[1], all_knights[3])
+        all_knights[knight] = temp_knight
+    knights_fight(all_knights["lancelot"], all_knights["mordred"])
+    knights_fight(all_knights["arthur"], all_knights["red_knight"])
     return {
-        all_knights[i].name: all_knights[i].hp for i in range(len(KNIGHTS))
+        all_knights[knight].name: all_knights[knight].hp for (
+            knight) in all_knights
     }
 
 
