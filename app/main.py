@@ -4,7 +4,7 @@ KNIGHTS = {
         "power": 35,
         "hp": 100,
         "armour": [],
-        "weapon": {"name": "Metal Sword", "power": 50,},
+        "weapon": {"name": "Metal Sword", "power": 50, },
         "potion": None,
     },
     "arthur": {
@@ -25,7 +25,7 @@ KNIGHTS = {
                 "protection": 10,
             }
         ],
-        "weapon": {"name": "Two-handed Sword", "power": 55,},
+        "weapon": {"name": "Two-handed Sword", "power": 55, },
         "potion": None,
     },
     "mordred": {
@@ -42,7 +42,7 @@ KNIGHTS = {
                 "protection": 10,
             }
         ],
-        "weapon": {"name": "Poisoned Sword", "power": 60,},
+        "weapon": {"name": "Poisoned Sword", "power": 60, },
         "potion": {
             "name": "Berserk",
             "effect": {
@@ -80,14 +80,14 @@ KNIGHTS = {
 class Knight:
 
     def __init__(
-            self,
-            name: str,
-            power: float,
-            hp: float,
-            armour: list,
-            weapon: dict,
-            potion: dict
-        ) -> None:
+        self,
+        name: str,
+        power: float,
+        hp: float,
+        armour: list,
+        weapon: dict,
+        potion: dict
+    ) -> None:
         self.name = name
         self.power = power
         self.hp = hp
@@ -95,8 +95,9 @@ class Knight:
         self.weapon = weapon
         self.potion = potion
         self.protection = 0
+        self.prepare()
 
-    def prepare(self):
+    def prepare(self) -> None:
         # apply armour
         for armour in self.armour:
             self.protection += armour["protection"]
@@ -113,51 +114,57 @@ class Knight:
             if "protection" in self.potion["effect"].keys():
                 self.protection += self.potion["effect"]["protection"]
 
-    def fight(self, enemy) -> None:
+    def fight(self, enemy: "Knight") -> None:
         self.hp -= enemy.power - self.protection
         if self.hp <= 0:
             self.hp = 0
-        
+
         enemy.hp -= self.power - enemy.protection
         if enemy.hp <= 0:
             enemy.hp = 0
 
 
-lancelot_knight = Knight(
-    list(KNIGHTS.keys())[0],
-    KNIGHTS[list(KNIGHTS.keys())[0]]["power"],
-    KNIGHTS[list(KNIGHTS.keys())[0]]["hp"],
-    KNIGHTS[list(KNIGHTS.keys())[0]]["armour"],
-    KNIGHTS[list(KNIGHTS.keys())[0]]["weapon"],
-    KNIGHTS[list(KNIGHTS.keys())[0]]["potion"]
-)
-arthur_knight = Knight(
-        list(KNIGHTS.keys())[1],
-    KNIGHTS[list(KNIGHTS.keys())[1]]["power"],
-    KNIGHTS[list(KNIGHTS.keys())[1]]["hp"],
-    KNIGHTS[list(KNIGHTS.keys())[1]]["armour"],
-    KNIGHTS[list(KNIGHTS.keys())[1]]["weapon"],
-    KNIGHTS[list(KNIGHTS.keys())[1]]["potion"]
-)
-mordred_knight = Knight(
-        list(KNIGHTS.keys())[2],
-    KNIGHTS[list(KNIGHTS.keys())[2]]["power"],
-    KNIGHTS[list(KNIGHTS.keys())[2]]["hp"],
-    KNIGHTS[list(KNIGHTS.keys())[2]]["armour"],
-    KNIGHTS[list(KNIGHTS.keys())[2]]["weapon"],
-    KNIGHTS[list(KNIGHTS.keys())[2]]["potion"]
-)
-red_knight = Knight(
-        list(KNIGHTS.keys())[3],
-    KNIGHTS[list(KNIGHTS.keys())[3]]["power"],
-    KNIGHTS[list(KNIGHTS.keys())[3]]["hp"],
-    KNIGHTS[list(KNIGHTS.keys())[3]]["armour"],
-    KNIGHTS[list(KNIGHTS.keys())[3]]["weapon"],
-    KNIGHTS[list(KNIGHTS.keys())[3]]["potion"]
-)
+def battle(knights: dict) -> dict:
+    lancelot_knight = Knight(
+        list(knights.keys())[0],
+        knights[list(knights.keys())[0]]["power"],
+        knights[list(knights.keys())[0]]["hp"],
+        knights[list(knights.keys())[0]]["armour"],
+        knights[list(knights.keys())[0]]["weapon"],
+        knights[list(knights.keys())[0]]["potion"]
+    )
+    arthur_knight = Knight(
+        list(knights.keys())[1],
+        knights[list(knights.keys())[1]]["power"],
+        knights[list(knights.keys())[1]]["hp"],
+        knights[list(knights.keys())[1]]["armour"],
+        knights[list(knights.keys())[1]]["weapon"],
+        knights[list(knights.keys())[1]]["potion"]
+    )
+    mordred_knight = Knight(
+        list(knights.keys())[2],
+        knights[list(knights.keys())[2]]["power"],
+        knights[list(knights.keys())[2]]["hp"],
+        knights[list(knights.keys())[2]]["armour"],
+        knights[list(knights.keys())[2]]["weapon"],
+        knights[list(knights.keys())[2]]["potion"]
+    )
+    red_knight = Knight(
+        list(knights.keys())[3],
+        knights[list(knights.keys())[3]]["power"],
+        knights[list(knights.keys())[3]]["hp"],
+        knights[list(knights.keys())[3]]["armour"],
+        knights[list(knights.keys())[3]]["weapon"],
+        knights[list(knights.keys())[3]]["potion"]
+    )
 
+    result = {}
 
-def tournament(lancelot_knight, arthur_knight, mordred_knight, red_knight):
-    lancelot_knight.fight(arthur_knight)
-    mordred_knight.fight(red_knight)
+    lancelot_knight.fight(mordred_knight)
+    arthur_knight.fight(red_knight)
 
+    result["Lancelot"] = lancelot_knight.hp
+    result["Arthur"] = arthur_knight.hp
+    result["Mordred"] = mordred_knight.hp
+    result["Red Knight"] = red_knight.hp
+    return result
