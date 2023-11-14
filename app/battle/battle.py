@@ -1,4 +1,7 @@
-def perform_battle(knight1, knight2):
+from app.knights.knight import Knight
+
+
+def perform_battle(knight1: Knight, knight2: Knight) -> dict:
     knight1.apply_armour()
     knight1.apply_weapon()
     knight1.apply_potion()
