@@ -4,15 +4,10 @@ from app.knights_info.knights_info import KNIGHTS
 
 
 def battle(knights_config: dict) -> dict:
-    knights_objects = {name: Knight(
-        knight["name"],
-        knight["power"],
-        knight["hp"],
-        knight["armour"],
-        knight["weapon"],
-        knight["potion"]
-    )
-        for name, knight in knights_config.items()}
+    knights_objects = {
+        name: Knight(**knight)
+        for name, knight in knights_config.items()
+    }
 
     return {
         **perform_battle(knights_objects["lancelot"],

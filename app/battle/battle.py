@@ -2,7 +2,7 @@ from app.knights.knight import Knight
 
 
 def perform_battle(knight1: Knight, knight2: Knight) -> dict:
-    knights = [knight1, knight2]
+    knights = (knight1, knight2)
     for knight in knights:
         knight.apply_armour()
         knight.apply_weapon()
