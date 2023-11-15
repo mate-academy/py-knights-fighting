@@ -91,7 +91,7 @@ KNIGHTS = {
 
 
 def battle(knights_config: dict) -> dict:
-    knights = [Knight(
+    knights_objects = {name: Knight(
         knight["name"],
         knight["power"],
         knight["hp"],
@@ -99,14 +99,14 @@ def battle(knights_config: dict) -> dict:
         knight["weapon"],
         knight["potion"]
     )
-        for knight in knights_config.values()]
+        for name, knight in knights_config.items()}
 
-    battle1 = perform_battle(knights[0], knights[2])
-    battle2 = perform_battle(knights[1], knights[3])
-
-    battle1.update(battle2)
-
-    return battle1
+    return {
+        **perform_battle(knights_objects["lancelot"],
+                         knights_objects["mordred"]),
+        **perform_battle(knights_objects["arthur"],
+                         knights_objects["red_knight"]),
+    }
 
 
 print(battle(KNIGHTS))
