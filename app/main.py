@@ -1,5 +1,5 @@
 from app.knights.knight import Knight
-from app.knights.preparation import prepare_knights
+
 
 KNIGHTS = {
     "lancelot": {
@@ -89,25 +89,43 @@ KNIGHTS = {
 }
 
 
-def battle(knights: list[Knight]) -> dict:
+def battle(knights: dict) -> dict:
+    dict_knights = {}
+    for knight, value in knights.items():
 
-    lancelot, arthur, mordred, red_knight = knights
+        knight_obj = Knight(
+            value["name"],
+            value["power"],
+            value["hp"]
+        )
 
-    # lancelot vs mordred
-    lancelot.hp -= mordred.power - lancelot.protection
-    mordred.hp -= lancelot.power - mordred.protection
+        Knight.prepare(
+            knight_obj,
+            value["armour"],
+            value["weapon"],
+            value["potion"]
+        )
+        dict_knights[knight] = knight_obj
+
+    dict_knights["lancelot"].hp -= (dict_knights["mordred"].power
+                                    - dict_knights["lancelot"].protection)
+    dict_knights["mordred"].hp -= (dict_knights["lancelot"].power
+                                   - dict_knights["mordred"].protection)
 
     # arthur vs red knight
-    arthur.hp -= red_knight.power - arthur.protection
-    red_knight.hp -= arthur.power - red_knight.protection
+    dict_knights["arthur"].hp -= (dict_knights["red_knight"].power
+                                  - dict_knights["arthur"].protection)
+    dict_knights["red_knight"].hp -= (dict_knights["arthur"].power
+                                      - dict_knights["red_knight"].protection)
 
-    # check if someone fell in battle
-    for knight in knights:
-        if knight.hp < 0:
-            knight.hp = 0
+    for knight in dict_knights:
+        if dict_knights[knight].hp < 0:
+            dict_knights[knight].hp = 0
 
     # Return battle results:
-    return {knight.name: knight.hp for knight in knights}
+    return {dict_knights[knight].name: dict_knights[knight].hp
+            for knight in knights
+            }
 
 
-print(battle(prepare_knights(KNIGHTS)))
+print(battle(KNIGHTS))
