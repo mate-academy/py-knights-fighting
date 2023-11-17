@@ -40,7 +40,7 @@ class Knight:
             for stat, value in self.potion.effect.items():
                 self.__dict__[stat] += value
 
-    def fight(self, opponent: Knight) -> None:
+    def fight(self, opponent: "Knight") -> None:
         self.hp -= opponent.power - self.protection
         opponent.hp -= self.power - opponent.protection
 
