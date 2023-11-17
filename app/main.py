@@ -91,8 +91,18 @@ KNIGHTS = {
 
 def battle(knights: dict) -> dict:
     dict_knights = {}
-    for knight, value in knights.items():
 
+    def perform_combat_between_knights(
+            attacker_name: str,
+            defender_name: str
+    ) -> None:
+        attacker = dict_knights[attacker_name]
+        defender = dict_knights[defender_name]
+
+        attacker.hp -= max(defender.power - attacker.protection, 0)
+        defender.hp -= max(attacker.power - defender.protection, 0)
+
+    for knight, value in knights.items():
         knight_obj = Knight(
             value["name"],
             value["power"],
@@ -107,25 +117,17 @@ def battle(knights: dict) -> dict:
         )
         dict_knights[knight] = knight_obj
 
-    dict_knights["lancelot"].hp -= (dict_knights["mordred"].power
-                                    - dict_knights["lancelot"].protection)
-    dict_knights["mordred"].hp -= (dict_knights["lancelot"].power
-                                   - dict_knights["mordred"].protection)
+    perform_combat_between_knights("lancelot", "mordred")
+    perform_combat_between_knights("arthur", "red_knight")
 
-    # arthur vs red knight
-    dict_knights["arthur"].hp -= (dict_knights["red_knight"].power
-                                  - dict_knights["arthur"].protection)
-    dict_knights["red_knight"].hp -= (dict_knights["arthur"].power
-                                      - dict_knights["red_knight"].protection)
-
-    for knight in dict_knights:
-        if dict_knights[knight].hp < 0:
-            dict_knights[knight].hp = 0
+    for knight in dict_knights.values():
+        knight.hp = max(0, knight.hp)
 
     # Return battle results:
-    return {dict_knights[knight].name: dict_knights[knight].hp
-            for knight in knights
-            }
+    return {
+        knight.name: knight.hp
+        for knight in dict_knights.values()
+    }
 
 
 print(battle(KNIGHTS))
