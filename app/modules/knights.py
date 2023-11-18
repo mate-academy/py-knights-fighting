@@ -1,18 +1,20 @@
-from typing import Any
-
-
 class Knight:
-    knights_list = []
+    knights = {}
 
-    def __init__(self, name: str, power: int, hp: int, protection: int):
+    def __init__(self,
+                 name: str,
+                 power: int,
+                 hp: int,
+                 protection: int
+                 ) -> None:
         self.name = name
         self.power = power
         self.hp = hp
         self.protection = protection
-        Knight.knights_list.append(self)
+        Knight.knights.update({self.name : self})
 
     @staticmethod
-    def make_knight(knights_dict: dict) -> Any:
+    def make_knight(knights_dict: dict) -> None:
 
         for knight in knights_dict.values():
 
