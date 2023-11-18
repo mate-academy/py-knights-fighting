@@ -5,7 +5,6 @@ def battle(knights_dict: dict) -> dict:
     result_dict = {}
 
     Knight.make_knight(knights_dict)
-
     knight = Knight.knights
 
     knight1 = knight["Lancelot"]
