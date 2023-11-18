@@ -1,16 +1,17 @@
 from app.config.data import all_knights_doc
 from app.config.battle_1vs1 import battle_1vs1
 from app.config.knights import Knights
-from app.config.calculations import power, hp, protection
+from app.config.calculations import calculations
 
 
 def battle(all_knights_doc: dict) -> dict:
-    for name, characteristics in all_knights_doc.items():
+    for characteristics in all_knights_doc.values():
+        result = calculations(characteristics)
         Knights(
             characteristics["name"],
-            characteristics["power"] + power(characteristics),
-            characteristics["hp"] + hp(characteristics),
-            protection(characteristics)
+            characteristics["power"] + result["power"],
+            characteristics["hp"] + result["hp"],
+            result["protection"]
         )
     # who fight, variable name = knight name
     battle_1vs1("Lancelot", "Mordred")

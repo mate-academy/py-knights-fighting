@@ -1,25 +1,14 @@
-def power(characteristics: dict) -> int:
-    weapon = characteristics["weapon"]["power"]
-    if characteristics["potion"] is not None:
-        if "power" in characteristics["potion"]["effect"]:
-            potion = characteristics["potion"]["effect"]["power"]
-            return potion + weapon
-    return weapon
-
-
-def hp(characteristics: dict) -> int:
-    if characteristics["potion"] is not None:
-        if "hp" in characteristics["potion"]["effect"]:
-            return characteristics["potion"]["effect"]["hp"]
-    return 0
-
-
-def protection(characteristics: dict) -> int:
+def calculations(characteristics: dict) -> dict:
+    power = characteristics["weapon"]["power"]
+    hp = 0
     protection = 0
     for a_set in characteristics["armour"]:
         protection += a_set["protection"]
     if characteristics["potion"] is not None:
+        if "power" in characteristics["potion"]["effect"]:
+            power += characteristics["potion"]["effect"]["power"]
+        if "hp" in characteristics["potion"]["effect"]:
+            hp = characteristics["potion"]["effect"]["hp"]
         if "protection" in characteristics["potion"]["effect"]:
-            potion = characteristics["potion"]["effect"]["protection"]
-            return potion + protection
-    return protection
+            protection += characteristics["potion"]["effect"]["protection"]
+    return {"power": power, "hp": hp, "protection": protection}
