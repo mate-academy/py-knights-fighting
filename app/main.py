@@ -1,6 +1,5 @@
 from app.knights.knight import Knight
 
-
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
@@ -92,16 +91,6 @@ KNIGHTS = {
 def battle(knights: dict) -> dict:
     dict_knights = {}
 
-    def perform_combat_between_knights(
-            attacker_name: str,
-            defender_name: str
-    ) -> None:
-        attacker = dict_knights[attacker_name]
-        defender = dict_knights[defender_name]
-
-        attacker.hp -= max(defender.power - attacker.protection, 0)
-        defender.hp -= max(attacker.power - defender.protection, 0)
-
     for knight, value in knights.items():
         knight_obj = Knight(
             value["name"],
@@ -117,8 +106,8 @@ def battle(knights: dict) -> dict:
         )
         dict_knights[knight] = knight_obj
 
-    perform_combat_between_knights("lancelot", "mordred")
-    perform_combat_between_knights("arthur", "red_knight")
+    dict_knights["lancelot"].perform_combat(dict_knights["mordred"])
+    dict_knights["arthur"].perform_combat(dict_knights["red_knight"])
 
     for knight in dict_knights.values():
         knight.hp = max(0, knight.hp)
