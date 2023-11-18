@@ -2,6 +2,7 @@ from app.modules.knights import Knight
 
 
 def battle(knights_dict: dict) -> dict:
+
     result_dict = {}
 
     Knight.make_knight(knights_dict)
