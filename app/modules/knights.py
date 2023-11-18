@@ -2,8 +2,6 @@ from __future__ import annotations
 
 
 class Knight:
-    knights = {}
-
     def __init__(self,
                  name: str,
                  power: int,
@@ -14,45 +12,39 @@ class Knight:
         self.power = power
         self.hp = hp
         self.protection = protection
-        Knight.knights.update({self.name : self})
 
     @staticmethod
-    def make_knight(knights_dict: dict) -> None:
+    def make_knight(knight: dict) -> Knight:
 
-        for knight in knights_dict.values():
+        name = knight["name"]
+        power = knight["power"]
+        hp = knight["hp"]
+        protection = 0
 
-            name = knight["name"]
-            power = knight["power"]
-            hp = knight["hp"]
-            protection = 0
+        if knight["armour"]:
+            for armour in knight["armour"]:
+                protection += armour["protection"]
 
-            if knight["armour"]:
-                for armour in knight["armour"]:
-                    protection += armour["protection"]
+        power += knight["weapon"]["power"]
 
-            power += knight["weapon"]["power"]
+        if knight["potion"]:
+            effect_from_potion = knight["potion"]["effect"]
 
-            if knight["potion"]:
-                effect_from_potion = knight["potion"]["effect"]
+            if "protection" in effect_from_potion:
+                protection += effect_from_potion["protection"]
 
-                if "protection" in effect_from_potion:
-                    protection += effect_from_potion["protection"]
+            if "power" in effect_from_potion:
+                power += effect_from_potion["power"]
 
-                if "power" in effect_from_potion:
-                    power += effect_from_potion["power"]
+            if "hp" in effect_from_potion:
+                hp += effect_from_potion["hp"]
 
-                if "hp" in effect_from_potion:
-                    hp += effect_from_potion["hp"]
+        return Knight(name, power, hp, protection)
 
-            Knight(name, power, hp, protection)
+    def fight(self: Knight, opponent: Knight) -> None:
 
-    @staticmethod
-    def fight(knight1: Knight, knight2: Knight) -> None:
-        knight1.hp -= knight2.power - knight1.protection
-        knight2.hp -= knight1.power - knight2.protection
+        self.hp -= opponent.power - self.protection
+        opponent.hp -= self.power - opponent.protection
 
-        if knight1.hp <= 0:
-            knight1.hp = 0
-
-        if knight2.hp <= 0:
-            knight2.hp = 0
+        self.hp = max(0, self.hp)
+        opponent.hp = max(0, opponent.hp)
