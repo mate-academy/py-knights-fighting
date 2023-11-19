@@ -1,3 +1,6 @@
+from app.knight import Knight
+
+
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
