@@ -18,9 +18,5 @@ class Knight:
         for armour_set in state["armour"]:
             self.protection += armour_set["protection"]
         if state["potion"] is not None:
-            if "power" in state["potion"]["effect"]:
-                self.power += state["potion"]["effect"]["power"]
-            if "hp" in state["potion"]["effect"]:
-                self.hp += state["potion"]["effect"]["hp"]
-            if "protection" in state["potion"]["effect"]:
-                self.protection += state["potion"]["effect"]["protection"]
+            for potion_eff, value in state["potion"]["effect"].items():
+                setattr(self, potion_eff, value + getattr(self, potion_eff))
