@@ -2,8 +2,8 @@ def calculations(characteristics: dict) -> dict:
     power = characteristics["weapon"]["power"]
     hp = 0
     protection = 0
-    for a_set in characteristics["armour"]:
-        protection += a_set["protection"]
+    for armour_set in characteristics["armour"]:
+        protection += armour_set["protection"]
     if characteristics["potion"] is not None:
         if "power" in characteristics["potion"]["effect"]:
             power += characteristics["potion"]["effect"]["power"]
