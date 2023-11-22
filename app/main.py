@@ -2,7 +2,7 @@ from app.camelot.configs import KNIGHTS
 from app.camelot.knight import Knight
 
 
-def battle(config):
+def battle(config: dict) -> dict:
     lancelot = Knight(config["lancelot"])
     arthur = Knight(config["arthur"])
     mordred = Knight(config["mordred"])

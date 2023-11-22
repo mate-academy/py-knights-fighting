@@ -4,7 +4,7 @@ from app.camelot.configs import POTION_EFFECTS
 
 
 class Knight:
-    def __init__(self, config):
+    def __init__(self, config: dict) -> None:
         self.protection = 0
         self.power = config["power"]
         self.name = config["name"]
@@ -17,11 +17,11 @@ class Knight:
         if armour := config.get("armour"):
             self.protection += sum([item["protection"] for item in armour])
 
-    def apply_weapon(self, config) -> None:
+    def apply_weapon(self, config: dict) -> None:
         if weapon := config.get("weapon"):
             self.power += weapon["power"]
 
-    def apply_potion(self, config):
+    def apply_potion(self, config: dict) -> None:
         if potion := config.get("potion"):
             potion_effect = potion.get("effect")
             for effect in POTION_EFFECTS:
@@ -32,7 +32,7 @@ class Knight:
                         getattr(self, effect) + potion_effect.get(effect)
                     )
 
-    def battle(self, other: Knight):
+    def battle(self, other: Knight) -> dict:
         self.hp -= other.power - self.protection
         other.hp -= self.power - other.protection
 
