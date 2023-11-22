@@ -1,3 +1,8 @@
+from __future__ import annotations
+
+from app.camelot.configs import POTION_EFFECTS
+
+
 class Knight:
     def __init__(self, config):
         self.protection = 0
@@ -19,8 +24,24 @@ class Knight:
     def apply_potion(self, config):
         if potion := config.get("potion"):
             potion_effect = potion.get("effect")
-            self.power += potion_effect.get("power")
-            self.hp += potion_effect.get("hp")
-            self.protection += potion_effect.get("protection")
+            for effect in POTION_EFFECTS:
+                if effect in potion_effect:
+                    setattr(
+                        self,
+                        effect,
+                        getattr(self, effect) + potion_effect.get(effect)
+                    )
 
+    def battle(self, other: Knight):
+        self.hp -= other.power - self.protection
+        other.hp -= self.power - other.protection
 
+        if self.hp <= 0:
+            self.hp = 0
+        if other.hp <= 0:
+            other.hp = 0
+
+        return {
+            self.name: self.hp,
+            other.name: other.hp,
+        }

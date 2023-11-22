@@ -84,3 +84,4 @@ KNIGHTS = {
         }
     }
 }
+POTION_EFFECTS = ("power", "hp", "protection")
