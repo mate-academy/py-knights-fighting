@@ -1,39 +1,26 @@
 from typing import Dict, Union
 
 
-def prepare_knight(
-        knight: Dict[
-            str, Union[
-                str, int, list, Dict[
-                    str, Union[
-                        str, int, list, Dict[str, int]
-                    ]
-                ]
-            ]
-        ]
-) -> Dict[str, Union[str, int]]:
-
+def prepare_knight(knight: Dict) -> Dict[str, Union[str, int]]:
     protection = 0
     for a_armour in knight["armour"]:
         protection += a_armour["protection"]
 
-    power = knight["power"] + knight["weapon"]["power"]
+        def calculate_power_and_potion(knight: Dict) -> None:
+            protection = 0
+            for a_armour in knight["armour"]:
+                protection += a_armour["protection"]
 
-    potion = knight["potion"]
-    if potion:
-        effects = potion.get("effect", {})
-        power += effects.get("power", 0)
-        protection += effects.get("protection", 0)
-        hp = knight["hp"] + effects.get("hp", 0)
-    else:
-        hp = knight["hp"]
+            power = knight["power"] + knight["weapon"]["power"]
 
-    return {
-        "name": knight["name"],
-        "power": power,
-        "protection": protection,
-        "hp": hp,
-    }
+            potion = knight["potion"]
+            if potion:
+                effects = potion.get("effect", {})
+                power += effects.get("power", 0)
+                protection += effects.get("protection", 0)
+                hp = knight["hp"] + effects.get("hp", 0)
+            else:
+                hp = knight["hp"]
 
 
 def battle(knights: Dict[str, Dict[str, int]]) -> Dict[str, int]:
