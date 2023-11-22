@@ -1,5 +1,5 @@
 from random import sample
-from knughts_parameters.heroes import knights
+from knights_parameters.heroes import knights
 
 
 def hp_adjustment(hp: int) -> int:
