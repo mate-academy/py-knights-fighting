@@ -1,3 +1,4 @@
+
 class UpdateStats:
     def update_weapon(self) -> None:
         self.power += self.weapon["power"]

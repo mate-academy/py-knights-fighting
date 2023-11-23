@@ -1,3 +1,4 @@
+
 from app.battle_preparation.equipment import UpdateStats
 
 
