@@ -21,4 +21,3 @@ class UpdateStats:
         self.update_weapon()
         self.update_armour()
         self.apply_potion()
-
