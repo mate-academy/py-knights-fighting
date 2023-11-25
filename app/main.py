@@ -12,10 +12,6 @@ def battle(knights_config: dict) -> dict:
     knightbattle(lancelot, mordred)
     knightbattle(arthur, red_knight)
 
-    print(f"{lancelot.name}: {lancelot.hp} HP")
-    print(f"{arthur.name}: {arthur.hp} HP")
-    print(f"{mordred.name}: {mordred.hp} HP")
-    print(f"{red_knight.name}: {red_knight.hp} HP")
     return {
         lancelot.name: lancelot.hp,
         arthur.name: arthur.hp,

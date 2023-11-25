@@ -22,24 +22,17 @@ class Knight:
 
     def apply_armor(self) -> None:
         self.protection = sum(part["protection"] for part in self.armour)
-        return self
 
     def apply_weapon(self) -> None:
         self.power += self.weapon["power"]
-        return self
 
     def apply_potion(self) -> None:
         if self.potion:
             effect = self.potion["effect"]
             for stat, value in effect.items():
-
-                if stat == "hp":
-                    self.hp += value
-                elif stat == "power":
-                    self.power += value
-                elif stat == "protection":
-                    self.protection += value
-        return self
+                attribute_name = stat
+                current_value = getattr(self, attribute_name, 0)
+                setattr(self, attribute_name, current_value + value)
 
 
 knights_config = {
