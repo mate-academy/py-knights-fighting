@@ -2,9 +2,10 @@ from app.knights import Knight
 
 
 def battle(knight1: Knight, knight2: Knight) -> None:
+    apply_damage(knight1, knight2)
+    apply_damage(knight2, knight1)
 
-    knight2.hp -= max(0, knight1.power - knight2.protection)
-    knight2.hp = max(knight2.hp, 0)
 
-    knight1.hp -= max(0, knight2.power - knight1.protection)
-    knight1.hp = max(knight1.hp, 0)
+def apply_damage(attacker: Knight, defender: Knight) -> None:
+    damage = max(0, attacker.power - defender.protection)
+    defender.hp = max(defender.hp - damage, 0)
