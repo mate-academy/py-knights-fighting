@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from app.contestants.knight import Knight
 
 
@@ -9,10 +7,12 @@ class Battle:
         self.knight_2 = knight_2
 
     def battle_start(self) -> None:
-        self.knight_1.health_points -= \
+        self.knight_1.health_points -= (
             self.knight_2.power - self.knight_1.protection
-        self.knight_2.health_points -= \
+        )
+        self.knight_2.health_points -= (
             self.knight_1.power - self.knight_2.protection
+        )
 
     def check_if_fell(self) -> None:
         if self.knight_1.health_points <= 0:

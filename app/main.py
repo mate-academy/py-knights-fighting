@@ -1,8 +1,5 @@
 from app.contestants.list_of_contestants import Contestants
 from app.contestants.knight import Knight
-from app.equipment.armour import Armour
-from app.equipment.weapon import Weapon
-from app.equipment.potion import Potion
 from app.battle.battle_start import Battle
 
 
@@ -20,20 +17,6 @@ def battle(knights_list: dict) -> dict:
             weapon=value["weapon"],
             potion=value["potion"]
         )
-
-    # BATTLE PREPARATIONS:
-    for knight in list_of_knights.values():
-        armour = Armour(knight.armour)
-        armour.apply_armour(knight)
-
-        weapon = Weapon(knight.weapon["power"])
-        weapon.apply_weapon(knight)
-
-        if knight.potion is not None:
-            potion = Potion(knight.potion["effect"])
-            potion.apply_potion(knight)
-
-    print(list_of_knights["lancelot"].name)
 
     # BATTLE:
     # 1 Lancelot vs Mordred:
