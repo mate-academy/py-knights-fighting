@@ -1,6 +1,4 @@
-from app.equipment.armour import Armour
-from app.equipment.weapon import Weapon
-from app.equipment.potion import Potion
+from app.equipment.equipment import Equipment
 
 
 class Knight:
@@ -20,13 +18,10 @@ class Knight:
         self.weapon = weapon
         self.potion = potion
 
-        # BATTLE PREPARATIONS:
-        armour = Armour(self.armour)
-        armour.apply_armour(self)
-
-        weapon = Weapon(self.weapon["power"])
-        weapon.apply_weapon(self)
-
-        if self.potion is not None:
-            potion = Potion(self.potion["effect"])
-            potion.apply_potion(self)
+        equipment = Equipment(
+            armour=self.armour,
+            weapon_power=self.weapon["power"]
+        )
+        equipment.apply_armour(self)
+        equipment.apply_weapon(self)
+        equipment.apply_potion(self)
