@@ -12,43 +12,23 @@ class FightPreparations:
 
     @staticmethod
     def apply_potion(knight: Knights) -> None:
-        potion_hp_bonus = sum(
-            [potion.hp for potion in Potion.potions.values()
-             if potion.owner == knight.name]
-        )
-
-        potion_power_bonus = sum(
-            [potion.power for potion in Potion.potions.values()
-             if potion.owner == knight.name]
-        )
-
-        potion_protection_bonus = sum(
-            [potion.protection for potion in Potion.potions.values()
-             if "protection" in potion.__dict__
-             and potion.owner == knight.name]
-        )
-
-        knight.hp += potion_hp_bonus
-        knight.power += potion_power_bonus
-        knight.protection += potion_protection_bonus
+        for potion in Potion.potions.values():
+            if potion.owner == knight.name:
+                knight.hp += potion.hp
+                knight.power += potion.power
+                knight.protection += potion.protection
 
     @staticmethod
     def apply_armour(knight: Knights) -> None:
-        armour_protection_bonus = sum(
-            [armour.protection for armour in Armour.list_of_armour
-             if armour.owner == knight.name]
-        )
-
-        knight.protection += armour_protection_bonus
+        for armour in Armour.armour.values():
+            if armour.owner == knight.name:
+                knight.protection += armour.protection
 
     @staticmethod
     def apply_weapon(knight: Knights) -> None:
-        weapon_power_bonus = sum(
-            [weapon.power for weapon in Weapon.weapons.values()
-             if weapon.owner == knight.name]
-        )
-
-        knight.power += weapon_power_bonus
+        for weapon in Weapon.weapons.values():
+            if weapon.owner == knight.name:
+                knight.power += weapon.power
 
     @classmethod
     def apply_all(

@@ -13,10 +13,15 @@ class HeroManipulations:
     def add_to_classes(hero: dict) -> None:
         Knights(hero)
         Weapon(hero["weapon"], hero["name"])
+
         if hero["potion"]:
             Potion(hero["potion"], hero["name"])
+
+        hero_armour = 0
         for armour in hero["armour"]:
-            Armour(armour, hero["name"])
+            hero_armour += armour["protection"]
+
+        Armour(hero_armour, hero["name"])
 
     @staticmethod
     def hero_status(warriors_class: Type[Knights]) -> dict:

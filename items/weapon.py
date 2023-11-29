@@ -5,4 +5,4 @@ class Weapon:
         self.owner = owner
         self.power = weapon["power"]
 
-        Weapon.weapons[weapon["name"]] = self
+        Weapon.weapons[owner] = self
