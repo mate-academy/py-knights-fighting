@@ -16,15 +16,9 @@ class Knight:
         # apply weapon
         self.power += self.weapon["power"]
 
-        # apply potion if exist
         if self.potion is not None:
-            for key, value in self.potion["effect"].items():
-                if key == "power":
-                    self.power += value
-                if key == "protection":
-                    self.protection += value
-                if key == "hp":
-                    self.hp += value
+            for affects_on, value in self.potion["effect"].items():
+                setattr(self, affects_on, getattr(self, affects_on) + value)
 
     def attack(self, other: "Knight") -> dict:
         self.hp -= other.power - self.protection
