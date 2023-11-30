@@ -4,44 +4,47 @@ class Knight:
             name: str,
             power: int,
             hp: int,
-            protection: int = 0
+            armour: list,
+            weapon: dict,
+            potion: dict = None,
+            protection: int = 0,
+
     ) -> None:
         self.name = name
         self.power = power
         self.hp = hp
+        self.weapon = weapon
+        self.armour = armour
+        self.potion = potion
         self.protection = protection
 
-    def apply_armor(self, knights: dict) -> None:
-        for knight in knights:
-            if knights[knight]["name"] == self.name:
-                for item in knights[knight]["armour"]:
-                    self.protection += item["protection"]
+        self.apply_armour()
+        self.equip_weapon()
+        self.use_potion()
 
-    def equip_weapon(self, knights: dict) -> None:
-        for knight in knights:
-            if knights[knight]["name"] == self.name:
-                self.power += knights[knight]["weapon"]["power"]
+    def apply_armour(self) -> int:
+        for item in self.armour:
+            self.protection += item["protection"]
+        return self.protection
 
-    def use_potion(self, knights: dict) -> None:
-        potion = self.extract_potion(knights)
-        for key, value in potion.items():
-            if value is not None:
-                if "power" in value["effect"]:
-                    self.power += value["effect"]["power"]
+    def equip_weapon(self) -> int:
+        self.power += self.weapon["power"]
+        return self.power
 
-                if "protection" in value["effect"]:
-                    self.protection += value["effect"]["protection"]
+    def use_potion(self) -> None:
+        if self.potion is not None:
+            for effect, value in self.potion["effect"].items():
+                if effect == "power":
+                    self.power += value
+                if effect == "hp":
+                    self.hp += value
+                if effect == "protection":
+                    self.protection += value
 
-                if "hp" in value["effect"]:
-                    self.hp += value["effect"]["hp"]
+    def defend(self, opponent_attack: int) -> None:
+        hp_after_attack = self.hp - (opponent_attack - self.protection)
 
-    def extract_potion(self, knights: dict) -> dict:
-        return {
-            knights[knight]["name"]: knights[knight]["potion"]
-            for knight in knights
-            if knights[knight]["name"] == self.name
-        }
-
-    def attack(self, opponent_hp: int, opponent_protection: int) -> int:
-        opponent_hp -= self.power - opponent_protection
-        return opponent_hp
+        if hp_after_attack <= 0:
+            self.hp = 0
+        else:
+            self.hp = hp_after_attack
