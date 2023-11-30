@@ -1,4 +1,4 @@
-from characters.knights import Knights
+from characters.knight import Knight
 from items.potion import Potion
 from items.armour import Armour
 from items.weapon import Weapon
@@ -11,11 +11,10 @@ class HeroManipulations:
 
     @staticmethod
     def add_to_classes(hero: dict) -> None:
-        Knights(hero)
+        Knight(hero)
         Weapon(hero["weapon"], hero["name"])
 
-        if hero["potion"]:
-            Potion(hero["potion"], hero["name"])
+        Potion(hero["potion"], hero["name"])
 
         hero_armour = 0
         for armour in hero["armour"]:
@@ -24,10 +23,10 @@ class HeroManipulations:
         Armour(hero_armour, hero["name"])
 
     @staticmethod
-    def hero_status(warriors_class: Type[Knights]) -> dict:
+    def hero_status(warriors_class: Type[Knight]) -> dict:
         status = {}
 
-        for key, value in warriors_class.heroes.items():
-            status[key] = value.hp
+        for name, parameters in warriors_class.heroes.items():
+            status[name] = parameters.hp
 
         return status

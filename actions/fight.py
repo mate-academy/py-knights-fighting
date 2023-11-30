@@ -1,4 +1,4 @@
-from characters.knights import Knights
+from characters.knight import Knight
 
 
 class Fight:
@@ -6,7 +6,7 @@ class Fight:
         pass
 
     @staticmethod
-    def fight(warrior: Knights, opponent: Knights) -> None:
+    def fight(warrior: Knight, opponent: Knight) -> None:
 
         warrior.hp -= opponent.power - warrior.protection
         opponent.hp -= warrior.power - opponent.protection

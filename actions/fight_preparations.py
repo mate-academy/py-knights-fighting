@@ -1,5 +1,5 @@
 from __future__ import annotations
-from characters.knights import Knights
+from characters.knight import Knight
 from items.potion import Potion
 from items.armour import Armour
 from items.weapon import Weapon
@@ -11,29 +11,23 @@ class FightPreparations:
         pass
 
     @staticmethod
-    def apply_potion(knight: Knights) -> None:
-        for potion in Potion.potions.values():
-            if potion.owner == knight.name:
-                knight.hp += potion.hp
-                knight.power += potion.power
-                knight.protection += potion.protection
+    def apply_potion(knight: Knight) -> None:
+        knight.hp += Potion.potions[knight.name].hp
+        knight.power += Potion.potions[knight.name].power
+        knight.protection += Potion.potions[knight.name].protection
 
     @staticmethod
-    def apply_armour(knight: Knights) -> None:
-        for armour in Armour.armour.values():
-            if armour.owner == knight.name:
-                knight.protection += armour.protection
+    def apply_armour(knight: Knight) -> None:
+        knight.protection += Armour.armours[knight.name].protection
 
     @staticmethod
-    def apply_weapon(knight: Knights) -> None:
-        for weapon in Weapon.weapons.values():
-            if weapon.owner == knight.name:
-                knight.power += weapon.power
+    def apply_weapon(knight: Knight) -> None:
+        knight.power += Weapon.weapons[knight.name].power
 
     @classmethod
     def apply_all(
             cls,
-            knight: Knights,
+            knight: Knight,
             weapon: bool = True,
             armour: bool = True,
             potion: bool = True
