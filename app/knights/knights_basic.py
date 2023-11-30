@@ -1,4 +1,4 @@
-class Knights:
+class Knight:
     def __init__(self, knight: dict) -> None:
         self.name = knight["name"]
         self.power = knight["power"]
@@ -18,16 +18,15 @@ class Knights:
 
         # apply potion if exist
         if self.potion is not None:
-            if "power" in self.potion["effect"]:
-                self.power += self.potion["effect"]["power"]
+            for key, value in self.potion["effect"].items():
+                if key == "power":
+                    self.power += value
+                if key == "protection":
+                    self.protection += value
+                if key == "hp":
+                    self.hp += value
 
-            if "protection" in self.potion["effect"]:
-                self.protection += self.potion["effect"]["protection"]
-
-            if "hp" in self.potion["effect"]:
-                self.hp += self.potion["effect"]["hp"]
-
-    def attack(self, other: "Knights") -> dict:
+    def attack(self, other: "Knight") -> dict:
         self.hp -= other.power - self.protection
         other.hp -= self.power - other.protection
         if self.hp <= 0:
