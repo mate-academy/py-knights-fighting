@@ -10,14 +10,9 @@ def apply_weapon(knight: dict) -> None:
 
 def apply_potion(knight: dict) -> None:
     if knight["potion"] is not None:
-        if "power" in knight["potion"]["effect"]:
-            knight["power"] += knight["potion"]["effect"]["power"]
-
-        if "protection" in knight["potion"]["effect"]:
-            knight["protection"] += knight["potion"]["effect"]["protection"]
-
-        if "hp" in knight["potion"]["effect"]:
-            knight["hp"] += knight["potion"]["effect"]["hp"]
+        for effect in ("power", "protection", "hp"):
+            if effect in knight["potion"]["effect"]:
+                knight[effect] += knight["potion"]["effect"][effect]
 
 
 def make_preparations(*args: dict) -> None:
