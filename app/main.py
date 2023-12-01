@@ -184,7 +184,7 @@ def battle(knightsConfig):
     lancelot["hp"] -= mordred["power"] - lancelot["protection"]
     mordred["hp"] -= lancelot["power"] - mordred["protection"]
 
-    # check if someone fell in battle
+    # check if someone fell in battles
     if lancelot["hp"] <= 0:
         lancelot["hp"] = 0
 
@@ -195,14 +195,14 @@ def battle(knightsConfig):
     arthur["hp"] -= red_knight["power"] - arthur["protection"]
     red_knight["hp"] -= arthur["power"] - red_knight["protection"]
 
-    # check if someone fell in battle
+    # check if someone fell in battles
     if arthur["hp"] <= 0:
         arthur["hp"] = 0
 
     if red_knight["hp"] <= 0:
         red_knight["hp"] = 0
 
-    # Return battle results:
+    # Return battles results:
     return {
         lancelot["name"]: lancelot["hp"],
         arthur["name"]: arthur["hp"],
