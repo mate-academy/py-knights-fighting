@@ -11,8 +11,6 @@ def battle(knights: dict) -> dict:
     red_knight.defend(arthur.power)
 
     return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp
+        knight.name: knight.hp
+        for knight in [lancelot, arthur, mordred, red_knight]
     }

@@ -34,12 +34,7 @@ class Knight:
     def use_potion(self) -> None:
         if self.potion is not None:
             for effect, value in self.potion["effect"].items():
-                if effect == "power":
-                    self.power += value
-                if effect == "hp":
-                    self.hp += value
-                if effect == "protection":
-                    self.protection += value
+                setattr(self, effect, getattr(self, effect) + value)
 
     def defend(self, opponent_attack: int) -> None:
         hp_after_attack = self.hp - (opponent_attack - self.protection)
