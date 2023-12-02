@@ -2,7 +2,7 @@ from app.knights.knight import Knight
 from app.knights.armour import Armour
 from app.knights.weapon import Weapon
 from app.knights.potion import Potion
-from app.main import KNIGHTS
+# from app.main import KNIGHTS
 
 
 class KnightsCreation:
@@ -16,11 +16,14 @@ class KnightsCreation:
             self.knights_in_dictionary[knight_name]["power"],
             self.knights_in_dictionary[knight_name]["hp"]
         )
+        print(self.knights_in_dictionary[knight_name]["name"],
+            self.knights_in_dictionary[knight_name]["power"],
+            self.knights_in_dictionary[knight_name]["hp"])
         knight.armour = [
             Armour(unit["part"], unit["protection"])
             for unit in self.knights_in_dictionary[knight_name]["armour"]
         ]
-        knight.power = Weapon(
+        knight.weapon = Weapon(
             self.knights_in_dictionary[knight_name]["weapon"]["name"],
             self.knights_in_dictionary[knight_name]["weapon"]["power"]
         )
@@ -32,5 +35,5 @@ class KnightsCreation:
         return knight
 
 
-create = KnightsCreation(KNIGHTS)
-KnightsCreation.knight_create(create, "lancelot")
+"""create = KnightsCreation(KNIGHTS)
+KnightsCreation.knight_create(create, "lancelot")"""

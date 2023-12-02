@@ -3,4 +3,3 @@ class Knight:
         self.name = name
         self.power = power
         self.hp = hp
-
