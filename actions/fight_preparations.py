@@ -5,10 +5,7 @@ from items.armour import Armour
 from items.weapon import Weapon
 
 
-class FightPreparations:
-
-    def __init__(self) -> None:
-        pass
+class FightPreparation:
 
     @staticmethod
     def apply_potion(knight: Knight) -> None:

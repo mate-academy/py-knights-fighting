@@ -5,15 +5,12 @@ from items.weapon import Weapon
 from typing import Type
 
 
-class HeroManipulations:
-    def __init__(self) -> None:
-        pass
+class HeroManipulation:
 
     @staticmethod
     def add_to_classes(hero: dict) -> None:
         Knight(hero)
         Weapon(hero["weapon"], hero["name"])
-
         Potion(hero["potion"], hero["name"])
 
         hero_armour = 0

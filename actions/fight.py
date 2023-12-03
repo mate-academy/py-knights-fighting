@@ -2,8 +2,6 @@ from characters.knight import Knight
 
 
 class Fight:
-    def __init__(self) -> None:
-        pass
 
     @staticmethod
     def fight(warrior: Knight, opponent: Knight) -> None:

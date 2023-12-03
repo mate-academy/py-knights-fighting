@@ -7,4 +7,4 @@ class Knight:
         self.hp = stats["hp"]
         self.protection = 0
 
-        Knight.heroes[stats["name"]] = self
+        Knight.heroes[self.name] = self
