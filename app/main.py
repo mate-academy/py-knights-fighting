@@ -1,4 +1,4 @@
-from app.knights import Knight
+from app.knights import Knight, fight
 
 KNIGHTS = {
     "lancelot": {
@@ -109,14 +109,14 @@ def apply_preparation(knight_instances: dict) -> None:
         knight_instance.preparation()
 
 
-def run_battle(knight_instances: dict) -> dict:
+def battle(knight_instances: dict) -> dict:
     lancelot = knight_instances["lancelot"]
     arthur = knight_instances["arthur"]
     mordred = knight_instances["mordred"]
     red_knight = knight_instances["red_knight"]
 
-    lancelot.battle(mordred)
-    arthur.battle(red_knight)
+    lancelot.fight(mordred)
+    arthur.fight(red_knight)
 
     return {
         lancelot.name: lancelot.hp,
@@ -130,6 +130,6 @@ knight_instances = create_knights(KNIGHTS)
 
 apply_preparation(knight_instances)
 
-battle_result_hp = run_battle(knight_instances)
+battle_result_hp = battle(knight_instances)
 
 print(battle_result_hp)
