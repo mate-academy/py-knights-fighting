@@ -1,13 +1,16 @@
-def apply_preparation(knight_instances: dict) -> None:
-    for knight_name, knight_instance in knight_instances.items():
-        knight_instance.preparation()
+from app.knights import Knight
 
 
-def battle(knight_instances: dict) -> dict:
-    lancelot = knight_instances["lancelot"]
-    arthur = knight_instances["arthur"]
-    mordred = knight_instances["mordred"]
-    red_knight = knight_instances["red_knight"]
+def battle(knights: dict) -> dict:
+    lancelot = Knight(knights["lancelot"])
+    arthur = Knight(knights["arthur"])
+    mordred = Knight(knights["mordred"])
+    red_knight = Knight(knights["red_knight"])
+
+    lancelot.preparation()
+    arthur.preparation()
+    mordred.preparation()
+    red_knight.preparation()
 
     lancelot.fight(mordred)
     arthur.fight(red_knight)

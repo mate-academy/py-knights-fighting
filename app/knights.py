@@ -3,23 +3,14 @@ from __future__ import annotations
 
 class Knight:
 
-    def __init__(
-            self,
-            name: str,
-            power: int,
-            hp: int,
-            armour: list,
-            weapon: dict,
-            potion: dict,
-            protection: int = 0
-    ) -> None:
-        self.name = name
-        self.power = power
-        self.hp = hp
-        self.armour = armour
-        self.weapon = weapon
-        self.potion = potion
+    def __init__(self, knight: dict) -> None:
+        self.name = knight["name"]
+        self.power = knight["power"]
+        self.hp = knight["hp"]
         self.protection = 0
+        self.armour = knight["armour"]
+        self.weapon = knight["weapon"]
+        self.potion = knight["potion"]
 
     def preparation(self) -> None:
         if self.armour:
@@ -29,12 +20,9 @@ class Knight:
         self.power += self.weapon["power"]
 
         if self.potion:
-            if "power" in self.potion["effect"]:
-                self.power += self.potion["effect"]["power"]
-            if "hp" in self.potion["effect"]:
-                self.hp += self.potion["effect"]["hp"]
-            if "protection" in self.potion["effect"]:
-                self.protection += self.potion["effect"]["protection"]
+            for key in self.potion["effect"]:
+                setattr(self, key, getattr(self, key)
+                        + self.potion["effect"][key])
 
     def fight(self, other: Knight) -> None:
         self.hp -= other.power - self.protection
