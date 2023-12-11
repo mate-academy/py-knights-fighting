@@ -21,14 +21,14 @@ class Knight:
 
         if self.potion:
             for key in self.potion["effect"]:
-                setattr(self, key, getattr(self, key)
-                        + self.potion["effect"][key])
+                setattr(
+                    self, key, getattr(self, key) + self.potion["effect"][key]
+                )
 
     def fight(self, other: Knight) -> None:
         self.hp -= other.power - self.protection
         other.hp -= self.power - other.protection
 
-        # check if someone fell in battle
         if self.hp <= 0:
             self.hp = 0
 
