@@ -12,14 +12,11 @@ def attribute_calculation(knight_warior: list[Knight]) -> list[Knight]:
         knight.power += knight.weapon["power"]
 
         if knight.potion:
-            if "power" in knight.potion["effect"]:
-                knight.power += knight.potion["effect"]["power"]
-
-            if "hp" in knight.potion["effect"]:
-                knight.hp += knight.potion["effect"]["hp"]
-
-            if "protection" in knight.potion["effect"]:
-                knight.protection += knight.potion["effect"]["protection"]
+            for attribute, effect_value in knight.potion["effect"].items():
+                setattr(
+                    knight,
+                    attribute,
+                    getattr(knight, attribute) + effect_value)
 
         result_list.append(knight)
 
