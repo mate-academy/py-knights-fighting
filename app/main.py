@@ -1,6 +1,6 @@
-from app.weapon import Weapon
 from app.armour import Armour
-from app.potion import Potion
+
+
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
@@ -90,12 +90,8 @@ KNIGHTS = {
 
 
 def battle(knightsconfig: dict) -> dict:
-    weapon = Weapon(knightsconfig)
-    weapon_score = weapon.weapon_score()
-    armour = Armour(weapon_score)
-    armor_score = armour.armor_score()
-    potion = Potion(armor_score)
-    finished_dict = potion.potion_score()
+    score = Armour(knightsconfig)
+    finished_dict = score.armor_score()
     lancelot = finished_dict["lancelot"]
     mordred = finished_dict["mordred"]
     arthur = finished_dict["arthur"]
@@ -104,9 +100,9 @@ def battle(knightsconfig: dict) -> dict:
     mordred["hp"] -= lancelot["power"] - mordred["protection"]
     arthur["hp"] -= red_knight["power"] - arthur["protection"]
     red_knight["hp"] -= arthur["power"] - red_knight["protection"]
-    for i in finished_dict:
-        if finished_dict[i]["hp"] < 0:
-            finished_dict[i]["hp"] = 0
+    for key, value in finished_dict.items():
+        if value["hp"] < 0:
+            value["hp"] = 0
     return {lancelot["name"]: lancelot["hp"],
             arthur["name"]: arthur["hp"],
             mordred["name"]: mordred["hp"],
