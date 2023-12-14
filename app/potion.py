@@ -1,4 +1,3 @@
-
 class Potion:
     def __init__(self, potion_dict: dict) -> None:
         self.potion_dict = potion_dict

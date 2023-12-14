@@ -1,5 +1,4 @@
-from app.armour import Armour
-
+from app.knights import Knights
 
 KNIGHTS = {
     "lancelot": {
@@ -90,7 +89,7 @@ KNIGHTS = {
 
 
 def battle(knightsconfig: dict) -> dict:
-    score = Armour(knightsconfig)
+    score = Knights(knightsconfig)
     finished_dict = score.armor_score()
     lancelot = finished_dict["lancelot"]
     mordred = finished_dict["mordred"]

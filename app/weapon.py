@@ -1,6 +1,3 @@
-from app.potion import Potion
-
-
 class Weapon:
     def __init__(self, weapon_dict: dict) -> None:
         self.weapon_dict = weapon_dict
@@ -10,5 +7,4 @@ class Weapon:
             if value["weapon"]:
                 value["power"] +=\
                     value["weapon"]["power"]
-        potion = Potion(self.weapon_dict)
-        return potion.potion_score()
+        return self.weapon_dict
