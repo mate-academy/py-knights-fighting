@@ -3,10 +3,9 @@ class Potion:
         self.potion_dict = potion_dict
 
     def potion_score(self) -> dict:
-        for name, characteristics in self.potion_dict.items():
-            if characteristics["potion"]:
-                for key_2, value_2 \
-                        in characteristics["potion"]["effect"].items():
-                    characteristics[key_2] \
-                        += characteristics["potion"]["effect"][key_2]
+        for name, potion in self.potion_dict.items():
+            if potion["potion"]:
+                way_effect = potion["potion"]["effect"]
+                for effect_key, effect in way_effect.items():
+                    potion[effect_key] += way_effect[effect_key]
         return self.potion_dict

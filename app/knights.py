@@ -7,12 +7,12 @@ class Knights:
         self.knights = knights
 
     def armor_score(self) -> dict:
-        for name, characteristics in self.knights.items():
-            characteristics["protection"] = 0
-            if characteristics["armour"]:
-                characteristics["protection"] += (
+        for name, armor in self.knights.items():
+            armor["protection"] = 0
+            if armor["armour"]:
+                armor["protection"] += (
                     sum(num["protection"]
-                        for num in characteristics["armour"]))
+                        for num in armor["armour"]))
         weapon = Weapon(self.knights)
         potion = Potion(weapon.weapon_score())
         finish_score = potion.potion_score()
