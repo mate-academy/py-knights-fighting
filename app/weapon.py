@@ -3,8 +3,8 @@ class Weapon:
         self.weapon_dict = weapon_dict
 
     def weapon_score(self) -> dict:
-        for key, value in self.weapon_dict.items():
-            if value["weapon"]:
-                value["power"] +=\
-                    value["weapon"]["power"]
+        for name, characteristics in self.weapon_dict.items():
+            if characteristics["weapon"]:
+                characteristics["power"] +=\
+                    characteristics["weapon"]["power"]
         return self.weapon_dict

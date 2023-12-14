@@ -99,9 +99,9 @@ def battle(knightsconfig: dict) -> dict:
     mordred["hp"] -= lancelot["power"] - mordred["protection"]
     arthur["hp"] -= red_knight["power"] - arthur["protection"]
     red_knight["hp"] -= arthur["power"] - red_knight["protection"]
-    for key, value in finished_dict.items():
-        if value["hp"] < 0:
-            value["hp"] = 0
+    for name, characteristics in finished_dict.items():
+        if characteristics["hp"] < 0:
+            characteristics["hp"] = 0
     return {lancelot["name"]: lancelot["hp"],
             arthur["name"]: arthur["hp"],
             mordred["name"]: mordred["hp"],
