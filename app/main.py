@@ -93,9 +93,8 @@ def apply_equipment(knight: None) -> None:
 
     if knight["potion"] is not None:
         effects = knight["potion"]["effect"]
-        knight["power"] += effects.get("power", 0)
-        knight["protection"] += effects.get("protection", 0)
-        knight["hp"] += effects.get("hp", 0)
+        for key, value in effects.items():
+            knight[key] += value
 
 
 def perform_battle(knight1: None, knight2: None) -> None:
