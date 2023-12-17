@@ -1,4 +1,5 @@
 from typing import Dict
+
 from app.knight import Knight
 
 
@@ -12,10 +13,8 @@ def battle(
         knight.apply_weapon()
         knight.apply_potion()
 
-    # Battle
     battle_pairs = [("lancelot", "mordred"), ("arthur", "red_knight")]
 
-    # Battle
     for attacker, defender in battle_pairs:
         knights[defender].hp -= (
             knights[attacker].power - knights[defender].protection
@@ -25,7 +24,6 @@ def battle(
             knights[defender].power - knights[attacker].protection
         )
 
-    # Check if someone fell in battle
     for knight in knights.values():
         if knight.hp <= 0:
             knight.hp = 0
