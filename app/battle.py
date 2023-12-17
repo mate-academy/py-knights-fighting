@@ -13,19 +13,17 @@ def battle(
         knight.apply_potion()
 
     # Battle
-    knights["lancelot"].hp -= (
-        knights["mordred"].power - knights["lancelot"].protection
-    )
-    knights["mordred"].hp -= (
-        knights["lancelot"].power - knights["mordred"].protection
-    )
+    battle_pairs = [("lancelot", "mordred"), ("arthur", "red_knight")]
 
-    knights["arthur"].hp -= (
-        knights["red_knight"].power - knights["arthur"].protection
-    )
-    knights["red_knight"].hp -= (
-        knights["arthur"].power - knights["red_knight"].protection
-    )
+    # Battle
+    for attacker, defender in battle_pairs:
+        knights[defender].hp -= (
+            knights[attacker].power - knights[defender].protection
+        )
+
+        knights[attacker].hp -= (
+            knights[defender].power - knights[attacker].protection
+        )
 
     # Check if someone fell in battle
     for knight in knights.values():
