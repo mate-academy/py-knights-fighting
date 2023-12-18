@@ -26,9 +26,10 @@ class Knight:
 
     def use_potion(self) -> None:
         if self.potion is not None:
-            for key in self.potion["effect"]:
-                setattr(self, key,
-                        getattr(self, key) + self.potion["effect"][key])
+            if isinstance(self.potion["effect"], dict):
+                for key, value in self.potion["effect"].items():
+                    setattr(self, key,
+                            getattr(self, key) + value)
 
     def use_basic_stats(self) -> None:
         self.use_potion()
