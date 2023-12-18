@@ -1,11 +1,12 @@
-from app.knight import Knight
+from app.knight import Knights
+# from app.knightsConfig import KNIGHTS
 
 
 def battle(knight: dict) -> dict:
-    lancelot = Knight(knight["lancelot"])
-    arthur = Knight(knight["arthur"])
-    mordred = Knight(knight["mordred"])
-    red_knight = Knight(knight["red_knight"])
+    lancelot = Knights(knight["lancelot"])
+    arthur = Knights(knight["arthur"])
+    mordred = Knights(knight["mordred"])
+    red_knight = Knights(knight["red_knight"])
 
     lancelot.preparation()
     arthur.preparation()
