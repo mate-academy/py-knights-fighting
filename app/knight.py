@@ -23,12 +23,6 @@ class Knights:
                 setattr(
                     self, key,
                     getattr(self, key) + self.potion.get("effect")[key])
-        #     if "power" in self.potion.get("effect"):
-        #         self.power += self.potion["effect"]["power"]
-        #     if "protection" in self.potion.get("effect"):
-        #         self.protection += self.potion["effect"]["protection"]
-        #     if "hp" in self.potion.get("effect"):
-        #         self.hp += self.potion["effect"]["hp"]
 
     def fight(self, other: Knights) -> None:
         self.hp -= other.power - self.protection
