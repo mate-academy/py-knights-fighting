@@ -20,16 +20,10 @@ class Knights:
 
         if self.potion:
             for key in self.potion.get("effect"):
-                setattr(
-                    self, key,
-                    getattr(self, key) + self.potion.get("effect")[key])
+                effect_value = getattr(self,
+                                       key) + self.potion.get("effect")[key]
+                setattr(self, key, effect_value)
 
     def fight(self, other: Knights) -> None:
-        self.hp -= other.power - self.protection
-        other.hp -= self.power - other.protection
-
-        if self.hp <= 0:
-            self.hp = 0
-
-        if other.hp <= 0:
-            other.hp = 0
+        self.hp = max(0, self.hp - (other.power - self.protection))
+        other.hp = max(0, other.hp - (self.power - other.protection))
