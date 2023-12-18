@@ -17,5 +17,5 @@ class Battle:
         return knight.hp
 
     @staticmethod
-    def result_dict(knights: list) -> dict:
+    def result_dict(knights: list[Knight]) -> dict:
         return {knight.name: knight.hp for knight in knights}

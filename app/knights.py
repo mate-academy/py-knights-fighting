@@ -26,15 +26,9 @@ class Knight:
 
     def use_potion(self) -> None:
         if self.potion is not None:
-            effect = self.potion["effect"]
-            if "hp" in effect:
-                self.hp += effect["hp"]
-
-            if "power" in effect:
-                self.power += effect["power"]
-
-            if "protection" in effect:
-                self.protection += effect["protection"]
+            for key in self.potion["effect"]:
+                setattr(self, key,
+                        getattr(self, key) + self.potion["effect"][key])
 
     def use_basic_stats(self) -> None:
         self.use_potion()
