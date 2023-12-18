@@ -1,5 +1,4 @@
 from app.knight import Knights
-# from app.knightsConfig import KNIGHTS
 
 
 def battle(knight: dict) -> dict:
@@ -8,17 +7,11 @@ def battle(knight: dict) -> dict:
     mordred = Knights(knight["mordred"])
     red_knight = Knights(knight["red_knight"])
 
-    lancelot.preparation()
-    arthur.preparation()
-    mordred.preparation()
-    red_knight.preparation()
+    knights = (lancelot, arthur, mordred, red_knight)
+    for knight in knights:
+        knight.preparation()
 
     lancelot.fight(mordred)
     arthur.fight(red_knight)
 
-    return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
-    }
+    return {knight.name: knight.hp for knight in knights}
