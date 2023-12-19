@@ -1,8 +1,9 @@
 from models import Knight, Armour, Weapon, Potion
 from battle import battle
+from tyoing import Tuple
 
 
-def create_knights():
+def create_knights() -> Tuple[Knight, Knight]:
     lancelot = Knight(
         name="Lancelot",
         power=35,
@@ -24,7 +25,7 @@ def create_knights():
     return lancelot, arthur
 
 
-def main():
+def main() -> None:
     lancelot, arthur = create_knights()
     result = battle(lancelot, arthur)
     print(result)
