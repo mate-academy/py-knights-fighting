@@ -1,5 +1,8 @@
+from typing import List, Optional, Dict
+
+
 class Knight:
-    def __init__(self, name, power, hp, armour, weapon, potion):
+    def __init__(self, name: str, power: int, hp: int, armour: List['Armour'], weapon: 'Weapon', potion: Optional['Potion']):
         self.name = name
         self.power = power
         self.hp = hp
@@ -7,28 +10,28 @@ class Knight:
         self.weapon = weapon
         self.potion = potion
 
-    def apply_potion_effects(self):
+    def apply_potion_effects(self) -> None:
         if self.potion:
             self.hp += self.potion.effect.get("hp", 0)
             self.power += self.potion.effect.get("power", 0)
 
-    def total_protection(self):
+    def total_protection(self) -> int:
         return sum(armour.protection for armour in self.armour)
 
 
 class Armour:
-    def __init__(self, part, protection):
+    def __init__(self, part: str, protection: int):
         self.part = part
         self.protection = protection
 
 
 class Weapon:
-    def __init__(self, name, power):
+    def __init__(self, name: str, power: int):
         self.name = name
         self.power = power
 
 
 class Potion:
-    def __init__(self, name, effect):
+    def __init__(self, name: str, effect: Dict[str, int]):
         self.name = name
         self.effect = effect
