@@ -1,4 +1,4 @@
-from models import Knight
+from app.models import Knight, Armour, Weapon, Potion
 
 
 def calculate_damage(dealer: Knight, receiver: Knight) -> int:
