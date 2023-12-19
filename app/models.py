@@ -3,7 +3,7 @@ from typing import List, Optional, Dict
 
 class Knight:
     def __init__(self, name: str, power: int, hp: int, armour: List["Armour"],
-                 weapon: "Weapon", potion: Optional["Potion"]):
+                 weapon: "Weapon", potion: Optional["Potion"]) -> None:
         self.name = name
         self.power = power
         self.hp = hp
@@ -21,18 +21,18 @@ class Knight:
 
 
 class Armour:
-    def __init__(self, part: str, protection: int):
+    def __init__(self, part: str, protection: int) -> None:
         self.part = part
         self.protection = protection
 
 
 class Weapon:
-    def __init__(self, name: str, power: int):
+    def __init__(self, name: str, power: int) -> None:
         self.name = name
         self.power = power
 
 
 class Potion:
-    def __init__(self, name: str, effect: Dict[str, int]):
+    def __init__(self, name: str, effect: Dict[str, int]) -> None:
         self.name = name
         self.effect = effect
