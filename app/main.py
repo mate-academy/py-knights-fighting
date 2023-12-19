@@ -1,4 +1,4 @@
-from models import Knight, Armour, Weapon, Potion
+from models import Knight
 from battle import battle
 from tyoing import Tuple
 
