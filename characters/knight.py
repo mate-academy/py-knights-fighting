@@ -33,18 +33,9 @@ class Knight:
         warrior = cls.heroes[warrior_name]
         opponent = cls.heroes[opponent_name]
 
-        warrior.hp -= opponent.power - warrior.protection
-        opponent.hp -= warrior.power - opponent.protection
-
-        for hero in [warrior, opponent]:
-            if hero.hp <= 0:
-                hero.hp = 0
+        warrior.hp = max(0, warrior.hp - (opponent.power - warrior.protection))
+        opponent.hp = max(0, opponent.hp - (warrior.power - opponent.protection))
 
     @classmethod
     def hero_status(cls) -> dict:
-        status = {}
-
-        for name, parameter in cls.heroes.items():
-            status[name] = parameter.hp
-
-        return status
+        return {name: parameter.hp for name, parameter in cls.heroes.items()}
