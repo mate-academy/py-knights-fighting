@@ -2,7 +2,8 @@ from typing import List, Optional, Dict
 
 
 class Knight:
-    def __init__(self, name: str, power: int, hp: int, armour: List['Armour'], weapon: 'Weapon', potion: Optional['Potion']):
+    def __init__(self, name: str, power: int, hp: int, armour: List["Armour"],
+                 weapon: "Weapon", potion: Optional["Potion"]):
         self.name = name
         self.power = power
         self.hp = hp
