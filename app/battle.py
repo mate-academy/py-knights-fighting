@@ -1,10 +1,13 @@
-def calculate_damage(dealer, receiver):
+from models import Knight
+
+
+def calculate_damage(dealer: Knight, receiver: Knight) -> int:
     base_damage = dealer.power + dealer.weapon.power
     actual_damage = max(base_damage - receiver.total_protection(), 0)
     return actual_damage
 
 
-def battle(knight1, knight2):
+def battle(knight1: Knight, knight2: Knight) -> str:
     knight1.apply_potion_effects()
     knight2.apply_potion_effects()
 
