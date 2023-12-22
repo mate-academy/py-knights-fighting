@@ -11,16 +11,8 @@ def battle(knights_config: dict) -> dict:
     arthur = KnightStats(knights_config["arthur"]).final_stats()
     red_knight = KnightStats(knights_config["red_knight"]).final_stats()
 
-    # -------------------------------------------------------------------------------
     # BATTLE:
-    round_1 = fighting(lancelot, mordred)
-
-    round_2 = fighting(arthur, red_knight)
-
-    # Return battle results:
-    result = round_1.copy()
-    result.update(round_2)
-    return result
+    return fighting(lancelot, mordred) | fighting(arthur, red_knight)
 
 
 print(battle(KNIGHTS))
