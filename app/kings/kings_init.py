@@ -1,12 +1,12 @@
 class KingsConfigur:
 
-    def __init__(self, king_list: dict) -> None:
-        self.king_list = king_list
+    def __init__(self, kings: dict) -> None:
+        self.kings = kings
 
     def configure(self) -> dict:
         new_result = {}
-        for i in self.king_list:
-            king_configur = self.king_list[i]
+        for king in self.kings:
+            king_configur = self.kings[king]
 
             # apply armour
             king_configur["protection"] = 0
@@ -18,17 +18,9 @@ class KingsConfigur:
 
             # apply potion if exist
             if king_configur["potion"] is not None:
-                if "power" in king_configur["potion"]["effect"]:
-                    king_configur["power"] += (
-                        king_configur)["potion"]["effect"]["power"]
-
-                if "protection" in king_configur["potion"]["effect"]:
-                    king_configur["protection"] += (
-                        king_configur)["potion"]["effect"]["protection"]
-
-                if "hp" in king_configur["potion"]["effect"]:
-                    king_configur["hp"] += (
-                        king_configur)["potion"]["effect"]["hp"]
+                for elements in king_configur["potion"]["effect"]:
+                    king_configur[elements] += (
+                        king_configur)["potion"]["effect"][elements]
 
             new_result[king_configur["name"]] = king_configur
 
