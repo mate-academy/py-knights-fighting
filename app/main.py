@@ -11,15 +11,19 @@ def battle(list_king: dict) -> dict:
     # BATTLE:
 
     # 1 Lancelot vs Mordred:
-    battle_1 = Competition.battle_opponent("Lancelot",
-                                           "Mordred",
-                                           upgrade_list_of_king)
+    battle_1 = Competition.battle_opponent(
+        "Lancelot",
+        "Mordred",
+        upgrade_list_of_king
+    )
     upgrade_list_of_king = battle_1
 
     # 2 Arthur vs Red Knight:
-    battle_1 = Competition.battle_opponent("Arthur",
-                                           "Red Knight",
-                                           upgrade_list_of_king)
+    battle_1 = Competition.battle_opponent(
+        "Arthur",
+        "Red Knight",
+        upgrade_list_of_king
+    )
     upgrade_list_of_king = battle_1
 
     # Result of all Battle
