@@ -1,5 +1,4 @@
 from app.knight import Knight
-from app.knights_config import knights
 
 
 def create_knight(knight_config: dict) -> Knight:
