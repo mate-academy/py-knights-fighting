@@ -1,6 +1,6 @@
 from models import Knight
 from battle import battle
-from tyoing import Tuple
+from typing import Tuple
 
 
 def create_knights() -> Tuple[Knight, Knight]:
