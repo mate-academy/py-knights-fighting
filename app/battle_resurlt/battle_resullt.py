@@ -1,23 +1,21 @@
 class Competition:
 
     @staticmethod
-    def battle_opponent(opponent_1: str,
-                        opponent_2: str, king_conf: dict) -> dict:
-        first = king_conf[opponent_1]
-        second = king_conf[opponent_2]
-        first["hp"] -= second["power"] - first["protection"]
-        second["hp"] -= first["power"] - second["protection"]
+    def battle_opponent(opponent_1: dict, opponent_2: dict) -> dict:
+        king_conf = {}
+        opponent_1["hp"] -= opponent_2["power"] - opponent_1["protection"]
+        opponent_2["hp"] -= opponent_1["power"] - opponent_2["protection"]
 
         # check if someone fell in battle
-        if first["hp"] <= 0:
-            first["hp"] = 0
+        if opponent_1["hp"] <= 0:
+            opponent_1["hp"] = 0
 
-        if second["hp"] <= 0:
-            second["hp"] = 0
+        if opponent_2["hp"] <= 0:
+            opponent_2["hp"] = 0
 
         # Upgrade the dict with new data
-        king_conf[first["name"]] = first
-        king_conf[second["name"]] = second
+        king_conf[opponent_1["name"]] = opponent_1
+        king_conf[opponent_2["name"]] = opponent_2
 
         return king_conf
 
