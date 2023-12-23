@@ -28,6 +28,3 @@ def battle(knights_config: dict) -> dict:
     knight_instances["Arthur"].attack(knight_instances["Red Knight"])
 
     return {knight.name: knight.hp for knight in knight_instances.values()}
-
-
-print(battle(knights))
