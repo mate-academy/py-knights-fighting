@@ -1,22 +1,27 @@
-from app.knights_stuff.armour import Armour
-from app.knights_stuff.potion import Potion
-from app.knights_stuff.weapon import Weapon
-
-
 class Knight:
-    def __init__(self, config: dict) -> None:
-        self.config = config
-        self.name = config["name"]
-        self.hp = config["hp"]
-        self.power = config["power"]
+    def __init__(self, name: str, power: int, hp: int) -> None:
+        self.name = name
+        self.power = power
+        self.hp = hp
         self.protection = 0
 
-    def battle_preparation(self) -> None:
-        armour = Armour(self.config["armour"])
-        self.protection = armour.use_armour()
+    def apply_attributes(
+            self, armour: list,
+            weapon: dict,
+            potion: dict | None
+    ) -> None:
+        for unit in armour:
+            self.protection += unit["protection"]
+        self.power += weapon["power"]
+        if potion:
+            for attribute, value in potion["effect"].items():
+                self.__dict__[attribute] += value
 
-        weapon = Weapon()
-        self.power += weapon.weapon_power(self.config["weapon"])
+    def attack(self, opponent: "Knight") -> None:
+        opponent.hp -= self.power - opponent.protection
+        self.hp -= opponent.power - self.protection
 
-        potion = Potion(self.config["potion"])
-        potion.use_potion(self)
+        if opponent.hp <= 0:
+            opponent.hp = 0
+        if self.hp <= 0:
+            self.hp = 0

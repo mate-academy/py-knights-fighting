@@ -11,7 +11,7 @@ knights: dict[str, dict] = {
         "potion": None,
     },
     "arthur": {
-        "name": "Artur",
+        "name": "Arthur",
         "power": 45,
         "hp": 75,
         "armour": [

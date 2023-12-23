@@ -2,38 +2,32 @@ from app.knight import Knight
 from app.knights_config import knights
 
 
-def fight(knight1: Knight, knight2: Knight) -> None:
-    knight1.hp -= knight2.power - knight1.protection
-    knight2.hp -= knight1.power - knight2.protection
+def create_knight(knight_config: dict) -> Knight:
+    knight = Knight(
+        knight_config["name"],
+        knight_config["power"],
+        knight_config["hp"]
+    )
 
-    # check if someone fell in fight
-    if knight1.hp <= 0:
-        knight1.hp = 0
+    knight.apply_attributes(
+        knight_config["armour"],
+        knight_config["weapon"],
+        knight_config["potion"]
+    )
 
-    if knight2.hp <= 0:
-        knight2.hp = 0
+    return knight
 
 
-def battle(knights_config: dict[str, dict]) -> dict[str, int]:
-
-    lancelot = Knight(knights_config["lancelot"])
-    lancelot.battle_preparation()
-    arthur = Knight(knights_config["arthur"])
-    arthur.battle_preparation()
-    mordred = Knight(knights_config["mordred"])
-    mordred.battle_preparation()
-    red_knight = Knight(knights_config["red_knight"])
-    red_knight.battle_preparation()
-
-    fight(lancelot, mordred)
-    fight(arthur, red_knight)
-
-    return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp
+def battle(knights_config: dict) -> dict:
+    knight_instances = {
+        knight["name"]: create_knight(knight)
+        for knight in knights_config.values()
     }
+
+    knight_instances["Lancelot"].attack(knight_instances["Mordred"])
+    knight_instances["Arthur"].attack(knight_instances["Red Knight"])
+
+    return {knight.name: knight.hp for knight in knight_instances.values()}
 
 
 print(battle(knights))
