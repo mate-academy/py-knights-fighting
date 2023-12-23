@@ -8,15 +8,8 @@ class KnightStats:
 
     def potion_effect(self) -> None:
         # Check out this potion
-        if "power" in self.stats["potion"]["effect"]:
-            self.stats["power"] += self.stats["potion"]["effect"]["power"]
-
-        if "protection" in self.stats["potion"]["effect"]:
-            self.stats["protection"] += (
-                self.stats)["potion"]["effect"]["protection"]
-
-        if "hp" in self.stats["potion"]["effect"]:
-            self.stats["hp"] += self.stats["potion"]["effect"]["hp"]
+        for eff in self.stats["potion"]["effect"]:
+            self.stats[eff] += self.stats["potion"]["effect"][eff]
 
     def final_stats(self) -> dict:
         # Statistics at the time of the fight
