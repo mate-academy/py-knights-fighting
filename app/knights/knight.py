@@ -27,14 +27,13 @@ class Knight:
     def use_potion(self) -> None:
         if self.potion:
             effect = self.potion["effect"]
-            if "hp" in effect:
-                self.hp += effect["hp"]
 
-            if "power" in effect:
-                self.power += effect["power"]
+            attributes = ["hp", "power", "protection"]
 
-            if "protection" in effect:
-                self.protection += effect["protection"]
+            for attribute in attributes:
+                if attribute in effect:
+                    current_value = getattr(self, attribute)
+                    setattr(self, attribute, current_value + effect[attribute])
 
     def apply_factors(self) -> None:
         self.use_potion()
