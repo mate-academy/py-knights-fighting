@@ -105,7 +105,9 @@ def battle(knights: dict) -> dict:
     red_knight = list_knight[3]
 
     lancelot.fight(mordred)
+    mordred.fight(lancelot)
     arthur.fight(red_knight)
+    red_knight.fight(arthur)
 
     return {
         lancelot.name: lancelot.hp,

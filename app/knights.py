@@ -29,7 +29,3 @@ class KNIGHT:
             self.hp -= other.power - self.protection
             if self.hp < 0:
                 self.hp = 0
-        if self.power > other.protection:
-            other.hp -= self.power - other.protection
-            if other.hp < 0:
-                other.hp = 0
