@@ -17,5 +17,5 @@ class BattleStats:
         return knight.hp
 
     @staticmethod
-    def result_message(knights: list) -> dict:
+    def result_message(knights: list[Knight]) -> dict:
         return {knight.name: knight.hp for knight in knights}
