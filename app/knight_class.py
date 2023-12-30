@@ -36,7 +36,7 @@ class Knight:
         self.use_weapon()
         self.use_potion()
 
-    def take_damage(self, opponent: Knight):
+    def take_damage(self, opponent: Knight) -> None:
         self.hp -= opponent.power - self.protection
         if self.hp <= 0:
             self.hp = 0
