@@ -89,18 +89,27 @@ KNIGHTS = {
 }
 
 
-Knight_Config = Dict[str, Union[str, int, List[Dict[str, Union[str, int]]], Dict[str, Union[str, int, Dict[str, int]]]]]
+Knight_Config = Dict[
+    str,
+    Union[
+        str,
+        int,
+        List[Dict[str, Union[str, int]]],
+        Dict[str, Union[str, int, Dict[str, int]]]
+    ]
+]
+
 Effect = Dict[str, int]
 
 
 def apply_effects(character: Knight_Config) -> None:
 
-    character["protection"] = sum([a["protection"] for a in character["armour"]])
+    character["protection"] = sum(
+        [a["protection"] for a in character["armour"]]
+    )
 
-    # apply weapon
     character["power"] += character["weapon"]["power"]
 
-    # apply potion if exists
     if character["potion"] is not None:
         for effect_type, value in character["potion"]["effect"].items():
             if effect_type in character:
