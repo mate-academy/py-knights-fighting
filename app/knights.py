@@ -11,15 +11,17 @@ class Knight:
         self.potion: Optional[Dict[str, any]] = knight_info.get("potion", None)
 
     def apply_effects(self) -> None:
-        # apply armour
+        # Apply armour
         self.protection = sum(armor["protection"] for armor in self.armour)
 
-        # apply weapon
+        # Apply weapon
         self.power += self.weapon.get("power", 0)
 
-        # apply potion if exists
+        # Apply potion if exists
         if self.potion is not None:
             effect = self.potion.get("effect", {})
-            self.power += effect.get("power", 0)
-            self.protection += effect.get("protection", 0)
-            self.hp += effect.get("hp", 0)
+            attributes_to_apply = ["power", "protection", "hp"]
+
+            for attribute in attributes_to_apply:
+                setattr(self, attribute, getattr(self, attribute, 0)
+                        + effect.get(attribute, 0))

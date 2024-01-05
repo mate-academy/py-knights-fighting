@@ -88,6 +88,13 @@ def apply_effects(knight: dict) -> None:
         knight["hp"] += effect.get("hp", 0)
 
 
+def conduct_battle(knight1: dict, knight2: dict) -> None:
+    knight1["hp"] -= knight2["power"] - knight1["protection"]
+    knight2["hp"] -= knight1["power"] - knight2["protection"]
+    knight1["hp"] = max(0, knight1["hp"])
+    knight2["hp"] = max(0, knight2["hp"])
+
+
 def battle(knights_config: Dict[str, dict]) -> Dict[str, int]:
     # BATTLE PREPARATIONS:
 
@@ -97,36 +104,14 @@ def battle(knights_config: Dict[str, dict]) -> Dict[str, int]:
 
     # BATTLE:
 
-    # 1 Lancelot vs Mordred:
-    knights_config["lancelot"]["hp"] -= (
-        knights_config["mordred"]["power"]
-        - knights_config["lancelot"]["protection"]
-    )
-    knights_config["mordred"]["hp"] -= (
-        knights_config["lancelot"]["power"]
-        - knights_config["mordred"]["protection"]
-    )
+    # Define the battles
+    battles = [("lancelot", "mordred"), ("arthur", "red_knight")]
 
-    # check if someone fell in battle
-    for knight_name, knight in knights_config.items():
-        knight["hp"] = max(0, knight["hp"])
-
-    # 2 Arthur vs Red Knight:
-    knights_config["arthur"]["hp"] -= (
-        knights_config["red_knight"]["power"]
-        - knights_config["arthur"]["protection"]
-    )
-    knights_config["red_knight"]["hp"] -= (
-        knights_config["arthur"]["power"]
-        - knights_config["red_knight"]["protection"]
-    )
-
-    # check if someone fell in battle
-    for knight_name, knight in knights_config.items():
-        knight["hp"] = max(0, knight["hp"])
+    # Perform the battles
+    for knight1_name, knight2_name in battles:
+        conduct_battle(
+            knights_config[knight1_name], knights_config[knight2_name]
+        )
 
     # Return battle results:
     return {knight["name"]: knight["hp"] for knight in knights_config.values()}
-
-
-print(battle(KNIGHTS))
