@@ -72,15 +72,12 @@ KNIGHTS: Dict[str, Dict[str, dict]] = {
 
 
 def apply_effects(knight: dict) -> None:
-    # apply armour
     knight["protection"] = sum(
         armor["protection"] for armor in knight["armour"]
     )
 
-    # apply weapon
     knight["power"] += knight["weapon"]["power"]
 
-    # apply potion if exist
     if knight["potion"] is not None:
         effect = knight["potion"]["effect"]
         knight["power"] += effect.get("power", 0)
@@ -96,22 +93,14 @@ def conduct_battle(knight1: dict, knight2: dict) -> None:
 
 
 def battle(knights_config: Dict[str, dict]) -> Dict[str, int]:
-    # BATTLE PREPARATIONS:
-
-    # Apply effects to each knight
     for knight_name, knight in knights_config.items():
         apply_effects(knight)
 
-    # BATTLE:
-
-    # Define the battles
     battles = [("lancelot", "mordred"), ("arthur", "red_knight")]
 
-    # Perform the battles
     for knight1_name, knight2_name in battles:
         conduct_battle(
             knights_config[knight1_name], knights_config[knight2_name]
         )
 
-    # Return battle results:
     return {knight["name"]: knight["hp"] for knight in knights_config.values()}

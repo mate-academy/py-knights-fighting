@@ -2,13 +2,21 @@ from typing import Optional, Dict
 
 
 class Knight:
-    def __init__(self, knight_info: Dict[str, any]) -> None:
-        self.name: str = knight_info["name"]
-        self.power: int = knight_info["power"]
-        self.hp: int = knight_info["hp"]
-        self.armour: list = knight_info.get("armour", [])
-        self.weapon: Dict[str, any] = knight_info.get("weapon", {})
-        self.potion: Optional[Dict[str, any]] = knight_info.get("potion", None)
+    def __init__(
+            self,
+            name: str,
+            power: int,
+            hp: int,
+            armour: list = [],
+            weapon: Dict[str, any] = {},
+            potion: Optional[Dict[str, any]] = None
+    ) -> None:
+        self.name: str = name
+        self.power: int = power
+        self.hp: int = hp
+        self.armour: list = armour
+        self.weapon: Dict[str, any] = weapon
+        self.potion: Optional[Dict[str, any]] = potion
 
     def apply_effects(self) -> None:
         # Apply armour
