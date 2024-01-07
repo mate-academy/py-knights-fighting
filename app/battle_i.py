@@ -1,5 +1,5 @@
 from typing import Dict
-from knight_config import Knight_Config
+from app.knight_config import Knight_Config
 
 
 def apply_effects(character: Knight_Config) -> None:

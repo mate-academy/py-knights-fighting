@@ -1,4 +1,4 @@
-from battle_i import battle
+from app.battle_i import battle
 
 
 KNIGHTS = {
