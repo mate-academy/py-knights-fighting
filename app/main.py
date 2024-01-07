@@ -1,4 +1,4 @@
-from battle import battle
+from battle_i import battle
 
 
 KNIGHTS = {
