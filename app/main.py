@@ -19,4 +19,3 @@ def battle(knights_config: dict) -> dict:
 
 
 print(battle(KNIGHTS))
-
