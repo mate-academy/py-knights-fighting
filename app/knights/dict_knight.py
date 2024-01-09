@@ -106,7 +106,7 @@ def battle(knights_config: dict) -> dict:
             lancelot["power"] += lancelot["potion"]["effect"]["power"]
 
         if "protection" in lancelot["potion"]["effect"]:
-            lancelot["protection"] += lancelot["potion"]["effect"]["protection"]
+            lancelot["protection"] += lancelot["potion"]["effect"]["protection"] #noqa: E501
 
         if "hp" in lancelot["potion"]["effect"]:
             lancelot["hp"] += lancelot["potion"]["effect"]["hp"]
@@ -150,7 +150,7 @@ def battle(knights_config: dict) -> dict:
             mordred["power"] += mordred["potion"]["effect"]["power"]
 
         if "protection" in mordred["potion"]["effect"]:
-            mordred["protection"] += mordred["potion"]["effect"]["protection"]
+            mordred["protection"] += mordred["potion"]["effect"]["protection"] #noqa: E501
 
         if "hp" in mordred["potion"]["effect"]:
             mordred["hp"] += mordred["potion"]["effect"]["hp"]
