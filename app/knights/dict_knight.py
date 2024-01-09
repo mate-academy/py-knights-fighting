@@ -86,16 +86,16 @@ KNIGHTS = {
 }
 
 
-def battle(knightsconfig: dict) -> dict:
+def battle(knights_config: dict) -> dict:
     # BATTLE PREPARATIONS:
 
     # lancelot
-    lancelot = knightsconfig["lancelot"]
+    lancelot = knights_config["lancelot"]
 
     # apply armour
     lancelot["protection"] = 0
-    for a in lancelot["armour"]:
-        lancelot["protection"] += a["protection"]
+    for armor_piece in lancelot["armour"]:
+        lancelot["protection"] += armor_piece["protection"]
 
     # apply weapon
     lancelot["power"] += lancelot["weapon"]["power"]
@@ -112,12 +112,12 @@ def battle(knightsconfig: dict) -> dict:
             lancelot["hp"] += lancelot["potion"]["effect"]["hp"]
 
     # arthur
-    arthur = knightsconfig["arthur"]
+    arthur = knights_config["arthur"]
 
     # apply armour
     arthur["protection"] = 0
-    for a in arthur["armour"]:
-        arthur["protection"] += a["protection"]
+    for armor_piece in arthur["armour"]:
+        arthur["protection"] += armor_piece["protection"]
 
     # apply weapon
     arthur["power"] += arthur["weapon"]["power"]
@@ -134,12 +134,12 @@ def battle(knightsconfig: dict) -> dict:
             arthur["hp"] += arthur["potion"]["effect"]["hp"]
 
     # mordred
-    mordred = knightsconfig["mordred"]
+    mordred = knights_config["mordred"]
 
     # apply armour
     mordred["protection"] = 0
-    for a in mordred["armour"]:
-        mordred["protection"] += a["protection"]
+    for armor_piece in mordred["armour"]:
+        mordred["protection"] += armor_piece["protection"]
 
     # apply weapon
     mordred["power"] += mordred["weapon"]["power"]
@@ -156,12 +156,12 @@ def battle(knightsconfig: dict) -> dict:
             mordred["hp"] += mordred["potion"]["effect"]["hp"]
 
     # red_knight
-    red_knight = knightsconfig["red_knight"]
+    red_knight = knights_config["red_knight"]
 
     # apply armour
     red_knight["protection"] = 0
-    for a in red_knight["armour"]:
-        red_knight["protection"] += a["protection"]
+    for armor_piece in red_knight["armour"]:
+        red_knight["protection"] += armor_piece["protection"]
 
     # apply weapon
     red_knight["power"] += red_knight["weapon"]["power"]
