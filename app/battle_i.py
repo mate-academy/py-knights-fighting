@@ -1,10 +1,11 @@
 from typing import Dict
-from app.knight_config import Knight_Config
+
+from app.knight_config import KNIGHT_CONFIG
 
 
-def apply_effects(character: Knight_Config) -> None:
+def apply_effects(character: KNIGHT_CONFIG) -> None:
     character["protection"] = sum(
-        [a["protection"] for a in character["armour"]]
+        armor_piece["protection"] for armor_piece in character["armour"]
     )
 
     character["power"] += character["weapon"]["power"]
@@ -15,7 +16,7 @@ def apply_effects(character: Knight_Config) -> None:
                 character[effect_type] += value
 
 
-def battle(knights_config: Dict[str, Knight_Config]) -> Dict[str, int]:
+def battle(knights_config: Dict[str, KNIGHT_CONFIG]) -> Dict[str, int]:
     for knight in knights_config.values():
         apply_effects(knight)
 
