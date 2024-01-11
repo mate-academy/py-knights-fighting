@@ -19,13 +19,11 @@ class Knight:
         self.potion: Optional[Dict[str, any]] = potion
 
     def apply_effects(self) -> None:
-        # Apply armour
         self.protection = sum(armor["protection"] for armor in self.armour)
 
         # Apply weapon
         self.power += self.weapon.get("power", 0)
 
-        # Apply potion if exists
         if self.potion is not None:
             effect = self.potion.get("effect", {})
             attributes_to_apply = ["power", "protection", "hp"]
