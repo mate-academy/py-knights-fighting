@@ -11,5 +11,5 @@ def prepare_to_battle(knight: dict) -> None:
 
     # apply potion if exist
     if knight["potion"] is not None:
-        for key in knight["potion"]["effect"]:
-            knight[key] += knight["potion"]["effect"][key]
+        for key, value in knight["potion"]["effect"].items():
+            knight[key] += value
