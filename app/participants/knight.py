@@ -10,7 +10,7 @@ class Knight:
         self.apply_potion(knight_config["potion"])
 
     def apply_armour(self, armour_config: list) -> int:
-        return sum([item["protection"] for item in armour_config])
+        return sum(item["protection"] for item in armour_config)
 
     def apply_weapon(self, weapon_config: dict) -> None:
         self.power += weapon_config["power"]
