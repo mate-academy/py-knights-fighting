@@ -36,7 +36,8 @@ class Knight:
                                   in potion_dict["effect"].items()}}
 
     def __repr__(self) -> str:
-        return f""" {self.name} | power: {self.power} hp: {self.hp} protection: {self.protection}
+        return f""" {self.name} | 
+        power: {self.power} hp: {self.hp} protection: {self.protection}
         armour= {self.armour}
         weapon= {self.weapon}
         potion= {self.potion}"""
