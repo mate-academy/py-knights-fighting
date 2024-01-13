@@ -1,5 +1,5 @@
 from app.knight_class import Knight
-from app.creating_knights import battle_preparation
+from app.preparing_knights import battle_preparation
 
 
 KNIGHTS = {
@@ -102,10 +102,7 @@ def battle(knights_config: dict) -> dict:
     knights["lancelot"].fight(knights["mordred"])
     knights["arthur"].fight(knights["red_knight"])
 
-    return {
-        knight.name: knight.hp
-        for knight in knights.values()
-    }
+    return Knight.get_statistics(knights)
 
 
 print(battle(KNIGHTS))
