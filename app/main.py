@@ -118,8 +118,8 @@ def battle(knights: dict) -> dict:
         knight_class_list.append(knight)
 
     # fights
-    for i in range(len(knight_class_list) - 2):
-        knight_class_list[i].fight(knight_class_list[i + 2])
+    for index in range(len(knight_class_list) - 2):
+        knight_class_list[index].fight(knight_class_list[index + 2])
 
     return {value.name: value.hp for value in knight_class_list}
 

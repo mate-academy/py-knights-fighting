@@ -13,19 +13,13 @@ class Knight:
 
     def apply(self, *items: Armour | Weapon | Potion) -> None:
         for item in items:
-            if isinstance(item, Armour):
-                self.hp += item.protection
-            elif isinstance(item, Weapon):
-                self.power += item.power
-            elif isinstance(item, Potion):
-                self.hp += item.protection
-                self.hp += item.hp
-                self.power += item.power
+            if hasattr(item, "power"):
+                setattr(self, "power", self.power + item.power)
+            if hasattr(item, "hp"):
+                setattr(self, "hp", self.hp + item.hp)
+            if hasattr(item, "protection"):
+                setattr(self, "hp", self.hp + item.protection)
 
     def fight(self, knight: Knight) -> None:
-        self.hp -= knight.power
-        knight.hp -= self.power
-        if self.hp <= 0:
-            self.hp = 0
-        if knight.hp <= 0:
-            knight.hp = 0
+        self.hp = max(0, self.hp - knight.power)
+        knight.hp = max(0, knight.hp - self.power)
