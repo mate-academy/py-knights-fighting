@@ -21,11 +21,5 @@ class Knight:
 
         effects = potion_config["effect"]
 
-        if effects.get("power"):
-            self.power += effects["power"]
-
-        if effects.get("hp"):
-            self.hp += effects["hp"]
-
-        if effects.get("protection"):
-            self.protection += effects["protection"]
+        for key, value in effects.items():
+            setattr(self, key, getattr(self, key) + value)
