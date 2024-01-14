@@ -121,7 +121,7 @@ def battle(knights: dict) -> dict:
     for index in range(len(knight_class_list) - 2):
         knight_class_list[index].fight(knight_class_list[index + 2])
 
-    return {value.name: value.hp for value in knight_class_list}
+    return {knight.name: knight.hp for knight in knight_class_list}
 
 
 print(battle(KNIGHTS))
