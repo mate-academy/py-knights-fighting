@@ -1,4 +1,4 @@
-from app.classes.class_knight import Knight
+from app.classes.knight import Knight
 
 
 class Battle:

@@ -1,5 +1,5 @@
-from app.classes.class_battle import Battle
-from app.classes.class_knight import Knight
+from app.classes.battle import Battle
+from app.classes.knight import Knight
 
 KNIGHTS = {
     "lancelot": {
