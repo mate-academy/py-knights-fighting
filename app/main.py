@@ -2,10 +2,10 @@ from typing import Dict
 from app.knights.knights_stats import Knight
 
 
-def battle(knightsConfig: Dict) -> Dict:
+def battle(knightsconfig: Dict) -> Dict:
     knights_dict = {
         name: Knight(**attributes)
-        for name, attributes in knightsConfig.items()}
+        for name, attributes in knightsconfig.items()}
     for knight in knights_dict.values():
         knight.apply_armour()
         knight.apply_weapon()
