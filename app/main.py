@@ -1,5 +1,6 @@
 from __future__ import annotations
-from typing import Optional, List
+
+from app.knight import Knight
 
 
 KNIGHTS = {
@@ -90,32 +91,6 @@ KNIGHTS = {
 }
 
 
-
-class Knight:
-    def __init__(self, name: str, power: int, hp: int, armour: List[dict], weapon: dict, potion: Optional[dict] = None):
-        self.name = name
-        self.power = power
-        self.hp = hp
-        self.armour = armour
-        self.weapon = weapon
-        self.potion = potion
-
-        self.apply_armour()
-        self.apply_weapon()
-        self.apply_potion()
-
-    def apply_armour(self):
-        self.protection = sum(a["protection"] for a in self.armour)
-
-    def apply_weapon(self):
-        self.power += self.weapon["power"]
-
-    def apply_potion(self):
-        if self.potion:
-            effects = self.potion.get("effect", {})
-            for effect_type, effect_value in effects.items():
-                setattr(self, effect_type, getattr(self, effect_type, 0) + effect_value)
-
 def create_knight(data: dict) -> Knight:
     return Knight(
         name=data["name"],
@@ -126,12 +101,13 @@ def create_knight(data: dict) -> Knight:
         potion=data.get("potion")
     )
 
-def battle(knightsConfig):
-    # Створення лицарів
-    lancelot = create_knight(knightsConfig["lancelot"])
-    arthur = create_knight(knightsConfig["arthur"])
-    mordred = create_knight(knightsConfig["mordred"])
-    red_knight = create_knight(knightsConfig["red_knight"])
+
+def battle(knights_config: dict[dict]) -> dict:
+
+    lancelot = create_knight(knights_config["lancelot"])
+    arthur = create_knight(knights_config["arthur"])
+    mordred = create_knight(knights_config["mordred"])
+    red_knight = create_knight(knights_config["red_knight"])
 
     # Бій
     # 1 Lancelot vs Mordred:
@@ -150,7 +126,6 @@ def battle(knightsConfig):
     arthur.hp = max(0, arthur.hp)
     red_knight.hp = max(0, red_knight.hp)
 
-    # Повернення результатів бою
     return {
         lancelot.name: lancelot.hp,
         arthur.name: arthur.hp,
