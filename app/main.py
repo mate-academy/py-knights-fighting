@@ -7,7 +7,7 @@ def battle(
         pairs: list | tuple = None
 ) -> dict:
     # BATTLE PREPARATIONS:
-    knights = Arena.equip_knights(knights_config)
+    Arena.equip_knights(knights_config)
 
     battle_pairs = pairs or [
         ["lancelot", "mordred"],

@@ -13,7 +13,7 @@ class Knight:
         self.protection = knight.get("protection") or 0
         self.power = knight.get("power")
 
-    def hit(self, other: Knight):
+    def hit(self, other: Knight) -> None:
         if self.hp > 0:
             self.hp = max(
                 self.hp - (other.power - self.protection), 0
