@@ -101,13 +101,18 @@ def create_knight(data: dict) -> Knight:
         potion=data.get("potion")
     )
 
+#knights_data = ("lancelot", "arthur", "mordred", "red_knight")
 
 def battle(knights_config: dict[dict]) -> dict:
+    knights = []
 
-    lancelot = create_knight(knights_config["lancelot"])
-    arthur = create_knight(knights_config["arthur"])
-    mordred = create_knight(knights_config["mordred"])
-    red_knight = create_knight(knights_config["red_knight"])
+    for knight_data in knights_config.values():
+        knights.append(create_knight(knight_data))
+
+    lancelot = knights[0]
+    arthur = knights[1]
+    mordred = knights[2]
+    red_knight = knights[3]
 
     # Бій
     # 1 Lancelot vs Mordred:
