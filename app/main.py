@@ -95,13 +95,10 @@ def battle(knights_config: dict) -> dict:
     mordred = Knight(knights_config["mordred"])
     red_knight = Knight(knights_config["red_knight"])
 
-    first_great_battle = Battle(lancelot, mordred)
-    second_great_battle = Battle(arthur, red_knight)
+    battles = [Battle(lancelot, mordred), Battle(arthur, red_knight)]
 
-    first_great_battle.prepare()
-    first_great_battle.fight()
-
-    second_great_battle.prepare()
-    second_great_battle.fight()
+    for the_battle in battles:
+        the_battle.prepare()
+        the_battle.fight()
 
     return Battle.battles_results

@@ -6,25 +6,21 @@ class Battle:
     battles_results = {}
 
     def __init__(self, first_knight: Knight, second_knight: Knight) -> None:
-        self.first_knight = first_knight
-        self.second_knight = second_knight
+        self.knights = [first_knight, second_knight]
 
     def prepare(self) -> None:
-        self.first_knight.prepare_for_battle()
-        self.second_knight.prepare_for_battle()
+        for knight in self.knights:
+            knight.prepare_for_battle()
 
     def fight(self) -> None:
-        self.first_knight.hp -= (self.second_knight.power
-                                 - self.first_knight.protection)
+        self.knights[0].hp -= (self.knights[1].power
+                               - self.knights[0].protection)
 
-        self.second_knight.hp -= (self.first_knight.power
-                                  - self.second_knight.protection)
+        self.knights[1].hp -= (self.knights[0].power
+                               - self.knights[1].protection)
 
-        if self.first_knight.hp < 0:
-            self.first_knight.hp = 0
+        for knight in self.knights:
+            if knight.hp < 0:
+                knight.hp = 0
 
-        if self.second_knight.hp < 0:
-            self.second_knight.hp = 0
-
-        Battle.battles_results[self.first_knight.name] = self.first_knight.hp
-        Battle.battles_results[self.second_knight.name] = self.second_knight.hp
+            Battle.battles_results[knight.name] = knight.hp
