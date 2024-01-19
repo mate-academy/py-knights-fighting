@@ -1,4 +1,3 @@
-from app.knight import Knight
 from app.config import KNIGHTS
 from app.arena import Arena
 
@@ -18,10 +17,10 @@ def battle(
     # ----------------------------------------------
     # BATTLE:
     for pair in battle_pairs:
-        Arena.fighting(pair)
+        Arena.battling(pair)
 
     # RESULTS:
-    return Knight.get_statistics(knights)
+    return Arena.get_statistics()
 
 
 print(battle(KNIGHTS))

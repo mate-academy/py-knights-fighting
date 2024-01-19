@@ -3,11 +3,8 @@ from app.potion import Potion
 
 
 class Knight:
-    __knights_statistics = {}
-
     def __new__(cls, knight: dict, *args, **kwargs) -> Knight:
         cls._prepare_for_battle(knight)
-        cls.__knights_statistics[knight.get("name")] = knight.get("hp")
         return super().__new__(cls)
 
     def __init__(self, knight: dict) -> None:
@@ -15,6 +12,14 @@ class Knight:
         self.hp = knight.get("hp")
         self.protection = knight.get("protection") or 0
         self.power = knight.get("power")
+
+    def hit(self, other: Knight):
+        if self.hp > 0:
+            self.hp = max(
+                self.hp - (other.power - self.protection), 0
+            )
+        else:
+            raise ValueError(f"{self.name} is dead and can't fight!")
 
     @classmethod
     def _prepare_for_battle(cls, knight_data: dict) -> None:
@@ -28,9 +33,3 @@ class Knight:
         if potion_data := knight_data["potion"]:
             potion = Potion(**potion_data["effect"])
             potion.apply(knight_data)
-
-    @classmethod
-    def get_statistics(cls, knights: dict) -> dict:
-        for config in knights.values():
-            cls.__knights_statistics[config.name] = config.hp
-        return cls.__knights_statistics

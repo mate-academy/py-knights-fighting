@@ -16,11 +16,11 @@ class Potion:
         self.protection = protection
 
     def apply(self, knight_data: dict) -> dict:
-        for stat, boost in self._get_boosts().items():
+        for stat, boost in self._get_attributes().items():
             knight_data[stat] = knight_data.get(stat, 0) + boost
         return knight_data
 
-    def _get_boosts(self) -> dict:
+    def _get_attributes(self) -> dict:
         return {
             "hp": self.hp,
             "power": self.power,
