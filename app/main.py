@@ -101,7 +101,8 @@ def create_knight(data: dict) -> Knight:
         potion=data.get("potion")
     )
 
-#knights_data = ("lancelot", "arthur", "mordred", "red_knight")
+# knights_data = ("lancelot", "arthur", "mordred", "red_knight")
+
 
 def battle(knights_config: dict[dict]) -> dict:
     knights = []
