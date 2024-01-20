@@ -8,7 +8,7 @@ class Knight:
                  hp: int,
                  armour: list[dict],
                  weapon: dict,
-                 potion: dict
+                 potion: dict[dict]
                  ) -> None:
         self.name = name
         self.power = power
@@ -20,14 +20,6 @@ class Knight:
         self.apply_armour()
         self.apply_potion()
 
-    # def __init__(self, data: dict) -> Knight:
-    #     self.name=data["name"],
-    #     self.power=data["power"],
-    #     self.hp=data["hp"],
-    #     self.armour=data["armour"],
-    #     self.weapon=data["weapon"],
-    #     self.potion=data.get("potion")
-
     def apply_armour(self) -> None:
         self.protection = 0
         for ar in self.armour:
@@ -37,12 +29,7 @@ class Knight:
         self.power += self.weapon["power"]
 
     def apply_potion(self) -> None:
-        if self.potion is not None:
-            if "power" in self.potion["effect"]:
-                self.power += self.potion["effect"]["power"]
 
-            if "protection" in self.potion["effect"]:
-                self.protection += self.potion["effect"]["protection"]
-
-            if "hp" in self.potion["effect"]:
-                self.hp += self.potion["effect"]["hp"]
+        if self.potion:
+            for ef_type, ef_value in self.potion.get("effect").items():
+                setattr(self, ef_type, getattr(self, ef_type, 0) + ef_value)

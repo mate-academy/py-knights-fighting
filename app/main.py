@@ -101,8 +101,6 @@ def create_knight(data: dict) -> Knight:
         potion=data.get("potion")
     )
 
-# knights_data = ("lancelot", "arthur", "mordred", "red_knight")
-
 
 def battle(knights_config: dict[dict]) -> dict:
     knights = []
@@ -115,29 +113,19 @@ def battle(knights_config: dict[dict]) -> dict:
     mordred = knights[2]
     red_knight = knights[3]
 
-    # Бій
-    # 1 Lancelot vs Mordred:
     lancelot.hp -= mordred.power - lancelot.protection
     mordred.hp -= lancelot.power - mordred.protection
 
-    # Перевірка, чи когось вбито в бою
     lancelot.hp = max(0, lancelot.hp)
     mordred.hp = max(0, mordred.hp)
 
-    # 2 Arthur vs Red Knight:
     arthur.hp -= red_knight.power - arthur.protection
     red_knight.hp -= arthur.power - red_knight.protection
 
-    # Перевірка, чи когось вбито в бою
     arthur.hp = max(0, arthur.hp)
     red_knight.hp = max(0, red_knight.hp)
 
-    return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
-    }
+    return {knight.name: knight.hp for knight in knights}
 
 
 print(battle(KNIGHTS))
