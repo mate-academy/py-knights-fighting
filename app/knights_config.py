@@ -1,5 +1,6 @@
-from app.knight import Knight
 from typing import Dict
+
+from app.knight import Knight
 
 
 lancelot_data = {
@@ -45,9 +46,14 @@ red_knight_data = {
     "potion": {"name": "Blessing", "effect": {"hp": 10, "power": 5}}
 }
 
+lancelot = Knight(**lancelot_data)
+arthur = Knight(**arthur_data)
+mordred = Knight(**mordred_data)
+red_knight = Knight(**red_knight_data)
+
 knights_config: Dict[str, Knight] = {
-    "lancelot": Knight(**lancelot_data),
-    "arthur": Knight(**arthur_data),
-    "mordred": Knight(**mordred_data),
-    "red_knight": Knight(**red_knight_data)
+    "lancelot": lancelot,
+    "arthur": arthur,
+    "mordred": mordred,
+    "red_knight": red_knight
 }
