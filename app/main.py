@@ -19,14 +19,18 @@ def battle(knight_config: Dict[str, Knight]) -> Dict[str, int]:
     for knight in knights.values():
         apply_effects(knight)
 
-    for knight_name1, knight_name2 in [("lancelot", "mordred"), ("arthur", "red_knight")]:
+    for knight_name1, knight_name2 in [
+        ("lancelot", "mordred"), ("arthur", "red_knight")
+    ]:
         conduct_battle(knights[knight_name1], knights[knight_name2])
 
-    return {name.lower(): knight.hp for name, knight in knights.items()}
+    return {name.replace("_", " ").title(): knight.hp
+            for name, knight in knights.items()}
 
 
 def main() -> None:
-    battle(knights_config)
+    battle_result = battle(knights_config)
+    print(battle_result)
 
 
 if __name__ == "__main__":

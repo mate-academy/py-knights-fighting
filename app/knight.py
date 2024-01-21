@@ -11,12 +11,14 @@ class Knight:
         weapon: Optional[Dict[str, Any]] = None,
         potion: Optional[Dict[str, Any]] = None
     ) -> None:
-        self.name: str = name
-        self.power: int = power
-        self.hp: int = hp
-        self.armour: List[Dict[str, Any]] = armour or []
-        self.weapon: Dict[str, Any] = weapon or {}
-        self.potion: Optional[Dict[str, Any]] = potion
+        self.name = name
+        self.power = power
+        self.hp = hp
+        self.armour = armour or []
+        self.weapon = weapon or {}
+        self.potion = potion
+
+        self.protection = 0
 
     def apply_effects(self) -> None:
         self.protection = sum(
