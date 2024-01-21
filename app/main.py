@@ -13,7 +13,7 @@ def conduct_battle(knight1: Knight, knight2: Knight) -> None:
     knight2.hp -= max(0, knight1.power - knight2.protection)
 
 
-def battle(knight_config: Dict[str, Knight]) -> Dict[str, int]:
+def battle(knight_config: Dict[str, dict]) -> Dict[str, int]:
     knights = {name: Knight(**data) for name, data in knight_config.items()}
 
     for knight in knights.values():
@@ -24,7 +24,7 @@ def battle(knight_config: Dict[str, Knight]) -> Dict[str, int]:
     ]:
         conduct_battle(knights[knight_name1], knights[knight_name2])
 
-    return {name.replace("_", " ").title(): knight.hp
+    return {knight.name: knight.hp
             for name, knight in knights.items()}
 
 
