@@ -22,8 +22,8 @@ class KnightConstructor:
         self.apply_potion_if_exist()
 
     def apply_armor(self) -> list:
-        for a in self.armour:
-            self.protection += a["protection"]
+        for armour in self.armour:
+            self.protection += armour["protection"]
         return self.armour
 
     def apply_weapon(self) -> int:

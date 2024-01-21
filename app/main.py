@@ -3,14 +3,14 @@ from app.Knights.constructor import KnightConstructor
 from app.Battle.battle_logic import BattleLogic
 
 
-KNIGHTS = knights_dict()
+knights = knights_dict()
 
 
-def battle(KNIGHTS: dict) -> dict:
-    lancelot = KnightConstructor(**KNIGHTS["lancelot"])
-    arthur = KnightConstructor(**KNIGHTS["arthur"])
-    mordred = KnightConstructor(**KNIGHTS["mordred"])
-    red_knight = KnightConstructor(**KNIGHTS["red_knight"])
+def battle(knights: dict) -> dict:
+    lancelot = KnightConstructor(**knights["lancelot"])
+    arthur = KnightConstructor(**knights["arthur"])
+    mordred = KnightConstructor(**knights["mordred"])
+    red_knight = KnightConstructor(**knights["red_knight"])
 
     # apply armour, weapon, potion if exist
     lancelot.prepare_for_fight()
@@ -28,11 +28,5 @@ def battle(KNIGHTS: dict) -> dict:
         **second_fight
     }
 
-print(battle(KNIGHTS))
 
-
-
-
-
-
-
+print(battle(knights))

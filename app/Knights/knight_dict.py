@@ -1,5 +1,5 @@
 def knights_dict() -> dict:
-    return  {
+    return {
         "lancelot": {
             "name": "Lancelot",
             "power": 35,
