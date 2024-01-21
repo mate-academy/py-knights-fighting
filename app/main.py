@@ -1,16 +1,16 @@
 from app.Knights.knight_dict import knights_dict
-from app.Knights.constructor import KnightConstructor
 from app.Battle.battle_logic import BattleLogic
+from app.Knights.knights_preparing import KnightPreparing
 
 
 knights = knights_dict()
 
 
 def battle(knights: dict) -> dict:
-    lancelot = KnightConstructor(**knights["lancelot"])
-    arthur = KnightConstructor(**knights["arthur"])
-    mordred = KnightConstructor(**knights["mordred"])
-    red_knight = KnightConstructor(**knights["red_knight"])
+    lancelot = KnightPreparing(**knights["lancelot"])
+    arthur = KnightPreparing(**knights["arthur"])
+    mordred = KnightPreparing(**knights["mordred"])
+    red_knight = KnightPreparing(**knights["red_knight"])
 
     # apply armour, weapon, potion if exist
     lancelot.prepare_for_fight()
