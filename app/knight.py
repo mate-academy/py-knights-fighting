@@ -9,15 +9,15 @@ class Knight:
         self.potion = potion
 
     def apply_armour(self):
-        self.protection = sum(part['protection'] for part in self.armour)
+        self.protection = sum(part["protection"] for part in self.armour)
 
     def apply_weapon(self):
-        self.power += self.weapon['power']
+        self.power += self.weapon["power"]
 
     def apply_potion(self):
         if self.potion:
-            self.hp += self.potion['effect']['hp']
-            self.power += self.potion['effect']['power']
+            self.hp += self.potion["effect"]["hp"]
+            self.power += self.potion["effect"]["power"]
 
     def prepare_for_battle(self):
         self.apply_armour()
