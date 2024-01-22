@@ -1,8 +1,8 @@
-from typing import Any
+from typing import Callable
 
 
-def magic_upgrades(__init__: Any) -> Any:
-    def wrapper(self: None, input_dict: dict) -> Any:
+def magic_upgrades(__init__: Callable) -> Callable:
+    def wrapper(self: None, input_dict: dict) -> None:
         input_dict["protection"] = sum(part["protection"]
                                        for part in input_dict["armour"])
         input_dict["power"] += input_dict["weapon"]["power"]

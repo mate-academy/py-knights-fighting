@@ -1,5 +1,5 @@
-from app.Kings_fighting.kings_start_position import King
-from app.Kings_fighting.kings_fight_results import Battle
+from app.Knights_fighting.knights_start_position import Knight
+from app.Knights_fighting.knights_fight import Battle
 
 KNIGHTS = {
     "lancelot": {
@@ -92,14 +92,14 @@ KNIGHTS = {
 def battle(knights_info: dict) -> dict:
     # BATTLE PREPARATIONS:
 
-    lancelot = King(knights_info["lancelot"])
-    arthur = King(knights_info["arthur"])
-    mordred = King(knights_info["mordred"])
-    red_knight = King(knights_info["red_knight"])
+    lancelot = Knight(knights_info["lancelot"])
+    arthur = Knight(knights_info["arthur"])
+    mordred = Knight(knights_info["mordred"])
+    red_knight = Knight(knights_info["red_knight"])
 
     # BATTLE:
-    Battle.kings_fighting(lancelot, mordred)
-    Battle.kings_fighting(arthur, red_knight)
+    Battle.knights_fighting(lancelot, mordred)
+    Battle.knights_fighting(arthur, red_knight)
     return Battle.results_of_battle
 
 
