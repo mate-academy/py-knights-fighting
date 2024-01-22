@@ -1,6 +1,6 @@
 # main.py
-from knight import Knight
-from battle import Battle
+from app.knight import Knight
+from app.battle import Battle
 
 KNIGHTS = {
     "red_knight": {
