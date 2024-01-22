@@ -12,17 +12,12 @@ class Knight:
         self.potion = parameters.get("potion")
         self.protection = 0
         self.battle_preparations()
+        self.parameters = parameters
 
     def add_potion(self) -> None:
-        if self.potion is not None:
-            if "power" in self.potion["effect"]:
-                self.power += self.potion["effect"]["power"]
-
-            if "protection" in self.potion["effect"]:
-                self.protection += self.potion["effect"]["protection"]
-
-            if "hp" in self.potion["effect"]:
-                self.hp += self.potion["effect"]["hp"]
+        if self.potion:
+            for key, value in self.potion["effect"].items():
+                setattr(self, key, getattr(self, key) + value)
 
     def grab_weapon(self) -> None:
         self.power += self.weapon["power"]
@@ -45,8 +40,8 @@ class Knight:
         return {self.name: self.hp}
 
     @staticmethod
-    def return_result(*args) -> dict:
+    def return_result(knights: list[Knight]) -> dict:
         result = {}
-        for part in args:
+        for part in knights:
             result.update(part.show_hp())
         return result

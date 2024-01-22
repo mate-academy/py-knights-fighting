@@ -13,7 +13,7 @@ def battle(knights_parameter: dict) -> dict:
     arthur.fight(red_knight)
     red_knight.fight(arthur)
 
-    return Knight.return_result(lancelot, mordred, arthur, red_knight)
+    return Knight.return_result([lancelot, mordred, arthur, red_knight])
 
 
 print(battle(KNIGHTS))
