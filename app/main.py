@@ -1,53 +1,104 @@
-# app/main/knight.py
-class Knight:
-    def __init__(self, config):
-        self.name = config["name"]
-        self.power = config["power"]
-        self.hp = config["hp"]
-        self.armour = config.get("armour", [])
-        self.weapon = config["weapon"]
-        self.potion = config.get("potion")
-        self.protection = 0
+# main.py
+from knight import Knight
+from battle import Battle
 
-    def apply_armour(self):
-        self.protection = sum(a["protection"] for a in self.armour)
+KNIGHTS = {
+    "red_knight": {
+        "name": "Red Knight",
+        "power": 40,
+        "hp": 70,
+        "armour": [
+            {
+                "part": "breastplate",
+                "protection": 25,
+            }
+        ],
+        "weapon": {"name": "Sword", "power": 45},
+        "potion": {
+            "name": "Blessing",
+            "effect": {
+                "hp": +10,
+                "power": +5,
+            },
+        },
+    },
+    "lancelot": {
+        "name": "Lancelot",
+        "power": 50,
+        "hp": 80,
+        "armour": [
+            {
+                "part": "helmet",
+                "protection": 15,
+            },
+            {
+                "part": "shield",
+                "protection": 20,
+            }
+        ],
+        "weapon": {"name": "Lance", "power": 55},
+        "potion": None,
+    },
+    "mordred": {
+        "name": "Mordred",
+        "power": 60,
+        "hp": 75,
+        "armour": [
+            {
+                "part": "breastplate",
+                "protection": 30,
+            }
+        ],
+        "weapon": {"name": "Axe", "power": 60},
+        "potion": {
+            "name": "Curse",
+            "effect": {
+                "hp": -5,
+                "power": +10,
+            },
+        },
+    },
+    "arthur": {
+        "name": "Arthur",
+        "power": 55,
+        "hp": 85,
+        "armour": [
+            {
+                "part": "helmet",
+                "protection": 15,
+            },
+            {
+                "part": "breastplate",
+                "protection": 25,
+            }
+        ],
+        "weapon": {"name": "Excalibur", "power": 65},
+        "potion": {
+            "name": "Healing",
+            "effect": {
+                "hp": +15,
+                "power": 0,
+            },
+        },
+    }
+}
 
-    def apply_weapon(self):
-        self.power += self.weapon["power"]
 
-    def apply_potion(self):
-        if self.potion is not None:
-            effect = self.potion["effect"]
-            self.power += effect.get("power", 0)
-            self.protection += effect.get("protection", 0)
-            self.hp += effect.get("hp", 0)
+def main():
+    # Create knights
+    red_knight = Knight(**KNIGHTS["red_knight"])
+    lancelot = Knight(**KNIGHTS["lancelot"])
+    mordred = Knight(**KNIGHTS["mordred"])
+    arthur = Knight(**KNIGHTS["arthur"])
 
-    def take_damage(self, damage):
-        self.hp -= max(0, damage - self.protection)
+    # Create battles
+    battle1 = Battle(lancelot, mordred)
+    battle2 = Battle(arthur, red_knight)
 
-    def is_alive(self):
-        return self.hp > 0
-
-
-# app/main.py
-from app.main.knight import Knight
+    # Conduct battles
+    print(battle1.conduct())
+    print(battle2.conduct())
 
 
-def battle(knights_config):
-    knights = {name: Knight(config) for name, config in knights_config.items()}
-
-    for knight in knights.values():
-        knight.apply_armour()
-        knight.apply_weapon()
-        knight.apply_potion()
-
-    # 1 Lancelot vs Mordred:
-    knights["lancelot"].take_damage(knights["mordred"].power)
-    knights["mordred"].take_damage(knights["lancelot"].power)
-
-    # 2 Arthur vs Red Knight:
-    knights["arthur"].take_damage(knights["red_knight"].power)
-    knights["red_knight"].take_damage(knights["arthur"].power)
-
-    # Return battle results:
-    return {knight.name: knight.hp for knight in knights.values() if knight.is_alive()}
+if __name__ == "__main__":
+    main()
