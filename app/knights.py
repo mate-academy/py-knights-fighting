@@ -84,3 +84,11 @@ KNIGHTS = {
         }
     }
 }
+
+
+def knights_battle(attacker: dict[object], defender: dict[object]) -> None:
+    defender.hp -= attacker.power - defender.protection
+    attacker.hp -= defender.power - attacker.protection
+
+    attacker.hp = max(0, attacker.hp)
+    defender.hp = max(0, defender.hp)

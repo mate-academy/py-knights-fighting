@@ -1,5 +1,5 @@
 from app.knight import Knight
-from app.knights import KNIGHTS
+from app.knights import KNIGHTS, knights_battle
 
 
 def create_knight(data: dict) -> Knight:
@@ -7,26 +7,15 @@ def create_knight(data: dict) -> Knight:
 
 
 def battle(knights_config: dict[dict]) -> dict:
-    knights = []
+    knights = {}
 
-    for knight_data in knights_config.values():
-        knights.append(create_knight(knight_data))
+    for knight_name, knight_data in knights_config.items():
+        knights[knight_name] = create_knight(knight_data)
 
-    lancelot, arthur, mordred, red_knight = knights
+    knights_battle(knights["lancelot"], knights["mordred"])
+    knights_battle(knights["arthur"], knights["red_knight"])
 
-    lancelot.hp -= mordred.power - lancelot.protection
-    mordred.hp -= lancelot.power - mordred.protection
-
-    lancelot.hp = max(0, lancelot.hp)
-    mordred.hp = max(0, mordred.hp)
-
-    arthur.hp -= red_knight.power - arthur.protection
-    red_knight.hp -= arthur.power - red_knight.protection
-
-    arthur.hp = max(0, arthur.hp)
-    red_knight.hp = max(0, red_knight.hp)
-
-    return {knight.name: knight.hp for knight in knights}
+    return {knight.name: knight.hp for knight in knights.values()}
 
 
 print(battle(KNIGHTS))
