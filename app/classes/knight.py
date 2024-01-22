@@ -14,4 +14,7 @@ class Knight:
         if self.potion is not None:
             for attribute in ["power", "protection", "hp"]:
                 if attribute in (effects := self.potion["effect"]):
-                    setattr(self, attribute, getattr(self, attribute) + effects[attribute])
+                    setattr(
+                        self,
+                        attribute,
+                        getattr(self, attribute) + effects[attribute])
