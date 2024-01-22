@@ -1,104 +1,23 @@
-# main.py
+# app/main.py
 from app.knight import Knight
 from app.battle import Battle
-
-KNIGHTS = {
-    "red_knight": {
-        "name": "Red Knight",
-        "power": 40,
-        "hp": 70,
-        "armour": [
-            {
-                "part": "breastplate",
-                "protection": 25,
-            }
-        ],
-        "weapon": {"name": "Sword", "power": 45},
-        "potion": {
-            "name": "Blessing",
-            "effect": {
-                "hp": +10,
-                "power": +5,
-            },
-        },
-    },
-    "lancelot": {
-        "name": "Lancelot",
-        "power": 50,
-        "hp": 80,
-        "armour": [
-            {
-                "part": "helmet",
-                "protection": 15,
-            },
-            {
-                "part": "shield",
-                "protection": 20,
-            }
-        ],
-        "weapon": {"name": "Lance", "power": 55},
-        "potion": None,
-    },
-    "mordred": {
-        "name": "Mordred",
-        "power": 60,
-        "hp": 75,
-        "armour": [
-            {
-                "part": "breastplate",
-                "protection": 30,
-            }
-        ],
-        "weapon": {"name": "Axe", "power": 60},
-        "potion": {
-            "name": "Curse",
-            "effect": {
-                "hp": -5,
-                "power": +10,
-            },
-        },
-    },
-    "arthur": {
-        "name": "Arthur",
-        "power": 55,
-        "hp": 85,
-        "armour": [
-            {
-                "part": "helmet",
-                "protection": 15,
-            },
-            {
-                "part": "breastplate",
-                "protection": 25,
-            }
-        ],
-        "weapon": {"name": "Excalibur", "power": 65},
-        "potion": {
-            "name": "Healing",
-            "effect": {
-                "hp": +15,
-                "power": 0,
-            },
-        },
-    }
-}
+from typing import Dict
 
 
-def main():
+def battle(knights_config: Dict[str, dict]) -> Dict[str, int]:
     # Create knights
-    red_knight = Knight(**KNIGHTS["red_knight"])
-    lancelot = Knight(**KNIGHTS["lancelot"])
-    mordred = Knight(**KNIGHTS["mordred"])
-    arthur = Knight(**KNIGHTS["arthur"])
+    red_knight = Knight(**knights_config["red_knight"])
+    lancelot = Knight(**knights_config.get("lancelot", {}))
+    mordred = Knight(**knights_config["mordred"])
+    arthur = Knight(**knights_config["arthur"])
 
     # Create battles
     battle1 = Battle(lancelot, mordred)
     battle2 = Battle(arthur, red_knight)
 
-    # Conduct battles
-    print(battle1.conduct())
-    print(battle2.conduct())
+    # Conduct battles and collect results
+    results = {}
+    results.update(battle1.conduct())
+    results.update(battle2.conduct())
 
-
-if __name__ == "__main__":
-    main()
+    return results
