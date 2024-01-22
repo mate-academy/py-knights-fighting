@@ -1,73 +1,53 @@
-# app/knights.py
+# app/main/knight.py
 class Knight:
-    def __init__(self, name, power, hp, armor, weapon, potion):
-        self.name = name
-        self.base_power = power
-        self.base_hp = hp
-        self.armor = armor
-        self.weapon = weapon
-        self.potion = potion
+    def __init__(self, config):
+        self.name = config["name"]
+        self.power = config["power"]
+        self.hp = config["hp"]
+        self.armour = config.get("armour", [])
+        self.weapon = config["weapon"]
+        self.potion = config.get("potion")
+        self.protection = 0
 
-    def calculate_stats(self):
-        stats = {
-            "hp": self.base_hp,
-            "power": self.base_power,
-            "protection": 0,
-        }
+    def apply_armour(self):
+        self.protection = sum(a["protection"] for a in self.armour)
 
-        # Apply armor
-        for armor_piece in self.armor:
-            stats["protection"] += armor_piece.protection
+    def apply_weapon(self):
+        self.power += self.weapon["power"]
 
-        # Apply weapon
-        stats["power"] += self.weapon.power
+    def apply_potion(self):
+        if self.potion is not None:
+            effect = self.potion["effect"]
+            self.power += effect.get("power", 0)
+            self.protection += effect.get("protection", 0)
+            self.hp += effect.get("hp", 0)
 
-        # Apply potion if exists
-        if self.potion:
-            for effect_type, value in self.potion.effect.items():
-                stats[effect_type] += value
+    def take_damage(self, damage):
+        self.hp -= max(0, damage - self.protection)
 
-        return stats
-
-
-# app/weapons.py
-class Weapon:
-    def __init__(self, name, power):
-        self.name = name
-        self.power = power
+    def is_alive(self):
+        return self.hp > 0
 
 
-# app/armor.py
-class Armor:
-    def __init__(self, part, protection):
-        self.part = part
-        self.protection = protection
+# app/main.py
+from app.main.knight import Knight
 
 
-# app/potions.py
-class Potion:
-    def __init__(self, name, effect):
-        self.name = name
-        self.effect = effect
+def battle(knights_config):
+    knights = {name: Knight(config) for name, config in knights_config.items()}
 
+    for knight in knights.values():
+        knight.apply_armour()
+        knight.apply_weapon()
+        knight.apply_potion()
 
-# app/battle.py
-def battle(knight1, knight2):
-    # Get stats before battle
-    knight1_stats = knight1.calculate_stats()
-    knight2_stats = knight2.calculate_stats()
+    # 1 Lancelot vs Mordred:
+    knights["lancelot"].take_damage(knights["mordred"].power)
+    knights["mordred"].take_damage(knights["lancelot"].power)
 
-    # BATTLE:
-
-    # 1st knight attacks 2nd knight
-    knight2_stats["hp"] -= max(0, knight1_stats["power"] - knight2_stats["protection"])
-
-    # 2nd knight attacks 1st knight
-    knight1_stats["hp"] -= max(0, knight2_stats["power"] - knight1_stats["protection"])
-
-    # Check if someone fell in battle
-    knight1_stats["hp"] = max(0, knight1_stats["hp"])
-    knight2_stats["hp"] = max(0, knight2_stats["hp"])
+    # 2 Arthur vs Red Knight:
+    knights["arthur"].take_damage(knights["red_knight"].power)
+    knights["red_knight"].take_damage(knights["arthur"].power)
 
     # Return battle results:
-    return {knight1.name: knight1_stats["hp"], knight2.name: knight2_stats["hp"]}
+    return {knight.name: knight.hp for knight in knights.values() if knight.is_alive()}
