@@ -1,14 +1,19 @@
 class Knight:
     knights = dict()
 
-    def __init__(self, name: str, power: int, hp: int, weapon: dict) -> None:
-        self.name = name
-        self.power = power + weapon["power"]
-        self.hp = hp
+    def __init__(self, knight: dict) -> None:
+        self.name = knight["name"]
         self.protection = 0
+        self.power = knight["power"] + knight["weapon"]["power"]
+        self.hp = knight["hp"]
+        self.weapon = knight["weapon"]["name"]
         self.armour = []
-        self.weapon = weapon["name"]
-        Knight.knights[name] = self
+        Knight.knights[knight["name"]] = self
+        if len(knight["armour"]) != 0:
+            Knight.knight_armour(self, knight["armour"])
+        if knight.get("potion"):
+            setattr(self, "potion", knight["potion"])
+            Knight.knight_potion(self, knight["potion"]["effect"])
 
     def knight_armour(self, armours: list[dict]) -> None:
         for armour in armours:
@@ -16,8 +21,7 @@ class Knight:
             self.protection += armour["protection"]
 
     def knight_potion(self, potion: dict) -> None:
-        self.potion = potion["name"]
-        for effect, value in potion["effect"].items():
+        for effect, value in potion.items():
             if effect == "power":
                 self.power += value
             elif effect == "hp":

@@ -93,14 +93,7 @@ list_of_fighting = {"Lancelot": "Mordred", "Arthur": "Red Knight"}
 
 def battle(knights: dict) -> dict:
     for knight in knights.values():
-        Knight(name=knight["name"], power=knight["power"], hp=knight["hp"],
-               weapon=knight["weapon"])
-        if len(knight["armour"]) != 0:
-            Knight.knight_armour(Knight.knights[knight["name"]],
-                                 knight["armour"])
-        if knight.get("potion"):
-            Knight.knight_potion(Knight.knights[knight["name"]],
-                                 knight["potion"])
+        Knight(knight)
     KnightFighting().battle(Knight.knights, list_of_fighting)
     return {name: knight.hp for name, knight in Knight.knights.items()}
 
