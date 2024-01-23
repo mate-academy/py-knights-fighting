@@ -18,13 +18,9 @@ class Knight:
     def knight_armour(self, armours: list[dict]) -> None:
         for armour in armours:
             self.armour.append(armour["part"])
-            self.protection += armour["protection"]
+            setattr(self, "protection", (getattr(self, "protection")
+                                         + armour["protection"]))
 
     def knight_potion(self, potion: dict) -> None:
         for effect, value in potion.items():
-            if effect == "power":
-                self.power += value
-            elif effect == "hp":
-                self.hp += value
-            elif effect == "protection":
-                self.protection += value
+            setattr(self, effect, (getattr(self, effect) + value))
