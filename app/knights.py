@@ -1,6 +1,3 @@
-from app.main import knights
-
-
 class Knight:
     knights = dict()
 
@@ -27,13 +24,3 @@ class Knight:
                 self.hp += value
             elif effect == "protection":
                 self.protection += value
-
-
-for knight in knights.values():
-    Knight(knight["name"], knight["power"], knight["hp"], knight["weapon"])
-    if len(knight["armour"]) != 0:
-        Knight.knight_armour(Knight.knights[knight["name"]], knight["armour"])
-    if knight.get("potion"):
-        Knight.knight_potion(Knight.knights[knight["name"]], knight["potion"])
-print(Knight.knights)
-print(Knight.knights["Mordred"].protection)
