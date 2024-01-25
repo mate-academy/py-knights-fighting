@@ -13,4 +13,8 @@ class Knight:
         self.power += self.weapon["power"]
         if self.potion:
             for attribute in (effects := self.potion["effect"]):
-                setattr(self, attribute, getattr(self, attribute) + effects[attribute])
+                setattr(
+                    self,
+                    attribute,
+                    getattr(self, attribute) + effects[attribute]
+                )
