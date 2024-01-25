@@ -1,15 +1,20 @@
 class Knight:
-    def __init__(self, knight: dict) -> None:
-        self.name = knight["name"]
-        self.power = knight["power"]
-        self.hp = knight["hp"]
-        self.armour = knight["armour"]
-        self.weapon = knight["weapon"]
-        self.potion = knight["potion"]
+    def __init__(
+        self,
+        name: str,
+        power: int,
+        hp: int,
+        armour: list[dict],
+        weapon: dict,
+        potion: dict | None,
+    ) -> None:
+        self.name = name
+        self.power = power
+        self.hp = hp
+        self.armour = armour
+        self.weapon = weapon
+        self.potion = potion
         self.protection = 0
-
-        # a knight prepares for battle
-        self.battle_preparations()
 
     def battle_preparations(self) -> None:
         # apply armour
@@ -20,11 +25,9 @@ class Knight:
 
         # apply potion if exist
         if self.potion:
-            if "power" in self.potion["effect"]:
-                self.power += self.potion["effect"]["power"]
-
-            if "protection" in self.potion["effect"]:
-                self.protection += self.potion["effect"]["protection"]
-
-            if "hp" in self.potion["effect"]:
-                self.hp += self.potion["effect"]["hp"]
+            for attribute in (effect := self.potion["effect"]):
+                setattr(
+                    self,
+                    attribute,
+                    getattr(self, attribute) + effect[attribute],
+                )
