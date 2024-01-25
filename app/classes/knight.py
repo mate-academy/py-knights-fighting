@@ -11,10 +11,6 @@ class Knight:
     def prepare_for_battle(self) -> None:
         self.protection = sum(part["protection"] for part in self.armour)
         self.power += self.weapon["power"]
-        if self.potion is not None:
-            for attribute in ["power", "protection", "hp"]:
-                if attribute in (effects := self.potion["effect"]):
-                    setattr(
-                        self,
-                        attribute,
-                        getattr(self, attribute) + effects[attribute])
+        if self.potion:
+            for attribute in (effects := self.potion["effect"]):
+                setattr(self, attribute, getattr(self, attribute) + effects[attribute])
