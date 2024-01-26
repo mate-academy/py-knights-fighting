@@ -11,10 +11,14 @@ def create_knight(knight_data: dict) -> Knight:
     weapon_data = knight_data["weapon"]
     weapon = Weapon(name=weapon_data["name"], power=weapon_data["power"])
 
-    knight = Knight(name=knight_data["name"], power=knight_data["power"], hp=knight_data["hp"], weapon=weapon)
+    knight = Knight(name=knight_data["name"],
+                    power=knight_data["power"],
+                    hp=knight_data["hp"],
+                    weapon=weapon)
 
     for armour_data in knight_data["armour"]:
-        armour = Armour(part=armour_data["part"], protection=armour_data["protection"])
+        armour = Armour(part=armour_data["part"],
+                        protection=armour_data["protection"])
         knight.equip_armour(armour)
 
     potion_data = knight_data.get("potion")
