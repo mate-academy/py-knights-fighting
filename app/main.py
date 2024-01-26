@@ -86,7 +86,6 @@ KNIGHTS = {
         }
     }
 }
-
+# Plan to continue
 result = battle(KNIGHTS)
 print(result)
-
