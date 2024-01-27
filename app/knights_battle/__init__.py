@@ -1,1 +1,1 @@
-from .battle import battle
+from .battle import battle  # noqa: F401
