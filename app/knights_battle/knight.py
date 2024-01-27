@@ -5,18 +5,18 @@ class Knight:
         self.name = name
         self.power = power
         self.hp = hp
-        self.armour = [Armour(a['part'], a['protection']) for a in armour] if armour else []
+        self.armour = [Armour(a["part"], a["protection"]) for a in armour] if armour else []
         self.weapon = None
         self.potion = None
         self.protection = 0
 
         # If weapon is provided, create a Weapon object
         if weapon:
-            self.weapon = Weapon(weapon['name'], weapon['power'])
+            self.weapon = Weapon(weapon["name"], weapon["power"])
 
         # If potion is provided, create a Potion object
         if potion:
-            self.potion = Potion(potion['name'], potion['effect'])
+            self.potion = Potion(potion["name"], potion["effect"])
 
     def apply_armour(self):
         for a in self.armour:

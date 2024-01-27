@@ -1,6 +1,7 @@
 from app.knights_battle.knight import Knight
 
 
+
 def battle(knightsConfig):
     
     knights = {}
@@ -8,9 +9,9 @@ def battle(knightsConfig):
   
     for name, details in knightsConfig.items():
         
-        knights[name] = Knight(name=details['name'], power=details['power'], 
-                               hp=details['hp'], armour=details['armour'], 
-                               weapon=details['weapon'], potion=details['potion'])
+        knights[name] = Knight(name=details["name"], power=details["power"], 
+                               hp=details["hp"], armour=details["armour"], 
+                               weapon=details["weapon"], potion=details["potion"])
     
 
     
@@ -19,8 +20,8 @@ def battle(knightsConfig):
         knight.apply_weapon()
         knight.apply_potion()
 
-    simulate_fight(knights['lancelot'], knights['mordred'])
-    simulate_fight(knights['arthur'], knights['red_knight'])
+    simulate_fight(knights["lancelot"], knights["mordred"])
+    simulate_fight(knights["arthur"], knights["red_knight"])
 
     # Prepare and return battle results
     return {knight.name: knight.hp for knight in knights.values()}
