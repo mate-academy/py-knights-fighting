@@ -1,4 +1,4 @@
-from knights_battle.battle import battle
+from app.knights_battle import battle
 
 KNIGHTS = {
     "lancelot": {

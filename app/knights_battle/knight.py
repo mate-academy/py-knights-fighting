@@ -1,4 +1,4 @@
-from knights_battle.equipment import Armour, Weapon, Potion
+from app.knights_battle.equipment import Armour, Weapon, Potion
 
 class Knight:
     def __init__(self, name, power, hp, armour, weapon, potion):

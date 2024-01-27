@@ -1,4 +1,4 @@
-from knights_battle.knight import Knight
+from app.knights_battle.knight import Knight
 
 
 def battle(knightsConfig):
