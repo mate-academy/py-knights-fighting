@@ -92,76 +92,32 @@ KNIGHTS = {
 
 
 def battle(knights: dict) -> dict:
-    # lancelot
-    lancelot = Knight(
-        name=knights["lancelot"]["name"],
-        power=knights["lancelot"]["power"],
-        hp=knights["lancelot"]["hp"],
-        armour=[
-            Armour(part=armour["part"],
-                   protection=armour["protection"])
-            for armour in knights["lancelot"]["armour"]
-        ],
-        weapon=Weapon(name=knights["lancelot"]["weapon"]["name"],
-                      power=knights["lancelot"]["weapon"]["power"]),
-        potion=None if knights["lancelot"].get("potion") is None else
-        Potion(name=knights["lancelot"]["potion"]["name"],
-               effect=knights["lancelot"]["potion"]["effect"])
-    )
-    # arthur
-    arthur = Knight(
-        name=knights["arthur"]["name"],
-        power=knights["arthur"]["power"],
-        hp=knights["arthur"]["hp"],
+    all_knights = {one_knight: Knight(
+        name=knights[one_knight]["name"],
+        power=knights[one_knight]["power"],
+        hp=knights[one_knight]["hp"],
         armour=[Armour(part=armour["part"],
                        protection=armour["protection"])
-                for armour in knights["arthur"]["armour"]],
-        weapon=Weapon(name=knights["arthur"]["weapon"]["name"],
-                      power=knights["arthur"]["weapon"]["power"]),
-        potion=None if knights["arthur"].get("potion") is None else
-        Potion(name=knights["arthur"]["potion"]["name"],
-               effect=knights["arthur"]["potion"]["effect"])
-    )
-    # mordred
-    mordred = Knight(
-        name=knights["mordred"]["name"],
-        power=knights["mordred"]["power"],
-        hp=knights["mordred"]["hp"],
-        armour=[Armour(part=armour["part"],
-                       protection=armour["protection"])
-                for armour in knights["mordred"]["armour"]],
-        weapon=Weapon(name=knights["mordred"]["weapon"]["name"],
-                      power=knights["mordred"]["weapon"]["power"]),
-        potion=None if knights["mordred"].get("potion") is None else
-        Potion(name=knights["mordred"]["potion"]["name"],
-               effect=knights["mordred"]["potion"]["effect"])
-    )
-    # red_knight
-    red_knight = Knight(
-        name=knights["red_knight"]["name"],
-        power=knights["red_knight"]["power"],
-        hp=knights["red_knight"]["hp"],
-        armour=[Armour(part=armour["part"],
-                       protection=armour["protection"])
-                for armour in knights["red_knight"]["armour"]],
-        weapon=Weapon(name=knights["red_knight"]["weapon"]["name"],
-                      power=knights["red_knight"]["weapon"]["power"]),
-        potion=None if knights["red_knight"].get("potion") is None else
-        Potion(name=knights["red_knight"]["potion"]["name"],
-               effect=knights["red_knight"]["potion"]["effect"])
-    )
+                for armour in knights[one_knight]["armour"]],
+        weapon=Weapon(name=knights[one_knight]["weapon"]["name"],
+                      power=knights[one_knight]["weapon"]["power"]),
+        potion=None if knights[one_knight].get("potion") is None else
+        Potion(name=knights[one_knight]["potion"]["name"],
+               effect=knights[one_knight]["potion"]["effect"])
+    ) for one_knight in knights}
+
     # 1 Lancelot vs Mordred:
-    lancelot - mordred
+    all_knights["lancelot"] - all_knights["mordred"]
 
     # 2 Arthur vs Red Knight:
-    arthur - red_knight
+    all_knights["arthur"] - all_knights["red_knight"]
 
     # Return battle results:
     return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
+        all_knights["lancelot"].name: all_knights["lancelot"].hp,
+        all_knights["arthur"].name: all_knights["arthur"].hp,
+        all_knights["mordred"].name: all_knights["mordred"].hp,
+        all_knights["red_knight"].name: all_knights["red_knight"].hp,
     }
 
 
