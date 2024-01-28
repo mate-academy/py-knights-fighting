@@ -1,0 +1,20 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.0, pytest-7.1.3, pluggy-1.4.0
+rootdir: C:\Users\Mariia\projects\py-knights-fighting
+collected 0 items / 1 error
+
+=================================== ERRORS ====================================
+_____________________ ERROR collecting tests/test_main.py _____________________
+tests\test_main.py:3: in <module>
+    from app.main import battle
+app\main.py:41: in <module>
+    print(battle(KNIGHTS))
+app\main.py:36: in battle
+    battle_results = fight(knights[0], knights[2])
+app\battle\fight.py:5: in fight
+    knight1.hp -= knight2.power - knight1.protection
+E   AttributeError: 'NoneType' object has no attribute 'hp'
+=========================== short test summary info ===========================
+ERROR tests/test_main.py - AttributeError: 'NoneType' object has no attribute...
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+============================== 1 error in 0.08s ===============================
