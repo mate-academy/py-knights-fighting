@@ -30,7 +30,7 @@ class Knight:
         if self.potion is not None:
             effect = self.potion["effect"]
             if "hp" in effect:
-                self.hp += effect["hp"]
+                self.hp += effect.get("hp", 0)
             if "power" in effect:
                 self.power += effect["power"]
             if "protection" in effect:
