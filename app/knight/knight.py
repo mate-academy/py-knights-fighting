@@ -21,7 +21,9 @@ class Knight:
         self.protection = protection
 
     def apply_armour(self) -> None:
-        self.protection = sum([a["protection"] for a in self.armour])
+        self.protection = sum(
+            [armour_piece["protection"] for armour_piece in self.armour]
+        )
 
     def apply_weapon(self) -> None:
         self.power += self.weapon["power"]
@@ -29,12 +31,9 @@ class Knight:
     def apply_potion(self) -> None:
         if self.potion is not None:
             effect = self.potion["effect"]
-            if "hp" in effect:
-                self.hp += effect.get("hp", 0)
-            if "power" in effect:
-                self.power += effect["power"]
-            if "protection" in effect:
-                self.protection += effect["protection"]
+            self.hp += effect.get("hp", 0)
+            self.power += effect.get("power", 0)
+            self.protection += effect.get("protection", 0)
 
     def prepare_knight(self) -> Knight:
         self.apply_armour()
