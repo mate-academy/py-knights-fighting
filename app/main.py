@@ -1,4 +1,4 @@
-import re
+# import re
 
 
 KNIGHTS = {
@@ -91,12 +91,19 @@ KNIGHTS = {
 
 def knight_charm(knight_params: dict) -> dict:
     knights = dict()
-    for name in knight_params:
-        params_str = str(knight_params[name])
-        knights[name] = {"name": knight_params[name]["name"]}
-        for param_type in ("hp", "power", "protection"):
-            param = re.findall(f"(?<='{param_type}': )[+-]?[0-9]+", params_str)
-            knights[name][param_type] = sum((int(stat) for stat in param))
+
+    for name, params in knight_params.items():
+        knights[name] = {"name": params["name"]}
+        knights[name]["hp"] = (
+            params["hp"] +
+            (params["potion"] or {}).get("effect", {}).get("hp", 0))
+        knights[name]["power"] = (
+            params["power"] + params["weapon"]["power"] +
+            (params["potion"] or {}).get("effect", {}).get("power", 0))
+        knights[name]["protection"] = (
+            sum([dic.get("protection", 0) for dic in params["armour"]] + [0]) +
+            (params["potion"] or {}).get("effect", {}).get("protection", 0)
+        )
     return knights
 
 
@@ -118,13 +125,8 @@ def battle(knight_params: dict) -> dict:
     battle_harm(knights["arthur"], knights["red_knight"]["power"])
     battle_harm(knights["red_knight"], knights["arthur"]["power"])
 
-    # Return battle results:
-    return {
-        knights["lancelot"]["name"]: knights["lancelot"]["hp"],
-        knights["arthur"]["name"]: knights["arthur"]["hp"],
-        knights["mordred"]["name"]: knights["mordred"]["hp"],
-        knights["red_knight"]["name"]: knights["red_knight"]["hp"]
-    }
+    # # Return battle results:
+    return {knights[name]["name"]: knights[name]["hp"] for name in knights}
 
 
 print(battle(KNIGHTS))
