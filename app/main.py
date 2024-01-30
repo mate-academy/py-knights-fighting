@@ -1,4 +1,4 @@
-from app.battle.pre_battle import battle
+from app.battle.battle import battle
 
 knights = {
     "lancelot": {
