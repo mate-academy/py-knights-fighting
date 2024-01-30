@@ -1,19 +1,48 @@
-def apply_armour(name: dict) -> None:
-    name["protection"] = 0
-    for part in name["armour"]:
-        name["protection"] += part["protection"]
-    return name["protection"]
+from __future__ import annotations
 
 
-def apply_weapon(name: dict) -> None:
-    name["power"] += name["weapon"]["power"]
-    return name["power"]
+class Knight:
+    knights = {}
 
+    def __init__(self,
+                 name: str,
+                 power: int,
+                 hp: int,
+                 armour: list,
+                 weapon: dict,
+                 potion: dict) -> None:
+        self.name = name
+        self.power = power
+        self.hp = hp
+        self.armour = armour
+        self.weapon = weapon
+        self.potion = potion
+        self.protection = 0
 
-def apply_potion(name: dict) -> None:
-    if name["potion"] is not None and "effect" in name["potion"]:
-        potion_effect = name["potion"]["effect"]
+        Knight.knights.update({name: self})
 
-        for attribute in ["power", "protection", "hp"]:
-            if attribute in potion_effect:
-                name[attribute] += potion_effect[attribute]
+    def apply_armour(self) -> None:
+        for part in self.armour:
+            self.protection += part["protection"]
+
+    def apply_weapon(self) -> None:
+        self.power += self.weapon["power"]
+
+    def apply_potion(self) -> None:
+        if self.potion is not None:
+            if "power" in self.potion["effect"]:
+                self.power += self.potion["effect"]["power"]
+            if "protection" in self.potion["effect"]:
+                self.protection += self.potion["effect"]["protection"]
+            if "hp" in self.potion["effect"]:
+                self.hp += self.potion["effect"]["hp"]
+
+    def apply_damage(self, opponent: Knight) -> None:
+        self.hp -= opponent.power - self.protection
+        opponent.hp -= self.power - self.protection
+
+        if self.hp <= 0:
+            self.hp = 0
+
+        if opponent.hp <= 0:
+            opponent.hp = 0
