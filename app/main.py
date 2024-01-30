@@ -113,10 +113,10 @@ def battle(knights_config: dict) -> dict:
 
         if defender["hp"] <= 0:
             defender["hp"] = 0
+
     apply_damage(lancelot, mordred)
     apply_damage(arthur, red_knight)
 
-    # Return battle results:
     return {
         lancelot["name"]: lancelot["hp"],
         arthur["name"]: arthur["hp"],
