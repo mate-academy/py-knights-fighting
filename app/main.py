@@ -1,6 +1,3 @@
-# import re
-
-
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
@@ -95,15 +92,14 @@ def knight_charm(knight_params: dict) -> dict:
     for name, params in knight_params.items():
         knights[name] = {"name": params["name"]}
         knights[name]["hp"] = (
-            params["hp"] +
-            (params["potion"] or {}).get("effect", {}).get("hp", 0))
+            params["hp"]
+            + (params["potion"] or {}).get("effect", {}).get("hp", 0))
         knights[name]["power"] = (
-            params["power"] + params["weapon"]["power"] +
-            (params["potion"] or {}).get("effect", {}).get("power", 0))
+            params["power"] + params["weapon"]["power"]
+            + (params["potion"] or {}).get("effect", {}).get("power", 0))
         knights[name]["protection"] = (
-            sum([dic.get("protection", 0) for dic in params["armour"]] + [0]) +
-            (params["potion"] or {}).get("effect", {}).get("protection", 0)
-        )
+            sum([dic.get("protection", 0) for dic in params["armour"]] + [0])
+            + (params["potion"] or {}).get("effect", {}).get("protection", 0))
     return knights
 
 
