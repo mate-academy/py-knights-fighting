@@ -1,9 +1,9 @@
-from app.battle.pre_battle import pre_battle
+from app.battle.pre_battle import prepare_knights
 
 
 def battle(knights_one: dict) -> dict:
 
-    pre_battle(knights_one)
+    prepare_knights(knights_one)
 
     lancelot = knights_one["lancelot"]
     mordred = knights_one["mordred"]

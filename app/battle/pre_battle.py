@@ -1,4 +1,4 @@
-def pre_battle(knights_one: dict) -> dict:
+def prepare_knights(knights_one: dict) -> dict:
 
     for knight in knights_one:
         knight = knights_one[knight]
