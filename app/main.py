@@ -1,7 +1,7 @@
 from typing import Dict, Any
 
 
-def calculate_stats(knight: Dict[str, Any]) -> Dict[str, Any]:
+def battle_preparation(knight: Dict[str, Any]) -> Dict[str, Any]:
     stats = knight.copy()
     stats["protection"] = (
         sum(armor["protection"]for armor in knight["armour"])
@@ -17,12 +17,11 @@ def calculate_stats(knight: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def battle(knights_config: Dict[str, Any]) -> Dict[str, Any]:
-    lancelot = calculate_stats(knights_config["lancelot"])
-    arthur = calculate_stats(knights_config["arthur"])
-    mordred = calculate_stats(knights_config["mordred"])
-    red_knight = calculate_stats(knights_config["red_knight"])
+    lancelot = battle_preparation(knights_config["lancelot"])
+    arthur = battle_preparation(knights_config["arthur"])
+    mordred = battle_preparation(knights_config["mordred"])
+    red_knight = battle_preparation(knights_config["red_knight"])
 
-    # Battle between Lancelot and Mordred
     lancelot["hp"] -= mordred["power"] - lancelot["protection"]
     mordred["hp"] -= lancelot["power"] - mordred["protection"]
     lancelot["hp"] = max(lancelot["hp"], 0)
