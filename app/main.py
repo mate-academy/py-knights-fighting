@@ -1,44 +1,34 @@
-from app.apply.all import apply_all
-from app.battle.fight import fight
-from app.battle.check_hp import check_hp
+from app.battle.fight_and_check_hp import check_hp, fight
+from app.battle.Knight import Knight
 
 
 def battle(knights_config: dict) -> dict:
-    # BATTLE PREPARATIONS:
+    knights = [
+        knights_config["lancelot"],
+        knights_config["arthur"],
+        knights_config["mordred"],
+        knights_config["red_knight"]
+    ]
 
-    lancelot = knights_config["lancelot"]
-    apply_all(lancelot)
+    for knight in knights:
+        kn = Knight(knight)
+        kn.apply_point()
+        kn.apply_armour()
+        kn.apply_weapon()
 
-    arthur = knights_config["arthur"]
-    apply_all(arthur)
+    fight(knights[0], knights[2])
 
-    mordred = knights_config["mordred"]
-    apply_all(mordred)
+    check_hp(knights[0])
+    check_hp(knights[2])
 
-    red_knight = knights_config["red_knight"]
-    apply_all(red_knight)
+    fight(knights[1], knights[3])
 
-    # -------------------------------------------------------------------------------
-    # BATTLE:
+    check_hp(knights[1])
+    check_hp(knights[3])
 
-    # 1 Lancelot vs Mordred:
-    fight(lancelot, mordred)
-
-    # check if someone fell in battle
-    check_hp(lancelot)
-    check_hp(mordred)
-
-    # 2 Arthur vs Red Knight:
-    fight(arthur, red_knight)
-
-    # check if someone fell in battle
-    check_hp(arthur)
-    check_hp(red_knight)
-
-    # Return battle results:
     return {
-        lancelot["name"]: lancelot["hp"],
-        arthur["name"]: arthur["hp"],
-        mordred["name"]: mordred["hp"],
-        red_knight["name"]: red_knight["hp"],
+        knights[0]["name"]: knights[0]["hp"],
+        knights[1]["name"]: knights[1]["hp"],
+        knights[2]["name"]: knights[2]["hp"],
+        knights[3]["name"]: knights[3]["hp"],
     }
