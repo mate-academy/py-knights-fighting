@@ -2,18 +2,18 @@ from typing import Dict, Any
 
 
 def battle_preparation(knight: Dict[str, Any]) -> Dict[str, Any]:
-    stats = knight.copy()
-    stats["protection"] = (
+    knight_stats = knight.copy()
+    knight_stats["protection"] = (
         sum(armor["protection"]for armor in knight["armour"])
     )
-    stats["power"] += knight["weapon"]["power"]
+    knight_stats["power"] += knight["weapon"]["power"]
     potion = knight.get("potion")
     if potion:
         potion_effect = potion.get("effect", {})
-        stats["power"] += potion_effect.get("power", 0)
-        stats["protection"] += potion_effect.get("protection", 0)
-        stats["hp"] += potion_effect.get("hp", 0)
-    return stats
+        knight_stats["power"] += potion_effect.get("power", 0)
+        knight_stats["protection"] += potion_effect.get("protection", 0)
+        knight_stats["hp"] += potion_effect.get("hp", 0)
+    return knight_stats
 
 
 def battle(knights_config: Dict[str, Any]) -> Dict[str, Any]:
