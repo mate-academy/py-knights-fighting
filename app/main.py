@@ -1,13 +1,13 @@
 from app.knights.players import KNIGHTS
-from app.knights.knights import Knights
+from app.knights.knights import Knight
 from app.battle.battle import Battle
 
 
 def battle(player: dict) -> dict:
-    lancelot = Knights(**player["lancelot"])
-    mordred = Knights(**player["mordred"])
-    arthur = Knights(**player["arthur"])
-    red_knight = Knights(**player["red_knight"])
+    lancelot = Knight(**player["lancelot"])
+    mordred = Knight(**player["mordred"])
+    arthur = Knight(**player["arthur"])
+    red_knight = Knight(**player["red_knight"])
     first_battle = Battle(lancelot, mordred)
     second_battle = Battle(arthur, red_knight)
     Battle.before_battle()
