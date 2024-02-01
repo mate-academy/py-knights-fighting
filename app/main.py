@@ -27,6 +27,6 @@ def battle(knights_config: dict) -> dict:
     check_hp(knights[3])
 
     return {
-        knights[number]["name"]: knights[number]["hp"]
-        for number in range(3 + 1)
+        knights["name"]: knights["hp"]
+        for knights in knights[:3 + 1]
     }
