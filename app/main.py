@@ -8,7 +8,7 @@ def battle(knights_config: Dict) -> Dict:
         for name, config in knights_config.items()
     }
 
-    knights["lancelot"].duel(knights["mordred"])
-    knights["arthur"].duel(knights["red_knight"])
+    knights["Lancelot"].duel(knights["Mordred"])
+    knights["Arthur"].duel(knights["Red_knight"])
 
     return {name: knight.hp for name, knight in knights.items()}
