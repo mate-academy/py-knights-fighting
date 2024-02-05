@@ -6,6 +6,93 @@ from app.potion.potion import Potion
 from app.potion.effect import Effect
 from app.knights import KNIGHTS
 
+# KNIGHTS = {
+#     "lancelot": {
+#         "name": "Lancelot",
+#         "power": 35,
+#         "hp": 100,
+#         "armour": [],
+#         "weapon": {
+#             "name": "Metal Sword",
+#             "power": 50,
+#         },
+#         "potion": None,
+#     },
+#     "arthur": {
+#         "name": "Arthur",
+#         "power": 45,
+#         "hp": 75,
+#         "armour": [
+#             {
+#                 "part": "helmet",
+#                 "protection": 15,
+#             },
+#             {
+#                 "part": "breastplate",
+#                 "protection": 20,
+#             },
+#             {
+#                 "part": "boots",
+#                 "protection": 10,
+#             }
+#         ],
+#         "weapon": {
+#             "name": "Two-handed Sword",
+#             "power": 55,
+#         },
+#         "potion": None,
+#     },
+#     "mordred": {
+#         "name": "Mordred",
+#         "power": 30,
+#         "hp": 90,
+#         "armour": [
+#             {
+#                 "part": "breastplate",
+#                 "protection": 15,
+#             },
+#             {
+#                 "part": "boots",
+#                 "protection": 10,
+#             }
+#         ],
+#         "weapon": {
+#             "name": "Poisoned Sword",
+#             "power": 60,
+#         },
+#         "potion": {
+#             "name": "Berserk",
+#             "effect": {
+#                 "power": +15,
+#                 "hp": -5,
+#                 "protection": +10,
+#             }
+#         }
+#     },
+#     "red_knight": {
+#         "name": "Red Knight",
+#         "power": 40,
+#         "hp": 70,
+#         "armour": [
+#             {
+#                 "part": "breastplate",
+#                 "protection": 25,
+#             }
+#         ],
+#         "weapon": {
+#             "name": "Sword",
+#             "power": 45
+#         },
+#         "potion": {
+#             "name": "Blessing",
+#             "effect": {
+#                 "hp": +10,
+#                 "power": +5,
+#             }
+#         }
+#     }
+# }
+
 
 def create_knight(knight_data: dict) -> Knight:
     weapon_data = knight_data["weapon"]
@@ -37,10 +124,10 @@ def create_knight(knight_data: dict) -> Knight:
 
 
 def battle(knight_data: dict) -> dict:
-    lancelot = create_knight(KNIGHTS["lancelot"])
-    arthur = create_knight(KNIGHTS["arthur"])
-    mordred = create_knight(KNIGHTS["mordred"])
-    red_knight = create_knight(KNIGHTS["red_knight"])
+    lancelot = create_knight(knight_data["lancelot"])
+    arthur = create_knight(knight_data["arthur"])
+    mordred = create_knight(knight_data["mordred"])
+    red_knight = create_knight(knight_data["red_knight"])
 
     first_battle = Battle(first_knight=mordred, second_knight=lancelot)
     first_battle_result = first_battle.combat()
