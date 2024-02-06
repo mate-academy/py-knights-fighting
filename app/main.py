@@ -2,25 +2,30 @@ from app.knights.knight import Knight
 from app.knights.config import KNIGHTS
 
 
+def update_health(attacker: Knight, defender: Knight) -> None:
+    damage = max(0, attacker.power - defender.protection)
+    defender.hp = max(0, defender.hp - damage)
+
+
+def fight(knight1: Knight, knight2: Knight) -> None:
+    update_health(knight1, knight2)
+    update_health(knight2, knight1)
+
+
 def battle(knights_config: dict) -> dict:
     knights = {name: Knight(config) for name, config in knights_config.items()}
 
-    def fight(knight1: Knight, knight2: Knight) -> None:
-        damage_to_knight2 = max(0, knight1.power - knight2.protection)
-        damage_to_knight1 = max(0, knight2.power - knight1.protection)
+    knight_pairs = [
+        ("lancelot", "mordred"),
+        ("arthur", "red_knight"),
+    ]
 
-        knight1.hp -= damage_to_knight1
-        knight2.hp -= damage_to_knight2
-
-        knight1.hp = max(0, knight1.hp)
-        knight2.hp = max(0, knight2.hp)
-
-    fight(knights["lancelot"], knights["mordred"])
-    fight(knights["arthur"], knights["red_knight"])
+    for knight1_name, knight2_name in knight_pairs:
+        fight(knights[knight1_name], knights[knight2_name])
 
     return {
         knights[name].name: knights[name].hp
-        for name in ["lancelot", "arthur", "mordred", "red_knight"]
+        for name in knights
     }
 
 

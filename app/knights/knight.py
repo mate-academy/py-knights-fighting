@@ -4,7 +4,9 @@ class Knight:
         self.base_power = knight["power"]
         self.hp = knight["hp"]
         self.armour = knight.get("armour", [])
-        self.protection = sum(a["protection"] for a in self.armour)
+        self.protection = sum(
+            armor_piece["protection"] for armor_piece in self.armour
+        )
         self.weapon = knight.get("weapon", {"power": 0})
         self.potion = knight.get("potion")
         self.power = self.base_power + self.weapon["power"]
