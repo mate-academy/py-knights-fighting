@@ -4,28 +4,25 @@ from app.knight_equipment.weapon import Weapon
 
 
 class Knight:
-    def __init__(self, knight_config: dict) -> None:
-        self.name = knight_config["name"]
-        self.power = knight_config["power"]
-        self.hp = knight_config["hp"]
+    def __init__(
+            self,
+            name: str,
+            power: int,
+            hp: int,
+            armour: list[dict],
+            weapon: dict,
+            potion: dict | None
+    ) -> None:
+        self.name = name
+        self.power = power
+        self.hp = hp
         self.armour = [
-            Armour(
-                part=armour_part["part"],
-                protection=armour_part["protection"]
-            )
-            for armour_part in knight_config["armour"]
+            Armour(**armour_part)
+            for armour_part in armour
         ]
 
-        self.weapon = Weapon(
-            name=knight_config["weapon"]["name"],
-            power=knight_config["weapon"]["power"]
-        )
-
-        self.potion = Potion(
-            name=knight_config["potion"]["name"],
-            effect=knight_config["potion"]["effect"]
-        ) if knight_config.get("potion") else None
-
+        self.weapon = Weapon(**weapon)
+        self.potion = Potion(**potion) if potion else None
         self.protection = 0
 
         self.prepare_to_battle()
