@@ -5,7 +5,7 @@ class Knight:
         self.hp = knight["hp"]
         self.armour = knight.get("armour", [])
         self.protection = sum(
-            armor_piece["protection"] for armor_piece in self.armour
+            armour_piece["protection"] for armour_piece in self.armour
         )
         self.weapon = knight.get("weapon", {"power": 0})
         self.potion = knight.get("potion")
@@ -15,7 +15,5 @@ class Knight:
             self.apply_potion_effect()
 
     def apply_potion_effect(self) -> None:
-        effect = self.potion.get("effect", {})
-        self.hp += effect.get("hp", 0)
-        self.power += effect.get("power", 0)
-        self.protection += effect.get("protection", 0)
+        for effect, value in self.potion.get("effect", {}).items():
+            setattr(self, effect, getattr(self, effect, 0) + value)
