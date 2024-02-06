@@ -8,8 +8,13 @@ def update_health(attacker: Knight, defender: Knight) -> None:
 
 
 def fight(knight1: Knight, knight2: Knight) -> None:
-    update_health(knight1, knight2)
-    update_health(knight2, knight1)
+    while knight1.hp > 0 and knight2.hp > 0:
+        update_health(knight1, knight2)
+        if knight2.hp <= 0 and not knight2.attempt_resurrection():
+            break
+        update_health(knight2, knight1)
+        if knight1.hp <= 0 and not knight1.attempt_resurrection():
+            break
 
 
 def battle(knights_config: dict) -> dict:

@@ -9,6 +9,12 @@ KNIGHTS = {
             "power": 50,
         },
         "potion": None,
+        "special_abilities": [
+            {
+                "name": "Divine Resurrection",
+                "amount": 1,
+            }
+        ],
     },
     "arthur": {
         "name": "Arthur",
@@ -81,6 +87,6 @@ KNIGHTS = {
                 "hp": +10,
                 "power": +5,
             }
-        }
+        },
     }
 }
