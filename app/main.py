@@ -1,5 +1,5 @@
 from app.arena.battle import Battle
-from app.figters.knight import Knight
+from app.fighters.knight import Knight
 
 KNIGHTS = {
     "lancelot": {
