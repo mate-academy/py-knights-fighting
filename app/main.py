@@ -1,6 +1,7 @@
 from app.battle.battle import attack, check_survival
 from app.battle.preparation import preparation_for_battle
 from app.character.knights import Knights
+from app.character.config import KNIGHTS
 
 
 def battle(knights_data: dict) -> dict:
@@ -33,12 +34,7 @@ def battle(knights_data: dict) -> dict:
 
 
 def main() -> None:
-    knights_data = {
-        "arthur": {...},
-        "lancelot": {...},
-        "mordred": {...},
-        "red_knight": {...},
-    }
+    knights_data = KNIGHTS
 
     result = battle(knights_data)
 
