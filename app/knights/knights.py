@@ -1,7 +1,7 @@
 class Knight:
 
-    def __init__(self):
-        self.name = ''
+    def __init__(self) -> None:
+        self.name = ""
         self.base_power = 0
         self.base_hp = 0
         self.protection = 0
@@ -10,8 +10,7 @@ class Knight:
         self.potion = {}
 
     def return_properties(self) -> dict:
-        return {'name': self.name,
-            'hp': self.base_hp,
-            'power': self.base_power,
-            'protection': self.protection
-            }
+        return {"name": self.name,
+                "hp": self.base_hp,
+                "power": self.base_power,
+                "protection": self.protection}
