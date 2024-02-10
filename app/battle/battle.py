@@ -9,25 +9,21 @@ def battle(knights: dict) -> dict:
         warrior = equip_knight(knights[name])
         warriors.append(warrior)
 
-    battle_result = {
-        warriors[0]["name"]:
-            max(warriors[0]["hp"]
-                - (warriors[2]["power"]
-                - warriors[0]["protection"]), 0),
+    battle_result = {}
 
-        warriors[2]["name"]:
-            max(warriors[2]["hp"]
-                - (warriors[0]["power"]
-                   - warriors[2]["protection"]), 0),
+    for i in range(len(warriors) // 2):
+        attacker_index = i
+        defender_index = attacker_index + 2
 
-        warriors[1]["name"]:
-            max(warriors[1]["hp"]
-                - (warriors[3]["power"]
-                   - warriors[1]["protection"]), 0),
+        attacker = warriors[attacker_index]
+        defender = warriors[defender_index]
 
-        warriors[3]["name"]:
-            max(warriors[3]["hp"]
-                - (warriors[1]["power"]
-                   - warriors[3]["protection"]), 0)}
+        attacker_hp_after_battle = max(
+            attacker["hp"] - (defender["power"] - attacker["protection"]), 0)
+        defender_hp_after_battle = max(
+            defender["hp"] - (attacker["power"] - defender["protection"]), 0)
+
+        battle_result[attacker["name"]] = attacker_hp_after_battle
+        battle_result[defender["name"]] = defender_hp_after_battle
 
     return battle_result

@@ -7,31 +7,32 @@ from app.knights.potion import Potion
 def equip_knight(base_equip: dict) -> dict:
     fighter = Knight()
 
-    for equip, value in base_equip.items():
+    for equip in base_equip:
         if equip == "name":
-            fighter.name = value
+            fighter.name = base_equip.get(equip)
 
         if equip == "power":
-            fighter.base_power = value
+            fighter.base_power = base_equip.get(equip)
 
         if equip == "hp":
-            fighter.base_hp = value
+            fighter.base_hp = base_equip.get(equip)
 
-        if equip == "armour" and value:
-            for part in value:
+        if equip == "armour" and base_equip.get(equip):
+            for part in base_equip.get(equip):
                 Armour(part["part"], part["protection"])
                 fighter.protection += part["protection"]
                 fighter.armour.append(Armour)
 
         if equip == "weapon":
-            Weapon(value["name"], value["power"])
-            fighter.base_power += value["power"]
-            # Knight.weapon[Weapon.name] = Weapon.power
+            Weapon(base_equip.get(equip)["name"],
+                   base_equip.get(equip)["power"])
+            fighter.base_power += base_equip.get(equip)["power"]
 
-        if equip == "potion" and value:
-            Potion(value["name"], value["effect"])
-            # Knight.potion[Potion.name] = Potion.effect
-            for stat, option in value["effect"].items():
+        if equip == "potion" and base_equip.get(equip):
+            Potion(base_equip.get(equip)["name"],
+                   base_equip.get(equip)["effect"])
+
+            for stat, option in base_equip.get(equip)["effect"].items():
                 if stat == "power":
                     fighter.base_power += option
                 if stat == "hp":
