@@ -1,37 +1,37 @@
-class LancelotStatus:
-    def __init__(self, lancelot: object) -> None:
-        self.lancelot = lancelot
+class PlayerStatus:
+    def __init__(self, player: object) -> None:
+        self.player = player
 
-    def lancelot_stats(self) -> dict:
-        result_weapon = self.lancelot.lancelot_weapon()
-        result_armour = self.lancelot.lancelot_armour()
-        result_potion = self.lancelot.lancelot_potion()
-        name = self.lancelot.name
-        hp = self.lancelot.hp
-        power = self.lancelot.power
-        protection = 0
+    def player_stats(self) -> dict:
+        result_weapon = getattr(self.player, "weapon")
+        result_armour = getattr(self.player, "armour")
+        result_potion = getattr(self.player, "potion")
+        name = getattr(self.player, "name")
+        hp = getattr(self.player, "hp")
+        power = getattr(self.player, "power")
+        protection = getattr(self.player, "protection")
 
         if result_potion is None:
             hp += 0
             power += 0
             protection += 0
         else:
-            for key, value in result_potion.items():
+            for key, value in result_potion["effect"].items():
                 if key == "hp":
                     if value > 0:
                         hp += value
                     else:
-                        hp -= abs(value)
+                        hp += value
                 elif key == "power":
                     if value > 0:
                         power += value
                     else:
-                        power -= abs(value)
+                        power += value
                 else:
                     if value > 0:
                         protection += value
                     else:
-                        protection -= abs(value)
+                        protection += value
 
         if result_armour is None:
             protection += 0

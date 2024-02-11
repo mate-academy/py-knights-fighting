@@ -1,19 +1,17 @@
-from app.knights.arthur import Arthur
-from app.knights.lancelot import Lancelot
-from app.knights.mordred import MordRed
-from app.knights.red_knight import RedKnight
-from app.Battle.battle import Battle
-from app.status.lancelot_stats import LancelotStatus
-from app.status.mordred_stats import MordredStatus
-from app.status.arthur_stats import ArthurStatus
-from app.status.red_knight_stats import RedKnightStatus
+from app.battle_players.battle_player import Battle
+from app.player.player import Player
+from app.status_player.player_status import PlayerStatus
 
 
 def battle(knightsconfig: dict) -> dict:
-    lancelot = Lancelot(knightsconfig.get("lancelot"))
-    arthur = Arthur(knightsconfig.get("arthur"))
-    mordred = MordRed(knightsconfig.get("mordred"))
-    red_knight = RedKnight(knightsconfig.get("red_knight"))
-    result = Battle(LancelotStatus(lancelot), MordredStatus(mordred),
-                    ArthurStatus(arthur), RedKnightStatus(red_knight))
+    players = []
+    for key, vel in knightsconfig.items():
+        key = Player(vel)
+        players.append(key)
+    players_status = [PlayerStatus(player) for player in players]
+
+    result = Battle(players_status[0].player_stats(),
+                    players_status[2].player_stats(),
+                    players_status[1].player_stats(),
+                    players_status[3].player_stats())
     return result.battls()
