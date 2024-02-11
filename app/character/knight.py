@@ -30,4 +30,3 @@ class Knight:
 
             for attribute, value in effect.items():
                 setattr(self, attribute, getattr(self, attribute) + value)
-
