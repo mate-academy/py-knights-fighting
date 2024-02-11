@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+
 class Knight:
     def __init__(self, knight_params: dict) -> None:
         self.name = knight_params.get("name")
@@ -21,3 +24,8 @@ class Knight:
                     self.power += value
                 if effect == "protection":
                     self.protection += value
+
+    def attack(self, enemy: Knight) -> None:
+        self.hp -= enemy.power - self.protection
+        if self.hp < 0:
+            self.hp = 0
