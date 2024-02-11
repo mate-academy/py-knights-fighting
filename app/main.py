@@ -1,14 +1,14 @@
 from app.battle.battle import attack, check_survival
 from app.battle.preparation import preparation_for_battle
-from app.character.knights import Knights
+from app.character.knight import Knight
 from app.character.config import KNIGHTS
 
 
 def battle(knights_data: dict) -> dict:
-    arthur = Knights(**knights_data["arthur"])
-    lancelot = Knights(**knights_data["lancelot"])
-    mordred = Knights(**knights_data["mordred"])
-    red_knight = Knights(**knights_data["red_knight"])
+    arthur = Knight(**knights_data["arthur"])
+    lancelot = Knight(**knights_data["lancelot"])
+    mordred = Knight(**knights_data["mordred"])
+    red_knight = Knight(**knights_data["red_knight"])
 
     prepared_arthur = preparation_for_battle(arthur)
     prepared_lancelot = preparation_for_battle(lancelot)

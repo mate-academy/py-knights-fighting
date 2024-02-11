@@ -1,8 +1,8 @@
-from app.character.knights import Knights
+from app.character.knight import Knight
 
 
-def preparation_for_battle(character: Knights) -> Knights:
-    Knights.apply_armour(character)
-    Knights.apply_weapon(character)
-    Knights.apply_potion(character)
+def preparation_for_battle(character: Knight) -> Knight:
+    Knight.apply_armour(character)
+    Knight.apply_weapon(character)
+    Knight.apply_potion(character)
     return character
