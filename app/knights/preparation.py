@@ -24,14 +24,24 @@ class Knight:
         return False
 
     def apply_preparations(self) -> None:
-        if self.armour is not None:
-            for item in self.armour:
-                self.protection += item["protection"]
+    attributes_to_update = {
+        "protection": 0,
+        "power": 0,
+        "hp": 0
+    }
+    
+    if self.armour is not None:
+        for item in self.armour:
+            attributes_to_update["protection"] += item["protection"]
 
-        self.power += self.weapon["power"]
+    attributes_to_update["power"] += self.weapon["power"]
 
-        if self.potion is not None:
-            potion_effect = self.potion["effect"]
-            self.power += potion_effect.get("power", 0)
-            self.protection += potion_effect.get("protection", 0)
-            self.hp += potion_effect.get("hp", 0)
+    if self.potion is not None:
+        potion_effect = self.potion["effect"]
+        for attribute, value in potion_effect.items():
+            if attribute in attributes_to_update:
+                attributes_to_update[attribute] += value
+
+    for attribute, value in attributes_to_update.items():
+        setattr(self, attribute, getattr(self, attribute) + value)
+
