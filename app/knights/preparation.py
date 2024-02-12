@@ -29,7 +29,7 @@ class Knight:
             "power": 0,
             "hp": 0
         }
-        
+    
         if self.armour is not None:
             for item in self.armour:
                 attributes_to_update["protection"] += item["protection"]
@@ -44,4 +44,3 @@ class Knight:
     
         for attribute, value in attributes_to_update.items():
             setattr(self, attribute, getattr(self, attribute) + value)
-
