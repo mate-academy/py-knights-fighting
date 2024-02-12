@@ -18,12 +18,7 @@ class Knight:
 
         if self.potion:
             for effect, value in self.potion.get("effect").items():
-                if effect == "hp":
-                    self.hp += value
-                if effect == "power":
-                    self.power += value
-                if effect == "protection":
-                    self.protection += value
+                setattr(self, effect, getattr(self, effect) + value)
 
     def attack(self, enemy: Knight) -> None:
         self.hp -= enemy.power - self.protection
