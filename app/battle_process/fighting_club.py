@@ -29,11 +29,11 @@ def fight_knights(knight_config: dict) -> Any:
     # Determine the winner
         if pairs:
             if knight1["hp"] > knight2["hp"]:
-                return (f'Knight {knight1["name"]} is the winner!'
-                        f' Winner hp: {knight1["hp"]}')
+                return (f"Knight {knight1["name"]} is the winner!"
+                        f" Winner hp: {knight1["hp"]}")
             elif knight2["hp"] > knight1["hp"]:
-                return (f'Knight {knight2["name"]} is the winner!'
-                        f' Winner hp: {knight2["hp"]}')
+                return (f"Knight {knight2["name"]} is the winner!"
+                        f" Winner hp: {knight2["hp"]}")
             else:
                 return "It's a draw!"
         else:
