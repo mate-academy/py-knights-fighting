@@ -3,8 +3,8 @@ from __future__ import annotations
 
 def apply_armour(player: dict) -> None:
     player["protection"] = 0
-    for a in player["armour"]:
-        player["protection"] += a["protection"]
+    for item in player["armour"]:
+        player["protection"] += item["protection"]
 
 
 def apply_weapon(player: dict) -> None:

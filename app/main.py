@@ -3,14 +3,14 @@ from app.actions.apply import apply_all_for
 from app.actions.pvp import pvp
 
 
-def battle(knightsConfig) -> dict:
+def battle(knightsconfig: dict) -> dict:
     # BATTLE PREPARATIONS:player [0], player [1], player [2], player [3]
     wariors_names_list = ["lancelot", "arthur", "mordred", "red_knight"]
 
     # make a warior list with objects ""
     player_list = []
     for warior in wariors_names_list:
-        player_list.append(knightsConfig[warior])
+        player_list.append(knightsconfig[warior])
 
     # apply armour, weapon, potion if exist for everybody
     for player in player_list:
