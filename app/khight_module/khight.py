@@ -36,3 +36,6 @@ class Knight:
         self.use_potion()
         self.take_weapon()
         self.set_knight_armour()
+
+    def knight_loses_health_to_zero(self) -> None:
+        self.hp = 0
