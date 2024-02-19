@@ -1,23 +1,28 @@
+from __future__ import annotations
+
+
 class Pvp:
-    def __init__(self,player_1, player_2) -> None:
-        self.player_1 = player_1
-        self.player_2 = player_2
+    # p1 and p2 is player_1 and player_2
+    def __init__(self, p1: "knightsConfig", p2: "knightsConfig") -> None:
+        self.p1 = p1
+        self.p2 = p2
 
-    def fight(self):
-        self.player_1["hp"] -= self.player_2["power"] - self.player_1["protection"]
-        self.player_2["hp"] -= self.player_1["power"] - self.player_2["protection"]
+    def fight(self) -> None:
+        self.p1["hp"] -= self.p2["power"] - self.p1["protection"]
+        self.p2["hp"] -= self.p1["power"] - self.p2["protection"]
 
-    def check_if_someone_fell_in_battle(self):
-        if self.player_1["hp"] <= 0:
-            self.player_1["hp"] = 0
+    def check_if_someone_fell_in_battle(self) -> None:
+        if self.p1["hp"] <= 0:
+            self.p1["hp"] = 0
 
-        if self.player_2["hp"] <= 0:
-            self.player_2["hp"] = 0
+        if self.p2["hp"] <= 0:
+            self.p2["hp"] = 0
 
-    def player_vs_player(self):
+    def player_vs_player(self) -> None:
         self.fight()
         self.check_if_someone_fell_in_battle()
 
-def pvp(player_1, player_2):
-    battle = Pvp(player_1, player_2)
+
+def pvp(p1: "knightsConfig", p2: "knightsConfig") -> None:
+    battle = Pvp(p1, p2)
     battle.player_vs_player()
