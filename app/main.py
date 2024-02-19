@@ -143,32 +143,21 @@ class Knight:
         return f"{self.name}: {self.hp}"
 
 
-class BattleArena:
-    def __init__(self, knights_config: dict) -> None:
-        self.knights = {
-            name: Knight(data)
-            for name, data in knights_config.items()
-        }
+def battle(knights_config: dict) -> dict:
+    knights = {name: Knight(data) for name, data in knights_config.items()}
 
-    def battle(self) -> None:
-        lancelot = self.knights.get("lancelot")
-        mordred = self.knights.get("mordred")
-        arthur = self.knights.get("arthur")
-        red_knight = self.knights.get("red_knight")
+    lancelot = knights.get("lancelot")
+    mordred = knights.get("mordred")
+    arthur = knights.get("arthur")
+    red_knight = knights.get("red_knight")
 
-        if lancelot and mordred:
-            lancelot.battle_pre(mordred)
+    if lancelot and mordred:
+        lancelot.battle_pre(mordred)
 
-        if arthur and red_knight:
-            arthur.battle_pre(red_knight)
+    if arthur and red_knight:
+        arthur.battle_pre(red_knight)
 
-    def get_results(self) -> dict:
-        return {
-            knight.name: knight.hp
-            for knight_name, knight in self.knights.items()
-        }
+    return {knight.name: knight.hp for knight in knights.values()}
 
 
-battle_arena = BattleArena(KNIGHTS)
-battle_arena.battle()
-print(battle_arena.get_results())
+print(battle(KNIGHTS))
