@@ -1,8 +1,4 @@
-from app.preparations.armour import apply_armour
-from app.preparations.weapon import apply_weapon
-from app.preparations.potion import apply_potion_if_exist
-from app.battle.check_fell import check_fell
-from app.battle.battle_results import results_hp
+from __future__ import annotations
 
 
 KNIGHTS = {
@@ -93,47 +89,86 @@ KNIGHTS = {
 }
 
 
-def battle(knights_config: dict) -> None:
-    # BATTLE PREPARATIONS:
-    # lancelot
-    lancelot = knights_config["lancelot"]
-    # arthur
-    arthur = knights_config["arthur"]
-    # mordred
-    mordred = knights_config["mordred"]
-    # red_knight
-    red_knight = knights_config["red_knight"]
+class Knight:
+    def __init__(self, data: dict) -> None:
+        self.name = data["name"]
+        self.power = data["power"]
+        self.hp = data["hp"]
+        self.armour = data["armour"]
+        self.protection = 0
+        self.weapon = data["weapon"]
+        self.potion = data.get("potion")
 
-    for knight_name, knight_data in knights_config.items():
+    def apply_armour(self) -> None:
+        self.protection = sum(element["protection"] for element in self.armour)
+
+    def apply_potion_if_exist(self) -> None:
+        if self.potion is not None:
+            if "power" in self.potion["effect"]:
+                self.power += self.potion["effect"]["power"]
+
+            if "protection" in self.potion["effect"]:
+                self.protection += self.potion["effect"]["protection"]
+
+            if "hp" in self.potion["effect"]:
+                self.hp += self.potion["effect"]["hp"]
+
+    def apply_weapon(self) -> None:
+        self.power += self.weapon["power"]
+
+    def check_fell(self) -> None:
+        if self.hp <= 0:
+            self.hp = 0
+
+    def results_hp(self, other_knight: Knight) -> None:
+        self.hp -= other_knight.power - self.protection
+        other_knight.hp -= self.power - other_knight.protection
+
+    def battle_pre(self, other_knight: Knight) -> None:
         # BATTLE PREPARATIONS:
-        apply_armour(knight_data)
-        apply_weapon(knight_data)
-        apply_potion_if_exist(knight_data)
+        self.apply_armour()
+        self.apply_weapon()
+        self.apply_potion_if_exist()
 
-    # -------------------------------------------------------------------------------
-    # BATTLE:
+        other_knight.apply_armour()
+        other_knight.apply_weapon()
+        other_knight.apply_potion_if_exist()
 
-    # 1 Lancelot vs Mordred:
-    results_hp(lancelot, mordred)
+        # BATTLE:
+        self.results_hp(other_knight)
+        self.check_fell()
+        other_knight.check_fell()
 
-    # check if someone fell in battle
-    check_fell(lancelot)
-    check_fell(mordred)
-
-    # 2 Arthur vs Red Knight:
-    results_hp(arthur, red_knight)
-
-    # check if someone fell in battle
-    check_fell(arthur)
-    check_fell(red_knight)
-
-    # Return battle results:
-    return {
-        lancelot["name"]: lancelot["hp"],
-        arthur["name"]: arthur["hp"],
-        mordred["name"]: mordred["hp"],
-        red_knight["name"]: red_knight["hp"],
-    }
+    def __str__(self) -> str:
+        return f"{self.name}: {self.hp}"
 
 
-print(battle(KNIGHTS))
+class BattleArena:
+    def __init__(self, knights_config: dict) -> None:
+        self.knights = {
+            name: Knight(data)
+            for name, data in knights_config.items()
+        }
+
+    def battle(self) -> None:
+        lancelot = self.knights.get("lancelot")
+        mordred = self.knights.get("mordred")
+        arthur = self.knights.get("arthur")
+        red_knight = self.knights.get("red_knight")
+
+        if lancelot and mordred:
+            lancelot.battle_pre(mordred)
+
+        if arthur and red_knight:
+            arthur.battle_pre(red_knight)
+
+    def get_results(self) -> dict:
+        return {
+            knight.name: knight.hp
+            for knight_name, knight in self.knights.items()
+        }
+
+
+battle_arena = BattleArena(KNIGHTS)
+battle_arena.battle()
+print(battle_arena.get_results())
