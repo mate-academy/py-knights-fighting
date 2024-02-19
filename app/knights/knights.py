@@ -6,19 +6,15 @@ from app.knights.potion import Potion
 class Knight:
 
     def __init__(self, base_equip: dict) -> None:
+        self.name = base_equip.get("name")
+        self.base_power = base_equip.get("power")
+        self.base_hp = base_equip.get("hp")
         self.protection = 0
         self.armour = []
         self.weapon = {}
         self.potion = {}
 
         for equip in base_equip:
-            if equip == "name":
-                self.name = base_equip.get(equip)
-
-            if equip == "power":
-                self.base_power = base_equip.get(equip)
-            if equip == "hp":
-                self.base_hp = base_equip.get(equip)
 
             if equip == "armour" and base_equip.get(equip):
                 for part in base_equip.get(equip):
@@ -41,11 +37,23 @@ class Knight:
 
                 for stat, option in base_equip.get(equip)["effect"].items():
                     if stat == "power":
-                        self.base_power += option
+                        setattr(
+                            self,
+                            "base_power",
+                            getattr(self, "base_power", 0) + option
+                        )
                     elif stat == "hp":
-                        self.base_hp += option
+                        setattr(
+                            self,
+                            "base_hp",
+                            getattr(self, "base_hp", 0) + option
+                        )
                     elif stat == "protection":
-                        self.protection += option
+                        setattr(
+                            self,
+                            "protection",
+                            getattr(self, "protection", 0) + option
+                        )
 
     def return_properties(self) -> dict:
         return {"name": self.name,
