@@ -6,7 +6,10 @@ def fight_knights(knight_config: dict) -> Any:
     knights_list = list(knight_config.values())
     # Pair up the knights for duels
     random.shuffle(knights_list)
-    pairs = [(knights_list[i], knights_list[i + 1]) for i in range(0, len(knights_list), 2)]
+    pairs = [
+        (knights_list[i], knights_list[i + 1])
+        for i in range(0, len(knights_list), 2)
+    ]
 
     # Perform duels
     for knight1, knight2 in pairs:
@@ -26,9 +29,11 @@ def fight_knights(knight_config: dict) -> Any:
     # Determine the winner
         if pairs:
             if knight1["hp"] > knight2["hp"]:
-                return f"Knight {knight1['name']} is the winner! Winner hp: {knight1['hp']}"
+                return (f"Knight {knight1["name"]} is the winner!"
+                        f" Winner hp: {knight1["hp"]}")
             elif knight2["hp"] > knight1["hp"]:
-                return f"Knight {knight2['name']} is the winner! Winner hp: {knight2['hp']}"
+                return (f"Knight {knight2["name"]} is the winner!"
+                        f" Winner hp: {knight2["hp"]}")
             else:
                 return "It's a draw!"
         else:
