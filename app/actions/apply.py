@@ -1,17 +1,17 @@
 from __future__ import annotations
 
 
-def apply_armour(player: "knightsConfig") -> None:
+def apply_armour(player: dict) -> None:
     player["protection"] = 0
     for a in player["armour"]:
         player["protection"] += a["protection"]
 
 
-def apply_weapon(player: "knightsConfig") -> None:
+def apply_weapon(player: dict) -> None:
     player["power"] += player["weapon"]["power"]
 
 
-def apply_potion_if_exist(player: "knightsConfig") -> None:
+def apply_potion_if_exist(player: dict) -> None:
     if player["potion"]:
         if "power" in player["potion"]["effect"]:
             player["power"] += player["potion"]["effect"]["power"]
@@ -23,7 +23,7 @@ def apply_potion_if_exist(player: "knightsConfig") -> None:
             player["hp"] += player["potion"]["effect"]["hp"]
 
 
-def apply_all_for(player: "knightsConfig") -> None:
+def apply_all_for(player: dict) -> None:
     apply_armour(player)
     apply_weapon(player)
     apply_potion_if_exist(player)

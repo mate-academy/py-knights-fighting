@@ -3,7 +3,7 @@ from __future__ import annotations
 
 class Pvp:
     # p1 and p2 is player_1 and player_2
-    def __init__(self, p1: "knightsConfig", p2: "knightsConfig") -> None:
+    def __init__(self, p1: dict, p2: dict) -> None:
         self.p1 = p1
         self.p2 = p2
 
@@ -23,6 +23,6 @@ class Pvp:
         self.check_if_someone_fell_in_battle()
 
 
-def pvp(p1: "knightsConfig", p2: "knightsConfig") -> None:
+def pvp(p1: dict, p2: dict) -> None:
     battle = Pvp(p1, p2)
     battle.player_vs_player()
