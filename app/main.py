@@ -1,5 +1,4 @@
 from app.khight_module.khight import Knight
-# from app.knight_data import KNIGHTS
 
 
 def battle(base_knights_config: dict) -> dict:
