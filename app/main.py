@@ -22,9 +22,4 @@ def battle(base_knights_config: dict) -> dict:
         if obj.hp <= 0:
             obj.knight_loses_health_to_zero()
 
-    return {
-        lancelot.name: lancelot.hp,
-        mordred.name: mordred.hp,
-        arthur.name: arthur.hp,
-        red_knight.name: red_knight.hp
-    }
+    return {knight.name: knight.hp for knight in knights}
