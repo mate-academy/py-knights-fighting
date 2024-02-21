@@ -7,4 +7,5 @@ class Player:
         self.armour = pers_name["armour"]
         self.weapon = pers_name["weapon"]
         self.potion = pers_name["potion"]
+
         setattr(Player, "protection", 0)

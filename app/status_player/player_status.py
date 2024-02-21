@@ -40,6 +40,5 @@ class PlayerStatus:
             for key, value in result_weapon.items():
                 if key == "power":
                     power += value
-
         return {"name": name, "hp": hp,
                 "power": power, "protection": protection}
