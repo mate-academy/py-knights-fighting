@@ -32,6 +32,7 @@ class PlayerStatus:
                     else:
                         protection += value
 
+
         if result_armour is not None:
             for row in result_armour:
                 protection += row["protection"]

@@ -21,6 +21,7 @@ class Battle:
         for player in players:
             if player["hp"] <= 0:
                 player["hp"] = 0
+
         return {f"""{self.player1_status.get("name")}""":
                 self.player1_status.get("hp"),
                 f"""{self.player3_status.get("name")}""":
