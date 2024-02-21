@@ -35,10 +35,10 @@ class Knight:
 def create_knight(params: dict, name: str) -> Knight:
     params = params[name]
     knight_obj = Knight(
-            params["name"],
-            params["power"],
-            params["hp"]
-        )
+        params["name"],
+        params["power"],
+        params["hp"]
+    )
     knight_obj.add_armour(get_armours(params["armour"]))
     knight_obj.add_weapon(get_weapon(params["weapon"]))
     if params["potion"] is not None:
