@@ -5,7 +5,4 @@ class Weapon:
 
 
 def get_weapon(weapon: dict) -> Weapon:
-    return Weapon(
-        weapon["name"],
-        weapon["power"]
-    )
+    return Weapon(**weapon)

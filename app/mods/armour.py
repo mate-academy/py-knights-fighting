@@ -5,12 +5,4 @@ class Armour:
 
 
 def get_armours(armours: list) -> list[Armour]:
-    armours_list = []
-    for armor in armours:
-        armours_list.append(
-            Armour(
-                armor["part"],
-                armor["protection"],
-            )
-        )
-    return armours_list
+    return [Armour(**armor) for armor in armours]

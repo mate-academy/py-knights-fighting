@@ -5,7 +5,4 @@ class Potion:
 
 
 def get_potion(potion: dict) -> Potion:
-    return Potion(
-        potion["name"],
-        potion["effect"]
-    )
+    return Potion(**potion)
