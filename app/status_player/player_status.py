@@ -10,12 +10,11 @@ class PlayerStatus:
         hp = getattr(self.player, "hp")
         power = getattr(self.player, "power")
         protection = getattr(self.player, "protection")
+        hp += 0
+        power += 0
+        protection += 0
 
-        if result_potion is None:
-            hp += 0
-            power += 0
-            protection += 0
-        else:
+        if result_potion is not None:
             for key, value in result_potion["effect"].items():
                 if key == "hp":
                     if value > 0:
@@ -33,9 +32,7 @@ class PlayerStatus:
                     else:
                         protection += value
 
-        if result_armour is None:
-            protection += 0
-        else:
+        if result_armour is not None:
             for row in result_armour:
                 protection += row["protection"]
 
@@ -43,5 +40,6 @@ class PlayerStatus:
             for key, value in result_weapon.items():
                 if key == "power":
                     power += value
+
         return {"name": name, "hp": hp,
                 "power": power, "protection": protection}

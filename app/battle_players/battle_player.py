@@ -24,18 +24,11 @@ class Battle:
             -= (self.player3_status["power"]
                 - self.player4_status["protection"])
 
-        if self.player1_status["hp"] <= 0:
-            self.player1_status["hp"] = 0
-
-        if self.player2_status["hp"] <= 0:
-            self.player2_status["hp"] = 0
-
-        if self.player3_status["hp"] <= 0:
-            self.player3_status["hp"] = 0
-
-        if self.player4_status["hp"] <= 0:
-            self.player4_status["hp"] = 0
-
+        players = [self.player1_status, self.player2_status,
+                   self.player3_status, self.player4_status]
+        for i in players:
+            if i["hp"] <= 0:
+                i["hp"] = 0
         return {f"""{self.player1_status.get("name")}""":
                 self.player1_status.get("hp"),
                 f"""{self.player3_status.get("name")}""":
