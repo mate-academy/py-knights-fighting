@@ -5,7 +5,6 @@ from app.creation_of_knights import creation_of_knights, KNIGHTS
 
 def battle(knights: dict) -> dict:
     players = creation_of_knights(knights)
-    print(players)
     result = {}
     for knight in players.values():
 
