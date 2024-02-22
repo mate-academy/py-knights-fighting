@@ -21,6 +21,9 @@ class Knight:
 
     def knight_drinks_the_potion(self) -> None:
         if self.potion is not None:
-            for key, value in self.potion["effect"].items():
-                if key in ["power", "protection", "hp"]:
-                    setattr(self, key, getattr(self, key) + value)
+            for attribute, effect_value in self.potion["effect"].items():
+                if attribute in ["power", "protection", "hp"]:
+                    setattr(
+                        self, attribute,
+                        getattr(self, attribute) + effect_value
+                    )
