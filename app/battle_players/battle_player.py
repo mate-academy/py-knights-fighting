@@ -10,23 +10,17 @@ class Battle:
     def battls(self) -> dict:
         players = [self.player1_status, self.player2_status,
                    self.player3_status, self.player4_status]
+
         for index in range(0, len(players), 2):
             attacker = players[index]
             target = players[index + 1]
-            damage = max(0, attacker["power"] - target["protection"])
-            target["hp"] -= damage
-            attacker, target = target, attacker
-            damage = max(0, attacker["power"] - target["protection"])
-            target["hp"] -= damage
+            for _ in range(2):
+                damage = max(0, attacker["power"] - target["protection"])
+                target["hp"] -= damage
+                attacker, target = target, attacker
+
         for player in players:
             if player["hp"] <= 0:
                 player["hp"] = 0
 
-        return {f"""{self.player1_status.get("name")}""":
-                self.player1_status.get("hp"),
-                f"""{self.player3_status.get("name")}""":
-                self.player3_status.get("hp"),
-                f"""{self.player2_status.get("name")}""":
-                self.player2_status.get("hp"),
-                f"""{self.player4_status.get("name")}""":
-                self.player4_status.get("hp")}
+        return {player.get("name"): player.get("hp") for player in players}

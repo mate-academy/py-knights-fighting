@@ -17,28 +17,17 @@ class PlayerStatus:
         if result_potion is not None:
             for key, value in result_potion["effect"].items():
                 if key == "hp":
-                    if value > 0:
-                        hp += value
-                    else:
-                        hp += value
+                    hp += value
                 elif key == "power":
-                    if value > 0:
-                        power += value
-                    else:
-                        power += value
+                    power += value
                 else:
-                    if value > 0:
-                        protection += value
-                    else:
-                        protection += value
+                    protection += value
 
         if result_armour is not None:
-            for row in result_armour:
-                protection += row["protection"]
+            protection += sum(row["protection"] for row in result_armour)
 
         if result_weapon:
-            for key, value in result_weapon.items():
-                if key == "power":
-                    power += value
+            power += result_weapon.get("power", 0)
+
         return {"name": name, "hp": hp,
                 "power": power, "protection": protection}
