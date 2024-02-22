@@ -1,3 +1,6 @@
+from app.character_classes.knight import Knight
+
+
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
@@ -87,43 +90,8 @@ KNIGHTS = {
 }
 
 
-class Knight:
-    def __init__(
-            self,
-            name: int, power: int, hp: int,
-            armour: dict, weapon: dict, potion: dict = None) -> None:
-        self.name = name
-        self.power = power
-        self.hp = hp
-        self.armour = armour
-        self.weapon = weapon
-        self.potion = potion
-        # Apply armour
-        self.protection = sum(item["protection"] for item in self.armour)
-        # Apply weapon
-        self.power += self.weapon["power"]
-        # Apply potion if exist
-        if self.potion is not None:
-            self.apply_potion_effects()
-
-    def apply_potion_effects(self) -> None:
-        if "power" in self.potion["effect"]:
-            self.power += self.potion["effect"]["power"]
-
-        if "protection" in self.potion["effect"]:
-            self.protection += self.potion["effect"]["protection"]
-
-        if "hp" in self.potion["effect"]:
-            self.hp += self.potion["effect"]["hp"]
-
-    def take_damage(self, damage: int) -> None:
-        self.hp -= damage
-        if self.hp <= 0:
-            self.hp = 0
-
-
 def battle(knights_config: dict) -> dict:
-    # BATTLE PREPARATIONS:
+
     lancelot = Knight(**knights_config["lancelot"])
     arthur = Knight(**knights_config["arthur"])
     mordred = Knight(**knights_config["mordred"])
@@ -139,7 +107,6 @@ def battle(knights_config: dict) -> dict:
     arthur.take_damage(red_knight.power - arthur.protection)
     red_knight.take_damage(arthur.power - red_knight.protection)
 
-    # Return battle results:
     return {
         lancelot.name: lancelot.hp,
         arthur.name: arthur.hp,
