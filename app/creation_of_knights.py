@@ -89,11 +89,10 @@ KNIGHTS = {
 }
 
 
-def creation_of_knights(knights: dict) -> list[Knight]:
-    knights_list = []
+def creation_of_knights(knights: dict) -> dict[Knight]:
+    knights_obj = {}
     for key, value in knights.items():
 
-        key = Knight(value)
-        knights_list.append(key)
+        knights_obj[key] = Knight(value)
 
-    return knights_list
+    return knights_obj
