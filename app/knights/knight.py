@@ -28,8 +28,10 @@ class Knight:
         self.power += self.weapon.power
 
     def apply_potion(self) -> None:
-        if hasattr(self.potion, "effect") and \
-                isinstance(self.potion.effect, dict):
+        if (
+                hasattr(self.potion, "effect")
+                and isinstance(self.potion.effect, dict)
+        ):
             for name, effect in self.potion.effect.items():
                 if hasattr(self, name):
                     setattr(self, name, getattr(self, name) + effect)

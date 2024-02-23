@@ -119,8 +119,5 @@ def battle(knights: dict) -> dict:
     red_knight.fight_and_apply_damage(arthur)
 
     return {
-        lancelot.name: lancelot.hp,
-        mordred.name: mordred.hp,
-        arthur.name: arthur.hp,
-        red_knight.name: red_knight.hp
+        knight.name: knight.hp for knight in dictionary_of_knights.values()
     }
