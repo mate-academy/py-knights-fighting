@@ -22,12 +22,10 @@ class Knight:
 
     def apply_potion(self) -> None:
         if self.potion:
-            if "power" in self.potion.get("effect"):
-                self.power += self.potion.get("effect").get("power")
-            if "protection" in self.potion.get("effect"):
-                self.protection += self.potion.get("effect").get("protection")
-            if "hp" in self.potion.get("effect"):
-                self.hp += self.potion.get("effect").get("hp")
+            effect = self.potion.get("effect")
+            self.power += effect.get("power", 0)
+            self.hp += effect.get("hp", 0)
+            self.protection += effect.get("protection", 0)
 
     def fight_vs(self, enemy: Knight) -> None:
         self.hp -= max(0, enemy.power - self.protection)
