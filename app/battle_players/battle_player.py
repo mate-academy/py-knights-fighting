@@ -1,20 +1,28 @@
 class Battle:
 
-    def __init__(self, player1: object, player2: object,
-                 player3: object, player4: object) -> None:
-        self.player_lancelot_status = player1
-        self.player_arthur_status = player2
-        self.player_mordred_status = player3
-        self.player_red_knight_status = player4
+    def __init__(self, states: list) -> None:
+        for state in states:
+
+            if state.get("name") == "Lancelot":
+                self.player_lancelot_status = state
+
+            elif state.get("name") == "Arthur":
+                self.player_arthur_status = state
+
+            elif state.get("name") == "Mordred":
+                self.player_mordred_status = state
+
+            elif state.get("name") == "Red Knight":
+                self.player_red_knight_status = state
 
     def battls(self) -> dict:
 
         players = [self.player_lancelot_status, self.player_arthur_status,
                    self.player_mordred_status, self.player_red_knight_status]
 
-        for index in range(0, len(players), 2):
+        for index in range(0, len(players) - 2):
             attacker = players[index]
-            target = players[index + 1]
+            target = players[index + 2]
             for _ in range(2):
                 damage = max(0, attacker["power"] - target["protection"])
                 target["hp"] -= damage
