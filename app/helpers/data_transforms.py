@@ -1,9 +1,9 @@
-from app.helpers.types import NewKnightsConfig
+from app.helpers.types import KnightBattleConfig
 from app.heroes.knight import Knight
 from app.equipment.knight import Weapon, ArmourComponent, Potion
 
 
-def transform_to_new_knights_config(old_knights_config: dict) -> NewKnightsConfig:
+def transform_to_new_knights_config(old_knights_config: dict) -> KnightBattleConfig:
     new_knights = []
     for name, data in old_knights_config.items():
         weapon = Weapon(data['weapon']['name'], data['weapon']['power'])

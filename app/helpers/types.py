@@ -7,4 +7,4 @@ class Effect(TypedDict, total=False):
     protection: Optional[int]
 
 
-type NewKnightsConfig = List[tuple]
+type KnightBattleConfig = List[tuple]
