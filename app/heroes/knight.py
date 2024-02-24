@@ -4,7 +4,7 @@ from typing import List
 from app.equipment.knight import ArmourComponent, Weapon, Potion
 
 
-class Knight():
+class Knight:
     def __init__(
         self,
         name: str,

@@ -1,5 +1,6 @@
 from app.heroes.knight import Knight
 from app.equipment.knight import Weapon
+from app.helpers.data_transforms import transform_to_new_knights_config
 
 KNIGHTS = {
     "lancelot": {
@@ -85,7 +86,7 @@ KNIGHTS = {
                 "power": +5,
             }
         }
-    }
+    },
 }
 
 
