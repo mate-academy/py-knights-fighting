@@ -1,2 +1,7 @@
+from app.types.effect import Effect
+
+
 class Potion:
-    pass
+    def __init__(self, name: str, effect: Effect):
+        self.name = name
+        self.effect = effect
