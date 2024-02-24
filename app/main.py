@@ -1,3 +1,5 @@
+from typing import List
+
 from app.heroes.knight import Knight
 from app.helpers.data_transform import transform_to_knight
 
@@ -106,31 +108,22 @@ def knight_duel(first_knight: Knight, second_knight: Knight) -> dict:
     }
 
 
-def battle(knight_battlers: dict) -> dict:
-    # 1 fight
-    lancelot = get_knight(
-        knight_name="lancelot",
-        knight_battlers=knight_battlers
-    )
-    mordred = get_knight(
-        knight_name="mordred",
-        knight_battlers=knight_battlers
-    )
+def battle(knight_battlers: dict, knight_pairs: List[tuple]) -> dict:
+    results = {}
 
-    # 2 fight
-    arthur = get_knight(
-        knight_name="arthur",
-        knight_battlers=knight_battlers
-    )
-    red_knight = get_knight(
-        knight_name="red_knight",
-        knight_battlers=knight_battlers
-    )
+    for knight_pair in knight_pairs:
+        first_knight_name, second_knight_name = knight_pair
+        first_knight = get_knight(
+            knight_name=first_knight_name,
+            knight_battlers=knight_battlers
+        )
+        second_knight = get_knight(
+            knight_name=second_knight_name,
+            knight_battlers=knight_battlers
+        )
+        results |= knight_duel(first_knight, second_knight)
 
-    return {
-        **knight_duel(lancelot, mordred),
-        **knight_duel(arthur, red_knight),
-    }
+    return results
 
 
-print(battle(KNIGHTS))
+print(battle(KNIGHTS, [("lancelot", "mordred"), ("arthur", "red_knight")]))
