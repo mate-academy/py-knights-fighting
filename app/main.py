@@ -1,5 +1,5 @@
 from app.heroes.knight import Knight
-from app.equipment.weapon import Weapon
+from app.equipment.knight import Weapon
 
 KNIGHTS = {
     "lancelot": {

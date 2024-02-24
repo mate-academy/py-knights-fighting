@@ -1,6 +1,19 @@
 from __future__ import annotations
 
+from app.helpers.types import Effect
 from app.helpers.custom_errors import MaxLevelError
+
+
+class ArmourComponent:
+    def __init__(self, part: str, protection: int) -> None:
+        self.part = part
+        self.protection = protection
+
+
+class Potion:
+    def __init__(self, name: str, effect: Effect):
+        self.name = name
+        self.effect = effect
 
 
 class Weapon:
@@ -22,3 +35,4 @@ class Weapon:
         self.level += 1
         self.power += 50
         return self
+

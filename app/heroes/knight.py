@@ -1,12 +1,10 @@
 from __future__ import annotations
 from typing import List
 
-from app.equipment.armour_component import ArmourComponent
-from app.equipment.weapon import Weapon
-from app.equipment.potion import Potion
+from app.equipment.knight import ArmourComponent, Weapon, Potion
 
 
-class Knight:
+class Knight():
     def __init__(
         self,
         name: str,
@@ -34,5 +32,6 @@ class Knight:
         if self.potion:
             for effect, value in self.potion.effect.items():
                 if hasattr(self, effect):
+                    # set new value if self have effect instance
                     setattr(self, effect, getattr(self, effect) + value)
         return self
