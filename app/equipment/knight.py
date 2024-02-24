@@ -11,7 +11,7 @@ class ArmourComponent:
 
 
 class Potion:
-    def __init__(self, name: str, effect: Effect):
+    def __init__(self, name: str, effect: Effect) -> None:
         self.name = name
         self.effect = effect
 
@@ -35,4 +35,3 @@ class Weapon:
         self.level += 1
         self.power += 50
         return self
-

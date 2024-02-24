@@ -12,7 +12,7 @@ class Knight:
         hp: int,
         weapon: Weapon,
         armour: List[ArmourComponent] = None,
-        potion: Potion = None
+        potion: Potion | None = None
     ) -> None:
         if armour is None:
             armour = []
@@ -34,4 +34,12 @@ class Knight:
                 if hasattr(self, effect):
                     # set new value if self have effect instance
                     setattr(self, effect, getattr(self, effect) + value)
+        return self
+
+    def strike_opponent(self, other: Knight) -> Knight:
+        self.hp -= other.power - self.protection
+
+        if self.hp < 0:
+            self.hp = 0
+
         return self
