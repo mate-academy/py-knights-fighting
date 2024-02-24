@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from app.errors.upgrade import MaxLevelError
+from app.helpers.errors import MaxLevelError
 
 
 class Weapon:

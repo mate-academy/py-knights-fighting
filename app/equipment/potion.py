@@ -1,4 +1,4 @@
-from app.types.effect import Effect
+from app.helpers.types import Effect
 
 
 class Potion:

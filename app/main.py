@@ -1,3 +1,6 @@
+from app.heroes.knight import Knight
+from app.equipment.weapon import Weapon
+
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
@@ -90,26 +93,17 @@ def battle(knightsConfig):
     # BATTLE PREPARATIONS:
 
     # lancelot
-    lancelot = knightsConfig["lancelot"]
+    lancelot = Knight(
+        name="Lancelot",
+        power=35,
+        hp=100,
+        weapon=Weapon(
+            name="Metal Sword",
+            power=50,
+        ),
+    )
 
-    # apply armour
-    lancelot["protection"] = 0
-    for a in lancelot["armour"]:
-        lancelot["protection"] += a["protection"]
-
-    # apply weapon
-    lancelot["power"] += lancelot["weapon"]["power"]
-
-    # apply potion if exist
-    if lancelot["potion"] is not None:
-        if "power" in lancelot["potion"]["effect"]:
-            lancelot["power"] += lancelot["potion"]["effect"]["power"]
-
-        if "protection" in lancelot["potion"]["effect"]:
-            lancelot["protection"] += lancelot["potion"]["effect"]["protection"]
-
-        if "hp" in lancelot["potion"]["effect"]:
-            lancelot["hp"] += lancelot["potion"]["effect"]["hp"]
+    lancelot.battle_preparations()
 
     # arthur
     arthur = knightsConfig["arthur"]
@@ -181,12 +175,12 @@ def battle(knightsConfig):
     # BATTLE:
 
     # 1 Lancelot vs Mordred:
-    lancelot["hp"] -= mordred["power"] - lancelot["protection"]
-    mordred["hp"] -= lancelot["power"] - mordred["protection"]
+    lancelot.hp -= mordred["power"] - lancelot.protection
+    mordred["hp"] -= lancelot.power - mordred["protection"]
 
     # check if someone fell in battle
-    if lancelot["hp"] <= 0:
-        lancelot["hp"] = 0
+    if lancelot.hp <= 0:
+        lancelot.hp = 0
 
     if mordred["hp"] <= 0:
         mordred["hp"] = 0
@@ -204,7 +198,7 @@ def battle(knightsConfig):
 
     # Return battle results:
     return {
-        lancelot["name"]: lancelot["hp"],
+        lancelot.name: lancelot.hp,
         arthur["name"]: arthur["hp"],
         mordred["name"]: mordred["hp"],
         red_knight["name"]: red_knight["hp"],
