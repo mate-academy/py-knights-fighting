@@ -24,7 +24,7 @@ class Knight:
         self.potion = potion
         self.protection = 0
 
-    def battle_preparations(self) -> Knight:
+    def battle_preparations(self) -> None:
         for armour_component in self.armour:
             self.protection += armour_component.protection
         self.power += self.weapon.power
@@ -34,12 +34,9 @@ class Knight:
                 if hasattr(self, effect):
                     # set new value if self have effect instance
                     setattr(self, effect, getattr(self, effect) + value)
-        return self
 
-    def strike_opponent(self, other: Knight) -> Knight:
+    def strike_opponent(self, other: Knight) -> None:
         self.hp -= other.power - self.protection
 
         if self.hp < 0:
             self.hp = 0
-
-        return self

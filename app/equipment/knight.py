@@ -29,9 +29,8 @@ class Weapon:
         self.level = level
         self.max_level = max_level
 
-    def upgrade(self) -> Weapon | MaxLevelError:
+    def upgrade(self) -> None:
         if self.level == self.max_level:
             raise MaxLevelError(self.max_level)
         self.level += 1
         self.power += 50
-        return self
