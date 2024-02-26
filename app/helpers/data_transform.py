@@ -1,5 +1,5 @@
 from app.heroes.knight import Knight
-from app.equipment.knight import Weapon, ArmourComponent, Potion
+from app.equipment.for_battle import Weapon, ArmourComponent, Potion
 
 
 def transform_to_knight(knight_data: dict) -> Knight:

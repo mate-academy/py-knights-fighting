@@ -15,6 +15,12 @@ class Potion:
         self.name = name
         self.effect = effect
 
+    def improve_hero(self, hero: object) -> None:
+        for effect, value in self.effect.items():
+            if hasattr(hero, effect):
+                # set new value if self have effect instance
+                setattr(hero, effect, getattr(hero, effect) + value)
+
 
 class Weapon:
     def __init__(

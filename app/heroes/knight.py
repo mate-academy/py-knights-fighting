@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import List
 
-from app.equipment.knight import ArmourComponent, Weapon, Potion
+from app.equipment.for_battle import ArmourComponent, Weapon, Potion
 
 
 class Knight:
@@ -24,16 +24,16 @@ class Knight:
         self.potion = potion
         self.protection = 0
 
-    def battle_preparations(self) -> None:
+    def put_on_armour(self) -> None:
         for armour_component in self.armour:
             self.protection += armour_component.protection
+
+    def battle_preparations(self) -> None:
+        self.put_on_armour()
         self.power += self.weapon.power
         # apply potion if exist
         if self.potion:
-            for effect, value in self.potion.effect.items():
-                if hasattr(self, effect):
-                    # set new value if self have effect instance
-                    setattr(self, effect, getattr(self, effect) + value)
+            self.potion.improve_hero(self)
 
     def strike_opponent(self, other: Knight) -> None:
         self.hp -= other.power - self.protection
