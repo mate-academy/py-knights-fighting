@@ -22,7 +22,7 @@ class Knight:
         self.__apply_armour()
         self.__apply_weapon()
 
-        if self.__potion is not None:
+        if self.__potion:
             self.__apply_potion()
 
     def __apply_armour(self) -> None:
@@ -34,14 +34,9 @@ class Knight:
     def __apply_potion(self) -> None:
         potion_effect = self.__potion["effect"]
 
-        if "power" in potion_effect:
-            self.__power += potion_effect["power"]
-
-        if "protection" in potion_effect:
-            self.__protection += potion_effect["protection"]
-
-        if "hp" in potion_effect:
-            self.__hp += potion_effect["hp"]
+        self.__power += potion_effect.get("power", 0)
+        self.__protection += potion_effect.get("protection", 0)
+        self.__hp += potion_effect.get("hp", 0)
 
     @property
     def name(self) -> str:
@@ -51,11 +46,12 @@ class Knight:
     def hp(self) -> int:
         return self.__hp
 
-    def __sub__(self, other: Knight) -> None:
-        self.__hp -= other.__power - self.__protection
-        self.__reset_hp()
+    def fight(self, other: Knight) -> None:
+        self.__reset_hp(other)
+        other.__reset_hp(self)
 
-    def __reset_hp(self) -> None:
+    def __reset_hp(self, other: Knight) -> None:
+        self.__hp -= other.__power - self.__protection
 
         if self.__hp <= 0:
             self.__hp = 0
