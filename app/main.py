@@ -1,8 +1,9 @@
+from typing import Dict
+
 from app.battle.knight import Knight
 
 
-def battle(config: dict) -> dict:
-    # Create Knight instances
+def battle(config: Dict[str, Dict[str]]) -> Dict[str, int]:
     knights = {}
     for knight_name, knight_attributes in config.items():
         knights[knight_name] = Knight(
@@ -14,7 +15,6 @@ def battle(config: dict) -> dict:
             potion=knight_attributes.get("potion", None)
         )
 
-    # Lancelot vs Mordred, Arthur vs Red Knight
     battle_results = {}
 
     battle_results.update(Knight.battle(
@@ -27,5 +27,4 @@ def battle(config: dict) -> dict:
         knights["red_knight"]
     ))
 
-    # Instead of printing, return the battle results
     return battle_results

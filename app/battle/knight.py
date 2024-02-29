@@ -1,17 +1,18 @@
+from typing import Dict, List
+
+
 class Knight:
-    def __init__(self,
-                 name: str,
-                 power: int,
-                 hp: int,
-                 armour: list,
-                 weapon: dict,
-                 potion: dict,
+    def __init__(self, name: str,
+                 power: int, hp: int,
+                 armour: List[Dict[str, int]],
+                 weapon: Dict[str, int],
+                 potion: Dict[str, Dict[str, int]],
                  ) -> None:
 
         self.name = name
         self.power = power
         self.hp = hp
-        self.protection = 0  # Default protection
+        self.protection = 0
 
         self.apply_armour(armour)
         self.apply_weapon(weapon)
@@ -20,21 +21,21 @@ class Knight:
     def __str__(self) -> str:
         return self.name
 
-    def apply_armour(self, armour: list) -> None:
+    def apply_armour(self, armour: List[Dict[str, int]]) -> None:
         for piece in armour:
             self.protection += piece.get("protection", 0)
 
-    def apply_weapon(self, weapon: dict) -> None:
+    def apply_weapon(self, weapon: Dict[str, int]) -> None:
         self.power += weapon.get("power", 0)
 
-    def apply_potion(self, potion: dict) -> None:
-        if potion is not None:
-            self.hp += potion.get("effect", {}).get("hp", 0)
-            self.power += potion.get("effect", {}).get("power", 0)
-            self.protection += potion.get("effect", {}).get("protection", 0)
+    def apply_potion(self, potion: Dict[str, Dict[str, int]]) -> None:
+        if potion:
+            for attr in ["hp", "power", "protection"]:
+                effect = potion.get("effect", {}).get(attr, 0)
+                setattr(self, attr, getattr(self, attr) + effect)
 
     @staticmethod
-    def battle(knight1: "Knight", knight2: "Knight") -> dict:
+    def battle(knight1: "Knight", knight2: "Knight") -> Dict[str, int]:
         knight1_damage = max(0, knight2.power - knight1.protection)
         knight2_damage = max(0, knight1.power - knight2.protection)
 
