@@ -1,9 +1,9 @@
-from typing import Dict
+from typing import Dict, Any
 
 from app.battle.knight import Knight
 
 
-def battle(config: Dict[str, Dict[str]]) -> Dict[str, int]:
+def battle(config: Dict[str, Dict[str, Any]]) -> Dict[str, int]:
     knights = {}
     for knight_name, knight_attributes in config.items():
         knights[knight_name] = Knight(
