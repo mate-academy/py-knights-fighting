@@ -4,42 +4,37 @@ from app.knights.knight import Knight
 
 
 def battle(knights_data: Dict[str, dict]) -> Dict[str, int]:
-    knights = {}
-    for name, data in knights_data.items():
-
-        knight = Knight(**data)
-        knights[name] = knight
-
-    for knight in knights.values():
-        knight.apply_effects()
-
-    results = {}
     battles = [
         ("lancelot", "mordred"),
         ("arthur", "red_knight")
     ]
 
-    for knight1_name, knight2_name in battles:
-        knight1 = knights[knight1_name]
-        knight2 = knights[knight2_name]
+    knights = {name: Knight(**data) for name, data in knights_data.items()}
 
-        knight2_hp_loss = max(0,
-                              knight2.power - knight1.calculate_protection()
-                              )
-        knight1.hp -= knight2_hp_loss
+    for battle_pair in battles:
+        knight1, knight2 = knights[battle_pair[0]], knights[battle_pair[1]]
+        knight1.apply_effects()
+        print("123")
+        print(knight1.hp, knight1.power, knight1.name)
+        print(knight1.calculate_protection())
+        knight2.apply_effects()
+        print("456")
+        print(knight2.hp, knight2.power, knight2.name)
+        print(knight2.calculate_protection())
 
-        knight1_hp_loss = max(0,
-                              knight1.power - knight2.calculate_protection()
-                              )
-        knight2.hp -= knight1_hp_loss
+        knight1.hp = max(
+            0,
+            knight1.hp - max(
+                0,
+                knight2.power - knight1.calculate_protection()
+            )
+        )
+        knight2.hp = max(
+            0,
+            knight2.hp - max(
+                0,
+                knight1.power - knight2.calculate_protection()
+            )
+        )
 
-        if knight1.hp <= 0:
-            knight1.hp = 0
-
-        if knight2.hp <= 0:
-            knight2.hp = 0
-
-        results[knight1.name] = knight1.hp
-        results[knight2.name] = knight2.hp
-
-    return results
+    return {knight.name: knight.hp for knight in knights.values()}
