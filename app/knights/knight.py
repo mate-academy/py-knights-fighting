@@ -35,7 +35,7 @@ class Knight:
 
         if (self.potion is not None
                 and self.potion["effect"] is not None
-                and "protection" in self.potion["effect"]):
+                and self.potion["effect"].get("protection")):
             protection += self.potion["effect"]["protection"]
 
         return protection
