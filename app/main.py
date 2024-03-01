@@ -7,14 +7,7 @@ def battle(knights_data: Dict[str, dict]) -> Dict[str, int]:
     knights = {}
     for name, data in knights_data.items():
 
-        knight = Knight(
-            name=data["name"],
-            power=data["power"],
-            hp=data["hp"],
-            armour=data["armour"],
-            weapon=data["weapon"],
-            potion=data["potion"]
-        )
+        knight = Knight(**data)
         knights[name] = knight
 
     for knight in knights.values():
