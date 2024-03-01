@@ -7,7 +7,7 @@ def battle(dict_hero: KNIGHTS) -> dict:
     herros = Hero(dict_hero)
     Hero.apply_armour(herros)
     Hero.apply_weapons(herros)
-    Hero.apply_potion(herros) 
+    Hero.apply_potion(herros)
     Hero.hero_dict["lancelot"]["hp"] -= \
         (Hero.hero_dict["mordred"]["power"]
          - Hero.hero_dict["lancelot"]["protection"])
