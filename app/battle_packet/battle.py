@@ -2,17 +2,17 @@ from app.knight.person import Knight
 
 
 def battle(knights: dict[dict]) -> dict:
-    participants = [Knight(knights[person]) for person in knights]
+    heroes = [Knight(knights[person]) for person in knights]
     # start preparation
-    for participant in participants:
+    for participant in heroes:
         participant.apply_armour()
         participant.equip_weapon()
         participant.use_potion()
     # battle
     for i in range(2):
-        participants[i].hp -= participants[i + 2].power - participants[i].protection
-        participants[i + 2].hp -= participants[i].power - participants[i + 2].protection
-    for participant in participants:
+        heroes[i].hp -= heroes[i + 2].power - heroes[i].protection
+        heroes[i + 2].hp -= heroes[i].power - heroes[i + 2].protection
+    for participant in heroes:
         if participant.hp <= 0:
             participant.hp = 0
-    return {knight.name: knight.hp for knight in participants}
+    return {knight.name: knight.hp for knight in heroes}

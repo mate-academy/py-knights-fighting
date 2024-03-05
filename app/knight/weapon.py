@@ -3,8 +3,8 @@ class Weapon:
         self.name = parameters["name"]
         self.power = parameters["power"]
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"{self.name} {self.power}"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.name} {self.power}"
