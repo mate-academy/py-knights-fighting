@@ -12,7 +12,7 @@ class Knight:
                  armour: List[dict],
                  weapon: Weapon,
                  potion: Potion,
-                 protection=None
+                 protection: int = None
                  ) -> None:
         self.name = name
         self.power = power
