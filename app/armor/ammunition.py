@@ -10,10 +10,10 @@ class Armour:
     def armours_from_dict(
         cls,
         knight_name: str,
-        knightsConfig: list[dict]
+        knights_config: list[dict]
     ) -> list[Armour]:
 
-        knight_dict = knightsConfig[knight_name]
+        knight_dict = knights_config[knight_name]
         if knight_dict["armour"]:
             return [
                 cls(part=part["part"], protection=part["protection"])
