@@ -12,6 +12,7 @@ class Knight:
                  armour: List[dict],
                  weapon: Weapon,
                  potion: Potion,
+                 protection=None
                  ) -> None:
         self.name = name
         self.power = power
@@ -21,21 +22,12 @@ class Knight:
                               ) for item in armour]
         self.weapon = weapon
         self.potion = potion
+        self.protection = protection
 
     def apply_effects(self) -> None:
         self.power += self.weapon["power"]
+        self.protection = sum(part.protection for part in self.armour)
 
         if self.potion is not None and self.potion["effect"] is not None:
             for stat, value in self.potion["effect"].items():
-                if hasattr(self, stat):
-                    setattr(self, stat, getattr(self, stat) + value)
-
-    def calculate_protection(self) -> int:
-        protection = sum(part.protection for part in self.armour)
-
-        if (self.potion is not None
-                and self.potion["effect"] is not None
-                and self.potion["effect"].get("protection")):
-            protection += self.potion["effect"]["protection"]
-
-        return protection
+                setattr(self, stat, getattr(self, stat, 0) + value)
