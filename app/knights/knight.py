@@ -21,7 +21,7 @@ class Knight:
         self.potion = None
 
     @classmethod
-    def one_knight(cls, tech_name: str, knight_dict: dict) -> Knight:
+    def one_knight(cls, tech_name: str, knight_dict: dict | str) -> Knight:
         name = knight_dict["name"]
         power = knight_dict["power"]
         hp = knight_dict["hp"]
