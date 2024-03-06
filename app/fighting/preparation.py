@@ -1,4 +1,4 @@
-class Knights:
+class Knight:
     def __init__(self, knight: dict) -> None:
         self.name = knight["name"]
         self.power = knight["power"]

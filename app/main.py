@@ -1,4 +1,4 @@
-from app.fighting.preparation import Knights
+from app.fighting.preparation import Knight
 from app.fighting.battle import Battle
 
 
@@ -92,16 +92,16 @@ KNIGHTS = {
 
 def battle(knights: dict) -> dict:
 
-    lancelot = Knights(knights["lancelot"])
-    arthur = Knights(knights["arthur"])
-    mordred = Knights(knights["mordred"])
-    red_knight = Knights(knights["red_knight"])
+    lancelot = Knight(knights["lancelot"])
+    arthur = Knight(knights["arthur"])
+    mordred = Knight(knights["mordred"])
+    red_knight = Knight(knights["red_knight"])
 
     knight_inst_list = [lancelot, arthur, mordred, red_knight]
     for knight in knight_inst_list:
-        Knights.apply_armour(knight)
-        Knights.apply_weapon(knight)
-        Knights.apply_potion(knight)
+        Knight.apply_armour(knight)
+        Knight.apply_weapon(knight)
+        Knight.apply_potion(knight)
 
     Battle.battle_hp(lancelot, mordred)
     Battle.battle_hp(arthur, red_knight)
