@@ -1,5 +1,5 @@
 class Knight:
-    def __init__(self, hp: int, power: int, protection: int):
+    def __init__(self, hp: int, power: int, protection: int) -> None:
         self.hp = hp
         self.power = power
         self.protection = protection
