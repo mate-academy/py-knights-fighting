@@ -92,10 +92,11 @@ def battle(knightsConfig: dict) -> dict:
 
     # BATTLE PREPARATIONS:
     knights = Knight.knights_from_dict(knightsConfig)
-    for i in range(4):
+    for i in range(len(knights)):
         knight = knights[i]
         armour = Armour.armours_from_dict(
-            knight.tech_name, knightsConfig
+            knight.tech_name,
+            knightsConfig
         )
         weapon = Weapon.weapon_from_dict(
             knightsConfig[knight.tech_name]["weapon"]
@@ -108,7 +109,16 @@ def battle(knightsConfig: dict) -> dict:
         knight.apply_potion(potion)
 
     # BATTLE:
-    lancelot, arthur, mordred, red_knight = knights
+    for knight in knights:
+        if knight.tech_name == "lancelot":
+            lancelot = knight
+        elif knight.tech_name == "arthur":
+            arthur = knight
+        elif knight.tech_name == "mordred":
+            mordred = knight
+        elif knight.tech_name == "red_knight":
+            red_knight = knight
+
     pair_1 = Battle(lancelot, mordred)
     pair_2 = Battle(arthur, red_knight)
     pair_1.battle()

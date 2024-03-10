@@ -47,12 +47,9 @@ class Knight:
     def apply_potion(self, potion: Potion = None) -> None:
         if potion is not None:
             effects = potion.effects
-            if "power" in effects:
-                self.power += effects["power"]
-            if "hp" in effects:
-                self.hp += effects["hp"]
-            if "protection" in effects:
-                self.protection += effects["protection"]
+            self.power += effects.get("power", 0)
+            self.hp += effects.get("hp", 0)
+            self.protection += effects.get("protection", 0)
 
     def __repr__(self) -> str:
         return (
