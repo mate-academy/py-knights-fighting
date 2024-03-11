@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 
-class Knights:
+class Knight:
     def __init__(
             self,
             name: str,
