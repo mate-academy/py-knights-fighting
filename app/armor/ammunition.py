@@ -1,45 +1,25 @@
-from __future__ import annotations
+def ammunition(knight: dict) -> dict:
+    # Initialize protection to 0
+    knight["protection"] = 0
 
+    # Calculate protection based on armour
+    for part in knight["armour"]:
+        knight["protection"] += part["protection"]
 
-class Armour:
-    def __init__(self, part: str, protection: int) -> None:
-        self.part = part
-        self.protection = protection
+    # Add weapon power to the knight's power
+    knight["power"] += knight["weapon"]["power"]
 
-    @classmethod
-    def armours_from_dict(
-        cls,
-        knight_name: str,
-        knights_config: list[dict]
-    ) -> list[Armour]:
+    # Apply potion effects if a potion is present
+    if knight["potion"] is not None:
+        stat_list = ["power", "hp", "protection"]
+        for stat in stat_list:
+            if stat in knight["potion"]["effect"]:
+                knight[stat] += knight["potion"]["effect"][stat]
 
-        knight_dict = knights_config[knight_name]
-        if knight_dict["armour"]:
-            return [
-                cls(part=part["part"], protection=part["protection"])
-                for part in knight_dict["armour"]
-            ]
-
-    def __repr__(self) -> str:
-        return f"{{Armour: part={self.part}, protection={self.protection}}}"
-
-
-class Weapon:
-    def __init__(self, name: str, power: int) -> None:
-        self.name = name
-        self.power = power
-
-    @classmethod
-    def weapon_from_dict(cls, weapon_dict: dict) -> Weapon:
-        return cls(weapon_dict["name"], weapon_dict["power"])
-
-
-class Potion:
-    def __init__(self, name: str, effect: dict) -> None:
-        self.name = name
-        self.effect = effect
-
-    @classmethod
-    def potion_from_dict(cls, potion_dict: dict = None) -> Potion:
-        if potion_dict is not None:
-            return cls(potion_dict["name"], potion_dict["effect"])
+    # Return the calculated stats in a dictionary
+    return {
+        "name": knight["name"],
+        "hp": knight["hp"],
+        "power": knight["power"],
+        "protection": knight["protection"]
+    }

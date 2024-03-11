@@ -1,24 +1,19 @@
-from app.knights.knight import Knight
+class Knight:
+    def __init__(self, hp: int, power: int, protection: int) -> None:
+        self.hp = hp
+        self.power = power
+        self.protection = protection
 
 
-class Battle:
-    def __init__(self, knight_1: Knight, knight_2: Knight) -> None:
-        self.knight_1 = knight_1
-        self.knight_2 = knight_2
-
-    def battle(self) -> None:
-        self.knight_1.hp -= self.knight_2.power - self.knight_1.potion
-        self.knight_2.hp -= self.knight_1.power - self.knight_2.potion
-
-        if self.knight_1.hp <= 0:
-            self.knight_1.hp = 0
-        if self.knight_2.hp <= 0:
-            self.knight_2.hp = 0
+def check_loser(fighter_hp: int) -> int:
+    if fighter_hp <= 0:
+        fighter_hp = 0
+    return fighter_hp
 
 
-if __name__ == "__main__":
-    knight_1 = Knight(name="Lancelot", power=80, hp=100)
-    knight_2 = Knight(name="Red", power=45, hp=75)
-    battle = Battle(knight_1, knight_2)
-    battle.battle()
-    print(knight_1.hp, knight_2.hp)
+def fight(fighter_1: Knight, fighter_2: Knight) -> None:
+    fighter_1.hp -= fighter_2.power - fighter_1.protection
+    fighter_2.hp -= fighter_1.power - fighter_2.protection
+
+    fighter_1.hp = check_loser(fighter_1.hp)
+    fighter_2.hp = check_loser(fighter_2.hp)
