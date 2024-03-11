@@ -1,11 +1,11 @@
-from app.knights import Knights
+from app.knights import Knight
 
 
 class Battle:
 
     knights = []
 
-    def __init__(self, first_knight: Knights, second_knight: Knights) -> None:
+    def __init__(self, first_knight: Knight, second_knight: Knight) -> None:
         self.first_knight = first_knight
         self.second_knight = second_knight
         self.knights.extend([first_knight, second_knight])

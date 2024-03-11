@@ -38,7 +38,7 @@ class Knight:
             self.protection += effect.get("protection", 0)
 
     @classmethod
-    def create_knight(cls, knights: dict, identifier: str) -> Knights:
+    def create_knight(cls, knights: dict, identifier: str) -> Knight:
         return cls(
             name=knights[identifier]["name"],
             power=knights[identifier]["power"],
