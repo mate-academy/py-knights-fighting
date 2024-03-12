@@ -1,8 +1,8 @@
 from typing import Dict, List, Tuple
-from preparation.knight_preparation import prepare_knight
-from action.battle_act import simulate_battle
-from action.battle_results import aggregate_results
-from knights import KNIGHTS
+from battle.preparation.knight_preparation import prepare_knight
+from battle.action.battle_act import simulate_battle
+from battle.action.battle_results import aggregate_results
+from battle.knight import KNIGHTS
 
 def main() -> None:
     # Prepare knights for battle

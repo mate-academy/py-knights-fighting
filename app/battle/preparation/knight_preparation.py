@@ -1,29 +1,26 @@
-from typing import Optional
+from typing import Dict
+from battle.knight import Knight
+from battle.weapon import Weapon
+from battle.potion import Potion
 
-class Weapon:
-    def __init__(self, name: str, power: int) -> None:
-        self.name: str = name
-        self.power: int = power
-
-class Potion:
-    def __init__(self, name: str, hp_effect: int = 0, power_effect: int = 0) -> None:
-        self.name: str = name
-        self.hp_effect: int = hp_effect
-        self.power_effect: int = power_effect
-
-class Knight:
-    def __init__(self, name: str, power: int, hp: int, weapon: Weapon, potion: Optional[Potion] = None) -> None:
-        self.name: str = name
-        self.power: int = power
-        self.hp: int = hp
-        self.weapon: Weapon = weapon
-        self.potion: Optional[Potion] = potion
-
-    def apply_potion(self) -> None:
-        if self.potion:
-            self.hp += self.potion.hp_effect
-            self.power += self.potion.power_effect
-
-    def battle(self) -> None:
-        # Example battle logic here, assuming it modifies the hp of both self and opponent
-        pass
+def prepare_knight(knight_config: Dict) -> Knight:
+    name = knight_config["name"]
+    power = knight_config["power"]
+    hp = knight_config["hp"]
+    
+    weapon_config = knight_config.get("weapon")
+    weapon = Weapon(name=weapon_config["name"], power=weapon_config["power"]) if weapon_config else None
+    
+    potion_config = knight_config.get("potion")
+    if potion_config:
+        potion = Potion(
+            name=potion_config["name"],
+            hp_effect=potion_config.get("effect", {}).get("hp", 0),
+            power_effect=potion_config.get("effect", {}).get("power", 0)
+        )
+    else:
+        potion = None
+        
+    knight = Knight(name=name, power=power, hp=hp, weapon=weapon, potion=potion)
+    
+    return knight
