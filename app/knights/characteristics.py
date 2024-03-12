@@ -37,9 +37,6 @@ class KnightsCharacteristics:
         return t_power
 
     def total_hp(self) -> int:
-        hp = self.hp
-
-        if self.potion:
-            if "hp" in self.potion["effect"]:
-                hp += self.potion["effect"]["hp"]
-        return hp
+        if self.potion and "hp" in self.potion["effect"]:
+            return self.hp + self.potion["effect"]["hp"]
+        return self.hp

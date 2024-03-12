@@ -92,81 +92,35 @@ KNIGHTS = {
 def battle(knights_config: dict) -> dict:
     # BATTLE PREPARATIONS:
 
-    # lancelot
-    lancelot = knights_config["lancelot"]
+    armored_knights = {}
 
-    lancelot_stats = KnightsCharacteristics(lancelot)
+    for knight, knight_properties in knights_config.items():
+        knight_stats = KnightsCharacteristics(knight_properties)
 
-    # apply armour
-    lancelot["protection"] = lancelot_stats.protection()
+        armored_knights[knight_properties["name"]] = knight_stats
 
-    # apply weapon
-    lancelot["power"] = lancelot_stats.total_power()
-
-    # apply potion to hp if exist
-    lancelot["hp"] = lancelot_stats.total_hp()
-
-    # arthur
-    arthur = knights_config["arthur"]
-
-    arthur_stats = KnightsCharacteristics(arthur)
-
-    # apply armour
-    arthur["protection"] = arthur_stats.protection()
-
-    # apply weapon
-    arthur["power"] = arthur_stats.total_power()
-
-    # apply potion to hp if exist
-    arthur["hp"] = arthur_stats.total_hp()
-
-    # mordred
-    mordred = knights_config["mordred"]
-
-    mordred_stats = KnightsCharacteristics(mordred)
-
-    # apply armour
-    mordred["protection"] = mordred_stats.protection()
-
-    # apply weapon
-    mordred["power"] = mordred_stats.total_power()
-
-    # apply potion to hp if exist
-    mordred["hp"] = mordred_stats.total_hp()
-
-    # red_knight
-    red_knight = knights_config["red_knight"]
-
-    red_knight_stats = KnightsCharacteristics(red_knight)
-
-    # apply armour
-    red_knight["protection"] = red_knight_stats.protection()
-
-    # apply weapon
-    red_knight["power"] = red_knight_stats.total_power()
-
-    # apply potion to hp if exist
-    red_knight["hp"] = red_knight_stats.total_hp()
-
-    # ------------------------------------------------------------------------
     # BATTLE:
 
     # 1 Lancelot vs Mordred:
-    lancelot["hp"], mordred["hp"] = Battle.one_battle(
+    lancelot_stats = armored_knights["Lancelot"]
+    mordred_stats = armored_knights["Mordred"]
+    lancelot_stats.hp, mordred_stats.hp = Battle.one_battle(
         lancelot_stats, mordred_stats
     )
 
     # 2 Arthur vs Red Knight:
-    arthur["hp"], red_knight["hp"] = Battle.one_battle(
+    arthur_stats = armored_knights["Arthur"]
+    red_knight_stats = armored_knights["Red Knight"]
+    arthur_stats.hp, red_knight_stats.hp = Battle.one_battle(
         arthur_stats, red_knight_stats
     )
 
     # Return battle results:
     return {
-        lancelot["name"]: lancelot["hp"],
-        arthur["name"]: arthur["hp"],
-        mordred["name"]: mordred["hp"],
-        red_knight["name"]: red_knight["hp"],
+        lancelot_stats.name: lancelot_stats.hp,
+        arthur_stats.name: arthur_stats.hp,
+        mordred_stats.name: mordred_stats.hp,
+        red_knight_stats.name: red_knight_stats.hp,
     }
 
 
