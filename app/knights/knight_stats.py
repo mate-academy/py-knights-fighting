@@ -7,25 +7,20 @@ class Knight:
         self.weapon = weapon
         self.potion = potion
 
-    def apply_armour(self):
+    @property
+    def stats(self):
         total_protection = sum(part["protection"] for part in self.armour)
-        self.protection = total_protection
-
-    def apply_potion(self):
+        total_power = self.power + self.weapon["power"]
         if self.potion:
             for stat, value in self.potion["effect"].items():
                 if stat == "hp":
                     self.hp += value
                 elif stat == "power":
-                    self.power += value
+                    total_power += value
                 elif stat == "protection":
-                    self.protection += value
-
-    def calculate_battle_result(self, opponent):
-        self.hp -= opponent.power - self.protection
-        opponent.hp -= self.power - opponent.protection
-
-        if self.hp <= 0:
-            self.hp = 0
-        if opponent.hp <= 0:
-            opponent.hp = 0
+                    total_protection += value
+        return {
+            "hp": self.hp,
+            "power": total_power,
+            "protection": total_protection,
+        }

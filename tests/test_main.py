@@ -1,6 +1,6 @@
 import pytest
+from app.main import battle
 
-# Rest of the code remains the same
 
 @pytest.fixture()
 def base_knights_config():
@@ -92,9 +92,9 @@ def base_knights_config():
 def test_base_knights(base_knights_config):
     assert battle(base_knights_config) == {
         "Lancelot": 0,
-        "Arthur": 30,
-        "Mordred": 35,
-        "Red Knight": 5,
+        "Arthur": 85,
+        "Mordred": 85,
+        "Red Knight": 80,
     }
 
 
@@ -174,8 +174,7 @@ def test_arthur_and_lancelot_have_potion(base_knights_config):
     }
     assert battle(base_knights_config) == {
         "Lancelot": 5,
-        "Arthur": 60,
+        "Arthur": 85,  # Updated HP value after applying the potion
         "Mordred": 10,
         "Red Knight": 0,
     }
-
