@@ -20,7 +20,7 @@ class Knight:
         self.potion = potion
         self.protection = 0
 
-    def is_die(self) -> bool:
+    def is_died(self) -> bool:
         if self.hp <= 0:
             self.hp = 0
             return True

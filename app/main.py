@@ -4,12 +4,13 @@ from app.battle import Battle
 
 
 def battle(config: dict) -> dict:
-    lancelot = Knight.create_knight(config, "lancelot")
-    mordred = Knight.create_knight(config, "mordred")
-    arthur = Knight.create_knight(config, "arthur")
-    red_knight = Knight.create_knight(config, "red_knight")
-    first_battle = Battle(lancelot, mordred)
-    second_battle = Battle(arthur, red_knight)
+    knights = {}
+
+    for knight in config.keys():
+        knights[knight] = Knight.create_knight(config, knight)
+
+    first_battle = Battle(knights.get("lancelot"), knights.get("mordred"))
+    second_battle = Battle(knights.get("arthur"), knights.get("red_knight"))
     Battle.before_start()
     first_battle.start_battle()
     second_battle.start_battle()

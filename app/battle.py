@@ -12,9 +12,9 @@ class Battle:
 
     def check_someone_fell(self) -> None:
         died = "was mortally wounded and died"
-        if self.first_knight.is_die():
+        if self.first_knight.is_died():
             print(f"{self.first_knight.name} {died}")
-        elif self.second_knight.is_die():
+        elif self.second_knight.is_died():
             print(f"{self.second_knight.name} {died}")
         else:
             print("Both knights survived the battle")
