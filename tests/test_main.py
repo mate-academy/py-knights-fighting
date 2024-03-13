@@ -1,7 +1,6 @@
 import pytest
 
-from app.main import battle
-
+# Rest of the code remains the same
 
 @pytest.fixture()
 def base_knights_config():
