@@ -1,20 +1,30 @@
-def calculate_knight_stat(knight: dict) -> dict:
-    knight["protection"] = 0
+class Knight:
+    def __init__(self, name, hp, power, armour, weapon, potion=None):
+        self.name = name
+        self.hp = hp
+        self.power = power
+        self.armour = armour
+        self.weapon = weapon
+        self.potion = potion
+        self.protection = 0
 
-    for part in knight["armour"]:
-        knight["protection"] += part["protection"]
+    def calculate_knight_stat(self):
+        self.protection = 0
 
-    knight["power"] += knight["weapon"]["power"]
+        for part in self.armour:
+            self.protection += part["protection"]
 
-    if knight["potion"] is not None:
-        stat_list = ["power", "hp", "protection"]
-        for stat in stat_list:
-            if stat in knight["potion"]["effect"]:
-                knight[stat] += knight["potion"]["effect"][stat]
+        self.power += self.weapon["power"]
 
-    return {
-        "name": knight["name"],
-        "hp": knight["hp"],
-        "power": knight["power"],
-        "protection": knight["protection"]
-    }
+        if self.potion is not None:
+            stat_list = ["power", "hp", "protection"]
+            for stat in stat_list:
+                if stat in self.potion["effect"]:
+                    setattr(self, stat, getattr(self, stat) + self.potion["effect"][stat])
+
+        return {
+            "name": self.name,
+            "hp": self.hp,
+            "power": self.power,
+            "protection": self.protection
+        }
