@@ -4,20 +4,20 @@ from app.knights.knight import Knight
 from app.battlefield.battle import Battle
 
 
-def battle(knightsConfig: dict) -> dict:
+def battle(knights_config: dict) -> dict:
 
     # BATTLE PREPARATIONS:
-    knights = Knight.knights_from_dict(knightsConfig)
+    knights = Knight.knights_from_dict(knights_config)
     for knight in knights:
         armour = Armour.armours_from_dict(
             knight.tech_name,
-            knightsConfig
+            knights_config
         )
         weapon = Weapon.weapon_from_dict(
-            knightsConfig[knight.tech_name]["weapon"]
+            knights_config[knight.tech_name]["weapon"]
         )
         potion = Potion.potion_from_dict(
-            knightsConfig[knight.tech_name]["potion"]
+            knights_config[knight.tech_name]["potion"]
         )
         knight.apply_armour(armour)
         knight.apply_weapon(weapon)

@@ -8,9 +8,9 @@ class Armour:
 
     @classmethod
     def armours_from_dict(
-        cls, knight_name: str, knightsConfig: list[dict]
+        cls, knight_name: str, knights_сonfig: list[dict]
     ) -> list[Armour]:
-        knight_dict = knightsConfig[knight_name]
+        knight_dict = knights_сonfig[knight_name]
         if knight_dict["armour"]:
 
             return [
