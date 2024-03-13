@@ -8,6 +8,7 @@ class Knight:
         self.potion = potion
         self.protection = 0
 
+    
     def calculate_knight_stat(self):
         self.protection = 0
 
