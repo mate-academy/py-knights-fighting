@@ -1,4 +1,6 @@
-from knights.knight_stats import Knight
+from app.knights.knight_stats import Knight
+
+
 def simulate_battle(knight1, knight2):
     # Calculate damage dealt to each other
     knight1_damage = knight1.calculate_damage(knight2)
