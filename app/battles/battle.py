@@ -1,4 +1,4 @@
-from ..knights.knight_stats import Knight
+from app.knights.knight_stats import Knight
 
 
 def perform_battle(knight1, knight2):
@@ -14,3 +14,7 @@ def perform_battle(knight1, knight2):
         knight1.name: knight1.hp,
         knight2.name: knight2.hp
     }
+
+knight1 = Knight()
+knight2 = Knight()
+perform_battle(knight1, knight2)
