@@ -1,22 +1,18 @@
-from app.knights.knight_stats import Knight
-from app.battles.battle import perform_battle
+from knights.knight_stats import Knight
+def simulate_battle(knight1, knight2):
+    # Calculate damage dealt to each other
+    knight1_damage = knight1.calculate_damage(knight2)
+    knight2_damage = knight2.calculate_damage(knight1)
+    
+    # Apply damage
+    knight1.hp = max(0, knight1.hp - knight2_damage)
+    knight2.hp = max(0, knight2.hp - knight1_damage)
 
-def main():
-    # Define knights
-    knights = {
-        "Lancelot": Knight("Lancelot", 35, 100, [], {"name": "Metal Sword", "power": 50}),
-        "Arthur": Knight("Arthur", 45, 75, [{"part": "helmet", "protection": 15}], {"name": "Two-handed Sword", "power": 55}),
-        "Mordred": Knight("Mordred", 30, 90, [{"part": "breastplate", "protection": 15}], {"name": "Poisoned Sword", "power": 60}, {"name": "Berserk", "effect": {"power": +15, "hp": -5, "protection": +10}}),
-        "Red Knight": Knight("Red Knight", 40, 70, [{"part": "breastplate", "protection": 25}], {"name": "Sword", "power": 45}, {"name": "Blessing", "effect": {"hp": +10, "power": +5}})
-    }
-
-    # Perform battles
-    lancelot_vs_mordred = battle(knights["Lancelot"], knights["Mordred"])
-    arthur_vs_red_knight = battle(knights["Arthur"], knights["Red Knight"])
-
-    # Print results
-    print("Lancelot vs Mordred:", lancelot_vs_mordred)
-    print("Arthur vs Red Knight:", arthur_vs_red_knight)
-
-if __name__ == "__main__":
-    main()
+def battle(knights_config):
+    knights = {name: Knight(**stats) for name, stats in knights_config.items()}
+    
+    # Simulate the specified battles
+    simulate_battle(knights["lancelot"], knights["mordred"])
+    simulate_battle(knights["arthur"], knights["red_knight"])
+    
+    return {knight.name: knight.hp for knight in knights.values()}
