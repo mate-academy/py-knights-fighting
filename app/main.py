@@ -1,12 +1,12 @@
 from app.battle import battle
-from app.KNIGHTS.knights import knightsConfig
+from app.KNIGHTS.knights import KnightsConfig
 from app.KNIGHTS.knight import Knight
 
 
-lancelot = Knight(knightsConfig["lancelot"])
-arthur = Knight(knightsConfig["arthur"])
-mordred = Knight(knightsConfig["mordred"])
-red_knight = Knight(knightsConfig["red_knight"])
+lancelot = Knight(KnightsConfig["lancelot"])
+arthur = Knight(KnightsConfig["arthur"])
+mordred = Knight(KnightsConfig["mordred"])
+red_knight = Knight(KnightsConfig["red_knight"])
 
 
 def main() -> dict:
@@ -17,7 +17,7 @@ def main() -> dict:
         arthur.name: arthur.hp,
         mordred.name: mordred.hp,
         red_knight.name: red_knight.hp,
-        }
+    }
 
 
 print(main())

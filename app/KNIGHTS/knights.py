@@ -1,4 +1,4 @@
-knightsConfig = {
+KnightsConfig = {
     "lancelot": {
         "name": "Lancelot",
         "power": 35,
