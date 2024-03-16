@@ -88,7 +88,7 @@ KNIGHTS = {
 }
 
 
-def battle(knights_config):
+def battle(knights_config: dict) -> dict:
     battle_ob = Battle(knights_config)
     return battle_ob.make_round()
 
