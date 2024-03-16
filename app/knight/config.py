@@ -3,8 +3,8 @@ class Knight:
                  name: str,
                  power: int,
                  hp: int,
-                 armour: list = [],
-                 weapon: dict = {},
+                 armour: list = None,
+                 weapon: dict = None,
                  potion: dict = None) -> None:
         self.name = name
         self.power = power
