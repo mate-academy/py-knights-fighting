@@ -1,3 +1,6 @@
+from app.models.knight import Knight
+from app.battle import Battle
+
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
@@ -212,3 +215,21 @@ def battle(knightsConfig):
 
 
 print(battle(KNIGHTS))
+
+
+def main() -> None:
+    knights = {
+        "Lancelot": Knight(name="Lancelot",
+                           power=35,
+                           hp=100,
+                           armour=[],
+                           weapon={"name": "Metal Sword", "power": 50},
+                           potion=None),
+    }
+
+    result = Battle.calculate_result(knights)
+    print(result)
+
+
+if __name__ == "__main__":
+    main()
