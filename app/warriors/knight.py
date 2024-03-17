@@ -12,11 +12,7 @@ class Knight:
 
     def potion_activate(self) -> None:
         if self.potion is not None:
-            if "power" in self.potion["effect"]:
-                self.power += int(self.potion["effect"]["power"])
-
-            if "protection" in self.potion["effect"]:
-                self.protection += int(self.potion["effect"]["protection"])
-
-            if "hp" in self.potion["effect"]:
-                self.hp += int(self.potion["effect"]["hp"])
+            effects = self.potion["effect"]
+            for key in effects:
+                if key in ("power", "protection", "hp"):
+                    setattr(self, key, getattr(self, key) + int(effects[key]))
