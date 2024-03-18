@@ -31,12 +31,12 @@ class Knight:
 
     def apply_potion(self, potion: dict) -> None:
         self.potion = Potion(potion.get("name"), potion.get("effect"))
-        if self.potion.hp:
-            self.hp += self.potion.hp
-        if self.potion.power:
-            self.power += self.potion.power
-        if self.potion.protection:
-            self.protection += self.potion.protection
+        for potion_key, potion_val in potion.get("effect").items():
+            setattr(
+                self,
+                potion_key,
+                self.__getattribute__(potion_key) + potion_val
+            )
 
     def battle(self, other: Knight) -> None:
         self.hp -= other.power - self.protection
