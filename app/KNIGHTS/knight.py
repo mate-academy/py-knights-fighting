@@ -6,10 +6,13 @@ class Knight:
         self.potion = None
         if knight["potion"] is not None:
             self.potion = knight["potion"]
+<<<<<<< HEAD
+=======
         self.power = knight["power"]
         self.hp = knight["hp"]
         self.weapon = knight["weapon"]
         self.potion = knight["potion"]
+>>>>>>> 5eb272049e9786edf9f2c2553b6d41b7c96f9af5
         self.protection = 0
         for armour in knight["armour"]:
             self.protection += armour["protection"]
@@ -24,9 +27,12 @@ class Knight:
 
             if "hp" in self.potion["effect"]:
                 self.hp += int(self.potion["effect"]["hp"])
+<<<<<<< HEAD
+=======
         if self.potion is None:
             return None
         self.power += self.potion["effect"]["power"]
         self.hp += self.potion["effect"]["hp"]
         if len(self.potion["effect"]) == 3:
             self.protection += self.potion["effect"]["protection"]
+>>>>>>> 5eb272049e9786edf9f2c2553b6d41b7c96f9af5
