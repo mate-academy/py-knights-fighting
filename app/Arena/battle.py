@@ -1,8 +1,8 @@
-from app.Knights.knights_stats import Characters
+from app.Character.knight_module import Knight
 
 
 def battle(basic_knights: dict) -> dict:
-    knights_list = [Characters(**basic_knights[knight])
+    knights_list = [Knight(**basic_knights[knight])
                     for knight in basic_knights]
 
     # gear_up() is to get weapon, armour, drink pots
