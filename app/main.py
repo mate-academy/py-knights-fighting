@@ -19,4 +19,5 @@ def battle(knights_config: dict) -> dict:
         red_knight.name: red_knight.hp
     }
 
+
 print(battle(Knights))
