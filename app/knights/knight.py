@@ -24,7 +24,7 @@ class Knight:
         self.boost_potion = False
 
     @classmethod
-    def pars(cls, knight: dict) -> Knight:
+    def create_character(cls, knight: dict) -> Knight:
         return cls(
             name=knight["name"],
             hp=knight["hp"],
@@ -44,10 +44,10 @@ class Knight:
             print(f"{self.name} already boost weapon!")
 
     def activate_armour(self) -> None:
-        if self.items.armour:
+        if self.items.armours:
             if not self.boost_armour:
                 self.protection += sum(
-                    [arm.protection for arm in self.items.armour]
+                    [arm.protection for arm in self.items.armours]
                 )
                 self.boost_armour = True
                 print(f"{self.name} boosted armour!")
