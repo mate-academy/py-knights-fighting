@@ -8,11 +8,12 @@ def battle(knights: dict) -> dict:
     for knight in knights.values():
         contestants.append(Knight(knight))
 
-    print(f'''\nWelcome, ladies and gentlemen at our first grand knight tournament!
+    print(f"""\nWelcome, ladies and gentlemen
+At our first knight grand tournament!
 Our competitors are two pairs of incredibly skilled knights of the kingdom.
 For the first pair we have {contestants[0].name} and {contestants[2].name}
 For the second one {contestants[1].name} and {contestants[3].name}
-Let's go through the equipment of our fighters while they are preparing.''')
+Let's go through the equipment of our fighters while they are preparing.""")
 
     for knight in contestants:
         knight.ready_for_battle()
