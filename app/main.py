@@ -4,6 +4,7 @@ from tests.default_config import fights_config
 
 from knights import Knight
 
+
 def battle(knights_config: dict) -> dict:
     knights = {}
 

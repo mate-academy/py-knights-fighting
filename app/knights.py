@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from .items import Armour, Potion, Weapon
+from items import Armour, Potion, Weapon
 
 
 class Knight:
@@ -26,14 +26,6 @@ class Knight:
         self.potion = Potion(name=potion["name"],
                              effect=potion["effect"]) if potion else None
 
-    def apply_potion_effect(self, effect: dict) -> None:
-        if "power" in effect:
-            self.power += effect["power"]
-        if "hp" in effect:
-            self.hp += effect["hp"]
-        if "protection" in effect:
-            self.protection += effect["protection"]
-
     def activate_items(self) -> None:
         self.power += self.weapon.power
         self.protection += sum(
@@ -42,4 +34,5 @@ class Knight:
             ]if self.armour else [self.protection])
 
         if self.potion:
-            self.apply_potion_effect(self.potion.effect)
+            for key, value in self.potion.effect.items():
+                setattr(self, key, getattr(self, key, 0) + value)
