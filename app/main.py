@@ -1,7 +1,4 @@
-from __future__ import annotations
-
 from tests.default_config import fights_config
-
 from app.knights.characters import Knight
 from app.knights.fight import Fight
 
