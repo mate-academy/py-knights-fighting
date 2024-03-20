@@ -14,13 +14,13 @@ class Knight:
         self.name = name
         self.power = power
         self.hp = hp
-        self.armour = [Armour(**a) for a in armour]
+        self.armour = [Armour(**armour_) for armour_ in armour]
         self.weapon = Weapon(**weapon) if weapon else None
         self.potion = Potion(**potion) if potion else None
         self.apply_equipment()
 
     def apply_equipment(self) -> None:
-        self.protection = sum(a.protection for a in self.armour)
+        self.protection = sum(armour_.protection for armour_ in self.armour)
         if self.weapon:
             self.power += self.weapon.power
         if self.potion:
