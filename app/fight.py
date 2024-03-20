@@ -1,7 +1,7 @@
-from app.KNIGHTS.knight import Knight
+from app.Knights.knight import Knight
 
 
-def fight(knight1: "Knight", knight2: "Knight") -> None:
+def fight(knight1: Knight, knight2: Knight) -> None:
     knight1.potion_activate()
     knight2.potion_activate()
     knight1.hp -= knight2.power - knight1.protection

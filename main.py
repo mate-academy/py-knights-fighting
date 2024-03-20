@@ -1,5 +1,5 @@
-from app.KNIGHTS.knights import Knights
-from app.KNIGHTS.knight import Knight
+from app.Knights.knights_config import Knights
+from app.Knights.knight import Knight
 from app.fight import fight
 
 
