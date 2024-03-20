@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from items import Armour, Potion, Weapon
+from app.knights.items import Armour, Potion, Weapon
 
 
 class Knight:
@@ -17,10 +17,10 @@ class Knight:
         self.hp = hp
         self.power = power
         self.protection = 0
-        self.armour = [Armour(part=ar["part"],
-                               protection=ar["protection"]
-                               ) for ar in armour
-                        ] if armour else []
+        self.armour = [
+            Armour(part=ar["part"],
+                   protection=ar["protection"]) for ar in armour
+        ] if armour else []
         self.weapon = Weapon(name=weapon["name"],
                              power=weapon["power"])
         self.potion = Potion(name=potion["name"],

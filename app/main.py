@@ -2,7 +2,8 @@ from __future__ import annotations
 
 from tests.default_config import fights_config
 
-from knights import Knight
+from app.knights.characters import Knight
+from app.knights.fight import Fight
 
 
 def battle(knights_config: dict) -> dict:
@@ -11,27 +12,14 @@ def battle(knights_config: dict) -> dict:
     for name, properties in knights_config.items():
         knight = Knight(**properties)
         knights.update({name: knight})
-        knight.activate_items()
 
     # Lancelot vs Mordred:
-    knights["lancelot"].hp -= knights["mordred"].power - knights["lancelot"].protection
-    knights["mordred"].hp -= knights["lancelot"].power - knights["mordred"].protection
-
-    # Проверяем, упал ли кто-то в битве
-    for knight in ["lancelot", "mordred"]:
-        if knights[knight].hp <= 0:
-            knights[knight].hp = 0
-
+    Fight(knights["lancelot"], knights["mordred"]).fight_hit()
     # Arthur vs Red Knight:
-    knights["arthur"].hp -= knights["red_knight"].power - knights["arthur"].protection
-    knights["red_knight"].hp -= knights["arthur"].power - knights["red_knight"].protection
+    Fight(knights["arthur"], knights["red_knight"]).fight_hit()
 
-    # Проверяем, упал ли кто-то в битве
-    for knight in ["arthur", "red_knight"]:
-        if knights[knight].hp <= 0:
-            knights[knight].hp = 0
     return {knight.name: knight.hp for knight in knights.values()}
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(battle(fights_config))
