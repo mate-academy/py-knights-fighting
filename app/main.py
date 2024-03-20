@@ -2,6 +2,7 @@ from tests.default_config import fights_config
 from app.knights.characters import Knight
 from app.knights.fight import Fight
 
+
 def battle(knights_config: dict) -> dict:
     knights = {}
 
