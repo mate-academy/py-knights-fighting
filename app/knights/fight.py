@@ -2,16 +2,16 @@ from app.knights.characters import Knight
 
 
 class Fight:
-    def __init__(self, first: Knight, second: Knight) -> None:
-        self.first = first
-        self.second = second
-        self.first.activate_items()
-        self.second.activate_items()
+    def __init__(self, knight_1: Knight, knight_2: Knight) -> None:
+        self.knight_1 = knight_1
+        self.knight_2 = knight_2
+        self.knight_1.activate_items()
+        self.knight_2.activate_items()
 
     def fight_hit(self) -> None:
-        self.first.hp -= self.second.power - self.first.protection
-        self.second.hp -= self.first.power - self.second.protection
-        if self.first.hp < 0:
-            self.first.hp = 0
-        if self.second.hp < 0:
-            self.second.hp = 0
+        self.knight_1.hp -= self.knight_2.power - self.knight_1.protection
+        self.knight_2.hp -= self.knight_1.power - self.knight_2.protection
+        if self.knight_1.hp < 0:
+            self.knight_1.hp = 0
+        if self.knight_2.hp < 0:
+            self.knight_2.hp = 0
