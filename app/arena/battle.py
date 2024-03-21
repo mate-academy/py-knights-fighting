@@ -1,4 +1,4 @@
-from app.Character.knight_module import Knight
+from app.character.knight import Knight
 
 
 def battle(basic_knights: dict) -> dict:
