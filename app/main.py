@@ -103,7 +103,8 @@ def battle(knights_config: dict) -> dict:
         knights_config["lancelot"]["name"]: knights_config["lancelot"]["hp"],
         knights_config["arthur"]["name"]: knights_config["arthur"]["hp"],
         knights_config["mordred"]["name"]: knights_config["mordred"]["hp"],
-        knights_config["red_knight"]["name"]: knights_config["red_knight"]["hp"],
+        knights_config["red_knight"]["name"]:
+            knights_config["red_knight"]["hp"],
     }
 
 
