@@ -92,27 +92,18 @@ knights = {
 def battle(knights_config: dict) -> dict:
     # BATTLE PREPARATIONS:
 
-    # lancelot
-    lancelot = knight_init("lancelot", knights_config)
+    for key, value in knights_config.items():
+        knight_init(key, knights_config)
 
-    # arthur
-    arthur = knight_init("arthur", knights_config)
-
-    # mordred
-    mordred = knight_init("mordred", knights_config)
-
-    # red_knight
-    red_knight = knight_init("red_knight", knights_config)
-
-    battle_finish(lancelot, mordred)
-    battle_finish(arthur, red_knight)
+    battle_finish(knights_config["lancelot"], knights_config["mordred"])
+    battle_finish(knights_config["arthur"], knights_config["red_knight"])
 
     # Return battle results:
     return {
-        lancelot["name"]: lancelot["hp"],
-        arthur["name"]: arthur["hp"],
-        mordred["name"]: mordred["hp"],
-        red_knight["name"]: red_knight["hp"],
+        knights_config["lancelot"]["name"]: knights_config["lancelot"]["hp"],
+        knights_config["arthur"]["name"]: knights_config["arthur"]["hp"],
+        knights_config["mordred"]["name"]: knights_config["mordred"]["hp"],
+        knights_config["red_knight"]["name"]: knights_config["red_knight"]["hp"],
     }
 
 
