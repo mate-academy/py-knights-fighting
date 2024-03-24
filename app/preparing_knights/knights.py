@@ -24,18 +24,17 @@ class Knights:
         self.protection = 0
         self.knights_inst[self.name] = self
 
-    # for recalculating stats before the fights
     @staticmethod
     def apply_knights() -> None:
         for name, instance in Knights.knights_inst.items():
-            # calculating 'protection' on base of armour's stats:
+
             if instance.armour:
                 instance.protection += sum(
                     [armour.protection for armour in instance.armour]
                 )
-            # recalculating 'power' on base of weapon's stat:
+
             instance.power += instance.weapon.power
-            # recalculating all stats on base of potion's stats:
+
             if instance.potion:
                 if instance.potion.effect.get("power"):
                     instance.power += instance.potion.effect.get("power")
@@ -46,7 +45,6 @@ class Knights:
                         "protection"
                     )
 
-    # for recalculating 'hp' after the fights:
     @staticmethod
     def recount_hp() -> None:
         for name, instance in Knights.knights_inst.items():
