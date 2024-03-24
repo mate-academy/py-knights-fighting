@@ -1,0 +1,1 @@
+CHANGABLE = ["power", "hp", "protection"]
