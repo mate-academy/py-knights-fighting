@@ -99,12 +99,10 @@ def battle(knights_config: dict) -> dict:
     battle_finish(knights_config["arthur"], knights_config["red_knight"])
 
     # Return battle results:
+    names = ["lancelot", "arthur", "mordred", "red_knight"]
     return {
-        knights_config["lancelot"]["name"]: knights_config["lancelot"]["hp"],
-        knights_config["arthur"]["name"]: knights_config["arthur"]["hp"],
-        knights_config["mordred"]["name"]: knights_config["mordred"]["hp"],
-        knights_config["red_knight"]["name"]:
-            knights_config["red_knight"]["hp"],
+        knights_config[name]["name"]:
+            knights_config[name]["hp"] for name in names
     }
 
 
