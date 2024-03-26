@@ -14,8 +14,8 @@ class Battle:
             print(f"{self.knight1.name} has {self.knight1.hp} life")
             print(f"{self.knight2.name} has {self.knight2.hp} life")
 
-            damage_knight1 = self.knight1.power - self.knight2.defense
-            damage_knight2 = self.knight2.power - self.knight1.defense
+            damage_knight1 = max(self.knight1.power - self.knight2.defense, 0)
+            damage_knight2 = max(self.knight2.power - self.knight1.defense, 0)
 
             self.knight1.hp -= damage_knight2
             self.knight2.hp -= damage_knight1
