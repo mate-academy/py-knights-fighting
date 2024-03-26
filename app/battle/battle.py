@@ -1,9 +1,12 @@
+from typing import Any
+
+
 class Battle:
-    def __init__(self, knight1, knight2):
+    def __init__(self, knight1: Any, knight2: Any) -> None:
         self.knight1 = knight1
         self.knight2 = knight2
 
-    def perform_battle(self):
+    def perform_battle(self) -> None:
         print("Fight!")
         print(f"{self.knight1.name} against {self.knight2.name}")
 
@@ -17,5 +20,5 @@ class Battle:
             self.knight1.hp -= damage_knight2
             self.knight2.hp -= damage_knight1
 
-        winner = self.knight1 if self.knight1.hp > 0 else self.knight2
-        print(f"Finished! {winner.name} winner!")
+            if self.knight1.hp <= 0 or self.knight2.hp <= 0:
+                break
