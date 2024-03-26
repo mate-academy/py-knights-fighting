@@ -4,25 +4,18 @@ from app.bin.classes import Knight
 
 
 def battle(knights_config: dict) -> dict:
-    cur_battle_knights = {}
+    curent_battle_knights = {}
     for name_key, knight in knights_config.items():
-        cur_battle_knights[name_key] = Knight(knight)
+        curent_battle_knights[name_key] = Knight(knight)
     # -------------------------------------------------------------------------------
     # BATTLE:
     # 1 Lancelot vs Mordred:
-    cur_battle_knights["lancelot"].fight(cur_battle_knights["mordred"])
+    curent_battle_knights["lancelot"].fight(curent_battle_knights["mordred"])
     # 2 Arthur vs Red Knight:
-    cur_battle_knights["arthur"].fight(cur_battle_knights["red_knight"])
-    return {
-        cur_battle_knights["lancelot"].name:
-            cur_battle_knights["lancelot"].hp,
-        cur_battle_knights["arthur"].name:
-            cur_battle_knights["arthur"].hp,
-        cur_battle_knights["mordred"].name:
-            cur_battle_knights["mordred"].hp,
-        cur_battle_knights["red_knight"].name:
-            cur_battle_knights["red_knight"].hp
-    }
+    curent_battle_knights["arthur"].fight(curent_battle_knights["red_knight"])
+    return {curent_battle_knights[knight].name:
+            curent_battle_knights[knight].hp
+            for knight in curent_battle_knights.keys()}
 
 
 print(battle(KNIGHTS))

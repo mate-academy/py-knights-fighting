@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from app.consts.param import CHANGABLE
+from app.consts.parametrs import CHANGABLE
 
 
 class Weapon:

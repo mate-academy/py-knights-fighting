@@ -2,24 +2,24 @@ import random
 from typing import Any
 
 from app.consts.knights import KNIGHTS
-from app.consts.param import CHANGABLE
+from app.consts.parametrs import CHANGABLE
 
 
 def add_potions() -> dict:
     effect_potion_dict = None
     list_to_add_to_potion = []
-    for param in CHANGABLE:
+    for parametr in CHANGABLE:
         if random.randint(0, 100) < 30:
-            list_to_add_to_potion.append(param)
+            list_to_add_to_potion.append(parametr)
     if len(list_to_add_to_potion) > 0:
         effect_potion_dict = dict(name="BlaBlaPotion", effect={
-            param_name: random.randint(-25, 25)
-            for param_name in list_to_add_to_potion
+            parametr_name: random.randint(-25, 25)
+            for parametr_name in list_to_add_to_potion
         })
     return effect_potion_dict
 
 
-def change_begin_data(begin_data: dict, key_prev_dict: Any = None) -> None:
+def change_begin_data(begin_data: dict, key_previous_dict: Any = None) -> None:
     if isinstance(begin_data, dict):
         for key, value in begin_data.items():
             if key in CHANGABLE:
@@ -30,7 +30,7 @@ def change_begin_data(begin_data: dict, key_prev_dict: Any = None) -> None:
                 else:
                     change_begin_data(value, key)
     if isinstance(begin_data, list):
-        if key_prev_dict == "armour" and len(begin_data) == 0:
+        if key_previous_dict == "armour" and len(begin_data) == 0:
             if random.randint(0, 100) < 50:
                 for _ in range(1, random.randint(1, 4) + 1):
                     begin_data.append(dict(
@@ -39,7 +39,7 @@ def change_begin_data(begin_data: dict, key_prev_dict: Any = None) -> None:
                     )
         else:
             for item in begin_data:
-                change_begin_data(item, key_prev_dict)
+                change_begin_data(item, key_previous_dict)
 
 
 change_begin_data(KNIGHTS)
