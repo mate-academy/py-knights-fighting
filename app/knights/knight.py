@@ -12,19 +12,23 @@ class Knight:
         self.armour = armour
         self.weapon = weapon
         self.potion = potion
-        self.prtection = 0
+        self.protection = 0
 
-        if self.armour:
-            for armour_piece in self.armour:
-                self.prtection += armour_piece["protection"]
+        self.calculate_protection()
+        self.apply_weapon_effect()
+        self.apply_potion_effect()
 
+    def calculate_protection(self) -> None:
+        for armour_piece in self.armour:
+            self.protection += armour_piece["protection"]
+
+    def apply_weapon_effect(self) -> None:
         if self.weapon:
             self.power += self.weapon["power"]
 
+    def apply_potion_effect(self) -> None:
         if self.potion:
-            if self.potion["effect"].get("power"):
-                self.power += self.potion["effect"]["power"]
-            if self.potion["effect"].get("hp"):
-                self.hp += self.potion["effect"]["hp"]
-            if self.potion["effect"].get("protection"):
-                self.prtection += self.potion["effect"]["protection"]
+            effects = self.potion.get("effect", {})
+            for effect, value in effects.items():
+                if hasattr(self, effect):
+                    setattr(self, effect, getattr(self, effect) + value)

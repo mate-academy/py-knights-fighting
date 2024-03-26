@@ -3,8 +3,8 @@ from app.knights.knight import Knight
 
 
 def battle_of_knights(knight1: Knight, knight2: Knight) -> dict:
-    knight1.hp -= knight2.power - knight1.prtection
-    knight2.hp -= knight1.power - knight2.prtection
+    knight1.hp -= knight2.power - knight1.protection
+    knight2.hp -= knight1.power - knight2.protection
 
 
 def battle(knights: dict) -> dict:
