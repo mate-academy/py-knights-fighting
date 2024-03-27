@@ -13,8 +13,8 @@ class Knight:
 
     def equip_weapon(self) -> None:
         self.power += self.weapon["power"]
-        print(f"Knight {self.name} equipped weapon {self.weapon["name"]}"
-              f"+{self.weapon["power"]} points to power.")
+        print(f"Knight {self.name} equipped weapon {self.weapon['name']}"
+              f"+{self.weapon['power']} points to power.")
 
     def equip_armour(self) -> None:
         if self.armour:
