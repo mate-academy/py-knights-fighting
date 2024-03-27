@@ -37,7 +37,7 @@ class Knight:
                     self.hp += effects["hp"]
                 if "protection" in effect:
                     self.protection += effects["protection"]
-            print(f"Knight {self.name} use potion {self.potion["name"]}.")
+            print(f"Knight {self.name} use potion {self.potion['name']}.")
 
     def knights_battle(self, knight: object) -> None:
         self.hp -= knight.power - self.protection
