@@ -21,7 +21,7 @@ class Knight:
             self.protection = sum(part_armour["protection"]
                                   for part_armour in self.armour)
             for part in self.armour:
-                print(f"Knight {self.name} put on his {part["part"]}.")
+                print(f"Knight {self.name} put on his {part['part']}.")
                 sleep(0.3)
             print(f"Total protection +{self.protection} points.")
         else:
