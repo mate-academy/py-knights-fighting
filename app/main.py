@@ -32,7 +32,7 @@ def battle(knight_dict: dict) -> dict:
         knight_arms[man] = list()
         for armour in warrior["armour"]:
             if not f'{armour["part"]}_{armour["protection"]}' in armours:
-                armours[f"{armour["part"]}_{armour["protection"]}"] \
+                armours[f'{armour["part"]}_{armour["protection"]}'] \
                     = Armour(armour["part"], armour["protection"])
 
             # make warriors knights-like
