@@ -31,7 +31,7 @@ def battle(knight_dict: dict) -> dict:
         # create armours collection
         knight_arms[man] = list()
         for armour in warrior["armour"]:
-            if not f"{armour["part"]}_{armour["protection"]}" in armours:
+            if not f'{armour["part"]}_{armour["protection"]}' in armours:
                 armours[f"{armour["part"]}_{armour["protection"]}"] \
                     = Armour(armour["part"], armour["protection"])
 
