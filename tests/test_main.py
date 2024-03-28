@@ -1,4 +1,5 @@
 import pytest
+
 from app.main import battle
 
 
@@ -92,9 +93,9 @@ def base_knights_config():
 def test_base_knights(base_knights_config):
     assert battle(base_knights_config) == {
         "Lancelot": 0,
-        "Arthur": 85,
-        "Mordred": 85,
-        "Red Knight": 80,
+        "Arthur": 30,
+        "Mordred": 35,
+        "Red Knight": 5,
     }
 
 
@@ -174,7 +175,7 @@ def test_arthur_and_lancelot_have_potion(base_knights_config):
     }
     assert battle(base_knights_config) == {
         "Lancelot": 5,
-        "Arthur": 85,  # Updated HP value after applying the potion
+        "Arthur": 60,
         "Mordred": 10,
         "Red Knight": 0,
     }
