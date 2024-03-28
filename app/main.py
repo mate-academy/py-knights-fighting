@@ -38,7 +38,7 @@ def battle(knight_dict: dict) -> dict:
             # make warriors knights-like
             # assign arms to warrior
             knight_arms[man].append(
-                armours[f"{armour["part"]}_{armour["protection"]}"]
+                armours[f'{armour["part"]}_{armour["protection"]}']
             )
 
         # make warriors knights-like
