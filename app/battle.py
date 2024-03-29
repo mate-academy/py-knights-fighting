@@ -24,9 +24,4 @@ def battle(knights_config: dict) -> dict:
     # Battle 2: Arthur vs Red Knight
     do_battle(knights_list[1], knights_list[3])
 
-    return {
-        knights_list[0]["name"]: knights_list[0]["hp"],
-        knights_list[1]["name"]: knights_list[1]["hp"],
-        knights_list[2]["name"]: knights_list[2]["hp"],
-        knights_list[3]["name"]: knights_list[3]["hp"],
-    }
+    return {knight["name"]: knight["hp"] for knight in knights_list}
