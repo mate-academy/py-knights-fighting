@@ -1,36 +1,15 @@
-from app.functions import check_hp
+from app.functions import check_hp, apply_potion
 
 
 def battle(knights_config: dict) -> dict:
-    knights_list = []
-    for i in knights_config.keys():
-        knights_list.append(i)
+    knights_list = [*knights_config.keys()]
 
     for kn in range(len(knights_list)):
         # BATTLE PREPARATIONS:
         knights_list[kn] = knights_config[knights_list[kn]]
 
-        # apply armour
-        knights_list[kn]["protection"] = 0
-        for knight in knights_list[kn]["armour"]:
-            knights_list[kn]["protection"] += knight["protection"]
-
-        # apply weapon
-        knights_list[kn]["power"] += knights_list[kn]["weapon"]["power"]
-
-        # apply potion if exist
-        if knights_list[kn]["potion"] is not None:
-            if "power" in knights_list[kn]["potion"]["effect"]:
-                knights_list[kn]["power"]\
-                    += knights_list[kn]["potion"]["effect"]["power"]
-
-            if "protection" in knights_list[kn]["potion"]["effect"]:
-                knights_list[kn]["protection"]\
-                    += knights_list[kn]["potion"]["effect"]["protection"]
-
-            if "hp" in knights_list[kn]["potion"]["effect"]:
-                knights_list[kn]["hp"]\
-                    += knights_list[kn]["potion"]["effect"]["hp"]
+        # apply potion
+        apply_potion(knights_list, kn)
 
     # BATTLE:
     lancelot = knights_list[0]
