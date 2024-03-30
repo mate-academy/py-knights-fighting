@@ -14,12 +14,6 @@ def apply_potion(knights_list: list, knight: str) -> None:
 
     if knights_list[knight]["potion"] is not None:
         potion_effect = knights_list[knight]["potion"]["effect"]
-
-        if "power" in potion_effect:
-            knights_list[knight]["power"] += potion_effect["power"]
-
-        if "protection" in potion_effect:
-            knights_list[knight]["protection"] += potion_effect["protection"]
-
-        if "hp" in potion_effect:
-            knights_list[knight]["hp"] += potion_effect["hp"]
+        for value in ["power", "protection", "hp"]:
+            if value in potion_effect:
+                knights_list[knight][value] += potion_effect[value]
