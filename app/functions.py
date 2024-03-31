@@ -3,17 +3,17 @@ def check_hp(hp: int) -> int:
     return hp if hp > 0 else 0
 
 
-def apply_potion(knights_list: list, knight: str) -> None:
+def apply_potion(knights_list: list, name: str) -> None:
     # apply armour
-    knights_list[knight]["protection"] = 0
-    for index in knights_list[knight]["armour"]:
-        knights_list[knight]["protection"] += index["protection"]
+    name["protection"] = 0
+    for index in name["armour"]:
+        name["protection"] += index["protection"]
 
     # apply weapon
-    knights_list[knight]["power"] += knights_list[knight]["weapon"]["power"]
+    name["power"] += name["weapon"]["power"]
 
-    if knights_list[knight]["potion"] is not None:
-        potion_effect = knights_list[knight]["potion"]["effect"]
+    if name["potion"] is not None:
+        potion_effect = name["potion"]["effect"]
         for value in ["power", "protection", "hp"]:
             if value in potion_effect:
-                knights_list[knight][value] += potion_effect[value]
+                name[value] += potion_effect[value]
