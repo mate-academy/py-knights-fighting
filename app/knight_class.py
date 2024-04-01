@@ -4,23 +4,28 @@ from __future__ import annotations
 class Knight:
     def __init__(self, knight_data: dict) -> None:
         self.name = knight_data.get("name")
-        self.power = self.calc_stat(knight_data, "power")
-        self.hp = self.calc_stat(knight_data, "hp")
-        self.protection = self.calc_stat(knight_data, "protection")
+        self.power = self.calculation_character(knight_data, "power")
+        self.hp = self.calculation_character(knight_data, "hp")
+        self.protection = self.calculation_character(knight_data, "protection")
 
-    def calc_stat(self, kd: dict | list, stat: str) -> int:
-        res_stat = 0
+    def calculation_character(
+            self,
+            knight_data: dict | list,
+            character: str
+    ) -> int:
+        result_value = 0
 
-        for key, value in kd.items():
-            if isinstance(value, dict):
-                res_stat += self.calc_stat(value, stat)
-            if isinstance(value, list):
-                for elem in value:
-                    res_stat += self.calc_stat(elem, stat)
-            elif key == stat:
-                res_stat += value
+        for character_name, character_value in knight_data.items():
+            if isinstance(character_value, dict):
+                result_value += self.calculation_character(character_value,
+                                                           character)
+            if isinstance(character_value, list):
+                for elem in character_value:
+                    result_value += self.calculation_character(elem, character)
+            elif character_name == character:
+                result_value += character_value
 
-        return res_stat
+        return result_value
 
     def fight(self, knight_x: Knight) -> None:
         self.hp -= knight_x.power - self.protection
