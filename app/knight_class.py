@@ -21,7 +21,8 @@ class Knight:
                                                          character)
             if isinstance(character_value, list):
                 for element in character_value:
-                    result_value += self.calculate_character(element, character)
+                    result_value += self.calculate_character(element,
+                                                             character)
             elif character_name == character:
                 result_value += character_value
 
