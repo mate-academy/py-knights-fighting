@@ -50,9 +50,9 @@ class Knight:
 
     # Battle option implemented like quality of the Knight
     def __mul__(self, other: Knight) -> None:
-        if isinstance(other, Knight):
-            self.hp -= other.power - self.protection
-            other.hp -= self.power - other.protection
+        # if isinstance(other, Knight):
+        self.hp -= other.power - self.protection
+        other.hp -= self.power - other.protection
 
         # check knight HP
         if self.hp < 0:

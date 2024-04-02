@@ -63,11 +63,11 @@ def battle(knight_dict: dict) -> dict:
         if warrior in knights_potion:
             knight[warrior].potion_on(knights_potion[warrior])
 
-        print(f"{knight[warrior].warrior.name} = "
-              f"power: {knight[warrior].power}, "
-              f"hp: {knight[warrior].hp}, "
-              f"protection: {knight[warrior].protection}"
-              )
+        # print(f"{knight[warrior].warrior.name} = "
+        #       f"power: {knight[warrior].power}, "
+        #       f"hp: {knight[warrior].hp}, "
+        #       f"protection: {knight[warrior].protection}"
+        #       )
 
     # print("\n ----------- BATTLE result --------------------")
     # 1 Lancelot vs Mordred:
