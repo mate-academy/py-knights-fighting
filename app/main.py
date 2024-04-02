@@ -10,7 +10,8 @@ def create_knight(config: dict) -> Knight:
     health = config["hp"]
     weapon = Weapon(config["weapon"]["name"],
                     config["weapon"]["power"])
-    armour = [Armour(_armour["part"], _armour["protection"]) for _armour in config["armour"]]
+    armour = [Armour(_armour["part"], _armour["protection"])
+              for _armour in config["armour"]]
     potion = config["potion"]
     if potion is not None:
         effect = potion["effect"]
