@@ -35,6 +35,5 @@ class Knight:
                 setattr(
                     self,
                     stat,
-                    getattr(self, stat) + getattr(self.potion, stat, 0))
-        else:
-            self.potion = None
+                    getattr(self, stat) + getattr(self.potion, stat, 0)
+                )
