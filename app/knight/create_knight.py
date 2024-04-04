@@ -28,9 +28,4 @@ class Knight:
 
     def apply_potion(self) -> None:
         for name, stat in self.potion["effect"].items():
-            if name == "hp":
-                self.hp += stat
-            if name == "power":
-                self.power += stat
-            if name == "protection":
-                self.protection += stat
+            self.__setattr__(name, self.__getattribute__(name) + stat)
