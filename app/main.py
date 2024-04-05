@@ -1,5 +1,5 @@
-from app.ready_to_battle import ready_to_battle
-from app.fight import fighting
+from app.battle.ready_to_battle import ready_to_battle
+from app.battle.fight import fighting
 
 
 def battle(knightsconfig: dict) -> dict:
