@@ -23,9 +23,10 @@ class Knight:
             self.protection += part.get("protection", 0)
         if self.potion is not None:
             effect = self.potion.get("effect", {})
-            self.power += effect.get("power", 0)
-            self.protection += effect.get("protection", 0)
-            self.hp += effect.get("hp", 0)
+
+            for attribute, value in effect.items():
+                setattr(self, attribute, getattr(self, attribute) + value)
+
         return self
 
 
