@@ -2,18 +2,11 @@ from app.battle_settings.battle_preparation import create_knight
 
 
 def battle(knights_config: dict) -> dict:
+    knights = {knight_name: create_knight(knight_info)
+               for knight_name, knight_info
+               in knights_config.items()}
 
-    lancelot = create_knight(knights_config["lancelot"])
-    arthur = create_knight(knights_config["arthur"])
-    mordred = create_knight(knights_config["mordred"])
-    red_knight = create_knight(knights_config["red_knight"])
+    knights["lancelot"].battle(knights["mordred"])
+    knights["arthur"].battle(knights["red_knight"])
 
-    lancelot.battle(mordred)
-    arthur.battle(red_knight)
-
-    return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
-    }
+    return {knight.name: knight.hp for knight in knights.values()}
