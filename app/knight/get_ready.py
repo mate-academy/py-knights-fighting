@@ -2,7 +2,7 @@ from __future__ import annotations
 
 
 class Knight:
-    # def __init__(self, name: str, power: int, hp: int) -> None:
+
     def __init__(self, knight: dict) -> None:
         self.name = knight["name"]
         self.power = knight["power"]

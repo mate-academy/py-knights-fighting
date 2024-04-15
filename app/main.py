@@ -90,15 +90,17 @@ KNIGHTS = {
 
 def battle(knights_config: dict) -> dict:
 
-    lancelot = Knight(knights_config["lancelot"])
-    arthur = Knight(knights_config["arthur"])
-    mordred = Knight(knights_config["mordred"])
-    red_knight = Knight(knights_config["red_knight"])
+    knight_list = []
 
-    lancelot.get_upgrade(knights_config["lancelot"])
-    mordred.get_upgrade(knights_config["mordred"])
-    arthur.get_upgrade(knights_config["arthur"])
-    red_knight.get_upgrade(knights_config["red_knight"])
+    for knight in knights_config.keys():
+        created_knight = Knight(knights_config[knight])
+        created_knight.get_upgrade(knights_config[knight])
+        knight_list.append(created_knight)
+
+    lancelot = knight_list[0]
+    arthur = knight_list[1]
+    mordred = knight_list[2]
+    red_knight = knight_list[3]
 
     lancelot.fight(mordred)
     mordred.fight(lancelot)
