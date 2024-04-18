@@ -1,24 +1,11 @@
-from app.knights.heroes import init_hero
+from app.knights.knights import init_knights, battle_between_knights, make_pair
 from app.knights.data import KNIGHTS
 
 
 def battle(knights_config: dict) -> dict:
-    heroes = init_hero(knights_config)
-    pairs = [
-        [
-            heroes[i], heroes[len(heroes) // 2 + i]
-        ] for i in range(len(heroes) // 2)
-    ]
-    if len(heroes) % 2 != 0:
-        heroes.remove(heroes[-1])
-        print("The last participant is eliminated because he has no opponent.")
-    for opponents in pairs:
-        opponents[0].hp -= opponents[1].power - opponents[0].protection
-        opponents[1].hp -= opponents[0].power - opponents[1].protection
-        for opponent in opponents:
-            if opponent.hp <= 0:
-                opponent.hp = 0
-    return {hero.name: hero.hp for hero in heroes}
+    knights = init_knights(knights_config)
+    battle_between_knights(make_pair(knights))
+    return {knight.name: knight.hp for knight in knights}
 
 
 print(battle(KNIGHTS))

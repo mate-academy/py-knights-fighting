@@ -1,3 +1,4 @@
+# Combat data
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
