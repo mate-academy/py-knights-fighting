@@ -1,13 +1,6 @@
 from app.Knights_attributes import KNIGHTS
-
-
-def prepare_knight(knight: dict) -> None:
-    knight["protection"] = sum(a["protection"] for a in knight["armour"])
-    knight["power"] += knight["weapon"]["power"]
-    if knight["potion"]:
-        for effect in ["power", "protection", "hp"]:
-            if effect in knight["potion"]["effect"]:
-                knight[effect] += knight["potion"]["effect"][effect]
+from app.prepare_k import prepare_knight
+from app.Fight import fight
 
 
 def battle(knights_config: dict) -> dict:
@@ -19,20 +12,13 @@ def battle(knights_config: dict) -> dict:
     arthur = knights_config["arthur"]
     red_knight = knights_config["red_knight"]
 
-    lancelot["hp"] -= mordred["power"] - lancelot["protection"]
-    mordred["hp"] -= lancelot["power"] - mordred["protection"]
-
-    arthur["hp"] -= red_knight["power"] - arthur["protection"]
-    red_knight["hp"] -= arthur["power"] - red_knight["protection"]
-
-    for knight in [lancelot, mordred, arthur, red_knight]:
-        knight["hp"] = max(0, knight["hp"])
+    lancelot["hp"], mordred["hp"] = fight(lancelot, mordred)
+    arthur["hp"], red_knight["hp"] = fight(arthur, red_knight)
 
     return {
         knight["name"]:
             knight["hp"] for knight in
-        [lancelot, arthur, mordred, red_knight]
-    }
+        [lancelot, arthur, mordred, red_knight]}
 
 
 print(battle(KNIGHTS))
