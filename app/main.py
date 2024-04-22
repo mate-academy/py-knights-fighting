@@ -1,4 +1,4 @@
-from Knights_attributes import KNIGHTS
+from app.Knights_attributes import KNIGHTS
 
 
 def prepare_knight(knight):
@@ -28,7 +28,11 @@ def battle(knights_config):
     for knight in [lancelot, mordred, arthur, red_knight]:
         knight["hp"] = max(0, knight["hp"])
 
-    return {knight["name"]: knight["hp"] for knight in [lancelot, arthur, mordred, red_knight]}
+    return {
+        knight["name"]:
+            knight["hp"] for knight in
+        [lancelot, arthur, mordred, red_knight]
+    }
 
 
 print(battle(KNIGHTS))
