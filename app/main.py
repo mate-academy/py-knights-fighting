@@ -1,7 +1,7 @@
 from app.Knights_attributes import KNIGHTS
 
 
-def prepare_knight(knight):
+def prepare_knight(knight: dict) -> None:
     knight["protection"] = sum(a["protection"] for a in knight["armour"])
     knight["power"] += knight["weapon"]["power"]
     if knight["potion"]:
@@ -10,7 +10,7 @@ def prepare_knight(knight):
                 knight[effect] += knight["potion"]["effect"][effect]
 
 
-def battle(knights_config):
+def battle(knights_config: dict) -> dict:
     for knight_name, knight in knights_config.items():
         prepare_knight(knight)
 
