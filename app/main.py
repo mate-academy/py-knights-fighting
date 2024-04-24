@@ -89,31 +89,36 @@ KNIGHTS = {
 }
 
 
-def battle(knightsConfig: dict) -> dict:
+def battle(knights_config: dict) -> dict:
+
+    Knight.reset()
 
     # BATTLE PREPARATIONS:
-    for key, value in list(knightsConfig.items()):
+    for key, value in list(knights_config.items()):
         # apply armour
         protection = 0
-        for a in knightsConfig[key]["armour"]:
-            if "protection" in a:
-                protection += a["protection"]
+        for el in knights_config[key]["armour"]:
+            if "protection" in el:
+                protection += el["protection"]
 
-        knightsConfig[key]["power"] += knightsConfig[key]["weapon"]["power"]
+        knights_config[key]["power"] += knights_config[key]["weapon"]["power"]
 
-        if knightsConfig[key]["potion"] is not None:
-            knightsConfig[key]["hp"] += knightsConfig[key]["potion"]["effect"]["hp"]
-            knightsConfig[key]["power"] += knightsConfig[key]["potion"]["effect"]["power"]
-            if "protection" in knightsConfig[key]["potion"]["effect"]:
-                protection += knightsConfig[key]["potion"]["effect"]["protection"]
+        if knights_config[key]["potion"] is not None:
+            knights_config[key]["hp"] +=\
+                knights_config[key]["potion"]["effect"]["hp"]
+
+            knights_config[key]["power"] +=\
+                knights_config[key]["potion"]["effect"]["power"]
+
+            if "protection" in knights_config[key]["potion"]["effect"]:
+                protection +=\
+                    knights_config[key]["potion"]["effect"]["protection"]
 
         # initialization knight
         Knight(name=value["name"],
                power=value["power"],
                hp=value["hp"],
                protection=protection)
-    print(Knight.knights)
-    print(len(Knight.knights))
 
     lancelot, arthur, mordred, red_knight = Knight.knights
 

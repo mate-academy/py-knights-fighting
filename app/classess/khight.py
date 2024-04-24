@@ -19,3 +19,8 @@ class Knight:
             self.hp = 0
         if other.hp < 0:
             other.hp = 0
+
+    @classmethod
+    def reset(cls) -> None:
+        if len(cls.knights) == 4:
+            cls.knights = []
