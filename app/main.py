@@ -91,36 +91,38 @@ KNIGHTS = {
 
 def battle(knights_config: dict) -> dict:
 
-    Knight.reset()
+    knights = []
 
     # BATTLE PREPARATIONS:
-    for key, value in list(knights_config.items()):
-        # apply armour
+    for knight_name, knight_info in list(knights_config.items()):
+
         protection = 0
-        for el in knights_config[key]["armour"]:
+        for el in knights_config[knight_name]["armour"]:
             if "protection" in el:
                 protection += el["protection"]
 
-        knights_config[key]["power"] += knights_config[key]["weapon"]["power"]
+        knights_config[knight_name]["power"] += (
+            knights_config)[knight_name]["weapon"]["power"]
 
-        if knights_config[key]["potion"] is not None:
-            knights_config[key]["hp"] +=\
-                knights_config[key]["potion"]["effect"]["hp"]
+        if knights_config[knight_name]["potion"] is not None:
+            knights_config[knight_name]["hp"] += (
+                knights_config)[knight_name]["potion"]["effect"]["hp"]
 
-            knights_config[key]["power"] +=\
-                knights_config[key]["potion"]["effect"]["power"]
+            knights_config[knight_name]["power"] += (
+                knights_config)[knight_name]["potion"]["effect"]["power"]
 
-            if "protection" in knights_config[key]["potion"]["effect"]:
-                protection +=\
-                    knights_config[key]["potion"]["effect"]["protection"]
+            if "protection" in knights_config[knight_name]["potion"]["effect"]:
+                protection += (
+                    knights_config
+                )[knight_name]["potion"]["effect"]["protection"]
 
         # initialization knight
-        Knight(name=value["name"],
-               power=value["power"],
-               hp=value["hp"],
-               protection=protection)
+        knights.append(Knight(name=knight_info["name"],
+                              power=knight_info["power"],
+                              hp=knight_info["hp"],
+                              protection=protection))
 
-    lancelot, arthur, mordred, red_knight = Knight.knights
+    lancelot, arthur, mordred, red_knight = knights
 
     # -------------------------------------------------------------------------------
     # BATTLE:
