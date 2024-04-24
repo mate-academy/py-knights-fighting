@@ -10,7 +10,9 @@ def battle(knights_config: dict) -> dict:
     knights = {}
 
     for knight_data in knights_config.values():
-        knight = Knight(knight_data["name"], knight_data["power"], knight_data["hp"])
+        knight = Knight(knight_data["name"],
+                        knight_data["power"],
+                        knight_data["hp"])
         for armour_data in knight_data["armour"]:
             armour = Armour(armour_data["part"], armour_data["protection"])
             knight.get_armour(armour)
