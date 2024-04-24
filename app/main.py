@@ -7,51 +7,43 @@ from app.weapon import Weapon
 
 def battle(knights_config: dict) -> dict:
     # BATTLE PREPARATIONS:
-    knights = []
+    knights = {}
 
-    for knight in knights_config.values():
-        knight_ = Knight(knight["name"], knight["power"], knight["hp"])
-        for armour in knight["armour"]:
-            armour_ = Armour(armour["part"], armour["protection"])
-            knight_.get_armour(armour_)
+    for knight_data in knights_config.values():
+        knight = Knight(knight_data["name"], knight_data["power"], knight_data["hp"])
+        for armour_data in knight_data["armour"]:
+            armour = Armour(armour_data["part"], armour_data["protection"])
+            knight.get_armour(armour)
 
-        weapon = Weapon(knight["weapon"]["name"], knight["weapon"]["power"])
-        knight_.get_weapon(weapon)
-        if knight["potion"] is not None:
-            potion = Potion(knight["potion"]["name"],
-                            knight["potion"]["effect"])
-            knight_.get_potion(potion)
-        knights.append(knight_)
+        weapon_data = knight_data["weapon"]
+        weapon = Weapon(weapon_data["name"], weapon_data["power"])
+        knight.get_weapon(weapon)
 
-    lancelot, arthur, mordred, red_knight = None, None, None, None
+        if knight_data["potion"] is not None:
+            potion_data = knight_data["potion"]
+            potion = Potion(potion_data["name"], potion_data["effect"])
+            knight.get_potion(potion)
 
-    for knight in knights:
-        if knight.name == "Lancelot":
-            lancelot = knight
-        elif knight.name == "Arthur":
-            arthur = knight
-        elif knight.name == "Mordred":
-            mordred = knight
-        elif knight.name == "Red Knight":
-            red_knight = knight
+        knights[knight_data["name"]] = knight
+
+    lancelot = knights.get("Lancelot")
+    arthur = knights.get("Arthur")
+    mordred = knights.get("Mordred")
+    red_knight = knights.get("Red Knight")
 
     # -------------------------------------------------------------------------------
     # BATTLE:
 
     # 1 Lancelot vs Mordred:
     lancelot.battle(mordred)
-    mordred.battle(lancelot)
 
     # 2 Arthur vs Red Knight:
     arthur.battle(red_knight)
-    red_knight.battle(arthur)
 
     # Return battle results:
     return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
+        knight.name: knight.hp
+        for knight in [lancelot, arthur, mordred, red_knight]
     }
 
 
