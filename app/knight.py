@@ -22,12 +22,9 @@ class Knight:
         self.power += weapon.power
 
     def apply_potion(self, potion: Potion) -> None:
-        effects_names = ["power", "hp", "protection"]
-        for effect_name in effects_names:
-            effect = potion.effect.get(effect_name)
-            if effect:
-                effect += getattr(self, effect_name)
-                setattr(self, effect_name, effect)
+        for effect_name in potion.effect:
+            effect = potion.effect[effect_name] + getattr(self, effect_name)
+            setattr(self, effect_name, effect)
 
     def battle(self, opponent: Knight) -> None:
         opponent.hp -= self.power - opponent.protection
