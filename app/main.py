@@ -7,7 +7,7 @@ from app.weapon import Weapon
 
 def battle(knights_config: dict) -> dict:
     # BATTLE PREPARATIONS:
-    knights = []
+    knights = {}
 
     for knight_info in knights_config.values():
         knight = Knight(knight_info)
@@ -18,29 +18,20 @@ def battle(knights_config: dict) -> dict:
         if knight.potion:
             knight.apply_potion(Potion(knight.potion))
 
-        knights.append(knight)
+        knights[knight.name] = knight
 
-    lancelot, arthur, mordred, red_knight = None, None, None, None
-
-    for knight in knights:
-        if knight.name == "Lancelot":
-            lancelot = knight
-        elif knight.name == "Arthur":
-            arthur = knight
-        elif knight.name == "Mordred":
-            mordred = knight
-        elif knight.name == "Red Knight":
-            red_knight = knight
+    lancelot = knights.get("Lancelot")
+    arthur = knights.get("Arthur")
+    mordred = knights.get("Mordred")
+    red_knight = knights.get("Red Knight")
     # -------------------------------------------------------------------------------
     # BATTLE:
 
     # 1 Lancelot vs Mordred:
     lancelot.battle(mordred)
-    mordred.battle(lancelot)
 
     # 2 Arthur vs Red Knight:
     arthur.battle(red_knight)
-    red_knight.battle(arthur)
 
     # Return battle results:
     return {
