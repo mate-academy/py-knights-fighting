@@ -18,8 +18,7 @@ def battle(knights_config: dict) -> dict:
         weapon = Weapon(**knight["weapon"])
         knight_.get_weapon(weapon)
         if knight["potion"] is not None:
-            potion = Potion(knight["potion"]["name"],
-                            knight["potion"]["effect"])
+            potion = Potion(**knight["potion"]])
             knight_.get_potion(potion)
         knights.append(knight_)
 
