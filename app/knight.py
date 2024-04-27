@@ -21,19 +21,13 @@ class Knight:
         self.use_potion()
 
     def calculate_protection(self) -> int:
-        protection = 0
-        for armour_part in self.armour:
-            protection += armour_part["protection"]
-        return protection
+        return sum(armour_part["protection"] for armour_part in self.armour)
 
     def use_potion(self) -> None:
         if self.potion:
-            if "power" in self.potion["effect"]:
-                self.power += self.potion["effect"]["power"]
-            if "protection" in self.potion["effect"]:
-                self.protection += self.potion["effect"]["protection"]
-            if "hp" in self.potion["effect"]:
-                self.hp += self.potion["effect"]["hp"]
+            effect_names = self.potion["effect"].keys()
+            for key in effect_names:
+                setattr(self, key, getattr(self, key) + self.potion["effect"][key])
 
     def attack(self, opponent: Knight) -> None:
         damage = self.power + self.weapon["power"] - opponent.protection
