@@ -27,7 +27,9 @@ class Knight:
         if self.potion:
             effect_names = self.potion["effect"].keys()
             for key in effect_names:
-                setattr(self, key, getattr(self, key) + self.potion["effect"][key])
+                setattr(
+                    self, key, getattr(self, key) + self.potion["effect"][key]
+                )
 
     def attack(self, opponent: Knight) -> None:
         damage = self.power + self.weapon["power"] - opponent.protection
