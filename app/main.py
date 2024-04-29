@@ -1,20 +1,20 @@
 from app.variables.variables_knIghts import KNIGHTS
 
 
-def apply_armor_and_weapon(knight):
+def apply_armor_and_weapon(knight: dict) -> None:
     knight["protection"] = sum(armor["protection"]
                                for armor in knight["armour"])
     knight["power"] += knight["weapon"]["power"]
 
 
-def apply_potion(knight):
+def apply_potion(knight: dict) -> None:
     if knight["potion"]:
         for effect, value in knight["potion"]["effect"].items():
             if effect in knight:
                 knight[effect] += value
 
 
-def battle(knights_c):
+def battle(knights_c: dict) -> dict:
     for knight in knights_c.values():
         apply_armor_and_weapon(knight)
         apply_potion(knight)
