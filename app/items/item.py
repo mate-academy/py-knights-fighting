@@ -1,46 +1,41 @@
 from __future__ import annotations
-from abc import ABC, abstractmethod
-
-from app.players.player import Player
+from typing import Literal, Optional
 
 
-class BaseItem(ABC):
+class Item:
     def __init__(
             self,
             name: str,
+            item_class: Literal["weapon", "armour", "potion"],
             power: int = 0,
             hp: int = 0,
             protection: int = 0
     ) -> None:
         self.name = name
+        self.item_class = item_class
         self.power = power
         self.hp = hp
         self.protection = protection
 
     @classmethod
-    @abstractmethod
-    def create_from_dict(cls, item: dict | None) -> BaseItem | None:
-        """
-        Create instance by using given dictionary.
+    def create_from_dict(
+            cls,
+            item_class: Literal["weapon", "armour", "potion"],
+            item: Optional[dict]
+    ) -> Optional[Item]:
+        if not item:
+            return None
+        name = item.get("name") or item.get("part")
+        if item_class == "potion":
+            item = item["effect"]
+        power = item.get("power", 0)
+        hp = item.get("hp", 0)
+        protection = item.get("protection", 0)
 
-        Args:
-            item (dict): Dictionary with given attributes.
-        """
-
-    @abstractmethod
-    def use(self, player: Player) -> None:
-        """
-        Change player attributes depending on item attributes.
-
-        Args:
-            player (Player): Player instance.
-        """
-
-    def unuse(self, player: Player) -> None:
-        """
-        Restore player attributes depending on item attributes.
-        Potion cannot be unused.
-
-        Args:
-            player (Player): Player instance.
-        """
+        return cls(
+            name,
+            item_class,
+            power,
+            hp,
+            protection
+        )
