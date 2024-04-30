@@ -1,29 +1,27 @@
 from app.battle_preparations import knight_preparations
 
 
-def knights_battle(first_op: dict, second_opp: dict) -> None:
-    first_op["hp"] -= (second_opp["power"] - first_op["protection"])
-    second_opp["hp"] -= first_op["power"] - second_opp["protection"]
+def knights_battle(first_knight: dict, second_knight: dict) -> None:
+    first_knight["hp"] -= second_knight["power"] - first_knight["protection"]
+    second_knight["hp"] -= first_knight["power"] - second_knight["protection"]
 
-    if first_op["hp"] <= 0:
-        first_op["hp"] = 0
+    if first_knight["hp"] <= 0:
+        first_knight["hp"] = 0
 
-    if second_opp["hp"] <= 0:
-        second_opp["hp"] = 0
+    if second_knight["hp"] <= 0:
+        second_knight["hp"] = 0
 
 
 def battle(knights_config: dict) -> dict:
-    lancelot = knight_preparations(knights_config["lancelot"])
-    arthur = knight_preparations(knights_config["arthur"])
-    mordred = knight_preparations(knights_config["mordred"])
-    red_knight = knight_preparations(knights_config["red_knight"])
+    knights = {
+        key: knight_preparations(value)
+        for key, value in knights_config.items()
+    }
 
-    knights_battle(lancelot, mordred)
-    knights_battle(arthur, red_knight)
+    knights_battle(knights["lancelot"], knights["mordred"])
+    knights_battle(knights["arthur"], knights["red_knight"])
 
     return {
-        lancelot["name"]: lancelot["hp"],
-        arthur["name"]: arthur["hp"],
-        mordred["name"]: mordred["hp"],
-        red_knight["name"]: red_knight["hp"],
+        knight_name.replace("_", " ").title(): knight_stat["hp"]
+        for knight_name, knight_stat in knights.items()
     }
