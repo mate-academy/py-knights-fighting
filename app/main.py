@@ -13,15 +13,11 @@ def knights_battle(first_knight: dict, second_knight: dict) -> None:
 
 
 def battle(knights_config: dict) -> dict:
-    knights = {
-        key: knight_preparations(value)
-        for key, value in knights_config.items()
-    }
+    knights = [
+        knight_preparations(value) for key, value in knights_config.items()
+    ]
 
-    knights_battle(knights["lancelot"], knights["mordred"])
-    knights_battle(knights["arthur"], knights["red_knight"])
+    knights_battle(*knights[::2][:2])
+    knights_battle(*knights[1::2][:2])
 
-    return {
-        knight_name.replace("_", " ").title(): knight_stat["hp"]
-        for knight_name, knight_stat in knights.items()
-    }
+    return {knight["name"]: knight["hp"] for knight in knights}
