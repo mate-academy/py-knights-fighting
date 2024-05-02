@@ -4,7 +4,7 @@ from app.battles.duel import duel
 
 def battle(knights_config: dict) -> dict:
     knights = {
-        name: Knight.create_from_dict(knight)
+        name: Knight(**knight)
         for name, knight in knights_config.items()
     }
     duel(knights["lancelot"], knights["mordred"])
