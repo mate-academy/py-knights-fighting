@@ -1,33 +1,30 @@
 from app.armour import Armour
 from app.knight import Knight
+from app.knights_info import KNIGHTS
 from app.potion import Potion
 from app.weapon import Weapon
 
 
 def battle(knights_config: dict) -> dict:
+    # BATTLE PREPARATIONS:
     knights = []
 
-    for knight_data in knights_config.values():
-        knight = Knight(knight_data["name"], knight_data["power"], knight_data["hp"])
+    for knight in knights_config.values():
+        knight_ = Knight(knight["name"], knight["power"], knight["hp"])
+        for armour in knight["armour"]:
+            armour_ = Armour(armour["part"], armour["protection"])
+            knight_.get_armour(armour_)
 
-        # Equip armour
-        for armour_data in knight_data["armour"]:
-            armour = Armour(armour_data["part"], armour_data["protection"])
-            knight.get_armour(armour)
+        weapon = Weapon(knight["weapon"]["name"], knight["weapon"]["power"])
+        knight_.get_weapon(weapon)
+        if knight["potion"] is not None:
+            potion = Potion(knight["potion"]["name"],
+                            knight["potion"]["effect"])
+            knight_.get_potion(potion)
+        knights.append(knight_)
 
-        # Equip weapon using dictionary unpacking
-        weapon = Weapon(**knight_data["weapon"])
-        knight.get_weapon(weapon)
-
-        # Equip potion (if available) using dictionary unpacking
-        if knight_data["potion"] is not None:
-            potion = Potion(**knight_data["potion"])
-            knight.get_potion(potion)
-
-        knights.append(knight)
-
-    # Identify specific knights for battle
     lancelot, arthur, mordred, red_knight = None, None, None, None
+
     for knight in knights:
         if knight.name == "Lancelot":
             lancelot = knight
@@ -49,10 +46,14 @@ def battle(knights_config: dict) -> dict:
     arthur.battle(red_knight)
     red_knight.battle(arthur)
 
-    # Return battle results
+    # Return battle results:
     return {
         lancelot.name: lancelot.hp,
         arthur.name: arthur.hp,
         mordred.name: mordred.hp,
         red_knight.name: red_knight.hp
     }
+
+
+print(battle(KNIGHTS))
+
