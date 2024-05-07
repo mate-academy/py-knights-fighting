@@ -22,7 +22,6 @@ def battle(knights: dict) -> dict:
     mordred = Knight.knights["Mordred"]
     red_knight = Knight.knights["Red Knight"]
 
-    print(Knight.knights["Lancelot"])
     # run battles
     Knight.battle(lancelot, mordred)
     Knight.battle(red_knight, arthur)
