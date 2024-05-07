@@ -6,11 +6,15 @@ def battle(knights: dict) -> dict:
     # storage of all knights objects in a dictonary
     knights_dict = {}
     # parse inner knights dict. In an each iteration adds all knight features
-    for kn in knights.values():
-        knights_dict[kn["name"]] = Knight(kn["name"], kn["power"], kn["hp"])
-        knights_dict[kn["name"]].apply_armour(kn["armour"])
-        knights_dict[kn["name"]].apply_weapon(kn["weapon"])
-        knights_dict[kn["name"]].apply_potion(kn["potion"])
+    for knight_unit in knights.values():
+        knights_dict[knight_unit["name"]] = Knight(
+            knight_unit["name"],
+            knight_unit["power"],
+            knight_unit["hp"]
+        )
+        knights_dict[knight_unit["name"]].apply_armour(knight_unit["armour"])
+        knights_dict[knight_unit["name"]].apply_weapon(knight_unit["weapon"])
+        knights_dict[knight_unit["name"]].apply_potion(knight_unit["potion"])
 
     # create instance variables for better reading of code
     lancelot = Knight.knights["Lancelot"]
@@ -23,7 +27,10 @@ def battle(knights: dict) -> dict:
     Knight.battle(lancelot, mordred)
     Knight.battle(red_knight, arthur)
 
-    return {name: val.health for name, val in knights_dict.items()}
+    return {
+        knight_name: knight_value.health
+        for knight_name, knight_value in knights_dict.items()
+    }
 
 
 print(battle(knights_origin_dict))

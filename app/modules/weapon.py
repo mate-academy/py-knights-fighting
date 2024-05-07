@@ -1,6 +1,3 @@
-from __future__ import annotations
-
-
 class Weapon:
     def __init__(self, weapon_item: dict) -> None:
         self.name = weapon_item["name"]

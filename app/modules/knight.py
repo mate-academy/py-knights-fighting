@@ -33,14 +33,20 @@ class Knight:
     # apply all features if a knight before fight
     @staticmethod
     def apply_features(other: Knight) -> None:
+        def parser(potion_instance: Potion | None, effect_key: str) -> list:
+            return [
+                0 if not potion_instance
+                else potion_instance.effect[effect_key]
+            ]
+
         other.power += other.weapon.damage_power + sum(
-            [0 if not other.potion else other.potion.effect["power"]]
+            parser(other.potion, "power")
         )
         other.health += sum(
-            [0 if not other.potion else other.potion.effect["hp"]]
+            parser(other.potion, "hp")
         )
         other.protection = sum(other.armour) + sum(
-            [0 if not other.potion else other.potion.effect["protection"]]
+            parser(other.potion, "protection")
         )
 
     # make battle and update health power
