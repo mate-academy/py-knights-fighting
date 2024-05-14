@@ -9,14 +9,9 @@ class Knight:
         )
         self.protection = 0
 
-    def calculate_stats(self) -> dict:
+    def calculate_stats(self) -> None:
         self.protection = self.apply_armour()
         self.apply_potion()
-        return {
-            "hp": self.hp,
-            "power": self.power,
-            "protection": self.protection
-        }
 
     def apply_armour(self) -> int:
         return sum(
