@@ -18,9 +18,12 @@ class Knight:
 
         if potion is not None:
             potion_effect = potion["effect"]
-            self.power += potion_effect.get("power", 0)
-            self.hp += potion_effect.get("hp", 0)
-            self.protection += potion_effect.get("protection", 0)
+            attributes = ["power", "hp", "protection"]
+            for attr in attributes:
+                setattr(self,
+                        attr,
+                        getattr(self, attr) + potion_effect.get(attr, 0)
+                        )
 
     def attack(self, other: Knight) -> None:
         other.hp -= (self.power - other.protection)
