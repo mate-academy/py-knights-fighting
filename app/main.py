@@ -34,7 +34,8 @@ def create_knights() -> Dict[str, Knight]:
                 Armour(part="boots", protection=10)
             ],
             weapon=Weapon(name="Poisoned Sword", power=60),
-            potion=Potion(name="Berserk", effect={"power": 15, "hp": -5, "protection": 10})
+            potion=Potion(name="Berserk",
+                          effect={"power": 15, "hp": -5, "protection": 10})
         ),
         "red_knight": Knight(
             name="Red Knight",

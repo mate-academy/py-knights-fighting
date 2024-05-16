@@ -20,8 +20,8 @@ class Potion:
 
 
 class Knight:
-    def __init__(self, name: str, power: int, hp: int, armour: List[Armour], weapon: Weapon,
-                 potion: Potion) -> None:
+    def __init__(self, name: str, power: int, hp: int, armour: List[Armour],
+                 weapon: Weapon, potion: Potion) -> None:
         self.name = name
         self.base_power = power
         self.hp = hp
