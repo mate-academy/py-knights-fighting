@@ -1,15 +1,17 @@
+from typing import Dict
 from knight import Armour, Weapon, Potion, Knight
 from battle import Battle
 
 
-def create_knights():
+def create_knights() -> Dict[str, Knight]:
     knights = {
         "lancelot": Knight(
             name="Lancelot",
             power=35,
             hp=100,
             armour=[],
-            weapon=Weapon(name="Metal Sword", power=50)
+            weapon=Weapon(name="Metal Sword", power=50),
+            potion=Potion(name="None", effect={})  # No effect potion
         ),
         "arthur": Knight(
             name="Arthur",
@@ -20,7 +22,8 @@ def create_knights():
                 Armour(part="breastplate", protection=20),
                 Armour(part="boots", protection=10)
             ],
-            weapon=Weapon(name="Two-handed Sword", power=55)
+            weapon=Weapon(name="Two-handed Sword", power=55),
+            potion=Potion(name="None", effect={})  # No effect potion
         ),
         "mordred": Knight(
             name="Mordred",
@@ -45,7 +48,7 @@ def create_knights():
     return knights
 
 
-def main():
+def main() -> None:
     knights = create_knights()
     battle1 = Battle(knights["lancelot"], knights["mordred"])
     battle2 = Battle(knights["arthur"], knights["red_knight"])
