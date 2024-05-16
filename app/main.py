@@ -1,6 +1,6 @@
 from typing import Dict
-from knight import Armour, Weapon, Potion, Knight
-from battle import Battle
+from app.knight import Armour, Weapon, Potion, Knight
+from app.battle import Battle
 
 
 def create_knights() -> Dict[str, Knight]:
