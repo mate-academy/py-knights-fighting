@@ -3,7 +3,7 @@ from app.knight import Knight
 
 
 # TODO: refactor battle() method and move to separate module
-def battle(knights_config):
+def battle(knights_config: dict) -> dict:
     # BATTLE PREPARATIONS:
 
     # lancelot

@@ -6,7 +6,13 @@ from app.weapon import Weapon
 
 
 class Knight:
-    def __init__(self, name: str, power: int, hp: int, armour: list, weapon: Weapon, potion: Potion | None) -> None:
+    def __init__(self,
+                 name: str,
+                 power: int,
+                 hp: int,
+                 armour: list,
+                 weapon: Weapon,
+                 potion: Potion | None) -> None:
         self.name = name
         self.power = power
         self.hp = hp
@@ -17,11 +23,14 @@ class Knight:
 
     @staticmethod
     def create_knight(knight_config: dict) -> Knight:
-        armour_list = [Armour(armour["part"], armour["protection"]) for armour in knight_config["armour"]]
-        weapon = Weapon(knight_config["weapon"]["name"], knight_config["weapon"]["power"])
+        armour_list = [Armour(armour["part"], armour["protection"])
+                       for armour in knight_config["armour"]]
+        weapon = Weapon(knight_config["weapon"]["name"],
+                        knight_config["weapon"]["power"])
         potion = None
         if knight_config["potion"] is not None:
-            potion = Potion(knight_config["potion"]["name"], knight_config["potion"]["effect"])
+            potion = Potion(knight_config["potion"]["name"],
+                            knight_config["potion"]["effect"])
         return Knight(knight_config["name"],
                       knight_config["power"],
                       knight_config["hp"],
