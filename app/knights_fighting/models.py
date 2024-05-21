@@ -39,6 +39,10 @@ class Knight:
         if self.hp < 0:
             self.hp = 0
 
+    def fight(self, opponent: "Knight") -> None:
+        self.take_damage(opponent.power - self.protection)
+        opponent.take_damage(self.power - opponent.protection)
+
     def __repr__(self) -> str:
         return (f"Knight({self.name}, HP: {self.hp}, "
                 f"Power: {self.power}, Protection: {self.protection})")

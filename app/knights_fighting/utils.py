@@ -12,23 +12,23 @@ def create_knights(config: dict) -> dict:
             weapon=data["weapon"],
             potion=data.get("potion"),
         )
+    # print("from creating_knight", knights)
     return knights
 
 
 def battle(knights_config: dict) -> dict:
     knights = create_knights(knights_config)
+    # print("from battle", knights)
 
     # 1 Lancelot vs Mordred
     lancelot = knights["lancelot"]
     mordred = knights["mordred"]
-    lancelot.take_damage(mordred.power - lancelot.protection)
-    mordred.take_damage(lancelot.power - mordred.protection)
+    lancelot.fight(mordred)
 
     # 2 Arthur vs Red Knight
     arthur = knights["arthur"]
     red_knight = knights["red_knight"]
-    arthur.take_damage(red_knight.power - arthur.protection)
-    red_knight.take_damage(arthur.power - red_knight.protection)
+    arthur.fight(red_knight)
 
     return {
         lancelot.name: lancelot.hp,

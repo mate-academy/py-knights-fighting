@@ -1,11 +1,3 @@
-import sys
-import os
-
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'app')))
-
-from knights_fighting.models import Knight
-from knights_fighting.utils import create_knights, battle
-
 import pytest
 
 from app.main import battle
