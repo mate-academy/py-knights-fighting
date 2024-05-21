@@ -11,6 +11,4 @@ def attack(hp: int, power: int, protection: int) -> int:
 
 
 def is_hp_lt_zero(hp: int) -> int:
-    if hp < 0:
-        return 0
-    return hp
+    return hp if hp > 0 else 0
