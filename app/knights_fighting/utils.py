@@ -12,13 +12,12 @@ def create_knights(config: dict) -> dict:
             weapon=data["weapon"],
             potion=data.get("potion"),
         )
-    # print("from creating_knight", knights)
+
     return knights
 
 
 def battle(knights_config: dict) -> dict:
     knights = create_knights(knights_config)
-    # print("from battle", knights)
 
     # 1 Lancelot vs Mordred
     lancelot = knights["lancelot"]
