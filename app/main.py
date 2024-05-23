@@ -42,7 +42,12 @@ knights[lancelot.name] = lancelot
 knights[arthur.name] = arthur
 knights[mordred.name] = mordred
 knights[red_knight.name] = red_knight
-print(knights)
+print(knights["Arthur"].power)
+knights["Arthur"].apply_armour()
+knights["Arthur"].apply_weapon()
+print(knights["Arthur"].power)
+
+print()
 
 KNIGHTS = {
     "lancelot": {
