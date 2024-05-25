@@ -1,265 +1,29 @@
-from app.knight import Knight
-from app.armour import Armour
-from app.weapon import Weapon
-from app.potion import Potion
+from app.knight_properties.knight import Knight
+from app.knight_properties.weapon import Weapon
 
-knights = {}
-lancelot = Knight(name="Lancelot",
-                  power=35,
-                  hp=100,
-                  armour=[],
-                  weapon=Weapon(name="Metal Sword", power=50),
-                  potion=None)
-arthur = Knight(name="Arthur",
-                power=45,
-                hp=75,
-                armour=[
-                        Armour(part="helmet", protection=15),
-                        Armour(part="breastplate", protection=20),
-                        Armour(part="boots", protection=10)
-                        ],
-                weapon=Weapon(name="Two-handed Sword", power=55),
-                potion=None)
-mordred = Knight(name="Mordred",
-                 power=30,
-                 hp=90,
-                 armour=[
-                     Armour(part="breastplate", protection=15),
-                     Armour(part="boots", protection=10)
-                     ],
-                 weapon=Weapon(name="Poisoned Sword", power=60),
-                 potion=Potion(name="Berserk",
-                               effect=dict(power=15, hp=-5, protection=10)))
-red_knight = Knight(name="Red Knight",
-                    power=40,
-                    hp=70,
-                    armour=[Armour(part="breastplate", protection=25)],
-                    weapon=Weapon(name="Sword", power=45),
-                    potion=Potion(name="Blessing",
-                                  effect=dict(hp=10, power=5)))
-
-knights[lancelot.name] = lancelot
-knights[arthur.name] = arthur
-knights[mordred.name] = mordred
-knights[red_knight.name] = red_knight
-print(knights["Arthur"].power)
-knights["Arthur"].apply_armour()
-knights["Arthur"].apply_weapon()
-print(knights["Arthur"].power)
-
-print()
-
-KNIGHTS = {
-    "lancelot": {
-        "name": "Lancelot",
-        "power": 35,
-        "hp": 100,
-        "armour": [],
-        "weapon": {
-            "name": "Metal Sword",
-            "power": 50,
-        },
-        "potion": None,
-    },
-    "arthur": {
-        "name": "Arthur",
-        "power": 45,
-        "hp": 75,
-        "armour": [
-            {
-                "part": "helmet",
-                "protection": 15,
-            },
-            {
-                "part": "breastplate",
-                "protection": 20,
-            },
-            {
-                "part": "boots",
-                "protection": 10,
-            }
-        ],
-        "weapon": {
-            "name": "Two-handed Sword",
-            "power": 55,
-        },
-        "potion": None,
-    },
-    "mordred": {
-        "name": "Mordred",
-        "power": 30,
-        "hp": 90,
-        "armour": [
-            {
-                "part": "breastplate",
-                "protection": 15,
-            },
-            {
-                "part": "boots",
-                "protection": 10,
-            }
-        ],
-        "weapon": {
-            "name": "Poisoned Sword",
-            "power": 60,
-        },
-        "potion": {
-            "name": "Berserk",
-            "effect": {
-                "power": +15,
-                "hp": -5,
-                "protection": +10,
-            }
-        }
-    },
-    "red_knight": {
-        "name": "Red Knight",
-        "power": 40,
-        "hp": 70,
-        "armour": [
-            {
-                "part": "breastplate",
-                "protection": 25,
-            }
-        ],
-        "weapon": {
-            "name": "Sword",
-            "power": 45
-        },
-        "potion": {
-            "name": "Blessing",
-            "effect": {
-                "hp": +10,
-                "power": +5,
-            }
-        }
-    }
-}
+from app.dict_to_property.dict_to_armour import dict_to_armour
+from app.dict_to_property.dict_to_potion import dict_to_potion
 
 
-def battle(knightsConfig):
-    # BATTLE PREPARATIONS:
+def battle(knights_config: dict) -> dict:
+    knights = {}
+    for key, value in knights_config.items():
+        name = value["name"]
+        power = value["power"]
+        hp = value["hp"]
+        armour = dict_to_armour(value)
+        weapon = Weapon(value["weapon"]["name"], value["weapon"]["power"])
+        potion = dict_to_potion(value)
+        knight = Knight(name, power, hp, armour, weapon, potion)
+        knight.apply_armour()
+        knight.apply_weapon()
+        knight.apply_potion()
+        knights[key] = knight
 
-    # lancelot
-    lancelot = knightsConfig["lancelot"]
+    knights_list = list(knights.keys())
 
-    # apply armour
-    lancelot["protection"] = 0
-    for a in lancelot["armour"]:
-        lancelot["protection"] += a["protection"]
+    for i in range(len(knights_list) // 2):
+        knights[knights_list[i]].battle(knights[knights_list[i + 2]])
+        knights[knights_list[i + 2]].battle(knights[knights_list[i]])
 
-    # apply weapon
-    lancelot["power"] += lancelot["weapon"]["power"]
-
-    # apply potion if exist
-    if lancelot["potion"] is not None:
-        if "power" in lancelot["potion"]["effect"]:
-            lancelot["power"] += lancelot["potion"]["effect"]["power"]
-
-        if "protection" in lancelot["potion"]["effect"]:
-            lancelot["protection"] += lancelot["potion"]["effect"]["protection"]
-
-        if "hp" in lancelot["potion"]["effect"]:
-            lancelot["hp"] += lancelot["potion"]["effect"]["hp"]
-
-    # arthur
-    arthur = knightsConfig["arthur"]
-
-    # apply armour
-    arthur["protection"] = 0
-    for a in arthur["armour"]:
-        arthur["protection"] += a["protection"]
-
-    # apply weapon
-    arthur["power"] += arthur["weapon"]["power"]
-
-    # apply potion if exist
-    if arthur["potion"] is not None:
-        if "power" in arthur["potion"]["effect"]:
-            arthur["power"] += arthur["potion"]["effect"]["power"]
-
-        if "protection" in arthur["potion"]["effect"]:
-            arthur["protection"] += arthur["potion"]["effect"]["protection"]
-
-        if "hp" in arthur["potion"]["effect"]:
-            arthur["hp"] += arthur["potion"]["effect"]["hp"]
-
-    # mordred
-    mordred = knightsConfig["mordred"]
-
-    # apply armour
-    mordred["protection"] = 0
-    for a in mordred["armour"]:
-        mordred["protection"] += a["protection"]
-
-    # apply weapon
-    mordred["power"] += mordred["weapon"]["power"]
-
-    # apply potion if exist
-    if mordred["potion"] is not None:
-        if "power" in mordred["potion"]["effect"]:
-            mordred["power"] += mordred["potion"]["effect"]["power"]
-
-        if "protection" in mordred["potion"]["effect"]:
-            mordred["protection"] += mordred["potion"]["effect"]["protection"]
-
-        if "hp" in mordred["potion"]["effect"]:
-            mordred["hp"] += mordred["potion"]["effect"]["hp"]
-
-    # red_knight
-    red_knight = knightsConfig["red_knight"]
-
-    # apply armour
-    red_knight["protection"] = 0
-    for a in red_knight["armour"]:
-        red_knight["protection"] += a["protection"]
-
-    # apply weapon
-    red_knight["power"] += red_knight["weapon"]["power"]
-
-    # apply potion if exist
-    if red_knight["potion"] is not None:
-        if "power" in red_knight["potion"]["effect"]:
-            red_knight["power"] += red_knight["potion"]["effect"]["power"]
-
-        if "protection" in red_knight["potion"]["effect"]:
-            red_knight["protection"] += red_knight["potion"]["effect"]["protection"]
-
-        if "hp" in red_knight["potion"]["effect"]:
-            red_knight["hp"] += red_knight["potion"]["effect"]["hp"]
-
-    # -------------------------------------------------------------------------------
-    # BATTLE:
-
-    # 1 Lancelot vs Mordred:
-    lancelot["hp"] -= mordred["power"] - lancelot["protection"]
-    mordred["hp"] -= lancelot["power"] - mordred["protection"]
-
-    # check if someone fell in battle
-    if lancelot["hp"] <= 0:
-        lancelot["hp"] = 0
-
-    if mordred["hp"] <= 0:
-        mordred["hp"] = 0
-
-    # 2 Arthur vs Red Knight:
-    arthur["hp"] -= red_knight["power"] - arthur["protection"]
-    red_knight["hp"] -= arthur["power"] - red_knight["protection"]
-
-    # check if someone fell in battle
-    if arthur["hp"] <= 0:
-        arthur["hp"] = 0
-
-    if red_knight["hp"] <= 0:
-        red_knight["hp"] = 0
-
-    # Return battle results:
-    return {
-        lancelot["name"]: lancelot["hp"],
-        arthur["name"]: arthur["hp"],
-        mordred["name"]: mordred["hp"],
-        red_knight["name"]: red_knight["hp"],
-    }
-
-
-print(battle(KNIGHTS))
+    return {value.name: value.hp for value in knights.values()}
