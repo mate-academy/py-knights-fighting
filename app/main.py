@@ -3,6 +3,8 @@ from app.knight_properties.weapon import Weapon
 
 from app.dict_to_property.dict_to_armour import dict_to_armour
 from app.dict_to_property.dict_to_potion import dict_to_potion
+from app.other_funcs.battle import battle_func
+from app.other_funcs.result_of_battle import result_of_battle
 
 
 def battle(knights_config: dict) -> dict:
@@ -20,10 +22,6 @@ def battle(knights_config: dict) -> dict:
         knight.apply_potion()
         knights[key] = knight
 
-    knights_list = list(knights.keys())
+    knights = battle_func(knights)
 
-    for i in range(len(knights_list) // 2):
-        knights[knights_list[i]].battle(knights[knights_list[i + 2]])
-        knights[knights_list[i + 2]].battle(knights[knights_list[i]])
-
-    return {value.name: value.hp for value in knights.values()}
+    return result_of_battle(knights)
