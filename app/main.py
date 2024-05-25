@@ -1,7 +1,6 @@
 from app.knight_properties.knight import Knight
 from app.knight_properties.weapon import Weapon
 
-# from app.dict_to_property.dict_to_potion import dict_to_potion
 from app.other_funcs.battle import battle_func
 from app.other_funcs.result_of_battle import result_of_battle
 from app.knight_properties.armour import dict_to_armour
