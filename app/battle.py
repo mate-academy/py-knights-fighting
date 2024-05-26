@@ -25,18 +25,18 @@ def battle(knights_dict: Dict[str, dict]) -> Dict[str, int]:
     battles = [("lancelot", "mordred"), ("arthur", "red_knight")]
 
     results = {}
-    for first, second in battles:
-        first_knight = knights[first]
-        second_knight = knights[second]
+    for first_knight, second_knight in battles:
+        first = knights[first_knight]
+        second = knights[second_knight]
 
         first_knight_hp = max(
-            0, first_knight.hp - (second_knight.power - first_knight.protection)
+            0, first.hp - (second.power - first.protection)
         )
         second_knight_hp = max(
-            0, second_knight.hp - (first_knight.power - second_knight.protection)
+            0, second.hp - (first.power - second.protection)
         )
 
-        results[first_knight.name] = first_knight_hp
-        results[second_knight.name] = second_knight_hp
+        results[first.name] = first_knight_hp
+        results[second.name] = second_knight_hp
 
     return results
