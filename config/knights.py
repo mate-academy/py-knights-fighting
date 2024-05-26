@@ -1,4 +1,4 @@
-{
+knights = {
     "lancelot": {
         "name": "Lancelot",
         "power": 35,
@@ -8,7 +8,7 @@
             "name": "Metal Sword",
             "power": 50
         },
-        "potion": null
+        "potion": None
     },
     "arthur": {
         "name": "Arthur",
@@ -32,7 +32,7 @@
             "name": "Two-handed Sword",
             "power": 55
         },
-        "potion": null
+        "potion": None
     },
     "mordred": {
         "name": "Mordred",
