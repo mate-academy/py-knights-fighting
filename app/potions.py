@@ -11,13 +11,8 @@ class Potion:
             return None
         potion = cls(info["name"])
 
-        if info["effect"].get("hp"):
-            potion.hp = info["effect"]["hp"]
-
-        if info["effect"].get("power"):
-            potion.power = info["effect"]["power"]
-
-        if info["effect"].get("protection"):
-            potion.protection = info["effect"]["protection"]
+        for attr in ["hp", "power", "protection"]:
+            if info["effect"].get(attr):
+                setattr(potion, attr, info["effect"][attr])
 
         return potion

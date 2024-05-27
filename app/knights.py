@@ -39,12 +39,11 @@ class Knight:
 
     def drink_potion(self, potion: Potion) -> None:
         self.buff = potion
-        if hasattr(potion, "hp"):
-            self.hp += potion.hp
-        if hasattr(potion, "power"):
-            self.power += potion.power
-        if hasattr(potion, "protection"):
-            self.protection += potion.protection
+        for attr in ["hp", "power", "protection"]:
+            if hasattr(potion, attr):
+                setattr(
+                    self, attr, getattr(self, attr) + getattr(potion, attr)
+                )
 
     @classmethod
     def create_knight(cls, info: dict) -> Knight:
@@ -60,9 +59,7 @@ class Knight:
         first.hp -= second.power - first.protection
         second.hp -= first.power - second.protection
 
-        if first.hp <= 0:
-            first.hp = 0
-            print(f"{first.name} died")
-        if second.hp <= 0:
-            second.hp = 0
-            print(f"{second.name} died")
+        for knight in (first, second):
+            if knight.hp <= 0:
+                knight.hp = 0
+                print(f"{knight.name} died")
