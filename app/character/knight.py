@@ -43,11 +43,8 @@ class Knight:
                 self.protection += ar["protection"]
 
     def apply_potion(self, potion: dict) -> None:
-        if potion is not None:
+        if potion:
             potion_effect = potion["effect"]
-            if "power" in potion_effect:
-                self.power += potion_effect["power"]
-            if "protection" in potion_effect:
-                self.protection += potion_effect["protection"]
-            if "hp" in potion_effect:
-                self.hp += potion_effect["hp"]
+            for attribute, effect in potion_effect.items():
+                current_value = getattr(self, attribute, 0)
+                setattr(self, attribute, current_value + effect)
