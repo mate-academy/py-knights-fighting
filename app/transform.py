@@ -16,8 +16,6 @@ def transform_knights(data: dict) -> dict:
                             knight["potion"]["effect"])
         else:
             potion = None
-        ans[name] = Knight(knight["name"],
-                          knight["power"],
-                          knight["hp"],
-                          armour, weapon, potion)
+        ans[name] = Knight(knight["name"], knight["power"],
+                           knight["hp"], armour, weapon, potion)
     return ans
