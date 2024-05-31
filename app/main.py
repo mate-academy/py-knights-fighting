@@ -3,18 +3,16 @@ from app.transform import transform_knights
 
 
 def battle(knights: dict) -> dict:
-    list_of_knights = transform_knights(knights)
-    lancelot = list_of_knights[0].equip()
-    arthur = list_of_knights[1].equip()
-    mordred = list_of_knights[2].equip()
-    red_knight = list_of_knights[3].equip()
-    lancelot.fight(mordred)
-    arthur.fight(red_knight)
+    knights_battle = transform_knights(knights)
+    for knight in knights_battle.values():
+        knight.equip()
+    knights_battle["lancelot"].fight(knights_battle["mordred"])
+    knights_battle["arthur"].fight(knights_battle["red_knight"])
     return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
+        knights_battle["lancelot"].name: knights_battle["lancelot"].hp,
+        knights_battle["arthur"].name: knights_battle["arthur"].hp,
+        knights_battle["mordred"].name: knights_battle["mordred"].hp,
+        knights_battle["red_knight"].name: knights_battle["red_knight"].hp,
     }
 
 

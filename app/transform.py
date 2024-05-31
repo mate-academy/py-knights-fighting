@@ -4,20 +4,20 @@ from app.inventory.potion import Potion
 from app.people.knight import Knight
 
 
-def transform_knights(data: dict) -> list:
-    ans = []
-    for knight in data:
+def transform_knights(data: dict) -> dict:
+    ans = {}
+    for name, knight in data.items():
         armour = [Armour(armor["part"], armor["protection"])
-                  for armor in data[knight]["armour"]]
-        weapon = Weapon(data[knight]["weapon"]["name"],
-                        data[knight]["weapon"]["power"])
-        if data[knight]["potion"]:
-            potion = Potion(data[knight]["potion"]["name"],
-                            data[knight]["potion"]["effect"])
+                  for armor in knight["armour"]]
+        weapon = Weapon(knight["weapon"]["name"],
+                        knight["weapon"]["power"])
+        if knight["potion"]:
+            potion = Potion(knight["potion"]["name"],
+                            knight["potion"]["effect"])
         else:
             potion = None
-        ans.append(Knight(data[knight]["name"],
-                          data[knight]["power"],
-                          data[knight]["hp"],
-                          armour, weapon, potion))
+        ans[name] = Knight(knight["name"],
+                          knight["power"],
+                          knight["hp"],
+                          armour, weapon, potion)
     return ans
