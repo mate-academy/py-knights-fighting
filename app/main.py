@@ -1,41 +1,29 @@
-import app.knight as knight
+from app.knight import Knight
 from app.settings import KNIGHTS
 
 
 def battle(knights_сonfig: dict) -> dict:
-    # PREPARATIONS:
+    lancelot = Knight(knights_сonfig["lancelot"])
+    lancelot.apply_gear()
 
-    # lancelot
-    lancelot = knights_сonfig["lancelot"]
-    # lancelot_obj = knight.Knight(lancelot)
-    knight.apply_gear(lancelot)
+    arthur = Knight(knights_сonfig["arthur"])
+    arthur.apply_gear()
 
-    # arthur
-    arthur = knights_сonfig["arthur"]
-    knight.apply_gear(arthur)
+    mordred = Knight(knights_сonfig["mordred"])
+    mordred.apply_gear()
 
-    # mordred
-    mordred = knights_сonfig["mordred"]
-    knight.apply_gear(mordred)
+    red_knight = Knight(knights_сonfig["red_knight"])
+    red_knight.apply_gear()
 
-    # red_knight
-    red_knight = knights_сonfig["red_knight"]
-    knight.apply_gear(red_knight)
-
-    # -------------------------------------------------------------------------------
-    # BATTLE:
-    # 1 Lancelot vs Mordred:
-    knight.duel(lancelot, mordred)
-
-    # 2 Arthur vs Red Knight:
-    knight.duel(arthur, red_knight)
+    Knight.duel(lancelot, mordred)
+    Knight.duel(arthur, red_knight)
 
     # Return battle results:
     return {
-        lancelot["name"]: lancelot["hp"],
-        arthur["name"]: arthur["hp"],
-        mordred["name"]: mordred["hp"],
-        red_knight["name"]: red_knight["hp"],
+        lancelot.name: lancelot.hp,
+        arthur.name: arthur.hp,
+        mordred.name: mordred.hp,
+        red_knight.name: red_knight.hp,
     }
 
 

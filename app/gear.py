@@ -1,39 +1,16 @@
 class Armour:
-    def __init__(self, part: str, protection: int) -> None:
-        self.part = part
-        self.protection = protection
+    def __init__(self, armor_info: dict) -> None:
+        self.part = armor_info["part"]
+        self.protection = armor_info["protection"]
 
 
 class Weapon:
-    def __init__(self, name: str, power: int) -> None:
-        self.name = name
-        self.power = power
+    def __init__(self, weapon_info: dict) -> None:
+        self.name = weapon_info["name"]
+        self.power = weapon_info["power"]
 
 
 class Potion:
-    def __init__(self, name: str, effect: dict) -> None:
-        self.name = name
-        self.effect = effect
-
-
-def apply_armor(knihgt: dict) -> None:
-    knihgt["protection"] = 0
-    for armour in knihgt["armour"]:
-        knihgt["protection"] += armour["protection"]
-
-
-def apply_weapon(knihgt: dict) -> None:
-    knihgt["power"] += knihgt["weapon"]["power"]
-
-
-def apply_potion(knihgt: dict) -> None:
-    if knihgt["potion"] is None:
-        return
-    if "power" in knihgt["potion"]["effect"]:
-        knihgt["power"] += knihgt["potion"]["effect"]["power"]
-
-    if "protection" in knihgt["potion"]["effect"]:
-        knihgt["protection"] += knihgt["potion"]["effect"]["protection"]
-
-    if "hp" in knihgt["potion"]["effect"]:
-        knihgt["hp"] += knihgt["potion"]["effect"]["hp"]
+    def __init__(self, potion_info: dict) -> None:
+        self.name = potion_info["name"]
+        self.effect = potion_info["effect"]

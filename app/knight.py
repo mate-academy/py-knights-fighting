@@ -1,33 +1,51 @@
-import app.gear as gear
+from __future__ import annotations
+
+from app.gear import Armour, Weapon, Potion
 
 
 class Knight:
-    def __init__(self, knihgt_info: dict) -> None:
-        self.name = knihgt_info["name"]
-        self.power = knihgt_info["power"]
-        self.hp = knihgt_info["hp"]
+    def __init__(self, knight_info: dict) -> None:
+        self.name = knight_info["name"]
+        self.power = knight_info["power"]
+        self.hp = knight_info["hp"]
         self.protection = 0
-        self.info = knihgt_info
+        self.info = knight_info
+
+    @classmethod
+    def duel(cls, white_knight: Knight, bleak_knight: Knight) -> None:
+        white_knight.hp -= bleak_knight.power - white_knight.protection
+        bleak_knight.hp -= white_knight.power - bleak_knight.protection
+        white_knight.hp = max(0, white_knight.hp)
+        bleak_knight.hp = max(0, bleak_knight.hp)
 
     def apply_gear(self) -> None:
-        gear.apply_armor(self)
-        gear.apply_weapon(self)
-        gear.apply_potion(self)
+        self.put_armor()
+        self.take_weapon()
+        self.drink_potion()
 
+    def put_armor(self) -> None:
+        armours = []
+        for subject_info in self.info["armour"]:
+            armour = Armour(subject_info)
+            armours.append(armour)
+            self.protection += armour.protection
+        self.armour = armours
 
-def apply_gear(knihgt_info: dict) -> None:
-    gear.apply_armor(knihgt_info)
-    gear.apply_weapon(knihgt_info)
-    gear.apply_potion(knihgt_info)
+    def take_weapon(self) -> None:
+        self.weapon = Weapon(self.info["weapon"])
+        self.power += self.weapon.power
 
+    def drink_potion(self) -> None:
+        if self.info["potion"] is None:
+            return
 
-def duel(white_knihgt: dict, bleak_knihgt: dict) -> None:
-    white_knihgt["hp"] -= bleak_knihgt["power"] - white_knihgt["protection"]
-    bleak_knihgt["hp"] -= white_knihgt["power"] - bleak_knihgt["protection"]
+        self.potion = Potion(self.info["potion"])
 
-    # check if someone fell in battle
-    if white_knihgt["hp"] <= 0:
-        white_knihgt["hp"] = 0
+        if "power" in self.potion.effect:
+            self.power += self.potion.effect["power"]
 
-    if bleak_knihgt["hp"] <= 0:
-        bleak_knihgt["hp"] = 0
+        if "protection" in self.potion.effect:
+            self.protection += self.potion.effect["protection"]
+
+        if "hp" in self.potion.effect:
+            self.hp += self.potion.effect["hp"]
