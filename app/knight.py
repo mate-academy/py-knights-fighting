@@ -11,12 +11,12 @@ class Knight:
         self.protection = 0
         self.info = knight_info
 
-    @classmethod
-    def duel(cls, white_knight: Knight, bleak_knight: Knight) -> None:
-        white_knight.hp -= bleak_knight.power - white_knight.protection
-        bleak_knight.hp -= white_knight.power - bleak_knight.protection
-        white_knight.hp = max(0, white_knight.hp)
-        bleak_knight.hp = max(0, bleak_knight.hp)
+
+    def duel(self, other_knight: Knight) -> None:
+        self.hp -= other_knight.power - self.protection
+        other_knight.hp -= self.power - other_knight.protection
+        self.hp = max(0, self.hp)
+        other_knight.hp = max(0, other_knight.hp)
 
     def apply_gear(self) -> None:
         self.put_armor()

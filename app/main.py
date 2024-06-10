@@ -15,8 +15,8 @@ def battle(knights_сonfig: dict) -> dict:
     red_knight = Knight(knights_сonfig["red_knight"])
     red_knight.apply_gear()
 
-    Knight.duel(lancelot, mordred)
-    Knight.duel(arthur, red_knight)
+    lancelot.duel(mordred)
+    arthur.duel(red_knight)
 
     # Return battle results:
     return {
