@@ -11,7 +11,6 @@ class Knight:
         self.protection = 0
         self.info = knight_info
 
-
     def duel(self, other_knight: Knight) -> None:
         self.hp -= other_knight.power - self.protection
         other_knight.hp -= self.power - other_knight.protection
