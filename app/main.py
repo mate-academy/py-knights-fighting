@@ -9,13 +9,8 @@ def battle(knights_сonfig: dict) -> dict:
     mordred = Knight(knights_сonfig["mordred"])
     red_knight = Knight(knights_сonfig["red_knight"])
 
-    knights = []
-    knights.append(lancelot)
-    knights.append(arthur)
-    knights.append(mordred)
-    knights.append(red_knight)
-    for _ in knights:
-        _.apply_gear()
+    for knight in (lancelot, arthur, mordred, red_knight,):
+        knight.apply_gear()
 
     lancelot.duel(mordred)
     arthur.duel(red_knight)
