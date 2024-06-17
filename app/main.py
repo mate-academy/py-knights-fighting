@@ -2,18 +2,21 @@ from app.potion import Potion
 from app.knight import Knight
 
 
+def apply_equipment(knight: Knight) -> None:
+    if knight.armour:
+        for gear in knight.armour:
+            knight.apply_armour(gear)
+    if knight.weapon:
+        knight.apply_weapon(knight.weapon)
+    if knight.potion:
+        knight.apply_potion(Potion(knight.potion))
+
+
 def battle(knights_config: dict) -> dict:
     knights = {}
     for knight_info in knights_config.values():
         knight = Knight(**knight_info)
-        if knight.armour:
-            for gear in knight.armour:
-                knight.apply_armour(gear)
-        if knight.weapon:
-            knight.apply_weapon(knight.weapon)
-        if knight.potion:
-            knight.apply_potion(Potion(knight.potion))
-
+        apply_equipment(knight)
         knights[knight.name] = knight
 
     lancelot = knights.get("Lancelot")
