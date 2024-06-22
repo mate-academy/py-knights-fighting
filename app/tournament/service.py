@@ -14,4 +14,3 @@ def create_knights(config: dict) -> dict:
         )
 
     return knights
-
