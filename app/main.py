@@ -1,5 +1,5 @@
-from tournament.service import create_knights
-from tournament.data import KNIGHTS
+from app.tournament.service import create_knights
+from app.tournament.data import KNIGHTS
 
 
 def battle(knights_config: dict) -> dict:

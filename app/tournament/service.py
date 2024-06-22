@@ -1,4 +1,4 @@
-from knight import Knight
+from app.tournament.knight import Knight
 
 
 def create_knights(config: dict) -> dict:
