@@ -30,5 +30,4 @@ def battle(KNIGHTS: dict[list | str | int]) -> dict:
         arthur.name: arthur.hp,
         mordred.name: mordred.hp,
         red_knight.name: red_knight.hp,
-
-            }
+    }

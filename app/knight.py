@@ -21,7 +21,7 @@ class Knight:
         for armor in all_armor:
             self.protection += armor["protection"]
 
-    def add_potion_effect(self, potion: dict):
+    def add_potion_effect(self, potion: dict) -> None:
         self.hp += potion["effect"].get("hp", 0)
         self.power += potion["effect"].get("power", 0)
         self.protection += potion["effect"].get("protection", 0)
