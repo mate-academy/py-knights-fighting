@@ -14,11 +14,11 @@ def duel(knight1: Knight, knight2: Knight) -> None:
     knight2 - knight1
 
 
-def battle(KNIGHTS: dict[list | str | int]) -> dict:
-    lancelot = set_up(KNIGHTS["lancelot"])
-    arthur = set_up(KNIGHTS["arthur"])
-    mordred = set_up(KNIGHTS["mordred"])
-    red_knight = set_up(KNIGHTS["red_knight"])
+def battle(all_knights: dict[list | str | int]) -> dict:
+    lancelot = set_up(all_knights["lancelot"])
+    arthur = set_up(all_knights["arthur"])
+    mordred = set_up(all_knights["mordred"])
+    red_knight = set_up(all_knights["red_knight"])
 
     # start fighting
     duel(lancelot, mordred)
