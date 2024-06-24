@@ -1,4 +1,4 @@
-KNIGHTS = {
+all_knights = {
     "lancelot": {
         "name": "Lancelot",
         "power": 35,
