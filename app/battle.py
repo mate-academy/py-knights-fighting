@@ -2,11 +2,12 @@ from app.knight import Knight
 
 
 # Setting up knights by creating Knight class
-def set_up(knight: dict[list | str | int]) -> Knight:
+def set_up(knight: dict[list | str | int | dict]) -> Knight:
     single_knight = Knight(knight)
     return single_knight
 
 
+# Fight between 2 knights
 def duel(knight1: Knight, knight2: Knight) -> None:
     # taking damage realised by __sub__ method
     knight1 - knight2
