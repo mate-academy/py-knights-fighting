@@ -1,4 +1,4 @@
-from app.fighters.knight import create_knight_objects
+from app.fighters.knight import Knight
 from app.arena.battle import knights_preparation, start_battle
 
 KNIGHTS = {
@@ -91,7 +91,7 @@ KNIGHTS = {
 
 def battle(knights_config: dict) -> dict:
     # BATTLE PREPARATIONS:
-    knights_obj_list = create_knight_objects(knights_config)
+    knights_obj_list = Knight.create_knight_objects(knights_config)
     prepared_knights = knights_preparation(knights_obj_list)
 
     lancelot_mordred_battle_results = start_battle(

@@ -3,7 +3,7 @@ class Armour:
         self.part = part
         self.protection = protection
 
-
-def get_armour_instances(armours: list) -> list[Armour]:
-    return [Armour(armour["part"], armour["protection"])
-            for armour in armours]
+    @classmethod
+    def get_instances(cls, armours: list) -> list["Armour"]:
+        return [cls(part=armour["part"], protection=armour["protection"])
+                for armour in armours]

@@ -3,6 +3,6 @@ class Weapon:
         self.name = name
         self.power = power
 
-
-def get_weapon_instance(weapon: dict) -> Weapon:
-    return Weapon(weapon["name"], weapon["power"])
+    @classmethod
+    def get_instance(cls, weapon: dict) -> "Weapon":
+        return cls(name=weapon["name"], power=weapon["power"])
