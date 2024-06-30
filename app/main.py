@@ -95,18 +95,14 @@ def battle(knights_config: dict) -> dict:
 
     # apply inventory
     for knight, knight_stats in knights_config.items():
-        print(f"{knight}: {knight_stats}")
         knight_stats["protection"] = inventory.apply_armour(
             knight_stats["armour"]
         )
-        print(f"after armour: {knight}: {knight_stats}")
         knight_stats["power"] = inventory.apply_weapon(
             knight_stats["power"],
             knight_stats["weapon"]
         )
-        print(f"after weapon: {knight}: {knight_stats}")
         knight_stats = inventory.apply_potion(knight_stats)
-        print(f"after potion: {knight}: {knight_stats}\n")
 
     # -------------------------------------------------------------------------------
     # BATTLE:
@@ -122,8 +118,6 @@ def battle(knights_config: dict) -> dict:
         knights_config["lancelot"]["power"],
         knights_config["mordred"]["protection"]
     )
-    print(f"after battle: {knights_config["lancelot"]}")
-    print(f"after battle: {knights_config["mordred"]}\n")
 
     # 2 Arthur vs Red Knight:
     knights_config["arthur"]["hp"] = battle_action.do_battle(
@@ -136,11 +130,8 @@ def battle(knights_config: dict) -> dict:
         knights_config["arthur"]["power"],
         knights_config["red_knight"]["protection"]
     )
-    print(f"after battle: {knights_config["arthur"]}")
-    print(f"after battle: {knights_config["red_knight"]}\n")
 
     for knight, knight_stats in knights_config.items():
-        print(f"{knight}: {knight_stats}")
         knight_stats["hp"] = battle_action.hp_to_zero(knight_stats["hp"])
 
     return {
