@@ -97,9 +97,7 @@ def battle(knights_config: dict) -> dict:
     red_knight = Knight(knights_config["red_knight"])
 
     for knight in lancelot, mordred, arthur, red_knight:
-        Preparation(knight).preparation_weapon()
-        Preparation(knight).preparation_armour()
-        Preparation(knight).preparation_potion()
+        Preparation(knight).full_preparation()
 
     Battle(lancelot, mordred).fight()
     Battle(arthur, red_knight).fight()
