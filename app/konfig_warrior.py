@@ -1,8 +1,8 @@
 def sort_through_armour(armors: list[dict]) -> int:
-    counter = 0
+    summa = 0
     for armor in armors:
-        counter += armor["protection"]
-    return counter
+        summa += armor["protection"]
+    return summa
 
 
 def sort_weapon(power: dict) -> int:

@@ -1,7 +1,7 @@
 from app.warrior import Knight
-from app.konfig_warrior import sort_through_armour, \
-    sort_weapon, \
-    sort_the_potion
+from app.konfig_warrior import (sort_through_armour,
+                                sort_weapon,
+                                sort_the_potion)
 from app.battle_konfig import battle_knights
 
 KNIGHTS = {
