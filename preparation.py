@@ -13,14 +13,9 @@ def apply_potion(knight):
                 knight[effect] += value
 
 
-# Preparing knights for battle
-def prepare_knight(knight_name):
-    def decorator(func):
-        def wrapper(knights_config):
-            knight = knights_config[knight_name]
-            apply_armour(knight)
-            apply_weapon(knight)
-            apply_potion(knight)
-            return func(knights_config)
-        return wrapper
-    return decorator
+def prepare_knights(knights_config):
+    for knight in knights_config.values():
+        apply_armour(knight)
+        apply_weapon(knight)
+        apply_potion(knight)
+    return knights_config

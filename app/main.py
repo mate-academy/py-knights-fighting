@@ -1,14 +1,10 @@
 from knights import KNIGHTS
-from preparation import prepare_knight
+from preparation import prepare_knights
 from fight import fight
 
 
-@prepare_knight("lancelot")
-@prepare_knight("arthur")
-@prepare_knight("mordred")
-@prepare_knight("red_knight")
 def prepare_battle(knights_config: dict) -> dict:
-    return knights_config
+    return prepare_knights(knights_config)
 
 
 def battle(knights_config: dict) -> dict:
