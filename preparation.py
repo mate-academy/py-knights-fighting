@@ -13,6 +13,7 @@ def apply_potion(knight):
                 knight[effect] += value
 
 
+# Preparing knights for battle
 def prepare_knight(knight_name):
     def decorator(func):
         def wrapper(knights_config):

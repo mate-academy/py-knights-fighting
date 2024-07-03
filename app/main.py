@@ -7,11 +7,11 @@ from fight import fight
 @prepare_knight("arthur")
 @prepare_knight("mordred")
 @prepare_knight("red_knight")
-def prepare_battle(knights_config):
+def prepare_battle(knights_config: dict) -> dict:
     return knights_config
 
 
-def battle(knights_config) -> dict:
+def battle(knights_config: dict) -> dict:
     # BATTLE PREPARATIONS:
     knights_config = prepare_battle(knights_config)
 
