@@ -33,14 +33,10 @@ class Knight:
     def apply_potion(self) -> None:
         if self.potion is not None:
             effect = self.potion["effect"]
-            if "power" in effect:
-                self.power += effect["power"]
-
-            if "protection" in effect:
-                self.protection += effect["protection"]
-
-            if "hp" in effect:
-                self.hp += effect["hp"]
+            attributes = ["power", "protection", "hp"]
+            for attr in attributes:
+                if attr in effect:
+                    setattr(self, attr, getattr(self, attr) + effect[attr])
 
     def fight(self, other: Knight) -> None:
         self.hp -= max(other.power - self.protection, 0)
