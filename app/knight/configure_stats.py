@@ -103,14 +103,13 @@ def apply_weapon(knight_config: dict) -> None:
 def apply_potion(knight_config: dict) -> None:
     if knight_config["potion"] is not None:
         if "power" in knight_config["potion"]["effect"]:
-            knight_config["power"] += knight_config["potion"]["effect"]["power"]
+            knight_config["power"] \
+                += knight_config["potion"]["effect"]["power"]
 
         if "protection" in knight_config["potion"]["effect"]:
-            knight_config["protection"] += knight_config["potion"]["effect"]["protection"]
+            knight_config["protection"] \
+                += knight_config["potion"]["effect"]["protection"]
 
         if "hp" in knight_config["potion"]["effect"]:
-            knight_config["hp"] += knight_config["potion"]["effect"]["hp"]
-
-
-
-
+            knight_config["hp"] \
+                += knight_config["potion"]["effect"]["hp"]
