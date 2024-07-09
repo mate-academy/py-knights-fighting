@@ -1,5 +1,5 @@
 from app.battle.battle_action import Battle
-from app.battle_preparations.inventory import Inventory
+from app.knight.knight import Knight
 
 KNIGHTS = {
     "lancelot": {
@@ -90,53 +90,28 @@ KNIGHTS = {
 
 
 def battle(knights_config: dict) -> dict:
-    inventory = Inventory()
-    battle_action = Battle()
+    # define knights as classes
+    lancelot = Knight(knights_config["lancelot"])
+    arthur = Knight(knights_config["arthur"])
+    mordred = Knight(knights_config["mordred"])
+    red_knight = Knight(knights_config["red_knight"])
 
     # apply inventory
-    for knight, knight_stats in knights_config.items():
-        knight_stats["protection"] = inventory.apply_armour(
-            knight_stats["armour"]
-        )
-        knight_stats["power"] = inventory.apply_weapon(
-            knight_stats["power"],
-            knight_stats["weapon"]
-        )
-        knight_stats = inventory.apply_potion(knight_stats)
+    for knight in lancelot, arthur, mordred, red_knight:
+        knight.prepare_knight()
 
     # -------------------------------------------------------------------------------
     # BATTLE:
 
     # 1 Lancelot vs Mordred:
-    knights_config["lancelot"]["hp"] = battle_action.do_battle(
-        knights_config["lancelot"]["hp"],
-        knights_config["mordred"]["power"],
-        knights_config["lancelot"]["protection"]
-    )
-    knights_config["mordred"]["hp"] = battle_action.do_battle(
-        knights_config["mordred"]["hp"],
-        knights_config["lancelot"]["power"],
-        knights_config["mordred"]["protection"]
-    )
+    Battle(lancelot, mordred).do_battle()
 
     # 2 Arthur vs Red Knight:
-    knights_config["arthur"]["hp"] = battle_action.do_battle(
-        knights_config["arthur"]["hp"],
-        knights_config["red_knight"]["power"],
-        knights_config["arthur"]["protection"]
-    )
-    knights_config["red_knight"]["hp"] = battle_action.do_battle(
-        knights_config["red_knight"]["hp"],
-        knights_config["arthur"]["power"],
-        knights_config["red_knight"]["protection"]
-    )
-
-    for knight, knight_stats in knights_config.items():
-        knight_stats["hp"] = battle_action.hp_to_zero(knight_stats["hp"])
+    Battle(arthur, red_knight).do_battle()
 
     return {
-        knights_config[knight]["name"]: knights_config[knight]["hp"]
-        for knight in knights_config
+        knight.name: knight.hp
+        for knight in (lancelot, arthur, mordred, red_knight)
     }
 
 
