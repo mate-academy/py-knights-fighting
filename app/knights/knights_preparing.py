@@ -8,7 +8,7 @@ def prepare_knights(knights_config: dict) -> dict:
         protection = 0
 
         if knight["armour"]:
-            protection += sum([arm["protection"] for arm in knight["armour"]])
+            protection += sum(arm["protection"] for arm in knight["armour"])
 
         if knight["potion"] is not None:
             if "hp" in knight["potion"]["effect"]:
