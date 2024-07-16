@@ -16,11 +16,12 @@ def battle(knights_config: dict) -> dict:
     arthur = create_knight("Arthur", knights)
     mordred = create_knight("Mordred", knights)
     red_knight = create_knight("Red Knight", knights)
+    
     # 1 Lancelot vs Mordred:
     fight(lancelot, mordred)
 
     # 2 Arthur vs Red Knight:
     fight(arthur, red_knight)
 
-    # see current hp of each knight after battle
+    # current hp of each knight after battle
     return current_knights_hps()
