@@ -13,9 +13,9 @@ class Knights:
         Knights.knights[self.name] = self
         print(
             f"""
-{self.name} was created!
-hp={self.hp} power={self.power} protection={self.protection}
-"""
+            {self.name} was created!
+            hp={self.hp} power={self.power} protection={self.protection}
+            """
         )
 
 
