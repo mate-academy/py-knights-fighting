@@ -16,7 +16,6 @@ def battle(knights_config: dict) -> dict:
     arthur = create_knight("Arthur", knights)
     mordred = create_knight("Mordred", knights)
     red_knight = create_knight("Red Knight", knights)
-    
     # 1 Lancelot vs Mordred:
     fight(lancelot, mordred)
 
