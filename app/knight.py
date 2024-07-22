@@ -9,22 +9,13 @@ class Knight:
         self.armour = armour
         self.weapon = weapon
         self.potion = potion
-
-        self.protection = 0
-        for armour_piece in self.armour:
-            self.protection += armour_piece.get("protection", 0)
-
+        self.protection = sum(armour_piece.get("protection", 0)
+                              for armour_piece in self.armour)
         self.power = self.base_power + self.weapon["power"]
 
-        if self.potion is not None:
-            if "power" in self.potion["effect"]:
-                self.power += self.potion["effect"]["power"]
-
-            if "protection" in self.potion["effect"]:
-                self.protection += self.potion["effect"]["protection"]
-
-            if "hp" in self.potion["effect"]:
-                self.hp += self.potion["effect"]["hp"]
+        if self.potion:
+            for attr, value in self.potion["effect"].items():
+                setattr(self, attr, getattr(self, attr) + value)
 
     def take_damage(self, damage: int) -> None:
         self.hp -= damage - self.protection
