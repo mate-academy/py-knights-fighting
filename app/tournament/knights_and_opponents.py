@@ -24,12 +24,7 @@ class Knight:
 
     def apply_potion(self, potion: dict) -> None:
         for one in potion:
-            if one == "power":
-                self.power += potion["power"]
-            if one == "hp":
-                self.hp += potion["hp"]
-            if one == "protection":
-                self.protection += potion["protection"]
+            setattr(self, one, getattr(self, one) + potion[one])
 
     def fighting(self) -> None:
         other = self.opponent
@@ -39,3 +34,12 @@ class Knight:
             self.hp = 0
         if other.hp < 0:
             other.hp = 0
+
+
+def appoint_opponent(participants_knights: dict) -> None:
+    for nickname in participants_knights:
+        knight = participants_knights[nickname]
+        if knight.name == "Lancelot":
+            knight.opponents(participants_knights, "Lancelot", "Mordred")
+        if knight.name == "Arthur":
+            knight.opponents(participants_knights, "Arthur", "Red Knight")

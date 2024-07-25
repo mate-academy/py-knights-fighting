@@ -1,7 +1,7 @@
-from app.participants.knights import Knight
-from app.participants.opponents import appoint_opponent
-from app.tournament.skills import apply_skills
-from app.tournament.battle import make_tournament
+from app.tournament.knights_and_opponents import Knight
+from app.tournament.knights_and_opponents import appoint_opponent
+from app.tournament.battle import apply_skills, make_tournament
+
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
