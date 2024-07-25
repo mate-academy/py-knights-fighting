@@ -23,7 +23,7 @@ class God:
                 armor_list=LancelotData.ARMOR_LIST,
                 weapon=LancelotData.WEAPON
             )
-            time.sleep(2)
+         #   time.sleep(2)
             print("Lancelot's_squire has arrived!!!")
             return squire
         elif servant_name == "arthur's_squire":
@@ -31,7 +31,7 @@ class God:
                 armor_list=ArthurData.ARMOR_LIST,
                 weapon=ArthurData.WEAPON
             )
-            time.sleep(2)
+          #  time.sleep(2)
             print("arthur's_squire has arrived!!!")
             return squire
         elif servant_name == "mordred's_squire":
@@ -43,7 +43,7 @@ class God:
                 name="Berserk",
                 effects=dict(power=+15, hp=-5, protection=+10)
             )
-            time.sleep(2)
+         #   time.sleep(2)
             print("mordred's_squire has arrived!!!")
             return squire
         elif servant_name == "red_knight's_squire":
@@ -55,6 +55,6 @@ class God:
                 name="Blessing",
                 effects=dict(power=+5, hp=+10)
             )
-            time.sleep(2)
+         #   time.sleep(2)
             print("red_knight's_squire has arrived!!!")
             return squire

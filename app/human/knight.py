@@ -13,12 +13,11 @@ class Knight:
     def __init__(self,
                  name: str,
                  power: int,
-                 hp: int,
-                 armor: "Knight.Armor") -> None:
+                 hp: int) -> None:
         self.name = name
         self.power = power
         self.hp = hp
-        self.armor = Knight.Armor("all armor", armor.power)
+        self.armor = None
         self.weapon = None
         self.squire = None
         self.potion = None
@@ -28,7 +27,7 @@ class Knight:
             armor["power"] for armor in self.squire.armor_list
         )
         self.armor = self.Armor(
-            part=self.armor.name,
+            part="self.armor.name",
             power=self.armor.power + additional_power
         )
 

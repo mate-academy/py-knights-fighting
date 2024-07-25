@@ -4,3 +4,8 @@ class MordredData:
         {"part": "boots", "protection": 10}
     ]
     WEAPON = dict(name="Poisoned Sword", power=60)
+
+    @staticmethod
+    def set_data(armor_list: list, weapon: dict):
+        MordredData.ARMOR_LIST = armor_list
+        MordredData.WEAPON = weapon
