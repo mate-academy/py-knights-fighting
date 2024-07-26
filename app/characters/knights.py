@@ -40,7 +40,7 @@ class Knight:
             if "hp" in potion.effect:
                 self.hp += potion.effect["hp"]
             if "protection" in potion.effect:
-                self.power += potion.effect["protection"]
+                self.protection += potion.effect["protection"]
 
     def fight_with(self, other: Knight) -> None:
         self.hp -= other.power - self.protection
