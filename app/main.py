@@ -17,38 +17,42 @@ def battle(knights_config: dict) -> dict:
         )
         knight.get_ready()
         knights_list.append(knight)
+    lancelot = knights_list[0]
+    arthur = knights_list[1]
+    mordred = knights_list[2]
+    red_knight = knights_list[3]
 
     # -------------------------------------------------------------------------------
     # BATTLE:
 
     # 1 Lancelot vs Mordred:
-    knights_list[0].hp -= knights_list[2].power - knights_list[0].protection
-    knights_list[2].hp -= knights_list[0].power - knights_list[2].protection
+    lancelot.hp -= mordred.power - lancelot.protection
+    mordred.hp -= lancelot.power - mordred.protection
 
     # check if someone fell in battle
-    if knights_list[0].hp <= 0:
-        knights_list[0].hp = 0
+    if lancelot.hp <= 0:
+        lancelot.hp = 0
 
-    if knights_list[2].hp <= 0:
-        knights_list[2].hp = 0
+    if mordred.hp <= 0:
+        mordred.hp = 0
 
     # 2 Arthur vs Red Knight:
-    knights_list[1].hp -= knights_list[3].power - knights_list[1].protection
-    knights_list[3].hp -= knights_list[1].power - knights_list[3].protection
+    arthur.hp -= red_knight.power - arthur.protection
+    red_knight.hp -= arthur.power - red_knight.protection
 
     # check if someone fell in battle
-    if knights_list[1].hp <= 0:
-        knights_list[1].hp = 0
+    if arthur.hp <= 0:
+        arthur.hp = 0
 
-    if knights_list[3].hp <= 0:
-        knights_list[3].hp = 0
+    if red_knight.hp <= 0:
+        red_knight.hp = 0
 
     # Return battle results:
     return {
-        knights_list[0].name: knights_list[0].hp,
-        knights_list[1].name: knights_list[1].hp,
-        knights_list[2].name: knights_list[2].hp,
-        knights_list[3].name: knights_list[3].hp,
+        lancelot.name: lancelot.hp,
+        arthur.name: arthur.hp,
+        mordred.name: mordred.hp,
+        red_knight.name: red_knight.hp,
     }
 
 
