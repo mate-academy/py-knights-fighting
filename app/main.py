@@ -9,8 +9,9 @@ from app.characters.red_knight import red_knight
 from app.characters.list_of_knight import list_of_knight
 
 
-def battle(knights_config) -> None:
+def battle(knights_config) -> dict:
     # BATTLE PREPARATIONS:
+    knights_list = {}
 
     for key, value in knights_config.items():
         knight = Knight(
@@ -21,40 +22,43 @@ def battle(knights_config) -> None:
             weapon=value["weapon"],
             potion=value["potion"]
         )
-        print(value["weapon"])
         knight.get_ready()
+        knights_list[f"{key}"] = knight
+    for key, value in knights_list.items():
+        print("Key: ", key)
+        print(list_of_knight["lancelot"])
 
     # -------------------------------------------------------------------------------
     # BATTLE:
 
     # 1 Lancelot vs Mordred:
-    lancelot.hp -= mordred.power - lancelot.protection
-    mordred.hp -= lancelot.power - mordred.protection
+    list_of_knight["lancelot"].hp -= list_of_knight["mordred"].power - list_of_knight["lancelot"].protection
+    list_of_knight["mordred"].hp -= list_of_knight["lancelot"].power - list_of_knight["mordred"].protection
 
     # check if someone fell in battle
-    if lancelot.hp <= 0:
-        lancelot.hp = 0
+    if list_of_knight["lancelot"].hp <= 0:
+        list_of_knight["lancelot"].hp = 0
 
-    if mordred.hp <= 0:
-        mordred.hp = 0
+    if list_of_knight["mordred"].hp <= 0:
+        list_of_knight["mordred"].hp = 0
 
     # 2 Arthur vs Red Knight:
-    arthur.hp -= red_knight.power - arthur.protection
-    red_knight.hp -= arthur.power - red_knight.protection
+    list_of_knight["arthur"].hp -= red_knight.power - list_of_knight["arthur"].protection
+    list_of_knight["red_knight"].hp -= list_of_knight["arthur"].power - list_of_knight["red_knight"].protection
 
     # check if someone fell in battle
-    if arthur.hp <= 0:
-        arthur.hp = 0
+    if list_of_knight["arthur"].hp <= 0:
+        list_of_knight["arthur"].hp = 0
 
-    if red_knight.hp <= 0:
-        red_knight.hp = 0
+    if list_of_knight["red_knight"].hp <= 0:
+        list_of_knight["red_knight"].hp = 0
 
     # Return battle results:
     return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
+        list_of_knight["lancelot"].name: list_of_knight["lancelot"].hp,
+        list_of_knight["arthur"].name: list_of_knight["arthur"].hp,
+        list_of_knight["mordred"].name: list_of_knight["mordred"].hp,
+        list_of_knight["red_knight"].name: list_of_knight["red_knight"].hp,
     }
 
 
