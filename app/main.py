@@ -9,10 +9,19 @@ from app.characters.red_knight import red_knight
 from app.characters.list_of_knight import list_of_knight
 
 
-def battle(knights_config: list) -> None:
+def battle(knights_config) -> None:
     # BATTLE PREPARATIONS:
 
-    for knight in knights_config:
+    for key, value in knights_config.items():
+        knight = Knight(
+            name=value,
+            power=value["power"],
+            hp=value["hp"],
+            armour=value["armour"],
+            weapon=value["weapon"],
+            potion=value["potion"]
+        )
+        print(value["weapon"])
         knight.get_ready()
 
     # -------------------------------------------------------------------------------
@@ -49,4 +58,4 @@ def battle(knights_config: list) -> None:
     }
 
 
-print(battle(list_of_knight))
+print(battle(KNIGHTS))
