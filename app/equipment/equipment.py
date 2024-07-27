@@ -1,11 +1,11 @@
 from abc import ABC, abstractmethod
-from app.human.knight import Knight
+from typing import Any
 
 
 class Equipment(ABC):
-    def __init__(self, name: str):
+    def __init__(self, name: str) -> None:
         self.name = name
 
     @abstractmethod
-    def apply(self, knight: Knight) -> None:
+    def apply(self, knight: Any, source: dict) -> None:
         pass

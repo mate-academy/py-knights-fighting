@@ -1,7 +1,6 @@
-from __future__ import annotations
+from typing import Any
 
 from app.equipment.equipment import Equipment
-from app.human.knight import Knight
 
 
 class Weapon(Equipment):
@@ -9,5 +8,21 @@ class Weapon(Equipment):
         super().__init__(name)
         self.power = power
 
-    def apply(self, knight: Knight) -> None:
-        pass
+    @classmethod
+    def apply(cls, knight: Any, source: dict) -> None:
+        weapon_data = (
+            source.get(
+                knight.name.lower(),
+                source.get(
+                    knight.name.replace(" ", "_").lower(), {}
+                )
+            ).get("weapon", None)
+        )
+        if weapon_data:
+            knight.weapon = (
+                Weapon(
+                    name=weapon_data["name"],
+                    power=weapon_data["power"]
+                )
+            )
+            knight.power += knight.weapon.power
