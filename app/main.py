@@ -93,13 +93,17 @@ KNIGHTS = {
 def battle(knights_config: dict) -> dict:
     participants = []
     for name, info in knights_config.items():
-        participant = Knight(info["name"],
-                             info["power"],
-                             info["hp"])
+        participant = Knight(
+            info["name"],
+            info["power"],
+            info["hp"]
+        )
         participants.append(participant)
-        participant.get_ready_for_battle(info["armour"],
-                                         info["potion"],
-                                         info["weapon"])
+        participant.get_ready_for_battle(
+            info["armour"],
+            info["potion"],
+            info["weapon"]
+        )
 
     for index in range(0, len(participants) // 2):
         fight = Fight(participants[index], participants[index + 2])
