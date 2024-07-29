@@ -4,21 +4,15 @@ from app.equipment.equipment import Equipment
 
 
 class Armor(Equipment):
-    def __init__(self, part: str, power: int) -> None:
+    def __init__(self, part: str, protection: int) -> None:
         super().__init__(part)
-        self.power = power
+        self.power = protection
 
     @classmethod
     def apply(cls, knight: Any, source: dict) -> None:
-        armor_data = (
-            source.get(knight.name.lower(),
-                       source.get(knight.name.replace(" ", "_").lower(), {})
-                       ).get("armour", [])
-        )
-
-        if armor_data:
+        if source.get("armour"):
             knight.equip_list = []
-            for armor in armor_data:
-                armor = Armor(part=armor["part"], power=armor["protection"])
+            for armor in source.get("armour"):
+                armor = Armor(armor["part"], armor["protection"])
                 knight.armor += armor.power
                 knight.equip_list.append(armor)

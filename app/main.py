@@ -90,10 +90,11 @@ KNIGHTS = {
 
 def battle(knights_config: dict) -> None:
     knights = {}
-    for name, config in knights_config.items():
+    for config in knights_config.values():
         knight = Knight(config["name"], config["power"], config["hp"])
-        knight.prepare_for_battle(knights_config)
+        knight.prepare_for_battle(config)
         knights[knight.name] = knight
+        print(knight.__dict__)
 
     fight_pairs = [
         ("Lancelot", "Mordred"),
@@ -109,12 +110,14 @@ def battle(knights_config: dict) -> None:
         knight1.hp -= knight2.power - knight1.armor
         knight2.hp -= knight1.power - knight2.armor
 
-        if knight1.hp <= 0:
-            knight1.hp = 0
-        if knight2.hp <= 0:
-            knight2.hp = 0
+        knight1.hp = 0 if knight1.hp <= 0 else knight1.hp
+        knight2.hp = 0 if knight2.hp <= 0 else knight2.hp
 
         results[knight1.name] = knight1.hp
         results[knight2.name] = knight2.hp
 
     return results
+
+
+if __name__ == "__main__":
+    print(battle(KNIGHTS))

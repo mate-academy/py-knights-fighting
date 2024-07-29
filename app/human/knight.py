@@ -4,6 +4,8 @@ from app.equipment.weapon import Weapon
 
 
 class Knight:
+    UPGRADES = (Armor, Weapon, Potion)
+
     def __init__(self, name: str, power: int, hp: int, armor: int = 0) -> None:
         self.name = name
         self.power = power
@@ -15,5 +17,5 @@ class Knight:
 
     def prepare_for_battle(self, config: dict) -> None:
         self.config = config
-        for cl in (Armor, Weapon, Potion):
-            cl.apply(self, self.config)
+        for upgrade_class in Knight.UPGRADES:
+            upgrade_class.apply(self, self.config)

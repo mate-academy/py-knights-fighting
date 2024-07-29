@@ -10,13 +10,8 @@ class Potion(Equipment):
 
     @classmethod
     def apply(cls, knight: Any, source: dict) -> None:
-        potion_data = (
-            source.get(knight.name.lower(),
-                       source.get(knight.name.replace(" ", "_").lower(), {})
-                       ).get("potion", None)
-        )
-        if potion_data:
-            potion_effect = potion_data["effect"]
+        if source.get("potion"):
+            potion_effect = source["potion"]["effect"]
             for characteristic_name, value in potion_effect.items():
                 if characteristic_name == "power":
                     knight.power += value

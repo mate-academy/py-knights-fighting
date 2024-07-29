@@ -10,19 +10,6 @@ class Weapon(Equipment):
 
     @classmethod
     def apply(cls, knight: Any, source: dict) -> None:
-        weapon_data = (
-            source.get(
-                knight.name.lower(),
-                source.get(
-                    knight.name.replace(" ", "_").lower(), {}
-                )
-            ).get("weapon", None)
-        )
-        if weapon_data:
-            knight.weapon = (
-                Weapon(
-                    name=weapon_data["name"],
-                    power=weapon_data["power"]
-                )
-            )
-            knight.power += knight.weapon.power
+        knight.weapon = (
+            Weapon(source["weapon"]["name"], source["weapon"]["power"]))
+        knight.power += knight.weapon.power
