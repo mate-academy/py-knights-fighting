@@ -18,4 +18,4 @@ class Potion(Equipment):
                 elif characteristic_name == "hp":
                     knight.hp += value
                 elif characteristic_name == "protection":
-                    knight.armor += value
+                    knight.protection += value

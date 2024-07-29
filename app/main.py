@@ -94,7 +94,6 @@ def battle(knights_config: dict) -> None:
         knight = Knight(config["name"], config["power"], config["hp"])
         knight.prepare_for_battle(config)
         knights[knight.name] = knight
-        print(knight.__dict__)
 
     fight_pairs = [
         ("Lancelot", "Mordred"),
@@ -107,8 +106,8 @@ def battle(knights_config: dict) -> None:
         knight1 = knights[knight1_name]
         knight2 = knights[knight2_name]
 
-        knight1.hp -= knight2.power - knight1.armor
-        knight2.hp -= knight1.power - knight2.armor
+        knight1.hp -= knight2.power - knight1.protection
+        knight2.hp -= knight1.power - knight2.protection
 
         knight1.hp = 0 if knight1.hp <= 0 else knight1.hp
         knight2.hp = 0 if knight2.hp <= 0 else knight2.hp
@@ -117,7 +116,3 @@ def battle(knights_config: dict) -> None:
         results[knight2.name] = knight2.hp
 
     return results
-
-
-if __name__ == "__main__":
-    print(battle(KNIGHTS))

@@ -6,11 +6,17 @@ from app.equipment.weapon import Weapon
 class Knight:
     UPGRADES = (Armor, Weapon, Potion)
 
-    def __init__(self, name: str, power: int, hp: int, armor: int = 0) -> None:
+    def __init__(
+        self,
+        name: str,
+        power: int,
+        hp: int,
+        protection: int = 0
+    ) -> None:
         self.name = name
         self.power = power
         self.hp = hp
-        self.armor = armor
+        self.protection = protection
         self.equip_list = None
         self.weapon = None
         self.config = None
