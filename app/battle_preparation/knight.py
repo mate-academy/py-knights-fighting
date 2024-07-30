@@ -2,6 +2,8 @@ from __future__ import annotations
 
 
 class Knight:
+    KNIGHTS = []
+
     def __init__(self, name: str, power: int, hp: int) -> None:
         self.name = name
         self.power = power
@@ -10,6 +12,7 @@ class Knight:
         self.equipment = None
         self.liquid = None
         self.weapon = None
+        Knight.KNIGHTS.append({self.name: self})
 
     def get_ready_for_battle(
             self,
@@ -40,6 +43,13 @@ class Knight:
     def prepare_weapon(self, divine_weapon: dict) -> None:
         self.weapon = Weapon(divine_weapon["name"], divine_weapon["power"])
         self.power += self.weapon.power
+
+    def print_info(self) -> None:
+        print(
+            f"Name: {self.name}\n"
+            f"Power: {self.power}, HP: {self.hp}, "
+            f"Protection: {self.protection}"
+        )
 
 
 class Armour:
