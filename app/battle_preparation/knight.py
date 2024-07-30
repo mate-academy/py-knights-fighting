@@ -17,30 +17,29 @@ class Knight:
             miracle_potion: dict,
             divine_weapon: dict
     ) -> None:
-        armour = Armour.prepare_armour(armor_parts)
-        self.consider_armour_effect(armour)
-        potion = Potion.drink_potion(miracle_potion)
-        if potion:
-            self.consider_potion_effect(potion)
-        weapon = Weapon.prepare_weapon(divine_weapon)
-        self.consider_weapon(weapon)
+        self.prepare_armor(armor_parts)
+        if miracle_potion:
+            self.drink_potion(miracle_potion)
+        self.prepare_weapon(divine_weapon)
 
-    def consider_potion_effect(self, potion: Potion) -> None:
-        if "hp" in potion.effect:
-            self.hp += potion.effect["hp"]
-        if "power" in potion.effect:
-            self.power += potion.effect["power"]
-        if "protection" in potion.effect:
-            self.protection += potion.effect["protection"]
-        self.liquid = potion.name
+    def drink_potion(self, miracle_potion: dict) -> None:
+        self.liquid = Potion(miracle_potion["name"], miracle_potion["effect"])
+        self.hp += self.liquid.effect.get("hp", 0)
+        self.power += self.liquid.effect.get("power", 0)
+        self.protection += self.liquid.effect.get("protection", 0)
 
-    def consider_armour_effect(self, armour: Armour) -> None:
-        self.protection = armour.protection
-        self.equipment = armour.equipment
+    def prepare_armor(self, armor_parts: list) -> None:
+        protection = 0
+        equipment = []
+        for part in armor_parts:
+            equipment.append(part["part"])
+            protection += part["protection"]
+        self.equipment = Armour(equipment, protection)
+        self.protection = self.equipment.protection
 
-    def consider_weapon(self, weapon: Weapon) -> None:
-        self.power += weapon.power
-        self.weapon = weapon.name
+    def prepare_weapon(self, divine_weapon: dict) -> None:
+        self.weapon = Weapon(divine_weapon["name"], divine_weapon["power"])
+        self.power += self.weapon.power
 
 
 class Armour:
@@ -48,14 +47,8 @@ class Armour:
         self.equipment = equipment
         self.protection = protection
 
-    @classmethod
-    def prepare_armour(cls, parts: list) -> Armour:
-        protection = 0
-        equipment = []
-        for part in parts:
-            equipment.append(part["part"])
-            protection += part["protection"]
-        return cls(equipment, protection)
+    def __str__(self) -> str:
+        return f"Equipment: {self.equipment}\nProtection: {self.protection}"
 
 
 class Weapon:
@@ -63,9 +56,8 @@ class Weapon:
         self.name = name
         self.power = power
 
-    @classmethod
-    def prepare_weapon(cls, weapon: dict) -> Weapon:
-        return cls(weapon["name"], weapon["power"])
+    def __str__(self) -> str:
+        return f"Name: {self.name}\nPower: {self.power}"
 
 
 class Potion:
@@ -73,7 +65,5 @@ class Potion:
         self.name = name
         self.effect = effect
 
-    @classmethod
-    def drink_potion(cls, potion: dict) -> Potion:
-        if potion:
-            return cls(potion["name"], potion["effect"])
+    def __str__(self) -> str:
+        return f"Name: {self.name}\nEffect: {self.effect}"
