@@ -24,9 +24,14 @@ class Knight:
         if miracle_potion:
             self.drink_potion(miracle_potion)
         self.prepare_weapon(divine_weapon)
+        self.consider_effects()
 
     def drink_potion(self, miracle_potion: dict) -> None:
         self.liquid = Potion(miracle_potion["name"], miracle_potion["effect"])
+
+    def consider_potion_effect(self) -> None:
+        if not self.liquid:
+            return
         self.hp += self.liquid.effect.get("hp", 0)
         self.power += self.liquid.effect.get("power", 0)
         self.protection += self.liquid.effect.get("protection", 0)
@@ -38,10 +43,19 @@ class Knight:
             equipment.append(part["part"])
             protection += part["protection"]
         self.equipment = Armour(equipment, protection)
+
+    def consider_effects(self) -> None:
+        self.consider_armor_effect()
+        self.consider_potion_effect()
+        self.consider_sword_effect()
+
+    def consider_armor_effect(self) -> None:
         self.protection = self.equipment.protection
 
     def prepare_weapon(self, divine_weapon: dict) -> None:
         self.weapon = Weapon(divine_weapon["name"], divine_weapon["power"])
+
+    def consider_sword_effect(self) -> None:
         self.power += self.weapon.power
 
     def print_info(self) -> None:
