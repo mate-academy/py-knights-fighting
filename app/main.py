@@ -90,10 +90,8 @@ KNIGHTS = {
 }
 
 
-def find_knight_by_name(knights: list[Knight], name: str) -> Knight | None:
-    for knight in knights:
-        if knight.name == name:
-            return knight
+def unpack_knights(knights: list[Knight]) -> dict:
+    return {knight.name: knight for knight in knights}
 
 
 def battle(knights_config: dict) -> dict:
@@ -102,14 +100,19 @@ def battle(knights_config: dict) -> dict:
     prepared_knights = knights_preparation(knights_obj_list)
 
     battle_lists = []
-    lancelot = find_knight_by_name(prepared_knights, "Lancelot")
-    mordred = find_knight_by_name(prepared_knights, "Mordred")
+    unpacked_knights = unpack_knights(prepared_knights)
 
-    battle_lists.append(start_battle(lancelot, mordred))
+    battle_lists.append(start_battle(
+        unpacked_knights["Lancelot"],
+        unpacked_knights["Mordred"]
+    ))
 
-    arthur = find_knight_by_name(prepared_knights, "Arthur")
-    red_knight = find_knight_by_name(prepared_knights, "Red Knight")
-
-    battle_lists.append(start_battle(arthur, red_knight))
+    battle_lists.append(start_battle(
+        unpacked_knights["Arthur"],
+        unpacked_knights["Red Knight"]
+    ))
 
     return get_battle_results(battle_lists)
+
+
+print(battle(KNIGHTS))
