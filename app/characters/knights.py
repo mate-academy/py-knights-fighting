@@ -33,20 +33,21 @@ class Knight:
         self.power += weapon.power
 
     def drink_potion(self, potion: Potion) -> None:
-        if potion:
-            print(f"{self.name} drank {potion.name}.")
-            if "power" in potion.effect:
-                self.power += potion.effect["power"]
-            if "hp" in potion.effect:
-                self.hp += potion.effect["hp"]
-            if "protection" in potion.effect:
-                self.protection += potion.effect["protection"]
+        if not potion:
+            return
+        print(f"{self.name} drank {potion.name}.")
+        if "power" in potion.effect:
+            self.power += potion.effect["power"]
+        if "hp" in potion.effect:
+            self.hp += potion.effect["hp"]
+        if "protection" in potion.effect:
+            self.protection += potion.effect["protection"]
 
     def fight_with(self, other: Knight) -> None:
         self.hp -= other.power - self.protection
         other.hp -= self.power - other.protection
 
     def check_hp(self) -> None:
-        if self.hp < 0:
+        if self.hp <= 0:
             print(f"{self.name} fell in the battle!")
             self.hp = 0
