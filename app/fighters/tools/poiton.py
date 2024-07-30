@@ -9,7 +9,7 @@ class Potion:
     @classmethod
     def get_instance(cls, potion: dict) -> None | Potion:
         if potion:
-            return cls(name=potion["name"], effect=potion["effect"])
+            return cls(**potion)
 
     def if_effect_exist_return_value(self, effect_name: str) -> int:
         if effect_name in self.effect:

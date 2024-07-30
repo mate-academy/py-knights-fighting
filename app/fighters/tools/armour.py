@@ -8,7 +8,4 @@ class Armour:
 
     @classmethod
     def get_instances(cls, armours: list) -> list[Armour]:
-        return [
-            cls(part=armour["part"], protection=armour["protection"])
-            for armour in armours
-        ]
+        return [cls(**armour) for armour in armours]

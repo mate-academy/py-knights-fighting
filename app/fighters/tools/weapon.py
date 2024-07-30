@@ -8,4 +8,4 @@ class Weapon:
 
     @classmethod
     def get_instance(cls, weapon: dict) -> Weapon:
-        return cls(name=weapon["name"], power=weapon["power"])
+        return cls(**weapon)
