@@ -1,5 +1,6 @@
 from app.knight import Knight
 
+
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
@@ -91,10 +92,10 @@ KNIGHTS = {
 def battle(knights_dict: dict) -> dict:
     # BATTLE PREPARATIONS:
 
-    lancelot = Knight.parse_from_dict(knights_dict["lancelot"])
-    arthur = Knight.parse_from_dict(knights_dict["arthur"])
-    mordred = Knight.parse_from_dict(knights_dict["mordred"])
-    red_knight = Knight.parse_from_dict(knights_dict["red_knight"])
+    lancelot = Knight.from_dict(knights_dict["lancelot"])
+    arthur = Knight.from_dict(knights_dict["arthur"])
+    mordred = Knight.from_dict(knights_dict["mordred"])
+    red_knight = Knight.from_dict(knights_dict["red_knight"])
 
     # ------------------------------------------------------------------------
     # BATTLE:

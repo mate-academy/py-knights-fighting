@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from app.gear.armor_part import ArmorPart
 from app.gear.weapon import Weapon
 from app.items.potion import Potion
@@ -24,8 +26,8 @@ class Knight:
         self.protection = 0
         self.apply_gear_and_items()
 
-    @staticmethod
-    def parse_from_dict(knight_dict: dict) -> "Knight":
+    @classmethod
+    def from_dict(cls, knight_dict: dict) -> Knight:
         name = knight_dict["name"]
         power = knight_dict["power"]
         hp = knight_dict["hp"]
@@ -45,10 +47,11 @@ class Knight:
             if knight_dict["potion"]
             else None
         )
-        return Knight(name, power, hp, armor, weapon, potion)
+        return cls(name, power, hp, armor, weapon, potion)
 
     def apply_gear_and_items(self) -> None:
         self.hp = self.base_hp
+        self.power = self.base_power
         self.protection = 0
         for armor_part in self.armor:
             self.protection += armor_part.protection
@@ -56,7 +59,7 @@ class Knight:
         if self.potion:
             self.potion.apply(self)
 
-    def attack(self, opponent: "Knight") -> None:
+    def attack(self, opponent: Knight) -> None:
         damage = (
             self.power - opponent.protection
             if self.power - opponent.protection > 0
