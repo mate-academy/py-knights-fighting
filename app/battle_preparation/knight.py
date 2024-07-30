@@ -51,6 +51,13 @@ class Knight:
             f"Protection: {self.protection}"
         )
 
+    def __repr__(self) -> str:
+        return (
+            f"Name: {self.name} "
+            f"Power: {self.power}, HP: {self.hp}, "
+            f"Protection: {self.protection}\n"
+        )
+
 
 class Armour:
     def __init__(self, equipment: list, protection: int) -> None:
