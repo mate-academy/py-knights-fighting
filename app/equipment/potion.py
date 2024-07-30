@@ -9,13 +9,15 @@ class Potion(Equipment):
         self.effect = effect
 
     @classmethod
-    def apply(cls, knight: Any, source: dict) -> None:
-        if source.get("potion"):
-            potion_effect = source["potion"]["effect"]
-            for characteristic_name, value in potion_effect.items():
-                if characteristic_name == "power":
-                    knight.power += value
-                elif characteristic_name == "hp":
-                    knight.hp += value
-                elif characteristic_name == "protection":
-                    knight.protection += value
+    def apply(cls, knight: Any) -> None:
+        if not knight.equipment.get("potion"):
+            return
+
+        potion_effect = knight.equipment["potion"]["effect"]
+        for characteristic_name, value in potion_effect.items():
+            if characteristic_name == "power":
+                knight.power += value
+            elif characteristic_name == "hp":
+                knight.hp += value
+            elif characteristic_name == "protection":
+                knight.protection += value

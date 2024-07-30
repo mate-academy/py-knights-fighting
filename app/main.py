@@ -91,8 +91,8 @@ KNIGHTS = {
 def battle(knights_config: dict) -> None:
     knights = {}
     for config in knights_config.values():
-        knight = Knight(config["name"], config["power"], config["hp"])
-        knight.prepare_for_battle(config)
+        knight = Knight(**config)
+        knight.prepare_for_battle()
         knights[knight.name] = knight
 
     fight_pairs = [

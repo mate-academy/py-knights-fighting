@@ -7,5 +7,5 @@ class Equipment(ABC):
         self.name = name
 
     @abstractmethod
-    def apply(self, knight: Any, source: dict) -> None:
+    def apply(self, knight: Any) -> None:
         pass

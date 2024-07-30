@@ -4,12 +4,11 @@ from app.equipment.equipment import Equipment
 
 
 class Weapon(Equipment):
-    def __init__(self, name: str, power: int) -> None:
-        super().__init__(name)
-        self.power = power
+    def __init__(self, weapon_dict: dict) -> None:
+        super().__init__(weapon_dict.get("name"))
+        self.power = weapon_dict.get("power")
 
     @classmethod
-    def apply(cls, knight: Any, source: dict) -> None:
-        knight.weapon = (
-            Weapon(source["weapon"]["name"], source["weapon"]["power"]))
+    def apply(cls, knight: Any) -> None:
+        knight.weapon = Weapon(knight.equipment.get("weapon"))
         knight.power += knight.weapon.power
