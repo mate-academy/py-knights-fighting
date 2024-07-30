@@ -21,7 +21,7 @@ class Knight:
         self.protection = protection
 
     def get_armour(self) -> None:
-        self.protection = sum([elem["protection"] for elem in self.armour])
+        self.protection = sum(elem["protection"] for elem in self.armour)
 
     def get_weapon(self) -> None:
         self.power += self.weapon["power"]

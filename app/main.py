@@ -17,13 +17,13 @@ def battle(knights_config: dict) -> dict:
         )
         knight.get_ready()
         knights_list.append(knight)
-    (lancelot,
-     arthur,
-     mordred,
-     red_knight) = (knights_list[0],
-                    knights_list[1],
-                    knights_list[2],
-                    knights_list[3])
+    knights = [
+        knights_list[0],
+        knights_list[1],
+        knights_list[2],
+        knights_list[3]
+    ]
+    lancelot, arthur, mordred, red_knight = knights
 
     # -------------------------------------------------------------------------------
     # BATTLE:
