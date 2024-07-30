@@ -1,5 +1,6 @@
+from app.arena.battle import knights_preparation, start_battle, \
+    get_battle_results
 from app.fighters.knight import Knight
-from app.arena.battle import knights_preparation, start_battle
 
 KNIGHTS = {
     "lancelot": {
@@ -89,20 +90,26 @@ KNIGHTS = {
 }
 
 
+def find_knight_by_name(knights: list[Knight], name: str) -> Knight | None:
+    for knight in knights:
+        if knight.name == name:
+            return knight
+
+
 def battle(knights_config: dict) -> dict:
     # BATTLE PREPARATIONS:
     knights_obj_list = Knight.create_knight_objects(knights_config)
     prepared_knights = knights_preparation(knights_obj_list)
 
-    lancelot_mordred_battle_results = start_battle(
-        "Lancelot", "Mordred", prepared_knights)
+    battle_lists = []
+    lancelot = find_knight_by_name(prepared_knights, "Lancelot")
+    mordred = find_knight_by_name(prepared_knights, "Mordred")
 
-    arthur_red_battle_results = start_battle(
-        "Arthur", "Red Knight", lancelot_mordred_battle_results)
+    battle_lists.append(start_battle(lancelot, mordred))
 
-    result_of_battles = {knight.name: knight.hp
-                         for knight in arthur_red_battle_results}
-    return result_of_battles
+    arthur = find_knight_by_name(prepared_knights, "Arthur")
+    red_knight = find_knight_by_name(prepared_knights, "Red Knight")
 
+    battle_lists.append(start_battle(arthur, red_knight))
 
-print(battle(KNIGHTS))
+    return get_battle_results(battle_lists)
