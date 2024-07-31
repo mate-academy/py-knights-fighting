@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-from app.armour import Armour
-from app.weapon import Weapon
-from app.potion import Potion
+from app.equipment.armour import Armour
+from app.equipment.weapon import Weapon
+from app.equipment.potion import Potion
 
 
 class Knight:
@@ -11,34 +11,23 @@ class Knight:
             name: str,
             power: int,
             hp: int,
-            **kwargs
+            armour: Armour,
+            weapon: Weapon,
+            potion: Potion
     ) -> None:
         self.name = name
         self.power = power
         self.hp = hp
-        for key, value in kwargs.items():
-            setattr(self, key, value)
+        self.armours = armour
+        self.weapon = weapon
+        self.potion = potion
+        self.protection = 0
 
-    @staticmethod
-    def set_armours(armours: list) -> list[Armour] | None:
-        if not armours:
-            return None
-        return [
-            Armour(armour["part"], armour["protection"])
-            for armour in armours
-        ]
+    def get_power(self) -> int:
+        return self.power + self.weapon.power
 
-    @staticmethod
-    def set_weapon(weapon: dict) -> Weapon | None:
-        if not weapon:
-            return None
-        return Weapon(weapon["name"], weapon["power"])
-
-    @staticmethod
-    def set_potion(potion: dict) -> Potion | None:
-        if not potion:
-            return None
-        return Potion(potion["name"], potion["effect"])
+    def get_protection(self) -> int:
+        return self.protection + sum(armour.protection for armour in self.armours)
 
     def use_potion(self) -> None:
         if not self.potion:
@@ -51,13 +40,7 @@ class Knight:
             elif key == "protection":
                 self.protection += value
 
-    def __str__(self) -> str:
-        return (
-            f"Knight: {self.name} "
-            f"Power: {self.power} "
-            f"HP: {self.hp} "
-            f"Armour: {self.armour} "
-            f"Weapon: {self.weapon.__dict__} "
-            f"Potion: {self.potion} "
-            f"Protection: {self.protection}"
-        )
+    def duel_battle(self: Knight, other: Knight) -> None:
+        self.hp = self.hp - (other.get_power() - self.get_protection())
+        if self.hp < 0:
+            self.hp = 0
