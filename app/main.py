@@ -12,10 +12,10 @@ with open(file_path, "r") as file:
     knights = json.load(file)
 
 
-def battle(knights_list):
+def battle(knights_dict: dict) -> dict:
     rivals = {
         key: Knight(value)
-        for key, value in knights_list.items()
+        for key, value in knights_dict.items()
     }
 
     for knight in rivals.values():
