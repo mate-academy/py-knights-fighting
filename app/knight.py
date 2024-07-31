@@ -11,7 +11,7 @@ class Knight:
             name: str,
             power: int,
             hp: int,
-            armour: Armour,
+            armour: list[Armour],
             weapon: Weapon,
             potion: Potion
     ) -> None:
@@ -27,7 +27,9 @@ class Knight:
         return self.power + self.weapon.power
 
     def get_protection(self) -> int:
-        return self.protection + sum(armour.protection for armour in self.armours)
+        return (
+            self.protection + sum(armour.protection for armour in self.armours)
+        )
 
     def use_potion(self) -> None:
         if not self.potion:
