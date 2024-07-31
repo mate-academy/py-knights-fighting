@@ -33,9 +33,10 @@ class Knight:
             self.protection += item.protection
 
     def use_potion(self):
-        self.power += self.potion.effect.power
-        self.protection += self.potion.effect.power
-        self.hp += self.potion.effect.hp
+        for effect, value in vars(self.potion.effect).items():
+            new_value = self.__getattribute__(effect) + value
+            self.__setattr__(effect, new_value)
+
 
     def strike(self, other: "Knight"):
         other.hp -= self.power - other.protection
