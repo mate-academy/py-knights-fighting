@@ -10,7 +10,6 @@ KNIGHTS = {
         },
         "potion": None,
     },
-
     "arthur": {
         "name": "Arthur",
         "power": 45,
@@ -35,7 +34,6 @@ KNIGHTS = {
         },
         "potion": None,
     },
-
     "mordred": {
         "name": "Mordred",
         "power": 30,
@@ -63,7 +61,6 @@ KNIGHTS = {
             }
         }
     },
-
     "red_knight": {
         "name": "Red Knight",
         "power": 40,
