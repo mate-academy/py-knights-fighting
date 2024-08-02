@@ -1,4 +1,4 @@
-from knights.knight import Knight
+from app.knights.knight import Knight
 
 
 def prepare_knights(knights_config: dict) -> dict:

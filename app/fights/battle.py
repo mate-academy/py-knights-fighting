@@ -1,19 +1,23 @@
+from app.knights.knight import Knight
+
+
 def battle(knights: dict) -> dict:
-    lancelot = knights["lancelot"]
-    mordred = knights["mordred"]
-    arthur = knights["arthur"]
-    red_knight = knights["red_knight"]
 
-    lancelot.hp -= max(mordred.power - lancelot.protection, 0)
-    mordred.hp -= max(lancelot.power - mordred.protection, 0)
+    knights_objects = {name: Knight(**data)
+                       for name, data in knights.items()}
 
-    arthur.hp -= max(red_knight.power - arthur.protection, 0)
-    red_knight.hp -= max(arthur.power - red_knight.protection, 0)
+    matchups = [
+        ("lancelot", "mordred"),
+        ("arthur", "red_knight")
+    ]
 
-    results = {
-        lancelot.name: max(lancelot.hp, 0),
-        mordred.name: max(mordred.hp, 0),
-        arthur.name: max(arthur.hp, 0),
-        red_knight.name: max(red_knight.hp, 0),
-    }
+    for knight1_name, knight2_name in matchups:
+        knight1 = knights_objects[knight1_name]
+        knight2 = knights_objects[knight2_name]
+
+        knight1.attack(knight2)
+        knight2.attack(knight1)
+
+    results = {knight.name: max(knight.hp, 0)
+               for knight in knights_objects.values()}
     return results

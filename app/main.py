@@ -1,6 +1,6 @@
-from knights.knights_config import KNIGHTS
-from fights.battle_prep import prepare_knights
-from fights.battle import battle
+from app.knights.knights_config import KNIGHTS
+from app.fights.battle_prep import prepare_knights
+from app.fights.battle import battle
 
 
 def main() -> None:
