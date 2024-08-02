@@ -18,8 +18,11 @@ def knight_battle_preparations(knight: dict) -> dict:
     return knight
 
 
-def update_health_after_battle(first_knight: dict, second_knight: dict) -> \
-        None:
+def update_health_after_battle(
+        first_knight: dict,
+        second_knight: dict
+) -> None:
+
     first_knight["hp"] -= second_knight["power"] - first_knight["protection"]
     second_knight["hp"] -= first_knight["power"] - second_knight["protection"]
 
