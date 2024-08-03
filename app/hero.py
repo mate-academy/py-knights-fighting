@@ -71,7 +71,7 @@ class Hero:
 
         if self.armor:
             details = "".join(
-                f"\t{item["part"]} = {item["protection"]}\n"
+                f'\t{item["part"]} = {item["protection"]}\n'
                 for item in self.armor
             )
             hero_info += f'Armor: \n{details}'
