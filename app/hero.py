@@ -77,15 +77,11 @@ class Hero:
             hero_info += f'Armor: \n{details}'
 
         if self.potion:
-            hero_info += (
-                f'Potion: \n\t{self.potion.get("name")} '
-                f'{
-                    ", ".join(
-                        f'{stat} += {value}'
-                        for stat, value in self.potion.get("effect").items()
-                    )
-                }\n'
+            details = ", ".join(
+                f'{stat} += {value}'
+                for stat, value in self.potion.get("effect").items()
             )
+            hero_info += f'Potion: \n\t{self.potion.get("name")} {details}\n'
 
         hero_info += "-----------------------------------------------------\n"
         return hero_info
