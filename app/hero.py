@@ -71,12 +71,12 @@ class Hero:
 
         if self.armor:
             hero_info += (
-                f'Armor: \n{
-                    "".join(
-                        (list(f"\t{item["part"]} = {item["protection"]}\n"
-                              for item in self.armor))
+                f'Armor: \n{"".join(
+                    (
+                        list(f"\t{item["part"]} = {item["protection"]}\n"
+                            for item in self.armor)
                     )
-                }'
+                )}'
             )
 
         if self.potion:

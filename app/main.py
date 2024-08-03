@@ -1,7 +1,7 @@
 from app.hero import Hero
 
 
-def battle(config):
+def battle(config: dict) -> dict:
 
     lancelot = Hero.create_from_config(config.get("lancelot"))
     arthur = Hero.create_from_config(config.get("arthur"))
