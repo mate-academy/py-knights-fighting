@@ -57,10 +57,10 @@ class Hero:
     def __repr__(self) -> str:
         hero_info = ""
         hero_info += (
-            f'-----------------------------------------------------\n'
-            f'Name: {self.name}\n'
-            f'Power: {self.power}\n'
-            f'HP: {self.hp}\n'
+            f"-----------------------------------------------------\n"
+            f"Name: {self.name}\n"
+            f"Power: {self.power}\n"
+            f"HP: {self.hp}\n"
         )
 
         if self.weapon:
@@ -74,11 +74,11 @@ class Hero:
                 f'\t{item["part"]} = {item["protection"]}\n'
                 for item in self.armor
             )
-            hero_info += f'Armor: \n{details}'
+            hero_info += f"Armor: \n{details}"
 
         if self.potion:
             details = ", ".join(
-                f'{stat} += {value}'
+                f"{stat} += {value}"
                 for stat, value in self.potion.get("effect").items()
             )
             hero_info += f'Potion: \n\t{self.potion.get("name")} {details}\n'
