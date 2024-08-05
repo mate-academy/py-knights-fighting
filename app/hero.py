@@ -14,9 +14,9 @@ class Hero:
         self.name = name
         self.power = power
         self.hp = hp
-        self.armor = armor if armor else []
-        self.weapon = weapon if weapon else {}
-        self.potion = potion if potion else {}
+        self.armor = armor or []
+        self.weapon = weapon or {}
+        self.potion = potion or {}
         self.protection = 0
 
     @classmethod
@@ -31,13 +31,11 @@ class Hero:
         )
 
     def put_on_armor(self) -> None:
-        if self.armor:
-            for item in self.armor:
-                self.protection += item["protection"]
+        for item in self.armor:
+            self.protection += item["protection"]
 
     def take_weapon(self) -> None:
-        if self.weapon:
-            self.power += self.weapon["power"]
+        self.power += self.weapon["power"]
 
     def drink_potion(self) -> None:
         if self.potion:
