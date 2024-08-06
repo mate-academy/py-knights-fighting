@@ -48,5 +48,5 @@ class Knight:
         if self.hp < 0:
             self.is_dead()
 
-    def is_dead(self):
+    def is_dead(self) -> None:
         self.hp = 0
