@@ -10,7 +10,7 @@ def base_knights_config():
             "name": "Lancelot",
             "power": 35,
             "hp": 100,
-            "armours": [],
+            "armour": [],
             "weapon": {
                 "name": "Metal Sword",
                 "power": 50,
@@ -21,7 +21,7 @@ def base_knights_config():
             "name": "Arthur",
             "power": 45,
             "hp": 75,
-            "armours": [
+            "armour": [
                 {
                     "part": "helmet",
                     "protection": 15,
@@ -45,7 +45,7 @@ def base_knights_config():
             "name": "Mordred",
             "power": 30,
             "hp": 90,
-            "armours": [
+            "armour": [
                 {
                     "part": "breastplate",
                     "protection": 15,
@@ -72,7 +72,7 @@ def base_knights_config():
             "name": "Red Knight",
             "power": 40,
             "hp": 70,
-            "armours": [
+            "armour": [
                 {
                     "part": "breastplate",
                     "protection": 25,
@@ -122,7 +122,7 @@ def test_red_knight_overpowered(base_knights_config):
 
 
 def test_lancelot_has_armour(base_knights_config):
-    base_knights_config["lancelot"]["armours"].append({
+    base_knights_config["lancelot"]["armour"].append({
         "part": "helmet",
         "protection": 25,
     })
@@ -146,9 +146,9 @@ def test_mordred_sword_is_not_poisoned(base_knights_config):
 
 
 def test_arthur_armour_weak(base_knights_config):
-    base_knights_config["arthur"]["armours"][0]["protection"] -= 10
-    base_knights_config["arthur"]["armours"][1]["protection"] -= 10
-    base_knights_config["arthur"]["armours"][0]["protection"] -= 10
+    base_knights_config["arthur"]["armour"][0]["protection"] -= 10
+    base_knights_config["arthur"]["armour"][1]["protection"] -= 10
+    base_knights_config["arthur"]["armour"][0]["protection"] -= 10
     assert battle(base_knights_config) == {
         "Lancelot": 0,
         "Arthur": 0,

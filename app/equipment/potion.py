@@ -8,6 +8,4 @@ class Potion:
 
     @classmethod
     def create_potion(cls, potion: dict) -> Potion | None:
-        if not potion:
-            return None
-        return cls(potion["name"], potion["effect"])
+        return cls(potion["name"], potion["effect"]) if potion else None

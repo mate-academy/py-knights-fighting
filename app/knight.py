@@ -34,6 +34,7 @@ class Knight:
     def use_potion(self) -> None:
         if not self.potion:
             return
+
         for key, value in self.potion.effect.items():
             if key == "power":
                 self.power += value
@@ -43,6 +44,9 @@ class Knight:
                 self.protection += value
 
     def duel_battle(self: Knight, other: Knight) -> None:
-        self.hp = self.hp - (other.get_power() - self.get_protection())
+        self.hp -= other.get_power() - self.get_protection()
         if self.hp < 0:
-            self.hp = 0
+            self.is_dead()
+
+    def is_dead(self):
+        self.hp = 0

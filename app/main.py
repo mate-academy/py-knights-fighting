@@ -8,6 +8,7 @@ def battle(knights_config: dict) -> dict[str, int]:
     knights = create_knights(knights_config)
     for knight in knights:
         knight.use_potion()
+
     return fight(*knights)
 
 
@@ -17,7 +18,7 @@ def create_knights(knights_config: dict) -> list:
             stats["name"],
             stats["power"],
             stats["hp"],
-            Armour.create_armours(stats["armours"]),
+            Armour.create_armours(stats["armour"]),
             Weapon.create_weapon(stats["weapon"]),
             Potion.create_potion(stats["potion"])
         )

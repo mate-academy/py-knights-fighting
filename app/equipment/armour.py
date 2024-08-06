@@ -8,9 +8,7 @@ class Armour:
 
     @classmethod
     def create_armours(cls, armours: list) -> list[Armour] | []:
-        if not armours:
-            return []
         return [
             cls(armour["part"], armour["protection"])
             for armour in armours
-        ]
+        ] if armours else []
