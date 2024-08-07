@@ -1,20 +1,24 @@
-from typing import Dict
-from knight import Knight
+from typing import Dict, Any
+from app.knight import Knight
 
 
-def calculate_damage(attacker: "Knight", defender: "Knight") -> int:
-    damage = attacker.total_power - defender.total_protection
-    return max(damage, 0)
+def battle(knights_config: Dict[str, Any]) -> Dict[str, int]:
+    lancelot = Knight(**knights_config["lancelot"])
+    arthur = Knight(**knights_config["arthur"])
+    mordred = Knight(**knights_config["mordred"])
+    red_knight = Knight(**knights_config["red_knight"])
 
+    # Lancelot vs Mordred
+    lancelot.take_damage(mordred.power)
+    mordred.take_damage(lancelot.power)
 
-def battle(knight1: "Knight", knight2: "Knight") -> Dict[str, int]:
-    knight1_damage = calculate_damage(knight2, knight1)
-    knight2_damage = calculate_damage(knight1, knight2)
+    # Arthur vs Red Knight
+    arthur.take_damage(red_knight.power)
+    red_knight.take_damage(arthur.power)
 
-    knight1.total_hp -= knight1_damage
-    knight2.total_hp -= knight2_damage
-
-    knight1.total_hp = max(knight1.total_hp, 0)
-    knight2.total_hp = max(knight2.total_hp, 0)
-
-    return {knight1.name: knight1.total_hp, knight2.name: knight2.total_hp}
+    return {
+        lancelot.name: lancelot.hp,
+        arthur.name: arthur.hp,
+        mordred.name: mordred.hp,
+        red_knight.name: red_knight.hp,
+    }
