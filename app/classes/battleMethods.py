@@ -1,7 +1,7 @@
 from app.classes.knight import Knight
 
 
-def fight(k_1: Knight, k_2: Knight):
+def fight(k_1: Knight, k_2: Knight) -> None:
     attack(k_1, k_2)
     if_died(k_1)
     if_died(k_2)

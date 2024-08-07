@@ -3,23 +3,23 @@ from app.classes.knight import Knight
 from app.classes.battleMethods import fight, results
 
 
-def battle(knightsConfig) -> dict:
+def battle(knightsconfig: dict) -> dict:
     # BATTLE PREPARATIONS:
 
     # lancelot
-    lancelot = Knight(knightsConfig["lancelot"])
+    lancelot = Knight(knightsconfig["lancelot"])
     lancelot.full_equip()
 
     # arthur
-    arthur = Knight(knightsConfig["arthur"])
+    arthur = Knight(knightsconfig["arthur"])
     arthur.full_equip()
 
     # mordred
-    mordred = Knight(knightsConfig["mordred"])
+    mordred = Knight(knightsconfig["mordred"])
     mordred.full_equip()
 
     # red_knight
-    red_knight = Knight(knightsConfig["red_knight"])
+    red_knight = Knight(knightsconfig["red_knight"])
     red_knight.full_equip()
 
     # -------------------------------------------------------------------------------
