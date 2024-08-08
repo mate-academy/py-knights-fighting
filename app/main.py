@@ -1,25 +1,19 @@
 from app.config.knights import KNIGHTS
 from app.classes.knight import Knight
-from app.classes.battleMethods import fight, results
+from app.classes.battleMethods import fight, get_results
 
 
-def battle(knightsconfig: dict) -> dict:
-    # BATTLE PREPARATIONS:
-
-    # lancelot
-    lancelot = Knight(knightsconfig["lancelot"])
+def battle(knights_config: dict) -> dict:
+    lancelot = Knight(knights_config["lancelot"])
     lancelot.full_equip()
 
-    # arthur
-    arthur = Knight(knightsconfig["arthur"])
+    arthur = Knight(knights_config["arthur"])
     arthur.full_equip()
 
-    # mordred
-    mordred = Knight(knightsconfig["mordred"])
+    mordred = Knight(knights_config["mordred"])
     mordred.full_equip()
 
-    # red_knight
-    red_knight = Knight(knightsconfig["red_knight"])
+    red_knight = Knight(knights_config["red_knight"])
     red_knight.full_equip()
 
     # -------------------------------------------------------------------------------
@@ -32,7 +26,7 @@ def battle(knightsconfig: dict) -> dict:
     fight(arthur, red_knight)
 
     # Return battle results:
-    return results(lancelot, arthur, mordred, red_knight)
+    return get_results(lancelot, arthur, mordred, red_knight)
 
 
 print(battle(KNIGHTS))
