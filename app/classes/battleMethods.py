@@ -13,7 +13,6 @@ def attack(knight_1: Knight, knight_2: Knight) -> None:
 
 
 def if_died(knight: Knight) -> None:
-    # check if someone fell in battle
     if knight.hp <= 0:
         knight.hp = 0
 
