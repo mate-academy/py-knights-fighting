@@ -5,11 +5,7 @@ class Knight:
     def __init__(self, parameters: dict) -> None:
         self.name = parameters["name"]
         self.hp = parameters["hp"]
-
-        self.protection = 0
-        for armour in parameters["armour"]:
-            self.protection += armour["protection"]
-
+        self.protection = sum([armour["protection"] for armour in parameters["armour"]])
         self.power = parameters["power"] + parameters["weapon"]["power"]
 
         if parameters["potion"] is not None:
@@ -23,9 +19,5 @@ class Knight:
                 self.hp += parameters["potion"]["effect"]["hp"]
 
     def knights_buttle(self, other: Knight) -> None:
-        self.hp -= other.power - self.protection
-        other.hp -= self.power - other.protection
-        if self.hp <= 0:
-            self.hp = 0
-        if other.hp <= 0:
-            other.hp = 0
+        self.hp = max(0, self.hp - (other.power - self.protection))
+        other.hp = max(0, other.hp - (self.power - other.protection))
