@@ -97,7 +97,7 @@ def battle(knightsconfig: dict) -> dict:
     red_knight = Knight(knightsconfig["red_knight"])
 
     # -------------------------------------------------------------------------------
-    # BATTLE-------DONE----------:
+    # BATTLE:
 
     lancelot.knights_buttle(mordred)
     arthur.knights_buttle(red_knight)
