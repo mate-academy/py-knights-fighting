@@ -10,14 +10,10 @@ class Knight:
         self.power = parameters["power"] + parameters["weapon"]["power"]
 
         if parameters["potion"] is not None:
-            if "power" in parameters["potion"]["effect"]:
-                self.power += parameters["potion"]["effect"]["power"]
-
-            if "protection" in parameters["potion"]["effect"]:
-                self.protection += parameters["potion"]["effect"]["protection"]
-
-            if "hp" in parameters["potion"]["effect"]:
-                self.hp += parameters["potion"]["effect"]["hp"]
+            self.power += parameters["potion"]["effect"].get("power", 0)
+            self.protection += (parameters["potion"]["effect"]
+                                .get("protection", 0))
+            self.hp += parameters["potion"]["effect"].get("hp", 0)
 
     def knights_buttle(self, other: Knight) -> None:
         self.hp = max(0, self.hp - (other.power - self.protection))
