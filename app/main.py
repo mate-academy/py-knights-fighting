@@ -1,5 +1,5 @@
 from typing import Dict, Any
-from app.classes import Knight
+from classes import Knight
 
 
 def battle(knights_config: Dict[str, Any]) -> Dict[str, int]:
