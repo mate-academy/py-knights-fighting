@@ -17,23 +17,41 @@ class Knight:
         self.final_protection = self.calculate_final_protection()
         self.final_power = self.calculate_final_power()
 
+    def calculate_final_stat(
+            self,
+            base_stat: int,
+            stat_name: str,
+            additional: int = 0
+    ) -> int:
+
+        final_stat = base_stat
+
+        final_stat += additional
+
+        if self.potion and stat_name in self.potion["effect"]:
+            final_stat += self.potion["effect"][stat_name]
+
+        return final_stat
+
     def calculate_final_hp(self) -> int:
-        hp = self.hp
-        if self.potion and "hp" in self.potion["effect"]:
-            hp += self.potion["effect"]["hp"]
-        return hp
+        return self.calculate_final_stat(
+            self.hp,
+            "hp"
+        )
 
     def calculate_final_protection(self) -> int:
-        protection = 0
-        for item in self.armour:
-            protection += item["protection"]
-
-        if self.potion and "protection" in self.potion["effect"]:
-            protection += self.potion["effect"]["protection"]
-        return protection
+        protection_from_armour = sum(
+            item["protection"] for item in self.armour
+        )
+        return self.calculate_final_stat(
+            0,
+            "protection",
+            protection_from_armour
+        )
 
     def calculate_final_power(self) -> int:
-        power = self.power + self.weapon["power"]
-        if self.potion and "power" in self.potion["effect"]:
-            power += self.potion["effect"]["power"]
-        return power
+        return self.calculate_final_stat(
+            self.power,
+            "power",
+            self.weapon["power"]
+        )

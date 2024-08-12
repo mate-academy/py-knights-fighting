@@ -1,42 +1,31 @@
 from app.classes import Knight
 
 
-def battle(knights_config: dict) -> dict:
-    knights = {}
+def damage_power(
+        fiter_one: Knight,
+        fiter_two: Knight
+) -> None:
+    damage = max(0, fiter_one.final_power - fiter_two.final_protection)
+    fiter_two.final_hp -= damage
 
-    for i in knights_config:
-        knights[i] = Knight(
-            knights_config[i]["name"],
-            knights_config[i]["power"],
-            knights_config[i]["hp"],
-            knights_config[i]["armour"],
-            knights_config[i]["weapon"],
-            knights_config[i]["potion"]
-        )
+
+def battle(knights_config: dict) -> dict:
+
+    knights = {
+        knight_name: Knight(**knight_data)
+        for knight_name, knight_data in knights_config.items()
+    }
 
     battles = [
         ("lancelot", "mordred"),
         ("arthur", "red_knight")
     ]
 
-    for first_fiter, second_fiter in battles:
-        power_second = knights[second_fiter].final_power
-        protection_first = knights[first_fiter].final_protection
-        damage_to_first = max(
-            0,
-            power_second - protection_first
-        )
-        knights[first_fiter].final_hp -= damage_to_first
+    for first_fighter, second_fighter in battles:
+        damage_power(knights[second_fighter], knights[first_fighter])
+        damage_power(knights[first_fighter], knights[second_fighter])
 
-        power_first = knights[first_fiter].final_power
-        protection_second = knights[second_fiter].final_protection
-        damage_to_second = max(
-            0,
-            power_first - protection_second
-        )
-        knights[second_fiter].final_hp -= damage_to_second
-
-    for knight in knights.values():
-        knight.final_hp = max(0, knight.final_hp)
-
-    return {knight.name: knight.final_hp for knight in knights.values()}
+    return {
+        knight.name:
+            max(0, knight.final_hp) for knight in knights.values()
+    }
