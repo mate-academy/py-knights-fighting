@@ -17,6 +17,9 @@ class Knight:
         self.armour = armour
         self.weapon = weapon
         self.potion = potion
+        self.setup()
+
+    def setup(self) -> None:
         self.apply_armour()
         self.apply_weapon()
         self.apply_potion()
@@ -28,14 +31,15 @@ class Knight:
         self.power = self.base_power + self.weapon["power"]
 
     def apply_potion(self) -> None:
+        self.hp = self.base_hp
         if self.potion:
             effect = self.potion["effect"]
-            self.hp = self.base_hp + effect.get("hp", 0)
+            self.hp += effect.get("hp", 0)
             self.power += effect.get("power", 0)
             self.protection += effect.get("protection", 0)
-        else:
-            self.hp = self.base_hp
 
     def __str__(self) -> str:
-        return f"{self.name}: HP={self.hp}, " \
-               f"Power={self.power}, Protection={self.protection}"
+        return f"{self.name}: " \
+               f"HP={self.hp}, " \
+               f"Power={self.power}, " \
+               f"Protection={self.protection}"
