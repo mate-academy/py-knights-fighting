@@ -44,9 +44,9 @@ class Knight:
         self.hp -= opponent.power - self.protection
         opponent.hp -= self.power - opponent.protection
 
-        if self.hp <= 0:
+        if self.hp < 0:
             self.hp = 0
-        elif opponent.hp <= 0:
+        elif opponent.hp < 0:
             opponent.hp = 0
 
         winner = self if self.hp > opponent.hp else opponent
