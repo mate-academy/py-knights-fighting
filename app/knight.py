@@ -39,7 +39,9 @@ class Knight:
             self.protection += effect.get("protection", 0)
 
     def __str__(self) -> str:
-        return f"{self.name}: " \
-               f"HP={self.hp}, " \
-               f"Power={self.power}, " \
-               f"Protection={self.protection}"
+        return (
+            f"{self.name}: "
+            f"HP={self.hp}, "
+            f"Power={self.power}, "
+            f"Protection={self.protection}"
+        )

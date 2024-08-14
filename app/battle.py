@@ -13,6 +13,6 @@ class Battle:
         self.knight1.hp = max(0, self.knight1.hp)
         self.knight2.hp = max(0, self.knight2.hp)
         return {
-            self.knight1.name: self.knight1.hp,
-            self.knight2.name: self.knight2.hp
+            self.knight1.name.title(): self.knight1.hp,
+            self.knight2.name.title(): self.knight2.hp
         }
