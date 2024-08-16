@@ -111,7 +111,6 @@ def battle(knightsConfig) -> dict: # noqa
         knight.apply_weapon()
         knight.apply_potion()
 
-
     # -------------------------------------------------------------------------------
     # BATTLE:
     pairs = [(lancelot, mordred), (arthur, red_knight)]
