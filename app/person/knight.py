@@ -25,9 +25,7 @@ class Knight:
 
     def apply_armour(self) -> None:
         self.__setattr__("protection", 0)
-
-        for armour in self.armour:
-            self.__dict__["protection"] += armour.protection
+        self.__dict__["protection"] = sum(armour.protection for armour in self.armour)
 
     def apply_weapon(self) -> None:
         self.power += self.weapon.power
@@ -35,4 +33,4 @@ class Knight:
     def apply_potion(self) -> None:
         if self.potion is not None:
             for stat, value in self.potion.effect.items():
-                self.__dict__[stat] += value
+                setattr(self, stat, getattr(self, stat) + value)

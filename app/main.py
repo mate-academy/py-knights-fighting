@@ -95,75 +95,36 @@ def battle(knightsConfig) -> dict: # noqa
     # lancelot
     lancelot = Knight(*knightsConfig["lancelot"].values())
 
-    # apply armour
-    lancelot.apply_armour()
-
-    # apply weapon
-    lancelot.apply_weapon()
-
-    # apply potion if exist
-    lancelot.apply_potion()
-
     # arthur
     arthur = Knight(*knightsConfig["arthur"].values())
-
-    # apply armour
-    arthur.apply_armour()
-
-    # apply weapon
-    arthur.apply_weapon()
-
-    # apply potion if exist
-    arthur.apply_potion()
 
     # mordred
     mordred = Knight(*knightsConfig["mordred"].values())
 
-    # apply armour
-    mordred.apply_armour()
-
-    # apply weapon
-    mordred.apply_weapon()
-
-    # apply potion if exist
-    mordred.apply_potion()
-
     # red_knight
     red_knight = Knight(*knightsConfig["red_knight"].values())
 
-    # apply armour
-    red_knight.apply_armour()
+    knights = [lancelot, arthur, mordred, red_knight]
 
-    # apply weapon
-    red_knight.apply_weapon()
+    for knight in knights:
+        knight.apply_armour()
+        knight.apply_weapon()
+        knight.apply_potion()
 
-    # apply potion if exist
-    red_knight.apply_potion()
 
     # -------------------------------------------------------------------------------
     # BATTLE:
+    pairs = [(lancelot, mordred), (arthur, red_knight)]
 
-    # 1 Lancelot vs Mordred:
-    lancelot.hp -= mordred.power - lancelot.protection
-    mordred.hp -= lancelot.power - mordred.protection
+    for first, second in pairs:
+        first.hp -= second.power - first.protection
+        second.hp -= first.power - second.protection
 
-    # check if someone fell in battle
-    if lancelot.hp <= 0:
-        lancelot.hp = 0
+        if first.hp <= 0:
+            first.hp = 0
 
-    if mordred.hp <= 0:
-        mordred.hp = 0
-
-    # 2 Arthur vs Red Knight:
-    arthur.hp -= red_knight.power - arthur.protection
-    red_knight.hp -= arthur.power - red_knight.protection
-
-    # check if someone fell in battle
-    if arthur.hp <= 0:
-        arthur.hp = 0
-
-    if red_knight.hp <= 0:
-        red_knight.hp = 0
+        if second.hp <= 0:
+            second.hp = 0
 
     # Return battle results:
     return {
@@ -172,6 +133,3 @@ def battle(knightsConfig) -> dict: # noqa
         mordred.name: mordred.hp,
         red_knight.name: red_knight.hp,
     }
-
-
-print(battle(KNIGHTS))
