@@ -12,7 +12,7 @@ At first, you have knights stats as dictionary:
 ```python
 KNIGHTS = {
     "red_knight": {
-        "name": "Red knight",
+        "name": "Red Knight",
         "power": 40,
         "hp": 70,
         "armour": [
@@ -77,8 +77,8 @@ x_knight_stats["hp"] -= red_knight_stats["power"] - x_knight_stats["protection"]
 So the result `hp` of this battle is:
 ```python
 battle_result_hp = {
-    "Red knight": 35,  # 80 - (70 - 25)
-    "X knight": 45,  # 100 - (90 - 35)
+    "Red Knight": 35,  # 80 - (70 - 25)
+    "X Knight": 45,  # 100 - (90 - 35)
 }
 ```
 
