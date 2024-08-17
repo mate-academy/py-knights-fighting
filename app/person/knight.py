@@ -24,7 +24,7 @@ class Knight:
             potion["effect"]) if potion else None
 
     def apply_armour(self) -> None:
-        setattr(self, "protection", 0 or sum(armour.protection 
+        setattr(self, "protection", 0 or sum(armour.protection
                                              for armour in self.armour))
 
     def apply_weapon(self) -> None:
