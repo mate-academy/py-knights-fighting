@@ -12,12 +12,11 @@ def create_knights(knight_config: dict) -> list:
             hp=knight["hp"],
             armour=[
                 Armour(
-                    part=el["part"], protection=el["protection"])
-                for el in knight["armour"]
+                    part=element["part"], protection=element["protection"])
+                for element in knight["armour"]
             ],
             weapon=Weapon(
-                name=knight["weapon"]["name"],
-                power=knight["weapon"]["power"]
+                **knight["weapon"]
             ),
             potion=Potion(
                 name=knight["potion"]["name"],
