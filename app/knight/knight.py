@@ -4,15 +4,15 @@ from app.equipment.potion import Potion
 
 
 class Knight:
-    def __init__(self,
-                 name: str,
-                 power: int,
-                 hp: int,
-                 armour: list[Armour],
-                 weapon: Weapon,
-                 potion: Potion | None
-                 ) -> None:
-
+    def __init__(
+            self,
+            name: str,
+            power: int,
+            hp: int,
+            armour: list[Armour],
+            weapon: Weapon,
+            potion: Potion | None
+    ) -> None:
         self.name = name
         self.power = power
         self.hp = hp
