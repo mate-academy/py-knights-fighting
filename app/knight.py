@@ -1,12 +1,14 @@
 class Knight:
-    def __init__(self,
-                 name: str,
-                 power: int,
-                 hp: int,
-                 armour: list,
-                 weapon: dict,
-                 potion: (dict, None),
-                 protection: int = 0) -> None:
+    def __init__(
+        self,
+        name: str,
+        power: int,
+        hp: int,
+        armour: list,
+        weapon: dict,
+        potion: (dict, None),
+        protection: int = 0,
+    ) -> None:
         self.name = name
         self.power = power
         self.hp = hp
@@ -16,8 +18,7 @@ class Knight:
         self.protection = protection
 
     def get_ready_to_battle(self) -> None:
-        self.protection += sum(item.
-                               get("protection", 0)
+        self.protection += sum(item.get("protection", 0)
                                for item in self.armour)
         self.power += self.weapon.get("power", 0)
 
@@ -30,7 +31,8 @@ class Knight:
 
     @classmethod
     def battle_preparations(cls, knight_dict: dict) -> dict:
-        knights = {knight: cls(**knight_dict[knight]) for knight in knight_dict}
+        knights = {knight: cls(**knight_dict[knight])
+                   for knight in knight_dict}
 
         for knight in knights.values():
             knight.get_ready_to_battle()

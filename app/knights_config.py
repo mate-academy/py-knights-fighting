@@ -26,7 +26,7 @@ knights = {
             {
                 "part": "boots",
                 "protection": 10,
-            }
+            },
         ],
         "weapon": {
             "name": "Two-handed Sword",
@@ -46,7 +46,7 @@ knights = {
             {
                 "part": "boots",
                 "protection": 10,
-            }
+            },
         ],
         "weapon": {
             "name": "Poisoned Sword",
@@ -58,8 +58,8 @@ knights = {
                 "power": +15,
                 "hp": -5,
                 "protection": +10,
-            }
-        }
+            },
+        },
     },
     "red_knight": {
         "name": "Red Knight",
@@ -71,16 +71,13 @@ knights = {
                 "protection": 25,
             }
         ],
-        "weapon": {
-            "name": "Sword",
-            "power": 45
-        },
+        "weapon": {"name": "Sword", "power": 45},
         "potion": {
             "name": "Blessing",
             "effect": {
                 "hp": +10,
                 "power": +5,
-            }
-        }
-    }
+            },
+        },
+    },
 }

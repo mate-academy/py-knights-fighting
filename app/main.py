@@ -17,7 +17,7 @@ def battle(dict_of_knight: dict) -> dict:
         lancelot.name: lancelot.hp,
         arthur.name: arthur.hp,
         mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp
+        red_knight.name: red_knight.hp,
     }
 
 
