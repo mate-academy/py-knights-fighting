@@ -1,8 +1,5 @@
 from app.battle.battle import battle
-from app.equipment.armour import Armour
-from app.equipment.weapon import Weapon
-from app.heroes.knight import Knight
-from app.potion.potion import Potion
+
 
 KNIGHTS = {
     "lancelot": {
@@ -90,18 +87,5 @@ KNIGHTS = {
         }
     }
 }
-knight_list = []
-for knight in KNIGHTS.values():
-    knight_list.append(Knight(knight["name"], knight["power"], knight["hp"],
-                              [Armour(arm["part"], arm["protection"])
-                               for arm in knight["armour"]],
-                              Weapon(knight["weapon"]["name"], knight["weapon"]["power"]),
-                              Potion(knight["potion"]["name"],knight["potion"]["effect"])
-                              if knight["potion"] is not None else None))
 
-for knight in KNIGHTS.values():
-    print(knight)
-
-print(battle(knight_list))
-
-
+print(battle(KNIGHTS))
