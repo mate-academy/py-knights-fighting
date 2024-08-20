@@ -3,14 +3,14 @@ from app.knight_config import knights
 
 
 def battle(dict_of_knight: dict) -> dict:
-    knights = Knight.battle_preparations(dict_of_knight)
+    fighter = Knight.battle_preparations(dict_of_knight)
 
-    lancelot = next(knight for knight in knights if knight.name == "Lancelot")
-    arthur = next(knight for knight in knights if knight.name == "Arthur")
-    mordred = next(knight for knight in knights if knight.name == "Mordred")
+    lancelot = next(knight for knight in fighter if knight.name == "Lancelot")
+    arthur = next(knight for knight in fighter if knight.name == "Arthur")
+    mordred = next(knight for knight in fighter if knight.name == "Mordred")
     red_knight = next(knight
                       for knight
-                      in knights
+                      in fighter
                       if knight.name == "Red Knight")
 
     Knight.result(lancelot, mordred)
