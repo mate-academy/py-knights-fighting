@@ -1,5 +1,5 @@
 from app.knight import Knight
-from app.knight_config import knights
+from app.knights_config import knights
 
 
 def battle(dict_of_knight: dict) -> dict:
