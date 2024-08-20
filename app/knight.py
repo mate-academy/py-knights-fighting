@@ -16,7 +16,9 @@ class Knight:
         self.protection = protection
 
     def get_ready_to_battle(self) -> None:
-        self.protection += sum(item.get("protection", 0) for item in self.armour)
+        self.protection += sum(item.
+                               get("protection", 0)
+                               for item in self.armour)
         self.power += self.weapon.get("power", 0)
         if self.potion:
             buff = self.potion.get("effect", {})
