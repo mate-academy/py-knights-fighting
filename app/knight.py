@@ -29,10 +29,10 @@ class Knight:
                     setattr(self, attr, current_value + buff[attr])
 
     @classmethod
-    def battle_preparations(cls, knight_dict: dict) -> list:
-        knights = [cls(**knight_dict[knight]) for knight in knight_dict]
+    def battle_preparations(cls, knight_dict: dict) -> dict:
+        knights = {knight: cls(**knight_dict[knight]) for knight in knight_dict}
 
-        for knight in knights:
+        for knight in knights.values():
             knight.get_ready_to_battle()
 
         return knights

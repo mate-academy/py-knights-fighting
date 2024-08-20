@@ -5,13 +5,10 @@ from app.knights_config import knights
 def battle(dict_of_knight: dict) -> dict:
     fighter = Knight.battle_preparations(dict_of_knight)
 
-    lancelot = next(knight for knight in fighter if knight.name == "Lancelot")
-    arthur = next(knight for knight in fighter if knight.name == "Arthur")
-    mordred = next(knight for knight in fighter if knight.name == "Mordred")
-    red_knight = next(knight
-                      for knight
-                      in fighter
-                      if knight.name == "Red Knight")
+    lancelot = fighter["lancelot"]
+    arthur = fighter["arthur"]
+    mordred = fighter["mordred"]
+    red_knight = fighter["red_knight"]
 
     Knight.result(lancelot, mordred)
     Knight.result(arthur, red_knight)
