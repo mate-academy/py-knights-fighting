@@ -19,10 +19,10 @@ class Knight:
         self.name = name
         self.power = power
         self.hp = hp
-        self.armour = self.parse_armour(armour)
+        self.armour = [Armour(**element) for element in armour]
         self.protection = 0
-        self.weapon = self.parse_weapon(weapon)
-        self.potion = self.parse_potion(potion)
+        self.weapon = Weapon(**weapon)
+        self.potion = Potion(**potion) if potion else None
 
     def get_ready_to_battle(self) -> Knight:
         self.power += self.weapon.power
@@ -55,16 +55,3 @@ class Knight:
         winner = self if self.hp > opponent.hp else opponent
         print(f"Winner of the battle {winner.name}!")
         return winner
-
-    @staticmethod
-    def parse_armour(armour: list[dict]) -> list[Armour]:
-        return [Armour(element["part"],
-                       element["protection"]) for element in armour]
-
-    @staticmethod
-    def parse_weapon(weapon: dict) -> Weapon:
-        return Weapon(**weapon)
-
-    @staticmethod
-    def parse_potion(potion: dict) -> Potion:
-        return Potion(**potion) if potion else None
