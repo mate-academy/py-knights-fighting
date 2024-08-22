@@ -7,19 +7,22 @@ from app.warrior.equipment.weapon import Weapon
 
 class Knight:
 
-    def __init__(self, name: str,
-                 power: int,
-                 hp: int,
-                 armour: list[Armour],
-                 weapon: Weapon,
-                 potion: Potion) -> None:
+    def __init__(
+            self,
+            name: str,
+            power: int,
+            hp: int,
+            armour: list[dict],
+            weapon: dict,
+            potion: dict
+    ) -> None:
         self.name = name
         self.power = power
         self.hp = hp
-        self.armour = armour
+        self.armour = self.parse_armour(armour)
         self.protection = 0
-        self.weapon = weapon
-        self.potion = potion
+        self.weapon = self.parse_weapon(weapon)
+        self.potion = self.parse_potion(potion)
 
     def get_ready_to_battle(self) -> Knight:
         self.power += self.weapon.power
@@ -52,3 +55,16 @@ class Knight:
         winner = self if self.hp > opponent.hp else opponent
         print(f"Winner of the battle {winner.name}!")
         return winner
+
+    @staticmethod
+    def parse_armour(armour: list[dict]) -> list[Armour]:
+        return [Armour(element["part"],
+                       element["protection"]) for element in armour]
+
+    @staticmethod
+    def parse_weapon(weapon: dict) -> Weapon:
+        return Weapon(**weapon)
+
+    @staticmethod
+    def parse_potion(potion: dict) -> Potion:
+        return Potion(**potion) if potion else None
