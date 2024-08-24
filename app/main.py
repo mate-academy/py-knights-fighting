@@ -1,25 +1,21 @@
 from app.hero import Hero
+from app.knights import KNIGHTS
 
 
 def battle(config: dict) -> dict:
+    if not config:
+        config = KNIGHTS
 
-    lancelot = Hero.create_from_config(config.get("lancelot"))
-    arthur = Hero.create_from_config(config.get("arthur"))
-    mordred = Hero.create_from_config(config.get("mordred"))
-    red_knight = Hero.create_from_config(config.get("red_knight"))
-
-    for knight in (lancelot, arthur, mordred, red_knight):
+    knights = {}
+    for hero_name, hero_data in config.items():
+        knight = Hero.create_from_config(config.get(hero_name))
         knight.prepare_to_battle()
+        knights[knight.name] = knight
 
-    lancelot.attack(mordred)
-    mordred.attack(lancelot)
+    battles = (("Lancelot", "Mordred"), ("Arthur", "Red Knight"))
 
-    arthur.attack(red_knight)
-    red_knight.attack(arthur)
+    for first_knight, second_knight in battles:
+        knights[first_knight].attack(knights[second_knight])
+        knights[second_knight].attack(knights[first_knight])
 
-    return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
-    }
+    return {name: knight.hp for name, knight in knights.items()}

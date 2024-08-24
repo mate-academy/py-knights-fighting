@@ -1,85 +1,97 @@
 from __future__ import annotations
 
+from app.equipment.armor import Armor
+from app.equipment.potion import Potion
+from app.equipment.weapon import Weapon
+
 
 class Hero:
     def __init__(
-            self,
-            name: str = "Default knight",
-            power: int = 20,
-            hp: int = 50,
-            armor: list = None,
-            weapon: dict = None,
-            potion: dict = None
+        self,
+        name: str = "Default knight",
+        power: int = 20,
+        hp: int = 50,
+        armor: list[Armor] = None,
+        weapon: Weapon = None,
+        potion: Potion = None
     ) -> None:
         self.name = name
         self.power = power
         self.hp = hp
         self.armor = armor or []
-        self.weapon = weapon or {}
-        self.potion = potion or {}
+        self.weapon = weapon
+        self.potion = potion
         self.protection = 0
 
     @classmethod
     def create_from_config(cls, config: dict) -> Hero:
+        armor_items = [
+            Armor(item["part"], item["protection"])
+            for item in config.get("armour", [])
+        ]
+        weapon_item = Weapon(
+            config["weapon"]["name"], config["weapon"]["power"]
+        ) if config.get("weapon") else None
+        potion_item = Potion(
+            config["potion"]["name"], config["potion"]["effect"]
+        ) if config.get("potion") else None
+
         return cls(
             name=config.get("name"),
             power=config.get("power"),
             hp=config.get("hp"),
-            armor=config.get("armour"),
-            weapon=config.get("weapon"),
-            potion=config.get("potion")
+            armor=armor_items,
+            weapon=weapon_item,
+            potion=potion_item
         )
 
-    def put_on_armor(self) -> None:
+    def equip_armor(self) -> None:
         for item in self.armor:
-            self.protection += item["protection"]
+            item.apply_effect(self)
 
-    def take_weapon(self) -> None:
-        self.power += self.weapon["power"]
+    def equip_weapon(self) -> None:
+        if self.weapon:
+            self.weapon.apply_effect(self)
 
     def drink_potion(self) -> None:
         if self.potion:
-            for name, value in self.potion["effect"].items():
-                self.__dict__[name] += value
+            self.potion.apply_effect(self)
 
     def prepare_to_battle(self) -> None:
-        self.put_on_armor()
-        self.take_weapon()
+        self.equip_armor()
+        self.equip_weapon()
         self.drink_potion()
 
     def attack(self, target: Hero) -> None:
-        target.hp -= self.power - target.protection
+        damage = self.power - target.protection
+        target.hp -= max(damage, 0)
         if target.hp < 0:
             target.hp = 0
 
     def __repr__(self) -> str:
-        hero_info = ""
-        hero_info += (
-            f"-----------------------------------------------------\n"
+        hero_info = (
+            "-----------------------------------------------------\n"
             f"Name: {self.name}\n"
             f"Power: {self.power}\n"
             f"HP: {self.hp}\n"
         )
 
         if self.weapon:
-            hero_info += (
-                f'Weapon: \n\t{self.weapon.get("name")}, '
-                f'power = {self.weapon.get("power")}\n'
-            )
+            hero_info += (f"Weapon: \n\t{self.weapon.name}, "
+                          f"power = {self.weapon.power}\n")
 
         if self.armor:
             details = "".join(
-                f'\t{item["part"]} = {item["protection"]}\n'
-                for item in self.armor
+                f"\t{item.name} = {item.protection}\n" for item in self.armor
             )
             hero_info += f"Armor: \n{details}"
 
         if self.potion:
             details = ", ".join(
                 f"{stat} += {value}"
-                for stat, value in self.potion.get("effect").items()
+                for stat, value in self.potion.effect.items()
             )
-            hero_info += f'Potion: \n\t{self.potion.get("name")} {details}\n'
+            hero_info += f"Potion: \n\t{self.potion.name} ({details})\n"
 
         hero_info += "-----------------------------------------------------\n"
         return hero_info
