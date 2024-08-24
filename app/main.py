@@ -6,15 +6,13 @@ from app.knight import Knight
 
 def battle(knights_config: dict) -> dict[str, int]:
     knights = create_knights(knights_config)
-    for knight in knights:
-        knight.use_potion()
-
     return fight(*knights)
 
 
 def create_knights(knights_config: dict) -> list:
-    return [
-        Knight(
+    knights = []
+    for stats in knights_config.values():
+        knight = Knight(
             stats["name"],
             stats["power"],
             stats["hp"],
@@ -22,8 +20,10 @@ def create_knights(knights_config: dict) -> list:
             Weapon.create_weapon(stats["weapon"]),
             Potion.create_potion(stats["potion"])
         )
-        for stats in knights_config.values()
-    ]
+        knight.use_potion()
+        knights.append(knight)
+
+    return knights
 
 
 def fight(
