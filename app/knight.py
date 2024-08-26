@@ -14,8 +14,11 @@ class Knight:
         self.protection = 0
         self.armour = [Armour(armour) for armour in knight["armour"]]
         self.weapon = Weapon(knight["weapon"])
-        self.potion = Potion(knight["potion"]) if knight.get("potion") \
+        self.potion = (
+            Potion(knight["potion"])
+            if knight.get("potion")
             else None
+        )
 
     def apply_armour(self) -> None:
         for armour in self.armour:

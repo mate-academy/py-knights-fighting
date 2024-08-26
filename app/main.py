@@ -90,7 +90,7 @@ KNIGHTS = {
 
 def battle(knights_config: dict) -> dict:
     # BATTLE PREPARATIONS:
-    knight_names = [knight for knight in knights_config.keys()]
+    knight_names = [knight for knight in knights_config]
     knights = {}
 
     for name in knight_names:
