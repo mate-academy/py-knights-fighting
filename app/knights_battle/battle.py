@@ -5,18 +5,27 @@ def battle(knights_config: dict) -> dict:
     result = {}
 
     for element in knights_config:
-        knight = Knight(name="", power=0, hp=0, protection=0)
-        knight.adding_value_to_instance(knights_config[element])
-        knight.adding_potion_to_instance(knights_config[element])
+
+        knight = Knight(
+            name=knights_config[element]["name"],
+            power=knights_config[element]["power"],
+            hp=knights_config[element]["hp"],
+            protection=0
+        )
+
+        knight.apply_armour(knights_config[element])
+        knight.apply_weapon(knights_config[element])
+        knight.apply_potion(knights_config[element])
+
         result[knight.name] = knight
 
     battle_list = ["Lancelot", "Mordred", "Arthur", "Red Knight"]
 
-    for kn_name in range(0, len(battle_list) // 2 + 1, 2):
-        result[battle_list[kn_name]].fight(result[battle_list[kn_name + 1]])
+    for name in range(0, len(battle_list) // 2 + 1, 2):
+        result[battle_list[name]].fight(result[battle_list[name + 1]])
 
-    for kn_name in range(len(battle_list)):
-        result[battle_list[kn_name]].check_if_someone_fell_in_battle()
+    for name in range(len(battle_list)):
+        result[battle_list[name]].check_if_someone_fell_in_battle()
 
     return {
         result["Lancelot"].name: result["Lancelot"].hp,

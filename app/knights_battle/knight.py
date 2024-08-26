@@ -16,13 +16,13 @@ class Knight:
         self.hp = hp
         self.protection = protection
 
-    def adding_value_to_instance(self, element: dict) -> None:
-        self.name = element["name"]
-        self.power = element["power"] + element["weapon"]["power"]
-        self.hp = element["hp"]
-        self.protection = sum(a["protection"] for a in element["armour"])
+    def apply_armour(self, element: dict) -> None:
+        self.protection += sum(a["protection"] for a in element["armour"])
 
-    def adding_potion_to_instance(self, element: dict) -> None:
+    def apply_weapon(self, element: dict) -> None:
+        self.power += element["weapon"]["power"]
+
+    def apply_potion(self, element: dict) -> None:
         if element["potion"] is not None:
             for value in element["potion"]["effect"]:
                 if value == "power":
