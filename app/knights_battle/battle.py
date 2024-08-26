@@ -4,20 +4,16 @@ from app.knights_battle.knight import Knight
 def battle(knights_config: dict) -> dict:
     result = {}
 
-    for element in knights_config:
+    for knight in knights_config:
 
-        knight = Knight(
-            name=knights_config[element]["name"],
-            power=knights_config[element]["power"],
-            hp=knights_config[element]["hp"],
+        kn = Knight(
+            name=knights_config[knight]["name"],
+            power=knights_config[knight]["power"],
+            hp=knights_config[knight]["hp"],
             protection=0
         )
-
-        knight.apply_armour(knights_config[element])
-        knight.apply_weapon(knights_config[element])
-        knight.apply_potion(knights_config[element])
-
-        result[knight.name] = knight
+        kn.apply(knights_config[knight])
+        result[kn.name] = kn
 
     battle_list = ["Lancelot", "Mordred", "Arthur", "Red Knight"]
 

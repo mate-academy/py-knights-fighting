@@ -16,21 +16,26 @@ class Knight:
         self.hp = hp
         self.protection = protection
 
-    def apply_armour(self, element: dict) -> None:
-        self.protection += sum(a["protection"] for a in element["armour"])
+    def apply(self, knight: dict) -> None:
+        self.apply_armour(knight)
+        self.apply_weapon(knight)
+        self.apply_potion(knight)
 
-    def apply_weapon(self, element: dict) -> None:
-        self.power += element["weapon"]["power"]
+    def apply_armour(self, knight: dict) -> None:
+        self.protection += sum(el["protection"] for el in knight["armour"])
 
-    def apply_potion(self, element: dict) -> None:
-        if element["potion"] is not None:
-            for value in element["potion"]["effect"]:
+    def apply_weapon(self, knight: dict) -> None:
+        self.power += knight["weapon"]["power"]
+
+    def apply_potion(self, knight: dict) -> None:
+        if knight["potion"] is not None:
+            for value in knight["potion"]["effect"]:
                 if value == "power":
-                    self.power += element["potion"]["effect"][value]
+                    self.power += knight["potion"]["effect"][value]
                 if value == "hp":
-                    self.hp += element["potion"]["effect"][value]
+                    self.hp += knight["potion"]["effect"][value]
                 if value == "protection":
-                    self.protection += element["potion"]["effect"][value]
+                    self.protection += knight["potion"]["effect"][value]
 
     def fight(self, knight: Knight) -> None:
         self.hp -= knight.power - self.protection
