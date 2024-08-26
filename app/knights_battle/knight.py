@@ -22,6 +22,7 @@ class Knight:
         self.hp = element["hp"]
         self.protection = sum(a["protection"] for a in element["armour"])
 
+    def adding_potion_to_instance(self, element: dict) -> None:
         if element["potion"] is not None:
             for value in element["potion"]["effect"]:
                 if value == "power":

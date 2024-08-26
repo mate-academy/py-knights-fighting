@@ -1,28 +1,4 @@
-from app.knight import Knight
-
-
-def battle(knights_config: dict) -> dict:
-    result = {}
-
-    for element in knights_config:
-        knight = Knight(name="", power=0, hp=0, protection=0)
-        knight.adding_value_to_instance(knights_config[element])
-        result[knight.name] = knight
-
-    battle_list = ["Lancelot", "Mordred", "Arthur", "Red Knight"]
-
-    for i in range(0, len(battle_list) // 2 + 1, 2):
-        result[battle_list[i]].fight(result[battle_list[i + 1]])
-
-    for i in range(len(battle_list)):
-        result[battle_list[i]].check_if_someone_fell_in_battle()
-
-    return {
-        result["Lancelot"].name: result["Lancelot"].hp,
-        result["Arthur"].name: result["Arthur"].hp,
-        result["Mordred"].name: result["Mordred"].hp,
-        result["Red Knight"].name: result["Red Knight"].hp,
-    }
+from app.knights_battle.battle import battle
 
 
 KNIGHT = {
