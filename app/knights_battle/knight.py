@@ -8,15 +8,15 @@ class Knight:
             name: str,
             power: int,
             hp: int,
-            protection: int
+            protection: int,
+            knight: dict
     ) -> None:
 
         self.name = name
         self.power = power
         self.hp = hp
         self.protection = protection
-
-    def apply(self, knight: dict) -> None:
+        self.knight = knight
         self.apply_armour(knight)
         self.apply_weapon(knight)
         self.apply_potion(knight)

@@ -6,14 +6,14 @@ def battle(knights_config: dict) -> dict:
 
     for knight in knights_config:
 
-        kn = Knight(
+        instance = Knight(
             name=knights_config[knight]["name"],
             power=knights_config[knight]["power"],
             hp=knights_config[knight]["hp"],
-            protection=0
+            protection=0,
+            knight=knights_config[knight],
         )
-        kn.apply(knights_config[knight])
-        result[kn.name] = kn
+        result[instance.name] = instance
 
     battle_list = ["Lancelot", "Mordred", "Arthur", "Red Knight"]
 
