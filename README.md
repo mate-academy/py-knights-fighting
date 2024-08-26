@@ -15,7 +15,7 @@ KNIGHTS = {
         "name": "Red Knight",
         "power": 40,
         "hp": 70,
-        "armours": [
+        "armour": [
             {
                 "part": "breastplate",
                 "protection": 25,
