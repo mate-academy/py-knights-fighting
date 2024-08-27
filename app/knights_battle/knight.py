@@ -31,16 +31,29 @@ class Knight:
         if knight["potion"] is not None:
             for value in knight["potion"]["effect"]:
                 if value == "power":
-                    self.power += knight["potion"]["effect"][value]
+                    setattr(
+                        self,
+                        "power",
+                        knight["potion"]["effect"][value] + self.power
+                    )
+
                 if value == "hp":
-                    self.hp += knight["potion"]["effect"][value]
+                    setattr(
+                        self,
+                        "hp",
+                        knight["potion"]["effect"][value] + self.hp
+                    )
+
                 if value == "protection":
-                    self.protection += knight["potion"]["effect"][value]
+                    setattr(
+                        self,
+                        "protection",
+                        knight["potion"]["effect"][value] + self.protection
+                    )
 
     def fight(self, knight: Knight) -> None:
         self.hp -= knight.power - self.protection
         knight.hp -= self.power - knight.protection
 
     def check_if_someone_fell_in_battle(self) -> None:
-        if self.hp <= 0:
-            self.hp = 0
+        self.hp = max(0, self.hp)

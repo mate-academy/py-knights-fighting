@@ -17,15 +17,10 @@ def battle(knights_config: dict) -> dict:
 
     battle_list = ["Lancelot", "Mordred", "Arthur", "Red Knight"]
 
-    for name in range(0, len(battle_list) // 2 + 1, 2):
+    for name in range(0, len(battle_list), 2):
         result[battle_list[name]].fight(result[battle_list[name + 1]])
 
-    for name in range(len(battle_list)):
-        result[battle_list[name]].check_if_someone_fell_in_battle()
+    for knight in result.values():
+        knight.check_if_someone_fell_in_battle()
 
-    return {
-        result["Lancelot"].name: result["Lancelot"].hp,
-        result["Arthur"].name: result["Arthur"].hp,
-        result["Mordred"].name: result["Mordred"].hp,
-        result["Red Knight"].name: result["Red Knight"].hp,
-    }
+    return {name: result[name].hp for name in battle_list}
