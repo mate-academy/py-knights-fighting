@@ -1,3 +1,6 @@
+from app.heroes.knight import Knight
+
+
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
@@ -86,16 +89,16 @@ KNIGHTS = {
 }
 
 
-def battle(knightsConfig):
+def battle(knights_config: dict) -> dict:
     # BATTLE PREPARATIONS:
 
     # lancelot
-    lancelot = knightsConfig["lancelot"]
+    lancelot = knights_config["lancelot"]
 
     # apply armour
     lancelot["protection"] = 0
-    for a in lancelot["armour"]:
-        lancelot["protection"] += a["protection"]
+    for armour in lancelot["armour"]:
+        lancelot["protection"] += armour["protection"]
 
     # apply weapon
     lancelot["power"] += lancelot["weapon"]["power"]
@@ -112,12 +115,12 @@ def battle(knightsConfig):
             lancelot["hp"] += lancelot["potion"]["effect"]["hp"]
 
     # arthur
-    arthur = knightsConfig["arthur"]
+    arthur = knights_config["arthur"]
 
     # apply armour
     arthur["protection"] = 0
-    for a in arthur["armour"]:
-        arthur["protection"] += a["protection"]
+    for armour in arthur["armour"]:
+        arthur["protection"] += armour["protection"]
 
     # apply weapon
     arthur["power"] += arthur["weapon"]["power"]
@@ -134,12 +137,12 @@ def battle(knightsConfig):
             arthur["hp"] += arthur["potion"]["effect"]["hp"]
 
     # mordred
-    mordred = knightsConfig["mordred"]
+    mordred = knights_config["mordred"]
 
     # apply armour
     mordred["protection"] = 0
-    for a in mordred["armour"]:
-        mordred["protection"] += a["protection"]
+    for armour in mordred["armour"]:
+        mordred["protection"] += armour["protection"]
 
     # apply weapon
     mordred["power"] += mordred["weapon"]["power"]
@@ -156,12 +159,12 @@ def battle(knightsConfig):
             mordred["hp"] += mordred["potion"]["effect"]["hp"]
 
     # red_knight
-    red_knight = knightsConfig["red_knight"]
+    red_knight = knights_config["red_knight"]
 
     # apply armour
     red_knight["protection"] = 0
-    for a in red_knight["armour"]:
-        red_knight["protection"] += a["protection"]
+    for armour in red_knight["armour"]:
+        red_knight["protection"] += armour["protection"]
 
     # apply weapon
     red_knight["power"] += red_knight["weapon"]["power"]
@@ -209,6 +212,5 @@ def battle(knightsConfig):
         mordred["name"]: mordred["hp"],
         red_knight["name"]: red_knight["hp"],
     }
-
 
 print(battle(KNIGHTS))
