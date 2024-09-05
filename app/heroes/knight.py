@@ -1,4 +1,4 @@
-from app.items.armor import Armor
+from app.items.armour import Armour
 from app.items.weapon import Weapon
 from app.items.potion import Potion
 
@@ -10,9 +10,9 @@ class Knight:
         self.power = power
         self.protection = 0
 
-    def set_protection(self, armours: list[Armor]) -> None:
+    def set_protection(self, armours: list[Armour]) -> None:
         if armours:
-            self.protection += sum(armor.protection for armor in armours)
+            self.protection += sum(armour.protection for armour in armours)
 
     def increase_power(self, weapon: Weapon) -> None:
         self.power += weapon.power
