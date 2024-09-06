@@ -109,10 +109,6 @@ def battle(knights_config: dict) -> dict:
     # 2 Arthur vs Red Knight:
     arthur.fight(red_knight)
 
-    # check if someone fell in battle
-    for knight in knights.values():
-        knight.check_hp()
-
     # Return battle results:
     return {knight.name: knight.hp for knight in knights.values()}
 
