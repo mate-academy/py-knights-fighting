@@ -93,6 +93,19 @@ KNIGHTS = {
 
 
 def battle(knights_config: dict) -> dict:
+    """
+    Simulates a battle between knights and returns
+    the remaining health points of each knight after the battle.
+
+    Args:
+        knights_config (dict):
+            A dictionary containing the configuration of all knights,
+            including their stats, armor, weapons, and potions.
+
+    Returns:
+        dict: A dictionary with knight names as keys
+        and their remaining health points (hp) as values.
+    """
     # BATTLE PREPARATIONS:
     knights = battle_prepare(knights_config)
     lancelot = knights["lancelot"]
@@ -114,6 +127,19 @@ def battle(knights_config: dict) -> dict:
 
 
 def battle_prepare(knights_config: dict) -> dict[str, Knight]:
+    """
+    Prepares the knights for battle by applying
+    armor, weapons, and potions to their stats.
+
+    Args:
+        knights_config (dict):
+        A dictionary containing knight configurations,
+        including their armor, weapons, and potions.
+
+    Returns:
+        dict[str, Knight]:
+            A dictionary of prepared Knight objects ready for battle.
+    """
     knights = {}
     for name, properties in knights_config.items():
         knight = create_knight(properties["name"], properties)
@@ -133,18 +159,59 @@ def battle_prepare(knights_config: dict) -> dict[str, Knight]:
 
 
 def create_knight(name: str, propertires: dict) -> Knight:
+    """
+    Creates a Knight object based on the given properties.
+
+    Args:
+        name (str): The name of the knight.
+        properties (dict):
+            A dictionary containing the knight's base stats (hp, power, etc.).
+
+    Returns:
+        Knight: A new Knight object.
+    """
     return Knight(name, propertires["power"], propertires["hp"])
 
 
 def create_armour(armour: dict) -> Armour:
+    """
+    Creates an Armour object based on the given properties.
+
+    Args:
+        armour (dict):
+            A dictionary containing the part of the armour
+            and its protection value.
+
+    Returns:
+        Armour: A new Armour object.
+    """
     return Armour(armour["part"], armour["protection"])
 
 
 def create_weapon(weapon: dict) -> Weapon:
+    """
+    Creates a Weapon object based on the given properties.
+
+    Args:
+        weapon (dict): A dictionary containing the weapon's name and power.
+
+    Returns:
+        Weapon: A new Weapon object.
+    """
     return Weapon(weapon["name"], weapon["power"])
 
 
 def create_potion(potion: dict) -> Potion:
+    """
+    Creates a Potion object based on the given properties.
+
+    Args:
+        potion (dict):
+            A dictionary containing the potion's name and its effects on stats.
+
+    Returns:
+        Potion: A new Potion object.
+    """
     return Potion(potion["name"], potion["effect"])
 
 
