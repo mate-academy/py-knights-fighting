@@ -15,7 +15,7 @@ class PotionEffect:
             effects.append(f"hp={self.hp}")
         if self.protection is not None:
             effects.append(f"protection={self.protection}")
-        return f"PotionEffect({", ".join(effects)})"
+        return f"PotionEffect({', '.join(effects)})"
 
 
 class Potion:
