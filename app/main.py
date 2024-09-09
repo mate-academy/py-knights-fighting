@@ -92,13 +92,7 @@ KNIGHTS = {
 def create_knights(knights_data: Dict[str, Any]) -> dict:
     knights = {}
     for key, data in knights_data.items():
-        knights[key] = Knight(
-            name=data["name"],
-            power=data["power"],
-            hp=data["hp"],
-            armour=data["armour"],
-            weapon=data["weapon"],
-            potion=data.get("potion"))
+        knights[key] = Knight(**data)
     return knights
 
 

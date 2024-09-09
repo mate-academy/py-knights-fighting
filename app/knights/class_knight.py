@@ -26,7 +26,7 @@ class Knight:
     def calculate_total_power(self) -> int:
         total_power = self.power + self.weapon.power
 
-        # Додаю силу від зілля, якщо воно є
+        # I add strength from the potion, if there is one
         if self.potion and hasattr(self.potion.effect, "power"):
             total_power += self.potion.effect.power
 
@@ -36,7 +36,7 @@ class Knight:
         total_protection = sum(part.protection for part in self.armour)
         total_hp = self.hp + total_protection
 
-        # Додаю єфект зілля, якщо воно є
+        # I add the effect of the potion, if there is one
         if self.potion:
             if hasattr(self.potion.effect, "hp"):
                 total_hp += self.potion.effect.hp
@@ -46,15 +46,15 @@ class Knight:
         return total_hp
 
     def prepare_for_battle(self) -> None:
-        # Обчислює загальний захист
+        # Calculates total protection
         self.total_protection = sum(part.protection for part in self.armour)
 
-        # Обчислити загальну силу
+        # Calculates total power
         self.total_power = self.power + self.weapon.power
         if self.potion and hasattr(self.potion.effect, "power"):
             self.total_power += self.potion.effect.power
 
-        # Обчислює загальне здоровя
+        # Calculates total hp
         self.total_hp = self.hp + self.total_protection
         if self.potion:
             if hasattr(self.potion.effect, "hp"):
