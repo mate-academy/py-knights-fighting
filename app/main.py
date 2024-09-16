@@ -1,45 +1,25 @@
 from app.data.knights_config import KNIGHTS
-from battle_preparations.knight_processing import process_knight
+from app.knight.processing import process_knight
+from app.battle.simulation import attack
 
 
-def battle(knightsConfig):
+def battle(knights_config: KNIGHTS) -> dict:
 
-    lancelot = process_knight(knightsConfig)
-    arthur = process_knight(knightsConfig)
-    mordred = process_knight(knightsConfig)
-    red_knight = process_knight(knightsConfig)
+    lancelot = process_knight(knights_config["lancelot"])
+    arthur = process_knight(knights_config["arthur"])
+    mordred = process_knight(knights_config["mordred"])
+    red_knight = process_knight(knights_config["red_knight"])
 
-    # -------------------------------------------------------------------------------
-    # BATTLE:
+    lancelot_hp = attack(lancelot, mordred)
+    arthur_hp = attack(arthur, red_knight)
+    mordred_hp = attack(mordred, lancelot)
+    red_knight_hp = attack(red_knight, arthur)
 
-    # 1 Lancelot vs Mordred:
-    lancelot["hp"] -= mordred["power"] - lancelot["protection"]
-    mordred["hp"] -= lancelot["power"] - mordred["protection"]
-
-    # check if someone fell in battle
-    if lancelot["hp"] <= 0:
-        lancelot["hp"] = 0
-
-    if mordred["hp"] <= 0:
-        mordred["hp"] = 0
-
-    # 2 Arthur vs Red Knight:
-    arthur["hp"] -= red_knight["power"] - arthur["protection"]
-    red_knight["hp"] -= arthur["power"] - red_knight["protection"]
-
-    # check if someone fell in battle
-    if arthur["hp"] <= 0:
-        arthur["hp"] = 0
-
-    if red_knight["hp"] <= 0:
-        red_knight["hp"] = 0
-
-    # Return battle results:
     return {
-        lancelot["name"]: lancelot["hp"],
-        arthur["name"]: arthur["hp"],
-        mordred["name"]: mordred["hp"],
-        red_knight["name"]: red_knight["hp"],
+        lancelot.name: lancelot_hp,
+        arthur.name: arthur_hp,
+        mordred.name: mordred_hp,
+        red_knight.name: red_knight_hp,
     }
 
 

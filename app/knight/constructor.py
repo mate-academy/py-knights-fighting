@@ -8,34 +8,37 @@ class Knight:
             weapon: dict,
             potion: None | dict
     ) -> None:
-        self.protection = None
         self.name = name
         self.power = power
         self.hp = hp
         self.armour = armour
         self.weapon = weapon
         self.potion = potion
-
-    def apply_armour(self) -> None:
         self.protection = 0
+
+    def apply_armour(self) -> int:
         for armour in self.armour:
-            self.protection += armour["protection"]
-        # print(self.protection)
+            self.protection += armour.get("protection", 0)
+        return self.protection
 
-    def apply_weapon(self) -> None:
+    def apply_weapon(self) -> int:
         self.power += self.weapon.get("power", 0)
-        # print(f"{self.name} weapon power is {self.power}")
+        return self.power
 
-    def apply_potion(self) -> None:
+    def apply_potion_effect(self) -> dict:
+        knight_stats = {}
         if self.potion is not None:
             effects = self.potion.get("effect", {})
 
             if "power" in effects:
                 self.power += effects["power"]
+                knight_stats["power"] = self.power
 
             if "protection" in effects:
                 self.protection += effects["protection"]
+                knight_stats["protection"] = self.protection
 
             if "hp" in effects:
                 self.hp += effects["hp"]
-        # print(f"{self.name} has power - {self.power}, protection - {self.protection}, hp - {self.hp}")
+                knight_stats["hp"] = self.hp
+        return knight_stats

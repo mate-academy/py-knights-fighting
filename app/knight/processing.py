@@ -1,7 +1,8 @@
-from knight_constructor import Knight
+from app.data.knights_config import KNIGHTS
+from app.knight.constructor import Knight
 
 
-def process_knight(knight_data) -> Knight:
+def process_knight(knight_data: KNIGHTS) -> Knight:
     knight = Knight(
         name=knight_data["name"],
         power=knight_data["power"],
@@ -13,6 +14,6 @@ def process_knight(knight_data) -> Knight:
 
     knight.apply_armour()
     knight.apply_weapon()
-    knight.apply_potion()
+    knight.apply_potion_effect()
 
     return knight
