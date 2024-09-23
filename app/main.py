@@ -107,6 +107,7 @@ def battle(knights: dict) -> dict:
         knight_dict["Lancelot"],
         knight_dict["Mordred"]
     )
+
     fight_knights(
         knight_dict["Arthur"],
         knight_dict["Red Knight"]
