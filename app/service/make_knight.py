@@ -12,7 +12,7 @@ def make_knight(knight: dict) -> Knight:
               for armour in knight["armour"]]
     weapon = Weapon(knight["weapon"]["name"], knight["weapon"]["power"])
     potion = None
-    if knight.get("potion"):
-        potion = Potion(knight.get("potion").get("name"),
-                        knight.get("potion").get("effect"))
+    if potion_data := knight.get("potion"):
+        potion = Potion(potion_data.get("name"),
+                        potion_data.get("effect"))
     return Knight(name, power, hp, armour, weapon, potion)

@@ -20,18 +20,17 @@ class Knight:
         return str(self.__dict__)
 
     def get_protection(self) -> int:
-        protection = sum([armour.protection for armour in
-                          self.armour])
-        if self.potion is not None:
-            if self.potion.effect.protection is not None:
-                protection += self.potion.effect.protection
+        protection = sum(armour.protection for armour in
+                         self.armour)
+        if self.potion:
+            protection += self.potion.effect.protection or 0
             self.hp += self.potion.effect.hp
 
         return protection
 
     def get_power(self) -> int:
         power = self.power + self.weapon.power
-        if self.potion is not None:
+        if self.potion:
             power += self.potion.effect.power
 
         return power
