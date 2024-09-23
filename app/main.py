@@ -1,5 +1,5 @@
-from app.knights.knights_confiq import Knight
 from app.battle.fight import fight_knights
+from app.knights.knights_confiq import Knight
 
 
 KNIGHTS = {
