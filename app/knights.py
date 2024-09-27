@@ -1,3 +1,4 @@
+from __future__ import annotations
 from app.armour import Armour
 from app.potion import Potion
 from app.weapon import Weapon
@@ -7,9 +8,9 @@ class Knights:
     def __init__(self, name: str,
                  power: int,
                  hp: int,
-                 armour: [list[Armour]] = None,
-                 weapon: [Weapon] = None,
-                 potion: [Potion] = None) -> None:
+                 armour: list[Armour],
+                 weapon: Weapon,
+                 potion: Potion = None) -> None:
         self.name = name
         self.base_power = power
         self.base_hp = hp

@@ -1,101 +1,60 @@
 from app.battle import battle
+from app.knights import Knights
+from app.armour import Armour
+from app.weapon import Weapon
+from app.potion import Potion
 
 
 def main() -> None:
-    knights = {
-        "lancelot": {
-            "name": "Lancelot",
-            "power": 35,
-            "hp": 100,
-            "armour": [],
-            "weapon": {
-                "name": "Metal Sword",
-                "power": 50,
-            },
-            "potion": None,
-        },
-        "arthur": {
-            "name": "Arthur",
-            "power": 45,
-            "hp": 75,
-            "armour": [
-                {
-                    "part": "helmet",
-                    "protection": 15,
-                },
-                {
-                    "part": "breastplate",
-                    "protection": 20,
-                },
-                {
-                    "part": "boots",
-                    "protection": 10,
-                }
+    # Creating knights
+    knights = [
+        Knights(
+            name="Lancelot",
+            power=35,
+            hp=100,
+            armour=[],
+            weapon=Weapon("Metal Sword", 50)
+        ),
+        Knights(
+            name="Mordred",
+            power=30,
+            hp=90,
+            armour=[
+                Armour("breastplate", 15),
+                Armour("boots", 10),
             ],
-            "weapon": {
-                "name": "Two-handed Sword",
-                "power": 55,
-            },
-            "potion": None,
-        },
-        "mordred": {
-            "name": "Mordred",
-            "power": 30,
-            "hp": 90,
-            "armour": [
-                {
-                    "part": "breastplate",
-                    "protection": 15,
-                },
-                {
-                    "part": "boots",
-                    "protection": 10,
-                }
+            weapon=Weapon("Poisoned Sword", 60),
+            potion=Potion("Berserk",
+                          {"power": +15, "hp": -5, "protection": +10})
+        ),
+        Knights(
+            name="Arthur",
+            power=45,
+            hp=75,
+            armour=[
+                Armour("helmet", 15),
+                Armour("breastplate", 20),
+                Armour("boots", 10)
             ],
-            "weapon": {
-                "name": "Poisoned Sword",
-                "power": 60,
-            },
-            "potion": {
-                "name": "Berserk",
-                "effect": {
-                    "power": +15,
-                    "hp": -5,
-                    "protection": +10,
-                }
-            }
-        },
-        "red_knight": {
-            "name": "Red Knight",
-            "power": 40,
-            "hp": 70,
-            "armour": [
-                {
-                    "part": "breastplate",
-                    "protection": 25,
-                }
+            weapon=Weapon("Two-handed Sword", 55)
+        ),
+        Knights(
+            name="Red Knight",
+            power=40,
+            hp=70,
+            armour=[
+                Armour("breastplate", 25)
             ],
-            "weapon": {
-                "name": "Sword",
-                "power": 45
-            },
-            "potion": {
-                "name": "Blessing",
-                "effect": {
-                    "hp": +10,
-                    "power": +5,
-                }
-            }
-        }
-    }
+            weapon=Weapon("Sword", 45),
+            potion=Potion("Blessing", {"hp": +10, "power": +5})
+        )
+    ]
 
     # Battle
     result = battle(knights)
 
-    # Result
-    print("Battle result:")
-    for knight, hp in result.items():
-        print(f"{knight}: {hp} HP")
+    # Results
+    print("Battle result:", result)
 
 
 if __name__ == "__main__":
