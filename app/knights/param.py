@@ -14,14 +14,16 @@ class Knight:
     def calculate_param(self, knight: dict) -> None:
 
         # apply armour
-        for armor in knight["armour"]:
-            self.protection += armor["protection"]
+        self.protection += sum(
+            armor["protection"]
+            for armor in knight["armour"]
+        )
 
         # apply weapon
         self.power += knight["weapon"]["power"]
 
         # apply potion if exist
-        if knight["potion"] is not None:
+        if knight.get("potion"):
             if "power" in knight["potion"]["effect"]:
                 self.power += knight["potion"]["effect"]["power"]
 
