@@ -92,17 +92,11 @@ KNIGHTS = {
 
 
 def battle(knights: dict) -> dict:
-    """I still don't like this hardcode,
-    but I don't know how to make it better.
-    It would be easier if I knew how to work
-    with the API in Python, but I don't, or if
-    the knights just fought the next person on
-    the list. In any case, I look forward to your comments"""
-    knights_obj_list = Knight.battle(knights)
-    lancelot = knights_obj_list.get("lancelot")
-    mordred = knights_obj_list.get("mordred")
-    arthur = knights_obj_list.get("arthur")
-    red_knight = knights_obj_list.get("red_knight")
+    Knight.knights_from_dict(knights)
+    lancelot = Knight.knights.get("Lancelot")
+    mordred = Knight.knights.get("Mordred")
+    arthur = Knight.knights.get("Arthur")
+    red_knight = Knight.knights.get("Red Knight")
     equipped_lancelot = EquippedKnight(lancelot)
     equipped_arthur = EquippedKnight(arthur)
     equipped_mordred = EquippedKnight(mordred)
