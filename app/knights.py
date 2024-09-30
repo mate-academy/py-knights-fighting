@@ -1,4 +1,30 @@
 class Knight:
+    """
+    A class representing a knight with attributes such as name, power,
+    hp (health points), armour, weapon, and potion.
+
+    Attributes:
+        name (str): The name of the knight.
+        base_power (int): The base attack power of the knight.
+        hp (int): The health points of the knight.
+        armour (list[dict]): A list of armour pieces, each represented as a
+                             dictionary containing part and protection.
+        weapon (dict): A dictionary representing the weapon, containing its
+                       name and power.
+        potion (dict, optional): A dictionary representing a potion,
+                                 containing its name and effects on the
+                                 knight's stats.
+
+    Methods:
+        apply_armour(): Applies the total protection from the knight's armour.
+        apply_weapon(): Adds the weapon power to the knight's total power.
+        apply_potion(): Applies the effects of the potion (if any) to the
+                        knight's stats.
+        take_damage(damage: int): Reduces the knight's hp by the given damage,
+                                  considering the knight's protection.
+        calculate_stats(): Calculates the knight's final stats by applying
+                           their armour, weapon, and potion effects.
+    """
     def __init__(
             self,
             name: str,
