@@ -92,19 +92,17 @@ KNIGHTS = {
 
 
 def battle(knights: dict) -> dict:
-    Knight.knights_from_dict(knights)
-    lancelot = Knight.knights.get("Lancelot")
-    mordred = Knight.knights.get("Mordred")
-    arthur = Knight.knights.get("Arthur")
-    red_knight = Knight.knights.get("Red Knight")
-    equipped_lancelot = EquippedKnight(lancelot)
-    equipped_arthur = EquippedKnight(arthur)
-    equipped_mordred = EquippedKnight(mordred)
-    equipped_red_knight = EquippedKnight(red_knight)
-    return Battle.battle(equipped_lancelot,
-                         equipped_mordred,
-                         equipped_arthur,
-                         equipped_red_knight)
+    knights = Knight.knights_from_dict(knights)
+    equipped_knights\
+        = EquippedKnight.equipped_knights_from_knights(knights)
+    lancelot = equipped_knights.get("lancelot")
+    mordred = equipped_knights.get("mordred")
+    arthur = equipped_knights.get("arthur")
+    red_knight = equipped_knights.get("red_knight")
+    return Battle.battle(lancelot,
+                         mordred,
+                         arthur,
+                         red_knight)
 
 
 print(battle(KNIGHTS))

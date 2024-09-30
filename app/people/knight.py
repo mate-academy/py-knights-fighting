@@ -1,9 +1,11 @@
+from __future__ import annotations
+
+import json
+
 from app.people.person import Person
 
 
 class Knight(Person):
-
-    knights = {}
 
     def __init__(self,
                  name: str,
@@ -16,14 +18,15 @@ class Knight(Person):
         self.armour = armour
         self.weapon = weapon
         self.potion = potion
-        Knight.knights[self.name] = self
 
     @staticmethod
-    def knights_from_dict(knights_dict: dict) -> None:
+    def knights_from_dict(knights_dict: dict) -> dict:
+        knights = {}
         for knight_name, knight_stats in knights_dict.items():
-            (Knight(knight_stats.get("name"),
-                    knight_stats.get("power"),
-                    knight_stats.get("hp"),
-                    knight_stats.get("armour"),
-                    knight_stats.get("weapon"),
-                    knight_stats.get("potion")))
+            knights[knight_name] = Knight.knight_from_dict(knight_stats)
+        return knights
+
+    @staticmethod
+    def knight_from_dict(knight_stats: dict) -> Knight:
+        knight_json = json.dumps(knight_stats)
+        return Knight(**json.loads(knight_json))
