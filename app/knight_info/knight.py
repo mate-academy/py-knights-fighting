@@ -12,7 +12,12 @@ class Knight:
         self.power = power
         self.protection = 0
 
-    def total_strength(self, armours: list, weapon: dict, potion: dict) -> Knight:
+    def total_strength(
+            self,
+            armours: list,
+            weapon: dict,
+            potion: dict
+    ) -> Knight:
         if potion is not None:
             knight_potion = KnightPotion(potion["name"], potion["effect"])
             self.hp += knight_potion.get_hp()
@@ -31,12 +36,21 @@ class Knight:
         print(self.name, self.hp, self.power, self.protection)
 
 
-def get_knight(knights_config: dict):
+def get_knight(knights_config: dict) -> list:
     knights = []
-    for knight_key, knight_value in knights_config.items():
-        current_knight = Knight(knight_value["name"], knight_value["hp"], knight_value["power"])
 
-        current_knight.total_strength(knight_value["armour"], knight_value["weapon"], knight_value["potion"])
+    for knight_key, knight_value in knights_config.items():
+        current_knight = Knight(
+            knight_value["name"],
+            knight_value["hp"],
+            knight_value["power"]
+        )
+
+        current_knight.total_strength(
+            knight_value["armour"],
+            knight_value["weapon"],
+            knight_value["potion"]
+        )
         current_knight.knight_info()
 
         knights.append(current_knight)
