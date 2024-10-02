@@ -31,4 +31,5 @@ class Potion:
             f"{attr}: {getattr(self, attr)}"
             for attr in attrs if hasattr(self, attr)
         ]
-        return f"Potion: {self.name}, {", ".join(existing_attrs)}"
+        effects = ", ".join(existing_attrs)
+        return f"Potion: {self.name}, {effects}"
