@@ -1,8 +1,4 @@
-class KnightArmour:
+class Armour:
     @staticmethod
     def total_armour(armours: list) -> int:
-        protection = 0
-        for armour in armours:
-            protection += armour["protection"]
-
-        return protection
+        return sum(armour["protection"] for armour in armours)
