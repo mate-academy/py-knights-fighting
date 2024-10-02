@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from app.knight_info.armour import Armour
+from app.knight_info.armour import Armour, total_armour
 from app.knight_info.potion import Potion
 from app.knight_info.weapon import Weapon
 
@@ -20,7 +20,7 @@ class Knight:
         self.power = power
         self.protection = 0
         self.weapon = Weapon(**weapon)
-        self.armour = Armour()
+        self.armour = [Armour(**part_armour) for part_armour in armour]
 
         if potion is not None:
             self.potion = Potion(**potion)
@@ -29,7 +29,7 @@ class Knight:
             self.protection += self.potion.get_protection()
 
         self.power += self.weapon.power
-        self.protection += self.armour.total_armour(armour)
+        self.protection += total_armour(self.armour)
 
     def knight_info(self) -> None:
         print(self.name, self.hp, self.power, self.protection)
