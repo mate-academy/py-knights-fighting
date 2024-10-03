@@ -12,8 +12,10 @@ class Battle:
         enemy1.hp -= enemy1_damage
         enemy2.hp -= enemy2_damage
 
-        print(f"\n{enemy1.name} got {enemy1_damage} damage from {enemy2.name}.")
-        print(f"{enemy2.name} got {enemy2_damage} damage from {enemy1.name}.\n")
+        print(f"\n{enemy1.name} got {enemy1_damage} "
+              f"damage from {enemy2.name}.")
+        print(f"{enemy2.name} got {enemy2_damage} "
+              f"damage from {enemy1.name}.\n")
 
         if enemy1.hp <= 0:
             enemy1.hp = 0
@@ -34,4 +36,3 @@ class Battle:
             print(f"{name}: {hp} HP")
 
         return results
-
