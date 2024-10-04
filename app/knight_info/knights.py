@@ -22,9 +22,9 @@ class Knight:
 
         if potion is not None:
             self.potion = Potion(**potion)
-            self.hp += self.potion.get_hp()
-            self.power += self.potion.get_power()
-            self.protection += self.potion.get_protection()
+            self.hp += self.potion.hp
+            self.power += self.potion.power
+            self.protection += self.potion.protection
 
         self.power += self.weapon.power
         self.protection += total_armour(self.armour)
