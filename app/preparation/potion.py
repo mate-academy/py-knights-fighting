@@ -1,12 +1,10 @@
-from typing import List
-
 from app.knights.knights import Knight
 
 
 class Potion:
 
     @staticmethod
-    def get_potion(knights: List[Knight], potion: dict) -> None:
+    def get_potion(knights: Knight, potion: dict) -> None:
         if potion is not None:
             if "power" in potion["effect"]:
                 knights.power += potion["effect"]["power"]

@@ -8,13 +8,15 @@ class Battle:
     @staticmethod
     def start_battle(knights: List[Knight]) -> None:
 
+        lancelot, arthur, mordred, red_knight = knights
+
         # first fight
-        knights[0].hp -= knights[2].power - knights[0].protection
-        knights[2].hp -= knights[0].power - knights[2].protection
+        lancelot.hp -= mordred.power - lancelot.protection
+        mordred.hp -= lancelot.power - mordred.protection
 
         # second fight
-        knights[1].hp -= knights[3].power - knights[1].protection
-        knights[3].hp -= knights[1].power - knights[3].protection
+        arthur.hp -= red_knight.power - arthur.protection
+        red_knight.hp -= arthur.power - red_knight.protection
 
         for knight in knights:
             Battle.check_hp(knight)

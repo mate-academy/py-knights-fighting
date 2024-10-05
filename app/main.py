@@ -1,5 +1,5 @@
 from app.battle import Battle
-from app.knights.characters import KNIGHTS
+from app.knights.input_characters import KNIGHTS
 from app.knights.knights import Knight
 from app.preparation.armour import Armour
 from app.preparation.potion import Potion
@@ -19,19 +19,7 @@ the function to ensure that tests work correctly.
 
 def battle(knights_config: dict) -> dict:
 
-    knights_lst = [value for value in knights_config.values()]
-
-    knights = [
-        Knight(
-            knight["name"],
-            knight["power"],
-            knight["hp"],
-            knight["armour"],
-            knight["weapon"],
-            knight["potion"],
-        )
-        for knight in knights_lst
-    ]
+    knights = [Knight(value) for value in knights_config.values()]
 
     for knight in knights:
         Armour.get_armour(knight, knight.armour)
