@@ -12,10 +12,12 @@ def battle(knights: Dict[str, Knight]) -> Dict[str, int]:
     lancelot_hp = results["lancelot"]["hp"]
     mordred_hp = results["mordred"]["hp"]
 
-    lancelot_damage = max(results["mordred"]["power"] -
-                          results["lancelot"]["protection"], 0)
-    mordred_damage = max(results["lancelot"]["power"] -
-                         results["mordred"]["protection"], 0)
+    lancelot_damage = (
+        max(results["mordred"]["power"] - results["lancelot"]["protection"], 0)
+    )
+    mordred_damage = (
+        max(results["lancelot"]["power"] - results["mordred"]["protection"], 0)
+    )
 
     lancelot_hp -= lancelot_damage
     mordred_hp -= mordred_damage
@@ -26,10 +28,12 @@ def battle(knights: Dict[str, Knight]) -> Dict[str, int]:
     arthur_hp = results["arthur"]["hp"]
     red_knight_hp = results["red_knight"]["hp"]
 
-    arthur_damage = max(results["red_knight"]["power"] -
-                        results["arthur"]["protection"], 0)
-    red_knight_damage = max(results["arthur"]["power"] -
-                            results["red_knight"]["protection"], 0)
+    arthur_damage = (
+        max(results["red_knight"]["power"] - results["arthur"]["protection"], 0)
+    )
+    red_knight_damage = (
+        max(results["arthur"]["power"] - results["red_knight"]["protection"], 0)
+    )
 
     arthur_hp -= arthur_damage
     red_knight_hp -= red_knight_damage
