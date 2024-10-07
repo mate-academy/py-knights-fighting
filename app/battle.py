@@ -29,12 +29,12 @@ def battle(knights: Dict[str, Knight]) -> Dict[str, int]:
     red_knight_hp = results["red_knight"]["hp"]
 
     arthur_damage = (
-        max(results["red_knight"]["power"] -
-            results["arthur"]["protection"], 0)
+        max(results["red_knight"]["power"] - results["arthur"]["protection"],
+            0)
     )
     red_knight_damage = (
-        max(results["arthur"]["power"] -
-            results["red_knight"]["protection"], 0)
+        max(results["arthur"]["power"] - results["red_knight"]["protection"],
+            0)
     )
 
     arthur_hp -= arthur_damage
