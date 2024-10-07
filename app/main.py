@@ -1,7 +1,3 @@
-from app.Stats.KnightStats import knight_stats
-from app.Battle_Preparations.apply_weapon import apply_weapon
-from app.Battle_Preparations.apply_armour import apply_armour
-from app.Battle_Preparations.apply_potion import apply_potion
 from app.Battle.battle import battle
 
 
@@ -92,18 +88,5 @@ knights = {
     }
 }
 
-
-#implement dict to class
-knights_attr = knight_stats(knights)
-
-#apply weapon
-apply_weapon(knights_attr)
-
-#apply armour
-apply_armour(knights_attr)
-
-#apply potion
-apply_potion(knights_attr)
-
-#battle
-print(battle(knights_attr))
+# battle
+print(battle(knights))
