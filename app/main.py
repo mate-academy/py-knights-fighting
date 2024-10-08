@@ -1,7 +1,7 @@
-from app.Battle.battle import battle
+from app.battle.battle import battle
 
 
-knights = {
+knights_config = {
     "lancelot": {
         "name": "Lancelot",
         "power": 35,
@@ -88,5 +88,5 @@ knights = {
     }
 }
 
-# battle
-print(battle(knights))
+if __name__ == "__main__":
+    print(battle(knights_config))
