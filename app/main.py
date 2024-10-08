@@ -1,3 +1,8 @@
+from app.models.knight import Knight
+from app.models.battle import Battle
+from app.models.knight import Knight
+
+
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
@@ -106,7 +111,8 @@ def battle(knightsConfig):
             lancelot["power"] += lancelot["potion"]["effect"]["power"]
 
         if "protection" in lancelot["potion"]["effect"]:
-            lancelot["protection"] += lancelot["potion"]["effect"]["protection"]
+            lancelot["protection"]\
+                += lancelot["potion"]["effect"]["protection"]
 
         if "hp" in lancelot["potion"]["effect"]:
             lancelot["hp"] += lancelot["potion"]["effect"]["hp"]
