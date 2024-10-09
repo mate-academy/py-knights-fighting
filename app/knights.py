@@ -53,14 +53,15 @@ class Knight:
         self.total_power = self.base_power + self.weapon["power"]
 
     def apply_potion(self) -> None:
-        if self.potion is not None:
+        if self.potion:
             for stat, value in self.potion["effect"].items():
-                if stat == "hp":
-                    self.hp += value
-                elif stat == "power":
-                    self.total_power += value
-                elif stat == "protection":
-                    self.protection += value
+                match stat:
+                    case "hp":
+                        self.hp += value
+                    case "power":
+                        self.total_power += value
+                    case "protection":
+                        self.protection += value
 
     def take_damage(self, damage: int) -> None:
         self.hp -= damage
