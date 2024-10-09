@@ -12,8 +12,7 @@ class Knight:
         self.protection = 0
 
     def apply_armor(self) -> None:
-        for armor in self.armour:
-            self.protection += armor["protection"]
+        self.protection = sum([armor["protection"] for armor in self.armour])
 
     def apply_weapon(self) -> None:
         self.power += self.weapon["power"]
