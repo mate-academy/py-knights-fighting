@@ -88,18 +88,35 @@ class Battle:
         return duel_results
 
     @staticmethod
-    def knights_tournament(duel_couples: list[list]) -> dict:
+    def knights_tournament(base_knights: dict[dict]) -> dict:
         """
-        method makes duel for every duel part and return results
+        Method makes duels for every pair and returns the results
         """
+        prepared_knights = {}
+
+        for knight_name, knight_data in base_knights.items():
+            prepared_knights[knight_name] = (
+                Battle.knight_prepares_for_battle(knight_data)
+            )
+
+        duel_pairs = [
+            ("lancelot", "mordred"),
+            ("arthur", "red_knight")
+        ]
 
         tournament_result = {}
-        for index, duel_couple in enumerate(duel_couples):
-            duel_result = Battle.knights_duel(
-                duel_couple[index][0],
-                duel_couple[index][1]
-            )
-            tournament_result = {**duel_result}
 
-        print(tournament_result)
+        for knight1, knight2 in duel_pairs:
+            if knight1 in prepared_knights and knight2 in prepared_knights:
+                duel_result = Battle.knights_duel(
+                    prepared_knights[knight1],
+                    prepared_knights[knight2]
+                )
+                tournament_result = {
+                    **tournament_result,
+                    **duel_result
+                }
+            else:
+                print("Problem with preparing knights")
+
         return tournament_result
