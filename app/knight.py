@@ -9,12 +9,10 @@ class Knight:
         self.name = data["name"]
         self.hp = data["hp"]
         self.power = data["power"]
-        self.armour = Armour(
-            data["armour"]
-        ) if "armour" in data else Armour([])
+        self.armour = Armour(data.get("armour", Any))
         self.weapon = Weapon(
-            data["weapon"]["name"],
-            data["weapon"]["power"]
+            data.get("weapon", {}).get("name", ""),
+            data.get("weapon", {}).get("power", 0)
         )
         self.potion = Potion(
             data["potion"]["name"],
