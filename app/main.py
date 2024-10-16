@@ -19,8 +19,8 @@ def battle(knights_config: dict) -> dict:
         knight.preparation()
     # -------------------------------------------------------------------------------
     # BATTLE:
-    for name in battle_table:
-        battle_between(knights[name[0]], knights[name[1]])
+    for knight1, knight2 in battle_table:
+        battle_between(knights[knight1], knights[knight2])
     # Return battle results:
     return {value.name: value.hp for value in knights.values()}
 
