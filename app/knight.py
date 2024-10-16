@@ -26,11 +26,12 @@ class Knight:
                 + (self.knight_property["potion"]["effect"].get("hp", 0)
                    if self.is_item("potion") else 0))
 
-    def set_protection(self):
+    def set_protection(self) -> int:
         return ((sum(protec["protection"]
                      for protec in self.knight_property["armour"])
                  if self.is_item("armour") else 0)
-                + (self.knight_property["potion"]["effect"].get("protection", 0)
+                + (self.knight_property["potion"]["effect"].get("protection",
+                                                                0)
                    if self.is_item("potion") else 0))
 
     def preparation(self) -> None:
