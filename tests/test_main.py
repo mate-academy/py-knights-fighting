@@ -24,15 +24,15 @@ def base_knights_config():
             "armour": [
                 {
                     "part": "helmet",
-                    "protection": 15,
+                    "add_some_abilities": 15,
                 },
                 {
                     "part": "breastplate",
-                    "protection": 20,
+                    "add_some_abilities": 20,
                 },
                 {
                     "part": "boots",
-                    "protection": 10,
+                    "add_some_abilities": 10,
                 },
             ],
             "weapon": {
@@ -48,11 +48,11 @@ def base_knights_config():
             "armour": [
                 {
                     "part": "breastplate",
-                    "protection": 15,
+                    "add_some_abilities": 15,
                 },
                 {
                     "part": "boots",
-                    "protection": 10,
+                    "add_some_abilities": 10,
                 },
             ],
             "weapon": {
@@ -64,7 +64,7 @@ def base_knights_config():
                 "effect": {
                     "power": +15,
                     "hp": -5,
-                    "protection": +10,
+                    "add_some_abilities": +10,
                 },
             },
         },
@@ -75,7 +75,7 @@ def base_knights_config():
             "armour": [
                 {
                     "part": "breastplate",
-                    "protection": 25,
+                    "add_some_abilities": 25,
                 }
             ],
             "weapon": {"name": "Sword", "power": 45},
@@ -124,7 +124,7 @@ def test_red_knight_overpowered(base_knights_config):
 def test_lancelot_has_armour(base_knights_config):
     base_knights_config["lancelot"]["armour"].append({
         "part": "helmet",
-        "protection": 25,
+        "add_some_abilities": 25,
     })
     assert battle(base_knights_config) == {
         "Lancelot": 20,
@@ -146,9 +146,9 @@ def test_mordred_sword_is_not_poisoned(base_knights_config):
 
 
 def test_arthur_armour_weak(base_knights_config):
-    base_knights_config["arthur"]["armour"][0]["protection"] -= 10
-    base_knights_config["arthur"]["armour"][1]["protection"] -= 10
-    base_knights_config["arthur"]["armour"][0]["protection"] -= 10
+    base_knights_config["arthur"]["armour"][0]["add_some_abilities"] -= 10
+    base_knights_config["arthur"]["armour"][1]["add_some_abilities"] -= 10
+    base_knights_config["arthur"]["armour"][0]["add_some_abilities"] -= 10
     assert battle(base_knights_config) == {
         "Lancelot": 0,
         "Arthur": 0,
@@ -161,7 +161,7 @@ def test_arthur_and_lancelot_have_potion(base_knights_config):
     base_knights_config["arthur"]["potion"] = {
         "name": "Dragon's heart",
         "effect": {
-            "protection": +20,
+            "add_some_abilities": +20,
             "power": +10,
             "hp": +10,
         }
