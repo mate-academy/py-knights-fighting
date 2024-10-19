@@ -92,7 +92,7 @@ KNIGHTS = {
 
 def battle(knightsconfig: dict) -> dict:
     knights = get_knights_info(knightsconfig)
-    for knight in range(2):
+    for knight in range(int(len(knightsconfig) / 2)):
         duel(knights[knight], knights[knight + 2])
     return return_battles_results(knights)
 
