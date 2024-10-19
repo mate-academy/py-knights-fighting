@@ -18,7 +18,7 @@ KNIGHTS = {
         "armour": [
             {
                 "part": "breastplate",
-                "protection": 25,
+                "add_some_abilities": 25,
             }
         ],
         "weapon": {"name": "Sword", "power": 45},
@@ -54,7 +54,7 @@ So, for `red_knight` we have before the battle next stats:
 red_knight_stats = {
     "hp": 80,  # 70 + 10
     "power": 90,  # 40 + 45 + 5
-    "protection": 25,  # 0 + 25
+    "add_some_abilities": 25,  # 0 + 25
 }
 ```
 
@@ -63,15 +63,15 @@ Imagine, that another knight (let us call him `x_knight`) has next stats before 
 x_knight_stats = {
     "hp": 100,
     "power": 70,
-    "protection": 35,
+    "add_some_abilities": 35,
 }
 ```
 
 When the battle begins between them:
 - They lose their `hp` based on `power` of opponent and self `protection` using next formula:
 ```python
-red_knight_stats["hp"] -= x_knight_stats["power"] - red_knight_stats["protection"]
-x_knight_stats["hp"] -= red_knight_stats["power"] - x_knight_stats["protection"]
+red_knight_stats["hp"] -= x_knight_stats["power"] - red_knight_stats["add_some_abilities"]
+x_knight_stats["hp"] -= red_knight_stats["power"] - x_knight_stats["add_some_abilities"]
 ```
 
 So the result `hp` of this battle is:
