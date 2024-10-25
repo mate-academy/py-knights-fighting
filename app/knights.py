@@ -20,9 +20,11 @@ class Knight:
 
     @property
     def power(self) -> int:
-        return self.base_power \
-            + self.weapon["power"] \
+        return (
+            self.base_power
+            + self.weapon["power"]
             + self.potion_effect.get("power", 0)
+        )
 
     @property
     def hp(self) -> int:
@@ -37,7 +39,9 @@ class Knight:
         self.potion_effect = self.potion["effect"] if self.potion else {}
 
     def __repr__(self) -> str:
-        return f"{self.name} " \
-               f"(HP: {self.hp}, " \
-               f"Power: {self.power}, " \
-               f"Protection: {self.protection})"
+        return (
+            f"{self.name},"
+            f" HP: {self.hp},"
+            f" Power: {self.power},"
+            f" Protection: {self.protection})"
+        )
