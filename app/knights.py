@@ -2,14 +2,15 @@ from typing import List, Dict, Optional
 
 
 class Knight:
-    def __init__(self,
-                 name: str,
-                 power: int,
-                 hp: int,
-                 armour: List[Dict[str, int]],
-                 weapon: Dict[str, int],
-                 potion: Optional[Dict[str, Dict[str, int]]] = None
-                 ) -> None:
+    def __init__(
+            self,
+            name: str,
+            power: int,
+            hp: int,
+            armour: List[Dict[str, int]],
+            weapon: Dict[str, int],
+            potion: Optional[Dict[str, Dict[str, int]]] = None
+    ) -> None:
         self.name = name
         self.base_power = power
         self.base_hp = hp

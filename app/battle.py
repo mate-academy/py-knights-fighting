@@ -1,4 +1,5 @@
 from typing import Dict
+
 from app.knights import Knight
 
 

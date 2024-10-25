@@ -1,6 +1,7 @@
+from typing import Dict
+
 from app.knights import Knight
 from app.battle import Battle
-from typing import Dict
 
 
 def create_knights(config: Dict[str, Dict]) -> Dict[str, Knight]:
