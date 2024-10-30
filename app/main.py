@@ -9,7 +9,6 @@ def battle(knights_config: dict) -> dict:
     mordred = Knight(knights_config["mordred"])
     red_knight = Knight(knights_config["red_knight"])
 
-    # Conduct battles
     battle1 = Battle(lancelot, mordred)
     battle1.conduct_battle()
     result1 = battle1.get_result()
@@ -18,7 +17,6 @@ def battle(knights_config: dict) -> dict:
     battle2.conduct_battle()
     result2 = battle2.get_result()
 
-    # Combine results
     results = {
         **result1,
         **result2
