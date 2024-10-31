@@ -3,25 +3,25 @@ from app.knight_stats import KNIGHTS
 from typing import Dict, Any
 
 
-def battle(knightsConfig: Dict[Dict, Any]):
+def battle(knights_config: Dict[Dict, Any]) -> dict:
     # Подготовка к бою:
     # lancelot
-    lancelot = knightsConfig["lancelot"]
+    lancelot = knights_config["lancelot"]
 
     knights_parameters(lancelot)
 
     # arthur
-    arthur = knightsConfig["arthur"]
+    arthur = knights_config["arthur"]
 
     knights_parameters(arthur)
 
     # mordred
-    mordred = knightsConfig["mordred"]
+    mordred = knights_config["mordred"]
 
     knights_parameters(mordred)
 
     # red_knight
-    red_knight = knightsConfig["red_knight"]
+    red_knight = knights_config["red_knight"]
 
     knights_parameters(red_knight)
 
