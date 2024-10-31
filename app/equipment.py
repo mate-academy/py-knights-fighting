@@ -1,11 +1,12 @@
-from app.knight_stats import KNIGHTS
 from typing import Any
 
 
 def knights_parameters(knight_name: Any) -> None:
 
     # Добавление брони рыцарю
-    knight_name["protection"] = sum(a["protection"] for a in knight_name["armour"])
+    knight_name["protection"] = sum(
+        a["protection"] for a in knight_name["armour"]
+    )
 
     # Добавление оружия рыцарю
     knight_name["power"] += knight_name["weapon"]["power"]
@@ -16,7 +17,8 @@ def knights_parameters(knight_name: Any) -> None:
             knight_name["power"] += knight_name["potion"]["effect"]["power"]
 
         if "protection" in knight_name["potion"]["effect"]:
-            knight_name["protection"] += knight_name["potion"]["effect"]["protection"]
+            protection_bonus = knight_name["potion"]["effect"]["protection"]
+            knight_name["protection"] += protection_bonus
 
         if "hp" in knight_name["potion"]["effect"]:
             knight_name["hp"] += knight_name["potion"]["effect"]["hp"]
