@@ -84,33 +84,3 @@ KNIGHTS = {
         }
     }
 }
-
-#  {
-#             "name": "Dragon's heart",
-#             "effect": {
-#                 "protection": +20,
-#                 "power": +10,
-#                 "hp": +10,
-#             }
-#         }
-#         base_knights_config["lancelot"]["potion"] = {
-#             "name": "Magic Power",
-#             "effect": {
-#                 "power": +25,
-#                 "hp": +10,
-#             }
-#         }
-# >       assert battle(base_knights_config) == {
-#             "Lancelot": 5,
-#             "Arthur": 60,
-#             "Mordred": 10,
-#             "Red Knight": 0,
-#         }
-# E       AssertionError: assert {'Arthur': 40...ed Knight': 0} == {'Arthur': 60...ed Knight': 0}
-# E         Omitting 2 identical items, use -vv to show
-# E         Differing items:
-# E         {'Mordred': 0} != {'Mordred': 10}
-# E         {'Arthur': 40} != {'Arthur': 60}
-# E         Use -v to get more diff
-
-
