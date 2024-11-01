@@ -34,6 +34,8 @@ class Knight:
                 potion=knight_data.get("potion")
             )
             knights_list.append(knight)
+        # for knight in knights_list:
+        #     print(f"Before staff {knight.name}: HP {knight.hp} Power {knight.power}, knight potion effect power {knight.potion.effect.power},  effect hp {knight.potion.effect.hp}")
         return knights_list
 
     @staticmethod
@@ -49,6 +51,8 @@ class Knight:
                     knight.protection += knight.potion.effect.protection
                 if knight.potion.effect.hp:
                     knight.hp += knight.potion.effect.hp
+        # for knight in knights_list:
+        #     print(f"With staff {knight.name}:  HP {knight.hp} Power {knight.power} Protection {knight.protection}, effect power {knight.potion.effect.power}, effect hp {knight.potion.effect.hp}, effect protection {knight.potion.effect.protection}")
         return knights_list
 
     @staticmethod
@@ -60,7 +64,7 @@ class Knight:
                 knights[i].hp -= knights[i + 2].power - knights[i].protection
                 knights[i + 2].hp -= (knights[i].power
                                       - knights[i + 2].protection)
-
+                # print(f"Battle between {knights[i].name} and {knights[i + 2].name} ")
                 # check if someone fell in battle
                 if knights[i].hp <= 0:
                     knights[i].hp = 0
