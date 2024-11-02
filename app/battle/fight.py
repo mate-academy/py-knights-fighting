@@ -1,10 +1,12 @@
 from app.knights.knight import Knight
 
+
 def calculate_damage(attacker: Knight, defender: Knight) -> int:
     return max(
         0,
         attacker.stats["power"] - defender.stats["protection"]
     )
+
 
 def fight(knight1: Knight, knight2: Knight) -> dict:
     # Knight 1 attacks Knight 2

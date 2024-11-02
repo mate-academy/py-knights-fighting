@@ -7,7 +7,7 @@ class Knight:
         name: str,
         base_power: int,
         base_hp: int,
-        armor: list,
+        armor: Armor,
         weapon: Weapon,
         potion: Potion = None
     ) -> None:
@@ -31,7 +31,7 @@ class Knight:
             stats = self.potion.apply_effect(stats)
         return stats
 
-    def receive_damage(self, damage: int):
+    def receive_damage(self, damage: int) -> None:
         self.stats["hp"] -= damage
         if self.stats["hp"] < 0:
             self.stats["hp"] = 0

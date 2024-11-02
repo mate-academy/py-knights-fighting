@@ -9,6 +9,7 @@ class Weapon:
         self.name = name
         self.power = power
 
+
 class Potion:
     def __init__(self, name: str, effect: dict) -> None:
         self.name = name
