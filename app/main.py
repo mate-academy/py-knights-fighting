@@ -28,7 +28,7 @@ def create_knights(config: dict) -> dict:
     return knights
 
 
-def battle(knights_config) -> dict:
+def battle(knights_config: dict) -> dict:
     knights = create_knights(knights_config)
     # Execute Lancelot vs Mordred and Arthur vs Red Knight
     result1 = fight(knights["lancelot"], knights["mordred"])
