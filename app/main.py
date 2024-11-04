@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
@@ -101,7 +103,10 @@ def apply_effects(knight: dict) -> None:
     # Apply potion if exists
     if knight["potion"] is not None:
         for stat, value in knight["potion"]["effect"].items():
-            knight[stat] += value
+            if stat == "protection":
+                knight["protection"] += value
+            else:
+                knight[stat] += value
 
 
 def process_battle(knight1: dict, knight2: dict) -> None:
@@ -116,8 +121,10 @@ def process_battle(knight1: dict, knight2: dict) -> None:
 
 
 def battle(knightsconfig: dict) -> dict:
-    # Create working copies of the knights
-    knights = {name: knight.copy() for name, knight in knightsconfig.items()}
+    knights = {
+        name: deepcopy(knight)
+        for name, knight in knightsconfig.items()
+    }
 
     # Apply effects to all knights
     for knight in knights.values():
