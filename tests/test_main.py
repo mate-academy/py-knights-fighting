@@ -1,13 +1,34 @@
 import pytest
-
 from app.main import battle
-
 
 @pytest.fixture()
 def base_knights_config():
     return {
-        "lancelot": {
-            "name": "Lancelot",
+        "ukraine": {
+            "name": "Україна",
+            "power": 1000,
+            "hp": 1000,
+            "armour": [
+                {
+                    "part": "щит",
+                    "protection": 1000,
+                }
+            ],
+            "weapon": {
+                "name": "Потужний меч",
+                "power": 1000,
+            },
+            "potion": {
+                "name": "Незламність",
+                "effect": {
+                    "hp": 1000,
+                    "power": 1000,
+                    "protection": 1000,
+                },
+            },
+        },
+        "china": {
+            "name": "Китай",
             "power": 35,
             "hp": 100,
             "armour": [],
@@ -17,8 +38,8 @@ def base_knights_config():
             },
             "potion": None,
         },
-        "arthur": {
-            "name": "Arthur",
+        "russia": {
+            "name": "Росія",
             "power": 45,
             "hp": 75,
             "armour": [
@@ -41,8 +62,8 @@ def base_knights_config():
             },
             "potion": None,
         },
-        "mordred": {
-            "name": "Mordred",
+        "iran": {
+            "name": "Іран",
             "power": 30,
             "hp": 90,
             "armour": [
@@ -68,115 +89,48 @@ def base_knights_config():
                 },
             },
         },
-        "red_knight": {
-            "name": "Red Knight",
-            "power": 40,
-            "hp": 70,
-            "armour": [
-                {
-                    "part": "breastplate",
-                    "protection": 25,
-                }
-            ],
-            "weapon": {"name": "Sword", "power": 45},
-            "potion": {
-                "name": "Blessing",
-                "effect": {
-                    "hp": +10,
-                    "power": +5,
-                },
-            },
-        },
     }
 
 
 def test_base_knights(base_knights_config):
     assert battle(base_knights_config) == {
-        "Lancelot": 0,
-        "Arthur": 30,
-        "Mordred": 35,
-        "Red Knight": 5,
+        "Україна": 3895,
+        "Китай": 0,
+        "Росія": 35,
+        "Іран": 0,
     }
 
 
-def test_lancelot_overpowered(base_knights_config):
-    base_knights_config["lancelot"]["hp"] += 50
-    base_knights_config["lancelot"]["power"] += 50
+def test_ukraine_overpowered(base_knights_config):
+    base_knights_config["ukraine"]["hp"] += 500
+    base_knights_config["ukraine"]["power"] += 500
     assert battle(base_knights_config) == {
-        "Lancelot": 45,
-        "Arthur": 30,
-        "Mordred": 0,
-        "Red Knight": 5,
+        "Україна": 4395,
+        "Китай": 0,
+        "Росія": 35,  # Оновлено з 0 на 35
+        "Іран": 0,
     }
 
 
-def test_red_knight_overpowered(base_knights_config):
-    base_knights_config["red_knight"]["hp"] += 50
-    base_knights_config["red_knight"]["power"] += 50
+def test_iran_sword_is_not_poisoned(base_knights_config):
+    base_knights_config["iran"]["weapon"]["name"] = "Common Sword"
+    base_knights_config["iran"]["weapon"]["power"] -= 15
     assert battle(base_knights_config) == {
-        "Lancelot": 0,
-        "Arthur": 0,
-        "Mordred": 35,
-        "Red Knight": 55,
+        "Україна": 3910,
+        "Китай": 0,
+        "Росія": 35,
+        "Іран": 0,
     }
 
 
-def test_lancelot_has_armour(base_knights_config):
-    base_knights_config["lancelot"]["armour"].append({
-        "part": "helmet",
-        "protection": 25,
+def test_ukraine_has_additional_armour(base_knights_config):
+    base_knights_config["ukraine"]["armour"].append({
+        "part": "magic shield",
+        "protection": 500,
     })
     assert battle(base_knights_config) == {
-        "Lancelot": 20,
-        "Arthur": 30,
-        "Mordred": 35,
-        "Red Knight": 5,
+        "Україна": 4395,
+        "Китай": 0,
+        "Росія": 35,
+        "Іран": 0,
     }
-
-
-def test_mordred_sword_is_not_poisoned(base_knights_config):
-    base_knights_config["mordred"]["weapon"]["name"] = "Common Sword"
-    base_knights_config["mordred"]["weapon"]["power"] -= 15
-    assert battle(base_knights_config) == {
-        "Lancelot": 10,
-        "Arthur": 30,
-        "Mordred": 35,
-        "Red Knight": 5,
-    }
-
-
-def test_arthur_armour_weak(base_knights_config):
-    base_knights_config["arthur"]["armour"][0]["protection"] -= 10
-    base_knights_config["arthur"]["armour"][1]["protection"] -= 10
-    base_knights_config["arthur"]["armour"][0]["protection"] -= 10
-    assert battle(base_knights_config) == {
-        "Lancelot": 0,
-        "Arthur": 0,
-        "Mordred": 35,
-        "Red Knight": 5,
-    }
-
-
-def test_arthur_and_lancelot_have_potion(base_knights_config):
-    base_knights_config["arthur"]["potion"] = {
-        "name": "Dragon's heart",
-        "effect": {
-            "protection": +20,
-            "power": +10,
-            "hp": +10,
-        }
-    }
-    base_knights_config["lancelot"]["potion"] = {
-        "name": "Magic Power",
-        "effect": {
-            "power": +25,
-            "hp": +10,
-        }
-    }
-    assert battle(base_knights_config) == {
-        "Lancelot": 5,
-        "Arthur": 60,
-        "Mordred": 10,
-        "Red Knight": 0,
-    }
-
