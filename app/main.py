@@ -106,7 +106,7 @@ def apply_effects(knight: dict) -> None:
             if stat == "protection":
                 knight["protection"] += value
             else:
-                knight[stat] += value
+                knight[stat] = max(0, knight[stat] + value)
 
 
 def process_battle(knight1: dict, knight2: dict) -> None:
