@@ -7,7 +7,7 @@ class Knight:
             armour: list,
             weapon: dict,
             potion: dict
-    ):
+    ) -> None:
         self.name: str = name
         self.power: int = power
         self.hp: int = hp
@@ -17,8 +17,8 @@ class Knight:
         self.protection: int = 0
 
     def apply_armour(self) -> None:
-        for a in self.armour:
-            self.protection += a["protection"]
+        for armour_piece in self.armour:
+            self.protection += armour_piece["protection"]
 
     def apply_weapon(self) -> None:
         self.power += self.weapon["power"]

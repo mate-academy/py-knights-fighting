@@ -1,8 +1,12 @@
 from __future__ import annotations
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from app.models.knight import Knight
 
 
 class Battle:
-    def __init__(self, knight1: "Knight", knight2: "Knight"):
+    def __init__(self, knight1: Knight, knight2: Knight) -> None:
         self.knight1 = knight1
         self.knight2 = knight2
 
