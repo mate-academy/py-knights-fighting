@@ -3,7 +3,7 @@ class Knight:
                  name: str,
                  power: int,
                  hp: int,
-                 armour: None,
+                 armour: None or [],
                  weapon: None,
                  potion: None) -> None:
         self.protection = 0
@@ -21,5 +21,6 @@ class Knight:
         self.protection = sum(item.protection for item in self.armour)
 
         if self.potion:
-            self.hp += self.potion.effect.hp
-            self.power += self.potion.effect.power
+            self.hp += self.potion.effect.get("hp", 0)
+            self.power += self.potion.effect.get("power", 0)
+            self.protection += self.potion.effect.get("protection", 0)

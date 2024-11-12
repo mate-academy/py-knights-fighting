@@ -1,7 +1,4 @@
-from app.equipment.effect import Effect
-
-
 class Potion:
-    def __init__(self, name: str, effect: Effect) -> None:
+    def __init__(self, name: str, effect) -> None:
         self.name = name
         self.effect = effect
