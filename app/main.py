@@ -106,11 +106,11 @@ def create_knight(config: dict) -> "Knight":
     )
 
 
-def battle(knightsConfig: dict) -> dict:
-    knight1 = create_knight(knightsConfig["lancelot"])
-    knight2 = create_knight(knightsConfig["arthur"])
-    knight3 = create_knight(knightsConfig["mordred"])
-    knight4 = create_knight(knightsConfig["red_knight"])
+def battle(knights_config: dict) -> dict:
+    knight1 = create_knight(knights_config["lancelot"])
+    knight2 = create_knight(knights_config["arthur"])
+    knight3 = create_knight(knights_config["mordred"])
+    knight4 = create_knight(knights_config["red_knight"])
     result = Battle.fight(knight1, knight3, knight2, knight4)
     return result
 
