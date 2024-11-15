@@ -26,4 +26,8 @@ class Potion(Equipment):
 
     def __init__(self, name: str, effect: str) -> None:
         super().__init__(name)
+        if not isinstance(effect, dict):
+            raise ValueError(
+                f"Potion effect must be a dictionary, got {type(effect)}"
+            )
         self.effect = effect
