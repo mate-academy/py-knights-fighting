@@ -16,8 +16,8 @@ class Weapon(Equipment):
 class Armour(Equipment):
     """Represents a piece of armor with a protection value."""
 
-    def __init__(self, name: str, part: int, protection: str) -> None:
-        super().__init__(name)
+    def __init__(self, part: int, protection: str) -> None:
+        super().__init__(name=part)
         self.part = part
         self.protection = protection
 
