@@ -2,6 +2,7 @@ from app.kamelot.knights_dict import KNIGHTS
 from app.kamelot.knight import Knight
 from app.kamelot.battle import battle
 
+
 def battle(knightsConfig):
     # BATTLE PREPARATIONS:
 
