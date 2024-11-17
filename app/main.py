@@ -1,6 +1,15 @@
 from app.kamelot.knights_dict import KNIGHTS
 from app.kamelot.knight import Knight
-from app.kamelot.battle import battle
+from app.kamelot.battle import duel
+
+
+
+Knight.init_from_dict(KNIGHTS)
+
+print(duel(lancelot, arthur))
+print(duel(mordred, red_knight))
+
+
 
 
 def battle(knightsConfig):
