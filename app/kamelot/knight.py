@@ -2,8 +2,14 @@ from __future__ import annotations
 
 
 class Knight:
-    def __init__(self, name: str, power: int, hp: int,
-                 armour: list[dict], weapon: dict, potion: dict | None = None) -> None:
+    def __init__(self,
+                 name: str,
+                 power: int,
+                 hp: int,
+                 armour: list[dict],
+                 weapon: dict,
+                 potion: dict | None = None
+                 ) -> None:
         """
         To avoid create new objects every time,
         I back up the initial state to easily heal the knight after the battle.
@@ -37,7 +43,8 @@ class Knight:
 
     def battle_preparations(self) -> None:
         """
-        Prepare the knight for battle by applying armour, weapon, and potion effects.
+        Prepare the knight for battle by applying:
+        armour, weapon, and potion effects.
         """
         self.protection = sum(piece["protection"] for piece in self.armour)
 
@@ -59,3 +66,11 @@ class Knight:
         self.weapon = self.weapon_backup
         self.potion = self.potion_backup
         self.protection = 0
+
+    def get_hp(self) -> dict:
+        return {self.name: self.hp}
+
+    def make_damage(self, other: Knight) -> None:
+        other.hp -= self.power - other.protection
+        if other.hp <= 0:
+            other.hp = 0
