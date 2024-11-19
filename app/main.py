@@ -1,15 +1,19 @@
 from app.kamelot.knights_dict import KNIGHTS
 from app.kamelot.knight import Knight
-from app.kamelot.battle import duel, standings
+from app.kamelot.fighting import duel, standings
 
 
-knights_list = Knight.init_from_dict(KNIGHTS)
+def battle(knights_config: dict) -> dict:
+    knights_list = Knight.init_from_dict(knights_config)
 
-lancelot, arthur, mordred, red_knight = knights_list
+    lancelot, arthur, mordred, red_knight = knights_list
 
-first_duel_results = duel(lancelot, mordred)
-second_duel_results = duel([arthur, red_knight])
+    _ = duel(lancelot, mordred)
+    _ = duel([arthur, red_knight])
 
-results = standings(lancelot, arthur, mordred, red_knight)
+    results = standings(lancelot, arthur, mordred, red_knight)
 
-print(results)
+    return results
+
+
+print(battle(KNIGHTS))
