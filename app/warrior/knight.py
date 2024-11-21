@@ -17,11 +17,13 @@ class Knight:
         self.protection = 0
 
     def apply_armour(self) -> None:
-        for arm in self.armour:
-            self.protection += arm["protection"]
+        if self.armour:
+            for arm in self.armour:
+                self.protection += arm["protection"]
 
     def apply_weapon(self) -> None:
-        self.power += self.weapon["power"]
+        if self.power:
+            self.power += self.weapon["power"]
 
     def apply_potion(self) -> None:
         if self.potion:

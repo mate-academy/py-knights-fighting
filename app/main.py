@@ -5,7 +5,7 @@ from app.war.battle import start_battle
 
 
 def battle(knights_config: dict) -> dict:
-    # BATTLE PREPARATIONS:
+    # Create dict with knight name and instance
     list_of_knights = {}
     for knight in knights_config:
         list_of_knights[knight] = Knight(
@@ -17,23 +17,16 @@ def battle(knights_config: dict) -> dict:
             knights_config[knight]["potion"]
         )
 
-    # Create lancelot and preparation to fight
+    # Preparation to fight for all knights
+    for warrior in list_of_knights:
+        preparation_to_fight(list_of_knights[warrior])
+
+    # Create knights instance
     lancelot = list_of_knights["lancelot"]
-    preparation_to_fight(lancelot)
-
-    # Create arthur and preparation to fight
     arthur = list_of_knights["arthur"]
-    preparation_to_fight(arthur)
-
-    # Create mordred and preparation to fight
     mordred = list_of_knights["mordred"]
-    preparation_to_fight(mordred)
-
-    # Create red_knight and preparation to fight
     red_knight = list_of_knights["red_knight"]
-    preparation_to_fight(red_knight)
 
-    # -------------------------------------------------------------------------------
     # BATTLE:
     start_battle(lancelot, mordred)
     start_battle(arthur, red_knight)
