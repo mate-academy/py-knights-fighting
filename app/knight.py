@@ -31,7 +31,8 @@ class Knight:
             self.protection += effect.get("protection", 0)
 
     def take_damage(self, enemy_power: int) -> None:
-        damage = max(enemy_power - self.protection, 0)
-        self.hp -= damage
+        damage = enemy_power - self.protection
+        if damage > 0:
+            self.hp -= damage
         if self.hp < 0:
             self.hp = 0
