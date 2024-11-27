@@ -1,71 +1,88 @@
-from typing import Dict, Any
+from app.knights.battle import battle
 
+knights_config = {
+    "lancelot": {
+        "name": "Lancelot",
+        "power": 35,
+        "hp": 100,
+        "armour": [],
+        "weapon": {
+            "name": "Metal Sword",
+            "power": 50,
+        },
+        "potion": None,
+    },
+    "arthur": {
+        "name": "Arthur",
+        "power": 45,
+        "hp": 75,
+        "armour": [
+            {
+                "part": "helmet",
+                "protection": 15,
+            },
+            {
+                "part": "breastplate",
+                "protection": 20,
+            },
+            {
+                "part": "boots",
+                "protection": 10,
+            },
+        ],
+        "weapon": {
+            "name": "Two-handed Sword",
+            "power": 55,
+        },
+        "potion": None,
+    },
+    "mordred": {
+        "name": "Mordred",
+        "power": 30,
+        "hp": 90,
+        "armour": [
+            {
+                "part": "breastplate",
+                "protection": 15,
+            },
+            {
+                "part": "boots",
+                "protection": 10,
+            },
+        ],
+        "weapon": {
+            "name": "Poisoned Sword",
+            "power": 60,
+        },
+        "potion": {
+            "name": "Berserk",
+            "effect": {
+                "power": +15,
+                "hp": -5,
+                "protection": +10,
+            },
+        },
+    },
+    "red_knight": {
+        "name": "Red Knight",
+        "power": 40,
+        "hp": 70,
+        "armour": [
+            {
+                "part": "breastplate",
+                "protection": 25,
+            }
+        ],
+        "weapon": {"name": "Sword", "power": 45},
+        "potion": {
+            "name": "Blessing",
+            "effect": {
+                "hp": +10,
+                "power": +5,
+            },
+        },
+    },
+}
 
-class Knight:
-    def __init__(
-            self,
-            name: str,
-            power: int,
-            hp: int,
-            armour: list[Dict[str, int]],
-            weapon: dict, potion:
-            dict = None
-    ) -> None:
-        self.name = name
-        self.power = power
-        self.hp = hp
-        self.armour = armour
-        self.weapon = weapon
-        self.potion = potion if potion else {}
-
-    def get_protection(self) -> int:
-        return sum(part["protection"] for part in self.armour)
-
-    def get_effective_power(self) -> int:
-        weapon_power = self.weapon["power"]
-        potion_power = self.potion.get("effect", {}).get("power", 0)
-        return self.power + weapon_power + potion_power
-
-    def get_effective_hp(self) -> int:
-        potion_hp = self.potion.get("effect", {}).get("hp", 0)
-        return self.hp + potion_hp
-
-    def get_effective_protection(self) -> int:
-        potion_protection = self.potion.get("effect", {}).get("protection", 0)
-        return self.get_protection() + potion_protection
-
-
-def battle(knights_config: Dict[str, Dict[str, Any]]) -> Dict[str, int]:
-    knights = {name: Knight(**data) for name, data in knights_config.items()}
-
-    lancelot = knights["lancelot"]
-    mordred = knights["mordred"]
-
-    lancelot_hp = (lancelot.get_effective_hp()
-                   - max(mordred.get_effective_power()
-                         - lancelot.get_effective_protection(),
-                         0)
-                   )
-    mordred_hp = (mordred.get_effective_hp()
-                  - max(lancelot.get_effective_power()
-                        - mordred.get_effective_protection(),
-                        0))
-
-    arthur = knights["arthur"]
-    red_knight = knights["red_knight"]
-
-    arthur_hp = (arthur.get_effective_hp()
-                 - max(red_knight.get_effective_power()
-                       - arthur.get_effective_protection(),
-                       0))
-    red_knight_hp = (red_knight.get_effective_hp()
-                     - max(arthur.get_effective_power()
-                           - red_knight.get_effective_protection(),
-                           0))
-
-    return {
-        "Lancelot": max(lancelot_hp, 0),
-        "Arthur": max(arthur_hp, 0),
-        "Mordred": max(mordred_hp, 0),
-        "Red Knight": max(red_knight_hp, 0),
-    }
+result = battle(knights_config)
+print(result)
