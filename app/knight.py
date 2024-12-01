@@ -6,9 +6,9 @@ class Knight:
                  name: str,
                  power: int,
                  hp: int,
-                 armour: list = None,
-                 weapon: dict = None,
-                 potion: dict = None) -> None:
+                 weapon: dict,
+                 armour: list = [],
+                 potion: dict = {}) -> None:
         self.name = name
         self.power = power
         self.hp = hp
