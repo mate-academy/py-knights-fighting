@@ -86,7 +86,7 @@ KNIGHTS = {
 }
 
 
-def battle(knightsConfig):
+def battle(knightsConfig) -> str:
     # BATTLE PREPARATIONS:
 
     # lancelot
