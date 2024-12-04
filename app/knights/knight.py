@@ -33,6 +33,8 @@ class Knight:
         self.apply_potion()
 
     def apply_armour(self) -> None:
+        for armour_piece in self.armour:
+            self.protection += armour_piece.apply()
         self.protection = sum(
             armour_piece.apply() for armour_piece in self.armour
         )
@@ -43,11 +45,20 @@ class Knight:
     def apply_potion(self) -> None:
         if self.potion:
             effects = self.potion.apply()
+            if "power" in effects:
+                self.power += effects["power"]
+            if "protection" in effects:
+                self.protection += effects["protection"]
+            if "hp" in effects:
+                self.hp += effects["hp"]
             self.power += effects.get("power", 0)
             self.protection += effects.get("protection", 0)
             self.hp += effects.get("hp", 0)
 
     def receive_damage(self, damage: int) -> None:
+        self.hp -= damage
+        if self.hp < 0:
+            self.hp = 0
         damage_taken = max(0, damage - self.protection)
         self.hp = max(0, self.hp - damage_taken)
 
