@@ -1,7 +1,7 @@
 from typing import List, Optional
-from .armour import Armour
-from .weapon import Weapon
-from .potion import Potion
+from app.knights.armour import Armour
+from app.knights.weapon import Weapon
+from app.knights.potion import Potion
 
 
 class Knight:
