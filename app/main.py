@@ -88,11 +88,11 @@ KNIGHTS = {
 }
 
 
-def battle(knightsConfig: dict) -> dict:
-    lancelot = Knight(**knightsConfig["lancelot"])
-    arthur = Knight(**knightsConfig["arthur"])
-    mordred = Knight(**knightsConfig["mordred"])
-    red_knight = Knight(**knightsConfig["red_knight"])
+def battle(knights_config: dict) -> dict:
+    lancelot = Knight(**knights_config["lancelot"])
+    arthur = Knight(**knights_config["arthur"])
+    mordred = Knight(**knights_config["mordred"])
+    red_knight = Knight(**knights_config["red_knight"])
 
     lancelot.take_damage(mordred.power - lancelot.protection)
     mordred.take_damage(lancelot.power - mordred.protection)
