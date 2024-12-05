@@ -1,3 +1,6 @@
+from app.data.battle_data import BattleData
+from app.battle.battle import Battle
+
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
@@ -84,7 +87,6 @@ KNIGHTS = {
         }
     }
 }
-
 
 def battle(knightsConfig):
     # BATTLE PREPARATIONS:
@@ -210,5 +212,19 @@ def battle(knightsConfig):
         red_knight["name"]: red_knight["hp"],
     }
 
-
-print(battle(KNIGHTS))
+lanc = {
+    "lancelot": {
+        "name": "Lancelot",
+        "power": 35,
+        "hp": 100,
+        "armour": [],
+        "weapon": {
+            "name": "Metal Sword",
+            "power": 50,
+        },
+        "potion": None,
+    }
+}
+ba = Battle(BattleData(KNIGHTS))
+for k in ba.knights:
+    print(str(k))
