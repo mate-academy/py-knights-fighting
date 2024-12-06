@@ -1,20 +1,27 @@
-from app.adapters.battle_adapter import BattleAdapter
+from app.adapters.battle_config import BattleConfig
 from app.fighters.knight import Knight
 
 
 class Battle:
-    def __init__(self, battle_data: BattleAdapter) -> None:
+    def __init__(self, battle_data: BattleConfig) -> None:
         self.knights = set(
             Knight(knight_data)
             for knight_data
             in battle_data.knight_datas
         )
+        self.pair_count = len(self.knights) // 2
+        self.current_pair = 0
 
     def __str__(self) -> str:
         return str(self.knights)
 
-    @staticmethod
-    def prepare(first_knight: Knight, second_knight: Knight):
+    def fight_preparations(self):
+        for knight in self.knights:
+            knight.equip_all_armour()
+            knight.equip_best_weapon()
+            knight.drink_best_potion()
+
+    def next_pair(self):
         ...
 
     @staticmethod

@@ -1,4 +1,4 @@
-class EffectAdapter:
+class EffectConfig:
     def __init__(self, config: dict):
         self.power, self.protection, self.hp = 0, 0, 0
         if config.get("power"):

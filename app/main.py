@@ -1,5 +1,7 @@
-from app.adapters.battle_adapter import BattleAdapter
+from app.adapters.battle_config import BattleConfig
+from app.adapters.knight_config import KnightConfig
 from app.battle.battle import Battle
+from app.fighters.knight import Knight
 
 KNIGHTS = {
     "lancelot": {
@@ -213,20 +215,15 @@ def battle(knightsConfig):
         red_knight["name"]: red_knight["hp"],
     }
 
-lanc = {
-    "lancelot": {
-        "name": "Lancelot",
-        "power": 35,
-        "hp": 100,
-        "armour": [],
-        "weapon": {
-            "name": "Metal Sword",
-            "power": 50,
-        },
-        "potion": None,
-    }
-}
+ba = Battle(BattleConfig(KNIGHTS))
 
-ba = Battle(BattleAdapter(KNIGHTS))
+for k in ba.knights:
+    print(str(k))
+
+for k in ba.knights:
+    k.equip_all_armour()
+    k.equip_best_weapon()
+    k.drink_best_potion()
+
 for k in ba.knights:
     print(str(k))

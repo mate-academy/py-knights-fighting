@@ -1,0 +1,65 @@
+from __future__ import annotations
+
+from app.adapters.effect_config import EffectConfig
+from app.utils.formatting import number_to_string
+
+class Effect:
+    def __init__(self, effect_data: EffectConfig):
+        self._power = effect_data.power
+        self._protection = effect_data.protection
+        self._hp = effect_data.hp
+
+        self._total_bonus = (
+                self.hp
+                + self.protection
+                + self.power
+        )
+
+    def __str__(self) -> str:
+        stats = []
+        if self.hp != 0:
+            stats.append(f"HP: {number_to_string(self.hp)}")
+        if self.power != 0:
+            stats.append(f"Power: {number_to_string(self.power)}")
+        if self.protection != 0:
+            stats.append(f"Protection: {number_to_string(self.protection)}")
+        if stats:
+            return f"{{{', '.join(stats)}}}"
+
+        return f"No apparent effect"
+
+    def __eq__(self, other: Effect) -> bool:
+        return (
+                self.hp == other.hp
+                and self.power == other.power
+                and self.protection == other.protection
+        )
+
+    def __ne__(self, other: Effect) -> bool:
+        return (
+                self.hp != other._hp
+                and self.power != other.power
+                and self.protection != other.protection
+        )
+
+    def __lt__(self, other: Effect) -> bool:
+        return self.total_bonus < other.total_bonus
+
+    def __gt__(self, other: Effect) -> bool:
+        return self.total_bonus > other.total_bonus
+
+    @property
+    def power(self):
+        return self._power
+
+    @property
+    def protection(self):
+        return self._protection
+
+    @property
+    def hp(self):
+        return self._hp
+
+    @property
+    def total_bonus(self) -> int:
+        return self._total_bonus
