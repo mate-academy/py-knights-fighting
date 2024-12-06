@@ -1,43 +1,41 @@
 from __future__ import annotations
 
-from app.data.knight_data import KnightData
+from app.adapters.knight_adapter import KnightAdapter
+from app.items.inventory import Inventory
+from app.items.effect import Effect
 from app.items.armour import Armour
-from app.items.item import Item
 from app.items.potion import Potion
 from app.items.weapon import Weapon
 
 
 class Knight:
-    def __init__(self, knight_data: KnightData) -> None:
+    def __init__(self, knight_data: KnightAdapter) -> None:
         self.name = knight_data.name
+        self.power = knight_data.power
         self.hp = knight_data.hp
         self.protection = knight_data.protection
-        self.armour = knight_data.armour
-        self.weapon = knight_data.weapon
-        self.potion = knight_data.potion
+        self.inventory = Inventory(knight_data.inventory_data)
 
-    def __str__(self):
+        self.equiped_armour = []
+        self.equiped_weapon = None
+
+    def __str__(self) -> str:
         armour_str = "absolutely nothing"
-        if self.armour:
+        if self.equiped_armour:
             armour_str = ", ".join(
                 str(armour_piece)
-                for armour_piece in self.armour
+                for armour_piece in self.equiped_armour
             )
 
-        potion_str = "no"
-        if self.potion:
-            potion_str = str(self.potion)
-
         weapon_str = "nothing"
-        if self.weapon:
-            weapon_str = str(self.weapon)
+        if self.equiped_weapon:
+            weapon_str = str(self.equiped_weapon)
 
         return (
             f"        HEALTH\n"
             f"({self.hp_bar()})\n"
             f"Sir {self.name}\n"
             f"Armed with {weapon_str}\n"
-            f"Has {potion_str} potion\n"
             f"Wearing {armour_str}\n"
             f"(base protection: {self.protection})\n"
         )
@@ -45,14 +43,34 @@ class Knight:
     def hp_bar(self) -> str:
         return ("||" * (self.hp // 10)) + ("  " * (10 - self.hp // 10))
 
-    def apply(self, item: Item):
-        if isinstance(item, Potion):
-            ...
-        elif isinstance(item, Armour):
-            ...
-        elif isinstance(item, Weapon):
-            ...
+    def wear_armour(self) -> None:
+        if self.inventory is not None:
+            for item in self.inventory:
+                if isinstance(item, Armour):
+                    self.apply(item.effect)
 
-    def attack(self, other: Knight):
+    def drink_potions(self) -> None:
+        if self.inventory is not None:
+            for item in self.inventory:
+                if isinstance(item, Potion):
+                    self.apply(item.effect)
+
+    def ready_weapon(self) -> None:
+        if self.inventory is not None:
+            for item in self.inventory:
+                if isinstance(item, Weapon):
+                    self.apply(item.effect)
+
+    def apply(self, effect: Effect):
         ...
 
+    def get_hit(self, power: int) -> None:
+        ...
+
+    def attack(self, other: Knight) -> None:
+        ...
+
+    def is_alive(self) -> bool:
+        if self.hp <= 0:
+            return False
+        return True

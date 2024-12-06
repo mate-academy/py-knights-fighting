@@ -1,4 +1,4 @@
-from app.data.battle_data import BattleData
+from app.adapters.battle_adapter import BattleAdapter
 from app.battle.battle import Battle
 
 KNIGHTS = {
@@ -87,6 +87,7 @@ KNIGHTS = {
         }
     }
 }
+
 
 def battle(knightsConfig):
     # BATTLE PREPARATIONS:
@@ -225,6 +226,7 @@ lanc = {
         "potion": None,
     }
 }
-ba = Battle(BattleData(KNIGHTS))
+
+ba = Battle(BattleAdapter(KNIGHTS))
 for k in ba.knights:
     print(str(k))
