@@ -6,7 +6,23 @@ from app.utils.formatting import list_to_string
 
 
 class Inventory:
-    def __init__(self, inventory_data: InventoryConfig):
+    """
+    Represents an inventory, storage of items
+
+    Attributes:
+        items_by_category (dict[Type[Item], list[Item]]):
+            a dictionary of item lists by item types
+
+    Methods:
+        add: add an Item to inventory
+        remove: remove an Item from inventory
+        get (Item): get an Item from inventory
+        get_weapons (list[Weapon]): get list of weapons
+        get_potions (list[Potion]): get list of potions
+        get_armour (list[Armour]): get list of armour
+    """
+
+    def __init__(self, inventory_data: InventoryConfig) -> None:
         self._items_by_category = {
             Weapon: list(
                 Weapon.make_items(inventory_data.weapon_datas)
@@ -38,14 +54,18 @@ class Inventory:
         if item_strings:
             return (
                 f"Inventory: [\n"
-                f"{'\n'.join(item_strings)}\n"
+                f"{"\n".join(item_strings)}\n"
                 f"]"
             )
 
         return "Inventory empty"
 
     @property
-    def items_by_category(self):
+    def items_by_category(self) -> dict[Type[Item], list[Item]]:
+        """
+
+        :return: dictionary of item categories and corresponding item lists
+        """
         return self._items_by_category
 
     def add(self, item: Item) -> None:
@@ -53,7 +73,7 @@ class Inventory:
             if isinstance(item, category):
                 items.append(item)
 
-    def remove(self, item: Item):
+    def remove(self, item: Item) -> None:
         for items in self.items_by_category.values():
             if item in items:
                 items.remove(item)
@@ -62,12 +82,12 @@ class Inventory:
         for items in self.items_by_category.values():
             if item in items:
                 return item
-    
-    def get_weapons(self) -> list[Weapon]:
+
+    def get_weapons(self) -> list[Item]:
         return self.items_by_category[Weapon]
-    
-    def get_armour(self) -> list[Armour]:
+
+    def get_armour(self) -> list[Item]:
         return self.items_by_category[Armour]
-    
-    def get_potions(self) -> list[Potion]:
+
+    def get_potions(self) -> list[Item]:
         return self.items_by_category[Potion]

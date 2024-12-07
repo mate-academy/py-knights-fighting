@@ -3,16 +3,26 @@ from __future__ import annotations
 from app.adapters.effect_config import EffectConfig
 from app.utils.formatting import number_to_string
 
+
 class Effect:
-    def __init__(self, effect_data: EffectConfig):
+    """
+    Represents effect, that can increase or decrease sertain stats
+
+    Properties:
+        power (int): buff/debuff to attack power
+        protection (int): buff/debuff to protection
+        hp (int): buff/debuff to health points
+    """
+
+    def __init__(self, effect_data: EffectConfig) -> None:
         self._power = effect_data.power
         self._protection = effect_data.protection
         self._hp = effect_data.hp
 
         self._total_bonus = (
-                self.hp
-                + self.protection
-                + self.power
+            self.hp
+            + self.protection
+            + self.power
         )
 
     def __str__(self) -> str:
@@ -24,22 +34,22 @@ class Effect:
         if self.protection != 0:
             stats.append(f"Protection: {number_to_string(self.protection)}")
         if stats:
-            return f"{{{', '.join(stats)}}}"
+            return f"{{{", ".join(stats)}}}"
 
-        return f"No apparent effect"
+        return "No apparent effect"
 
     def __eq__(self, other: Effect) -> bool:
         return (
-                self.hp == other.hp
-                and self.power == other.power
-                and self.protection == other.protection
+            self.hp == other.hp
+            and self.power == other.power
+            and self.protection == other.protection
         )
 
     def __ne__(self, other: Effect) -> bool:
         return (
-                self.hp != other._hp
-                and self.power != other.power
-                and self.protection != other.protection
+            self.hp != other._hp
+            and self.power != other.power
+            and self.protection != other.protection
         )
 
     def __lt__(self, other: Effect) -> bool:
@@ -49,15 +59,15 @@ class Effect:
         return self.total_bonus > other.total_bonus
 
     @property
-    def power(self):
+    def power(self) -> int:
         return self._power
 
     @property
-    def protection(self):
+    def protection(self) -> int:
         return self._protection
 
     @property
-    def hp(self):
+    def hp(self) -> int:
         return self._hp
 
     @property

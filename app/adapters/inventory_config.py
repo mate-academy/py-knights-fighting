@@ -2,14 +2,17 @@ from app.adapters.item_config import ItemConfig
 
 
 class InventoryConfig:
-    def __init__(self, config):
+    def __init__(
+            self,
+            knight_dict: dict[str, str | int | dict]
+    ) -> None:
         self.weapon_datas = []
         self.armour_datas = []
         self.potion_datas = []
         self.item_datas = []
 
         self._assign_items(
-            ItemConfig.extract_item_datas(config)
+            ItemConfig.extract_item_configs(knight_dict)
         )
 
     def _assign_items(self, item_configs: list[ItemConfig]) -> None:

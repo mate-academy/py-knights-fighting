@@ -1,10 +1,18 @@
 from __future__ import annotations
+from typing import Generator
 
 from app.adapters.item_config import ItemConfig
 from app.item_system.effect import Effect
 
 
 class Item:
+    """
+    Represents an Item
+
+    Properties:
+        name (str): item's name
+        effect (Effect): item's Effect object, a buff or debuff item can give
+    """
     def __init__(self, item_data: ItemConfig) -> None:
         self.name = item_data.name
         self._effect = Effect(item_data.effect_data)
@@ -25,19 +33,29 @@ class Item:
         return self.effect > other.effect
 
     @property
-    def effect(self):
+    def effect(self) -> Effect:
         return self._effect
 
     @classmethod
-    def make_items(cls, item_datas: list[ItemConfig]):
-        for item_data in item_datas:
+    def make_items(
+            cls,
+            item_configs: list[ItemConfig]
+    ) -> Generator[Item, None, None]:
+        """
+        Pass ItemConfig from item_datas to Item constructor
+
+        :param item_configs: list of ItemConfigs
+        :return: generator of Item objects
+        """
+        for item_data in item_configs:
             yield cls(item_data)
+
 
 class Armour(Item):
     def __init__(self, item_data: ItemConfig) -> None:
         super().__init__(item_data)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return "Armour " + super().__str__()
 
 
@@ -45,7 +63,7 @@ class Potion(Item):
     def __init__(self, item_data: ItemConfig) -> None:
         super().__init__(item_data)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return super().__str__()
 
 
@@ -53,5 +71,5 @@ class Weapon(Item):
     def __init__(self, item_data: ItemConfig) -> None:
         super().__init__(item_data)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return super().__str__()
