@@ -6,7 +6,7 @@ from app.utils.formatting import number_to_string
 
 class Effect:
     """
-    Represents effect, that can increase or decrease sertain stats
+    Represents effect, that can increase or decrease certain stats
 
     Properties:
         power (int): buff/debuff to attack power

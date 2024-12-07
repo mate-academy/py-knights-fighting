@@ -30,36 +30,27 @@ class Arena:
     def __str__(self) -> str:
         return str(self.knights)
 
-    def make_knight_pairs(
-            self,
-            name_pairs: list[tuple[str, str]]
-    ) -> Generator[tuple[Knight, Knight], None, None]:
-        for name_pair in name_pairs:
-            yield (
-                self.get_knight_by_name(name_pair[0]),
-                self.get_knight_by_name(name_pair[1]),
-            )
-
-    def get_knight_by_name(self, name: str) -> Knight:
-        if self.knights is not None:
-            for knight in self.knights:
-                if knight.name == name:
-                    return knight
-
-    def fight_all_pairs(self) -> dict[str, int]:
+    def ready_and_fight_all_pairs(self) -> dict[str, int]:
         fights_results = {}
 
-        for knight_pair in self.knight_pairs:
-            Arena.fight_preparations(knight_pair)
+        for i, knight_pair in enumerate(self.knight_pairs):
+            Arena.ready(knight_pair)
+
+            print(
+                f"\n FIGHT 1"
+                f"\n{knight_pair[0]}\n"
+                f"\nAGAINST\n"
+                f"\n{knight_pair[1]}\n"
+            )
+
             fights_results.update(Arena.fight(knight_pair))
 
         return fights_results
 
     @staticmethod
-    def fight_preparations(knight_pair: tuple[Knight, Knight]) -> None:
+    def ready(knight_pair: tuple[Knight, Knight]) -> None:
         for knight in knight_pair:
-            print(f"{knight.name} prepares for battle")
-
+            print(f"\n{knight.name} prepares for battle\n")
             knight.equip_all_armour()
             knight.equip_best_weapon()
             knight.drink_best_potion()
@@ -76,3 +67,19 @@ class Arena:
             first_knight.name: first_knight.hp,
             second_knight.name: second_knight.hp
         }
+
+    def get_knight_by_name(self, name: str) -> Knight:
+        if self.knights is not None:
+            for knight in self.knights:
+                if knight.name == name:
+                    return knight
+
+    def make_knight_pairs(
+            self,
+            name_pairs: list[tuple[str, str]]
+    ) -> Generator[tuple[Knight, Knight], None, None]:
+        for name_pair in name_pairs:
+            yield (
+                self.get_knight_by_name(name_pair[0]),
+                self.get_knight_by_name(name_pair[1]),
+            )

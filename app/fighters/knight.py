@@ -41,8 +41,7 @@ class Knight:
 
         return (
             f"Sir {self.name}\n"
-            f"        HEALTH\n"
-            f"({number_as_bar(self.hp)})\n"
+            f"{self.health_as_bar()}\n"
             f"Armed with {equiped_weapons_str}\n"
             f"Wearing {equiped_armour_str}\n"
             f"(protection: {self.protection})\n"
@@ -73,6 +72,7 @@ class Knight:
         if value >= 0:
             self._hp = value
         else:
+            print(f"{self.name} was mortally wounded")
             self._hp = 0
 
     @property
@@ -179,3 +179,10 @@ class Knight:
         if self.hp <= 0:
             return False
         return True
+
+    def health_as_bar(self) -> str:
+        return (
+            f"{self.name}: \n"
+            f"            HEALTH\n"
+            f"{number_as_bar(self.hp)}"
+        )

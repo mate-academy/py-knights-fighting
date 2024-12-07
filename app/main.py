@@ -11,7 +11,7 @@ def battle(knights_config: dict[str, dict]) -> dict[str, int]:
     arena = Arena(ArenaConfig(knights_config, matchups))
 
     # dictionary {"knight_name": knight_hp}
-    fights_results = arena.fight_all_pairs()
+    fights_results = arena.ready_and_fight_all_pairs()
 
     return fights_results
 

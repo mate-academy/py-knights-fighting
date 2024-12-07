@@ -31,4 +31,6 @@ def number_as_bar(
         min(number, max_value)
     )
 
-    return ("||" * (number // bars)) + ("  " * (bars - number // bars))
+    filled = number // 10
+
+    return "(" + ("[+]" * filled) + ("   " * (bars - filled)) + ")"
