@@ -53,9 +53,8 @@ class Inventory:
 
         if item_strings:
             return (
-                f"Inventory: [\n"
-                f"{"\n".join(item_strings)}\n"
-                f"]"
+                "Inventory: [\n"
+                f"{"\n".join(item_strings)}\n]"
             )
 
         return "Inventory empty"
