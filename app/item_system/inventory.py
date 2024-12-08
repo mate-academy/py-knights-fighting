@@ -51,10 +51,12 @@ class Inventory:
         if potions:
             item_strings.append(f"    Potions: {list_to_string(potions)}")
 
+        join_item_strings = "\n".join(item_strings)
+
         if item_strings:
             return (
                 "Inventory: [\n"
-                f"{"\n".join(item_strings)}\n]"
+                f"{join_item_strings}\n]"
             )
 
         return "Inventory empty"
