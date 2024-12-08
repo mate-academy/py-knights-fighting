@@ -120,18 +120,19 @@ class Knight:
             if "hp" in self.backpack["potion"]["effect"]:
                 self.hp += self.backpack["potion"]["effect"]["hp"]
 
-    def battle(self, other: Any) -> None:
-        if other.power - self.protection > 0:
-            self.hp -= other.power - self.protection
+    def battle(self, other: Knight) -> None:
+        if isistance(other, Knight):
+            if other.power - self.protection > 0:
+                self.hp -= other.power - self.protection
 
-        if self.power - other.protection > 0:
-            other.hp -= self.power - other.protection
+            if self.power - other.protection > 0:
+                other.hp -= self.power - other.protection
 
-        if self.hp <= 0:
-            self.hp = 0
+            if self.hp <= 0:
+                self.hp = 0
 
-        if other.hp <= 0:
-            other.hp = 0
+            if other.hp <= 0:
+                other.hp = 0
 
 
 def battle(base_knights_config: dict) -> dict:
@@ -141,15 +142,15 @@ def battle(base_knights_config: dict) -> dict:
     for knight in knights:
         list_dict.append(knight)
     # create a list with knight objects
-    list_kinghts = []
+    list_knights = []
     for item in list_dict:
-        list_kinghts.append(Knight(item))
+        list_knights.append(Knight(item))
 
-    for knight in list_kinghts:
+    for knight in list_knights:
         knight.apply_armour()
         knight.apply_weapon()
         knight.apply_potion()
-    lancelot, arthur, mordred, red_knight = list_kinghts
+    lancelot, arthur, mordred, red_knight = list_knights
     arthur.battle(red_knight)
     lancelot.battle(mordred)
     result_battle = {
