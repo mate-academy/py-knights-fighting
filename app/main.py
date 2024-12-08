@@ -120,8 +120,8 @@ class Knight:
             if "hp" in self.backpack["potion"]["effect"]:
                 self.hp += self.backpack["potion"]["effect"]["hp"]
 
-    def battle(self, other: Knight) -> None:
-        if isistance(other, Knight):
+    def battle(self, other: Any) -> None:
+        if isinstance(other, Knight):
             if other.power - self.protection > 0:
                 self.hp -= other.power - self.protection
 
