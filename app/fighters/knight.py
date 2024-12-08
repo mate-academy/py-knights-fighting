@@ -16,7 +16,33 @@ class Knight:
         hp (str): knight's Health Points
         protection (int): knight's protection
         inventory (Inventory):
-            knight's Inventory object, stores not equiped items
+            knight's Inventory object, stores not equipped items
+        equipped_armour (list[Armour]):
+            Armour items that have been equipped
+        equipped_weapon (Weapon): weapon that has been equipped
+        applied_potion (Potion): potion that has been applied
+
+    Methods:
+        equip_best_weapon:
+            get the best weapon from Inventory and equip it
+        unequip_weapon:
+            remove weapon from equipped_weapon and add it to the Inventory
+        drink_best_potion:
+            get the best potion from inventory and apply it
+        equip_all_armour:
+            add all armour from the inventory to the equiped_armour list
+            and apply it
+        apply_item_effect:
+            add stats from Effect to knight's stats
+        attack:
+            pass knight's power to other knight's get_hit method
+        get_hit:
+            subtract protection from power to calculate damage
+            then subtract damage from knight's hp
+        is_alive:
+            True if hp > 0, False otherwise
+        health_as_hp_bar:
+            get string with knight's name and hp as bar of '[+]'
     """
 
     def __init__(self, knight_data: KnightConfig) -> None:
@@ -26,24 +52,24 @@ class Knight:
         self._protection = knight_data.protection
         self._inventory = Inventory(knight_data.inventory_data)
 
-        self._equiped_armour = []
-        self._equiped_weapon = None
+        self._equipped_armour = []
+        self._equipped_weapon = None
         self._applied_potion = None
 
     def __str__(self) -> str:
-        equiped_armour_str = "absolutely nothing"
-        if self.equiped_armour:
-            equiped_armour_str = list_to_string(self.equiped_armour)
+        equipped_armour_str = "absolutely nothing"
+        if self.equipped_armour:
+            equipped_armour_str = list_to_string(self.equipped_armour)
 
-        equiped_weapons_str = "nothing"
-        if self.equiped_weapon:
-            equiped_weapons_str = self.equiped_weapon
+        equipped_weapons_str = "nothing"
+        if self.equipped_weapon:
+            equipped_weapons_str = self.equipped_weapon
 
         return (
             f"Sir {self.name}\n"
             f"{self.health_as_bar()}\n"
-            f"Armed with {equiped_weapons_str}\n"
-            f"Wearing {equiped_armour_str}\n"
+            f"Armed with {equipped_weapons_str}\n"
+            f"Wearing {equipped_armour_str}\n"
             f"(protection: {self.protection})\n"
             f"{str(self.inventory)}"
         )
@@ -88,16 +114,16 @@ class Knight:
         return self._inventory
 
     @property
-    def equiped_weapon(self) -> Weapon | None:
-        return self._equiped_weapon
+    def equipped_weapon(self) -> Weapon | None:
+        return self._equipped_weapon
 
-    @equiped_weapon.setter
-    def equiped_weapon(self, weapon: Weapon) -> None:
-        self._equiped_weapon = weapon
+    @equipped_weapon.setter
+    def equipped_weapon(self, weapon: Weapon) -> None:
+        self._equipped_weapon = weapon
 
     @property
-    def equiped_armour(self) -> list:
-        return self._equiped_armour
+    def equipped_armour(self) -> list:
+        return self._equipped_armour
 
     @property
     def applied_potion(self) -> Potion | None:
@@ -111,21 +137,13 @@ class Knight:
         if self.inventory.get_weapons():
             best_weapon = max(self.inventory.get_weapons())
 
-            if not self.equiped_weapon:
+            if not self.equipped_weapon:
                 print(f"{self.name} readies his {best_weapon}")
-                self.equiped_weapon = best_weapon
+                self.equipped_weapon = best_weapon
                 self.inventory.remove(best_weapon)
                 self.apply_item_effect(best_weapon)
             else:
-                print(f"{self.name} already has {self.equiped_weapon.name}")
-
-    def unequip_weapon(self) -> None:
-        if self.equiped_weapon:
-            self.revert_item_effect(self.equiped_weapon)
-            self.inventory.add(self.equiped_weapon)
-            self.equiped_weapon = None
-        else:
-            print("No weapon to uneqip")
+                print(f"{self.name} already has {self.equipped_weapon.name}")
 
     def drink_best_potion(self) -> None:
         if self.inventory.get_potions():
@@ -145,7 +163,7 @@ class Knight:
         for armour_piece in armour:
             print(f"{self.name} puts on {armour_piece.name}")
 
-            self.equiped_armour.append(armour_piece)
+            self.equipped_armour.append(armour_piece)
             self.apply_item_effect(armour_piece)
             self.inventory.remove(armour_piece)
 
@@ -156,20 +174,13 @@ class Knight:
         self.power += item.effect.power
         self.protection += item.effect.protection
 
-    def revert_item_effect(self, item: Item) -> None:
-        print(f"{self.name} no longer has effect of {item}")
-
-        self.hp -= item.effect.hp
-        self.power -= item.effect.power
-        self.protection -= item.effect.protection
-
     def get_hit(self, attack_power: int) -> None:
         damage = attack_power - self.protection
         print(f"{self.name} receives {damage} damage")
         self.hp -= damage
 
     def attack(self, other: Knight) -> None:
-        if other.equiped_weapon is None:
+        if other.equipped_weapon is None:
             print(f"cannot attack unarmed {other.name}")
         else:
             print(f"{self.name} attacks {other.name}")
