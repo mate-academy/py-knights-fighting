@@ -34,7 +34,8 @@ class Effect:
         if self.protection != 0:
             stats.append(f"Protection: {number_to_string(self.protection)}")
         if stats:
-            return f"{{{", ".join(stats)}}}"
+            join_stats = ", ".join(stats)
+            return f"{{{join_stats}}}"
 
         return "No apparent effect"
 
