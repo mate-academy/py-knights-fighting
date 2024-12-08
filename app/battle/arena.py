@@ -36,13 +36,6 @@ class Arena:
         for i, knight_pair in enumerate(self.knight_pairs):
             Arena.ready(knight_pair)
 
-            print(
-                f"\n FIGHT 1"
-                f"\n{knight_pair[0]}\n"
-                f"\nAGAINST\n"
-                f"\n{knight_pair[1]}\n"
-            )
-
             fights_results.update(Arena.fight(knight_pair))
 
         return fights_results
@@ -50,7 +43,6 @@ class Arena:
     @staticmethod
     def ready(knight_pair: tuple[Knight, Knight]) -> None:
         for knight in knight_pair:
-            print(f"\n{knight.name} prepares for battle\n")
             knight.equip_all_armour()
             knight.equip_best_weapon()
             knight.drink_best_potion()

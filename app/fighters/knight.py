@@ -98,7 +98,6 @@ class Knight:
         if value >= 0:
             self._hp = value
         else:
-            print(f"{self.name} was mortally wounded")
             self._hp = 0
 
     @property
@@ -138,53 +137,41 @@ class Knight:
             best_weapon = max(self.inventory.get_weapons())
 
             if not self.equipped_weapon:
-                print(f"{self.name} readies his {best_weapon}")
                 self.equipped_weapon = best_weapon
                 self.inventory.remove(best_weapon)
                 self.apply_item_effect(best_weapon)
-            else:
-                print(f"{self.name} already has {self.equipped_weapon.name}")
 
     def drink_best_potion(self) -> None:
         if self.inventory.get_potions():
             best_potion = max(self.inventory.get_potions())
 
             if not self.applied_potion:
-                print(f"{self.name} drinks {best_potion.name} potion")
                 self.applied_potion = best_potion
                 self.inventory.remove(best_potion)
                 self.apply_item_effect(best_potion)
-            else:
-                print(f"{self.name} is drunk enough")
 
     def equip_all_armour(self) -> None:
         armour = tuple(self.inventory.get_armour())
 
         for armour_piece in armour:
-            print(f"{self.name} puts on {armour_piece.name}")
-
             self.equipped_armour.append(armour_piece)
             self.apply_item_effect(armour_piece)
             self.inventory.remove(armour_piece)
 
     def apply_item_effect(self, item: Item) -> None:
-        print(f"{self.name} now has effect of {item}")
-
         self.hp += item.effect.hp
         self.power += item.effect.power
         self.protection += item.effect.protection
 
     def get_hit(self, attack_power: int) -> None:
         damage = attack_power - self.protection
-        print(f"{self.name} receives {damage} damage")
         self.hp -= damage
 
     def attack(self, other: Knight) -> None:
-        if other.equipped_weapon is None:
-            print(f"cannot attack unarmed {other.name}")
-        else:
-            print(f"{self.name} attacks {other.name}")
+        if other.equipped_weapon is not None:
             other.get_hit(self.power)
+        else:
+            raise Exception("Cannot attack unarmed target")
 
     def is_alive(self) -> bool:
         if self.hp <= 0:
