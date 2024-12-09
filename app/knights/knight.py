@@ -59,6 +59,7 @@ class Knight:
                     armour["part"], armour["protection"]
                 )
             )
+
             print(f"{knight.name} is putting on {armour["part"]}")
 
         knight.get_weapon(knight_weapon)
