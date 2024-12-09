@@ -60,8 +60,6 @@ class Knight:
                 )
             )
 
-            print(f"{knight.name} is putting on {armour["part"]}")
-
         knight.get_weapon(knight_weapon)
         print(f"{knight.name} is gonna fight with {knight_weapon.name}!")
 
