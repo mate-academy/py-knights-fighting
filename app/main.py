@@ -99,7 +99,11 @@ def apply_weapon(knight: Dict[str, Any]) -> None:
 def apply_potion(knight: Dict[str, Any]) -> None:
     if knight["potion"] is not None:
         for effect, value in knight["potion"]["effect"].items():
-            if effect in knight:
+            # Перевірка, чи атрибут відсутній у knight перед зміною
+            if effect not in knight:  # Тепер ми використовуємо 'not in'
+                # Якщо атрибут не існує, вивести попередження
+                print(f"Warning: {effect} not in knight's attributes.")
+            else:
                 knight[effect] += value
 
 
