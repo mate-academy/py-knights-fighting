@@ -122,10 +122,12 @@ def test_red_knight_overpowered(base_knights_config):
 
 
 def test_lancelot_has_armour(base_knights_config):
-    base_knights_config["lancelot"]["armour"].append({
-        "part": "helmet",
-        "protection": 25,
-    })
+    base_knights_config["lancelot"]["armour"].append(
+        {
+            "part": "helmet",
+            "protection": 25,
+        }
+    )
     assert battle(base_knights_config) == {
         "Lancelot": 20,
         "Arthur": 30,
@@ -164,14 +166,14 @@ def test_arthur_and_lancelot_have_potion(base_knights_config):
             "protection": +20,
             "power": +10,
             "hp": +10,
-        }
+        },
     }
     base_knights_config["lancelot"]["potion"] = {
         "name": "Magic Power",
         "effect": {
             "power": +25,
             "hp": +10,
-        }
+        },
     }
     assert battle(base_knights_config) == {
         "Lancelot": 5,
@@ -179,4 +181,3 @@ def test_arthur_and_lancelot_have_potion(base_knights_config):
         "Mordred": 10,
         "Red Knight": 0,
     }
-
