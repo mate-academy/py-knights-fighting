@@ -1,4 +1,4 @@
-from typing import List, Dict, Optional
+from typing import List, Optional, Dict
 
 
 class Armour:
@@ -25,28 +25,31 @@ class Knight:
         name: str,
         base_power: int,
         base_hp: int,
-        armour: List[Armour],
+        armour: Optional[List[Armour]],
         weapon: Weapon,
         potion: Optional[Potion],
     ) -> None:
         self.name = name
         self.base_power = base_power
         self.base_hp = base_hp
-        self.armour = armour
+        self.armour = armour or []
         self.weapon = weapon
         self.potion = potion
 
-    def get_total_protection(self) -> int:
-        return sum(piece.protection for piece in self.armour)
+        # Derived stats after applying equipment and potion
+        self.power = self.base_power
+        self.hp = self.base_hp
+        self.protection = 0
 
-    def get_total_power(self) -> int:
-        total_power = self.base_power + self.weapon.power
-        if self.potion:
-            total_power += self.potion.effect.get("power", 0)
-        return total_power
+    def apply_equipment_and_potion(self) -> None:
+        # Apply armour protection
+        self.protection = sum(a.protection for a in self.armour)
 
-    def get_total_hp(self) -> int:
-        total_hp = self.base_hp
+        # Apply weapon power
+        self.power += self.weapon.power
+
+        # Apply potion effects if any
         if self.potion:
-            total_hp += self.potion.effect.get("hp", 0)
-        return total_hp
+            self.power += self.potion.effect.get("power", 0)
+            self.protection += self.potion.effect.get("protection", 0)
+            self.hp += self.potion.effect.get("hp", 0)

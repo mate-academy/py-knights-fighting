@@ -1,16 +1,16 @@
-from typing import Dict
+def fight(knight1: dict, knight2: dict) -> None:
+    knight1_attack = knight1["power"] + knight1["weapon"]["power"]
+    knight2_attack = knight2["power"] + knight2["weapon"]["power"]
 
+    knight1_armour = sum(
+        armour.get("protection", 0) for armour in knight1.get("armour", []))
+    knight2_armour = sum(
+        armour.get("protection", 0) for armour in knight2.get("armour", []))
 
-def battle(knight1: Dict, knight2: Dict) -> Dict[str, int]:
-    knight1["hp"] -= knight2["power"] - knight1["protection"]
-    knight2["hp"] -= knight1["power"] - knight2["protection"]
+    # Calculate damage
+    knight2["hp"] -= max(knight1_attack - knight2_armour, 0)
+    knight1["hp"] -= max(knight2_attack - knight1_armour, 0)
 
-    if knight1["hp"] <= 0:
-        knight1["hp"] = 0
-    if knight2["hp"] <= 0:
-        knight2["hp"] = 0
-
-    return {
-        knight1["name"]: knight1["hp"],
-        knight2["name"]: knight2["hp"]
-    }
+    # Ensure HP doesn't go below zero
+    knight1["hp"] = max(knight1["hp"], 0)
+    knight2["hp"] = max(knight2["hp"], 0)
