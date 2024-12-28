@@ -11,4 +11,3 @@ class Knight:
     weapon: dict
     potion: dict
     protection: int = field(default=0)
-
