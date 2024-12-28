@@ -1,30 +1,92 @@
-from typing import List
-from app.battle import BattleKnight
-from app.config import knights_list
-from app.knights import Knight
+from app.battle import battle
 
+KNIGHTS = {
+    "lancelot": {
+        "name": "Lancelot",
+        "power": 35,
+        "hp": 100,
+        "armour": [],
+        "weapon": {
+            "name": "Metal Sword",
+            "power": 50,
+        },
+        "potion": None,
+    },
+    "arthur": {
+        "name": "Arthur",
+        "power": 45,
+        "hp": 75,
+        "armour": [
+            {
+                "part": "helmet",
+                "protection": 15,
+            },
+            {
+                "part": "breastplate",
+                "protection": 20,
+            },
+            {
+                "part": "boots",
+                "protection": 10,
+            }
+        ],
+        "weapon": {
+            "name": "Two-handed Sword",
+            "power": 55,
+        },
+        "potion": None,
+    },
+    "mordred": {
+        "name": "Mordred",
+        "power": 30,
+        "hp": 90,
+        "armour": [
+            {
+                "part": "breastplate",
+                "protection": 15,
+            },
+            {
+                "part": "boots",
+                "protection": 10,
+            }
+        ],
+        "weapon": {
+            "name": "Poisoned Sword",
+            "power": 60,
+        },
+        "potion": {
+            "name": "Berserk",
+            "effect": {
+                "power": +15,
+                "hp": -5,
+                "protection": +10,
+            }
+        }
+    },
+    "red_knight": {
+        "name": "Red Knight",
+        "power": 40,
+        "hp": 70,
+        "armour": [
+            {
+                "part": "breastplate",
+                "protection": 25,
+            }
+        ],
+        "weapon": {
+            "name": "Sword",
+            "power": 45
+        },
+        "potion": {
+            "name": "Blessing",
+            "effect": {
+                "hp": +10,
+                "power": +5,
+            }
+        }
+    }
+}
 
-def find_knight_by_name(knights: List[Knight], name: str) -> Knight:
-    for knight in knights:
-        if knight.name == name:
-            return knight
-    raise ValueError(f"Knight with name '{name}' not found.")
-
-
-def battle(knights: List[Knight]) -> dict:
-    battle1 = BattleKnight(knights)
-
-    battle1.battle_preparation()
-
-    lancelot = find_knight_by_name(knights, "Lancelot")
-    mordred = find_knight_by_name(knights, "Mordred")
-    arthur = find_knight_by_name(knights, "Arthur")
-    red_knight = find_knight_by_name(knights, "Red Knight")
-
-    battle1.battle_process(lancelot, mordred)
-    battle1.battle_process(arthur, red_knight)
-
-    return battle1.show_battle_results()
-
-
-print(battle(knights_list))
+if __name__ == "__main__":
+    results = battle(KNIGHTS)
+    print(results)
