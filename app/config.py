@@ -93,7 +93,6 @@ knights_list = []
 for knight_data in KNIGHTS.values():
     knights_list.append(
         Knight(
-            knight=knight_data.get("name"),
             name=knight_data.get("name"),
             power=knight_data.get("power"),
             hp=knight_data.get("hp"),
