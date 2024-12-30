@@ -1,5 +1,5 @@
-from people.knight import create_knights
-from action.battle import do_battle
+from app.knight import create_knights
+from app.battle import do_battle
 
 KNIGHTS = {
     "lancelot": {
@@ -93,9 +93,8 @@ def battle(knights_config: dict) -> dict:
     knights = create_knights(knights_config)
     for knight in knights.values():
         knight.get_prepared()
-
-    result1 = do_battle(knights["Lancelot"], knights["Arthur"])
-    result2 = do_battle(knights["Mordred"], knights["Red Knight"])
+    result1 = do_battle(knights["Lancelot"], knights["Mordred"])
+    result2 = do_battle(knights["Arthur"], knights["Red Knight"])
 
     return result1 | result2
 

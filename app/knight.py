@@ -10,7 +10,7 @@ class Knight:
         self.protection = 0
 
     def apply_armour(self) -> None:
-        if self.armour is not []:
+        if self.armour:
             for armour in self.armour:
                 self.protection += armour["protection"]
 

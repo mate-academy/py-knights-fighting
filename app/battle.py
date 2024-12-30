@@ -1,5 +1,5 @@
 from __future__ import annotations
-from app.people.knight import Knight
+from app.knight import Knight
 
 
 def do_battle(knight1: Knight, knight2: Knight) -> dict:
