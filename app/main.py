@@ -111,14 +111,16 @@ def battle(knights_config: dict) -> dict:
     mordred = Knight(mordred_value["name"], mordred_value["power"],
                      mordred_value["hp"], mordred_value["weapon"]["power"])
     mordred.apply_armour(mordred_value["armour"])
-    mordred.apply_potion(mordred_value["potion"]["effect"])
+    if mordred_value["potion"]:
+        mordred.apply_potion(mordred_value["potion"]["effect"])
 
     red_knight_value = knights_config["red_knight"]
     red_knight = Knight(red_knight_value["name"], red_knight_value["power"],
                         red_knight_value["hp"],
                         red_knight_value["weapon"]["power"])
     red_knight.apply_armour(red_knight_value["armour"])
-    red_knight.apply_potion(red_knight_value["potion"]["effect"])
+    if red_knight_value["potion"]:
+        red_knight.apply_potion(red_knight_value["potion"]["effect"])
 
     # -------------------------------------------------------------------------------
     # BATTLE:

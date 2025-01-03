@@ -1,12 +1,13 @@
 class Knight:
     def __init__(self, name: str, power: int,
                  hp: int,
-                 weapon: dict) -> None:
+                 weapon: int) -> None:
         self.name = name
         self.power = power
         self.hp = hp
         self.weapon = weapon
         self.power += self.weapon
+        self.armour = None
 
     def apply_armour(self, protection: list[dict]) -> None:
         result = 0
