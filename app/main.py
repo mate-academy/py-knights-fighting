@@ -87,13 +87,15 @@ KNIGHTS = {
     }
 }
 
-def fight(a: Knight, b: Knight) -> None:
-    a.hp -= max(0, b.power - a.protection)
-    b.hp -= max(0, a.power - b.protection)
-    a.hp = max(0, a.hp)
-    b.hp = max(0, b.hp)
 
-def battle(knights_config):
+def fight(first: Knight, second: Knight) -> None:
+    first.hp -= max(0, second.power - first.protection)
+    second.hp -= max(0, first.power - second.protection)
+    first.hp = max(0, first.hp)
+    second.hp = max(0, second.hp)
+
+
+def battle(knights_config : dict) -> dict:
     knights = {key: Knight(
         data["name"],
         data["power"],
@@ -114,6 +116,7 @@ def battle(knights_config):
         knights["mordred"].name: knights["mordred"].hp,
         knights["red_knight"].name: knights["red_knight"].hp,
     }
+
 
 results = battle(KNIGHTS)
 print(results)
