@@ -116,4 +116,5 @@ def battle(data: dict) -> dict:
         "Red Knight": heroes["red_knight"].hp,
     }
 
+
 print(battle(KNIGHTS))
