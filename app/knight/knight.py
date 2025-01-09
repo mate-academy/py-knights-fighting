@@ -1,5 +1,6 @@
-from typing import Union
+from __future__ import annotations
 
+from typing import Union
 from app.outfit.armour import Armour
 from app.outfit.potion.effect import Effect
 from app.outfit.potion.potion import Potion
@@ -52,3 +53,9 @@ class Knight:
     def fell_in_battle(self) -> None:
         if self.hp < 0:
             self.hp = 0
+
+    def duelling(self, other: Knight) -> None:
+        self.hp -= other.power - self.protection
+        other.hp -= self.power - other.protection
+        self.fell_in_battle()
+        other.fell_in_battle()
