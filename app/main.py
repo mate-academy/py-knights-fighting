@@ -1,23 +1,19 @@
 from app.data.knights import KNIGHTS
-from app.knight import Knight
+from app.knight.knight import Knight
 
 
 def battle(knights_config: dict) -> dict:
+    knights = lancelot, arthur, mordred, red_knight = [
+        Knight(**knight)
+        for knight
+        in knights_config.values()
+    ]
+
     # BATTLE PREPARATIONS
 
-    lancelot = Knight(knights_config["lancelot"])
-    lancelot.battle_preparation()
+    for knight in knights:
+        knight.battle_preparation()
 
-    arthur = Knight(knights_config["arthur"])
-    arthur.battle_preparation()
-
-    mordred = Knight(knights_config["mordred"])
-    mordred.battle_preparation()
-
-    red_knight = Knight(knights_config["red_knight"])
-    red_knight.battle_preparation()
-
-    # -------------------------------------------------------------------------------
     # BATTLE:
 
     # 1 Lancelot vs Mordred:
@@ -37,12 +33,7 @@ def battle(knights_config: dict) -> dict:
     red_knight.fell_in_battle()
 
     # Return battle results:
-    return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
-    }
+    return {knight.name: knight.hp for knight in knights}
 
 
-print(battle(KNIGHTS))
+battle(KNIGHTS)
