@@ -3,13 +3,16 @@ from app.knight.knight import Knight
 
 
 def battle(knights_config: dict) -> dict:
-    knights = [Knight(**knight) for knight in knights_config.values()]
-    lancelot, arthur, mordred, red_knight = knights
+    knights = []
 
     # BATTLE PREPARATIONS
 
-    for knight in knights:
+    for knight in knights_config.values():
+        knight = Knight(**knight)
+        knights.append(knight)
         knight.battle_preparation()
+
+    lancelot, arthur, mordred, red_knight = knights
 
     # BATTLE:
 
