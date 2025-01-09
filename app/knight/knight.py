@@ -33,31 +33,16 @@ class Knight:
     def apply_armour(self) -> None:
         if self.armour:
             for item in self.armour:
-                self.protection = item.effect_on_protection(
-                    self.protection,
-                    item.protection
-                )
+                self.protection += item.protection
 
     def apply_weapon(self) -> None:
-        self.power = self.weapon.effect_on_power(
-            self.power,
-            self.weapon.power
-        )
+        self.power += self.weapon.power
 
     def apply_potion(self) -> None:
         if self.potion is not None:
-            self.power = self.potion.effect_on_power(
-                self.power,
-                self.potion.effect.power
-            )
-            self.protection = self.potion.effect_on_protection(
-                self.protection,
-                self.potion.effect.protection
-            )
-            self.hp = self.potion.effect_on_hp(
-                self.hp,
-                self.potion.effect.hp
-            )
+            self.power += self.potion.effect.power
+            self.protection += self.potion.effect.protection
+            self.hp += self.potion.effect.hp
 
     def battle_preparation(self) -> None:
         self.apply_armour()
