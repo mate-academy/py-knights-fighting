@@ -1,10 +1,10 @@
 from __future__ import annotations
 
 from typing import Union
-from app.outfit.armour import Armour
-from app.outfit.potion.effect import Effect
-from app.outfit.potion.potion import Potion
-from app.outfit.weapon import Weapon
+from app.knight.outfit.armour import Armour
+from app.knight.outfit.potion.effect import Effect
+from app.knight.outfit.potion.potion import Potion
+from app.knight.outfit.weapon import Weapon
 
 
 class Knight:

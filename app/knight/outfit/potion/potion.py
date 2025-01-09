@@ -1,4 +1,4 @@
-from app.outfit.potion.effect import Effect
+from app.knight.outfit.potion.effect import Effect
 
 
 class Potion:
