@@ -23,4 +23,4 @@ def battle(knights_config: dict) -> dict:
     return {knight.name: knight.hp for knight in knights}
 
 
-print(battle(KNIGHTS))
+battle(KNIGHTS)
