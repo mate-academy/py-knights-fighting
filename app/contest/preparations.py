@@ -1,13 +1,16 @@
-def apply_armor(knight) -> None:
+from app.knights.knight import Knight
+
+
+def apply_armor(knight: Knight) -> None:
     for armour_unit in knight.armour:
         knight.protection += armour_unit.get("protection")
 
 
-def apply_weapon(knight) -> None:
+def apply_weapon(knight: Knight) -> None:
     knight.power += knight.weapon.get("power")
 
 
-def apply_potion(knight) -> None:
+def apply_potion(knight: Knight) -> None:
     if knight.potion is not None:
         if "power" in knight.potion["effect"]:
             knight.power += knight.potion["effect"]["power"]

@@ -2,17 +2,19 @@ from app.contest import preparations
 
 
 class Contest:
-    def __init__(self, knights: dict):
+    def __init__(self, knights: dict) -> None:
         self.knights = knights
         self.battle_results = {}
 
-    def make_all_contest_preparations(self):
+    def make_all_contest_preparations(self) -> None:
         for knight in self.knights.values():
             preparations.apply_armor(knight)
             preparations.apply_weapon(knight)
             preparations.apply_potion(knight)
 
-    def make_battle(self, first_knight_name: str, second_knight_name: str) -> None:
+    def make_battle(self,
+                    first_knight_name: str,
+                    second_knight_name: str) -> None:
         first_knight = self.knights.get(first_knight_name)
         second_knight = self.knights.get(second_knight_name)
         first_knight.hp -= second_knight.power - first_knight.protection
@@ -24,4 +26,3 @@ class Contest:
         if second_knight.hp <= 0:
             second_knight.hp = 0
         self.battle_results.update({second_knight_name: second_knight.hp})
-

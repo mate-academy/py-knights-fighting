@@ -11,7 +11,7 @@ class Knight:
     @classmethod
     def create_knights_from_data(cls, attrs: dict) -> dict:
         knight_dict = {}
-        for knight_name, knight_data in attrs.items():
-            knight_dict.update({knight_name: Knight(knight_data)})
+        for knight_data in attrs.values():
+            knight_dict.update({knight_data.get("name"): Knight(knight_data)})
 
         return knight_dict
