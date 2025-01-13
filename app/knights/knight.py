@@ -48,11 +48,3 @@ class Knight:
         self.apply_armour()
         self.apply_weapon()
         self.apply_potion()
-
-    def __str__(self) -> str:
-        return (f"Knight - \"{self.name}\": \n"
-                f"Power - {self.power}\n"
-                f"HP - {self.hp}\n"
-                f"Armour - {", ".join([p["part"] for p in self.armour])}\n"
-                f"Weapon - {self.weapon.get("name")}\n"
-                f"Potion - {self.potion.get("name") if self.potion else None}")
