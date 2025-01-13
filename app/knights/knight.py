@@ -50,10 +50,10 @@ class Knight:
         self.apply_potion()
 
     def __str__(self) -> str:
-        return (f"Knight - \"{self.name}\": \n"
-                f"Power - {self.power}\n"
-                f"HP - {self.hp}\n"
-                f"Armour - {", ".join([part["part"]
-                                       for part in self.armour])}\n"
-                f"Weapon - {self.weapon.get("name")}\n"
-                f"Potion - {self.potion.get("name") if self.potion else None}")
+        return (f'Knight - \"{self.name}\": \n'
+                f'Power - {self.power}\n'
+                f'HP - {self.hp}\n'
+                f'Armour - {", ".join([part["part"]
+                                       for part in self.armour])}\n'
+                f'Weapon - {self.weapon.get("name")}\n'
+                f'Potion - {self.potion.get("name") if self.potion else None}')
