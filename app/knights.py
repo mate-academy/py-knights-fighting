@@ -30,3 +30,4 @@ class Knight:
 
     def __repr__(self):
         return f"Knight(name={self.name}, hp={self.hp}, power={self.power}, protection={self.protection})"
+print("Hello")

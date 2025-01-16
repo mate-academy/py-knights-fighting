@@ -21,3 +21,4 @@ class Battle:
             self.knight1.name: self.knight1.hp,
             self.knight2.name: self.knight2.hp,
         }
+print("Hello")
