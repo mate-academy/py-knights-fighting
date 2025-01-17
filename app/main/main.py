@@ -100,9 +100,10 @@ def battle(knights_config: dict) -> dict:
     for knight in knights:
         knight.prepare_for_battle()
 
-    battle1 = Battle(knights[0], knights[2])  # Lancelot vs Mordred
+    battle1 = Battle(knights[0], knights[2])
     battle1.fight()
-    battle2 = Battle(knights[1], knights[3])  # Arthur vs Red Knight
+
+    battle2 = Battle(knights[1], knights[3])
     battle2.fight()
 
     results = {**battle1.get_result(), **battle2.get_result()}
