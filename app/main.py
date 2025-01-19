@@ -1,9 +1,9 @@
 # app/main.py
 
-from equipment.weapons import Weapon
+from battles.battle import Battle
 from equipment.armour import Armour
 from equipment.potions import Potion
-from battles.battle import Battle
+from equipment.weapons import Weapon
 from roles.knights import Knight
 
 
