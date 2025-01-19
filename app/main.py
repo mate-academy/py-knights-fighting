@@ -1,10 +1,14 @@
 # app/main.py
 
-from battles.battle import Battle
-from equipment.armour import Armour
-from equipment.potions import Potion
-from equipment.weapons import Weapon
-from roles.knights import Knight
+import os.path
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+
+from app.battles.battle import Battle
+from app.equipment.armour import Armour
+from app.equipment.potions import Potion
+from app.equipment.weapons import Weapon
+from app.roles.knights import Knight
 
 
 def battle(knights_config: dict) -> dict:
