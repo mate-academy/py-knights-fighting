@@ -1,10 +1,7 @@
 # app/battles/battle.py
 
-import os.path
-import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-from app.roles.knights import Knight
+from roles.knights import Knight
 
 
 class Battle:
