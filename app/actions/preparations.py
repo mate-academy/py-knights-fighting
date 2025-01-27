@@ -4,9 +4,11 @@ from app.characteristics.heros import Hero
 
 
 def potion_preparation(potion: Potion) -> list:
+
     power = 0
     hp = 0
     protection = 0
+
     if "power" in potion.effect:
         power += potion.effect["power"]
     if "hp" in potion.effect:
@@ -18,7 +20,7 @@ def potion_preparation(potion: Potion) -> list:
 
 def battle_preparations(knights: dict) -> list:
 
-    heroes_list =[]
+    heroes_list = []
 
     for key, knight_config in knights.items():
 
@@ -47,5 +49,7 @@ def battle_preparations(knights: dict) -> list:
             knight_config["hp"] + potion_effects[1],
             protection + potion_effects[2]
         )
+
         heroes_list.append(hero)
+
     return heroes_list
