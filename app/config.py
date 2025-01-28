@@ -1,4 +1,4 @@
-KNIGHTS = {
+knights_config = {
     "lancelot": {
         "name": "Lancelot",
         "power": 35,
