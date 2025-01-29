@@ -9,8 +9,9 @@ def sparring(warriors: list) -> dict:
             first_warrior = man
         if man.name == "Mordred":
             second_warrior = man
-    lancelot_vs_mordred = Battle(first_warrior, second_warrior)
-    lancelot_vs_mordred.fight()
+    if first_warrior is not None and second_warrior is not None:
+        lancelot_vs_mordred = Battle(first_warrior, second_warrior)
+        lancelot_vs_mordred.fight()
 
     for man in warriors:
         if man.name == "Arthur":
