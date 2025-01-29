@@ -16,8 +16,12 @@ class Battle:
     def winner(self) -> None:
         if self.first_knight.hp <= 0:
             self.first_knight.hp = 0
+            print("The first knight was defeated")
         if self.second_knight.hp <= 0:
             self.second_knight.hp = 0
+            print("The second knight was defeated")
+        if self.first_knight == 0 and self.second_knight == 0:
+            print("It is a draw")
 
     def fight(self) -> None:
         self.damages()

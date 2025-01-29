@@ -2,8 +2,8 @@ from app.event.battle import Battle
 
 
 def sparring(warriors: list) -> dict:
-    first_warrior = None
-    second_warrior = None
+    first_warrior = "Absent"
+    second_warrior = "Absent"
     for man in warriors:
         if man.name == "Lancelot":
             first_warrior = man
@@ -17,8 +17,9 @@ def sparring(warriors: list) -> dict:
             first_warrior = man
         if man.name == "Red Knight":
             second_warrior = man
-    arthur_vs_red_knight = Battle(first_warrior, second_warrior)
-    arthur_vs_red_knight.fight()
+    if first_warrior is not None and second_warrior is not None:
+        arthur_vs_red_knight = Battle(first_warrior, second_warrior)
+        arthur_vs_red_knight.fight()
 
     result = {}
 
