@@ -33,7 +33,7 @@ def tournament_round(knight1: Knight, knight2: Knight) -> Knight:
     return victor
 
 
-def tournament(knights: list[Knight]) -> None:
+def battle(knights: list[Knight]) -> None:
     round_1_victor1 = tournament_round(knights[0], knights[1])
     round_1_victor2 = tournament_round(knights[2], knights[3])
     tournament_victor = tournament_round(round_1_victor1, round_1_victor2)
