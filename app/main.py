@@ -12,6 +12,7 @@ def summon_knights() -> list[Knight]:
     for knight in knights:
         knight.suit_up(gear_set[knight.name])
 
+
 def battle_round(knight1: Knight, knight2: Knight) -> Knight:
     knight1.strike(knight2)
     knight2.strike(knight1)
@@ -22,20 +23,18 @@ def battle_round(knight1: Knight, knight2: Knight) -> Knight:
     else:
         return None
 
+
 def tournament_round(knight1: Knight, knight2: Knight) -> Knight:
     victor = None
     while victor is None:
         victor = battle_round(knight1, knight2)
 
-    print(f"{victor.name} defeated the opponent.") 
+    print(f"{victor.name} defeated the opponent.")
     return victor
+
 
 def tournament(knights: list[Knight]) -> None:
     round_1_victor1 = tournament_round(knights[0], knights[1])
     round_1_victor2 = tournament_round(knights[2], knights[3])
     tournament_victor = tournament_round(round_1_victor1, round_1_victor2)
     print(f"{tournament_victor.name} has won the tournament.")
-
-
-knights = summon_knights()
-tournament(knights)

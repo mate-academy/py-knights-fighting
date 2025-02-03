@@ -4,6 +4,7 @@ from app.items.weapon import Weapon
 from app.items.potion import Potion
 from app.items.gear_set import GearSet
 
+
 class Knight:
     def __init__(self, name: str, power: int, hp: int) -> None:
         self.name = name
@@ -23,7 +24,7 @@ class Knight:
     def equip_weapon(self, weapon: Weapon) -> None:
         self.power += weapon.power
 
-    def drink_potions(self, potions:list) -> None:
+    def drink_potions(self, potions: list) -> None:
         for potion in potions:
             self.apply_potion_effect(potion)
 
@@ -34,6 +35,6 @@ class Knight:
 
     def strike(self, opponent: Knight) -> None:
         opponent.hp -= self.power - opponent.protection
-    
+
     def is_defeated(self) -> bool:
         return self.hp <= 0
