@@ -19,7 +19,7 @@ class Knight:
 
     def put_on_protective_gear(self, apparel_list: list[Apparel]) -> None:
         for apparel in apparel_list:
-            self.protection += apparel.pro
+            self.protection += apparel.protection
 
     def equip_weapon(self, weapon: Weapon) -> None:
         self.power += weapon.power
