@@ -4,7 +4,12 @@ from __future__ import annotations
 class Knight:
 
     def __init__(
-        self, name: str, power: int, hp: int, armour: list, weapon: dict, potion: dict
+        self, name: str,
+        power: int,
+        hp: int,
+        armour: list,
+        weapon: dict,
+        potion: dict
     ) -> None:
         self.name = name
         self.power = power
@@ -13,6 +18,8 @@ class Knight:
         self.weapon = weapon
         self.potion = potion
         self.protection = 0
+
+        self.prepare_knight()
 
     def prepare_knight(self) -> None:
         self.protection = sum(armour["protection"] for armour in self.armour)
@@ -23,10 +30,15 @@ class Knight:
             for effect_name in ("hp", "power", "protection"):
                 potion = getattr(
                     self, effect_name
-                )  # Отримання значення атрибута з об'єкту self в рядку що містить назву атрибута "effect name"
+                )  # Отримання значення атрибута з об'єкту self в рядку
+                # що містить назву атрибута "effect name"
                 setattr(
-                    self, effect_name, potion + self.potion["effect"][effect_name]
-                )  # Встановлення значення існуючого атрибута self в рядку effect_name на значення potion + self.potion["effect"][effect_name]
+                    self,
+                    effect_name,
+                    potion + self.potion["effect"].get(effect_name, 0),
+                )  # Встановлення значення існуючого атрибута
+                # self в рядку effect_name на значення
+                # potion + self.potion["effect"][effect_name]
 
     def repr(self) -> None:
         return (
@@ -39,6 +51,6 @@ class Knight:
         self.hp -= other.power - self.protection
         other.hp -= self.power - other.protection
         if self.hp <= 0:
-            self.hp == 0
+            self.hp = 0
         elif other.hp <= 0:
-            other.hp == 0
+            other.hp = 0

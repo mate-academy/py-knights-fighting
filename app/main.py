@@ -1,6 +1,9 @@
-from battle import battle
+from app.battle import battle
 
 
-def __main__() -> None:
-    if __name__ == "__main__":
-        battle(__main__)
+def main() -> None:
+    return battle()
+
+
+if __name__ == "__main__":
+    print(main())
