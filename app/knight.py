@@ -38,9 +38,12 @@ class Knight:
                     potion + self.potion["effect"].get(effect_name, 0),
                 )  # Встановлення значення існуючого атрибута
                 # self в рядку effect_name на значення
-                # potion + self.potion["effect"][effect_name]
+                # potion + self.potion["effect"].get(effect_name, 0)
+                # Тобто зі словника self.potion з ключа ["effect"] дістаємо
+                # значення effect_name, а якщо його немає,
+                # то встановлюємо дефолтне значення 0
 
-    def repr(self) -> None:
+    def __repr__(self) -> None:
         return (
             f"Knight: {self.name}, {self.power}, "
             f"{self.hp}, {self.armour}, {self.weapon}, "
