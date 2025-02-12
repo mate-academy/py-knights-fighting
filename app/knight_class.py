@@ -13,7 +13,8 @@ class Knight:
         try:
             return sum(part["protection"] for part in list_of_armor)
         except KeyError as e:
-            raise ValueError(f"Missing 'protection' key in one of the armor parts: {e}")
+            raise ValueError(f"Missing 'protection'"
+                             f" key in one of the armor parts: {e}")
 
     def use_potion_effect(self, potion: dict) -> None:
         if potion.get("hp"):
