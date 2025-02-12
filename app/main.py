@@ -8,7 +8,7 @@ def check_hp(knight: Knight) -> None:
         knight.hp = 0
 
 
-def fight_fun(knight_1: Knight, knight_2: KNIGHTS) -> None:
+def resolve_fight(knight_1: Knight, knight_2: KNIGHTS) -> None:
     """Count fight result"""
     knight_1.hp -= knight_2.power - knight_1.protection
     knight_2.hp -= knight_1.power - knight_2.protection
@@ -26,8 +26,8 @@ def battle(knights_config: dict) -> dict:
     red_knight = Knight(knights_config["red_knight"])
 
     # Battle
-    fight_fun(lancelot, mordred)
-    fight_fun(red_knight, arthur)
+    resolve_fight(lancelot, mordred)
+    resolve_fight(red_knight, arthur)
 
     return {
         lancelot.name: lancelot.hp,
