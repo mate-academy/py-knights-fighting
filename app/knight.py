@@ -1,53 +1,30 @@
-from __future__ import annotations
+def knight_preparation(knights_config: dict) -> list:
+    for knight in knights_config.values():
+        knight["protection"] = sum(ammo["protection"]
+                                   for ammo in knight["armour"])
+
+        knight["power"] += knight["weapon"]["power"]
+
+        potion = knight.get("potion")
+        if potion is not None:
+            effects = potion.get("effect", {})
+            knight["power"] += effects.get("power", 0)
+            knight["protection"] += effects.get("protection", 0)
+            knight["hp"] += effects.get("hp", 0)
+    return list(knights_config.values())
 
 
-class Knight:
+def fight(knight1: dict, knight2: dict) -> dict:
+    knight1["hp"] -= knight2["power"] - knight1["protection"]
+    knight2["hp"] -= knight1["power"] - knight2["protection"]
 
-    def __init__(
-        self, name: str,
-        power: int,
-        hp: int,
-        armour: list,
-        weapon: dict,
-        potion: dict
-    ) -> None:
-        self.name = name
-        self.power = power
-        self.hp = hp
-        self.armour = armour
-        self.weapon = weapon
-        self.potion = potion
-        self.protection = 0
+    if knight1["hp"] <= 0:
+        knight1["hp"] = 0
 
-        self.prepare_knight()
+    if knight2["hp"] <= 0:
+        knight2["hp"] = 0
 
-    def prepare_knight(self) -> None:
-        self.protection = sum(armour["protection"] for armour in self.armour)
-
-        self.power += self.weapon["power"]
-
-        if self.potion:
-            for effect_name in ("hp", "power", "protection"):
-                potion = getattr(
-                    self, effect_name
-                )
-                setattr(
-                    self,
-                    effect_name,
-                    potion + self.potion["effect"].get(effect_name, 0),
-                )
-
-    def __repr__(self) -> None:
-        return (
-            f"Knight: {self.name}, {self.power}, "
-            f"{self.hp}, {self.armour}, {self.weapon}, "
-            f"{self.potion}, {self.protection}"
-        )
-
-    def fight(self, other: Knight) -> None:
-        self.hp -= other.power - self.protection
-        other.hp -= self.power - other.protection
-        if self.hp <= 0:
-            self.hp = 0
-        elif other.hp <= 0:
-            other.hp = 0
+    return {
+        knight1["name"]: knight1["hp"],
+        knight2["name"]: knight2["hp"],
+    }
