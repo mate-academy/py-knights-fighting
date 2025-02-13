@@ -11,10 +11,3 @@ def attack(knight: Knight, other_knight: Knight) -> dict:
 
     other_knight.hp = max(0, other_knight.hp - damage_to_other)
     knight.hp = max(0, knight.hp - damage_to_self)
-
-    fight_result = {
-        knight.name: knight.hp,
-        other_knight.name: other_knight.hp,
-    }
-
-    return fight_result
