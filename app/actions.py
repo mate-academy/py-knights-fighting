@@ -2,10 +2,7 @@ from app.init_data import Knight
 
 
 def init_knights(knights_config: dict) -> dict:
-    knights = {}
-    for name, knight in knights_config.items():
-        knights[name] = Knight(**knight)
-    return knights
+    return {name: Knight(**knight) for name, knight in knights_config.items()}
 
 
 def attack(knight: Knight, other_knight: Knight) -> dict:
