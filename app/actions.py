@@ -5,7 +5,7 @@ def init_knights(knights_config: dict) -> dict:
     return {name: Knight(**knight) for name, knight in knights_config.items()}
 
 
-def attack(knight: Knight, other_knight: Knight) -> dict:
+def attack(knight: Knight, other_knight: Knight) -> None:
     damage_to_other = max(0, knight.power - other_knight.protection)
     damage_to_self = max(0, other_knight.power - knight.protection)
 
