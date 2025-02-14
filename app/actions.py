@@ -5,9 +5,13 @@ def init_knights(knights_config: dict) -> dict:
     return {name: Knight(**knight) for name, knight in knights_config.items()}
 
 
-def attack(knight: Knight, other_knight: Knight) -> None:
-    damage_to_other = max(0, knight.power - other_knight.protection)
-    damage_to_self = max(0, other_knight.power - knight.protection)
+def attack(fighters: dict) -> dict:
+    lancelot = fighters["lancelot"]
+    arthur = fighters["arthur"]
+    mordred = fighters["mordred"]
+    red_knight = fighters["red_knight"]
 
-    other_knight.hp = max(0, other_knight.hp - damage_to_other)
-    knight.hp = max(0, knight.hp - damage_to_self)
+    lancelot - mordred
+    arthur - red_knight
+
+    return {knight.name: knight.hp for knight in fighters.values()}

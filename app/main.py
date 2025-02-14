@@ -87,21 +87,9 @@ KNIGHTS = {
 
 def battle(knights_config: dict) -> dict:
     fighters = init_knights(knights_config)
+    fight_result = attack(fighters)
 
-    lancelot = fighters["lancelot"]
-    arthur = fighters["arthur"]
-    mordred = fighters["mordred"]
-    red_knight = fighters["red_knight"]
-
-    attack(lancelot, mordred)
-    attack(arthur, red_knight)
-
-    return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
-    }
+    return fight_result
 
 
 if __name__ == "__main__":
