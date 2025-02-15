@@ -1,4 +1,7 @@
-def battle(knights_config: dict) -> dict:
+from typing import Any
+
+
+def battle(knights_config: dict[str, dict[str, Any]]) -> dict[str, int]:
     knights = {}
 
     for key, knight in knights_config.items():

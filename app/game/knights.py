@@ -7,27 +7,23 @@ class Knight:
     def __init__(self, name: str,
                  power: int,
                  hp: int,
-                 armor: list[Armor],
+                 armor: list[Armor] = None,
                  weapon: Weapon = None,
                  potion: Potion = None) -> None:
 
-        self.hp = None
-        self.protection = None
-        self.power = None
         self.name = name
         self.base_power = power
         self.base_hp = hp
-        self.armor = armor if armor else []
+        self.armor = armor or []
         self.weapon = weapon
         self.potion = potion
-        self.apply_equipment()
 
-    def apply_equipment(self) -> None:
+        self.protection = sum(a.protection for a in self.armor)
         self.power = (self.base_power
                       + (self.weapon.power if self.weapon else 0))
-        self.protection = sum(a.protection for a in self.armor)
         self.hp = self.base_hp
-        if self.potion:
+
+        if self.potion and isinstance(self.potion.effect, dict):
             self.hp += self.potion.effect.get("hp", 0)
             self.power += self.potion.effect.get("power", 0)
             self.protection += self.potion.effect.get("protection", 0)
