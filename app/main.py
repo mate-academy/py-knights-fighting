@@ -95,7 +95,6 @@ def battle(knight_list: dict) -> dict:
     for knight in knight_list.values():
         knight = Knight(knight)
         knights.append(knight.knight_stats())
-    print(knights)
     # -------------------------------------------------------------------------------
     # BATTLE:
     # 1 Lancelot vs Mordred:

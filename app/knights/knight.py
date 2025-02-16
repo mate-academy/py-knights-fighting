@@ -35,3 +35,5 @@ class Knight:
             knight1["hp"] = 0
         if knight2["hp"] <= 0:
             knight2["hp"] = 0
+
+        return [knight1, knight2]
