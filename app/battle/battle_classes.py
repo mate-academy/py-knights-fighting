@@ -9,22 +9,18 @@ def battle(
     mordred["hp"] -= lancelot["power"] - mordred["protection"]
 
     # check if someone fell in battle
-    if lancelot["hp"] <= 0:
-        lancelot["hp"] = 0
+    knight_hp(lancelot)
 
-    if mordred["hp"] <= 0:
-        mordred["hp"] = 0
+    knight_hp(mordred)
 
     # 2 Arthur vs Red Knight:
     arthur["hp"] -= red_knight["power"] - arthur["protection"]
     red_knight["hp"] -= arthur["power"] - red_knight["protection"]
 
     # check if someone fell in battle
-    if arthur["hp"] <= 0:
-        arthur["hp"] = 0
+    knight_hp(arthur)
 
-    if red_knight["hp"] <= 0:
-        red_knight["hp"] = 0
+    knight_hp(red_knight)
 
     # Return battle results:
     return {
@@ -33,3 +29,8 @@ def battle(
         mordred["name"]: mordred["hp"],
         red_knight["name"]: red_knight["hp"],
     }
+
+
+def knight_hp(knight: dict) -> None:
+    if knight["hp"] <= 0:
+        knight["hp"] = 0

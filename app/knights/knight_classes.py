@@ -1,9 +1,9 @@
 class Knight:
     def __init__(self, knights: dict, name_of_knight: str) -> None:
-        self.knights_name = knights.get(name_of_knight)
+        self.knight_data = knights.get(name_of_knight)
 
     def knight_characteristics(self) -> dict:
-        knight = self.knights_name
+        knight = self.knight_data
 
         # apply armour
         knight["protection"] = 0
@@ -11,10 +11,10 @@ class Knight:
             knight["protection"] += arm["protection"]
 
         # apply weapon
-        knight["power"] += knight["weapon"]["power"]
+        knight["power"] += knight.get("weapon").get("power")
 
         # apply potion if exist
-        if knight["potion"] is not None:
+        if knight.get("potion") is not None:
             if "power" in knight["potion"]["effect"]:
                 knight["power"] += knight["potion"]["effect"]["power"]
 

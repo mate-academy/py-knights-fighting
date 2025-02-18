@@ -39,4 +39,5 @@ def battle(knights_config: dict) -> dict:
     )
 
 
-print(battle(knight_data.KNIGHTS))
+knights = knight_data.KNIGHTS
+print(battle(knights))
