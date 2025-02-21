@@ -5,7 +5,7 @@ from app.fighters.potion import Potion
 from app.config import KNIGHTS
 
 
-def create_fighter(knight_data):
+def create_fighter(knight_data: dict) -> Fighter:
     fighter = Fighter(
         name=knight_data["name"],
         power=knight_data["power"],
@@ -22,7 +22,7 @@ def create_fighter(knight_data):
     return fighter
 
 
-def battle(knights_config):
+def battle(knights_config: dict) -> dict:
     lancelot = create_fighter(knights_config["lancelot"])
     arthur = create_fighter(knights_config["arthur"])
     mordred = create_fighter(knights_config["mordred"])

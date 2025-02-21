@@ -20,10 +20,10 @@ class Fighter:
     def add_weapon(self, weapon: Weapon) -> None:
         self.weapon = weapon
 
-    def add_potion(self, potion: Potion):
+    def add_potion(self, potion: Potion) -> None:
         self.potion = potion
 
-    def update_fighter(self):
+    def update_fighter(self) -> dict:
         total_hp = self.hp
         total_power = self.power + self.weapon.power
         total_protection = sum(a.protection for a in self.armour)
