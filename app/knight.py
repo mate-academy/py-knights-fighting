@@ -1,8 +1,4 @@
 def calculate_stats(knight: dict) -> dict:
-    """
-    Вычисляет эффективные характеристики рыцаря.
-    Возвращает словарь с ключами: name, hp, power, protection.
-    """
     effective_hp = knight["hp"]
     effective_power = knight["power"] + knight["weapon"]["power"]
     effective_protection = sum(

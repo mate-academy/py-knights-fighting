@@ -2,12 +2,10 @@ from app.knight import calculate_stats
 
 
 def battle(knights: dict) -> dict:
-    # Вычисляем эффективные характеристики для каждого рыцаря.
     stats = {}
     for key, knight in knights.items():
         stats[key] = calculate_stats(knight)
 
-    # Бой 1: Lancelot против Mordred.
     stats["lancelot"]["hp"] -= (
         stats["mordred"]["power"] - stats["lancelot"]["protection"]
     )
@@ -20,7 +18,6 @@ def battle(knights: dict) -> dict:
     if stats["mordred"]["hp"] < 0:
         stats["mordred"]["hp"] = 0
 
-    # Бой 2: Arthur против Red Knight.
     stats["arthur"]["hp"] -= (
         stats["red_knight"]["power"] - stats["arthur"]["protection"]
     )
