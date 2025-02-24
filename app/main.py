@@ -88,7 +88,7 @@ KNIGHTS = {
 }
 
 
-def battle(knights_config: dict) -> dict[str, str]:
+def battle(knights_config: dict) -> dict[str, int]:
 
     knights = {k: Knight(**v) for k, v in knights_config.items()}
 

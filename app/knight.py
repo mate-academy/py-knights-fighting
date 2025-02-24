@@ -4,8 +4,8 @@ from app.weapon.weapon import Weapon
 
 
 class Knight:
-    def __init__(self, name: str, power: str, hp: str, armour: str,
-                 weapon: str, potion: str = None) -> None:
+    def __init__(self, name: str, power: int, hp: int, armour: dict,
+                 weapon: dict, potion: dict = None) -> None:
         self.name = name
         self.base_power = power
         self.hp = hp
@@ -25,6 +25,6 @@ class Knight:
             if "hp" in self.potion.effect:
                 self.hp += self.potion.effect["hp"]
 
-    def attack(self, opponent: str) -> None:
+    def attack(self, opponent: "Knight") -> None:
         damage = max(0, self.total_power - opponent.total_protection)
         opponent.hp = max(0, opponent.hp - damage)
