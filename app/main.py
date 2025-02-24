@@ -2,7 +2,8 @@ from app.config import KNIGHTS
 from app.knight import Knight
 from app.battle import battle
 
-def main():
+
+def main() -> None:
     # Створюємо лицарів
     lancelot = Knight(**KNIGHTS["lancelot"])
     mordred = Knight(**KNIGHTS["mordred"])
@@ -17,6 +18,7 @@ def main():
     print("Battle results:")
     print(battle_1_result)
     print(battle_2_result)
+
 
 if __name__ == "__main__":
     main()
