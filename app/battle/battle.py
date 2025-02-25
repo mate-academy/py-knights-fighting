@@ -1,4 +1,7 @@
-def calculate_battle(knight1, knight2):
+from knight.knight import Knight
+
+
+def calculate_battle(knight1: Knight, knight2: Knight) -> dict:
     knight1.prepare_for_battle()
     knight2.prepare_for_battle()
 
