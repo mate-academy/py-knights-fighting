@@ -16,7 +16,7 @@ class Knights:
 
         self.power += weapon.get("power", 0)
 
-    def take_armor(self, armours: dict) -> None:
+    def take_armour(self, armours: dict) -> None:
 
         for armour in armours:
             self.all_defence += armour.get("protection", 0)
@@ -30,6 +30,6 @@ class Knights:
 
     def prepare_to_fight(self) -> None:
 
-        self.take_armor(self.armour)
+        self.take_armour(self.armour)
         self.take_pontions(self.potion)
         self.take_weapon(self.weapon)

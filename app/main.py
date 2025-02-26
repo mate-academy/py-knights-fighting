@@ -108,10 +108,10 @@ def battle(knights_config: dict) -> dict:
     }
 
 
-def duel(knight_1: Knights, knight_2: KNIGHTS) -> None:
-    knight_1.hp -= (knight_2.power - knight_1.all_defence)
+def duel(knight_1: Knights, knight_2: Knights) -> None:
+    knight_1.hp -= max(0, knight_2.power - knight_1.all_defence)
     knight_1.hp = max(0, knight_1.hp)
-    knight_2.hp -= (knight_1.power - knight_2.all_defence)
+    knight_2.hp -= max(0, knight_1.power - knight_2.all_defence)
     knight_2.hp = max(0, knight_2.hp)
 
 
