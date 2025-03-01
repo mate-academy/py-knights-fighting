@@ -9,7 +9,7 @@ class Knight:
     name: str
     power: int
     hp: int
-    armour: list
+    armour: list[Armour] | list[dict]
     weapon: Weapon | dict
     potion: Potion | dict = None
     protection: int = 0
