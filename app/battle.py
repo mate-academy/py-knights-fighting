@@ -6,33 +6,33 @@ def battle(knights: dict) -> dict:
     for key, knight in knights.items():
         stats[key] = calculate_stats(knight)
 
-    stats["lancelot"]["hp"] -= (
-        stats["mordred"]["power"] - stats["lancelot"]["protection"]
-    )
-    stats["mordred"]["hp"] -= (
-        stats["lancelot"]["power"] - stats["mordred"]["protection"]
-    )
+    stats.get("lancelot", {}).update({
+        "hp": max(0, stats.get("lancelot", {}).get("hp", 0) - (
+            stats.get("mordred", {}).get("power", 0) - stats.get("lancelot", {}).get("protection", 0)
+        ))
+    })
 
-    if stats["lancelot"]["hp"] < 0:
-        stats["lancelot"]["hp"] = 0
-    if stats["mordred"]["hp"] < 0:
-        stats["mordred"]["hp"] = 0
+    stats.get("mordred", {}).update({
+        "hp": max(0, stats.get("mordred", {}).get("hp", 0) - (
+            stats.get("lancelot", {}).get("power", 0) - stats.get("mordred", {}).get("protection", 0)
+        ))
+    })
 
-    stats["arthur"]["hp"] -= (
-        stats["red_knight"]["power"] - stats["arthur"]["protection"]
-    )
-    stats["red_knight"]["hp"] -= (
-        stats["arthur"]["power"] - stats["red_knight"]["protection"]
-    )
+    stats.get("arthur", {}).update({
+        "hp": max(0, stats.get("arthur", {}).get("hp", 0) - (
+            stats.get("red_knight", {}).get("power", 0) - stats.get("arthur", {}).get("protection", 0)
+        ))
+    })
 
-    if stats["arthur"]["hp"] < 0:
-        stats["arthur"]["hp"] = 0
-    if stats["red_knight"]["hp"] < 0:
-        stats["red_knight"]["hp"] = 0
+    stats.get("red_knight", {}).update({
+        "hp": max(0, stats.get("red_knight", {}).get("hp", 0) - (
+            stats.get("arthur", {}).get("power", 0) - stats.get("red_knight", {}).get("protection", 0)
+        ))
+    })
 
     return {
-        stats["lancelot"]["name"]: stats["lancelot"]["hp"],
-        stats["arthur"]["name"]: stats["arthur"]["hp"],
-        stats["mordred"]["name"]: stats["mordred"]["hp"],
-        stats["red_knight"]["name"]: stats["red_knight"]["hp"],
+        stats.get("lancelot", {}).get("name", "unknown"): stats.get("lancelot", {}).get("hp", 0),
+        stats.get("arthur", {}).get("name", "unknown"): stats.get("arthur", {}).get("hp", 0),
+        stats.get("mordred", {}).get("name", "unknown"): stats.get("mordred", {}).get("hp", 0),
+        stats.get("red_knight", {}).get("name", "unknown"): stats.get("red_knight", {}).get("hp", 0),
     }
