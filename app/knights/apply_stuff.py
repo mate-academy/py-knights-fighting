@@ -15,17 +15,11 @@ def apply_stuff(knights_config: dict) -> dict:
                 Armour(armour["part"], armour["protection"])
             knight.add_protection(Armour.armour_list)
 
-        weapon = Weapon(
-            knight_value["weapon"]["name"],
-            knight_value["weapon"]["power"]
-        )
+        weapon = Weapon(**knight_value["weapon"])
         knight.add_weapon(weapon)
 
         if knight_value["potion"]:
-            potion = Potion(
-                knight_value["potion"]["name"],
-                knight_value["potion"]["effect"]
-            )
+            potion = Potion(**knight_value["potion"])
             knight.add_potion(potion)
 
         knights[knight_name] = knight
