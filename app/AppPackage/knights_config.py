@@ -1,1 +1,1 @@
-from app.AppPackage.Characters.Character import Character
+from app.AppPackage.Characters.Character import Character # noqa

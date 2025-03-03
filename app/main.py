@@ -1,4 +1,4 @@
-from app.AppPackage.knights_config import *
+from app.AppPackage.knights_config import Character
 
 
 KNIGHTS = {
