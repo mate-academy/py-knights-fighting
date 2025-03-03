@@ -2,7 +2,7 @@ from app.AppPackage.Items.Armour import Armour
 from app.AppPackage.Items.Weapon import Weapon
 
 
-class BaseCharacter:
+class Character:
     def __init__(self, character_data: dict) -> None:
         self.name = character_data["name"]
         self.power = character_data["power"]
@@ -29,7 +29,7 @@ class BaseCharacter:
             print(f"{self.name} is dead!")
             self.hp = 0
 
-    def fight(self, initiator: "BaseCharacter") -> None:
+    def fight(self, initiator: "Character") -> None:
         self.hp -= initiator.power - self.armour.protection
         print(
             f"\n{self.name}: \nhp: {self.hp}\narm: "

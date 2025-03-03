@@ -1,4 +1,4 @@
-from app.AppPackage.Characters.BaseCharacter import BaseCharacter
+from app.AppPackage.knights_config import *
 
 
 KNIGHTS = {
@@ -90,16 +90,16 @@ KNIGHTS = {
 
 
 def battle(knights_config: dict) -> dict:
-    lancelot = BaseCharacter(knights_config["lancelot"])
+    lancelot = Character(knights_config["lancelot"])
     lancelot.apply_weapon()
 
-    arthur = BaseCharacter(knights_config["arthur"])
+    arthur = Character(knights_config["arthur"])
     arthur.apply_weapon()
 
-    mordred = BaseCharacter(knights_config["mordred"])
+    mordred = Character(knights_config["mordred"])
     mordred.apply_weapon()
 
-    red_knight = BaseCharacter(knights_config["red_knight"])
+    red_knight = Character(knights_config["red_knight"])
     red_knight.apply_weapon()
 
     # battle
