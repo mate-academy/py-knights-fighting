@@ -22,7 +22,11 @@ class Knight:
         ) = (name, power, hp, armour, weapon, potion, 0)
 
     def __repr__(self) -> str:
-        return f"{self.name} (HP: {self.hp}, Power: {self.power}, Protection: {self.protection})"
+        return (
+            f"""
+                {self.name}(HP: {self.hp}, Power: {self.power}, Protection: {self.protection})
+            """
+        )
 
     def equip_weapon(self) -> None:
         self.power += self.weapon["power"]
