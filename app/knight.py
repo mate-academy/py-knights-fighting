@@ -24,7 +24,10 @@ class Knight:
     def __repr__(self) -> str:
         return (
             f"""
-            {self.name}(HP: {self.hp}, Power: {self.power}, Protection: {self.protection})
+                {self.name}
+                (HP: {self.hp}
+                Power: {self.power}
+                Protection: {self.protection})
             """
         )
 
