@@ -3,7 +3,6 @@ from knight_battle.knight.knight import Knight
 from knight_battle.battle import battle_logic
 from typing import Dict
 
-
 def battle(knights_config: Dict) -> Dict[str, int]:
     lancelot_config = knights_config["lancelot"]
     arthur_config = knights_config["arthur"]
@@ -46,8 +45,8 @@ def battle(knights_config: Dict) -> Dict[str, int]:
         potion_config=red_knight_config["potion"],
     )
 
-    battle_logic(lancelot, mordred)
-    battle_logic(arthur, red_knight)
+    battle_result_1 = battle_logic(lancelot, mordred)
+    battle_result_2 = battle_logic(arthur, red_knight)
 
     return {
         lancelot.name: lancelot.hp,
