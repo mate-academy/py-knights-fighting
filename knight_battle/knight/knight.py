@@ -13,7 +13,7 @@ class Knight:
         armor_configs: List[dict],
         weapon_config: dict,
         potion_config: Optional[dict],
-    ) -> None:
+    ):
         self.name = name
         self.base_power = power
         self.base_hp = hp
@@ -33,6 +33,7 @@ class Knight:
         self._calculate_stats()
 
     def _apply_items(self):
+        # Apply armor
         for armor_config in self.armor_configs:
             self.armor.append(
                 Armor(
@@ -72,3 +73,6 @@ class Knight:
     def attack(self, opponent: "Knight"):
         damage = max(0, self.power - opponent.protection)
         opponent.take_damage(damage)
+
+    def __str__(self):
+        return f"Knight {self.name} (HP: {self.hp}, Power: {self.power}, Protection: {self.protection})"

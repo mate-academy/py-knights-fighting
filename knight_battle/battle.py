@@ -1,6 +1,7 @@
 from knight_battle.knight.knight import Knight
 from typing import Dict
 
+
 def battle_logic(knight1: Knight, knight2: Knight) -> Dict[str, int]:
     knight1.attack(knight2)
     knight2.attack(knight1)
