@@ -13,13 +13,13 @@ class Knight:
         if "potion" in knight:
             self.potion()
 
-    def potion(self) -> tuple[int, int, int]:
+    def potion(self) -> dict:
         potion_data = self.knight.get("potion") or {}
         effects = potion_data.get("effect", {})
         self.power += effects.get("power", 0)
         self.protection += effects.get("protection", 0)
         self.hp += effects.get("hp", 0)
-        return self.power, self.hp, self.protection
+        return {"power": self.power, "hp": self.hp, "protection": self.protection}
 
     def sum_protection(self) -> int:
         self.protection = 0

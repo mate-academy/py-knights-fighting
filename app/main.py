@@ -2,16 +2,24 @@ from app.knights import KNIGHTS
 from app.config import Knight
 
 
-def create_knights(dict_of_knights: dict) -> tuple:
+def create_knights(dict_of_knights: dict) -> dict:
     lancelot = Knight(dict_of_knights.get("lancelot"))
     mordred = Knight(dict_of_knights.get("mordred"))
     arthur = Knight(dict_of_knights.get("arthur"))
     red_knight = Knight(dict_of_knights.get("red_knight"))
-    return lancelot, mordred, arthur, red_knight
+    return {
+        "Lancelot": lancelot,
+        "Mordred": mordred,
+        "Arthur": arthur,
+        "Red Knight": red_knight
+    }
 
 
 def battle(knight: dict) -> dict:
-    lancelot, mordred, arthur, red_knight = create_knights(knight)
+    {"Lancelot": lancelot,
+    "Mordred": mordred,
+    "Arthur": arthur,
+    "Red Knight": red_knight} = create_knights(knight)
 
     # 1 Lancelot vs Mordred:
     lancelot.hp -= mordred.power - lancelot.protection
