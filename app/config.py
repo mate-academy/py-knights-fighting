@@ -10,6 +10,7 @@ class Knight:
         self.protection = 0
         self.sum_protection()
         self.knights_power()
+        self.check_hp()
         if "potion" in knight:
             self.potion()
 
@@ -19,7 +20,9 @@ class Knight:
         self.power += effects.get("power", 0)
         self.protection += effects.get("protection", 0)
         self.hp += effects.get("hp", 0)
-        return {"power": self.power, "hp": self.hp, "protection": self.protection}
+        return {"power": self.power,
+                "hp": self.hp,
+                "protection": self.protection}
 
     def sum_protection(self) -> int:
         self.protection = 0
@@ -32,3 +35,12 @@ class Knight:
         weapon_power = self.knight.get("weapon", {}).get("power", 0)
         self.power += weapon_power
         return self.power
+
+    def fight(self, opponent: Knight) -> None:
+        damage_to_self = max(opponent.power - self.protection, 0)
+        self.hp -= damage_to_self
+        self.check_hp()
+
+    def check_hp(self) -> None:
+        if self.hp < 0:
+            self.hp = 0
