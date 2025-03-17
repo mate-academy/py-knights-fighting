@@ -3,7 +3,6 @@ from __future__ import annotations
 
 from app.battle import Knight
 
-
 knights = {
     "lancelot": {
         "name": "Lancelot",
@@ -109,25 +108,18 @@ def battle(knights_config: dict) -> dict:
         for i in data["armour"]:
             knight.protection += i["protection"]
         knight_list.append(knight)
-    lancelot = knight_list[0]
-    arthur = knight_list[1]
-    mordred = knight_list[2]
-    red_knight = knight_list[3]
+    for knight in knight_list:
+        if knight.name == "Lancelot":
+            lancelot = knight
+        if knight.name == "Arthur":
+            arthur = knight
+        if knight.name == "Mordred":
+            mordred = knight
+        if knight.name == "Red Knight":
+            red_knight = knight
 
-    def knight_battle(self: Knight, other: Knight) -> dict:
-        self.hp -= other.power - self.protection
-        other.hp -= self.power - other.protection
-        if self.hp <= 0:
-            self.hp = 0
-        if other.hp <= 0:
-            other.hp = 0
-
-        return {
-            self.name: self.hp,
-            other.name: other.hp}
-
-    knight_battle(self=lancelot, other=mordred)
-    knight_battle(self=arthur, other=red_knight)
+    lancelot.knight_battle(other=mordred)
+    arthur.knight_battle(other=red_knight)
 
     return {lancelot.name: lancelot.hp, arthur.name: arthur.hp,
             mordred.name: mordred.hp, red_knight.name: red_knight.hp}
