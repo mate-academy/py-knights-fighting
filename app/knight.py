@@ -10,8 +10,7 @@ class Knight:
             hp: int,
             armour: list | None,
             weapon: dict,
-            potion: dict | None,
-            protection
+            potion: dict | None
     ) -> None:
         (
             self.name,
