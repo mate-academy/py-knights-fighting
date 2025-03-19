@@ -22,7 +22,8 @@ def battle(knights_config: dict) -> dict:
 
     for i in range(0, len(knights), 2):
         knight1, knight2 = knights[i], knights[i + 1]
-        knight1_hp, knight2_hp = battle_between(knights_config[knight1], knights_config[knight2])
+        knight1_hp, knight2_hp = (
+            battle_between(knights_config[knight1], knights_config[knight2]))
 
         results[knights_config[knight1]["name"]] = knight1_hp
         results[knights_config[knight2]["name"]] = knight2_hp
