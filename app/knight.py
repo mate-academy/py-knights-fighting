@@ -10,7 +10,8 @@ class Knight:
             hp: int,
             armour: list | None,
             weapon: dict,
-            potion: dict | None
+            potion: dict | None,
+            protection
     ) -> None:
         (
             self.name,
@@ -23,7 +24,7 @@ class Knight:
         ) = (name, power, hp, armour, weapon, potion, 0)
 
     def equip_weapon(self) -> None:
-        self.power = self.weapon["power"]
+        self.power += self.weapon["power"]
 
     def equip_armour(self) -> None:
         if len(self.armour):
