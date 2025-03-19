@@ -17,18 +17,14 @@ def battle_between(knight1: dict, knight2: dict) -> tuple:
 
 
 def battle(knights_config: dict) -> dict:
-    lancelot = knights_config["lancelot"]
-    mordred = knights_config["mordred"]
-    arthur = knights_config["arthur"]
-    red_knight = knights_config["red_knight"]
+    knights = ["lancelot", "mordred", "arthur", "red_knight"]
+    results = {}
 
-    lancelot_hp, mordred_hp = battle_between(lancelot, mordred)
+    for i in range(0, len(knights), 2):
+        knight1, knight2 = knights[i], knights[i + 1]
+        knight1_hp, knight2_hp = battle_between(knights_config[knight1], knights_config[knight2])
 
-    arthur_hp, red_knight_hp = battle_between(arthur, red_knight)
+        results[knights_config[knight1]["name"]] = knight1_hp
+        results[knights_config[knight2]["name"]] = knight2_hp
 
-    return {
-        lancelot["name"]: lancelot_hp,
-        arthur["name"]: arthur_hp,
-        mordred["name"]: mordred_hp,
-        red_knight["name"]: red_knight_hp,
-    }
+    return results
