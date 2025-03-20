@@ -13,8 +13,6 @@ class KnightsConfig:
                  armour: list,
                  protection: int,
                  weapon_power: int,
-                 potion: dict,
-                 effect: dict,
                  effect_power: int,
                  effect_protection: int,
                  effect_hp: int
@@ -25,8 +23,6 @@ class KnightsConfig:
         self.armour = armour
         self.protection = protection
         self.weapon_power = weapon_power
-        self.potion = potion
-        self.effect = effect
         self.effect_power = effect_power
         self.effect_protection = effect_protection
         self.effect_hp = effect_hp
@@ -123,36 +119,21 @@ def battle(knights: dict) -> dict:
     result = {}
     knight_list = []
     for knight in list(knights.keys()):
-        if knights[knight]["potion"] is not None:
-            knight = KnightsConfig(name=knights[knight]["name"],
-                                   power=knights[knight]["power"],
-                                   hp=knights[knight]["hp"],
-                                   armour=knights[knight]["armour"],
-                                   protection=0,
-                                   weapon_power=knights[knight]["weapon"]
-                                   ["power"],
-                                   potion=knights[knight]["potion"],
-                                   effect=knights[knight]["potion"]["effect"],
-                                   effect_power=knights[knight]
-                                   ["potion"]["effect"].get("power", 0),
-                                   effect_protection=knights[knight]
-                                   ["potion"]["effect"].get("protection", 0),
-                                   effect_hp=knights[knight]
-                                   ["potion"]["effect"].get("hp", 0)
-                                   )
-        else:
-            knight = KnightsConfig(name=knights[knight]["name"]
-                                   , power=knights[knight]["power"]
-                                   , hp=knights[knight]["hp"]
-                                   , armour=knights[knight]["armour"]
-                                   , protection=0
-                                   , weapon_power=knights[knight]
-                                   ["weapon"]["power"]
-                                   , potion={}
-                                   , effect={}
-                                   , effect_power=0
-                                   , effect_protection=0
-                                   , effect_hp=0)
+        knight = KnightsConfig(name=knights[knight]["name"],
+                               power=knights[knight]["power"],
+                               hp=knights[knight]["hp"],
+                               armour=knights[knight]["armour"],
+                               protection=0,
+                               weapon_power=knights[knight]["weapon"]["power"],
+                               effect_power=knights[knight]
+                               ["potion"]["effect"].get("power", 0)
+                               if knights[knight]["potion"] is not None else 0,
+                               effect_protection=knights[knight]
+                               ["potion"]["effect"].get("protection", 0)
+                               if knights[knight]["potion"] is not None else 0,
+                               effect_hp=knights[knight]
+                               ["potion"]["effect"].get("hp", 0)
+                               if knights[knight]["potion"] is not None else 0)
         knight_list.append(knight)
 
     # BATTLE PREPARATIONS:
