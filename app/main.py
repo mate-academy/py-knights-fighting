@@ -211,4 +211,4 @@ def battle(knightsConfig):
     }
 
 
-print(battle(KNIGHTS))
+#print(battle(KNIGHTS))
