@@ -124,7 +124,8 @@ def battle(knights_config: dict) -> dict:
         fight(knight_names[1], knight_names[3])
 
         return {
-            name: max(0, knights_config[name]["hp"]) for name in knight_names
+            knights_config[name]["name"]: max(0, knights_config[name]["hp"])
+            for name in knight_names
         }
 
     return tot()
