@@ -2,8 +2,6 @@ from app.total import Power
 from app.globale import KNIGHTS
 
 
-
-
 def battle(knights_config: dict) -> dict:
     def fight(knight1: str, knight2: str) -> None:
         knights_config[knight1]["hp"] -= max(
