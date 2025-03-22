@@ -11,9 +11,7 @@ class Power:
         sum_power = 0
         sum_protection = 0
         sum_hp = 0
-        if self.armour:
-            for arm in self.armour:
-                sum_protection += arm.get("protection", 0)
+        sum_protection = sum([arm.get("protection", 0) for arm in self.armour])
         if self.weapon:
             sum_power += self.weapon.get("power", 0)
         if self.potion and "effect" in self.potion:
