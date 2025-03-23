@@ -1,6 +1,7 @@
 from app import battle_preparation
 
-def fight(knights):
+
+def fight(knights: dict) -> dict:
 
     battle_preparation.prepare(knights)
 
@@ -15,8 +16,7 @@ def fight(knights):
     red_knight["hp"] -= arthur["power"] - red_knight["protection"]
 
     for knight, stats in knights.items():
-        if stats["hp"] <=0:
+        if stats["hp"] <= 0:
             stats["hp"] = 0
 
     return {stats["name"]: stats["hp"] for knight, stats in knights.items()}
-

@@ -1,9 +1,10 @@
 from app import battle
 
 
-def main_battle(knights):
+def main_battle(knights: dict) -> dict:
 
     return battle.fight(knights)
+
 
 result = main_battle({
     "lancelot": {
@@ -91,5 +92,3 @@ result = main_battle({
         }
     }
 })
-
-print(result)

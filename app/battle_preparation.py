@@ -1,11 +1,11 @@
-def prepare(knights):
+def prepare(knights: dict) -> None:
 
     for knight, stats in knights.items():
         stats["protection"] = 0
         stats["power"] += stats["weapon"]["power"]
 
-        for a in stats["armour"]:
-            stats["protection"] += a["protection"]
+        for arm in stats["armour"]:
+            stats["protection"] += arm["protection"]
 
         if stats["potion"] is not None:
             if "power" in stats["potion"]["effect"]:
