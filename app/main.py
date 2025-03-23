@@ -1,12 +1,12 @@
-from app import battle
+from app import fight
 
 
-def main_battle(knights: dict) -> dict:
+def battle(knights: dict) -> dict:
 
-    return battle.fight(knights)
+    return fight.fight(knights)
 
 
-result = main_battle({
+result = battle({
     "lancelot": {
         "name": "Lancelot",
         "power": 35,
