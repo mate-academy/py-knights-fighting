@@ -10,10 +10,13 @@ def fight(knights: dict) -> dict:
     arthur = knights["arthur"]
     red_knight = knights["red_knight"]
 
-    lancelot["hp"] -= mordred["power"] - lancelot["protection"]
-    mordred["hp"] -= lancelot["power"] - mordred["protection"]
-    arthur["hp"] -= red_knight["power"] - arthur["protection"]
-    red_knight["hp"] -= arthur["power"] - red_knight["protection"]
+    pairs = [[lancelot, mordred],
+             [mordred, lancelot],
+             [arthur, red_knight],
+             [red_knight, arthur]]
+
+    for fighter1, fighter2 in pairs:
+        fighter1["hp"] -= fighter2["power"] - fighter1["protection"]
 
     for knight, stats in knights.items():
         if stats["hp"] <= 0:
