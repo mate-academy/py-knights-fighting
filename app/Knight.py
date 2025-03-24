@@ -104,8 +104,7 @@ class Knight:
 
     def __is_able_to_fight(self) -> bool:
         if self.hp <= 0:
-            raise ValueError(f"Knight {self.name} "
-                             f"hp=[{self.hp}] and is not able to fight")
+            return False
         return True
 
     def __repr__(self) -> str:

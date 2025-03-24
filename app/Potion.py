@@ -2,9 +2,9 @@ from app.PotionEffect import PotionEffect
 
 
 class Potion:
-    def __init__(self, name: str, effect: PotionEffect) -> None:
+    def __init__(self, name: str, effect: dict) -> None:
         self.__name: str = name
-        self.__effect: PotionEffect = effect
+        self.__effect: PotionEffect = PotionEffect(**effect)
 
     @property
     def name(self) -> str:

@@ -1,7 +1,8 @@
+from typing import Type
+
 from app.Armour import Armour
 from app.Knight import Knight
 from app.Potion import Potion
-from app.PotionEffect import PotionEffect
 from app.Weapon import Weapon
 
 
@@ -24,11 +25,11 @@ class KnightsManager:
                 new_knight.add_armours(new_armours_list)
 
             if knight_dict["weapon"]:
-                new_weapon = self.new_weapon_from_dict((knight_dict["weapon"]))
+                new_weapon = self.new_equipment(Weapon, knight_dict["weapon"])
                 new_knight.equip_weapon(new_weapon)
 
             if knight_dict["potion"]:
-                new_potion = self.new_potion_from_dict(knight_dict["potion"])
+                new_potion = self.new_equipment(Potion, knight_dict["potion"])
                 new_knight.equip_potion(new_potion)
 
             self.__all_knights.update({f"{knight_name}": new_knight})
@@ -39,7 +40,7 @@ class KnightsManager:
     ) -> list[Armour]:
         armours_list = []
         for armour in knight_armours_list:
-            new_armour = self.new_knight_armour_from_dict(armour)
+            new_armour = self.new_equipment(Armour, armour)
             armours_list.append(new_armour)
         return armours_list
 
@@ -60,20 +61,10 @@ class KnightsManager:
         )
 
     @staticmethod
-    def new_knight_armour_from_dict(armour_dict: dict) -> Armour:
-        return Armour(
-            name=armour_dict["part"],
-            protection=armour_dict["protection"]
-        )
-
-    @staticmethod
-    def new_weapon_from_dict(weapon_dict: dict) -> Weapon:
-        return Weapon(name=weapon_dict["name"], power=weapon_dict["power"])
-
-    @staticmethod
-    def new_potion_from_dict(potion_dict: dict) -> Potion:
-        potion_effect = PotionEffect(**potion_dict["effect"])
-        return Potion(name=potion_dict["name"], effect=potion_effect)
+    def new_equipment(equipment_class: Type,
+                      equipment_dict: dict
+                      ) -> Armour | Weapon | Potion:
+        return equipment_class(**equipment_dict)
 
     @staticmethod
     def fight_between(knight1: Knight, knight2: Knight) -> None:
