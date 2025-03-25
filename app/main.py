@@ -94,18 +94,15 @@ KNIGHTS = {
 
 def battle(knightsConfig: dict) -> dict:  # noqa: N803
     # BATTLE PREPARATIONS:
-
-    # lancelot
-    lancelot = Lancelot(knightsConfig)
-
-    # arthur
-    arthur = Arthur(knightsConfig)
-
-    # mordred
-    mordred = Mordred(knightsConfig)
-
-    # red_knight
-    red_knight = RedKnight(knightsConfig)
+    for knight in knightsConfig:
+        if knight == "arthur":
+            arthur = Arthur(knightsConfig)
+        elif knight == "lancelot":
+            lancelot = Lancelot(knightsConfig)
+        elif knight == "mordred":
+            mordred = Mordred(knightsConfig)
+        elif knight == "red_knight":
+            red_knight = RedKnight(knightsConfig)
 
     # -------------------------------------------------------------------------------
     # BATTLE:
