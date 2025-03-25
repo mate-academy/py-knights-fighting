@@ -1,7 +1,4 @@
-from app.Knights.Arthur.arthur import Arthur
-from app.Knights.Red_Knight.red_knight import RedKnight
-from app.Knights.Lancelot.lancelot import Lancelot
-from app.Knights.Mordred.mordred import Mordred
+from app.Knights.knights import Knight
 
 
 KNIGHTS = {
@@ -94,18 +91,11 @@ KNIGHTS = {
 
 def battle(knightsConfig: dict) -> dict:  # noqa: N803
     # BATTLE PREPARATIONS:
-    knights_classes = {
-        "arthur": Arthur,
-        "lancelot": Lancelot,
-        "mordred": Mordred,
-        "red_knight": RedKnight
-    }
 
     knights = {}
 
     for knight_name in knightsConfig:
-        if knight_name in knights_classes:
-            knights[knight_name] = knights_classes[knight_name](knightsConfig)
+        knights[knight_name] = Knight(knightsConfig[knight_name])
 
     # -------------------------------------------------------------------------------
     # BATTLE:

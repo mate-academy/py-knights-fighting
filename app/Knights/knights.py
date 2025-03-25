@@ -1,19 +1,11 @@
 class Knight:
-    def __init__(
-            self,
-            name: str,
-            hp: int,
-            power: int,
-            armour: list,
-            weapon: dict,
-            potion: dict
-    ) -> None:
-        self.name = name
-        self.hp = hp
-        self.power = power
-        self.armour = armour
-        self.weapon = weapon
-        self.potion = potion
+    def __init__(self, knights: dict) -> None:
+        self.name = knights["name"]
+        self.hp = knights["hp"]
+        self.power = knights["power"]
+        self.armour = knights["armour"]
+        self.weapon = knights["weapon"]
+        self.potion = knights["potion"]
 
     def stats(self) -> dict:
         hp = self.hp
