@@ -1,6 +1,6 @@
 from typing import Dict
 from .config import KNIGHTS
-from .entities import Armour, Weapon, Potion, Knight
+from .entities import Knight
 
 
 def battle(knights: Dict[str, Knight]) -> Dict[str, int]:
