@@ -1,5 +1,5 @@
 from typing import Dict
-from config import KNIGHTS
+from .config import KNIGHTS
 from entities import Knight
 
 
