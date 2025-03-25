@@ -94,31 +94,34 @@ KNIGHTS = {
 
 def battle(knightsConfig: dict) -> dict:  # noqa: N803
     # BATTLE PREPARATIONS:
-    for knight in knightsConfig:
-        if knight == "arthur":
-            arthur = Arthur(knightsConfig)
-        elif knight == "lancelot":
-            lancelot = Lancelot(knightsConfig)
-        elif knight == "mordred":
-            mordred = Mordred(knightsConfig)
-        elif knight == "red_knight":
-            red_knight = RedKnight(knightsConfig)
+    knights_classes = {
+        "arthur": Arthur,
+        "lancelot": Lancelot,
+        "mordred": Mordred,
+        "red_knight": RedKnight
+    }
+
+    knights = {}
+
+    for knight_name in knightsConfig:
+        if knight_name in knights_classes:
+            knights[knight_name] = knights_classes[knight_name](knightsConfig)
 
     # -------------------------------------------------------------------------------
     # BATTLE:
 
     # 1 Lancelot vs Mordred:
-    lancelot.fight(mordred)
+    knights["lancelot"].fight(knights["mordred"])
 
     # 2 Arthur vs Red Knight:
-    arthur.fight(red_knight)
+    knights["arthur"].fight(knights["red_knight"])
 
     # Return battle results:
     return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
+        knights["lancelot"].name: knights["lancelot"].hp,
+        knights["arthur"].name: knights["arthur"].hp,
+        knights["mordred"].name: knights["mordred"].hp,
+        knights["red_knight"].name: knights["red_knight"].hp,
     }
 
 
