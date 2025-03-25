@@ -1,4 +1,5 @@
 from app.knight import Knight
+from app.battle import battle_from_objects
 
 
 lancelot = Knight(
@@ -58,32 +59,18 @@ red_knight = Knight(
         }
     }
 )
+my_knights = {
+    "lancelot": lancelot,
+    "arthur": arthur,
+    "mordred": mordred,
+    "red_knight": red_knight
+}
 
 
-def battle() -> None:
-    # lancelot
-    lancelot.prepare()
+def run_battle_for_demo(knights: dict) -> dict:
+    result = battle_from_objects(knights)
 
-    # arthur
-    arthur.prepare()
-
-    # mordred
-    mordred.prepare()
-
-    # red_knight
-    red_knight.prepare()
-
-    # -------------------------------------------------------------------------------
-    # BATTLE:
-
-    # 1 Lancelot vs Mordred:
-    result1 = lancelot.battle_knights(mordred)
-
-    # 2 Arthur vs Red Knight:
-    result2 = arthur.battle_knights(red_knight)
-
-    print(result1)
-    print(result2)
+    return result
 
 
-battle()
+print(run_battle_for_demo(my_knights))
