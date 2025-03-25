@@ -212,3 +212,5 @@ def battle(knightsConfig):
 
 
 print(battle(KNIGHTS))
+
+
