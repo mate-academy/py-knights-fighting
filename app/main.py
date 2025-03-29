@@ -28,7 +28,7 @@ def battle(knights_config: dict, max_rounds: int | None = 1) -> dict[str, int]:
             second_opponent
         ) in battles_table[f"round_{round_number}"]:
             winner = (all_knights[first_opponent]
-                    .fight(all_knights[second_opponent]))
+                      .fight(all_knights[second_opponent]))
             if winner:
                 next_round.append(winner.name)
 
