@@ -47,7 +47,7 @@ class Knight:
                 setattr(self, stat, getattr(self, stat, 0) + effect)
         else:
             print(f"{self.name} Note: brew a potion for next fights")
-
+    
     def prepare_to_fight(self) -> None:
         self.equip_weapon()
         self.wear_armour()
