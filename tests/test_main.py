@@ -1,6 +1,6 @@
 import pytest
 
-from app.main import battle, KNIGHTS
+from app.main import battle, Knight
 
 
 @pytest.fixture()
