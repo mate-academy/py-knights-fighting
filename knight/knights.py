@@ -10,7 +10,6 @@ class Knight:
 
         self.power = self.calculate_total_power()
 
-        self.protection += self.calculate_protection()
 
     def calculate_protection(self):
         return sum(a['protection'] for a in self.armour)
@@ -28,6 +27,7 @@ class Knight:
     def effective_power(self):
         return self.power
 
+    @property
     def effective_hp(self):
         return self.hp
 

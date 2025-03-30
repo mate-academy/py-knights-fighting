@@ -89,7 +89,7 @@ KNIGHTS = {
 }
 
 
-def battle(knights_config: str) -> None:
+def battle(knights_config: dict) -> None:
     # BATTLE PREPARATIONS:
 
     # lancelot
