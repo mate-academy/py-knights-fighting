@@ -1,6 +1,6 @@
 from app.game.models import Knight, Weapon, Armour, Potion
 
-KNIGHTS = {
+KNIGHTS: dict[str, Knight] = {
     "lancelot": Knight(
         name="Lancelot",
         power=50,
@@ -9,7 +9,7 @@ KNIGHTS = {
         weapon=Weapon(name="Sword", power=40),
         potion=Potion(
             name="Strength Elixir",
-            effect={"hp": 10, "power": 5, "protection": 5}
+            effect={"hp": 10, "power": 5, "protection": 5},
         ),
     ),
     "mordred": Knight(
