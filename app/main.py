@@ -19,27 +19,21 @@ def battle(knights_config: Dict[str, Any]) -> Dict[str, Dict]:
     lancelot_copy["hp"] -= mordred_copy["power"] - lancelot_copy["protection"]
     mordred_copy["hp"] -= lancelot_copy["power"] - mordred_copy["protection"]
 
-    if lancelot_copy["hp"] <= 0:
-        lancelot_copy["hp"] = 0
-
-    if mordred_copy["hp"] <= 0:
-        mordred_copy["hp"] = 0
+    for person in (lancelot_copy, mordred_copy):
+        if person["hp"] <= 0:
+            person["hp"] = 0
 
     arthur_copy["hp"] -= red_knight_copy["power"] - arthur_copy["protection"]
     red_knight_copy["hp"] -= (arthur_copy["power"]
                               - red_knight_copy["protection"])
 
-    if arthur_copy["hp"] <= 0:
-        arthur_copy["hp"] = 0
-
-    if red_knight_copy["hp"] <= 0:
-        red_knight_copy["hp"] = 0
+    for person in (arthur_copy, red_knight_copy):
+        if person["hp"] <= 0:
+            person["hp"] = 0
 
     return {
-        lancelot_copy["name"]: lancelot_copy["hp"],
-        arthur_copy["name"]: arthur_copy["hp"],
-        mordred_copy["name"]: mordred_copy["hp"],
-        red_knight_copy["name"]: red_knight_copy["hp"],
+        i["name"]: i["hp"] for i in (lancelot_copy, arthur_copy,
+                                     mordred_copy, red_knight_copy)
     }
 
 

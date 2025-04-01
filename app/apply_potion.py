@@ -7,5 +7,5 @@ def apply_potion_if_exists(name: dict) -> None:
         if "protection" in effects:
             name["protection"] += effects["protection"]
 
-        if "hp" in effects:
+        if isinstance(effects["hp"], (int, float)):
             name["hp"] += effects["hp"]
