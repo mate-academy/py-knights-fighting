@@ -91,19 +91,22 @@ KNIGHTS = {
 
 
 def battle(knights_config: dict) -> dict:
-    # Executa as batalhas entre os cavaleiros
-    # Lancelot
-    lancelot = Knight("lancelot", knights_config["lancelot"])
-    # Arthur
-    arthur = Knight("arthur", knights_config["arthur"])
-    # Mordred
-    mordred = Knight("mordred", knights_config["mordred"])
-    # Red_knight
-    red_knight = Knight("red_knight", knights_config["red_knight"])
+    """Execute battles between knights.
+    Args:
+        knights_config: Dictionary with knights configuration
+
+    Returns:
+        Dictionary with battle results (knight name: remaining hp)
+    """
+    # Cria instâncias dos cavaleiros dinamicamente
+    knights = {
+        knight_id: Knight(knight_id, config)
+        for knight_id, config in knights_config.items()
+    }
 
     # Executa as batalhas
-    battle1 = BattleEngine.duel(lancelot, mordred)
-    battle2 = BattleEngine.duel(arthur, red_knight)
+    battle1 = BattleEngine.duel(knights["lancelot"], knights["mordred"])
+    battle2 = BattleEngine.duel(knights["arthur"], knights["red_knight"])
 
     # Combina os resultados
     return {
