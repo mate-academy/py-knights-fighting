@@ -23,8 +23,8 @@ class Knight:
             self.apply_potion(self.potion)
 
 #ta funckje wywolac na obiekcie
-    def apply_armour(self, armour: list) -> None:
-        self.protection = sum(armour["protection"] for armour in armour
+    def apply_armour(self, armours: list) -> None:
+        self.protection = sum(armour["protection"] for armour in armours
                               )
 
     def apply_weapon(self, weapon: dict) -> None:
