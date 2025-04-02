@@ -93,23 +93,20 @@ KNIGHTS = {
 
 
 def battle(knightsConfig: dict) -> dict:
-    knights_list = []
-    for key in knightsConfig.keys():
-        globals()[key] = knightsConfig[key]
-        knights_list.append(globals()[key])
-        count_protection(globals()[key])
-        count_power(globals()[key])
-        if globals()[key]["potion"] is not None:
-            count_potion(globals()[key])
+    for key, knight in knightsConfig.items():
+        count_protection(knight)
+        count_power(knight)
+        if knight["potion"] is not None:
+            count_potion(knight)
 
-    count_hp(globals()["lancelot"], globals()["mordred"])
-    count_hp(globals()["arthur"], globals()["red_knight"])
+    count_hp(knightsConfig["lancelot"], knightsConfig["mordred"])
+    count_hp(knightsConfig["arthur"], knightsConfig["red_knight"])
 
     return {
-        globals()["lancelot"]["name"]: globals()["lancelot"]["hp"],
-        globals()["arthur"]["name"]: globals()["arthur"]["hp"],
-        globals()["mordred"]["name"]: globals()["mordred"]["hp"],
-        globals()["red_knight"]["name"]: globals()["red_knight"]["hp"],
+        knightsConfig["lancelot"]["name"]: knightsConfig["lancelot"]["hp"],
+        knightsConfig["arthur"]["name"]: knightsConfig["arthur"]["hp"],
+        knightsConfig["mordred"]["name"]: knightsConfig["mordred"]["hp"],
+        knightsConfig["red_knight"]["name"]: knightsConfig["red_knight"]["hp"],
     }
 
 
