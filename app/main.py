@@ -7,7 +7,7 @@ knights_dict = {
         "name": "Lancelot",
         "power": 100,
         "hp": 100,
-        "armour": [{'part': 'helmet', 'protection': 20}],
+        "armour": [{"part": "helmet", "protection": 20}],
         "weapon": {"name": "Sword", "power": 50},
         "potion": {"name": "Blessing", "effect": {"hp": 20, "power": 10}}
     },
@@ -15,7 +15,7 @@ knights_dict = {
         "name": "Arthur",
         "power": 80,
         "hp": 120,
-        "armour": [{'part': 'helmet', 'protection': 25}],
+        "armour": [{"part": "helmet", "protection": 25}],
         "weapon": {"name": "Sword", "power": 60},
         "potion": None
     },
@@ -23,7 +23,8 @@ knights_dict = {
         "name": "Mordred",
         "power": 90,
         "hp": 100,
-        "armour": [{'part': 'helmet', 'protection': 15}, {'part': 'breastplate', 'protection': 20}],
+        "armour": [{"part": "helmet", "protection": 15},
+                   {"part": "breastplate", "protection": 20}],
         "weapon": {"name": "Axe", "power": 70},
         "potion": None
     },
@@ -31,9 +32,10 @@ knights_dict = {
         "name": "Red Knight",
         "power": 80,
         "hp": 70,
-        "armour": [{'part': 'helmet', 'protection': 10}],
+        "armour": [{"part": "helmet", "protection": 10}],
         "weapon": {"name": "Spear", "power": 40},
-        "potion": {"name": "Potion of Might", "effect": {"hp": 10, "power": 20}},
+        "potion": {"name": "Potion of Might",
+                   "effect": {"hp": 10, "power": 20}},
     },
 }
 
@@ -41,7 +43,7 @@ knights_dict = {
 knights_list = [Knight(**knight_data) for knight_data in knights_dict.values()]
 
 
-def main():
+def main() -> None:
     # Now you can pass knights_list to the battle function
     results = battle(knights_dict)  # Use knights_list here
 
