@@ -20,31 +20,28 @@ def battle(knights_dict: dict) -> dict:
         ),
     }
 
-    # 1 Lancelot vs Mordred:
-    lancelot_hp = get_hp_of_knight(knights["lancelot"])
-    lancelot_hp -= (get_power_of_knight(knights["mordred"])
-                    - get_protection_of_knight(knights["lancelot"]))
-    mordred_hp = get_hp_of_knight(knights["mordred"])
-    mordred_hp -= (get_power_of_knight(knights["lancelot"])
-                   - get_protection_of_knight(knights["mordred"]))
+    def get_hp_after_battle(knight_1: str, knight_2: str) -> int:
+        # Get person objects from the 'knights' dictionary by their names
+        knight_1_obj = knights[knight_1]
+        knight_2_obj = knights[knight_2]
 
-    if lancelot_hp <= 0:
-        lancelot_hp = 0
-    if mordred_hp <= 0:
-        mordred_hp = 0
+        # Calculating the remaining health points for knight_1 after the battle
+        knight_1_hp = (get_hp_of_knight(knight_1_obj)
+                       - (get_power_of_knight(knight_2_obj)
+                          - get_protection_of_knight(knight_1_obj)
+                          )
+                       )
+
+        # We restore residual health points
+        return max(0, knight_1_hp)  # Return 0, if hp < 0
+    # 1 Lancelot vs Mordred:
+
+    lancelot_hp = get_hp_after_battle("lancelot", "mordred")
+    mordred_hp = get_hp_after_battle("mordred", "lancelot")
 
     # 2 Arthur vs Red Knight:
-    arthur_hp = get_hp_of_knight(knights["arthur"])
-    arthur_hp -= (get_power_of_knight(knights["red_knight"])
-                  - get_protection_of_knight(knights["arthur"]))
-    red_knight_hp = get_hp_of_knight(knights["red_knight"])
-    red_knight_hp -= (get_power_of_knight(knights["arthur"])
-                      - get_protection_of_knight(knights["red_knight"]))
-
-    if arthur_hp <= 0:
-        arthur_hp = 0
-    if red_knight_hp <= 0:
-        red_knight_hp = 0
+    arthur_hp = get_hp_after_battle("arthur", "red_knight")
+    red_knight_hp = get_hp_after_battle("red_knight", "arthur")
 
     return {
         "Lancelot": lancelot_hp,
