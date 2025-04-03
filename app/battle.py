@@ -1,50 +1,34 @@
 from app.knight import Knight
 
 
-def create_knights_from_config(knights_config):
-    """Перетворює конфігурацію лицарів у список об'єктів Knight"""
-    knights = []
-    for knight_name, knight_data in knights_config.items():
-        knight = Knight(
-            name=knight_data["name"],
-            power=knight_data["weapon"]["power"],
-            hp=knight_data["hp"],
-            armour=knight_data["armour"],
-            weapon=knight_data["weapon"],
-            potion=knight_data.get("potion")  # Якщо potion є, передаємо його
-        )
-        knights.append(knight)
-    return knights
-
-
-def battle(knights_config) -> dict:
-    # Створюємо список об'єктів лицарів з конфігурації
-    knights_list = create_knights_from_config(knights_config)
-
+def battle(base_knights_config):
+    # Створюємо словник лицарів на основі їх параметрів
+    knights = {name: Knight(**config) for name, config in base_knights_config.items()}
     results = {}
 
-    # Battle pairs
+    # Пари боїв
     battle_pairs = [
-        ("Arthur", "Red Knight"),
-        ("Lancelot", "Mordred"),
+        ("arthur", "red_knight"),
+        ("lancelot", "mordred"),
     ]
 
-    # Convert knights_list to a dict for easier lookup by name
-    knights_dict = {knight.name: knight for knight in knights_list}
-
-    # Process battle logic
     for attacker_name, defender_name in battle_pairs:
-        attacker = knights_dict[attacker_name]
-        defender = knights_dict[defender_name]
+        attacker = knights[attacker_name]
+        defender = knights[defender_name]
+        attacker_hp = attacker.get_hp
+        # Атакує attacker
+        defender_hp = max(0, defender.get_hp() - (attacker.get_power() - defender.get_protection()))
+        if defender_hp <= 0:
+            defender_hp = 0  # Defender вибуває, тому він не атакує
 
-        # Обчислюємо залишкове HP захисника після бою
-        defender_hp_after_battle = defender.get_hp() - (attacker.get_power() - defender.get_protection())
+        else:
+            # Якщо defender ще живий, він атакує у відповідь
+            attacker_hp = max(0, attacker.get_hp() - (defender.get_power() - attacker.get_protection()))
+            if attacker_hp <= 0:
+                attacker_hp = 0  # Attacker вибуває
 
-        # Перевіряємо, чи не впав лицар
-        if defender_hp_after_battle < 0:
-            defender_hp_after_battle = 0
+        # Записуємо результати
+        results[attacker.name] = attacker_hp
+        results[defender.name] = defender_hp
 
-        # Зберігаємо результат
-        results[defender.name] = defender_hp_after_battle
-
-    return results  # Повертаємо словник з результатами бою
+    return results

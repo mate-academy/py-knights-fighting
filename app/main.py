@@ -1,4 +1,3 @@
-# app/main.py
 from app.knight import Knight
 from app.battle import battle
 
