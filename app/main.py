@@ -1,51 +1,49 @@
 from app.knight.knight import Knight
-from app.knight.knight import get_hp_of_knight
-from app.knight.knight import get_power_of_knight
-from app.knight.knight import get_protection_of_knight
+from app.knight.knight import get_hp_of_knight, get_protection_of_knight, get_power_of_knight
+from typing import List
 
 
-def battle(knights_dict: dict) -> dict:
-    knights = {
-        "lancelot": Knight(
-            knights_dict["lancelot"], knights_dict["lancelot"]["potion"]
-        ),
-        "arthur": Knight(
-            knights_dict["arthur"], knights_dict["arthur"]["potion"]
-        ),
-        "mordred": Knight(
-            knights_dict["mordred"], knights_dict["mordred"]["potion"]
-        ),
-        "red_knight": Knight(
-            knights_dict["red_knight"], knights_dict["red_knight"]["potion"]
-        ),
-    }
+def get_hp_after_battle(attacker: Knight, defender: Knight) -> int:
+    # Отримуємо базові значення для атакуючого та захисника
+    attacker_power = get_power_of_knight(attacker)
+    defender_protection = get_protection_of_knight(defender)
 
-    def get_hp_after_battle(knight_1: str, knight_2: str) -> int:
-        # Get person objects from the 'knights' dictionary by their names
-        knight_1_obj = knights[knight_1]
-        knight_2_obj = knights[knight_2]
+    # Обчислюємо залишкові очки здоров'я для захисника після бою
+    defender_hp = get_hp_of_knight(defender) - (attacker_power - defender_protection)
 
-        # Calculating the remaining health points for knight_1 after the battle
-        knight_1_hp = (get_hp_of_knight(knight_1_obj)
-                       - (get_power_of_knight(knight_2_obj)
-                          - get_protection_of_knight(knight_1_obj)
-                          )
-                       )
+    # Повертаємо максимальне значення між 0 та залишковим здоров'ям
+    return max(0, defender_hp)
 
-        # We restore residual health points
-        return max(0, knight_1_hp)  # Return 0, if hp < 0
-    # 1 Lancelot vs Mordred:
 
-    lancelot_hp = get_hp_after_battle("lancelot", "mordred")
-    mordred_hp = get_hp_after_battle("mordred", "lancelot")
+knights_list = [
+    Knight("Arthur", 70, armour=[{'part': 'helmet', 'protection': 15}, {'part': 'breastplate', 'protection': 20}, {'part': 'boots', 'protection': 25}],
+           potion={"effect": {"hp": 10, "power": 5}, "name": "Blessing"}),
+    Knight("Lancelot", 100, armour=[{'part': 'helmet', 'protection': 20}], potion=None),
+    Knight("Mordred", 50, armour=[{'part': 'helmet', 'protection': 10}], potion=None),
+    Knight("Red Knight", 80, armour=[{'part': 'helmet', 'protection': 10}, {'part': 'breastplate', 'protection': 20}, {'part': 'boots', 'protection': 25}],
+           potion=None),
+]
 
-    # 2 Arthur vs Red Knight:
-    arthur_hp = get_hp_after_battle("arthur", "red_knight")
-    red_knight_hp = get_hp_after_battle("red_knight", "arthur")
 
-    return {
-        "Lancelot": lancelot_hp,
-        "Arthur": arthur_hp,
-        "Mordred": mordred_hp,
-        "Red Knight": red_knight_hp,
-    }
+def battle(knights: List[Knight]):
+    battle_pairs = [
+        ("Arthur", "Red Knight"),
+        ("Lancelot", "Mordred"),
+    ]
+
+    # Ініціалізація результатів перед боєм для кожного лицаря
+    results = {knight.name: get_hp_of_knight(knight) for knight in knights}  # Звертаємося до атрибута 'name' кожного об'єкта 'Knight'
+
+    # Проходимо через всі пари лицарів і проводимо бої
+    for attacker_name, defender_name in battle_pairs:
+        # Знаходимо об'єкти лицарів по іменах
+        attacker = next(knight for knight in knights if knight.name == attacker_name)
+        defender = next(knight for knight in knights if knight.name == defender_name)
+
+        # Отримуємо залишкове HP для захисника після бою
+        defender_hp_after_battle = get_hp_after_battle(attacker, defender)
+
+        # Оновлюємо HP захисника
+        results[defender.name] = defender_hp_after_battle
+
+    return results
