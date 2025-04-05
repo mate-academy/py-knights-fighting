@@ -1,62 +1,18 @@
 from app.knights import Knight
 from app.battle import battle
+from app.data.knights_data import KNIGHTS
 
-KNIGHTS = {
-    "lancelot": {
-        "name": "Lancelot",
-        "power": 35,
-        "hp": 100,
-        "armour": [],
-        "weapon": {
-            "name": "Metal Sword",
-            "power": 50,
-        },
-        "potion": None,
-    },
-    "arthur": {
-        "name": "Arthur",
-        "power": 45,
-        "hp": 75,
-        "armour": [
-            {"part": "helmet", "protection": 15},
-            {"part": "breastplate", "protection": 20},
-            {"part": "boots", "protection": 10},
-        ],
-        "weapon": {"name": "Two-handed Sword", "power": 55},
-        "potion": None,
-    },
-    "mordred": {
-        "name": "Mordred",
-        "power": 30,
-        "hp": 90,
-        "armour": [
-            {"part": "breastplate", "protection": 15},
-            {"part": "boots", "protection": 10},
-        ],
-        "weapon": {"name": "Poisoned Sword", "power": 60},
-        "potion": {
-            "name": "Berserk",
-            "effect": {"power": 15, "hp": -5, "protection": 10}
-        },
-    },
-    "red_knight": {
-        "name": "Red Knight",
-        "power": 40,
-        "hp": 70,
-        "armour": [{"part": "breastplate", "protection": 25}],
-        "weapon": {"name": "Sword", "power": 45},
-        "potion": {"name": "Blessing", "effect": {"hp": 10, "power": 5}},
-    },
-}
 
-if __name__ == "__main__":
-    lancelot = Knight(**KNIGHTS["lancelot"])
-    arthur = Knight(**KNIGHTS["arthur"])
-    mordred = Knight(**KNIGHTS["mordred"])
-    red_knight = Knight(**KNIGHTS["red_knight"])
+def mai() -> None:
+    knights = {name: Knight(**stats) for name, stats in KNIGHTS.items()}
 
-    result1 = battle(lancelot, mordred)
-    result2 = battle(arthur, red_knight)
+    print(knights)
+    result1 = battle(knights["lancelot"], knights["mordred"])
+    result2 = battle(knights["arthur"], knights["red_knight"])
 
     final_results = {**result1, **result2}
     print("Battle Results:", final_results)
+
+
+if __name__ == "__main__":
+    mai()
