@@ -122,7 +122,7 @@ greetings = "Hi, mate!"
 Bad example:
 
 ```python
-greetings = 'Hi, mate!'
+greetings = "Hi, mate!"
 ```
 
 2. Use descriptive and correct variable names.
@@ -138,7 +138,7 @@ Bad example:
 
 ```python
 def get_full_name(x: str, y: str) -> str:
-    return f'{x} {y}'
+    return f"{x} {y}"
 ```
 
 3. Use annotation, it is a good practice.
