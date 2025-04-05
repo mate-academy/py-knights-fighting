@@ -4,7 +4,7 @@ from typing import Dict
 class Armour:
     def __init__(
             self,
-            parts: list[Dict]
+            parts: list[Dict] = None
     ) -> None:
         self.parts = parts
 

@@ -1,4 +1,6 @@
 from typing import Optional
+
+from app.knight.armour import Armour
 from app.knight.weapon import Weapon
 from app.knight.potion import Potion
 
@@ -11,7 +13,7 @@ class Knight:
             hp: int,
             weapon: Weapon,
             protection: int = 0,
-            armour: Optional[list[dict]] = None,
+            armour: Optional[Armour] = None,
             potion: Optional[Potion] = None
 
     ) -> None:
@@ -20,6 +22,6 @@ class Knight:
         self.power = power
         self.hp = hp
         self.weapon = weapon
-        self.protection = protection
-        self.armour = armour if armour is not None else []
+        self.armour = armour if armour else Armour()
+        self.protection = self.armour.total_protection()
         self.potion = potion if potion is not None else None

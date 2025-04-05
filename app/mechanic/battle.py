@@ -1,3 +1,4 @@
+from app.knight.armour import Armour
 from app.knight.knight import Knight
 from app.knight.weapon import Weapon
 from app.knight.potion import Potion
@@ -11,18 +12,16 @@ def battle(knights_config: dict) -> dict[str, int]:
             hp=data["hp"],
             power=data["power"],
             weapon=Weapon(**data["weapon"]),
-            armour=data.get("armour", []),
+            armour=Armour(data.get("armour", [])),
             potion=Potion(**data["potion"]) if data.get("potion") else None,
         )
 
-    lancelot = create_knight(knights_config["lancelot"])
-    mordred = create_knight(knights_config["mordred"])
-    arthur = create_knight(knights_config["arthur"])
-    red_knight = create_knight(knights_config["red_knight"])
+    names = ["lancelot", "mordred", "arthur", "red_knight"]
+    knights = {name: create_knight(knights_config[name]) for name in names}
 
     result = {}
-    result.update(_fight(lancelot, mordred))
-    result.update(_fight(arthur, red_knight))
+    result.update(_fight(knights["lancelot"], knights["mordred"]))
+    result.update(_fight(knights["arthur"], knights["red_knight"]))
 
     return result
 
