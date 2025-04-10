@@ -94,18 +94,6 @@ def battle(knights_config: dict) -> dict:
     knights = {name: Knight.new_knight(value)
                for name, value in knights_config.items()}
 
-    # lancelot
-    # lancelot = Knight.new_knight(knights_config["lancelot"])
-
-    # arthur
-    # arthur = Knight.new_knight(knights_config["arthur"])
-
-    # mordred
-    # mordred = Knight.new_knight(knights_config["mordred"])
-
-    # red_knight
-    # red_knight = Knight.new_knight(knights_config["red_knight"])
-
     # -------------------------------------------------------------------------------
     # BATTLE:
 

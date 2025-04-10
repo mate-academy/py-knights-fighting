@@ -14,13 +14,15 @@ class Knight:
         self.potion = None
         self.protection = 0
 
-    def equip_weapon(self, weapon: Weapon) -> None:
-        self.weapon = weapon
-        self.power += weapon.power
-
-    def equip_armour(self, armour: Armour) -> None:
-        self.armour.append(armour)
-        self.protection += armour.protection
+    def equip(self, item: dict) -> None:
+        if "name" in item:
+            weapon = Weapon(item["name"], item["power"])
+            self.weapon = weapon
+            self.power += weapon.power
+        if "part" in item:
+            armour = Armour(item["part"], item["protection"])
+            self.armour.append(armour)
+            self.protection += armour.protection
 
     def equip_potion(self, potion: Potion) -> None:
         self.potion = potion
@@ -47,13 +49,11 @@ class Knight:
                      knight_config["power"],
                      knight_config["hp"])
 
-        knight.equip_weapon(Weapon(knight_config["weapon"]["name"],
-                            knight_config["weapon"]["power"]))
+        knight.equip(knight_config["weapon"])
 
         for armour in knight_config["armour"]:
 
-            knight.equip_armour(Armour(armour["part"],
-                                armour["protection"]))
+            knight.equip(armour)
 
         if knight_config["potion"]:
 
