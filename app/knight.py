@@ -24,9 +24,12 @@ class Knight:
 
     def equip_potion(self, potion: Potion) -> None:
         self.potion = potion
-        self.power += potion.power
-        self.hp += potion.hp
-        self.protection += potion.protection
+        if hasattr(potion, "power"):
+            self.power += potion.power
+        if hasattr(potion, "hp"):
+            self.hp += potion.hp
+        if hasattr(potion, "protection"):
+            self.protection += potion.protection
 
     def fight(self, other: "Knight") -> None:
         self.hp -= other.power - self.protection
@@ -44,22 +47,17 @@ class Knight:
                      knight_config["power"],
                      knight_config["hp"])
 
-        weapon = Weapon(knight_config["weapon"]["name"],
-                        knight_config["weapon"]["power"])
-
-        knight.equip_weapon(weapon)
+        knight.equip_weapon(Weapon(knight_config["weapon"]["name"],
+                            knight_config["weapon"]["power"]))
 
         for armour in knight_config["armour"]:
 
-            armour = Armour(armour["part"],
-                            armour["protection"])
-
-            knight.equip_armour(armour)
+            knight.equip_armour(Armour(armour["part"],
+                                armour["protection"]))
 
         if knight_config["potion"]:
-            potion = Potion(knight_config["potion"]["name"],
-                            knight_config["potion"]["effect"])
 
-            knight.equip_potion(potion)
+            knight.equip_potion(Potion(knight_config["potion"]["name"],
+                                knight_config["potion"]["effect"]))
 
         return knight
