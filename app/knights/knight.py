@@ -33,7 +33,8 @@ class Knight:
 
     def battle(self, other: Knight) -> None:
         damage = max(0, other.power - self.protection)
-        self.hp -= damage
+        if damage > 0:
+            self.hp -= damage
 
     def check_fell(self) -> None:
         if self.hp <= 0:
