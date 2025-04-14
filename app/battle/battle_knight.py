@@ -2,16 +2,21 @@ from app.knights.knight import Knight
 
 
 def knight_initialization(knight: dict) -> Knight:
-    print(knight)
-    knight["name"] = Knight(knight["name"], knight["power"],
-                            knight["hp"], knight["armour"],
-                            knight["weapon"], knight["potion"])
 
-    knight["name"].armour_protection()
-    knight["name"].apply_weapon()
-    knight["name"].apply_potion_if_exist()
-    print(knight["name"])
-    return knight["name"]
+    knight_obj = Knight(
+        knight["name"],
+        knight["power"],
+        knight["hp"],
+        knight["armour"],
+        knight["weapon"],
+        knight["potion"]
+    )
+
+    knight_obj.armour_protection()
+    knight_obj.apply_weapon()
+    knight_obj.apply_potion_if_exist()
+
+    return knight_obj
 
 
 def knight_battle(knight_1: Knight, knight_2: Knight) -> None:

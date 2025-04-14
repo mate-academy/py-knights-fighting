@@ -2,7 +2,6 @@ from __future__ import annotations
 
 
 class Knight:
-    protection = 0
 
     def __init__(self, name: str, power: int, hp: int,
                  armour: list, weapon: dict, potion: dict) -> None:
@@ -12,6 +11,7 @@ class Knight:
         self.armour = armour
         self.weapon = weapon
         self.potion = potion
+        self.protection = 0
 
     def armour_protection(self) -> None:
         for arm in self.armour:
@@ -32,7 +32,8 @@ class Knight:
                 self.hp += self.potion["effect"]["hp"]
 
     def battle(self, other: Knight) -> None:
-        self.hp -= other.power - self.protection
+        damage = max(0, other.power - self.protection)
+        self.hp -= damage
 
     def check_fell(self) -> None:
         if self.hp <= 0:
