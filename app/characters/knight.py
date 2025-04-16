@@ -8,8 +8,8 @@ class Knight:
     protection = 0
 
     def __init__(self: Knight, name: str, knights_config: dict) -> None:
-        self.name = name
         knight_config = knights_config[name]
+        self.name = knight_config["name"]
         self.power = knight_config["power"]
         self.hp = knight_config["hp"]
         potions = knight_config["potion"]
