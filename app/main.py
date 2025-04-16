@@ -1,4 +1,3 @@
-from app.knights.config import KNIGHTS
 from app.knights.knight import Knight
 
 
