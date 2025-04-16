@@ -43,5 +43,5 @@ class Knight:
         other.hp -= self.power - other.protection
         if self.hp < 0:
             self.hp = 0
-        if other.hp <0:
+        if other.hp < 0:
             other.hp = 0
