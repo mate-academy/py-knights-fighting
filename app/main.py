@@ -119,7 +119,6 @@ def battle(knights_config: dict) -> dict:
 
 def perform_battle(knight1: Knight, knight2: Knight) -> None:
     knight1 - knight2
-    knight2 - knight1
 
 
 print(battle(KNIGHTS))

@@ -26,19 +26,22 @@ class Knight:
         return (f"'name': '{self.name}', 'power': {self.power}, "
                 f"'hp': {self.hp}, 'protection': {self.protection}")
 
-    def get_potions_stats(self: Knight, potions: list[dict]) -> None:
+    def get_potions_stats(self: Knight, potions: dict) -> None:
         effect = potions.get("effect", {})
         self.hp += effect.get("hp", 0)
         self.protection += effect.get("protection", 0)
         self.power += effect.get("power", 0)
 
-    def get_protection(self: Knight, armors: list[dict]) -> None:
-        self.protection += sum(item.get("protection", 0) for item in armors)
+    def get_protection(self: Knight, armour: list[dict]) -> None:
+        self.protection += sum(item.get("protection", 0) for item in armour)
 
     def get_power(self: Knight, weapons: dict) -> None:
         self.power += weapons.get("power", 0)
 
     def __sub__(self: Knight, other: Knight) -> None:
         self.hp -= other.power - self.protection
+        other.hp -= self.power - other.protection
         if self.hp < 0:
             self.hp = 0
+        if other.hp <0:
+            other.hp = 0
