@@ -17,7 +17,3 @@ def battle(knights_config: dict) -> dict:
         mordred.name: mordred.hp,
         red_knight.name: red_knight.hp,
     }
-
-
-if __name__ == "__main__":
-    print(battle(KNIGHTS))
