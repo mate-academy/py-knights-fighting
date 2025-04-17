@@ -1,3 +1,5 @@
+import copy
+
 from app.data.knights import KNIGHTS
 from app.batle_preparation.armour import BattlePreparation
 from app.battle.battle import Battle
@@ -5,10 +7,10 @@ from app.battle.battle import Battle
 
 def battle(knights_config: dict) -> dict:
 
-    lancelot = knights_config["lancelot"]
-    arthur = knights_config["arthur"]
-    mordred = knights_config["mordred"]
-    red_knight = knights_config["red_knight"]
+    lancelot = copy.deepcopy(knights_config["lancelot"])
+    arthur = copy.deepcopy(knights_config["arthur"])
+    mordred = copy.deepcopy(knights_config["mordred"])
+    red_knight = copy.deepcopy(knights_config["red_knight"])
 
     # define objects for battle preparation
     lancelot1 = BattlePreparation(lancelot)
