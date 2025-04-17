@@ -4,10 +4,10 @@ class Battle:
         self.knight_name2 = knight_name2
 
     def battle(self) -> None:
-        self.knight_name1["hp"] -= (
-            self.knight_name2["power"] - self.knight_name1["protection"])
-        self.knight_name2["hp"] -= (
-            self.knight_name1["power"] - self.knight_name2["protection"])
+        self.knight_name1["hp"] -= (max(
+            0, self.knight_name2["power"] - self.knight_name1["protection"]))
+        self.knight_name2["hp"] -= (max(
+            0, self.knight_name1["power"] - self.knight_name2["protection"]))
 
         if self.knight_name1["hp"] <= 0:
             self.knight_name1["hp"] = 0
