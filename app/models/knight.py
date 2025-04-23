@@ -53,8 +53,8 @@ class Knight:
 
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> Knight:
-        armour = [Armour(**a) for a in data["armour"]]
-        weapon = Weapon(**data["weapon"])
+        armour = [Armour(**a) for a in data.get("armour", [])]
+        weapon = Weapon(**data["weapon"]) if data.get("weapon") else None
         potion = None
         if data.get("potion"):
             effect = PotionEffect(**data["potion"]["effect"])
