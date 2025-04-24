@@ -1,20 +1,20 @@
-from app.knights_data import KNIGHTS
-from app.models import Knight
-from app.battle import battle
+from app.utils import create_knight
 
+def battle(knights_config: dict):
+    lancelot = create_knight(knights_config["lancelot"])
+    mordred = create_knight(knights_config["mordred"])
+    arthur = create_knight(knights_config["arthur"])
+    red_knight = create_knight(knights_config["red_knight"])
 
-def main() -> None:
-    lancelot = Knight(KNIGHTS["lancelot"])
-    mordred = Knight(KNIGHTS["mordred"])
-    arthur = Knight(KNIGHTS["arthur"])
-    red_knight = Knight(KNIGHTS["red_knight"])
+    lancelot.take_damage(mordred.power)
+    mordred.take_damage(lancelot.power)
 
-    result1 = battle(lancelot, mordred)
-    result2 = battle(arthur, red_knight)
+    arthur.take_damage(red_knight.power)
+    red_knight.take_damage(arthur.power)
 
-    print(result1)
-    print(result2)
-
-
-if __name__ == "__main__":
-    main()
+    return {
+        lancelot.name: lancelot.hp,
+        mordred.name: mordred.hp,
+        arthur.name: arthur.hp,
+        red_knight.name: red_knight.hp,
+    }
