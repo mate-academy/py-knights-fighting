@@ -1,5 +1,5 @@
 class Knight:
-    def __init__(self, config: dict):
+    def __init__(self, config: dict) -> None:
         self.name = config["name"]
         self.base_hp = config["hp"]
         self.base_power = config["power"]
@@ -14,10 +14,11 @@ class Knight:
         self.apply_weapon()
         self.apply_potion()
 
-    def apply_weapon(self):
+
+    def apply_weapon(self) -> None:
         self.power += self.weapon["power"]
 
-    def apply_potion(self):
+    def apply_potion(self) -> None:
         if self.potion:
             effects = self.potion["effect"]
             self.hp += effects.get("hp", 0)

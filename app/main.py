@@ -2,7 +2,8 @@ from app.knights_data import KNIGHTS
 from app.models import Knight
 from app.battle import battle
 
-def main():
+
+def main() -> None:
     lancelot = Knight(KNIGHTS["lancelot"])
     mordred = Knight(KNIGHTS["mordred"])
     arthur = Knight(KNIGHTS["arthur"])

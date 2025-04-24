@@ -1,5 +1,6 @@
 from app.models import Knight
 
+
 def battle(knights_config: dict) -> dict:
     lancelot = Knight(knights_config["lancelot"])
     arthur = Knight(knights_config["arthur"])
