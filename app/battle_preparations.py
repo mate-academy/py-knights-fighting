@@ -4,8 +4,8 @@ def prepare_knight(knight: dict) -> dict:
 
     knight["power"] += knight["weapon"]["power"]
 
-    if knight["potion"]:
+    if knight.get("potion") and knight["potion"].get("effect"):
         for stat, value in knight["potion"]["effect"].items():
-            knight[stat] += value
+            knight[stat] = knight.get(stat, 0) + value
 
     return knight

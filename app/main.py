@@ -1,7 +1,7 @@
 from app.battle_preparations import prepare_knight
 
 
-def calculate_damage(attacker: int, defender: int) -> int:
+def calculate_damage(attacker: dict, defender: dict) -> dict:
     defender["hp"] -= attacker["power"] - defender["protection"]
 
     if defender["hp"] < 0:
@@ -28,7 +28,3 @@ def battle(knights_config: dict) -> dict:
         mordred_ready["name"]: mordred_ready["hp"],
         red_knight_ready["name"]: red_knight_ready["hp"],
     }
-
-
-if __name__ == "__main__":
-    print(battle())
