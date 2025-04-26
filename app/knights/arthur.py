@@ -1,4 +1,4 @@
-# Knights Arthur
+# Knights Arthur stats
 
 
 def arthur() -> dict:

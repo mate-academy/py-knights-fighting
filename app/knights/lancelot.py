@@ -1,4 +1,4 @@
-# Knight Lancelot
+# Knight Lancelot stats
 
 
 def lancelot() -> dict:
