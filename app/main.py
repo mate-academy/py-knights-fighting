@@ -2,11 +2,13 @@ from app.battle_preparations import prepare_knight
 
 
 def calculate_damage(attacker: dict, defender: dict) -> dict:
-    defender["hp"] -= attacker["power"] - defender["protection"]
+    defender_copy = defender.copy()
+    defender_copy["hp"] -= attacker["power"] - defender_copy["protection"]
 
-    if defender["hp"] < 0:
-        defender["hp"] = 0
-    return defender
+    if defender_copy["hp"] < 0:
+        defender_copy["hp"] = 0
+
+    return defender_copy
 
 
 def battle(knights_config: dict) -> dict:
