@@ -1,3 +1,54 @@
+from knights.knight import Knight
+from knights.armour import Armour
+from knights.weapon import Weapon
+from knights.potion import Potion
+
+from battle.preparations import Preparations
+from battle.battle import Battle
+
+
+lancelot = Knight("Lancelot", 35, 100)
+arthur = Knight("Arthur", 45, 75)
+mordred = Knight("Mordred", 30, 90)
+red_knight = Knight("Red Knight", 40, 70)
+
+metal_sword = Weapon("Metal Sword", 50)
+two_handed_sword = Weapon("Two-handed Sword", 55)
+poisoned_sword = Weapon("Poisoned Sword", 60)
+sword = Weapon("Sword", 45)
+
+helmet = Armour("Helmet", 15)
+boots = Armour("Boots", 10)
+metal_breastplate = Armour("Metal Breastplate", 20)
+silver_breastplate = Armour("Silver Breastplate", 25)
+cooper_breastplate = Armour("Cooper Breastplate", 15)
+
+berserk_potion_effects = {
+    "power": +15,
+    "hp": -5,
+    "protection": +10,
+}
+potion_berserk = Potion("Berserk", berserk_potion_effects)
+
+blessing_potion_effects = {
+    "hp": +10,
+    "power": +5,
+}
+potion_blessing = Potion("Blessing", blessing_potion_effects)
+
+preparations = Preparations()
+
+preparations.preparations(lancelot, [metal_sword], [], [])
+preparations.preparations(arthur, [two_handed_sword], [helmet, metal_breastplate, boots], [])
+preparations.preparations(mordred, [poisoned_sword], [cooper_breastplate, boots], [potion_berserk])
+preparations.preparations(red_knight, [sword], [silver_breastplate], [potion_blessing])
+
+battle = Battle()
+
+battle.battle(lancelot, mordred)
+battle.battle(arthur, red_knight)
+
+
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
