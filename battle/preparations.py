@@ -26,7 +26,7 @@ class Preparations:
             elif effect == "protection":
                 knight.knight_protection += potion.effect[effect]
 
-    def preparations(self, knight: Knight) -> None:
+    def preparation(self, knight: Knight) -> None:
         for armour in knight.armours:
             if isinstance(armour, Armour):
                 self.apply_armour(knight, armour)

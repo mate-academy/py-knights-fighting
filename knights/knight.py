@@ -4,12 +4,12 @@ from knights.potion import Potion
 
 
 class Knight:
-    knight_protection = 0
 
     def __init__(self, knight_config: dict) -> None:
         self.name = knight_config["name"]
         self.power = knight_config["power"]
         self.hp = knight_config["hp"]
+        self.knight_protection = 0
         self.armours = self.get_armour(knight_config["armour"])
         self.weapon = self.get_weapon(knight_config["weapon"])
         self.potion = self.get_potion(knight_config["potion"])

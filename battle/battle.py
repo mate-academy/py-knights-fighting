@@ -6,8 +6,8 @@ class Battle:
         pass
 
     def knight_battle(self, opponent1: Knight, opponent2: Knight) -> None:
-        opponent1.hp -= opponent2.power - opponent1.knight_protection
-        opponent2.hp -= opponent1.power - opponent2.knight_protection
+        opponent1.hp -= max(0, opponent2.power - opponent1.knight_protection)
+        opponent2.hp -= max(0, opponent1.power - opponent2.knight_protection)
 
         if self.knight_is_fell(opponent1):
             opponent1.hp = 0

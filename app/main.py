@@ -14,10 +14,10 @@ def battle(knights_config: Any) -> dict:
 
     preparation = Preparations()
 
-    preparation.preparations(lancelot)
-    preparation.preparations(arthur)
-    preparation.preparations(mordred)
-    preparation.preparations(red_knight)
+    preparation.preparation(lancelot)
+    preparation.preparation(arthur)
+    preparation.preparation(mordred)
+    preparation.preparation(red_knight)
 
     _battle = Battle()
 
