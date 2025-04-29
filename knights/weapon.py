@@ -1,4 +1,4 @@
 class Weapon:
-    def __init__(self, name: str, power: int) -> None:
-        self.name = name
-        self.power = power
+    def __init__(self, weapon_config: dict) -> None:
+        self.name = weapon_config["name"]
+        self.power = weapon_config["power"]

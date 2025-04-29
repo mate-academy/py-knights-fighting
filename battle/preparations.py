@@ -18,23 +18,21 @@ class Preparations:
 
     @staticmethod
     def apply_potion(knight: Knight, potion: Potion) -> None:
-        for effect in potion.effects:
+        for effect in potion.effect:
             if effect == "hp":
-                knight.hp += effect
+                knight.hp += potion.effect[effect]
             elif effect == "power":
-                knight.power += effect
+                knight.power += potion.effect[effect]
             elif effect == "protection":
-                knight.knight_protection += effect
+                knight.knight_protection += potion.effect[effect]
 
-    def preparations(self, knight: Knight, weapons: list, armours: list, potions: list):
-        for weapon in weapons:
-            if isinstance(weapon, Weapon):
-                self.apply_weapon(knight, weapon)
-
-        for armour in armours:
+    def preparations(self, knight: Knight) -> None:
+        for armour in knight.armours:
             if isinstance(armour, Armour):
                 self.apply_armour(knight, armour)
 
-        for potion in potions:
-            if isinstance(potion, Potion):
-                self.apply_potion(knight, potion)
+        if isinstance(knight.weapon, Weapon):
+            self.apply_weapon(knight, knight.weapon)
+
+        if isinstance(knight.potion, Potion):
+            self.apply_potion(knight, knight.potion)
