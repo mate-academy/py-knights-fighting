@@ -10,8 +10,7 @@ class Knight:
                  hp: int,
                  armour: Armour,
                  weapon: Weapon,
-                 potion: Potion)\
-            -> None:
+                 potion: Potion) -> None:
         self.name = name
         self.hp = hp
         self.power = power

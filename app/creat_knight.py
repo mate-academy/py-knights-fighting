@@ -6,9 +6,9 @@ from app.knights import Knight
 
 def create_knight(knightsconfig: dict, knight_name: str) -> Knight:
     knight_data = knightsconfig.get(knight_name)
-    weapon_data = knight_data["weapon"]
-    potion_data = knight_data["potion"]
     if knight_data:
+        weapon_data = knight_data["weapon"]
+        potion_data = knight_data["potion"]
         knight = Knight(
             name=knight_data["name"],
             power=knight_data["power"],
