@@ -1,5 +1,4 @@
 import copy
-import random
 
 from app.heroes.battle import KNIGHTS
 
@@ -10,7 +9,6 @@ def prepare_knight(knight: dict) -> None:
         armor["protection"] for armor in knight["armour"]
     )
     knight["power"] += knight["weapon"]["power"]
-
 
     potion = knight.get("potion")
     if potion and "effect" in potion:

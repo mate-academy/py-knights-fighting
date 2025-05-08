@@ -15,12 +15,8 @@ KNIGHTS = {
         },
         "potion": {
             "name": "Orc Sword",
-            "effect": {
-            "hp": 10,
-            "power": 15,
-            "protection": -5
-            }
-                   },
+            "effect": {"hp": 10, "power": 15, "protection": -5},
+        },
     },
     "arthur": {
         "name": "Arthur",
@@ -44,10 +40,10 @@ KNIGHTS = {
             "name": "Two-handed Sword",
             "power": 55,
         },
-        "potion": {"name": "Blood Blade", "effect": {
-            "hp": 0, "power": 20, "protection": 3
-        }
-                   },
+        "potion": {
+            "name": "Blood Blade",
+            "effect": {"hp": 0, "power": 20, "protection": 3},
+        },
     },
     "mordred": {
         "name": "Mordred",
@@ -67,8 +63,10 @@ KNIGHTS = {
             "name": "Poisoned Sword",
             "power": 60,
         },
-        "potion": {"name": "Druid Drinks", "effect": {
-            "hp": 40, "power": 0, "protection": 5}},
+        "potion": {
+            "name": "Druid Drinks",
+            "effect": {"hp": 40, "power": 0, "protection": 5},
+        },
     },
     "red_knight": {
         "name": "Red Knight",
@@ -81,8 +79,9 @@ KNIGHTS = {
             }
         ],
         "weapon": {"name": "Sword", "power": 45},
-        "potion": {"name": "Paladin Helm", "effect": {
-            "hp": 30, "power": -5, "protection": 20
-        }},
+        "potion": {
+            "name": "Paladin Helm",
+            "effect": {"hp": 30, "power": -5, "protection": 20},
+        },
     },
 }
