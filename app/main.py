@@ -1,3 +1,5 @@
+import copy
+
 from app.heroes.battle import KNIGHTS
 
 
@@ -26,20 +28,22 @@ def duel(knight1: dict, knight2: dict) -> None:
 
 
 def battle(knightsconfig: dict) -> dict:
+    knights = copy.deepcopy(knightsconfig)
+
     # Knights
     for name in ["lancelot", "arthur", "mordred", "red_knight"]:
-        prepare_knight(knightsconfig[name])
+        prepare_knight(knights[name])
 
     # Duel
-    duel(knightsconfig["lancelot"], knightsconfig["mordred"])
-    duel(knightsconfig["arthur"], knightsconfig["red_knight"])
+    duel(knights["lancelot"], knights["mordred"])
+    duel(knights["arthur"], knights["red_knight"])
 
-    # Result
+    # Results
     return {
-        knightsconfig["lancelot"]["name"]: knightsconfig["lancelot"]["hp"],
-        knightsconfig["arthur"]["name"]: knightsconfig["arthur"]["hp"],
-        knightsconfig["mordred"]["name"]: knightsconfig["mordred"]["hp"],
-        knightsconfig["red_knight"]["name"]: knightsconfig["red_knight"]["hp"],
+        knights["lancelot"]["name"]: knights["lancelot"]["hp"],
+        knights["arthur"]["name"]: knights["arthur"]["hp"],
+        knights["mordred"]["name"]: knights["mordred"]["hp"],
+        knights["red_knight"]["name"]: knights["red_knight"]["hp"],
     }
 
 
