@@ -1,21 +1,29 @@
 import copy
+import random
 
 from app.heroes.battle import KNIGHTS
 
 
 def prepare_knight(knight: dict) -> None:
-    """Preparing knights"""
+    """Preparing"""
     knight["protection"] = sum(
         armor["protection"] for armor in knight["armour"]
     )
     knight["power"] += knight["weapon"]["power"]
 
-    potion = knight.get("potion")
-    if potion:
-        effect = potion.get("effect", {})
-        knight["power"] += effect.get("power", 0)
-        knight["protection"] += effect.get("protection", 0)
-        knight["hp"] += effect.get("hp", 0)
+    bonus = [
+        {"name": "Orc Sword", "effect": {"hp": 10, "power": 15, "protection": -5}},
+        {"name": "Druid Drinks", "effect": {"hp": 40, "power": 0, "protection": 5}},
+        {"name": "Blood Blade", "effect": {"hp": 0, "power": 20, "protection": 3}},
+        {"name": "Paladin Helm", "effect": {"hp": 30, "power": -5, "protection": 20}},
+    ]
+
+
+    effect = random.choice(bonus)["effect"]
+
+    knight["power"] += effect.get("power", 0)
+    knight["protection"] += effect.get("protection", 0)
+    knight["hp"] += effect.get("hp", 0)
 
 
 def duel(knight1: dict, knight2: dict) -> None:

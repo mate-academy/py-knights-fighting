@@ -1,22 +1,3 @@
-import random
-
-
-bonus = [
-    {"name": "Orc Sword", "effect": {
-        "hp": +10, "power": +15, "protection": -5
-    }},
-    {"name": "Druid Drinks", "effect": {
-        "hp": +40, "power": 0, "protection": +5
-    }},
-    {"name": "Blood Blade", "effect": {
-        "hp": +0, "power": +20, "protection": +3
-    }},
-    {"name": "Paladin Helm", "effect": {
-        "hp": +30, "power": -5, "protection": +20
-    }},
-]
-
-
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
@@ -32,7 +13,6 @@ KNIGHTS = {
             "name": "Metal Sword",
             "power": 50,
         },
-        "potion": random.choice(bonus),
     },
     "arthur": {
         "name": "Arthur",
@@ -56,7 +36,6 @@ KNIGHTS = {
             "name": "Two-handed Sword",
             "power": 55,
         },
-        "potion": random.choice(bonus),
     },
     "mordred": {
         "name": "Mordred",
@@ -76,7 +55,6 @@ KNIGHTS = {
             "name": "Poisoned Sword",
             "power": 60,
         },
-        "potion": random.choice(bonus),
     },
     "red_knight": {
         "name": "Red Knight",
@@ -88,7 +66,9 @@ KNIGHTS = {
                 "protection": 25,
             }
         ],
-        "weapon": {"name": "Sword", "power": 45},
-        "potion": random.choice(bonus),
+        "weapon": {
+            "name": "Sword",
+            "power": 45,
+        },
     },
 }
