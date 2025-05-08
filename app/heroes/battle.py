@@ -2,14 +2,18 @@ import random
 
 
 bonus = [
-    {"name": "Orc Sword", "effect":
-        {"hp": +10, "power": +15, "protection": -5}},
-    {"name": "Druid Drinks", "effect":
-        {"hp": +40, "power": 0, "protection": +5}},
-    {"name": "Blood Blade", "effect":
-        {"hp": +0, "power": +20, "protection": +3}},
-    {"name": "Paladin Helm", "effect":
-        {"hp": +30, "power": -5, "protection": +20}},
+    {"name": "Orc Sword", "effect": {
+        "hp": +10, "power": +15, "protection": -5
+    }},
+    {"name": "Druid Drinks", "effect": {
+        "hp": +40, "power": 0, "protection": +5
+    }},
+    {"name": "Blood Blade", "effect": {
+        "hp": +0, "power": +20, "protection": +3
+    }},
+    {"name": "Paladin Helm", "effect": {
+        "hp": +30, "power": -5, "protection": +20
+    }},
 ]
 
 

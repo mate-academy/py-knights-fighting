@@ -1,8 +1,11 @@
 from app.heroes.battle import KNIGHTS
 
+
 def prepare_knight(knight: dict) -> None:
     """Preparing knights"""
-    knight["protection"] = sum(armor["protection"] for armor in knight["armour"])
+    knight["protection"] = sum(
+        armor["protection"] for armor in knight["armour"]
+    )
     knight["power"] += knight["weapon"]["power"]
 
     potion = knight.get("potion")
