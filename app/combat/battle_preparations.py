@@ -21,8 +21,7 @@ def apply_potion(warrior: dict) -> None:
             warrior["power"] += warrior["potion"]["effect"]["power"]
 
         if "protection" in warrior["potion"]["effect"]:
-            warrior["protection"] += (
-                warrior)["potion"]["effect"]["protection"]
+            warrior["protection"] += warrior["potion"]["effect"]["protection"]
 
         if "hp" in warrior["potion"]["effect"]:
             warrior["hp"] += warrior["potion"]["effect"]["hp"]

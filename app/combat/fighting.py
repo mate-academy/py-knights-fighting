@@ -7,7 +7,10 @@ def check_if_knight_fell(warrior: dict) -> int:
 
 
 def count_health_loss(right_fighter: dict, left_fighter: dict) -> int:
-    return right_fighter["power"] - left_fighter["protection"]
+    health_loss = right_fighter["power"] - left_fighter["protection"]
+    if health_loss < 0:
+        health_loss = 0
+    return health_loss
 
 
 def calculate_health_remainder(knight: dict, enemy: dict) -> None:
