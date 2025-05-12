@@ -1,4 +1,4 @@
-def battle(config) -> dict:
+def battle(config: dict) -> dict:
 
     def prepare(knight: dict) -> dict:
         knight["protection"] = sum(p["protection"] for p in knight["armour"])
@@ -11,7 +11,7 @@ def battle(config) -> dict:
             knight["protection"] += effects.get("protection", 0)
         return knight
 
-    def fight(knight1, knight2) -> None:
+    def fight(knight1: dict, knight2: dict) -> None:
         damage1 = max(0, knight2["power"] - knight1["protection"])
         damage2 = max(0, knight1["power"] - knight2["protection"])
 
