@@ -17,12 +17,12 @@ def battle(knights_config: dict) -> dict:
             knight.apply_potion(Potion(potion_data["name"],
                                        potion_data["effect"]))
 
-        if "weapon" in config:
+        if "weapon" in config and config["weapon"] is not None:
             weapon_data = config["weapon"]
             knight.set_weapon(Weapon(weapon_data["name"],
                                      weapon_data["power"]))
 
-        if "armour" in config:
+        if "armour" in config and config["armour"] is not None:
             armour_list = [Armour(part["part"], part["protection"])
                            for part in config["armour"]]
             knight.set_armor(armour_list)
