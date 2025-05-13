@@ -12,17 +12,17 @@ def battle(knights_config: dict) -> dict:
                         base_power=config["power"],
                         base_hp=config["hp"])
 
-        if "potion" in config and config["potion"] is not None:
+        if "potion" in config and config.get("potion") is not None:
             potion_data = config["potion"]
             knight.apply_potion(Potion(potion_data["name"],
                                        potion_data["effect"]))
 
-        if "weapon" in config and config["weapon"] is not None:
+        if "weapon" in config and config.get("weapon") is not None:
             weapon_data = config["weapon"]
             knight.set_weapon(Weapon(weapon_data["name"],
                                      weapon_data["power"]))
 
-        if "armour" in config and config["armour"] is not None:
+        if "armour" in config and config.get("armour") is not None:
             armour_list = [Armour(part["part"], part["protection"])
                            for part in config["armour"]]
             knight.set_armor(armour_list)
