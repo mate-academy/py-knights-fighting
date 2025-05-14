@@ -23,22 +23,21 @@ class Knight:
     def apply_armour(self) -> None:
         if isinstance(self.armour, list):
             for arm in self.armour:
-                self.protection += arm["protection"]
+                if arm.get("protection") is not None:
+                    self.protection += arm["protection"]
 
     def apply_weapon(self) -> None:
-        if self.weapon is not None:
-            self.power += self.weapon["power"]
+        if isinstance(self.weapon, dict):
+            if isinstance(self.weapon.get("power"), (int, float)):
+                self.power += self.weapon.get("power")
 
     def apply_potion(self) -> None:
-        if self.potion is not None:
-            if "power" in self.potion["effect"]:
-                self.power += self.potion["effect"]["power"]
-
-            if "protection" in self.potion["effect"]:
-                self.protection += self.potion["effect"]["protection"]
-
-            if "hp" in self.potion["effect"]:
-                self.hp += self.potion["effect"]["hp"]
+        if isinstance(self.potion, dict):
+            effect = self.potion.get("effect", {})
+            if isinstance(effect, dict):
+                self.power += effect.get("power", 0)
+                self.protection += effect.get("protection", 0)
+                self.hp += effect.get("hp", 0)
 
     def prepare_for_battle(self) -> None:
         self.apply_armour()
