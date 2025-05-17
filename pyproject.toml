@@ -8,5 +8,7 @@ packages = [{ include = "adapters", from = "src" },
             { include = "item_system", from = "src" },
             { include = "utils", from = "src" }]
 
-[tool.poetry.dependencies]
-pytest = "^7.0"
+dependencies = [
+    "pytest"
+]
+
