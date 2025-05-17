@@ -1,3 +1,8 @@
+[project]
+dependencies = [
+    "pytest"
+]
+
 [tool.poetry]
 name = "app"
 version = "0.1.0"
@@ -8,7 +13,5 @@ packages = [{ include = "adapters", from = "src" },
             { include = "item_system", from = "src" },
             { include = "utils", from = "src" }]
 
-dependencies = [
-    "pytest"
-]
+
 
