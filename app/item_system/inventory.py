@@ -1,8 +1,6 @@
-from typing import Type
-
-from app.adapters.inventory_config import InventoryConfig
-from app.item_system.items import Item, Weapon, Armour, Potion
-from app.utils.formatting import list_to_string
+from adapters.inventory_config import InventoryConfig
+from item_system.items import Item, Weapon, Armour, Potion
+from utils.formatting import list_to_string
 
 
 class Inventory:
@@ -23,22 +21,16 @@ class Inventory:
     """
 
     def __init__(self, inventory_data: InventoryConfig) -> None:
-        self._items_by_category = {
-            Weapon: list(
-                Weapon.make_items(inventory_data.weapon_datas)
-            ),
-
-            Armour: list(
-                Armour.make_items(inventory_data.armour_datas)
-            ),
-
-            Potion: list(
-                Potion.make_items(inventory_data.potion_datas)
-            ),
+        self._items_by_category: dict[
+            type[Weapon] | type[Armour] | type[Potion], list[Item]
+        ] = {
+            Weapon: list(Weapon.make_items(inventory_data.weapon_datas)),
+            Armour: list(Armour.make_items(inventory_data.armour_datas)),
+            Potion: list(Potion.make_items(inventory_data.potion_datas)),
         }
 
     def __str__(self) -> str:
-        item_strings = []
+        item_strings: list[str] = []
 
         weapons = self.items_by_category.get(Weapon)
         armour = self.items_by_category.get(Armour)
@@ -54,15 +46,14 @@ class Inventory:
         join_item_strings = "\n".join(item_strings)
 
         if item_strings:
-            return (
-                "Inventory: [\n"
-                f"{join_item_strings}\n]"
-            )
+            return "Inventory: [\n" f"{join_item_strings}\n]"
 
         return "Inventory empty"
 
     @property
-    def items_by_category(self) -> dict[Type[Item], list[Item]]:
+    def items_by_category(
+        self,
+    ) -> dict[type[Weapon] | type[Armour] | type[Potion], list[Item]]:
         """
 
         :return: dictionary of item categories and corresponding item lists
@@ -83,6 +74,7 @@ class Inventory:
         for items in self.items_by_category.values():
             if item in items:
                 return item
+        raise KeyError(f"No {item} in inventory")
 
     def get_weapons(self) -> list[Item]:
         return self.items_by_category[Weapon]

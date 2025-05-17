@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from app.adapters.effect_config import EffectConfig
-from app.utils.formatting import number_to_string
+from adapters.effect_config import EffectConfig
+from utils.formatting import number_to_string
 
 
 class Effect:
@@ -19,14 +19,10 @@ class Effect:
         self._protection = effect_data.protection
         self._hp = effect_data.hp
 
-        self._total_bonus = (
-            self.hp
-            + self.protection
-            + self.power
-        )
+        self._total_bonus = self.hp + self.protection + self.power
 
     def __str__(self) -> str:
-        stats = []
+        stats: list[str] = []
         if self.hp != 0:
             stats.append(f"HP: {number_to_string(self.hp)}")
         if self.power != 0:
@@ -39,14 +35,20 @@ class Effect:
 
         return "No apparent effect"
 
-    def __eq__(self, other: Effect) -> bool:
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Effect):
+            return NotImplemented
+
         return (
             self.hp == other.hp
             and self.power == other.power
             and self.protection == other.protection
         )
 
-    def __ne__(self, other: Effect) -> bool:
+    def __ne__(self, other: object) -> bool:
+        if not isinstance(other, Effect):
+            return NotImplemented
+
         return (
             self.hp != other._hp
             and self.power != other.power

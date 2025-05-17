@@ -3,7 +3,39 @@ A dictionary of knight dictionaries,
 that define a knight's stats, his items and their stats
 """
 
-KNIGHTS = {
+type KnightDictsType = dict[
+    str,
+    dict[
+        str,
+        str | int | dict[str, str | int] | list[dict[str, str | int]] | None | object,
+    ]
+    | dict[str, str | int | list[dict[str, str | int]] | dict[str, str | int] | None]
+    | dict[
+        str,
+        str
+        | int
+        | list[dict[str, str | int]]
+        | dict[str, str | int]
+        | dict[str, str | dict[str, int]],
+    ],
+]
+
+type KnightDictType = dict[
+    str,
+    str | int | dict[str, str | int] | list[dict[str, str | int]] | object | None,
+] | dict[
+    str,
+    str | int | list[dict[str, str | int]] | dict[str, str | int] | None,
+] | dict[
+    str,
+    str
+    | int
+    | list[dict[str, str | int]]
+    | dict[str, str | int]
+    | dict[str, str | dict[str, int]],
+]
+
+KNIGHTS: KnightDictsType = {
     "lancelot": {
         "name": "Lancelot",
         "power": 35,
@@ -31,7 +63,7 @@ KNIGHTS = {
             {
                 "part": "boots",
                 "protection": 10,
-            }
+            },
         ],
         "weapon": {
             "name": "Two-handed Sword",
@@ -51,7 +83,7 @@ KNIGHTS = {
             {
                 "part": "boots",
                 "protection": 10,
-            }
+            },
         ],
         "weapon": {
             "name": "Poisoned Sword",
@@ -63,8 +95,8 @@ KNIGHTS = {
                 "power": +15,
                 "hp": -5,
                 "protection": +10,
-            }
-        }
+            },
+        },
     },
     "red_knight": {
         "name": "Red Knight",
@@ -76,16 +108,13 @@ KNIGHTS = {
                 "protection": 25,
             }
         ],
-        "weapon": {
-            "name": "Sword",
-            "power": 45
-        },
+        "weapon": {"name": "Sword", "power": 45},
         "potion": {
             "name": "Blessing",
             "effect": {
                 "hp": +10,
                 "power": +5,
-            }
-        }
-    }
+            },
+        },
+    },
 }

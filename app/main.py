@@ -1,9 +1,10 @@
-from app.adapters.arena_config import ArenaConfig
-from app.battle.arena import Arena
-from app.config_dicts.knights_dicts import KNIGHTS
+from adapters.arena_config import ArenaConfig
+from battle.arena import Arena
+from config_dicts.knights_dicts import KNIGHTS
+from config_dicts.knights_dicts import KnightDictsType
 
 
-def battle(knights_config: dict[str, dict]) -> dict[str, int]:
+def battle(knights_config: KnightDictsType) -> dict[str, int]:
 
     # pairs of knights who will fight each other
     matchups = [("Lancelot", "Mordred"), ("Arthur", "Red Knight")]

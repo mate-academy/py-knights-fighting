@@ -1,21 +1,21 @@
 from __future__ import annotations
 
-from app.adapters.inventory_config import InventoryConfig
+from adapters.inventory_config import InventoryConfig
+from config_dicts.knights_dicts import KnightDictsType, KnightDictType
 
 
 class KnightConfig:
-    def __init__(self, knight_dict: dict[str, str | int | dict]) -> None:
+    def __init__(self, knight_dict: KnightDictType) -> None:
         self.name = str(knight_dict.get("name"))
-        self.power = int(knight_dict.get("power", 0))
-        self.hp = int(knight_dict.get("hp", 0))
+        self.power = int(str(knight_dict.get("power", 0)))
+        self.hp = int(str(knight_dict.get("hp", 0)))
         self.protection = 0
 
         self.inventory_data = InventoryConfig(knight_dict)
 
     @classmethod
     def extract_knight_configs(
-            cls,
-            knight_dicts: dict[str, dict]
+        cls, knight_dicts: KnightDictsType
     ) -> list[KnightConfig]:
         """
         Method to construct a list of KnightConfigs from a dict
@@ -24,7 +24,7 @@ class KnightConfig:
         :return: list of KnightConfig objects
         """
 
-        knight_configs = []
+        knight_configs: list[KnightConfig] = []
 
         for knight_dict in knight_dicts.values():
             knight_configs.append(cls(knight_dict))

@@ -1,9 +1,9 @@
 from __future__ import annotations
 
-from app.adapters.knight_config import KnightConfig
-from app.item_system.items import Item, Weapon, Potion
-from app.item_system.inventory import Inventory
-from app.utils.formatting import number_as_bar, list_to_string
+from adapters.knight_config import KnightConfig
+from item_system.items import Item
+from item_system.inventory import Inventory
+from utils.formatting import number_as_bar, list_to_string
 
 
 class Knight:
@@ -52,9 +52,9 @@ class Knight:
         self._protection = knight_data.protection
         self._inventory = Inventory(knight_data.inventory_data)
 
-        self._equipped_armour = []
-        self._equipped_weapon = None
-        self._applied_potion = None
+        self._equipped_armour: list[Item] = []
+        self._equipped_weapon: Item | None = None
+        self._applied_potion: Item | None = None
 
     def __str__(self) -> str:
         equipped_armour_str = "absolutely nothing"
@@ -63,7 +63,7 @@ class Knight:
 
         equipped_weapons_str = "nothing"
         if self.equipped_weapon:
-            equipped_weapons_str = self.equipped_weapon
+            equipped_weapons_str = str(self.equipped_weapon)
 
         return (
             f"Sir {self.name}\n"
@@ -113,23 +113,23 @@ class Knight:
         return self._inventory
 
     @property
-    def equipped_weapon(self) -> Weapon | None:
+    def equipped_weapon(self) -> Item | None:
         return self._equipped_weapon
 
     @equipped_weapon.setter
-    def equipped_weapon(self, weapon: Weapon) -> None:
+    def equipped_weapon(self, weapon: Item) -> None:
         self._equipped_weapon = weapon
 
     @property
-    def equipped_armour(self) -> list:
+    def equipped_armour(self) -> list[Item]:
         return self._equipped_armour
 
     @property
-    def applied_potion(self) -> Potion | None:
+    def applied_potion(self) -> Item | None:
         return self._applied_potion
 
     @applied_potion.setter
-    def applied_potion(self, potion: Potion) -> None:
+    def applied_potion(self, potion: Item) -> None:
         self._applied_potion = potion
 
     def equip_best_weapon(self) -> None:
@@ -179,8 +179,4 @@ class Knight:
         return True
 
     def health_as_bar(self) -> str:
-        return (
-            f"{self.name}: \n"
-            f"            HEALTH\n"
-            f"{number_as_bar(self.hp)}"
-        )
+        return f"{self.name}: \n" f"            HEALTH\n" f"{number_as_bar(self.hp)}"

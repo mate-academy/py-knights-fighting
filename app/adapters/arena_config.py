@@ -1,4 +1,5 @@
-from app.adapters.knight_config import KnightConfig
+from adapters.knight_config import KnightConfig
+from config_dicts.knights_dicts import KnightDictsType
 
 
 class ArenaConfig:
@@ -12,11 +13,7 @@ class ArenaConfig:
     """
 
     def __init__(
-            self,
-            knights_dicts: dict[str, dict],
-            matchups: list[tuple[str, str]]
+        self, knights_dicts: KnightDictsType, matchups: list[tuple[str, str]]
     ) -> None:
-        self.knight_configs = (
-            KnightConfig.extract_knight_configs(knights_dicts)
-        )
+        self.knight_configs = KnightConfig.extract_knight_configs(knights_dicts)
         self.matchups = matchups

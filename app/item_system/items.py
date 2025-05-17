@@ -1,8 +1,8 @@
 from __future__ import annotations
 from typing import Generator
 
-from app.adapters.item_config import ItemConfig
-from app.item_system.effect import Effect
+from adapters.item_config import ItemConfig
+from item_system.effect import Effect
 
 
 class Item:
@@ -13,6 +13,7 @@ class Item:
         name (str): item's name
         effect (Effect): item's Effect object, a buff or debuff item can give
     """
+
     def __init__(self, item_data: ItemConfig) -> None:
         self.name = item_data.name
         self._effect = Effect(item_data.effect_data)
@@ -20,11 +21,11 @@ class Item:
     def __str__(self) -> str:
         return f"{self.name}({self.effect})"
 
-    def __eq__(self, other: Item) -> bool:
-        return (
-            self.name == other.name
-            and self.effect == other.effect
-        )
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Item):
+            return NotImplemented
+
+        return self.name == other.name and self.effect == other.effect
 
     def __lt__(self, other: Item) -> bool:
         return self.effect < other.effect
@@ -37,10 +38,7 @@ class Item:
         return self._effect
 
     @classmethod
-    def make_items(
-            cls,
-            item_configs: list[ItemConfig]
-    ) -> Generator[Item, None, None]:
+    def make_items(cls, item_configs: list[ItemConfig]) -> Generator[Item, None, None]:
         """
         Pass ItemConfig from item_datas to Item constructor
 

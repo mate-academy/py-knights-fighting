@@ -10,7 +10,7 @@ Functions:
 """
 
 
-def list_to_string(items: list) -> str:
+def list_to_string[T](items: list[T]) -> str:
     return ", ".join(str(item) for item in items)
 
 
@@ -21,15 +21,9 @@ def number_to_string(number: int | float) -> str:
 
 
 def number_as_bar(
-        number: int,
-        min_value: int = 0,
-        max_value: int = 100,
-        bars: int = 10
+    number: int, min_value: int = 0, max_value: int = 100, bars: int = 10
 ) -> str:
-    number = max(
-        min_value,
-        min(number, max_value)
-    )
+    number = max(min_value, min(number, max_value))
 
     filled = number // 10
 
