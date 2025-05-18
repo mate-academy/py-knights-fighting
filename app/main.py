@@ -91,7 +91,9 @@ def prepare_knight_for_battle(knight_data: dict) -> dict:
     knight_hp = knight_data["hp"]
     knight_power = knight_data["power"] + knight_data["weapon"]["power"]
 
-    knight_protection = sum(part["protection"] for part in knight_data["armour"])
+    knight_protection = sum(
+        part["protection"] for part in knight_data["armour"]
+    )
 
     if knight_data["potion"] is not None:
         effect = knight_data["potion"]["effect"]
@@ -108,8 +110,12 @@ def prepare_knight_for_battle(knight_data: dict) -> dict:
 
 
 def knight_battle(knight_first: dict, knight_second: dict) -> dict:
-    damage_to_knight_first = max(0, knight_second["power"] - knight_first["protection"])
-    damage_to_knight_second = max(0, knight_first["power"] - knight_second["protection"])
+    damage_to_knight_first = max(
+        0, knight_second["power"] - knight_first["protection"]
+    )
+    damage_to_knight_second = max(
+        0, knight_first["power"] - knight_second["protection"]
+    )
 
     knight_first["hp"] -= damage_to_knight_first
     knight_second["hp"] -= damage_to_knight_second
