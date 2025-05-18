@@ -8,7 +8,7 @@ class Arena:
         self.knight1 = knight1
         self.knight2 = knight2
 
-    def fight(self) -> dict[str, dict[str, int] | int]:
+    def fight(self) -> dict[str, int | dict[str, int]]:
 
         damage1 = self.knight1.attack(self.knight2)
         damage2 = self.knight2.attack(self.knight1)
