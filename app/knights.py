@@ -55,8 +55,7 @@ def create_knight(knights_info: dict) -> None:
             if "hp" in knights_info[knight]["potion"]["effect"]:
                 hp += knights_info[knight]["potion"]["effect"]["hp"]
             if "protection" in knights_info[knight]["potion"]["effect"]:
-                protection \
-                    = knights_info[knight]["potion"]["effect"]["protection"]
+                protection = knights_info[knight]["potion"]["effect"]["protection"]
 
             potion = Potion(knights_info[knight]["potion"]["name"],
                             power, hp, protection)

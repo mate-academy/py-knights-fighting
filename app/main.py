@@ -93,10 +93,12 @@ def battle(knights_info: dict) -> dict:
     battle_result = {}
     create_knight(knights_info)
 
-    for index in range(len(Knights.knights_list) - 2):
-        fight(Knights.knights_list[index], Knights.knights_list[index + 2])
+    fight(Knights.knights_list[0], Knights.knights_list[2])
+    fight(Knights.knights_list[1], Knights.knights_list[3])
 
     for knight in Knights.knights_list:
         battle_result.update({knight.name: knight.hp})
 
     return battle_result
+
+# print(battle(KNIGHTS))
