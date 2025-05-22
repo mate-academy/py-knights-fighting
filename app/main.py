@@ -110,14 +110,14 @@ class Knight:
                  base_power: int,
                  hp: int,
                  weapon: object,
-                 armour: object = None,
+                 armour: list[Armour],
                  potion: object = None
                  ) -> None:
         self.name = name
         self.base_power = base_power
         self.hp = hp
         self.weapon = weapon
-        self.armour = armour if armour else []
+        self.armour = armour
         self.potion = potion
         self.power = base_power
         self.protection = 0
