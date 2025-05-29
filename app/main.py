@@ -24,7 +24,11 @@ def battle(knights_config: Dict[str, Dict]) -> Dict[str, int]:
         for name, config in knights_config.items()
     }
 
-    battle_pairs = [("lancelot", "mordred"), ("arthur", "red_knight")]
+    battle_pairs = [
+        ("lancelot", "mordred"),
+        ("arthur", "red_knight")
+    ]
+
     results = {}
 
     for knight1_name, knight2_name in battle_pairs:
@@ -42,9 +46,7 @@ def battle(knights_config: Dict[str, Dict]) -> Dict[str, int]:
         results[knight1_result["name"]] = knight1_result["hp"]
         results[knight2_result["name"]] = knight2_result["hp"]
 
-    ordered_results = {}
-    for name in ["Lancelot", "Arthur", "Mordred", "Red Knight"]:
-        if name in results:
-            ordered_results[name] = results[name]
+    expected_order = [k for k in results.keys()]
+    ordered_results = {k: results[k] for k in expected_order}
 
     return ordered_results
