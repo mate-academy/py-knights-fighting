@@ -3,6 +3,8 @@ from app.preparation.prepare import preparation
 
 
 def battle(knights_config: dict) -> dict:
+    Battle.results.clear()
+
     prepared = preparation(knights_config)
     battle1 = Battle(prepared["lancelot"], prepared["mordred"])
     battle1.fight()

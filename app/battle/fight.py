@@ -11,8 +11,8 @@ class Battle:
         self.k2 = knight2
 
     def fight(self) -> None:
-        self.k1.hp -= self.k2.power - self.k1.protection
-        self.k2.hp -= self.k1.power - self.k2.protection
+        self.k1.hp -= max(0, self.k2.power - self.k1.protection)
+        self.k2.hp -= max(0, self.k1.power - self.k2.protection)
 
         if self.k1.hp <= 0:
             self.k1.hp = 0
