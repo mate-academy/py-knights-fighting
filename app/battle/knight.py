@@ -53,5 +53,5 @@ class Knight:
                   f"захист цілі: {target.protection}).")
         target.take_damage(self.power)
 
-    def is_alive(self) -> None:
+    def is_alive(self) -> bool:
         return self.hp > 0
