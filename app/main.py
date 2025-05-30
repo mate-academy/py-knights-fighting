@@ -92,6 +92,7 @@ KNIGHTS_CONFIG = {
     }
 }
 
+
 def battle(knights_config: Dict) -> Dict[str, int]:
     knights = {
         name: create_knight_from_config(name, config)
@@ -109,6 +110,7 @@ def battle(knights_config: Dict) -> Dict[str, int]:
         battle_results.update(result)
 
     return battle_results
+
 
 if __name__ == "__main__":
     results = battle(KNIGHTS_CONFIG)

@@ -7,7 +7,7 @@ class Knight:
                  power: int, hp: int,
                  armor: Optional[List[Armor]] = None,
                  weapon: Optional[Weapon] = None,
-                 potion: Optional[Potion] = None):
+                 potion: Optional[Potion] = None) -> None:
         self.name = name
         self.base_power = power
         self.max_hp = hp
@@ -16,10 +16,11 @@ class Knight:
         self.weapon = weapon
         self.potion = potion
         self.protection = sum(a.protection for a in self.armor)
-        self.power = self.base_power + (self.weapon.power if self.weapon else 0)
+        self.power = self.base_power + (self.weapon.power
+                                        if self.weapon else 0)
         self._apply_potion()
 
-    def _apply_potion(self):
+    def _apply_potion(self) -> None:
         if self.potion and self.potion.effect:
             print(f"{self.name} вживає чарівне зілля '{self.potion.name}'.")
             if "power" in self.potion.effect:
@@ -30,7 +31,7 @@ class Knight:
             if "protection" in self.potion.effect:
                 self.protection += self.potion.effect["protection"]
 
-    def take_damage(self, damage: int):
+    def take_damage(self, damage: int) -> None:
         damage_taken = max(0, damage - self.protection)
         self.hp -= damage_taken
         print(f"{self.name} був поранений в бою на "
@@ -40,7 +41,7 @@ class Knight:
             self.hp = 0
             print(f"{self.name} сконав.")
 
-    def attack(self, target: 'Knight'):
+    def attack(self, target: 'Knight') -> None:
         if self.weapon:
             print(f"{self.name} атакує {target.name} "
                   f"зброєю '{self.weapon.name}' "
