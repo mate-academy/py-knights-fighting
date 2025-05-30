@@ -1,30 +1,38 @@
-from .knights import Knight
+from typing import Dict, Any
+from knights import Knight
 
 
-def fight(knight1, knight2):
-    """Провести бій між двома лицарами"""
-    # Розрахунок пошкоджень для кожного лицаря
+def fight(knight1: Knight, knight2: Knight) -> None:
+    """Провести бій між двома лицарами.
+
+    Args:
+        knight1: Перший учасник бою
+        knight2: Другий учасник бою
+    """
     damage_to_knight1 = max(0, knight2.power - knight1.protection)
     damage_to_knight2 = max(0, knight1.power - knight2.protection)
 
-    # Застосування пошкоджень
     knight1.take_damage(damage_to_knight1)
     knight2.take_damage(damage_to_knight2)
 
 
-def battle(knights_config):
-    """Провести турнір між усіма лицарами"""
-    # Створення об'єктів лицарів
+def battle(knights_config: Dict[str, Any]) -> Dict[str, int]:
+    """Провести турнір між усіма лицарами.
+
+    Args:
+        knights_config: Словник з конфігурацією всіх лицарів
+
+    Returns:
+        Словник з результатами боїв (ім'я лицаря та залишок здоров'я)
+    """
     lancelot = Knight(knights_config["lancelot"])
     arthur = Knight(knights_config["arthur"])
     mordred = Knight(knights_config["mordred"])
     red_knight = Knight(knights_config["red_knight"])
 
-    # Проведення битв за парами
     fight(lancelot, mordred)
     fight(arthur, red_knight)
 
-    # Повернення результатів турніру
     return {
         lancelot.name: lancelot.hp,
         arthur.name: arthur.hp,

@@ -1,6 +1,8 @@
-from app.battle import battle
+from typing import Dict, Any
+from battle import battle
 
-KNIGHTS = {
+
+KNIGHTS: Dict[str, Any] = {
     "lancelot": {
         "name": "Lancelot",
         "power": 35,
@@ -64,5 +66,6 @@ KNIGHTS = {
     }
 }
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     print(battle(KNIGHTS))
