@@ -20,6 +20,7 @@ class Armor(Item):
 
 
 class Potion(Item):
-    def __init__(self, name: str, effect: Optional[Dict[str, int]] = None) -> None:
+    def __init__(self, name: str,
+                 effect: Optional[Dict[str, int]] = None) -> None:
         super().__init__(name)
         self.effect = effect if effect else {}
