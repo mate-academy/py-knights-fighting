@@ -10,7 +10,7 @@ def create_knight_from_config(name: str,
                     weapon_data["power"]) if weapon_data else None
 
     armor_data = config.get("armor")
-    armor_list = [Armor(f"{a["part"]} armor",
+    armor_list = [Armor(f"{a['part']} armor",
                         a["part"], a["protection"])
                   for a in armor_data] if armor_data else []
 
