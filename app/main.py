@@ -3,9 +3,15 @@ from app.battle.prepare import preparing
 
 
 def battle(knights_config: dict) -> dict:
+
     prepared = preparing(knights_config)
+
+    results = {}
+
     battle1 = Battle(prepared["lancelot"], prepared["mordred"])
-    battle1.fight()
+    results.update(battle1.fight())
+
     battle2 = Battle(prepared["arthur"], prepared["red_knight"])
-    battle2.fight()
-    return Battle.results
+    results.update(battle2.fight())
+
+    return results
