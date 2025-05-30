@@ -1,5 +1,5 @@
 from typing import Dict, Any
-from battle import battle
+from app.battle import battle
 
 
 KNIGHTS: Dict[str, Any] = {

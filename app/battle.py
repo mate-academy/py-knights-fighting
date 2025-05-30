@@ -1,5 +1,5 @@
 from typing import Dict, Any
-from knights import Knight
+from app.knights import Knight
 
 
 def fight(knight1: Knight, knight2: Knight) -> None:
