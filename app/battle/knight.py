@@ -41,7 +41,7 @@ class Knight:
             self.hp = 0
             print(f"{self.name} сконав.")
 
-    def attack(self, target: 'Knight') -> None:
+    def attack(self, target: "Knight") -> None:
         if self.weapon:
             print(f"{self.name} атакує {target.name} "
                   f"зброєю '{self.weapon.name}' "
