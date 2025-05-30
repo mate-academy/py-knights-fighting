@@ -95,7 +95,7 @@ def test_base_knights(base_knights_config):
         "Lancelot": 0,
         "Arthur": 30,
         "Mordred": 35,
-        "Red Knight": 0,
+        "Red Knight": 5,
     }
 
 
@@ -103,10 +103,10 @@ def test_lancelot_overpowered(base_knights_config):
     base_knights_config["lancelot"]["hp"] += 50
     base_knights_config["lancelot"]["power"] += 50
     assert battle(base_knights_config) == {
-        "Lancelot": 150,
+        "Lancelot": 45,
         "Arthur": 30,
         "Mordred": 0,
-        "Red Knight": 0,
+        "Red Knight": 5,
     }
 
 
@@ -129,8 +129,8 @@ def test_lancelot_has_armour(base_knights_config):
     assert battle(base_knights_config) == {
         "Lancelot": 20,
         "Arthur": 30,
-        "Mordred": 0,
-        "Red Knight": 0,
+        "Mordred": 35,
+        "Red Knight": 5,
     }
 
 
@@ -140,8 +140,8 @@ def test_mordred_sword_is_not_poisoned(base_knights_config):
     assert battle(base_knights_config) == {
         "Lancelot": 10,
         "Arthur": 30,
-        "Mordred": 0,
-        "Red Knight": 0,
+        "Mordred": 35,
+        "Red Knight": 5,
     }
 
 
@@ -175,7 +175,7 @@ def test_arthur_and_lancelot_have_potion(base_knights_config):
     }
     assert battle(base_knights_config) == {
         "Lancelot": 5,
-        "Arthur": 85,
-        "Mordred": 0,
+        "Arthur": 60,
+        "Mordred": 10,
         "Red Knight": 0,
     }
