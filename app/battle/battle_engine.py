@@ -1,5 +1,6 @@
 from typing import Dict
-from battle.knight import Knight
+from app.battle.knight import Knight
+
 
 def simulate_duel(knight1: Knight, knight2: Knight) -> Dict[str, int]:
     print(f"\n--- Битва між {knight1.name} та {knight2.name} ---")

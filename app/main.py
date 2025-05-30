@@ -1,6 +1,9 @@
 from typing import Dict
+
+
 from app.squire import create_knight_from_config
-from battle.battle_engine import simulate_duel
+from app.battle.battle_engine import simulate_duel
+
 
 KNIGHTS_CONFIG = {
     "lancelot": {

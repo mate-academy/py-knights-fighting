@@ -1,6 +1,7 @@
 from typing import Optional, List
 from .item import Weapon, Armor, Potion
 
+
 class Knight:
     def __init__(self, name: str,
                  power: int, hp: int,
@@ -32,16 +33,23 @@ class Knight:
     def take_damage(self, damage: int):
         damage_taken = max(0, damage - self.protection)
         self.hp -= damage_taken
-        print(f"{self.name} був поранений в бою на {damage_taken} пошкодження. Залишилось здоров'я: {max(0, self.hp)}")
+        print(f"{self.name} був поранений в бою на "
+              f"{damage_taken} ран. "
+              f"Залишилось здоров'я: {max(0, self.hp)}")
         if self.hp <= 0:
             self.hp = 0
             print(f"{self.name} сконав.")
 
     def attack(self, target: 'Knight'):
         if self.weapon:
-            print(f"{self.name} атакує {target.name} зброєю '{self.weapon.name}' (сила: {self.power}, захист цілі: {target.protection}).")
+            print(f"{self.name} атакує {target.name} "
+                  f"зброєю '{self.weapon.name}' "
+                  f"(сила: {self.power}, "
+                  f"захист цілі: {target.protection}).")
         else:
-            print(f"{self.name} атакує {target.name} (сила: {self.power}, захист цілі: {target.protection}).")
+            print(f"{self.name} атакує {target.name} "
+                  f"(сила: {self.power}, "
+                  f"захист цілі: {target.protection}).")
         target.take_damage(self.power)
 
     def is_alive(self):
