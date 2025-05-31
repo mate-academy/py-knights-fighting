@@ -1,25 +1,22 @@
-from __future__ import annotations
 from typing import Dict, List, Any
+from app.models.armour import Armour
+from app.models.weapon import Weapon
 
 
 class Knight:
-
     def __init__(
-            self,
-            name: str,
-            power: int,
-            hp: int,
-            armour: List[Dict[str, Any]],
-            weapon: Dict[str, Any],
-            potion: Dict[str, Any] | None = None,
+        self,
+        name: str,
+        power: int,
+        hp: int,
+        armour: List[Dict[str, Any]],
+        weapon: Dict[str, Any],
+        potion: Dict[str, Any] | None = None,
     ) -> None:
         self.name = name
         self.power = power
         self.hp = hp
         self.protection = 0
-
-        from app.models.armour import Armour
-        from app.models.weapon import Weapon
 
         for item in armour:
             Armour(**item).apply(self)
