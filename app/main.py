@@ -39,8 +39,8 @@ class Knight:
         return self
 
     def battle(self, other: Knight) -> dict:
-        self.hp -= other.power - self.protection
-        other.hp -= self.power - other.protection
+        self.hp -= max(0, other.power - self.protection)
+        other.hp -= max(0, self.power - other.protection)
 
         if self.hp < 0:
             self.hp = 0
