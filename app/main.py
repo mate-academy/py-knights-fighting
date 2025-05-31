@@ -1,17 +1,11 @@
 from __future__ import annotations
-from knights import KNIGHTS
+from app.knights import KNIGHTS
 
 
 class Knight:
     def __init__(
-            self,
-            name: str,
-            power: int,
-            hp: int,
-            weapon: dict,
-            armour: list | None,
-            potion: dict | None,
-            protection: int = 0
+            self, name: str, power: int, hp: int, weapon: dict,
+            armour: list | None, potion: dict | None, protection: int = 0
     ) -> None:
         self.name = name
         self.power = power
@@ -58,16 +52,16 @@ class Knight:
                 }
 
 
-knights_list = []
-for knight in KNIGHTS.values():
-    knights_list.append(
-        Knight(
-            knight["name"],
-            knight["power"],
-            knight["hp"],
-            knight["weapon"],
-            knight["armour"],
-            knight["potion"]
-        )
-    )
-print(knights_list[0].battle(knights_list[1]))
+def battle(knights: dict) -> dict:
+    lancelot = Knight(**knights["lancelot"])
+    mordred = Knight(**knights["mordred"])
+    arthur = Knight(**knights["arthur"])
+    red_knight = Knight(**knights["red_knight"])
+
+    res1 = lancelot.battle(mordred)
+    res2 = arthur.battle(red_knight)
+
+    return {**res1, **res2}
+
+
+print(battle(KNIGHTS))
