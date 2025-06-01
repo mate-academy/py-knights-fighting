@@ -1,5 +1,5 @@
-from app.vhidni import KNIGHTS
-from app.bitva import battle
+from app.knights_config import KNIGHTS
+from app.battle import battle
 
 
 print(battle(KNIGHTS))

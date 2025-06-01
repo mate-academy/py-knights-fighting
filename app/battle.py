@@ -1,4 +1,4 @@
-from app.pidg import apply_stats
+from app.equipment import apply_stats
 
 
 def battle(kn_battle: dict) -> dict:
