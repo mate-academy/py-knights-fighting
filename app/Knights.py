@@ -20,6 +20,6 @@ class Knight:
                 self.hp += knight["potion"]["effect"]["hp"]
 
     def battle(self, other: Knight) -> None:
-        self.hp -= other.power - self.protection
+        self.hp -= max(0, other.power - self.protection)
         if self.hp <= 0:
             self.hp = 0
