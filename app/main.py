@@ -5,7 +5,9 @@ from app.knights.knights_stats import Knight
 
 
 def battle(knightsconfig: dict) -> dict:
+
     contestants = {}
+
     for key, value in knightsconfig.items():
         value = Knight(value)
         knight_stats_preparation(value)
@@ -14,12 +16,7 @@ def battle(knightsconfig: dict) -> dict:
     fight(contestants["Lancelot"], contestants["Mordred"])
     fight(contestants["Arthur"], contestants["Red Knight"])
 
-    return {
-        contestants["Lancelot"].name: contestants["Lancelot"].hp,
-        contestants["Mordred"].name: contestants["Mordred"].hp,
-        contestants["Arthur"].name: contestants["Arthur"].hp,
-        contestants["Red Knight"].name: contestants["Red Knight"].hp,
-    }
+    return {val.name : val.hp for val in contestants.values()}
 
 
 if __name__ == "__main__":
