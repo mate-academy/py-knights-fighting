@@ -1,7 +1,8 @@
 class Knight:
 
     def __init__(self, stats: dict) -> None:
-        {setattr(self, key, val) for key, val in stats.items()}
+        for key, value in stats.items():
+            setattr(self, key, value)
 
 
 if __name__ == "__main__":

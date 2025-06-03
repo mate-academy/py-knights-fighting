@@ -5,20 +5,20 @@ from app.knights.knights_stats import Knight
 
 
 def battle(knightsconfig: dict) -> dict:
-    contestants = []
+    contestants = {}
     for key, value in knightsconfig.items():
         value = Knight(value)
         knight_stats_preparation(value)
-        contestants.append(value)
+        contestants[value.name] = value
 
-    fight(contestants[0], contestants[2])
-    fight(contestants[1], contestants[3])
+    fight(contestants["Lancelot"], contestants["Mordred"])
+    fight(contestants["Arthur"], contestants["Red Knight"])
 
     return {
-        contestants[0].name: contestants[0].hp,
-        contestants[1].name: contestants[1].hp,
-        contestants[2].name: contestants[2].hp,
-        contestants[3].name: contestants[3].hp,
+        contestants["Lancelot"].name: contestants["Lancelot"].hp,
+        contestants["Mordred"].name: contestants["Mordred"].hp,
+        contestants["Arthur"].name: contestants["Arthur"].hp,
+        contestants["Red Knight"].name: contestants["Red Knight"].hp,
     }
 
 

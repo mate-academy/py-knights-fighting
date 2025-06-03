@@ -2,7 +2,8 @@ def knight_stats_preparation(knight: object) -> None:
     knight.protection = 0
     for armory in knight.armour:
         knight.protection += armory["protection"]
-
+    if not knight.power:
+        knight.power = 0
     knight.power += knight.weapon["power"]
 
     if knight.potion is not None:
