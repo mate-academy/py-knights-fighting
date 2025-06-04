@@ -2,7 +2,6 @@ from app.knights_change.knights import Armour, Weapon, Potion, Knights
 
 
 def from_dict(knight_dict: dict) -> Knights:
-    result = ''
     for name, values in knight_dict.items():
         knight = Knights(**values)
         for key, value in values.items():
@@ -15,5 +14,4 @@ def from_dict(knight_dict: dict) -> Knights:
                 if value is not None:
                     pot = Potion(value["name"], **value["effect"])
                     setattr(knight, key, pot)
-        result = knight
-    return result
+    return Knights.all_knights

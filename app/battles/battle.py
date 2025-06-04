@@ -1,11 +1,18 @@
 from app.knights_change.knights import Knights
 
 
-def find_winner(first_knight: "Knights", second_knight: "Knights") -> None:
+def find_winner(
+        first_knight: "Knights",
+        second_knight: "Knights"
+) -> "Knights":
     if first_knight.hp <= 0:
         first_knight.hp = 0
     elif second_knight.hp <= 0:
         second_knight.hp = 0
+    if first_knight.hp < second_knight.hp:
+        return first_knight
+    else:
+        return second_knight
 
 
 def duel(first_knight: "Knights", second_knight: "Knights") -> None:
