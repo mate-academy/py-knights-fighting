@@ -4,15 +4,17 @@ from app.knights_change.knights import Knights
 def find_winner(
         first_knight: "Knights",
         second_knight: "Knights"
-) -> "Knights":
+) -> Knights | str:
     if first_knight.hp <= 0:
         first_knight.hp = 0
     elif second_knight.hp <= 0:
         second_knight.hp = 0
     if first_knight.hp < second_knight.hp:
+        return second_knight
+    elif first_knight.hp > second_knight.hp:
         return first_knight
     else:
-        return second_knight
+        return "Draw"
 
 
 def duel(first_knight: "Knights", second_knight: "Knights") -> None:
@@ -22,7 +24,7 @@ def duel(first_knight: "Knights", second_knight: "Knights") -> None:
     first_knight.hp -= damage_to_first
     second_knight.hp -= damage_to_second
 
-    find_winner(first_knight, second_knight)
+    return find_winner(first_knight, second_knight)
 
 
 def battle_result() -> dict:
