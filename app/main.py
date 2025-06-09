@@ -2,8 +2,10 @@ from app.config import KNIGHTS
 from app.models.knight import Knight
 from app.services.battle import duel
 
+from typing import Dict
 
-def battle(knights_config: dict) -> dict:
+
+def battle(knights_config: Dict) -> Dict[str, int]:
     lancelot = Knight(knights_config["lancelot"])
     mordred = Knight(knights_config["mordred"])
     arthur = Knight(knights_config["arthur"])
