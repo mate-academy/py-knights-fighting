@@ -5,7 +5,10 @@ from app.battle_field.stats import Stats
 
 
 class Knight:
-    def __init__(self, knight_name: str, knight_power: int, knight_hp: int) -> None:
+    def __init__(self,
+                 knight_name: str,
+                 knight_power: int,
+                 knight_hp: int) -> None:
         self.name = knight_name
         self.power = knight_power
         self.hp = knight_hp
@@ -16,10 +19,10 @@ class Knight:
     def add_armour(self, armour_part: ArmourPart) -> None:
         self.armour.add_part(armour_part)
 
-    def add_weapon(self, weapon: "Weapon"):
+    def add_weapon(self, weapon: "Weapon") -> None:
         self.weapon = weapon
 
-    def add_potion(self, potion: "Potion"):
+    def add_potion(self, potion: "Potion") -> None:
         self.potion = potion
 
     def get_stats(self) -> "Stats":
@@ -34,4 +37,3 @@ class Knight:
             knight_stats += self.potion.get_stats()
 
         return knight_stats
-

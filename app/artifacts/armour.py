@@ -1,5 +1,6 @@
 from app.battle_field.stats import Stats
 
+
 class Armour:
     def __init__(self) -> None:
         self.protection = 0
@@ -14,6 +15,7 @@ class Armour:
             res += part.get_stats()
 
         return res
+
 
 class ArmourPart:
     def __init__(self, part_name: str, part_protection: int) -> None:

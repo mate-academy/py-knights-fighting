@@ -92,7 +92,7 @@ KNIGHTS = {
 }
 
 
-def battle(knights_config):
+def battle(knights_config: dict) -> dict:
     battle_ground = BattleGround()
     for knight in knights_config.values():
         the_knight = Knight(knight["name"], knight["power"], knight["hp"])
@@ -105,9 +105,12 @@ def battle(knights_config):
             potion_effect = potion["effect"]
             the_potion = Potion(
                 potion["name"],
-                potion_effect["power"] if "power" in potion_effect.keys() else 0,
-                potion_effect["hp"] if "hp" in potion_effect.keys() else 0,
-                potion_effect["protection"] if "protection" in potion_effect.keys() else 0,
+                potion_effect["power"] if "power" in potion_effect.keys()
+                    else 0,
+                potion_effect["hp"] if "hp" in potion_effect.keys()
+                    else 0,
+                potion_effect["protection"] if "protection" in potion_effect.keys()
+                    else 0,
             )
 
             the_knight.add_potion(the_potion)
