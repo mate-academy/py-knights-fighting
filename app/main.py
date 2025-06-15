@@ -98,19 +98,17 @@ def battle(knights_config: dict) -> dict:
         the_knight = Knight(knight["name"], knight["power"], knight["hp"])
 
         for armour_part in knight["armour"]:
-            the_knight.add_armour(ArmourPart(armour_part["part"], armour_part["protection"]))
+            the_knight.add_armour(ArmourPart(armour_part["part"],
+                                             armour_part["protection"]))
 
         if not (knight["potion"] is None):
             potion = knight["potion"]
-            potion_effect = potion["effect"]
+            p_eff = potion["effect"]
             the_potion = Potion(
                 potion["name"],
-                potion_effect["power"] if "power" in potion_effect.keys()
-                    else 0,
-                potion_effect["hp"] if "hp" in potion_effect.keys()
-                    else 0,
-                potion_effect["protection"] if "protection" in potion_effect.keys()
-                    else 0,
+                p_eff["power"] if "power" in p_eff.keys() else 0,
+                p_eff["hp"] if "hp" in p_eff.keys() else 0,
+                p_eff["protection"] if "protection" in p_eff.keys() else 0,
             )
 
             the_knight.add_potion(the_potion)
