@@ -1,3 +1,4 @@
+from app.artifacts import knight
 from app.artifacts.knight import Knight
 
 
@@ -30,9 +31,4 @@ class BattleGround:
         knight2.hp = knight2_hp if knight2_hp > 0 else 0
 
     def results(self) -> dict:
-        return {
-            self.knights["Lancelot"].name: self.knights["Lancelot"].hp,
-            self.knights["Arthur"].name: self.knights["Arthur"].hp,
-            self.knights["Mordred"].name: self.knights["Mordred"].hp,
-            self.knights["Red Knight"].name: self.knights["Red Knight"].hp
-        }
+        return {knight.name: knight.hp for knight in self.knights.values()}
