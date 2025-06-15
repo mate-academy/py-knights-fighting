@@ -1,4 +1,3 @@
-from app.artifacts import knight
 from app.artifacts.knight import Knight
 
 
