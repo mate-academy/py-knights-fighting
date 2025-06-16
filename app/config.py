@@ -8,7 +8,7 @@ KNIGHTS = {
             {"part": "boots", "protection": 5},
         ],
         "weapon": {"name": "Lance", "power": 40},
-        "potion": None,
+        "potion": None
     },
     "arthur": {
         "name": "Arthur",
@@ -21,7 +21,7 @@ KNIGHTS = {
         "potion": {
             "name": "Strength",
             "effect": {"hp": 0, "power": 10, "protection": 5},
-        },
+        }
     },
     "mordred": {
         "name": "Mordred",
@@ -32,7 +32,7 @@ KNIGHTS = {
         "potion": {
             "name": "Weakness",
             "effect": {"hp": -10, "power": -5, "protection": 0},
-        },
+        }
     },
     "red_knight": {
         "name": "Red Knight",
@@ -45,6 +45,6 @@ KNIGHTS = {
         "potion": {
             "name": "Blessing",
             "effect": {"hp": 10, "power": 5, "protection": 0},
-        },
+        }
     },
 }

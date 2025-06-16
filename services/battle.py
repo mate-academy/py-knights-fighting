@@ -4,5 +4,5 @@ def battle(knight1, knight2) -> dict:
 
     return {
         knight1.name: knight1.hp,
-        knight2.name: knight2.hp,
+        knight2.name: knight2.hp
     }
