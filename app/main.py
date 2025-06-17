@@ -88,16 +88,11 @@ KNIGHTS = {
 }
 
 
-def battle(knightsconfig: dict) -> dict:
-    lancelot_obj = KNIGHTS["lancelot"]
-    arthur_obj = KNIGHTS["arthur"]
-    mordred_obj = KNIGHTS["mordred"]
-    red_knight_obj = KNIGHTS["red_knight"]
-
-    lancelot_obj.reset_stats()
-    arthur_obj.reset_stats()
-    mordred_obj.reset_stats()
-    red_knight_obj.reset_stats()
+def battle(knights_config: dict) -> dict:
+    lancelot_obj = knights_config["lancelot"]
+    arthur_obj = knights_config["arthur"]
+    mordred_obj = knights_config["mordred"]
+    red_knight_obj = knights_config["red_knight"]
 
     lancelot_obj.prepare_for_battle()
     arthur_obj.prepare_for_battle()

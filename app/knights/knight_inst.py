@@ -28,12 +28,7 @@ class Knight:
                 self.current_hp += self.potion_config["effect"]["hp"]
 
     def take_damage(self, opponent_power: int) -> None:
-        damage = opponent_power - self.current_protection
-        self.current_hp -= damage
+        damage_dealt = max(0, opponent_power - self.current_protection)
+        self.current_hp -= damage_dealt
         if self.current_hp <= 0:
             self.current_hp = 0
-
-    def reset_stats(self) -> None:
-        self.current_hp = self.base_hp
-        self.current_power = self.base_power
-        self.current_protection = 0
