@@ -1,5 +1,5 @@
 class Knight:
-    def __init__(self, name: str, power: int, hp: int, armour: dict, weapon: dict, potion: dict) -> None:
+    def __init__(self, name: str, power: int, hp: int, armour: list[dict], weapon: dict, potion: dict) -> None:
         self.name = name
         self.base_power = power
         self.base_hp = hp
@@ -25,10 +25,7 @@ class Knight:
             if "hp" in self.potion_config["effect"]:
                 self.current_hp += self.potion_config["effect"]["hp"]
 
-        self.current_protection = armour
-        self.current_power = self.base_power + self.weapon_config +
-        self.current_hp +=
-
-
-ry = Knight("Mirek", 100, 600)
-ry.add_armor("dfrrr", 200)
+    def take_damage(self, opponent_power):
+        self.current_hp -= opponent_power - self.current_protection
+        if self.current_hp <= 0:
+            self.current_hp = 0
