@@ -26,7 +26,15 @@ def parse_knight(data: Dict[str, Any]) -> Knight:
 
 
 def battle(config: Dict[str, Dict[str, Any]]) -> Dict[str, int]:
-    knights = {name: parse_knight(info) for name, info in config.items()}
+    required_knights = {"lancelot", "mordred", "arthur", "red_knight"}
+    missing = required_knights - config.keys()
+    if missing:
+        raise KeyError(
+            f"Missing knight(s) in config: {", ".join(missing)}"
+        )
+
+    knights = {name: parse_knight(config[name]) for name in required_knights}
+
     result1 = simulate_battle(knights["lancelot"], knights["mordred"])
     result2 = simulate_battle(knights["arthur"], knights["red_knight"])
 
