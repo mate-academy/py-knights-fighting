@@ -30,7 +30,7 @@ def battle(config: Dict[str, Dict[str, Any]]) -> Dict[str, int]:
     missing = required_knights - config.keys()
     if missing:
         raise KeyError(
-            f"Missing knight(s) in config: {", ".join(missing)}"
+            f'Missing knight(s) in config: {", ".join(missing)}'
         )
 
     knights = {name: parse_knight(config[name]) for name in required_knights}
