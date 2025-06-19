@@ -28,7 +28,7 @@ class Config(TypedDict):
     hp: int
     armour: list[Armour]
     weapon: Weapon
-    potion: Potion
+    potion: Potion | None
 
 
 class Knight:
