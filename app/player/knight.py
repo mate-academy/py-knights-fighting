@@ -1,4 +1,4 @@
-from typing import TypedDict
+from typing import TypedDict, Optional
 
 
 class Armour(TypedDict):
@@ -28,7 +28,7 @@ class Config(TypedDict):
     hp: int
     armour: list[Armour]
     weapon: Weapon
-    potion: Potion | None
+    potion: Optional[Potion]
 
 
 class Knight:
