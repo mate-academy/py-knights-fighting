@@ -20,8 +20,6 @@ def dict_to_knight(data: dict) -> Knight:
         hp=data["hp"],
         base_power=data["power"],
         base_protection=0,
-        accuracy=data.get("accuracy", 0.8),
-        evasion=data.get("evasion", 0.1),
         weapon=weapon,
         armour=armour,
         potion=potion
@@ -40,10 +38,6 @@ results = battle_round(
 )
 
 for name, stats in results.items():
-    print(
-        f"{name}: HP={stats["hp"]}, "
-        f"Accuracy={stats["accuracy"] : .2f}, "
-        f"Evasion={stats["evasion"] : .2f}"
-    )
+    print(f"{name}: HP={stats['hp']}")
 
 __all__ = ["battle", "battle_round"]

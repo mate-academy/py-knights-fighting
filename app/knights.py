@@ -9,8 +9,6 @@ class Knight:
         hp: int,
         base_power: int,
         base_protection: int,
-        accuracy: float,
-        evasion: float,
         weapon: Optional[Weapon] = None,
         armour: Optional[Armour] = None,
         potion: Optional[Potion] = None
@@ -19,8 +17,6 @@ class Knight:
         self.hp = hp
         self.base_power = base_power
         self.base_protection = base_protection
-        self.accuracy = accuracy
-        self.evasion = evasion
         self.weapon = weapon
         self.armour = armour
         self.potion = potion
