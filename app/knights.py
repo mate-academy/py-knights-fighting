@@ -1,0 +1,39 @@
+from typing import Optional
+from app.equipment import Weapon, Armour, Potion
+
+
+class Knight:
+    def __init__(
+        self,
+        name: str,
+        hp: int,
+        base_power: int,
+        base_protection: int,
+        accuracy: float,
+        evasion: float,
+        weapon: Optional[Weapon] = None,
+        armour: Optional[Armour] = None,
+        potion: Optional[Potion] = None
+    ) -> None:
+        self.name = name
+        self.hp = hp
+        self.base_power = base_power
+        self.base_protection = base_protection
+        self.accuracy = accuracy
+        self.evasion = evasion
+        self.weapon = weapon
+        self.armour = armour
+        self.potion = potion
+        self.power = base_power
+        self.protection = base_protection
+
+    def apply_equipment(self) -> None:
+        if self.armour:
+            self.protection += sum(a.protection for a in self.armour)
+        if self.weapon:
+            self.power += self.weapon.power
+        if self.potion:
+            effects = self.potion.effect
+            self.power += effects.get("power", 0)
+            self.protection += effects.get("protection", 0)
+            self.hp += effects.get("hp", 0)
