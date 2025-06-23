@@ -126,13 +126,8 @@ class BattleOfKnights:
                 self.protection += self.potion["effect"]["protection"]
 
     def fight(self, other: "BattleOfKnights") -> None:
-        self.hp -= other.power - self.protection
-        other.hp -= self.power - other.protection
-
-        if self.hp <= 0:
-            self.hp = 0
-        if other.hp <= 0:
-            other.hp = 0
+        self.hp = max(0, self.hp - other.power + self.protection)
+        other.hp = max(0, other.hp - self.power + other.protection)
 
 
 def battle(knightsconfig: dict) -> dict:
