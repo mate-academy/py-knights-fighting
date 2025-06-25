@@ -32,4 +32,5 @@ class Knight:
         self.protection += effects.get("protection", 0)
 
     def attack(self, other: Knight) -> None:
-        other.hp = max(0, other.hp - (self.power - other.protection))
+        damage = max(0, self.power - other.protection)
+        other.hp = max(0, other.hp - damage)
