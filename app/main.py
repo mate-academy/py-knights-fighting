@@ -16,14 +16,22 @@ def battle(knights_config: dict[str, dict]) -> dict:
     arthur: Knight = knights.get("arthur", None)
     red_knight: Knight = knights.get("red_knight", None)
 
+    if (
+        not lancelot
+        or not arthur
+        or not mordred
+        or not red_knight
+    ):
+        return {}
+
     # BATTLE:
     Knight.battle(lancelot, mordred)
     Knight.battle(arthur, red_knight)
 
     # Return battle results:
     return {
-        lancelot.name: lancelot.hp if lancelot else None,
-        arthur.name: arthur.hp if arthur else None,
-        mordred.name: mordred.hp if mordred else None,
-        red_knight.name: red_knight.hp if red_knight else None,
+        lancelot.name: lancelot.hp,
+        arthur.name: arthur.hp,
+        mordred.name: mordred.hp,
+        red_knight.name: red_knight.hp,
     }
