@@ -1,4 +1,5 @@
-from modules.knight import Knight, KNIGHTS
+from modules.knight import Knight
+from modules.config import KNIGHTS
 from modules.arsenal import Weapon, Armor, Potion
 
 
