@@ -1,6 +1,6 @@
 def battle(knight1: dict, knight2: dict) -> None:
-    damage_to_1 = knight2["power"] - knight1["protection"]
-    damage_to_2 = knight1["power"] - knight2["protection"]
+    damage_to_1 = max(0, knight2["power"]) - knight1["protection"]
+    damage_to_2 = max(0, knight1["power"]) - knight2["protection"]
 
     knight1["hp"] -= damage_to_1
     knight2["hp"] -= damage_to_2

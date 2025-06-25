@@ -15,7 +15,7 @@ def preparation(dictionary_knights: dict) -> list[dict]:
 
             if "protection" in knight["potion"]["effect"]:
                 knight["protection"] += (
-                    knight)["potion"]["effect"]["protection"]
+                    knight["potion"]["effect"]["protection"])
 
             if "hp" in knight["potion"]["effect"]:
                 knight["hp"] += knight["potion"]["effect"]["hp"]
