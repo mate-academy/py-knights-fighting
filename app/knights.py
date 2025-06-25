@@ -13,18 +13,26 @@ class Knight:
     def add_protection(self) -> int:
         if self.armour:
             for member in self.armour:
-                self.total_protection += member["protection"]
-        if self.potion and "protection" in self.potion["effect"]:
-            self.total_protection += self.potion["effect"]["protection"]
+                if "protection" in member:
+                    self.total_protection += member["protection"]
+        if self.potion and isinstance(self.potion, dict):
+            effect = self.potion.get("effect")
+            if isinstance(effect, dict):
+                self.total_protection += effect.get("protection", 0)
         return self.total_protection
 
     def add_power(self) -> int:
-        self.power += self.weapon["power"]
-        if self.potion and "power" in self.potion["effect"]:
-            self.power += self.potion["effect"]["power"]
+        if self.weapon is not None:
+            self.power += self.weapon["power"]
+        if self.potion and isinstance(self.potion, dict):
+            effect = self.potion.get("effect")
+            if isinstance(effect, dict):
+                self.power += effect.get("power", 0)
         return self.power
 
     def add_hp(self) -> int:
-        if self.potion and "hp" in self.potion["effect"]:
-            self.hp += self.potion["effect"]["hp"]
+        if self.potion and isinstance(self.potion, dict):
+            effect = self.potion.get("effect")
+            if isinstance(effect, dict):
+                self.hp += effect.get("hp", 0)
         return self.hp
