@@ -27,12 +27,14 @@ def battle(knights: dict) -> dict:
     # 1 Lancelot vs Mordred:
     lancelot_vs_mordred = Battle(lancelot.prepare_battle(),
                                  mordred.prepare_battle())
-    battle_results.update(lancelot_vs_mordred.start_battle())
+    first_battle = lancelot_vs_mordred.start_battle()
+    battle_results.update(first_battle)
 
     # 2 Arthur vs Red Knight:
     arthur_vs_red_knight = Battle(arthur.prepare_battle(),
                                   red_knight.prepare_battle())
-    battle_results.update(arthur_vs_red_knight.start_battle())
+    second_battle = arthur_vs_red_knight.start_battle()
+    battle_results.update(second_battle)
 
     return battle_results
 

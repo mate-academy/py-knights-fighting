@@ -3,8 +3,6 @@ from __future__ import annotations
 
 class Knight:
 
-    protection = 0
-
     def __init__(
         self, name: str,
             power: int,
@@ -19,6 +17,7 @@ class Knight:
         self.armour = armour
         self.weapon = weapon
         self.potion = potion
+        self.protection = 0
 
     def apply_armour(self) -> Knight:
         self.protection += sum([armour["protection"]
@@ -26,7 +25,7 @@ class Knight:
         return self
 
     def apply_weapon(self) -> Knight:
-        self.power += self.weapon.get("power")
+        self.power += self.weapon.get("power", 0)
         return self
 
     def apply_potion(self) -> Knight:
