@@ -1,7 +1,8 @@
 from app.knights.knight import Knight
+from typing import Dict
 
 
-def battle(knights_config: dict[Knight]) -> None:
+def battle(knights_config: Dict[str, dict]) -> Dict[str, int]:
     lancelot = Knight(knights_config["lancelot"])
     mordred = Knight(knights_config["mordred"])
     arthur = Knight(knights_config["arthur"])
