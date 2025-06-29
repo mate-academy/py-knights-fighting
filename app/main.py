@@ -1,3 +1,4 @@
+from app.knights import Knight
 from app.preparing import fight
 
 KNIGHTS = {
@@ -7,20 +8,28 @@ KNIGHTS = {
         "hp": 100,
         "armour": [],
         "weapon": {"name": "Metal Sword",
-                   "power": 50,},
-        "potion": None,},
+                   "power": 50},
+        "potion": None},
     "arthur": {
         "name": "Arthur",
         "power": 45,
         "hp": 75,
-        "armour": [{"part": "helmet",
-                    "protection": 15,},
-                    {"part": "breastplate",
-                    "protection": 20,},
-                    {"part": "boots",
-                    "protection": 10,}],
+        "armour": [
+            {
+                "part": "helmet",
+                "protection": 15
+            },
+            {
+                "part": "breastplate",
+                "protection": 20
+            },
+            {
+                "part": "boots",
+                "protection": 10
+            }
+        ],
         "weapon": {"name": "Two-handed Sword",
-                   "power": 55,},
+                   "power": 55},
         "potion": None,
     },
     "mordred": {
@@ -28,17 +37,17 @@ KNIGHTS = {
         "power": 30,
         "hp": 90,
         "armour": [{"part": "breastplate",
-                    "protection": 15,},
+                    "protection": 15},
                    {"part": "boots",
-                    "protection": 10,}],
+                    "protection": 10}],
         "weapon": {"name": "Poisoned Sword",
-                   "power": 60,},
+                   "power": 60},
         "potion": {
             "name": "Berserk",
             "effect": {
                 "power": +15,
                 "hp": -5,
-                "protection": +10,
+                "protection": +10
             }
         }
     },
@@ -47,7 +56,7 @@ KNIGHTS = {
         "power": 40,
         "hp": 70,
         "armour": [{"part": "breastplate",
-                    "protection": 25,}],
+                    "protection": 25}],
         "weapon": {"name": "Sword",
                    "power": 45},
         "potion": {
@@ -60,20 +69,21 @@ KNIGHTS = {
     }
 }
 
-def battle(knights_config):
-    lancelot = knights_config["lancelot"]
-    arthur = knights_config["arthur"]
-    mordred = knights_config["mordred"]
-    red_knight = knights_config["red_knight"]
+
+def battle(knights_config: dict) -> dict:
+    lancelot = Knight(knights_config["lancelot"])
+    arthur = Knight(knights_config["arthur"])
+    mordred = Knight(knights_config["mordred"])
+    red_knight = Knight(knights_config["red_knight"])
 
     fight(lancelot, mordred)
     fight(arthur, red_knight)
-
     return {
-        lancelot["name"]: lancelot["hp"],
-        arthur["name"]: arthur["hp"],
-        mordred["name"]: mordred["hp"],
-        red_knight["name"]: red_knight["hp"],
+        lancelot.name: lancelot.hp,
+        arthur.name: arthur.hp,
+        mordred.name: mordred.hp,
+        red_knight.name: red_knight.hp
     }
+
 
 print(battle(KNIGHTS))

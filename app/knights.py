@@ -1,5 +1,5 @@
 class Knight:
-    def __init__(self, data: dict):
+    def __init__(self, data: dict) -> None:
         self.name = data["name"]
         self.power = data["power"]
         self.hp = data["hp"]
@@ -8,7 +8,7 @@ class Knight:
         self.weapon = data["weapon"]
         self.potion = data["potion"]
 
-    def buff(self):
+    def buff(self) -> None:
         self.protection = sum(obj["protection"] for obj in self.armour)
         self.power += self.weapon["power"]
 
