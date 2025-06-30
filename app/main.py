@@ -9,8 +9,8 @@ def battle(knights_config: dict) -> Dict[str, int]:
     arthur: Knight = Knight(knights_config["arthur"])
     red_knight: Knight = Knight(knights_config["red_knight"])
 
-    for knights in (lancelot, mordred, arthur, red_knight):
-        knights.apply_gear()
+    for knight in (lancelot, mordred, arthur, red_knight):
+        knight.apply_gear()
 
     lancelot.attack(mordred)
     mordred.attack(lancelot)

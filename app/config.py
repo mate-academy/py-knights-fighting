@@ -5,7 +5,7 @@ KNIGHTS = {
         "hp": 100,
         "armour": [],
         "weapon": {"name": "Metal Sword", "power": 50},
-        "potion": None,
+        "potion": None
     },
     "arthur": {
         "name": "Arthur",
@@ -17,7 +17,7 @@ KNIGHTS = {
             {"part": "boots", "protection": 10},
         ],
         "weapon": {"name": "Two-handed Sword", "power": 55},
-        "potion": None,
+        "potion": None
     },
     "mordred": {
         "name": "Mordred",
@@ -31,7 +31,7 @@ KNIGHTS = {
         "potion": {
             "name": "Berserk",
             "effect": {"power": +15, "hp": -5, "protection": +10},
-        },
+        }
     },
     "red_knight": {
         "name": "Red Knight",
