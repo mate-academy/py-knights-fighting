@@ -4,8 +4,14 @@ from app.models.knight import Knight
 
 def fight(first_knight: Knight, second_knight: Knight) -> None:
 
-    damage_to_first_knight = max(0, second_knight.power - first_knight.protection)
-    damage_to_second_knight = max(0, first_knight.power - second_knight.protection)
+    damage_to_first_knight = max(
+        0,
+        second_knight.power - first_knight.protection
+    )
+    damage_to_second_knight = max(
+        0,
+        first_knight.power - second_knight.protection
+    )
     first_knight.take_damage(damage_to_first_knight)
     second_knight.take_damage(damage_to_second_knight)
 
