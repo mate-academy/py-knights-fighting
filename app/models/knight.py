@@ -42,9 +42,10 @@ class Knight:
         self.apply_potion_effects()
 
     def take_damage(self, damage: int) -> None:
-        self.hp -= damage
-        if self.hp < 0:
-            self.hp = 0
+        if damage > 0:
+            self.hp -= damage
+            if self.hp < 0:
+                self.hp = 0
 
     def is_alive(self) -> bool:
         return self.hp > 0
