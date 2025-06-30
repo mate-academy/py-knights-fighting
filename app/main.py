@@ -48,25 +48,38 @@ KNIGHTS = {
     },
 }
 
-def prepare_knight(knight):
+
+def prepare_knight(knight: Dict[str, Any]) -> None:
+    """Apply all equipment and potion effects to knight."""
     knight["protection"] = sum(a["protection"] for a in knight["armour"])
     knight["power"] += knight["weapon"]["power"]
+
     if knight["potion"]:
         for stat, value in knight["potion"]["effect"].items():
             knight[stat] += value
 
-def fight(knight1, knight2):
+
+def fight(knight1: Dict[str, Any], knight2: Dict[str, Any]) -> None:
+    """Simulate battle between two knights."""
     damage1 = max(0, knight2["power"] - knight1["protection"])
     damage2 = max(0, knight1["power"] - knight2["protection"])
+
     knight1["hp"] = max(0, knight1["hp"] - damage1)
     knight2["hp"] = max(0, knight2["hp"] - damage2)
 
-def battle(knights_config):
+
+def battle(knights_config: Dict[str, Any]) -> Dict[str, int]:
+    """Simulate battle between all knights and return results."""
     knights = {k: v.copy() for k, v in knights_config.items()}
+
     for knight in knights.values():
         prepare_knight(knight)
+
     fight(knights["lancelot"], knights["mordred"])
     fight(knights["arthur"], knights["red_knight"])
+
     return {k["name"]: k["hp"] for k in knights.values()}
 
-print(battle(KNIGHTS))
+
+if __name__ == "__main__":
+    print(battle(KNIGHTS))
