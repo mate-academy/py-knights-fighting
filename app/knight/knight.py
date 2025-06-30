@@ -23,8 +23,8 @@ class Knight:
 
     def fight(self, other: Knight) -> None:
         if isinstance(other, Knight):
-            self.hp -= other.power - self.protection
-            other.hp -= self.power - other.protection
+            self.hp -= max(other.power - self.protection, 0)
+            other.hp -= max(self.power - other.protection, 0)
 
             self.hp = max(self.hp, 0)
             other.hp = max(other.hp, 0)
