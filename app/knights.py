@@ -1,4 +1,3 @@
-from typing import Optional, List
 from app.equipment import Weapon, Armour, Potion
 
 
@@ -9,9 +8,9 @@ class Knight:
         hp: int,
         base_power: int,
         base_protection: int,
-        weapon: Optional[Weapon] = None,
-        armour: Optional[List[Armour]] = None,
-        potion: Optional[Potion] = None
+        weapon: Weapon | None = None,
+        armour: list[Armour] | None = None,
+        potion: Potion | None = None
     ) -> None:
         self.name = name
         self.hp = hp
