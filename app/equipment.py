@@ -1,6 +1,3 @@
-from typing import Optional, Dict
-
-
 class ArmourPart:
     def __init__(self, part: str, protection: int) -> None:
         self.part = part
@@ -14,7 +11,10 @@ class Weapon:
 
 
 class Potion:
-    def __init__(self, name: str,
-                 effect: Optional[Dict[str, int]] = None) -> None:
+    def __init__(
+        self,
+        name: str,
+        effect: dict[str, int] | None = None,
+    ) -> None:
         self.name = name
         self.effect = effect or {}

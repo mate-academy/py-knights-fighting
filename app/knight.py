@@ -1,4 +1,3 @@
-from typing import List, Optional
 from app.equipment import ArmourPart, Weapon, Potion
 
 
@@ -8,9 +7,9 @@ class Knight:
         name: str,
         base_power: int,
         base_hp: int,
-        armour: Optional[List[ArmourPart]] = None,
-        weapon: Optional[Weapon] = None,
-        potion: Optional[Potion] = None,
+        armour: list[ArmourPart] | None = None,
+        weapon: Weapon | None = None,
+        potion: Potion | None = None,
     ) -> None:
         self.name = name
         self.base_power = base_power
@@ -25,8 +24,10 @@ class Knight:
 
     def calculate_protection(self) -> int:
         base_protection = sum(part.protection for part in self.armour)
-        potion_protection = self.potion.effect.get("protection", 0)\
+        potion_protection = (
+            self.potion.effect.get("protection", 0)
             if self.potion else 0
+        )
         return base_protection + potion_protection
 
     def calculate_power(self) -> int:
