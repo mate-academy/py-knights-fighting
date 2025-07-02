@@ -1,6 +1,5 @@
 from typing import Dict, Any
 
-
 KNIGHTS: Dict[str, Dict[str, Any]] = {
     "lancelot": {
         "name": "Lancelot",
@@ -67,11 +66,19 @@ def fight(knight1: Dict[str, Any], knight2: Dict[str, Any]) -> None:
 
 def battle(knights_config: Dict[str, Dict[str, Any]]) -> Dict[str, int]:
     knights = {k: v.copy() for k, v in knights_config.items()}
+
     for knight in knights.values():
         prepare_knight(knight)
+
     fight(knights["lancelot"], knights["mordred"])
     fight(knights["arthur"], knights["red_knight"])
-    return {k["name"]: k["hp"] for k in knights.values()}
+
+    return {
+        knights["lancelot"]["name"]: knights["lancelot"]["hp"],
+        knights["arthur"]["name"]: knights["arthur"]["hp"],
+        knights["mordred"]["name"]: knights["mordred"]["hp"],
+        knights["red_knight"]["name"]: knights["red_knight"]["hp"],
+    }
 
 
 if __name__ == "__main__":
