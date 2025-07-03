@@ -23,5 +23,13 @@ class Knight:
         self.potion = potion
         self.protection_bonus = 0
 
+        self.power = power + weapon.power
+
+        if self.potion:
+            self.potion.effect.apply_effect(self)
+
+    def power(self) -> int:
+        return self.power + self.weapon.power
+
     def get_total_protection(self) -> int:
         return Armour.total_armour(self.armour) + self.protection_bonus

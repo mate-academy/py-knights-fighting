@@ -123,11 +123,6 @@ def create_knight(data: dict) -> Knight:
         weapon=weapon,
         potion=potion
     )
-
-    knight.power += weapon.power
-
-    if potion:
-        potion.effect.apply_effect(knight)
     return knight
 
 
