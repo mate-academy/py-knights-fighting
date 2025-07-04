@@ -4,18 +4,16 @@ from app.battle.battle import Battle
 
 
 def battle(knights: dict) -> dict:
-    all_knight_instances = \
-        [Knight(knight_data=value) for value in knights.values()]
-    lancelot = all_knight_instances[0]
-    arthur = all_knight_instances[1]
-    mordred = all_knight_instances[2]
-    red_knight = all_knight_instances[3]
+    lancelot = Knight(knight_data=knights["lancelot"])
+    arthur = Knight(knight_data=knights["arthur"])
+    mordred = Knight(knight_data=knights["mordred"])
+    red_knight = Knight(knight_data=knights["red_knight"])
 
     Battle.vs(lancelot, mordred)
 
     Battle.vs(arthur, red_knight)
 
-    return Battle.battle_results(all_knight_instances)
+    return Battle.battle_results([lancelot, arthur, mordred, red_knight])
 
 
 print(battle(KNIGHTS))
