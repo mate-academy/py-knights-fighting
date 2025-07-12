@@ -89,6 +89,7 @@ KNIGHTS = {
 
 
 def battle(knights_config: dict) -> dict:
+    Knight.knights = []
     for name_knight in knights_config:
         knight_info = knights_config[name_knight]
         Knight(
