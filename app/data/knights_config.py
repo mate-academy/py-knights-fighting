@@ -1,3 +1,5 @@
+
+
 KNIGHTS = {
     "red_knight": {
         "name": "Red Knight",
