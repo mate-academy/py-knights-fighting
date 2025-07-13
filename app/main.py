@@ -86,7 +86,7 @@ KNIGHTS = {
 }
 
 
-def battle(knightsConfig):
+def battle(knightsConfig):  # noqa: C901
     # BATTLE PREPARATIONS:
 
     # lancelot
@@ -106,7 +106,8 @@ def battle(knightsConfig):
             lancelot["power"] += lancelot["potion"]["effect"]["power"]
 
         if "protection" in lancelot["potion"]["effect"]:
-            lancelot["protection"] += lancelot["potion"]["effect"]["protection"]
+            lancelot["protection"] += lancelot["potion"]["effect"][
+                "protection"]
 
         if "hp" in lancelot["potion"]["effect"]:
             lancelot["hp"] += lancelot["potion"]["effect"]["hp"]
@@ -172,7 +173,8 @@ def battle(knightsConfig):
             red_knight["power"] += red_knight["potion"]["effect"]["power"]
 
         if "protection" in red_knight["potion"]["effect"]:
-            red_knight["protection"] += red_knight["potion"]["effect"]["protection"]
+            red_knight["protection"] += (
+                red_knight)["potion"]["effect"]["protection"]
 
         if "hp" in red_knight["potion"]["effect"]:
             red_knight["hp"] += red_knight["potion"]["effect"]["hp"]
