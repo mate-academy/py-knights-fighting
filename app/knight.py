@@ -11,15 +11,19 @@ class Knight:
             hp: int,
             armour: Armour,
             weapon: Weapon,
-            potion: Potion
+            potion: Potion | None
     ) -> None:
         self._name = name
         self._weapon = weapon
         self._potion = potion
         self._armour = armour
-        self._power = power + self._weapon.power + self._potion.power
-        self._hp = hp + self._potion.hp
-        self._protection = self._armour.protection + self._potion.protection
+        self._protection = self._armour.protection
+        self._power = power + self._weapon.power
+        self._hp = hp
+        if self._potion:
+            self._power += self._potion.power
+            self._hp += self._potion.hp
+            self._protection += self._potion.protection
 
     @property
     def hp(self) -> int:

@@ -16,7 +16,7 @@ def get_weapon(weapon: dict) -> Weapon:
     return Weapon(weapon.get("name"), weapon.get("power"))
 
 
-def get_potion(potion: dict) -> Potion:
+def get_potion(potion: dict) -> Potion | None:
     if potion:
         name = potion.get("name")
         effect = potion.get("effect", {})
@@ -24,7 +24,7 @@ def get_potion(potion: dict) -> Potion:
         power = effect.get("power", 0)
         protection = effect.get("protection", 0)
         return Potion(name, hp, power, protection)
-    return Potion("None", 0, 0, 0)
+    return None
 
 
 def get_knights(knights_config: dict) -> dict:
