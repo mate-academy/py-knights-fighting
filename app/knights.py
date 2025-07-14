@@ -26,4 +26,3 @@ class Knight:
         self.hp -= damage
         if self.hp < 0:
             self.hp = 0
-
