@@ -2,18 +2,18 @@ from app.knights import Knight
 
 
 class Battle:
-    def __init__(self, knight1: Knight, knight2: Knight):
-        self.knight1 = knight1
-        self.knight2 = knight2
+    def __init__(self, knight_a: Knight, knight_b: Knight) -> None:
+        self.knight_a = knight_a
+        self.knight_b = knight_b
 
-    def fight(self):
-        damage_to_1 = max(0, self.knight2.power - self.knight1.protection)
-        damage_to_2 = max(0, self.knight1.power - self.knight2.protection)
+    def fight(self) -> dict[str, int]:
+        damage_to_a = max(0, self.knight_b.power - self.knight_a.protection)
+        damage_to_b = max(0, self.knight_a.power - self.knight_b.protection)
 
-        self.knight1.receive_damage(damage_to_1)
-        self.knight2.receive_damage(damage_to_2)
+        self.knight_a.receive_damage(damage_to_a)
+        self.knight_b.receive_damage(damage_to_b)
 
         return {
-            self.knight1.name: self.knight1.hp,
-            self.knight2.name: self.knight2.hp,
+            self.knight_a.name: self.knight_a.hp,
+            self.knight_b.name: self.knight_b.hp,
         }
