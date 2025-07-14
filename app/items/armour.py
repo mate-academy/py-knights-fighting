@@ -4,4 +4,4 @@ class Armour:
         self.protection = protection
 
     def __repr__(self) -> str:
-        return f"Armour(part={self.part!r}, protection={self.protection})"
+        return f"Armour(part={self.part}, protection={self.protection})"
