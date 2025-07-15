@@ -14,6 +14,6 @@ def prepare_knight_stats(knight: dict) -> dict:
 
     if knight.get("potion") and knight["potion"] is not None:
         for key, value in knight["potion"]["effect"].items():
-            stats[key] += value
+            stats[key] = stats.get(key, 0) + value
 
     return stats
