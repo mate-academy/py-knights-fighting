@@ -31,9 +31,14 @@ class Knight:
         self.power += self.weapon.power
 
         if self.potion is not None:
-            for stat in ["power", "protection", "hp"]:
-                if stat in self.potion.effect:
-                    self[stat] += self.potion.effect[stat]
+            if "power" in self.potion.effect:
+                self.power += self.potion.effect.get("power")
+
+            if "protection" in self.potion.effect:
+                self.protection += self.potion.effect.get("protection")
+
+            if "hp" in self.potion.effect:
+                self.hp += self.potion.effect.get("hp")
 
     def __init_armour(
             self,
@@ -58,25 +63,3 @@ class Knight:
             return None
 
         return Potion(potion_dict)
-
-    def __getitem__(self, item: object) -> str | int | None:
-        if item == "power":
-            return self.power
-
-        if item == "protection":
-            return self.protection
-
-        if item == "hp":
-            return self.hp
-
-        return None
-
-    def __setitem__(self, key: str, value: str | int) -> None:
-        if key == "power":
-            self.power = value
-
-        if key == "protection":
-            self.protection = value
-
-        if key == "hp":
-            self.hp = value
