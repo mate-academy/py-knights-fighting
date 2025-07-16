@@ -3,7 +3,7 @@ from __future__ import annotations
 
 class Armour:
     def __init__(self, part: str, protection: int) -> None:
-        self.par = part
+        self.part = part
         self.protection = protection
 
     @classmethod

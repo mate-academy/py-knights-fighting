@@ -108,7 +108,3 @@ def battle(knights_config: dict) -> dict:
 
 def build_result(knights: list[Knight]) -> dict:
     return {knight.name: knight.hp for knight in knights}
-
-
-if __name__ == "__main__":
-    print(battle(KNIGHTS))

@@ -19,7 +19,7 @@ class Knight:
         self.hp = hp
         self.weapon = weapon
         self.protection = protection
-        self.armour = armour if armour is not None else []
+        self.armour = armour or []
         self.potion = potion
 
     def prepare_for_battle(self) -> None:
@@ -53,8 +53,8 @@ class Knight:
         self.hp -= other.power - self.protection
         other.hp -= self.power - other.protection
 
-        Knight.check_if_fell(self)
-        Knight.check_if_fell(other)
+        self.check_if_fell()
+        other.check_if_fell()
 
     @classmethod
     def from_dict(cls, data: dict) -> Knight | None:
@@ -70,7 +70,6 @@ class Knight:
             potion=Potion.from_dict(data.get("potion"))
         )
 
-    @staticmethod
-    def check_if_fell(knight: Knight) -> None:
-        if knight.hp <= 0:
-            knight.hp = 0
+    def check_if_fell(self) -> None:
+        if self.hp <= 0:
+            self.hp = 0
