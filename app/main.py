@@ -1,96 +1,24 @@
-KNIGHTS = {
-    "lancelot": {
-        "name": "Lancelot",
-        "power": 35,
-        "hp": 100,
-        "armour": [],
-        "weapon": {
-            "name": "Metal Sword",
-            "power": 50,
-        },
-        "potion": None,
-    },
-    "arthur": {
-        "name": "Arthur",
-        "power": 45,
-        "hp": 75,
-        "armour": [
-            {
-                "part": "helmet",
-                "protection": 15,
-            },
-            {
-                "part": "breastplate",
-                "protection": 20,
-            },
-            {
-                "part": "boots",
-                "protection": 10,
-            }
-        ],
-        "weapon": {
-            "name": "Two-handed Sword",
-            "power": 55,
-        },
-        "potion": None,
-    },
-    "mordred": {
-        "name": "Mordred",
-        "power": 30,
-        "hp": 90,
-        "armour": [
-            {
-                "part": "breastplate",
-                "protection": 15,
-            },
-            {
-                "part": "boots",
-                "protection": 10,
-            }
-        ],
-        "weapon": {
-            "name": "Poisoned Sword",
-            "power": 60,
-        },
-        "potion": {
-            "name": "Berserk",
-            "effect": {
-                "power": +15,
-                "hp": -5,
-                "protection": +10,
-            }
-        }
-    },
-    "red_knight": {
-        "name": "Red Knight",
-        "power": 40,
-        "hp": 70,
-        "armour": [
-            {
-                "part": "breastplate",
-                "protection": 25,
-            }
-        ],
-        "weapon": {
-            "name": "Sword",
-            "power": 45
-        },
-        "potion": {
-            "name": "Blessing",
-            "effect": {
-                "hp": +10,
-                "power": +5,
-            }
-        }
-    }
-}
+from app.config.knights import KNIGHTS
+from app.entities.knight import Knight
+from app.battle.duel import duel
+
+def battle_oop():
+    lancelot = Knight(KNIGHTS["lancelot"])
+    mordred = Knight(KNIGHTS["mordred"])
+    arthur = Knight(KNIGHTS["arthur"])
+    red_knight = Knight(KNIGHTS["red_knight"])
+
+    result1 = duel(lancelot, mordred)
+    result2 = duel(arthur, red_knight)
+
+    return result1, result2
 
 
 def battle(knightsConfig):
     # BATTLE PREPARATIONS:
 
     # lancelot
-    lancelot = knightsConfig["lancelot"]
+    lancelot = knightsConfig["lancelot"].copy()
 
     # apply armour
     lancelot["protection"] = 0
@@ -112,7 +40,7 @@ def battle(knightsConfig):
             lancelot["hp"] += lancelot["potion"]["effect"]["hp"]
 
     # arthur
-    arthur = knightsConfig["arthur"]
+    arthur = knightsConfig["arthur"].copy()
 
     # apply armour
     arthur["protection"] = 0
@@ -134,7 +62,7 @@ def battle(knightsConfig):
             arthur["hp"] += arthur["potion"]["effect"]["hp"]
 
     # mordred
-    mordred = knightsConfig["mordred"]
+    mordred = knightsConfig["mordred"].copy()
 
     # apply armour
     mordred["protection"] = 0
@@ -156,7 +84,7 @@ def battle(knightsConfig):
             mordred["hp"] += mordred["potion"]["effect"]["hp"]
 
     # red_knight
-    red_knight = knightsConfig["red_knight"]
+    red_knight = knightsConfig["red_knight"].copy()
 
     # apply armour
     red_knight["protection"] = 0
@@ -181,8 +109,8 @@ def battle(knightsConfig):
     # BATTLE:
 
     # 1 Lancelot vs Mordred:
-    lancelot["hp"] -= mordred["power"] - lancelot["protection"]
-    mordred["hp"] -= lancelot["power"] - mordred["protection"]
+    lancelot["hp"] -= max(mordred["power"] - lancelot["protection"], 0)
+    mordred["hp"] -= max(lancelot["power"] - mordred["protection"], 0)
 
     # check if someone fell in battle
     if lancelot["hp"] <= 0:
@@ -192,8 +120,8 @@ def battle(knightsConfig):
         mordred["hp"] = 0
 
     # 2 Arthur vs Red Knight:
-    arthur["hp"] -= red_knight["power"] - arthur["protection"]
-    red_knight["hp"] -= arthur["power"] - red_knight["protection"]
+    arthur["hp"] -= max(red_knight["power"] - arthur["protection"], 0)
+    red_knight["hp"] -= max(arthur["power"] - red_knight["protection"], 0)
 
     # check if someone fell in battle
     if arthur["hp"] <= 0:
@@ -209,6 +137,3 @@ def battle(knightsConfig):
         mordred["name"]: mordred["hp"],
         red_knight["name"]: red_knight["hp"],
     }
-
-
-print(battle(KNIGHTS))
