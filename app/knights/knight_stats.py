@@ -8,10 +8,14 @@ class Knight:
         self.protection = 0
 
     def equip_armour(self, armour: list) -> None:
+        if not armour:
+            return
         for armour_piece in armour:
             self.protection += armour_piece.get("protection", 0)
 
     def equip_weapon(self, weapon: dict) -> None:
+        if not weapon:
+            return
         self.power += weapon.get("power", 0)
 
     def use_potion(self, potion: dict) -> None:
