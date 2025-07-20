@@ -7,7 +7,7 @@ class Knight:
     self.base_hp = config["hp"]
     self.armour = config.get("armour", [])
     self.weapon = config["weapon"]
-    self.potions = config.get("potion")
+    self.potion = config.get("potion")
 
     self.hp = self.base_hp
     self.power = self.base_power + self.weapon["power"]
