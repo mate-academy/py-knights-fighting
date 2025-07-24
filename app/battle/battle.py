@@ -3,27 +3,20 @@ from app.units.knight import Knight
 
 class Battle:
     def __init__(self) -> None:
-        pass
+        self.pairs = []
 
-    pairs = []
-
-    @classmethod
-    def set_pair(cls, knight1: Knight, knight2: Knight) -> tuple:
+    def set_pair(self, knight1: Knight, knight2: Knight) -> tuple:
         pair = (knight1, knight2)
-        cls.pairs.append(pair)
-
+        self.pairs.append(pair)
         return pair
 
-    @classmethod
-    def show_pairs(cls) -> None:
+    def show_pairs(self) -> None:
         print("Pairs: ")
-
-        for pair in cls.pairs:
+        for pair in self.pairs:
             print(f"{pair[0].name} — {pair[1].name}")
 
-    @classmethod
-    def fight(cls) -> None:
-        for pair in cls.pairs:
+    def fight(self) -> None:
+        for pair in self.pairs:
             knight1 = pair[0]
             knight2 = pair[1]
 
@@ -33,11 +26,10 @@ class Battle:
             knight1.hp -= damage_to_knight1
             knight2.hp -= damage_to_knight2
 
-            Battle.check_hp()
+            self._check_hp()
 
-    @classmethod
-    def check_hp(cls) -> None:
-        for pair in cls.pairs:
+    def _check_hp(self) -> None:
+        for pair in self.pairs:
             for knight in pair:
                 if knight.hp < 0:
                     knight.hp = 0
