@@ -14,7 +14,6 @@ def battle(knights: dict) -> dict:
     new_battle.set_pair(knight1=arthur, knight2=red_knight)
 
     new_battle.fight()
-    lancelot.print_stats()
     return {
         lancelot.name: lancelot.hp,
         arthur.name: arthur.hp,
