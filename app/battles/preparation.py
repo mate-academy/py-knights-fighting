@@ -8,7 +8,6 @@ class Preparation:
     @staticmethod
     def calculate_stats(name: str, knights: dict) -> tuple:
         hp = knights[name]["hp"]
-        print(f"{knights[name]} {knights[name]["hp"]} {hp}")
         power = knights[name]["power"]
         protection = 0
 
@@ -37,9 +36,9 @@ class Preparation:
         return hp, power, protection
 
     @staticmethod
-    def set_knight(name: str, knights: dict) -> Knight | str:
+    def set_knight(name: str, knights: dict) -> Knight:
         if name not in knights:
-            return f"{name} is not in knights list."
+            raise ValueError(f"{name} is not in knights list.")
 
         new_name = knights[name]["name"]
         hp, power, protection = Preparation.calculate_stats(name, knights)
