@@ -10,7 +10,7 @@ class Knight:
             protection: int,
             armour: list[dict],
             weapon: dict[str, str | int],
-            potion: dict[str, Any]
+            potion: dict[str, Any] | None = None
     ) -> None:
         self.name = name
         self.power = power
