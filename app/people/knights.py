@@ -5,22 +5,23 @@ class Knight:
     def __init__(
         self,
         name: str,
-        power: str,
-        hp: str,
+        power: int,
+        hp: int,
+        weapon: Weapon,
         equip_list: list
     ) -> None:
         self.name = name
         self.power = power
         self.hp = hp
+        self.weapon = weapon
         self.equip_list = equip_list
         self.protection = 0
         self.equipment_applied = False
 
     def apply_equip(self) -> None:
+        self.power += self.weapon.power
         for equip in self.equip_list:
-            if isinstance(equip, Weapon):
-                self.power += equip.power
-            elif isinstance(equip, Armour):
+            if isinstance(equip, Armour):
                 self.protection += equip.protection
             elif isinstance(equip, Potion):
                 self.power += equip.power_effect

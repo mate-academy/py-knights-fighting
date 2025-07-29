@@ -99,19 +99,17 @@ def battle(knights_config: dict) -> dict:
             knight["name"],
             knight["power"],
             knight["hp"],
-            [
-                Weapon(knight["weapon"]["name"], knight["weapon"]["power"]),
-                Potion(
-                    knight["potion"]["name"],
-                    knight["potion"]["effect"].get("hp", 0),
-                    knight["potion"]["effect"].get("power", 0),
-                    knight["potion"]["effect"].get("protection", 0)
-                ) if knight["potion"] else None,
+            Weapon(knight["weapon"]["name"], knight["weapon"]["power"]),
+            [Potion(
+                knight["potion"]["name"],
+                knight["potion"]["effect"].get("hp", 0),
+                knight["potion"]["effect"].get("power", 0),
+                knight["potion"]["effect"].get("protection", 0)
+            ) if knight["potion"] else None,
                 *[
                     Armour(
                         armour["part"], armour["protection"]
-                    ) for armour in knight["armour"]
-                ]
+                    ) for armour in knight["armour"]]
             ]
         )
         knight_objects[knight.name] = knight
