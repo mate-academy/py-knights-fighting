@@ -1,7 +1,7 @@
 from .models import Knight
 
 
-def duel(knight1: Knight, knight2: Knight):
+def duel(knight1: Knight, knight2: Knight) -> dict:
     knight1.prepare_for_battle()
     knight2.prepare_for_battle()
 
@@ -14,7 +14,7 @@ def duel(knight1: Knight, knight2: Knight):
     }
 
 
-def battle(knights_config: dict):
+def battle(knights_config: dict) -> dict:
     lancelot = Knight(knights_config["lancelot"])
     mordred = Knight(knights_config["mordred"])
     arthur = Knight(knights_config["arthur"])
