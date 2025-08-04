@@ -6,9 +6,9 @@ KNIGHTS = {
         "armour": [],
         "weapon": {
             "name": "Metal Sword",
-            "power": 50,
+            "power": 50
         },
-        "potion": None,
+        "potion": None
     },
     "arthur": {
         "name": "Arthur",
@@ -17,22 +17,22 @@ KNIGHTS = {
         "armour": [
             {
                 "part": "helmet",
-                "protection": 15,
+                "protection": 15
             },
             {
                 "part": "breastplate",
-                "protection": 20,
+                "protection": 20
             },
             {
                 "part": "boots",
-                "protection": 10,
+                "protection": 10
             }
         ],
         "weapon": {
             "name": "Two-handed Sword",
-            "power": 55,
+            "power": 55
         },
-        "potion": None,
+        "potion": None
     },
     "mordred": {
         "name": "Mordred",
@@ -41,11 +41,11 @@ KNIGHTS = {
         "armour": [
             {
                 "part": "breastplate",
-                "protection": 15,
+                "protection": 15
             },
             {
                 "part": "boots",
-                "protection": 10,
+                "protection": 10
             }
         ],
         "weapon": {
@@ -57,7 +57,7 @@ KNIGHTS = {
             "effect": {
                 "power": +15,
                 "hp": -5,
-                "protection": +10,
+                "protection": +10
             }
         }
     },
@@ -68,7 +68,7 @@ KNIGHTS = {
         "armour": [
             {
                 "part": "breastplate",
-                "protection": 25,
+                "protection": 25
             }
         ],
         "weapon": {
@@ -79,7 +79,7 @@ KNIGHTS = {
             "name": "Blessing",
             "effect": {
                 "hp": +10,
-                "power": +5,
+                "power": +5
             }
         }
     }

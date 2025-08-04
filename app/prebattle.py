@@ -11,7 +11,7 @@ def preparations(knigtsconfig: dict) -> dict:
                 knight["power"] += knight["potion"]["effect"]["power"]
 
             if "protection" in knight["potion"]["effect"]:
-                knight["protection"] +=\
+                knight["protection"] += \
                     (knight)["potion"]["effect"]["protection"]
 
             if "hp" in knight["potion"]["effect"]:
