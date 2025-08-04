@@ -1,5 +1,5 @@
 from app.format_knight import format
-#from app.Constants import KNIGHTS
+
 
 def battle(knights: dict) -> dict:
 
