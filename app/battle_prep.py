@@ -19,7 +19,7 @@ def battle_preparation(knight_dict: dict) -> dict:
 
         if "protection" in lancelot["potion"]["effect"]:
             lancelot["protection"] += (
-                lancelot)["potion"]["effect"]["protection"]
+                lancelot["potion"]["effect"]["protection"])
 
         if "hp" in lancelot["potion"]["effect"]:
             lancelot["hp"] += lancelot["potion"]["effect"]["hp"]
@@ -86,7 +86,7 @@ def battle_preparation(knight_dict: dict) -> dict:
 
         if "protection" in red_knight["potion"]["effect"]:
             red_knight["protection"] += (
-                red_knight)["potion"]["effect"]["protection"]
+                red_knight["potion"]["effect"]["protection"])
 
         if "hp" in red_knight["potion"]["effect"]:
             red_knight["hp"] += red_knight["potion"]["effect"]["hp"]
