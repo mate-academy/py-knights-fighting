@@ -25,6 +25,6 @@ def battle(knights_dict: dict) -> dict:
     knights = parse_knights(knights_dict)
     for knight in knights:
         battle_preparations(knight)
-    battle_fight(knights[0], knights[1])
-    battle_fight(knights[2], knights[3])
+    battle_fight(knights[0], knights[2])
+    battle_fight(knights[1], knights[3])
     return {knight.name: knight.hp for knight in knights}

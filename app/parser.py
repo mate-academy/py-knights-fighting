@@ -10,7 +10,7 @@ def parse_knights(knights: dict) -> list:
             potion_list = [Potion(
                 name=knight["potion"]["name"],
                 effect=knight["potion"]["effect"]
-                )]
+            )]
         knight_object = Knight(
             name=knight["name"],
             power=knight["power"],
@@ -18,12 +18,12 @@ def parse_knights(knights: dict) -> list:
             armour=[Armour(
                 part=item["part"],
                 effect={
-                    "protection":item["protection"]
+                    "protection": item["protection"]
                 }
-                )
+            )
                 for item in knight["armour"]
             ],
-            weapon= [Weapon(
+            weapon=[Weapon(
                 name=knight["weapon"]["name"],
                 effect={
                     "power": knight["weapon"]["power"]
