@@ -1,4 +1,3 @@
-# main.py
 
 from app.models.knight import Knight
 from app.models.weapon import Weapon
@@ -54,15 +53,19 @@ KNIGHTS = {
 
 
 def create_knight_from_dict(data: dict) -> Knight:
-    weapon = Weapon(name=data["weapon"]["name"], power=data["weapon"]["power"])
-    armour = [ArmourPart(part=part["part"],
-                         protection=part["protection"])
-              for part in data["armour"]]
+    weapon_data = data.get("weapon")
+    weapon = Weapon(**weapon_data) if weapon_data else None
+
     potion_data = data.get("potion")
-    potion = Potion(
-        name=potion_data["name"],
-        effect=potion_data["effect"]
-    ) if potion_data else None
+    potion = None
+    if potion_data:
+        effect = potion_data["effect"]
+        potion = Potion(potion_data["name"], effect)
+
+    armour_data = data.get("armour", [])
+    armour = [ArmourPart(part["part"],
+                         part["protection"])
+              for part in armour_data]
 
     return Knight(
         name=data["name"],

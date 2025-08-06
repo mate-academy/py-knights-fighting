@@ -1,4 +1,4 @@
 class ArmourPart:
-    def __init__(self, part: str, protection: int) -> None:
-        self.part = part
+    def __init__(self, name: str, protection: int) -> None:
+        self.name = name
         self.protection = protection

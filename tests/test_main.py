@@ -1,4 +1,3 @@
-
 import pytest
 from app.main import create_knight_from_dict
 from app.services.battle import battle
