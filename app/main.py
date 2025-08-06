@@ -23,7 +23,7 @@ def battle_fight(knight1: Knight, knight2: Knight) -> None:
 
 def battle(knights_dict: dict) -> dict:
     knights = parse_knights(knights_dict)
-    if len(knights) < 3:
+    if len(knights) < 4:
         raise ValueError("You need four knights for the battle")
     for knight in knights:
         battle_preparations(knight)
