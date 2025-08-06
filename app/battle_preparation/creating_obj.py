@@ -8,7 +8,6 @@ def creating_knights(dictionary: dict) -> list[Knight]:
     result = []
     for value in dictionary.values():
         obj = Knight(name=value["name"], power=value["power"], hp=value["hp"])
-        obj.__repr__()
         result.append(obj)
     return result
 
@@ -21,7 +20,6 @@ def creating_armors(dictionary: dict) -> dict[list[Armour]]:
             for armour in value["armour"]:
                 obj = Armour(part=armour["part"],
                              protection=armour["protection"])
-                obj.__repr__()
                 list_of_armors.append(obj)
         result[value["name"]] = list_of_armors
     return result
@@ -32,7 +30,6 @@ def creating_weapons(dictionary: dict) -> dict[Weapon]:
     for value in dictionary.values():
         obj = Weapon(name=value["weapon"]["name"],
                      power=value["weapon"]["power"])
-        obj.__repr__()
         result[value["name"]] = obj
     return result
 
@@ -43,6 +40,5 @@ def creating_potions(dictionary: dict) -> dict[Potion]:
         if value["potion"] is not None:
             obj = Potion(name=value["potion"]["name"],
                          effect=value["potion"]["effect"])
-            obj.__repr__()
             result[value["name"]] = obj
     return result

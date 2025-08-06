@@ -3,6 +3,3 @@ class Knight:
         self.name = name
         self.power = power
         self.hp = hp
-
-    def __repr__(self) -> str:
-        return (self.name)
