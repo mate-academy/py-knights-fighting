@@ -16,7 +16,7 @@ KNIGHTS = {
             {"part": "helmet", "protection": 10},
             {"part": "shield", "protection": 15}
         ],
-        "potion": {"name": "Healing", "effect": 30}
+        "potion": {"name": "Healing", "effect": {"hp": 30}}
     },
     "mordred": {
         "name": "Mordred",
@@ -37,7 +37,7 @@ KNIGHTS = {
             {"part": "helmet", "protection": 12},
             {"part": "shield", "protection": 18}
         ],
-        "potion": {"name": "Strength", "effect": 20}
+        "potion": {"name": "Strength", "effect": {"power": 20}}
     },
     "red_knight": {
         "name": "Red Knight",
