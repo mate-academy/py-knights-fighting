@@ -16,7 +16,7 @@ class Knight:
         self.name = name
         self.protection = protection
         self.power = power
-        self. hp = hp
+        self.hp = hp
         self.armour = armour
         self.weapon = weapon
         self.potion = potion
