@@ -4,11 +4,11 @@ from app.battle_preparation.weapon import Weapon
 from app.battle_preparation.potion import Potion
 
 
-def creating_knights(dictionary: dict) -> list[Knight]:
-    result = []
+def creating_knights(dictionary: dict) -> dict[Knight]:
+    result = {}
     for value in dictionary.values():
         obj = Knight(name=value["name"], power=value["power"], hp=value["hp"])
-        result.append(obj)
+        result[value["name"]] = obj
     return result
 
 
