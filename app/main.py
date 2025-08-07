@@ -1,29 +1,25 @@
+# app/main.py
+
 from app.constants import KNIGHTS
 from app.knight import Knight
 
 
+def _perform_duel(knight1: Knight, knight2: Knight) -> None:
+    """Each knight attacks the other once."""
+    knight1.take_damage(knight2.power)
+    knight2.take_damage(knight1.power)
+
+
 def battle(knights_config: dict) -> dict:
-    # Создаем объекты рыцарей
-    lancelot = Knight(knights_config["lancelot"])
-    mordred = Knight(knights_config["mordred"])
-    arthur = Knight(knights_config["arthur"])
-    red_knight = Knight(knights_config["red_knight"])
+    # Instantiate all knights from config
+    knights = {key: Knight(data) for key, data in knights_config.items()}
 
-    # 1) Lancelot vs Mordred
-    lancelot.take_damage(mordred.power)
-    mordred.take_damage(lancelot.power)
+    # Perform duels
+    _perform_duel(knights["lancelot"], knights["mordred"])
+    _perform_duel(knights["arthur"], knights["red_knight"])
 
-    # 2) Arthur vs Red Knight
-    arthur.take_damage(red_knight.power)
-    red_knight.take_damage(arthur.power)
-
-    # Возвращаем результаты
-    return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
-    }
+    # Return remaining HP for each knight
+    return {knight.name: knight.hp for knight in knights.values()}
 
 
 if __name__ == "__main__":
