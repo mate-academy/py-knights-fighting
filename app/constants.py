@@ -4,10 +4,7 @@ KNIGHTS = {
         "power": 35,
         "hp": 100,
         "armour": [],
-        "weapon": {
-            "name": "Metal Sword",
-            "power": 50,
-        },
+        "weapon": {"name": "Metal Sword", "power": 50},
         "potion": None,
     },
     "arthur": {
@@ -33,7 +30,7 @@ KNIGHTS = {
         "weapon": {"name": "Poisoned Sword", "power": 60},
         "potion": {
             "name": "Berserk",
-            "effect": {"power": +15, "hp": -5, "protection": +10},
+            "effect": {"power": 15, "hp": -5, "protection": 10},
         },
     },
     "red_knight": {
@@ -44,7 +41,7 @@ KNIGHTS = {
         "weapon": {"name": "Sword", "power": 45},
         "potion": {
             "name": "Blessing",
-            "effect": {"hp": +10, "power": +5},
+            "effect": {"hp": 10, "power": 5, "protection": 0},
         },
     },
 }
