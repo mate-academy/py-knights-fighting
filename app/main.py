@@ -1,8 +1,8 @@
-from knight.arthur import Arthur
-from knight.lancelot import Lancelot
-from knight.mordred import Mordred
-from knight.redknight import RedKnight
-from battle.battle import BattleSimulator
+from app.knight.arthur import Arthur
+from app.knight.lancelot import Lancelot
+from app.knight.mordred import Mordred
+from app.knight.redknight import RedKnight
+from app.battle.battle import BattleSimulator
 
 KNIGHTS = {
     "lancelot": {
