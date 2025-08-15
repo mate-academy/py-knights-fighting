@@ -1,7 +1,3 @@
-from app.knight.lancelot import Lancelot
-from app.knight.mordred import Mordred
-from app.knight.arthur import Arthur
-from app.knight.redknight import RedKnight
 from app.knight.knights import Knight
 
 
