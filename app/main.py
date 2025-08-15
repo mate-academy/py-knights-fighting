@@ -93,22 +93,19 @@ KNIGHTS = {
 
 
 def battle(knightsconfig: BattleSimulator) -> BattleSimulator:
-    # Створення об'єктів лицарів
+
     lancelot = Lancelot(**knightsconfig["lancelot"])
     arthur = Arthur(**knightsconfig["arthur"])
     mordred = Mordred(**knightsconfig["mordred"])
     red_knight = RedKnight(**knightsconfig["red_knight"])
 
-    # Підготовка лицарів до бою
     lancelot.battle_preparations()
     mordred.battle_preparations()
     arthur.battle_preparations()
     red_knight.battle_preparations()
 
-    # Створення екземпляра симулятора битв
     battle_simulator = BattleSimulator(lancelot, arthur, mordred, red_knight)
 
-    # Запуск битв та отримання результатів
     return battle_simulator.run_all_battles()
 
 

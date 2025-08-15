@@ -1,32 +1,28 @@
-from app.knight.knights import Knight
-
-
 class BattleSimulator:
 
-    def __init__(self, lancelot: dict, arthur: dict, mordred: dict,
-                 red_knight: dict) -> None:
+    def __init__(self, lancelot: object, arthur: object, mordred: object,
+                 red_knight: object) -> None:
         self.lancelot = lancelot
         self.mordred = mordred
         self.arthur = arthur
         self.red_knight = red_knight
 
-    def conduct_one_on_one_battle(self, knight1: Knight,
-                                  knight2: Knight) -> None:
-        # Логіка самого бою
-        knight1.hp -= knight2.power - knight1.protection
-        knight2.hp -= knight1.power - knight2.protection
+    def conduct_one_on_one_battle(self, knight1: object,
+                                  knight2: object) -> None:
+        damage_to_k1 = max(0, knight2.power - knight1.protection)
+        damage_to_k2 = max(0, knight1.power - knight2.protection)
 
-        # Перевірка, чи не загинув хтось у бою
+        knight1.hp -= damage_to_k1
+        knight2.hp -= damage_to_k2
+
         if knight1.hp < 0:
             knight1.hp = 0
         if knight2.hp < 0:
             knight2.hp = 0
 
-    def run_all_battles(self) -> None:
-        # BATTLE 1: Lancelot vs Mordred
+    def run_all_battles(self) -> dict:
         self.conduct_one_on_one_battle(self.lancelot, self.mordred)
 
-        # BATTLE 2: Arthur vs Red Knight
         self.conduct_one_on_one_battle(self.arthur, self.red_knight)
 
         return {
