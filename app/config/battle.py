@@ -13,8 +13,6 @@ class BattleSimulator:
         k1 = getattr(self, fighter1)
         k2 = getattr(self, fighter2)
 
-        protection2 = sum(item["protection"] for item in k2.armour)
-
         damage_to_k1 = max(0, k2.power - k1.protection)
         damage_to_k2 = max(0, k1.power - k2.protection)
 
