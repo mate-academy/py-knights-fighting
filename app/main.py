@@ -91,6 +91,7 @@ KNIGHTS = {
     }
 }
 
+
 def battle(knightsconfig: dict) -> dict:
     lancelot = Lancelot(**knightsconfig["lancelot"])
     arthur = Arthur(**knightsconfig["arthur"])

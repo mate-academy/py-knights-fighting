@@ -1,7 +1,9 @@
 from app.config.knights import Knight
 
+
 class BattleSimulator:
-    def __init__(self, lancelot: Knight, arthur: Knight, mordred: Knight, red_knight: Knight) -> None:
+    def __init__(self, lancelot: Knight, arthur: Knight,
+                 mordred: Knight, red_knight: Knight) -> None:
         self.lancelot = lancelot
         self.arthur = arthur
         self.mordred = mordred
