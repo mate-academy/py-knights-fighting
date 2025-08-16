@@ -15,8 +15,8 @@ class BattleSimulator:
 
         protection2 = sum(item["protection"] for item in k2.armour)
 
-        damage_to_k1 = max(0, k2.power - protection2)
-        damage_to_k2 = max(0, k1.power - protection2)
+        damage_to_k1 = max(0, k2.power - k1.protection)
+        damage_to_k2 = max(0, k1.power - k2.protection)
 
         k1.hp = max(0, k1.hp - damage_to_k1)
         k2.hp = max(0, k2.hp - damage_to_k2)
