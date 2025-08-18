@@ -2,7 +2,7 @@ from typing import List, Dict, Optional, Any
 
 
 class Knight:
-    def __init__(self, config: Dict[str, Any]):
+    def __init__(self, config: Dict[str, Any]) -> None:
         self.name: str = config["name"]
         self.base_power: int = config["power"]
         self.hp: int = config["hp"]

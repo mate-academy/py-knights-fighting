@@ -7,11 +7,11 @@ def duel(knight1: Knight, knight2: Knight) -> None:
     knight2.take_damage(knight1.power - knight2.protection)
 
 
-def battle(knightsConfig: Dict[str, Any]) -> Dict[str, int]:
-    lancelot = Knight(knightsConfig["lancelot"])
-    arthur = Knight(knightsConfig["arthur"])
-    mordred = Knight(knightsConfig["mordred"])
-    red_knight = Knight(knightsConfig["red_knight"])
+def battle(knights_config: Dict[str, Any]) -> Dict[str, int]:
+    lancelot = Knight(knights_config["lancelot"])
+    arthur = Knight(knights_config["arthur"])
+    mordred = Knight(knights_config["mordred"])
+    red_knight = Knight(knights_config["red_knight"])
 
     duel(lancelot, mordred)
     duel(arthur, red_knight)
