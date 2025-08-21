@@ -6,7 +6,7 @@ class Knight:
         self.weapon = knight["weapon"]
         self.potion = knight["potion"]
         self.power = knight["power"] + self.weapon["power"]
-        self.protection = sum(element.get("protection")
+        self.protection = sum(element.get("protection", 0)
                               for element in self.armour)
 
     def drink_potion(self, potion: dict) -> None:
