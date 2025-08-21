@@ -122,6 +122,16 @@ def create_knight(knight_dict: dict) -> Knight:
     return Knight(knight_dict["name"], power, hp, armours, weapon, potion)
 
 
+def resolve_duel(attacker_a: Knight, attacker_b: Knight) -> tuple[int, int]:
+    dmg_to_a = max(0, attacker_b.power - attacker_a.count_protection())
+    dmg_to_b = max(0, attacker_a.power - attacker_b.count_protection())
+
+    a_hp_after = max(0, attacker_a.hp - dmg_to_a)
+    b_hp_after = max(0, attacker_b.hp - dmg_to_b)
+    return a_hp_after, b_hp_after
+
+
+
 def battle(knights_config: dict) -> dict:
     # -------------------------------------------------------------------------------
     # BATTLE:
@@ -131,8 +141,7 @@ def battle(knights_config: dict) -> dict:
     mordred = create_knight(knights_config["mordred"])
     red_knight = create_knight(knights_config["red_knight"])
 
-    lancelot.hp -= mordred.power - lancelot.count_protection()
-    mordred.hp -= lancelot.power - mordred.count_protection()
+    lancelot.hp, mordred.hp = resolve_duel(lancelot, mordred)
 
     # check if someone fell in battle
     if lancelot.hp <= 0:
@@ -142,8 +151,7 @@ def battle(knights_config: dict) -> dict:
         mordred.hp = 0
 
     # 2 Arthur vs Red Knight:
-    arthur.hp -= red_knight.power - arthur.count_protection()
-    red_knight.hp -= arthur.power - red_knight.count_protection()
+    arthur.hp, red_knight.hp = resolve_duel(arthur, red_knight)
 
     # check if someone fell in battle
     if arthur.hp <= 0:
@@ -161,4 +169,5 @@ def battle(knights_config: dict) -> dict:
     }
 
 
-print(battle(KNIGHTS))
+if __name__ == "__main__":
+    print(battle(KNIGHTS))
