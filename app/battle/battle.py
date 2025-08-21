@@ -7,7 +7,9 @@ class Battle:
         self.second_knight = second_knight
 
     def start(self) -> None:
-        self.first_knight.hp -= (self.second_knight.power
-                                 - self.first_knight.protection)
-        self.second_knight.hp -= (self.first_knight.power
-                                  - self.second_knight.protection)
+        self.first_knight.hp -= max(0, self.second_knight.power
+                                    - self.first_knight.protection)
+        self.first_knight.check_hp()
+        self.second_knight.hp -= max(0, self.first_knight.power
+                                     - self.second_knight.protection)
+        self.second_knight.check_hp()

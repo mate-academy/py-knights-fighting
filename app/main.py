@@ -87,7 +87,7 @@ KNIGHTS = {
 }
 
 
-def battle(knights_config: dict) -> dict:
+def battle(knights_config: dict) -> dict[str, int]:
     lancelot = Knight(knights_config["lancelot"])
     arthur = Knight(knights_config["arthur"])
     mordred = Knight(knights_config["mordred"])
@@ -101,17 +101,9 @@ def battle(knights_config: dict) -> dict:
     lancelot_mordred_battle = Battle(lancelot, mordred)
     lancelot_mordred_battle.start()
 
-    lancelot.check_hp()
-    mordred.check_hp()
-
     arthur_red_knight_battle = Battle(arthur, red_knight)
     arthur_red_knight_battle.start()
 
-    arthur.check_hp()
-    red_knight.check_hp()
-
-    # print(lancelot_mordred_battle.results())
-    # print(arthur_red_knight_battle.results())
     return {
         lancelot.name: lancelot.hp,
         arthur.name: arthur.hp,
