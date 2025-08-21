@@ -131,7 +131,6 @@ def resolve_duel(attacker_a: Knight, attacker_b: Knight) -> tuple[int, int]:
     return a_hp_after, b_hp_after
 
 
-
 def battle(knights_config: dict) -> dict:
     # -------------------------------------------------------------------------------
     # BATTLE:
