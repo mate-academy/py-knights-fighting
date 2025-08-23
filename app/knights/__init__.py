@@ -1,0 +1,1 @@
+# Este ficheiro vazio transforma a pasta 'knights' num pacote Python.

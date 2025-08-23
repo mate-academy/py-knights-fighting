@@ -1,0 +1,1 @@
+# Este ficheiro vazio transforma a pasta 'app' num pacote Python.
