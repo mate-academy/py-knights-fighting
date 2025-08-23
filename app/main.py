@@ -1,5 +1,6 @@
 from app.knights.knight import Knight
 from app.battle.fight import fight
+from app.knights.data import KNIGHTS
 
 
 def battle(knights_config: dict) -> dict:
@@ -21,3 +22,11 @@ def battle(knights_config: dict) -> dict:
         mordred.name: mordred.hp,
         red_knight.name: red_knight.hp,
     }
+
+
+# Bloco para executar e testar a função battle
+if __name__ == "__main__":
+    battle_results = battle(KNIGHTS)
+    print("Resultado da Batalha:")
+    for knight, hp in battle_results.items():
+        print(f"- {knight}: {hp} HP")
