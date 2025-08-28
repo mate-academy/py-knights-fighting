@@ -97,14 +97,8 @@ def create_knight(config: dict) -> Knight:
     knight = Knight(config["name"], config["power"], config["hp"], weapon)
 
     if config["potion"]:
-        potion = Potion(config["potion"]["name"])
-        knight.drink_potion(potion)
-
-        potion.prepare(
-            config["potion"]["effect"].get("power", 0),
-            config["potion"]["effect"].get("hp", 0),
-            config["potion"]["effect"].get("protection", 0),
-        )
+        potion = Potion(config["potion"]["name"], config["potion"]["effect"])
+        knight.use_potion(potion)
 
     for armour_item in config.get("armour", []):
         armour = Armour(armour_item["part"], armour_item["protection"])
@@ -139,6 +133,3 @@ def battle(knights_config: dict) -> dict:
 
     # Return battle results:
     return battle1.start_battle() | battle2.start_battle()
-
-
-print(battle(KNIGHTS))

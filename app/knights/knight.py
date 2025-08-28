@@ -30,11 +30,8 @@ class Knight:
     def __str__(self) -> str:
         return self.name
 
-    def drink_potion(self, potion: Potion) -> None:
+    def use_potion(self, potion: Potion) -> None:
         self.potion = potion
-
-        if self.potion and self.hp + potion.hp < 0:
-            raise DieException("Knight died using a potion!")
 
     def wear_armour(self, armour: Armour) -> None:
         self.armours.append(armour)
@@ -42,14 +39,17 @@ class Knight:
     def protection(self) -> int:
         return sum([
             armour.protection for armour in self.armours
-        ]) + (self.potion.protection if self.potion else 0)
+        ]) + (self.potion.get_effect("protection") if self.potion else 0)
 
     def total_hp(self) -> int:
-        return sum([self.hp, self.potion.hp if self.potion else 0])
+        return sum([
+            self.hp,
+            self.potion.get_effect("hp") if self.potion else 0
+        ])
 
     def total_power(self) -> int:
         return sum([
             self.power,
-            self.potion.power if self.potion else 0,
+            self.potion.get_effect("power") if self.potion else 0,
             self.weapon.power
         ])
