@@ -32,14 +32,12 @@ class Knight:
 
     def drink_potion(self, potion: Potion) -> None:
         self.potion = potion
-        print(f'Knight {self.name} drunk potion {potion.name}')
 
         if self.potion and self.hp + potion.hp < 0:
             raise DieException("Knight died using a potion!")
 
     def wear_armour(self, armour: Armour) -> None:
         self.armours.append(armour)
-        print(f'Knight {self.name} equip the armour: {armour.part}')
 
     def protection(self) -> int:
         return sum([
@@ -55,18 +53,3 @@ class Knight:
             self.potion.power if self.potion else 0,
             self.weapon.power
         ])
-
-    def print_stats(self) -> None:
-        print(
-            f'{self.name}: \n',
-            f'\t- Power: {self.power} ({self.total_power()})\n',
-            f'\t- Hp: {self.hp} ({self.total_hp()})\n',
-            f'\t- Protection: {self.protection()}',
-        )
-        self.weapon.print_stats()
-        self.potion.print_stats() \
-            if self.potion is not None \
-            else print("Using no potion")
-
-        for armour in self.armours:
-            armour.print_stats()

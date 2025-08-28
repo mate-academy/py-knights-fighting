@@ -118,19 +118,15 @@ def battle(knights_config: dict) -> dict:
 
     # lancelot
     lancelot = create_knight(knights_config["lancelot"])
-    lancelot.print_stats()
 
     # arthur
     arthur = create_knight(knights_config["arthur"])
-    arthur.print_stats()
 
     # mordred
     mordred = create_knight(knights_config["mordred"])
-    mordred.print_stats()
 
     # red_knight
     red_knight = create_knight(knights_config["red_knight"])
-    red_knight.print_stats()
 
     # -------------------------------------------------------------------------------
     # BATTLE:
