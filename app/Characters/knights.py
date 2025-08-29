@@ -2,8 +2,6 @@ from dataclasses import dataclass, field
 from typing import List, Dict, Optional
 
 
-
-
 @dataclass
 class Knight:
     name: str
@@ -17,19 +15,18 @@ class Knight:
     power: int = field(init=False)
     protection: int = field(init=False)
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         self.hp = self.base_hp
         self.power = self.base_power
         self.protection = 0
 
-    def prepare_to_battle(self):
+    def prepare_to_battle(self) -> None:
 
         self.protection = 0
         for inventory in self.armour:
-            self.protection += inventory['protection']
+            self.protection += inventory["protection"]
 
-
-        self.power += self.weapon['power']
+        self.power += self.weapon["power"]
 
         if self.potion is not None:
             for stat in self.potion["effect"]:
@@ -42,8 +39,7 @@ class Knight:
 
                 self.hp = max(self.hp, 0)
 
-
-    def attack(self,other):
+    def attack(self, other: "Knight") -> None:
 
         dmg = self.power - other.protection
         other.hp -= dmg
@@ -51,23 +47,10 @@ class Knight:
         if other.hp <= 0:
             other.hp = 0
 
-    def fight(self,other):
+    def fight(self, other: "Knight") -> tuple[int, int]:
 
         while self.hp > 0 and other.hp > 0:
             self.attack(other)
             if other.hp > 0:
                 other.attack(self)
         return self.hp, other.hp
-
-
-
-
-
-
-
-
-
-
-
-
-
