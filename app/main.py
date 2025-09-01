@@ -1,10 +1,10 @@
-from app.Characters.knights import Knight
+from .Characters.knights import Knight
 
 
 arthur = Knight(
     name="Arthur",
-    base_hp=75,
-    base_power=45,
+    hp=75,
+    power=45,
     weapon={"name": "Two-handed Sword", "power": 55},
     armour=[
         {"part": "Helmet", "protection": 15},
@@ -14,23 +14,19 @@ arthur = Knight(
     potion=None
 )
 
-arthur.prepare_to_battle()
-
 lancelot = Knight(
     name="Lancelot",
-    base_hp=35,
-    base_power=100,
+    hp=35,
+    power=100,
     weapon={"name": "Metal_sword", "power": 50},
     armour=[],
     potion=None,
 )
 
-lancelot.prepare_to_battle()
-
 mordred = Knight(
     name="Mordred",
-    base_hp=30,
-    base_power=90,
+    hp=30,
+    power=90,
     weapon={"name": "poison_sword", "power": 60},
     armour=[
         {"part": "breastplate", "protection": 25},
@@ -42,12 +38,10 @@ mordred = Knight(
     }
 )
 
-mordred.prepare_to_battle()
-
 red_knight = Knight(
     name="Red Knight",
-    base_hp=40,
-    base_power=70,
+    hp=40,
+    power=70,
     weapon={"name": "sword", "power": 45},
     armour=[
         {"part": "breastplate", "protection": 25}
@@ -58,12 +52,35 @@ red_knight = Knight(
     }
 )
 
-red_knight.prepare_to_battle()
 
-lancelot.fight(mordred)
-arthur.fight(red_knight)
+def single_hit(knight1: Knight, knight2: Knight) -> None:
 
-print(f"{lancelot.name}: {lancelot.hp} HP")
-print(f"{mordred.name}: {mordred.hp} HP")
-print(f"{arthur.name}: {arthur.hp} HP")
-print(f"{red_knight.name}: {red_knight.hp} HP")
+    dmg1 = max(0, knight1.power - knight2.protection)
+    dmg2 = max(0, knight2.power - knight1.protection)
+
+    knight2.hp -= dmg1
+    knight1.hp -= dmg2
+
+    knight1.hp = max(0, knight1.hp)
+    knight2.hp = max(0, knight2.hp)
+
+
+def battle(config: dict) -> dict:
+
+    lancelot = Knight(**config["lancelot"])
+    arthur = Knight(**config["arthur"])
+    mordred = Knight(**config["mordred"])
+    red_knight = Knight(**config["red_knight"])
+
+    for knight in [lancelot, arthur, mordred, red_knight]:
+        knight.prepare_to_battle()
+
+    single_hit(lancelot, mordred)
+    single_hit(arthur, red_knight)
+
+    return {
+        lancelot.name: lancelot.hp,
+        arthur.name: arthur.hp,
+        mordred.name: mordred.hp,
+        red_knight.name: red_knight.hp
+    }

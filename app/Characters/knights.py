@@ -5,19 +5,15 @@ from typing import List, Dict, Optional
 @dataclass
 class Knight:
     name: str
-    base_power: int
-    base_hp: int
+    power: int
+    hp: int
     armour: List[Dict[str, int]]
     weapon: dict[str, int]
     potion: Optional[Dict[str, Dict[str, int]]]
 
-    hp: int = field(init=False)
-    power: int = field(init=False)
     protection: int = field(init=False)
 
     def __post_init__(self) -> None:
-        self.hp = self.base_hp
-        self.power = self.base_power
         self.protection = 0
 
     def prepare_to_battle(self) -> None:
