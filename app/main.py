@@ -16,7 +16,7 @@ def battle(knights_config: dict) -> dict:
 
     # 1 Lancelot vs Mordred:
     duel(lancelot, mordred)
-    
+
     # 2 Arthur vs Red Knight:
     duel(arthur, red_knight)
 
