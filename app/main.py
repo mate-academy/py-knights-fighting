@@ -1,17 +1,20 @@
 from __future__ import annotations
-from app.knights.knight_prototype import Knight
-from app.knights.knight_instances import lancelot, arthur, mordred, red_knight
+from app.knights.knight_instances import KNIGHTS
 from app.battle.battle import (
     battle_preparation,
     battle_between_knights,
     fallen
 )
+from app.dict_to_class import dict_to_knight
 
 
-list_of_knights = [lancelot, arthur, mordred, red_knight]
-
-
-def battle(knights: list[Knight]) -> dict:
+def battle(knights_dict: dict) -> dict:
+    knights = [
+        dict_to_knight(knights_dict["lancelot"]),
+        dict_to_knight(knights_dict["arthur"]),
+        dict_to_knight(knights_dict["mordred"]),
+        dict_to_knight(knights_dict["red_knight"]),
+    ]
 
     for knight in knights:
         battle_preparation(knight)
@@ -30,4 +33,4 @@ def battle(knights: list[Knight]) -> dict:
     }
 
 
-print(battle(list_of_knights))
+print(battle(KNIGHTS))
