@@ -27,11 +27,9 @@ class Knights:
                 self.protection += potion["effect"]["protection"]
 
     @staticmethod
-    def init_knight(name: str, knights: dict) -> Knights | None:
-
+    def init_knight(name: str, knights: dict) -> Knights:
         if name not in knights:
-            print(f"{name} not in knights")
-            return None
+            raise ValueError
 
         result = Knights(
             name=knights[name]["name"],

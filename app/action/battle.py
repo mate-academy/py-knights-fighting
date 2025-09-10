@@ -12,7 +12,7 @@ class Arena:
 
     @staticmethod
     def is_lose(fighter: Knights) -> None:
-        if fighter.health < 0:
+        if fighter.health <= 0:
             fighter.health = 0
 
     @staticmethod
