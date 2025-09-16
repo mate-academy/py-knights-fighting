@@ -89,8 +89,8 @@ KNIGHTS = {
 }
 
 
-def battle(knightsconfig: dict) -> Fighters:
-    Fighters.list_fighters.clear()
+def battle(knightsconfig: dict) -> dict[str, int]:
+    Fighters.clear_registry()
     for name_fighter, dict_value in knightsconfig.items():
         name = dict_value["name"]
         hp = dict_value["hp"]
@@ -118,4 +118,9 @@ def battle(knightsconfig: dict) -> Fighters:
         #  added to class
         Fighters(name, hp, power, protection)
 
-    return Fighters.battle_vs()
+    Fighters.battle_vs(Fighters.get_by_name("Lancelot"),
+                       Fighters.get_by_name("Mordred"))
+    Fighters.battle_vs(Fighters.get_by_name("Arthur"),
+                       Fighters.get_by_name("Red Knight"))
+    Fighters.check_damage()
+    return Fighters.print_result()

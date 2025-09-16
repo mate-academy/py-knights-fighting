@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+
 class Fighters:
     list_fighters = []
 
@@ -10,34 +13,30 @@ class Fighters:
         Fighters.list_fighters.append(self)
 
     @staticmethod
-    def check_damage() -> None:
-        for i in range(4):
-            fighter = Fighters.list_fighters[i]
-            if fighter.hp <= 0:
-                fighter.hp = 0
+    def clear_registry() -> None:
+        Fighters.list_fighters.clear()
+
+    @classmethod
+    def get_by_name(cls, name: str) -> Fighters:
+        for fighter in cls.list_fighters:
+            if fighter.name.lower() == name.lower():
+                return fighter
+
+    def battle_vs(self, other: Fighters) -> None:
+        self.hp -= other.power - self.protection
+        other.hp -= self.power - other.protection
 
     @staticmethod
-    def battle_vs() -> dict:
-        lancelot = Fighters.list_fighters[0]
-        arthur = Fighters.list_fighters[1]
-        mordred = Fighters.list_fighters[2]
-        red_knight = Fighters.list_fighters[3]
+    def check_damage() -> None:
+        for element in Fighters.list_fighters:
+            if element.hp <= 0:
+                element.hp = 0
 
-        # 1 Lancelot vs Mordred:
-        lancelot.hp -= mordred.power - lancelot.protection
-        mordred.hp -= lancelot.power - mordred.protection
+    @classmethod
+    def print_result(cls) -> dict:
+        dict_result = {}
 
-        # 2 Arthur vs Red Knight:
-        arthur.hp -= red_knight.power - arthur.protection
-        red_knight.hp -= arthur.power - red_knight.protection
+        for fighter in Fighters.list_fighters:
+            dict_result[fighter.name] = fighter.hp
 
-        # Check hp
-        Fighters.check_damage()
-
-        # result
-        return {
-            lancelot.name: lancelot.hp,
-            arthur.name: arthur.hp,
-            mordred.name: mordred.hp,
-            red_knight.name: red_knight.hp
-        }
+        return dict_result
