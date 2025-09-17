@@ -1,17 +1,21 @@
 from typing import Dict
 from app.models.knight import Knight
 
-
-def fight(knight1: Knight, knight2: Knight) -> Dict[str, int]:
+def fight(
+        knight1: Knight,
+        knight2: Knight
+) -> Dict[str, int]:
     """
-    Executa a batalha entre dois cavaleiros.
-
-    Retorna um dicionário com o hp final de cada cavaleiro.
+    Executa uma rodada de batalha entre dois cavaleiros.
+    Atualiza os hp dos objetos Knight e retorna o resultado.
     """
-    knight1.hp -= max(0, knight2.power - knight1.protection)
-    knight2.hp -= max(0, knight1.power - knight2.protection)
+    damage_to_knight1: int = max(0, knight2.power - knight1.protection)
+    damage_to_knight2: int = max(0, knight1.power - knight2.protection)
+
+    knight1.hp = max(knight1.hp - damage_to_knight1, 0)
+    knight2.hp = max(knight2.hp - damage_to_knight2, 0)
 
     return {
-        knight1.name: max(knight1.hp, 0),
-        knight2.name: max(knight2.hp, 0),
+        knight1.name: knight1.hp,
+        knight2.name: knight2.hp,
     }

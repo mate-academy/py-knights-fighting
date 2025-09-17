@@ -1,28 +1,33 @@
 from typing import Dict
-from app.data.knights import KNIGHTS
 from app.models.knight import Knight
 from app.services.battle import fight
+from app.data.knights import KNIGHTS
 
 
-def battle(knights_config: Dict[str, Dict]) -> Dict[str, int]:
+def battle() -> Dict[str, int]:
     """
-    Executa as batalhas pré-definidas do torneio.
-
-    Retorna um dicionário com o hp final de cada cavaleiro.
+    Cria instâncias dos cavaleiros e executa as batalhas definidas.
+    Retorna os resultados finais.
     """
-    lancelot = Knight(**knights_config["lancelot"])
-    mordred = Knight(**knights_config["mordred"])
-    arthur = Knight(**knights_config["arthur"])
-    red_knight = Knight(**knights_config["red_knight"])
+    knights: Dict[str, Knight] = {
+        key: Knight(**config) for key, config in KNIGHTS.items()
+    }
 
     results: Dict[str, int] = {}
-    results.update(fight(lancelot, mordred))
-    results.update(fight(arthur, red_knight))
+
+    pairs = [
+        ("lancelot", "mordred"),
+        ("arthur", "red_knight"),
+    ]
+
+    for k1, k2 in pairs:
+        outcome = fight(knights[k1], knights[k2])
+        results.update(outcome)
 
     return results
 
 
 if __name__ == "__main__":
-    final_results = battle(KNIGHTS)
+    final_results = battle()
     for name, hp in final_results.items():
         print(f"{name}: {hp} HP")
