@@ -1,6 +1,7 @@
 from typing import Dict
 from app.models.knight import Knight
 
+
 def fight(
         knight1: Knight,
         knight2: Knight

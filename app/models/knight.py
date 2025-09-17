@@ -1,5 +1,6 @@
 from typing import Dict, List, Optional
 
+
 class Knight:
     def __init__(self, name: str, power: int, hp: int,
                  armour: Optional[List[Dict[str, int]]] = None,
@@ -11,7 +12,6 @@ class Knight:
         self.armour: List[Dict[str, int]] = armour or []
         self.weapon: Optional[Dict[str, int]] = weapon
         self.potion: Optional[Dict] = potion
-
         self.power: int = self._apply_weapon_power()
         self.protection: int = self._apply_armour_protection()
         self._apply_potion()
