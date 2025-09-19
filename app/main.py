@@ -19,9 +19,3 @@ def battle(knights_config: Dict[str, dict]) -> Dict[str, int]:
         results.update(outcome)
 
     return results
-
-
-if __name__ == "__main__":
-    from app.knight import KNIGHTS
-
-    print(battle(KNIGHTS))
