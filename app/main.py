@@ -3,14 +3,17 @@ from app.utils.fight import fight
 
 
 def battle(knights_config: dict) -> dict:
-    lancelot = prepare_knight(knights_config["lancelot"])
-    mordred = prepare_knight(knights_config["mordred"])
-    arthur = prepare_knight(knights_config["arthur"])
-    red_knight = prepare_knight(knights_config["red_knight"])
+    # Підготовка всіх лицарів у циклі
+    prepared = {
+        name: prepare_knight(data) for name, data in knights_config.items()
+    }
+
+    # Пара боїв
+    pairs = [("lancelot", "mordred"), ("arthur", "red_knight")]
 
     result = {}
-    result.update(fight(lancelot, mordred))
-    result.update(fight(arthur, red_knight))
+    for k1, k2 in pairs:
+        result.update(fight(prepared[k1], prepared[k2]))
 
     return result
 
