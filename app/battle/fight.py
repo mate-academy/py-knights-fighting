@@ -1,4 +1,5 @@
 from app.knights.knight import Knight
+from app.knights.equipment import Armour, Weapon, Potion
 
 
 def one_vs_one(knight1: Knight, knight2: Knight) -> tuple[int, int]:
@@ -13,10 +14,37 @@ def one_vs_one(knight1: Knight, knight2: Knight) -> tuple[int, int]:
 
 
 def battle(knights_config: dict) -> dict[str, int]:
-    lancelot = knights_config["Lancelot"]
-    mordred = knights_config["Mordred"]
-    arthur = knights_config["Arthur"]
-    red_knight = knights_config["Cavaleiro Vermelho"]
+    def build_knight(data: dict) -> Knight:
+        armours = [
+            Armour(a["part"], a["protection"]) for a in data.get("armour", [])
+        ]
+        weapon_data = data.get("weapon")
+        weapon = None
+        if weapon_data:
+            weapon = Weapon(
+                weapon_data["name"],
+                weapon_data["power"]
+            )
+        potion_data = data.get("potion")
+        potion = None
+        if potion_data:
+            potion = Potion(
+                potion_data["name"],
+                potion_data["effect"]
+            )
+        return Knight(
+            name=data["name"],
+            base_power=data["power"],
+            base_hp=data["hp"],
+            armours=armours,
+            weapon=weapon,
+            potion=potion
+        )
+
+    lancelot = build_knight(knights_config["lancelot"])
+    mordred = build_knight(knights_config["mordred"])
+    arthur = build_knight(knights_config["arthur"])
+    red_knight = build_knight(knights_config["red_knight"])
 
     l_hp, m_hp = one_vs_one(lancelot, mordred)
     a_hp, r_hp = one_vs_one(arthur, red_knight)
@@ -25,5 +53,5 @@ def battle(knights_config: dict) -> dict[str, int]:
         "Lancelot": l_hp,
         "Arthur": a_hp,
         "Mordred": m_hp,
-        "Cavaleiro Vermelho": r_hp,
+        "Red Knight": r_hp,
     }

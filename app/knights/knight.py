@@ -12,11 +12,7 @@ class Knight:
     potion: Potion | None = None
 
     def final_stats(self) -> dict:
-        stats = {
-            "hp": self.base_hp,
-            "power": self.base_power,
-            "protection": 0,
-        }
+        stats = {"hp": self.base_hp, "power": self.base_power, "protection": 0}
         stats["protection"] = sum(a.protection for a in self.armours)
         if self.weapon:
             stats["power"] += self.weapon.power
