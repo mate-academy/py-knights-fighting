@@ -53,6 +53,7 @@ class Knight:
         self.apply_potion()
 
     def take_damage(self, damage: int) -> None:
-        self.hp -= max(damage, 0)
+        # віднімаємо сирий результат (може бути навіть від’ємний)
+        self.hp -= damage
         if self.hp <= 0:
             self.hp = 0
