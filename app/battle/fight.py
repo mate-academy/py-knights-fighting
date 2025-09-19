@@ -16,28 +16,27 @@ def one_vs_one(knight1: Knight, knight2: Knight) -> tuple[int, int]:
 def battle(knights_config: dict) -> dict[str, int]:
     def build_knight(data: dict) -> Knight:
         armours = [
-            Armour(a.get("parte") or a.get("name"),
-                   a.get("proteção") or a.get("protection"))
-            for a in data.get("armadura", []) + data.get("armours", [])
+            Armour(a["part"], a["protection"])
+            for a in data.get("armour", [])
         ]
-        weapon_data = data.get("arma") or data.get("weapon")
+        weapon_data = data.get("weapon")
         weapon = None
         if weapon_data:
             weapon = Weapon(
-                weapon_data.get("nome") or weapon_data.get("name"),
-                weapon_data.get("poder") or weapon_data.get("power")
+                weapon_data["name"],
+                weapon_data["power"]
             )
-        potion_data = data.get("poção") or data.get("potion")
+        potion_data = data.get("potion")
         potion = None
         if potion_data:
             potion = Potion(
-                potion_data.get("nome") or potion_data.get("name"),
-                potion_data.get("efeito") or potion_data.get("effect")
+                potion_data["name"],
+                potion_data["effect"]
             )
         return Knight(
-            name=data.get("nome") or data.get("name"),
-            base_power=data.get("poder") or data.get("power"),
-            base_hp=data.get("hp"),
+            name=data["name"],
+            base_power=data["power"],
+            base_hp=data["hp"],
             armours=armours,
             weapon=weapon,
             potion=potion

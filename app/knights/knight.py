@@ -17,6 +17,6 @@ class Knight:
         if self.weapon:
             stats["power"] += self.weapon.power
         if self.potion:
-            for stat, value in self.potion.effect.items():
-                stats[stat] = stats.get(stat, 0) + value
+            for stat in ["hp", "power", "protection"]:
+                stats[stat] += self.potion.effect.get(stat, 0)
         return stats
