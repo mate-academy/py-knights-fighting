@@ -7,16 +7,15 @@ def preparing_to_battle(knightsconfig: dict) -> dict:
     # Creating gladiators:
     gladiators = create_gladiator(knightsconfig)
     # gladiator
-    for gladiator_obj in gladiators:
-        gladiator = gladiators[gladiator_obj]
-    # apply armour
-        gladiator.protection = 0
+    for gladiator in gladiators.values():
+        # apply armour
         if gladiator.armour:
             for armour in gladiator.armour:
                 gladiator.protection += armour["protection"]
         # apply weapon
         gladiator.power += gladiator.weapon["power"]
         # apply potion if exist
+        print(gladiator)
         if gladiator.potion is not None:
             if "power" in gladiator.potion["effect"]:
                 gladiator.power += gladiator.potion["effect"]["power"]

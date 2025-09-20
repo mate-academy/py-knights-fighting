@@ -1,4 +1,4 @@
-def split_dict1(data: dict) -> list:
+def create_battle_pairs(data: dict) -> list:
     pairs = []
     items = list(data.items())
     length_list = len(items)

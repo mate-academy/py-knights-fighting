@@ -1,11 +1,11 @@
 from app.battle.preparing_to_battle import preparing_to_battle
-from app.split_dicts import split_dict1
+from app.split_dicts import create_battle_pairs
 
 
 # BATTLE:
 def battle(knights: dict) -> dict:
     prepared = preparing_to_battle(knights)
-    pairs = split_dict1(prepared)
+    pairs = create_battle_pairs(prepared)
     results = {}
     for pair in pairs:
         gladiator_1, gladiator_2 = list(pair.values())
