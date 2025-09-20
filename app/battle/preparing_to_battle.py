@@ -2,8 +2,6 @@ from app.gladiators.create_gladiator import create_gladiator
 
 
 def preparing_to_battle(knights_config: dict) -> dict:
-
-
     gladiators = create_gladiator(knights_config)
     for gladiator in gladiators.values():
         if gladiator.armour:
