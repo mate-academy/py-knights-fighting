@@ -1,11 +1,11 @@
 from app.gladiators.create_gladiator import create_gladiator
 
 
-def preparing_to_battle(knightsconfig: dict) -> dict:
+def preparing_to_battle(knights_config: dict) -> dict:
 
     # BATTLE PREPARATIONS:
     # Creating gladiators:
-    gladiators = create_gladiator(knightsconfig)
+    gladiators = create_gladiator(knights_config)
     # gladiator
     for gladiator in gladiators.values():
         # apply armour
@@ -15,7 +15,6 @@ def preparing_to_battle(knightsconfig: dict) -> dict:
         # apply weapon
         gladiator.power += gladiator.weapon["power"]
         # apply potion if exist
-        print(gladiator)
         if gladiator.potion is not None:
             if "power" in gladiator.potion["effect"]:
                 gladiator.power += gladiator.potion["effect"]["power"]

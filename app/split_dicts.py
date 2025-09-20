@@ -2,10 +2,10 @@ def create_battle_pairs(data: dict) -> list:
     pairs = []
     items = list(data.items())
     length_list = len(items)
-    ilosc_par = int(length_list // 2)
-    first_knights = items[:ilosc_par]
-    second_knights = items[ilosc_par:]
-    for ind in range(ilosc_par):
+    pair_numbers = int(length_list // 2)
+    first_knights = items[:pair_numbers]
+    second_knights = items[pair_numbers:]
+    for ind in range(pair_numbers):
         pair = {}
         knight = list(first_knights[ind])
         enemy = list(second_knights[ind])
