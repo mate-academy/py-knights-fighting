@@ -25,7 +25,7 @@ def battle(knight1: Knight, knight2: Knight) -> dict[str, int]:
     return {knight1.name: knight1.hp, knight2.name: knight2.hp}
 
 
-def main():
+def main() -> None:
     red_knight = build_knight(KNIGHTS["red_knight"])
     x_knight = build_knight(KNIGHTS["x_knight"])
     result = battle(red_knight, x_knight)
