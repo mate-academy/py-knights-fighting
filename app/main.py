@@ -9,17 +9,12 @@ def battle(knights: dict) -> dict:
     results = {}
     for pair in pairs:
         gladiator_1, gladiator_2 = list(pair.values())
-        # 1 knight_1 vs knight_2:
         gladiator_1.hp -= gladiator_2.power - gladiator_1.protection
         gladiator_2.hp -= gladiator_1.power - gladiator_2.protection
-
-        # check if someone fell in battle
         if gladiator_1.hp <= 0:
             gladiator_1.hp = 0
-
         if gladiator_2.hp <= 0:
             gladiator_2.hp = 0
-
         results.update({
             gladiator_1.name: gladiator_1.hp,
             gladiator_2.name: gladiator_2.hp
