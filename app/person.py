@@ -41,7 +41,3 @@ arthur = creator(KNIGHTS, "arthur")
 lancelot = creator(KNIGHTS, "lancelot")
 red_knight = creator(KNIGHTS, "red_knight")
 mordred = creator(KNIGHTS, "mordred")
-
-print(arthur.hp)
-print(mordred.hp)
-print(red_knight.hp, red_knight.protection, red_knight.power)

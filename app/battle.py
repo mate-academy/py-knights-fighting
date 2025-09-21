@@ -3,7 +3,7 @@ from __future__ import annotations
 from app.person import Person, arthur, lancelot, red_knight, mordred
 
 
-def battle(person: Person, other: Person) -> tuple:
+def game(person: Person, other: Person) -> tuple:
     person.hp -= other.power - person.protection
     other.hp -= person.power - other.protection
     defeat(person)
@@ -13,6 +13,8 @@ def battle(person: Person, other: Person) -> tuple:
 
 def total_result() -> dict:
     result = {}
+    game(lancelot, arthur)
+    game(mordred, red_knight)
     result[lancelot.name] = lancelot.hp
     result[arthur.name] = arthur.hp
     result[mordred.name] = mordred.hp
@@ -23,8 +25,3 @@ def total_result() -> dict:
 def defeat(person: Person) -> None:
     if person.hp <= 0:
         person.hp = 0
-
-
-print(battle(lancelot, mordred))
-print(battle(arthur, red_knight))
-print(total_result())
