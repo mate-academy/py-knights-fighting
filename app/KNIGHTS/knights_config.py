@@ -10,37 +10,51 @@ sword = Weapon("Sword", 45)
 
 blessing = Potion("Blessing", {"hp": 10, "power": 5})
 
+# app/KNIGHTS/knights_config.py
+
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
         "power": 35,
         "hp": 100,
-        "armour": [slem, bronia],
-        "weapon": metal_sword,
+        "armour": [
+            {"part": "slem", "protection": 20},
+            {"part": "bronia", "protection": 45},
+        ],
+        "weapon": {"name": "Metal Sword", "power": 50},
         "potion": None,
     },
     "arthur": {
         "name": "Arthur",
         "power": 45,
         "hp": 75,
-        "armour": [Armour("shoulder", 15)],
-        "weapon": Weapon("Excalibur", 60),
+        "armour": [
+            {"part": "shoulder", "protection": 15},
+        ],
+        "weapon": {"name": "Excalibur", "power": 60},
         "potion": None,
     },
     "mordred": {
         "name": "Mordred",
         "power": 55,
         "hp": 90,
-        "armour": [Armour("helmet", 20)],
-        "weapon": Weapon("Dark Sword", 40),
+        "armour": [
+            {"part": "helmet", "protection": 20},
+        ],
+        "weapon": {"name": "Dark Sword", "power": 40},
         "potion": None,
     },
     "red_knight": {
         "name": "Red Knight",
         "power": 40,
         "hp": 70,
-        "armour": [Armour("breastplate", 25)],
-        "weapon": sword,
-        "potion": blessing,
+        "armour": [
+            {"part": "breastplate", "protection": 25},
+        ],
+        "weapon": {"name": "Sword", "power": 45},
+        "potion": {
+            "name": "Blessing",
+            "effect": {"hp": 10, "power": 5},
+        },
     },
 }

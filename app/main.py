@@ -3,5 +3,4 @@ from app.KNIGHTS.knights_config import KNIGHTS
 
 
 if __name__ == "__main__":
-    result = battle(KNIGHTS)
-    print(result)
+    print(battle(KNIGHTS))
