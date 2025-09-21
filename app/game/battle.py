@@ -1,6 +1,10 @@
+class Battle:
 
+    def __init__(self, lancelot: str, mordred: str) -> None:
+        self.lancelot = lancelot
+        self.mordred = mordred
 
-def battle(knightsConfig):
+def battle(knightsConfig: dict) -> str:
     # BATTLE PREPARATIONS:
 
     # lancelot
@@ -123,6 +127,3 @@ def battle(knightsConfig):
         mordred["name"]: mordred["hp"],
         red_knight["name"]: red_knight["hp"],
     }
-
-
-print(battle(KNIGHTS))
