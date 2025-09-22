@@ -3,7 +3,7 @@ from typing import Dict, Any
 
 
 class Battle:
-    """Класс может хранить данные о сражении, если понадобится."""
+    """The class can store battle data if needed."""
     def __init__(self, lancelot: str, mordred: str) -> None:
         self.lancelot = lancelot
         self.mordred = mordred
@@ -11,8 +11,8 @@ class Battle:
 
 def apply_items(knight: Dict[str, Any]) -> None:
     """
-    Суммируем броню, оружие и зелье для рыцаря.
-    Записываем итоговые характеристики обратно в словарь.
+    We add up the knight's armor, weapons, and potions.
+We write the resulting stats back into the dictionary.
     """
     knight["protection"] = sum(
         item["protection"] for item in knight.get("armour", [])
@@ -29,8 +29,8 @@ def apply_items(knight: Dict[str, Any]) -> None:
 
 def duel(first_knight: Dict[str, Any], second_knight: Dict[str, Any]) -> None:
     """
-    Бой между двумя рыцарями.
-    Урон = power противника – твоя защита (не меньше нуля).
+    A battle between two knights.
+Damage = enemy's power – your defense (not less than zero).
     """
     first_knight["hp"] -= (
         max(0, second_knight["power"] - first_knight["protection"]))
@@ -43,8 +43,8 @@ def duel(first_knight: Dict[str, Any], second_knight: Dict[str, Any]) -> None:
 
 def battle(knights_config: Dict[str, Dict[str, Any]]) -> Dict[str, int]:
     """
-    Главная функция боя.
-    Принимает конфиг рыцарей, возвращает их оставшееся здоровье.
+    The main function of combat.
+Accepts knights' configurations and restores their remaining health.
     """
     lancelot = knights_config["lancelot"]
     arthur = knights_config["arthur"]

@@ -2,8 +2,8 @@ from app.game.armour import Armour
 from app.game.Weapon import Weapon
 from app.game.Potion import Potion
 
-slem = Armour("slem", 20)
-bronia = Armour("bronia", 45)
+hat = Armour("hat", 20)
+body_armor = Armour("body_armor", 45)
 
 metal_sword = Weapon("Metal Sword", 50)
 sword = Weapon("Sword", 45)
@@ -18,8 +18,8 @@ KNIGHTS = {
         "power": 35,
         "hp": 100,
         "armour": [
-            {"part": "slem", "protection": 20},
-            {"part": "bronia", "protection": 45},
+            {"part": "hat", "protection": 20},
+            {"part": "body_armor", "protection": 45},
         ],
         "weapon": {"name": "Metal Sword", "power": 50},
         "potion": None,
