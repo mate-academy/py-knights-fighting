@@ -1,11 +1,9 @@
 from __future__ import annotations
 
-from typing import Dict
 
 from .models import Armour, Knight, Potion, Stats, Weapon
 
 
-def _build_armour_list(cfg_list) -> list[Armour]:
     if not cfg_list:
         return []
     result: list[Armour] = []
