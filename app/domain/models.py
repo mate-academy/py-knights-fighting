@@ -27,8 +27,8 @@ class Knight:
     name: str
     base_power: int
     base_hp: int
+    weapon: Weapon
     armour: List[Armour] = field(default_factory=list)
-    weapon: Weapon = field(default=None)
     potion: Optional[Potion] = None
 
 
