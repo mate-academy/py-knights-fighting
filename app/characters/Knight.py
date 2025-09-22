@@ -15,7 +15,8 @@ class Knight:
     @staticmethod
     def create_character(stats: dict) -> Knight:
         return Knight(name=stats["name"], power=stats["power"], hp=stats["hp"],
-                      armour=stats["armour"], weapon=stats["weapon"], potion=stats["potion"])
+                      armour=stats["armour"], weapon=stats["weapon"],
+                      potion=stats["potion"])
 
     def apply_armour(self) -> None:
         for armour in self.armour:

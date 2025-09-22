@@ -13,7 +13,7 @@ def prepare_knight(knight_data: dict) -> Knight:
     return knight
 
 
-def battle(knights_config: dict):
+def battle(knights_config: dict) -> None:
     lancelot = prepare_knight(knights_config["lancelot"])
     arthur = prepare_knight(knights_config["arthur"])
     mordred = prepare_knight(knights_config["mordred"])
