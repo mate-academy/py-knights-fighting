@@ -11,3 +11,7 @@ def battle(
 ) -> Dict[str, int]:
     knights = build_all(knights_config)
     return run_battle(knights)
+
+
+if __name__ == "__main__":
+    print()
