@@ -1,5 +1,5 @@
-from knights import KNIGHTS
-import preparation
+from app.knights import KNIGHTS
+import app.preparation as preparation
 
 
 def battle(knights_config: dict) -> dict:
