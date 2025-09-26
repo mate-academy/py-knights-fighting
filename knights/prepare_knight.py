@@ -10,7 +10,7 @@ class KnightConfig:
 
         self.power += knight["weapon"]["power"]
 
-        if knight["potion"] in not None:
+        if knight["potion"] is not None:
             if "power" in knight["potion"]["effect"]:
                 self.power = knight["potion"]["effect"]["power"]
 
