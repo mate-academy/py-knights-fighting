@@ -89,9 +89,9 @@ knights = {
     }
 }
 
-def battle(knights_dict: dict) -> dict:
+def battle(knights_config: dict) -> dict:
     knight_objects = {}
-    for key, data in knights_dict.items():
+    for key, data in knights_config.items():
         knight_objects[key] = KnightConfig(data)
 
     first_duel = battle_win(knight_objects["lancelot"], knight_objects["mordred"])
@@ -99,6 +99,9 @@ def battle(knights_dict: dict) -> dict:
     solution = first_duel | second_duel
 
     return solution
+
+
+print(battle(knights))
 # def battle(knightsConfig):
     # # BATTLE PREPARATIONS:
     #
