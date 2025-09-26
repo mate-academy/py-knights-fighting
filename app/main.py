@@ -89,15 +89,16 @@ knights = {
     }
 }
 
-lancelot = KnightConfig(knights["lancelot"])
-arthur = KnightConfig(knights["arthur"])
-mordred = KnightConfig(knights["mordred"])
-red_knight = KnightConfig(knights["red_knight"])
+def battle(knights_dict: dict) -> dict:
+    knight_objects = {}
+    for key, data in knights_dict.items():
+        knight_objects[key] = KnightConfig(data)
 
-print(battle_win(lancelot, mordred))
-print(battle_win(arthur, red_knight))
+    first_duel = battle_win(knight_objects["lancelot"], knight_objects["mordred"])
+    second_duel = battle_win(knight_objects["arthur"], knight_objects["red_knight"])
+    solution = first_duel | second_duel
 
-
+    return solution
 # def battle(knightsConfig):
     # # BATTLE PREPARATIONS:
     #
