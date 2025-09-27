@@ -6,7 +6,8 @@ from app.preparing_to_fight.putting_on import putting_on
 from app.battle.fight import fight
 
 
-def battle(knights: list) -> dict:
+def battle(knights) -> dict:
+    knights = [lancelot, arthur, mordred, red_knight]
     # BATTLE PREPARATIONS:
     # apply armour weapon and potion if exist
     for knight in knights:

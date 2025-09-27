@@ -1,4 +1,6 @@
 def putting_on(knight: dict) -> None:
+    if not isinstance(knight, dict):
+        raise TypeError("knight must to be dict type")
     knight["protection"] = 0
     for armour in knight["armour"]:
         knight["protection"] += armour["protection"]
