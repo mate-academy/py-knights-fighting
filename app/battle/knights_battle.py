@@ -1,9 +1,9 @@
 from app.knight.knight import Knight
 
 
-class Battle:
+class KnightsBattle:
     @staticmethod
-    def battle(knight1: Knight, knight2: Knight) -> None:
+    def knights_battle(knight1: Knight, knight2: Knight) -> None:
         knight1.hp -= knight2.power - knight1.protection
         knight2.hp -= knight1.power - knight2.protection
 
