@@ -1,9 +1,9 @@
-from knights.lancelot import lancelot
-from knights.arthur import arthur
-from knights.mordred import mordred
-from knights.red_knight import red_knight
-from preparing_to_fight.putting_on import putting_on
-from battle.fight import fight
+from app.knights.lancelot import lancelot
+from app.knights.arthur import arthur
+from app.knights.mordred import mordred
+from app.knights.red_knight import red_knight
+from app.preparing_to_fight.putting_on import putting_on
+from app.battle.fight import fight
 
 
 def battle() -> dict:
