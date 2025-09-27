@@ -1,19 +1,11 @@
-from app.knights import KNIGHTS
-import app.preparation as preparation
-import app.fight as fight
+from app.profiles import KNIGHTS
+import app.knights.preparation as preparation
+from app.knights.fight import fight
 
 
 def battle(knights_config: dict) -> dict:
-    # BATTLE PREPARATIONS:
-    prepared_knights = preparation.battle_preparation(knights_config)
-    lancelot = prepared_knights["lancelot"]
-    mordred = prepared_knights["mordred"]
-    arthur = prepared_knights["arthur"]
-    red_knight = prepared_knights["red_knight"]
-    # -------------------------------------------------------------------------------
-    # BATTLE:
-
-    return fight.rounds(lancelot, mordred, arthur, red_knight)
-
+    prepared_knights = preparation.preparation(knights_config)
+    return (fight(prepared_knights["lancelot"], prepared_knights["mordred"])
+            | fight(prepared_knights["arthur"], prepared_knights["red_knight"]))
 
 print(battle(KNIGHTS))
