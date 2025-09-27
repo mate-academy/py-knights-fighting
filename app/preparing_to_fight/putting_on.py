@@ -1,7 +1,7 @@
 def putting_on(knight: dict) -> None:
     knight["protection"] = 0
-    for i in knight["armour"]:
-        knight["protection"] += i["protection"]
+    for armour in knight["armour"]:
+        knight["protection"] += armour["protection"]
 
     knight["power"] += knight["weapon"]["power"]
 

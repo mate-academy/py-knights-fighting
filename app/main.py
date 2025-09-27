@@ -7,19 +7,11 @@ from battle.fight import fight
 
 
 def battle() -> dict:
+    knights = [lancelot, arthur, mordred, red_knight]
     # BATTLE PREPARATIONS:
-        # lancelot:
-            # apply armour weapon and potion if exist
-    putting_on(lancelot)
-        # arthur:
-            # apply armour weapon and potion if exist
-    putting_on(arthur)
-        # mordred:
-            # apply armour weapon and potion if exist
-    putting_on(mordred)
-        # red_knight:
-            # apply armour weapon and potion if exist
-    putting_on(red_knight)
+    # apply armour weapon and potion if exist
+    for knight in knights:
+        putting_on(knight)
     # -------------------------------------------------------------------------------
     # BATTLE:
 
@@ -36,6 +28,3 @@ def battle() -> dict:
         mordred["name"]: mordred["hp"],
         red_knight["name"]: red_knight["hp"],
     }
-
-
-print(battle())
