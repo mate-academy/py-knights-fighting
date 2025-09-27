@@ -2,6 +2,7 @@ import app.items.armour as armour
 import app.items.weapons as weapons
 import app.items.potions as potions
 
+
 class Knight:
     def __init__(self, profile: dict) -> None:
         self.name = profile["name"]
