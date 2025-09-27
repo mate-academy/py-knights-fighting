@@ -1,8 +1,4 @@
-from app.knight.knight import Knight
 from app.battle.knights_battle import KnightsBattle
-from app.knight.armour import Armour
-from app.knight.weapon import Weapon
-from app.knight.potion import Potion
 from app.helpers.create_knight import create_knight
 
 
@@ -94,27 +90,25 @@ KNIGHTS = {
 }
 
 
-def battle(knightsConfig: dict) -> dict[str, int]:
+def battle(knights_config: dict) -> dict[str, int]:
     # BATTLE PREPARATIONS:
-    knights = []
-    for knight in knightsConfig:
-        kn = create_knight(knightsConfig[knight])
+    knights = dict()
+    for knight_name in knights_config:
+        knight = create_knight(knights_config[knight_name])
         #Calculate stats
-        kn.calculate_stats()
-        knights.append(kn)
+        knight.calculate_stats()
+        knights.update({ knight_name: knight })
     # -------------------------------------------------------------------------------
     # BATTLE:
 
     # 1 Lancelot vs Mordred:
-    KnightsBattle.knights_battle(knights[0], knights[2])
+    KnightsBattle.knights_battle(knights["lancelot"], knights["mordred"])
 
     # 2 Arthur vs Red Knight:
-    KnightsBattle.knights_battle(knights[1], knights[3])
+    KnightsBattle.knights_battle(knights["arthur"], knights["red_knight"])
 
     # Return battle results:
     return {
-        knight.name: knight.hp
-        for knight in knights
+        knights[key].name: knights[key].hp
+        for key in knights
     }
-
-print(battle(KNIGHTS))
