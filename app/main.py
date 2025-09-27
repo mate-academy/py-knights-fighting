@@ -9,5 +9,5 @@ def battle(knights_config: dict) -> dict:
         fight(prepared_knights["lancelot"], prepared_knights["mordred"])
         | fight(prepared_knights["arthur"], prepared_knights["red_knight"]))
 
-
-print(battle(KNIGHTS))
+if __name__ == "__main__":
+    print(battle(KNIGHTS))

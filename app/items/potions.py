@@ -1,5 +1,5 @@
 class Potion:
-    def __init__(self, potion: dict) -> None:
+    def __init__(self, potion: dict | None) -> None:
         if potion is not None:
             self.name = potion["name"]
             for key, value in potion["effect"].items():
