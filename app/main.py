@@ -90,10 +90,12 @@ KNIGHTS = {
 
 
 def battle(knights_config: dict) -> dict:
+    championship.Championship.init()
     championship.Championship.fill_out_knights(knights_config)
     championship.Championship.battle("lancelot", "mordred")
     championship.Championship.battle("arthur", "red_knight")
     return championship.Championship.battle_results
 
 
-print(battle(KNIGHTS))
+if __name__ == "__main__":
+    print(battle(KNIGHTS))

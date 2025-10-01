@@ -6,6 +6,11 @@ class Championship:
     battle_results = {}
 
     @classmethod
+    def init(cls) -> None:
+        cls.knights = {}
+        cls.battle_results = {}
+
+    @classmethod
     def fill_out_knights(cls, knights: dict) -> None:
         for knight_sign, knight_stats in knights.items():
             new_knight = Knight.create_knight(knight_stats)
@@ -19,8 +24,8 @@ class Championship:
         knight1.prepare_for_battle()
         knight2.prepare_for_battle()
 
-        knight1.hp -= knight2.power - knight1.protection
-        knight2.hp -= knight1.power - knight2.protection
+        knight1.hp -= max(knight2.power - knight1.protection, 0)
+        knight2.hp -= max(knight1.power - knight2.protection, 0)
 
         if knight1.hp <= 0:
             knight1.hp = 0

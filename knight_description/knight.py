@@ -30,7 +30,7 @@ class Knight:
 
         armour = None
         if "armour" in knight_stats:
-            armour = ArmourPart.get_armor(knight_stats["armour"])
+            armour = ArmourPart.get_armour(knight_stats["armour"])
 
         weapon = Weapon(knight_stats["weapon"]["name"],
                         knight_stats["weapon"]["power"])
