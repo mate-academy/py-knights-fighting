@@ -9,6 +9,14 @@ class PrepareKnight:
         self.knights_dict = deepcopy(knights_dict)
         self.prepare_knight_for_battle(self.knights_dict)
 
+    def get_all_prepared_knight(self) -> dict:
+        knight_names = self.knights_dict.keys()
+
+        return {
+            name: self.get_prepared_knight(name)
+            for name in knight_names
+        }
+
     def get_prepared_knight(self, knight_name: str) -> dict:
         return self.knights_dict[knight_name]
 

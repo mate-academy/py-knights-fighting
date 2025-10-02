@@ -6,12 +6,8 @@ from app.battle.battle import knight_battle
 
 def battle(knights_config: dict) -> dict:
     knight_instance = PrepareKnight(knights_config)
+    knights = knight_instance.get_all_prepared_knight()
 
-    knight_names = knights_config.keys()
-    knights = {
-        name: knight_instance.get_prepared_knight(name)
-        for name in knight_names
-    }
     battle_pairs = [("lancelot", "mordred"), ("arthur", "red_knight")]
 
     for first_pair, second_pair in battle_pairs:
