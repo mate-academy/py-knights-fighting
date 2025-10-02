@@ -7,8 +7,8 @@ class Knight:
             name: str,
             hp: int,
             power: int,
-            armour: List[Dict[str, int]],
-            weapon: Dict[str, int],
+            armour: List[Dict[str, Any]],
+            weapon: Dict[str, Any],
             potion: Optional[Dict[str, Any]],
     ) -> None:
 
@@ -33,5 +33,5 @@ class Knight:
     def damage(self, opponent_power: int) -> None:
         """Damage from opponent: """
         self.hp -= opponent_power - self.protection
-        if self.hp < 0:
+        if self.hp <= 0:
             self.hp = 0
