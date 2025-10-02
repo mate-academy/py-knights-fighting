@@ -1,13 +1,19 @@
+from __future__ import annotations
+
+from copy import deepcopy
+from typing import Optional
+
+
 class PrepareKnight:
     def __init__(self, knights_dict: dict) -> None:
-        self.knights_dict = knights_dict.copy()
-        self.prepare_knight_for_battle()
+        self.knights_dict = deepcopy(knights_dict)
+        self.prepare_knight_for_battle(self.knights_dict)
 
     def get_prepared_knight(self, knight_name: str) -> dict:
         return self.knights_dict[knight_name]
 
-    def prepare_knight_for_battle(self) -> dict:
-        for _, knight in self.knights_dict.items():
+    def prepare_knight_for_battle(self, knights_dict: dict) -> dict:
+        for _, knight in knights_dict.items():
             knight["protection"] = 0
             self.wear_armor(knight)
             knight["power"] += knight["weapon"]["power"]
@@ -20,12 +26,15 @@ class PrepareKnight:
             knight["protection"] += armour["protection"]
 
     @staticmethod
-    def apply_potions(knight_potion: dict, knight: dict) -> None:
+    def apply_potions(
+            knight_potion: Optional[dict | None],
+            knight: dict
+    ) -> None:
         if knight_potion is not None:
             if "power" in knight_potion["effect"]:
                 knight["power"] += knight_potion["effect"]["power"]
 
-            if "protection" in knight["potion"]["effect"]:
+            if "protection" in knight_potion["effect"]:
                 knight["protection"] += knight_potion["effect"]["protection"]
 
             if "hp" in knight_potion["effect"]:

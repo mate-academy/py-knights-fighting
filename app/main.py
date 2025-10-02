@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-
-from app.data.index import KNIGHTS
 from app.knight.prepare import PrepareKnight
 from app.battle.battle import knight_battle
 
@@ -9,20 +7,19 @@ from app.battle.battle import knight_battle
 def battle(knights_config: dict) -> dict:
     knight_instance = PrepareKnight(knights_config)
 
-    lancelot = knight_instance.get_prepared_knight(knight_name="lancelot")
-    arthur = knight_instance.get_prepared_knight(knight_name="arthur")
-    mordred = knight_instance.get_prepared_knight(knight_name="mordred")
-    red_knight = knight_instance.get_prepared_knight(knight_name="red_knight")
+    knight_names = knights_config.keys()
+    knights = {
+        name: knight_instance.get_prepared_knight(name)
+        for name in knight_names
+    }
+    battle_pairs = [("lancelot", "mordred"), ("arthur", "red_knight")]
 
-    knight_battle(first_knight=lancelot, second_knight=mordred)
-    knight_battle(first_knight=arthur, second_knight=red_knight)
+    for first_pair, second_pair in battle_pairs:
+        knight_battle(
+            first_knight=knights[first_pair],
+            second_knight=knights[second_pair]
+        )
 
     return {
-        lancelot["name"]: lancelot["hp"],
-        arthur["name"]: arthur["hp"],
-        mordred["name"]: mordred["hp"],
-        red_knight["name"]: red_knight["hp"],
+        knight["name"]: knight["hp"] for knight in knights.values()
     }
-
-
-print(battle(KNIGHTS))
