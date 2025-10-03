@@ -28,7 +28,7 @@ class Knight:
             self.protection += effects.get("protection", 0)
 
     def attack(self, opponent: Knight) -> None:
-        damage = max(0, self.power - opponent.protection)
+        damage = self.power - opponent.protection  # negativo = cura
         opponent.hp -= damage
-        if opponent.hp <= 0:
+        if opponent.hp < 0:
             opponent.hp = 0
