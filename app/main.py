@@ -4,32 +4,20 @@ from app.domain.knight import Knight
 
 KNIGHTS = {
     "lancelot": {
-        "name": "Lancelot",
-        "power": 35,
-        "hp": 100,
-        "armour": [],
-        "weapon": {
-            "name": "Metal Sword",
-            "power": 50,
-        },
-        "potion": None,
+        "name": "Lancelot", "power": 35, "hp": 100, "armour": [],
+        "weapon": {"name": "Metal Sword", "power": 50}, "potion": None
     },
     "arthur": {
-        "name": "Arthur",
-        "power": 45,
-        "hp": 75,
+        "name": "Arthur", "power": 45, "hp": 75,
         "armour": [
             {"part": "helmet", "protection": 15},
             {"part": "breastplate", "protection": 20},
             {"part": "boots", "protection": 10}
         ],
-        "weapon": {"name": "Two-handed Sword", "power": 55},
-        "potion": None,
+        "weapon": {"name": "Two-handed Sword", "power": 55}, "potion": None
     },
     "mordred": {
-        "name": "Mordred",
-        "power": 30,
-        "hp": 90,
+        "name": "Mordred", "power": 30, "hp": 90,
         "armour": [
             {"part": "breastplate", "protection": 15},
             {"part": "boots", "protection": 10}
@@ -41,9 +29,7 @@ KNIGHTS = {
         }
     },
     "red_knight": {
-        "name": "Red Knight",
-        "power": 40,
-        "hp": 70,
+        "name": "Red Knight", "power": 40, "hp": 70,
         "armour": [{"part": "breastplate", "protection": 25}],
         "weapon": {"name": "Sword", "power": 45},
         "potion": {
@@ -53,20 +39,19 @@ KNIGHTS = {
 }
 
 def battle(knights_data: dict) -> dict:
-    lancelot = Knight(**knights_data["lancelot"])
-    arthur = Knight(**knights_data["arthur"])
-    mordred = Knight(**knights_data["mordred"])
-    red_knight = Knight(**knights_data["red_knight"])
+    knights = {
+        name: Knight(**data) for name, data in knights_data.items()
+    }
 
-    lancelot.attack(mordred)
-    mordred.attack(lancelot)
+    battle_pairs = [
+        ("lancelot", "mordred"),
+        ("arthur", "red_knight")
+    ]
 
-    arthur.attack(red_knight)
-    red_knight.attack(arthur)
+    for p1_name, p2_name in battle_pairs:
+        knights[p1_name].attack(knights[p2_name])
+        knights[p2_name].attack(knights[p1_name])
 
     return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
+        knight.name: knight.hp for knight in knights.values()
     }

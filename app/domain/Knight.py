@@ -30,5 +30,5 @@ class Knight:
     def attack(self, opponent: Knight) -> None:
         damage = max(0, self.power - opponent.protection)
         opponent.hp -= damage
-        if opponent.hp < 0:
+        if opponent.hp <= 0:
             opponent.hp = 0
