@@ -96,6 +96,3 @@ def battle(knights_info: dict) -> dict:
     knights[1].battle(knights[3])
 
     return Knight.results(knights)
-
-
-print(battle(KNIGHTS))
