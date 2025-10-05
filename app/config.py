@@ -1,0 +1,37 @@
+KNIGHTS: dict[str, dict] = {
+    "red_knight": {
+        "name": "Red Knight",
+        "power": 40,
+        "hp": 70,
+        "armour": [{"part": "breastplate", "protection": 25}],
+        "weapon": {"name": "Sword", "power": 45},
+        "potion": {"name": "Blessing", "effect": {"hp": +10, "power": +5}},
+    },
+    "arthur": {
+        "name": "Arthur",
+        "power": 50,
+        "hp": 90,
+        "armour": [{"part": "helmet", "protection": 15}],
+        "weapon": {"name": "Axe", "power": 30},
+        "potion": None,
+    },
+    "lancelot": {
+        "name": "Lancelot",
+        "power": 60,
+        "hp": 85,
+        "armour": [{"part": "boots", "protection": 10},
+                   {"part": "shield", "protection": 20}],
+        "weapon": {"name": "Spear",
+                   "power": 35},
+        "potion": {"name": "Curse",
+                   "effect": {"power": -10, "protection": -5}},
+    },
+    "mordred": {
+        "name": "Mordred",
+        "power": 55,
+        "hp": 95,
+        "armour": [],
+        "weapon": {"name": "Dagger", "power": 25},
+        "potion": {"name": "Elixir", "effect": {"hp": +5, "protection": +10}},
+    },
+}
