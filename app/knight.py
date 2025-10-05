@@ -23,21 +23,22 @@ class Knight:
             weapon: dict,
             potion: dict | None = None
     ) -> Knight:
-        knight_power = power
-        knight_power += weapon["power"]
-        knight_protection = 0
+        knight_stats = {"power": power, "hp": hp, "protection": 0}
+        knight_stats["power"] += weapon["power"]
         if armours:
             for armour in armours:
-                knight_protection += armour["protection"]
-        knight_hp = hp
+                knight_stats["protection"] += armour["protection"]
         if potion:
-            if potion["effect"].get("power"):
-                knight_power += potion["effect"]["power"]
-            if potion["effect"].get("hp"):
-                knight_hp += potion["effect"]["hp"]
-            if potion["effect"].get("protection"):
-                knight_protection += potion["effect"]["protection"]
-        return Knight(name, knight_power, knight_hp, knight_protection)
+            potion_effects = ["power", "hp", "protection"]
+            for effect in potion_effects:
+                if effect in potion["effect"]:
+                    knight_stats[effect] += potion["effect"][effect]
+        return Knight(
+            name,
+            knight_stats["power"],
+            knight_stats["hp"],
+            knight_stats["protection"]
+        )
 
     @staticmethod
     def new_knight(dictionary: dict) -> Knight:
@@ -53,7 +54,15 @@ class Knight:
     def battle(self, other: Knight) -> None:
         self.hp -= other.power - self.protection
         other.hp -= self.power - other.protection
+
+    def check_hp(self) -> int:
         if self.hp < 0:
             self.hp = 0
-        if other.hp < 0:
-            other.hp = 0
+        return self.hp
+
+    @staticmethod
+    def results(knights: list[Knight]) -> dict[str, int]:
+        return {
+            knight.name: knight.check_hp()
+            for knight in knights
+        }
