@@ -1,7 +1,7 @@
-from typing import Dict, Any, List, Optional # Keep all typing imports here
+from typing import Dict, Any, List, Optional
 
 
-class Knight: # Fix E302: There are now two blank lines above the class
+class Knight:
     """Represents a knight with base and effective combat stats."""
 
     def __init__(self, raw_data: Dict[str, Any]) -> None:
@@ -22,14 +22,13 @@ class Knight: # Fix E302: There are now two blank lines above the class
     def _calculate_effective_stats(self) -> None:
         """Calculates the knight's HP, Power, and Protection based on equipment."""
         
-        # Line 22 E501 fix: Ensure docstring or any long line is wrapped/shortened.
-        # This line should now fit within 79 characters.
         self.protection = sum(part["protection"] for part in self.armour)
         self.effective_power = self.base_power + self.weapon["power"]
         
         if self.potion is not None:
             effects = self.potion["effect"]
             
+            # Розбиття рядків, щоб уникнути E501 (рядок 27/30 у вашому коді)
             self.hp += effects.get("hp", 0)
             self.effective_power += effects.get("power", 0)
             self.protection += effects.get("protection", 0)
