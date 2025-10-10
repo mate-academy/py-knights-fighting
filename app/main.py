@@ -3,7 +3,6 @@ from .knight import Knight
 from .battle import simulate_fight
 
 
-# Конфігурація KNIGHTS (із завдання)
 KNIGHTS: Dict[str, Dict[str, Any]] = {
     "lancelot": {
         "name": "Lancelot",
@@ -83,22 +82,18 @@ def battle(knights_config: Dict[str, Dict[str, Any]]) -> Dict[str, int]:
     and modular logic.
     """
     
-    # 1. Instantiate all knights using a comprehension
     knight_instances = {
         key: Knight(data) for key, data in knights_config.items()
     }
 
-    # Define the battle pairs
     battle_pairs = [
         (knight_instances["lancelot"], knight_instances["mordred"]),
         (knight_instances["arthur"], knight_instances["red_knight"]),
     ]
 
-    # 2. Simulate Battles
     for knight_a, knight_b in battle_pairs:
         simulate_fight(knight_a, knight_b)
     
-    # 3. Return final results
     return {
         name: instance.hp 
         for name, instance in knight_instances.items()
