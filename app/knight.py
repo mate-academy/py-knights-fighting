@@ -22,13 +22,13 @@ class Knight:
     def _calculate_effective_stats(self) -> None:
         """Calculates the knight's HP, Power, and Protection based on equipment."""
         
+        # Рядок 23 у вашому виводі, розбитий, щоб уникнути E501
         self.protection = sum(part["protection"] for part in self.armour)
         self.effective_power = self.base_power + self.weapon["power"]
         
         if self.potion is not None:
             effects = self.potion["effect"]
             
-            # Розбиття рядків, щоб уникнути E501 (рядок 27/30 у вашому коді)
             self.hp += effects.get("hp", 0)
             self.effective_power += effects.get("power", 0)
             self.protection += effects.get("protection", 0)
