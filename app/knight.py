@@ -22,7 +22,7 @@ class Knight:
     def _calculate_effective_stats(self) -> None:
         """Calculates the knight's HP, Power, and Protection based on equipment."""
         
-        # Виправлення E501 (рядок 23)
+        # Виправлення E501 (рядок 23 у вашому виводі)
         self.protection = sum(
             part["protection"] for part in self.armour
         )
