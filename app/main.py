@@ -1,25 +1,23 @@
 from __future__ import annotations
 from typing import Dict
-
 from app.knights.knight import Knight
 from app.knights.battle import duel
 
 
 def battle(knights_config: Dict[str, dict]) -> Dict[str, int]:
-    """Return a single dict with HP of all four knights after two duels.
+    """Return HP of all four knights after two duels.
 
-    Order of duels expected by tests:
+    Duel order required by the tests:
       1) Arthur vs Red Knight
       2) Lancelot vs Mordred
     """
-    lancelot = Knight.from_config(knights_config["lancelot"])
-    mordred = Knight.from_config(knights_config["mordred"])
-    arthur = Knight.from_config(knights_config["arthur"])
-    red = Knight.from_config(knights_config["red_knight"])
+    keys = ["arthur", "red_knight", "lancelot", "mordred"]
+    knights = {key: Knight.from_config(knights_config[key]) for key in keys}
+
+    duels = [("arthur", "red_knight"), ("lancelot", "mordred")]
 
     result: Dict[str, int] = {}
-    result.update(duel(arthur, red))
-
-    result.update(duel(lancelot, mordred))
+    for left, right in duels:
+        result.update(duel(knights[left], knights[right]))
 
     return result
