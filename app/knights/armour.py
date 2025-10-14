@@ -1,4 +1,6 @@
+from typing import Dict
+
 class Armour:
-    def __init__(self, part: str, protection: int) -> None:
-        self.part = part
-        self.protection = protection
+    def __init__(self, data: Dict):
+        self.part: str = data.get("part", "")
+        self.protection: int = int(data.get("protection", 0))
