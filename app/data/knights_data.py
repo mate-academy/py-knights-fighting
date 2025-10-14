@@ -1,4 +1,7 @@
-knights_data = {
+# app/data/knights_data.py
+from typing import Dict, Any
+
+KNIGHTS_CONFIG: Dict[str, Dict[str, Any]] = {
     "lancelot": {
         "name": "Lancelot",
         "power": 35,

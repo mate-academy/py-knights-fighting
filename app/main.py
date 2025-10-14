@@ -1,34 +1,29 @@
-from typing import Dict
-from app.battle.duel import duel
-from app.data.knights_data import knights_data
+from typing import Dict, Any
+from app.knights.knight import Knight
+from app.battle.duel import simulate_duel
 
-def battle(knights_config: Dict) -> Dict[str, int]:
-    from app.knights.knight import Knight
 
-    knights = {}
-    for key, data in knights_config.items():
-        knights[key] = Knight(
-            name=data["name"],
-            power=data["power"],
-            hp=data["hp"],
-            armour=data.get("armour", []),
-            weapon=data.get("weapon", {}),
-            potion=data.get("potion"),
-        )
+def battle(knights_config: Dict[str, Dict[str, Any]]) -> Dict[str, int]:
+    lancelot = Knight(knights_config["lancelot"])
+    mordred = Knight(knights_config["mordred"])
+    arthur = Knight(knights_config["arthur"])
+    red_knight = Knight(knights_config["red_knight"])
 
-    duel(knights["lancelot"], knights["mordred"])
-    duel(knights["arthur"], knights["red_knight"])
+    simulate_duel(lancelot, mordred)
+    simulate_duel(arthur, red_knight)
 
-    results = {}
-    for k in ["lancelot", "arthur", "mordred", "red_knight"]:
-        knight = knights[k]
-        hp_val = knight.hp
-        if hp_val < 0:
-            hp_val = 0
-        results[knight.name] = hp_val
+    results = {
+        lancelot.name: lancelot.current_hp,
+        mordred.name: mordred.current_hp,
+        arthur.name: arthur.current_hp,
+        red_knight.name: red_knight.current_hp,
+    }
 
     return results
 
+
 if __name__ == "__main__":
-    results = battle(knights_data)
-    print("Battle results:", results)
+    from app.data.knights_data import KNIGHTS_CONFIG
+
+    final_hp = battle(KNIGHTS_CONFIG)
+    print(final_hp)

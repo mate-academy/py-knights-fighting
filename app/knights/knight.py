@@ -1,37 +1,45 @@
-from typing import List, Dict, Optional
-from app.knights.weapon import Weapon
-from app.knights.armour import Armour
-from app.knights.potion import Potion
+from typing import Dict
+from .armour import Armour
+from .weapon import Weapon
+from .potion import Potion
+
 
 class Knight:
-    def __init__(
-        self,
-        name: str,
-        power: int,
-        hp: int,
-        armour: List[Dict],
-        weapon: Dict,
-        potion: Optional[Dict],
-    ) -> None:
-        self.name: str = name
-        self.base_power: int = int(power)
-        self.base_hp: int = int(hp)
-        self.armour_raw = armour or []
-        self.weapon = Weapon(weapon or {})
-        self.potion_raw = potion
+    def __init__(self, stats: Dict) -> None:
+        self.name: str = stats["name"]
+        self._base_hp: int = stats["hp"]
+        self._base_power: int = stats["power"]
 
-        self.protection: int = sum(int(a.get("protection", 0)) for a in self.armour_raw)
+        self.weapon = Weapon(stats.get("weapon", {}))
+        self.armour = Armour(stats.get("armour", []))
+        self.potion = Potion(stats.get("potion"))
 
-        self.power: int = self.base_power + self.weapon.power
+        self.effective_protection: int = self._calculate_protection()
+        self.effective_power: int = self._calculate_power()
+        self.current_hp: int = self._calculate_max_hp()
 
-        self.hp: int = self.base_hp
+    def _calculate_protection(self) -> int:
+        total_protection = self.armour.get_total_protection()
+        total_protection += self.potion.get_effect("protection")
+        return total_protection
 
-        if self.potion_raw:
-            potion_obj = Potion(self.potion_raw)
-            potion_obj.apply_effect(self)
+    def _calculate_power(self) -> int:
+        total_power = self._base_power + self.weapon.power
+        total_power += self.potion.get_effect("power")
+        return total_power
 
-    def attack(self, enemy: "Knight") -> int:
-        return self.power - enemy.protection
+    def _calculate_max_hp(self) -> int:
+        start_hp = self._base_hp
+        start_hp += self.potion.get_effect("hp")
+        return start_hp
 
-    def take_damage(self, damage: int) -> None:
-        self.hp -= int(damage)
+    def take_damage(self, opponent_power: int) -> None:
+
+        damage_or_heal = opponent_power - self.effective_protection
+        self.current_hp -= damage_or_heal
+
+        if self.current_hp < 0:
+            self.current_hp = 0
+
+    def is_defeated(self) -> bool:
+        return self.current_hp == 0

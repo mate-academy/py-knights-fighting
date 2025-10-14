@@ -1,19 +1,10 @@
-from typing import Optional, TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from app.knights.knight import Knight
+from typing import Optional, Dict
 
 
 class Potion:
-    def __init__(self, data: Optional[dict]) -> None:
-        # data may be None
-        self.name: str = ""
-        self.effect: dict = {}
-        if data:
-            self.name = data.get("name", "")
-            self.effect = data.get("effect", {}) or {}
+    def __init__(self, data: Optional[Dict] = None) -> None:
+        self.name = data.get("name") if data else "None"
+        self.effect = data.get("effect", {}) if data else {}
 
-    def apply_effect(self, knight: "Knight") -> None:
-        knight.hp += int(self.effect.get("hp", 0))
-        knight.power += int(self.effect.get("power", 0))
-        knight.protection += int(self.effect.get("protection", 0))
+    def get_effect(self, stat: str) -> int:
+        return self.effect.get(stat, 0)
