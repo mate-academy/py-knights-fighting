@@ -1,4 +1,4 @@
-from app.models.knight import Knight
+from models.knight import Knight
 
 
 def create_knights(knights_data: dict) -> dict:
