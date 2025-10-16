@@ -5,7 +5,7 @@ from app.game.potion import Potion
 
 class Knight:
     def __init__(self, name: str, power: int, hp: int, armour: list[Armour],
-                 weapon: Weapon, potion: None | Potion):
+                 weapon: Weapon, potion: None | Potion) -> None:
         self.name = name
         self.power = power
         self.hp = hp
@@ -15,8 +15,8 @@ class Knight:
 
         self._get_protection()
 
-    def __str__(self):
-        return f"hp = {self.hp}, power = {self.power}, protection = {self.protection}"
+    def __str__(self) -> str:
+        return f"""hp = {self.hp}, power = {self.power}, protection = {self.protection}"""
 
     def _get_protection(self) -> None:
         self.protection = 0
@@ -39,7 +39,7 @@ class Knight:
             if self.potion.protection:
                 self.protection += self.potion.protection
 
-    def start_to_battle(self):
+    def start_to_battle(self) -> None:
         self._get_battle_power()
         self._get_battle_hp()
         self._get_battle_protection()

@@ -119,8 +119,8 @@ def battle(knightsConfig: dict) -> dict:
         knight = create_knights(knightsConfig[key])
         knights.append(knight)
 
-    battle_result = Battle.start_battle(knights[0], knights[1])
-    battle_result.update(Battle.start_battle(knights[2], knights[3]))
+    battle_result = Battle.start_battle(knights[0], knights[2])
+    battle_result.update(Battle.start_battle(knights[1], knights[3]))
 
     return battle_result
 

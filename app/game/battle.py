@@ -8,7 +8,9 @@ class Battle:
                 player_2.name: player_2.hp}
 
     @classmethod
-    def _get_start_player_to_battle(cls, player_1: Knight, player_2: Knight) -> None:
+    def _get_start_player_to_battle(cls,
+                                    player_1: Knight,
+                                    player_2: Knight) -> None:
         player_1.start_to_battle()
         player_2.start_to_battle()
 
