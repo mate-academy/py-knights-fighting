@@ -90,7 +90,10 @@ KNIGHTS: Dict[str, Dict[str, Any]] = {
 
 
 def battle(knights_config: Dict[str, Dict[str, Any]]) -> Dict[str, int]:
-    knights = {name: Knight(**config) for name, config in knights_config.items()}
+    knights = {
+        name: Knight(**config)
+        for name, config in knights_config.items()
+    }
 
     matchups = [
         ("lancelot", "mordred"),
@@ -110,4 +113,3 @@ def battle(knights_config: Dict[str, Dict[str, Any]]) -> Dict[str, int]:
         results.update(fight_result)
 
     return results
-
