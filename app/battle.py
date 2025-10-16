@@ -6,26 +6,23 @@ class Battle:
         self.first_knight = first_knight
         self.second_knight = second_knight
 
+    def prepare_for_fight(self) -> None:
+        for knight in (self.first_knight, self.second_knight):
+            knight.apply_armour()
+            knight.apply_potion()
+            knight.apply_weapon()
+
     def check_hp(self, knight: Knight) -> int:
         return 0 if knight.hp <= 0 else knight.hp
 
-    def prepare_for_fight(self) -> None:
-        self.first_knight.apply_armour()
-        self.second_knight.apply_armour()
-
-        self.first_knight.apply_weapon()
-        self.second_knight.apply_weapon()
-
-        self.first_knight.apply_potion()
-        self.second_knight.apply_potion()
+    def perform_attack(self, attacker: Knight, defender: Knight) -> None:
+        damage = attacker.power - defender.protection
+        if damage > 0:
+            defender.hp -= damage
 
     def fight(self) -> dict[str, int]:
-        self.first_knight.hp -= (
-            self.second_knight.power - self.first_knight.protection
-        )
-        self.second_knight.hp -= (
-            self.first_knight.power - self.second_knight.protection
-        )
+        self.perform_attack(self.second_knight, self.first_knight)
+        self.perform_attack(self.first_knight, self.second_knight)
 
         first_knight_hp = self.check_hp(self.first_knight)
         second_knight_hp = self.check_hp(self.second_knight)

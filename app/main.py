@@ -90,25 +90,24 @@ KNIGHTS: Dict[str, Dict[str, Any]] = {
 
 
 def battle(knights_config: Dict[str, Dict[str, Any]]) -> Dict[str, int]:
-    lancelot = Knight(**knights_config["lancelot"])
-    mordred = Knight(**knights_config["mordred"])
-    arthur = Knight(**knights_config["arthur"])
-    red_knight = Knight(**knights_config["red_knight"])
+    knights = {name: Knight(**config) for name, config in knights_config.items()}
 
-    first_battle = Battle(lancelot, mordred)
-    first_battle.prepare_for_fight()
+    matchups = [
+        ("lancelot", "mordred"),
+        ("arthur", "red_knight"),
+    ]
 
-    second_battle = Battle(arthur, red_knight)
-    second_battle.prepare_for_fight()
+    results: Dict[str, int] = {}
 
-    first_battle_result = first_battle.fight()
-    second_battle_result = second_battle.fight()
+    for first_knight_name, second_knight_name in matchups:
+        k1 = knights[first_knight_name]
+        k2 = knights[second_knight_name]
 
-    return {
-        **first_battle_result,
-        **second_battle_result,
-    }
+        battle_instance = Battle(k1, k2)
+        battle_instance.prepare_for_fight()
+        fight_result = battle_instance.fight()
 
+        results.update(fight_result)
 
-if __name__ == "__main__":
-    print(battle(KNIGHTS))
+    return results
+
