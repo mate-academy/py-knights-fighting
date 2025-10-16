@@ -36,10 +36,10 @@ class Knight:
 
     def _get_battle_protection(self) -> None:
         if self.potion:
-            if self.potion.power:
+            if self.potion.protection:
                 self.protection += self.potion.protection
 
     def start_to_battle(self):
         self._get_battle_power()
         self._get_battle_hp()
-        self._get_protection()
+        self._get_battle_protection()
