@@ -17,8 +17,6 @@ class Battle:
     @staticmethod
     def start_battle(player_1: Knight, player_2: Knight) -> dict:
         Battle._get_start_player_to_battle(player_1, player_2)
-        print(f"Player_1: {player_1}")
-        print(f"Player_2: {player_2}")
 
         player_1.hp -= player_2.power - player_1.protection
         player_2.hp -= player_1.power - player_2.protection

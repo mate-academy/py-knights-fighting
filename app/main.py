@@ -113,10 +113,10 @@ def create_knights(knight_keys: dict) -> Knight:
     return knight
 
 
-def battle(knightsConfig: dict) -> dict:
+def battle(knights_config: dict) -> dict:
     knights = []
-    for key in knightsConfig:
-        knight = create_knights(knightsConfig[key])
+    for key in knights_config:
+        knight = create_knights(knights_config[key])
         knights.append(knight)
 
     battle_result = Battle.start_battle(knights[0], knights[2])

@@ -16,7 +16,7 @@ class Knight:
         self._get_protection()
 
     def __str__(self) -> str:
-        return f"""hp = {self.hp}, power = {self.power}, protection = {self.protection}"""
+        return f"""hp = {self.hp}, power = {self.power}"""
 
     def _get_protection(self) -> None:
         self.protection = 0
