@@ -85,7 +85,6 @@ KNIGHTS = {
     }
 }
 
-
 def battle(knightsConfig):
     # BATTLE PREPARATIONS:
 
