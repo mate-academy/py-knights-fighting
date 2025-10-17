@@ -27,7 +27,7 @@ class Knight:
         self.protection += effect.get("protection", 0)
         self.hp += effect.get("hp", 0)
 
-    def take_damage(self, damage: int):
+    def take_damage(self, damage: int) -> None:
         self.hp -= damage
         if self.hp < 0:
             self.hp = 0
