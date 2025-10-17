@@ -1,7 +1,10 @@
+from typing import Dict, Any
+
 from app.models.knight import Knight
 from app.utils.battle_logic import fight
 
-def battle(knights_config):
+
+def battle(knights_config: Dict[str, Dict[str, Any]]) -> Dict[str, int]:
     lancelot = Knight(knights_config["lancelot"])
     arthur = Knight(knights_config["arthur"])
     mordred = Knight(knights_config["mordred"])
@@ -16,10 +19,8 @@ def battle(knights_config):
         mordred.name: mordred.hp,
         red_knight.name: red_knight.hp,
     }
-KNIGHTS = {
-    # ... pełna definicja rycerzy ...
-}
-__all__ = ["battle", "KNIGHTS"]
+
+
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
@@ -67,3 +68,6 @@ KNIGHTS = {
         },
     },
 }
+
+__all__ = ["battle", "KNIGHTS"]
+
