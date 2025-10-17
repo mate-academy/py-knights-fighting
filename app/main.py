@@ -70,4 +70,3 @@ KNIGHTS = {
 }
 
 __all__ = ["battle", "KNIGHTS"]
-
