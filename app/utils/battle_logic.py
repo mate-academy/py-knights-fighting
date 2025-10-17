@@ -1,8 +1,33 @@
-from app.models.knight import Knight
+class Knight:
+    def __init__(self, config: dict) -> None:
+        self.name = config["name"]
+        self.base_power = config["power"]
+        self.hp = config["hp"]
+        self.armour = config.get("armour", [])
+        self.weapon = config["weapon"]
+        self.potion = config.get("potion")
+        self.power = self.base_power
+        self.protection = 0
 
-def fight(knight1: Knight, knight2: Knight) -> None:
-    damage_to_1 = max(knight2.power - knight1.protection, 0)
-    damage_to_2 = max(knight1.power - knight2.protection, 0)
+        self.apply_armour()
+        self.apply_weapon()
+        self.apply_potion()
 
-    knight1.take_damage(damage_to_1)
-    knight2.take_damage(damage_to_2)
+    def apply_armour(self) -> None:
+        self.protection = sum(part["protection"] for part in self.armour)
+
+    def apply_weapon(self) -> None:
+        self.power += self.weapon["power"]
+
+    def apply_potion(self) -> None:
+        if not self.potion:
+            return
+        effect = self.potion["effect"]
+        self.power += effect.get("power", 0)
+        self.protection += effect.get("protection", 0)
+        self.hp += effect.get("hp", 0)
+
+    def take_damage(self, damage: int) -> None:
+        self.hp -= damage
+        if self.hp < 0:
+            self.hp = 0
