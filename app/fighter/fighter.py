@@ -1,21 +1,23 @@
 class Fighter:
     def __init__(
             self,
-            config: dict
+            name: str,
+            power: int,
+            hp: int,
+            armours: list,
+            weapon: dict,
+            potion: dict
     ) -> None:
-        self.name = config["name"]
-        self.power = config["power"]
-        self.hp = config["hp"]
-        self.armour = config["armour"]
-        self.weapon = config["weapon"]
-        self.potion = config["potion"]
+        self.name = name
+        self.power = power
+        self.hp = hp
+        self.armours = armours
+        self.weapon = weapon
+        self.potion = potion
         self.protection = 0
-        self.apply_weapon()
-        self.apply_armour()
-        self.apply_potion()
 
     def apply_armour(self) -> None:
-        for armor in self.armour:
+        for armor in self.armours:
             self.protection += armor["protection"]
 
     def apply_weapon(self) -> None:

@@ -1,14 +1,13 @@
-from app.data.knights import KNIGHTS
-from app.fighter.fighter import Fighter
+from app.fighter.fighters import Fighters
 
 
 def battle(knights_config: dict) -> dict:
     # BATTLE PREPARATIONS:
 
-    lancelot = Fighter(knights_config["lancelot"])
-    arthur = Fighter(knights_config["arthur"])
-    mordred = Fighter(knights_config["mordred"])
-    red_knight = Fighter(knights_config["red_knight"])
+    fighters = Fighters(knights_config)
+    fighters.create_fighters()
+    fighters.initiate_fighters()
+    lancelot, arthur, mordred, red_knight = fighters.get_fighters()
 
     lancelot.hp -= mordred.power - lancelot.protection
     mordred.hp -= lancelot.power - mordred.protection
@@ -38,6 +37,3 @@ def battle(knights_config: dict) -> dict:
         mordred.name: mordred.hp,
         red_knight.name: red_knight.hp,
     }
-
-
-print(battle(KNIGHTS))
