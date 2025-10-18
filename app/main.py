@@ -1,5 +1,3 @@
-# Повністю замініть вміст app/main.py на цей код
-
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
@@ -73,8 +71,6 @@ KNIGHTS = {
 def _prepare_knight_stats(knight_data: dict) -> dict:
     """Calculates final stats for a single knight."""
     protection = 0
-    # Note: Lancelot's armour data is structured differently in the source.
-    # This check handles both cases.
     if knight_data["armour"] and "protection" in knight_data["armour"][0]:
         for armour_part in knight_data["armour"]:
             protection += armour_part.get("protection", 0)
@@ -82,7 +78,6 @@ def _prepare_knight_stats(knight_data: dict) -> dict:
     power = knight_data["power"]
     if knight_data.get("weapon"):
         power += knight_data["weapon"]["power"]
-    # Handle Lancelot's sword which is in the "armour" list
     elif knight_data["armour"] and "power" in knight_data["armour"][0]:
         power += knight_data["armour"][0].get("power", 0)
 
@@ -98,31 +93,28 @@ def _prepare_knight_stats(knight_data: dict) -> dict:
 
 
 def battle(knights_config: dict) -> dict:
-    """
-    Conducts battles between knights and returns the result.
-    """
-    # Prepare stats for all knights
+    """Conducts battles between knights and returns the result."""
     lancelot = _prepare_knight_stats(knights_config["lancelot"])
     mordred = _prepare_knight_stats(knights_config["mordred"])
     arthur = _prepare_knight_stats(knights_config["arthur"])
     red_knight = _prepare_knight_stats(knights_config["red_knight"])
 
     # Battle 1: Lancelot vs Mordred
-    # Battle 1: Lancelot vs Mordred
-damage_to_lancelot = mordred["power"] - lancelot["protection"]
-lancelot_hp = lancelot["hp"] - damage_to_lancelot
+    damage_to_lancelot = mordred["power"] - lancelot["protection"]
+    lancelot_hp = lancelot["hp"] - damage_to_lancelot
 
-damage_to_mordred = lancelot["power"] - mordred["protection"]
-mordred_hp = mordred["hp"] - damage_to_mordred
+    damage_to_mordred = lancelot["power"] - mordred["protection"]
+    mordred_hp = mordred["hp"] - damage_to_mordred
 
-# Battle 2: Arthur vs Red Knight
-damage_to_arthur = red_knight["power"] - arthur["protection"]
-arthur_hp = arthur["hp"] - damage_to_arthur
+    # Battle 2: Arthur vs Red Knight
+    damage_to_arthur = red_knight["power"] - arthur["protection"]
+    arthur_hp = arthur["hp"] - damage_to_arthur
 
-damage_to_red_knight = arthur["power"] - red_knight["protection"]
-red_knight_hp = red_knight["hp"] - damage_to_red_knight
+    damage_to_red_knight = arthur["power"] - red_knight["protection"]
+    red_knight_hp = red_knight["hp"] - damage_to_red_knight
+
     # Format the final result, ensuring HP is not negative
-return {
+    return {
         "Lancelot": max(0, lancelot_hp),
         "Mordred": max(0, mordred_hp),
         "Arthur": max(0, arthur_hp),
