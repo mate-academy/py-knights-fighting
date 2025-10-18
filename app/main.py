@@ -120,4 +120,3 @@ def battle(knights_config: dict) -> dict:
         "Arthur": max(0, arthur_hp),
         "Red Knight": max(0, red_knight_hp),
     }
-    
