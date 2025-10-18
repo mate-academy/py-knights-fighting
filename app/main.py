@@ -122,7 +122,7 @@ arthur_hp = arthur["hp"] - damage_to_arthur
 damage_to_red_knight = arthur["power"] - red_knight["protection"]
 red_knight_hp = red_knight["hp"] - damage_to_red_knight
     # Format the final result, ensuring HP is not negative
-    return {
+return {
         "Lancelot": max(0, lancelot_hp),
         "Mordred": max(0, mordred_hp),
         "Arthur": max(0, arthur_hp),
