@@ -108,13 +108,19 @@ def battle(knights_config: dict) -> dict:
     red_knight = _prepare_knight_stats(knights_config["red_knight"])
 
     # Battle 1: Lancelot vs Mordred
-    lancelot_hp = lancelot["hp"] - (mordred["power"] - lancelot["protection"])
-    mordred_hp = mordred["hp"] - (lancelot["power"] - mordred["protection"])
+    # Battle 1: Lancelot vs Mordred
+damage_to_lancelot = mordred["power"] - lancelot["protection"]
+lancelot_hp = lancelot["hp"] - damage_to_lancelot
 
-    # Battle 2: Arthur vs Red Knight
-    arthur_hp = arthur["hp"] - (red_knight["power"] - arthur["protection"])
-    red_knight_hp = red_knight["hp"] - (arthur["power"] - red_knight["protection"])
+damage_to_mordred = lancelot["power"] - mordred["protection"]
+mordred_hp = mordred["hp"] - damage_to_mordred
 
+# Battle 2: Arthur vs Red Knight
+damage_to_arthur = red_knight["power"] - arthur["protection"]
+arthur_hp = arthur["hp"] - damage_to_arthur
+
+damage_to_red_knight = arthur["power"] - red_knight["protection"]
+red_knight_hp = red_knight["hp"] - damage_to_red_knight
     # Format the final result, ensuring HP is not negative
     return {
         "Lancelot": max(0, lancelot_hp),
