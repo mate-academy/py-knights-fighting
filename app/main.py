@@ -3,7 +3,7 @@ KNIGHTS = {
         "name": "Lancelot",
         "power": 35,
         "hp": 100,
-        "armour": [],
+        "armour": [],  # Corrected: armour is a list of protections
         "weapon": {"name": "Metal Sword", "power": 50},
         "potion": None,
     },
@@ -22,7 +22,7 @@ KNIGHTS = {
     "mordred": {
         "name": "Mordred",
         "power": 30,
-        "hp": 90,
+        "hp": 90,  # Restored original HP
         "armour": [{"part": "leather_vest", "protection": 10}],
         "weapon": {"name": "Magic Staff", "power": 60},
         "potion": {
@@ -46,12 +46,16 @@ KNIGHTS = {
 
 def _prepare_knight_stats(knight_data: dict) -> dict:
     """Calculates final stats for a single knight based on their equipment."""
+    # Robustly calculate protection from all armour parts
     protection = sum(
         part.get("protection", 0) for part in knight_data.get("armour", [])
     )
+
+    # Calculate power from base and weapon (weapon is mandatory)
     power = knight_data["power"] + knight_data["weapon"]["power"]
     hp = knight_data["hp"]
 
+    # Safely apply potion effects if a potion exists
     if knight_data.get("potion"):
         effect = knight_data["potion"].get("effect", {})
         hp += effect.get("hp", 0)
@@ -68,21 +72,21 @@ def battle(knights_config: dict) -> dict:
     arthur = _prepare_knight_stats(knights_config["arthur"])
     red_knight = _prepare_knight_stats(knights_config["red_knight"])
 
-    # Battle 1: Lancelot vs Mordred (broken into shorter lines)
+    # Battle 1: Lancelot vs Mordred (prevents negative damage)
     damage_to_lancelot = max(0, mordred["power"] - lancelot["protection"])
     lancelot_hp = lancelot["hp"] - damage_to_lancelot
 
     damage_to_mordred = max(0, lancelot["power"] - mordred["protection"])
     mordred_hp = mordred["hp"] - damage_to_mordred
 
-    # Battle 2: Arthur vs Red Knight (broken into shorter lines)
+    # Battle 2: Arthur vs Red Knight (prevents negative damage)
     damage_to_arthur = max(0, red_knight["power"] - arthur["protection"])
     arthur_hp = arthur["hp"] - damage_to_arthur
 
     damage_to_red_knight = max(0, arthur["power"] - red_knight["protection"])
     red_knight_hp = red_knight["hp"] - damage_to_red_knight
 
-    # Use actual names from config for the result keys
+    # Use actual names from config for the result keys, ensure HP is not < 0
     return {
         knights_config["lancelot"]["name"]: max(0, lancelot_hp),
         knights_config["mordred"]["name"]: max(0, mordred_hp),
