@@ -68,13 +68,19 @@ def battle(knights_config: dict) -> dict:
     arthur = _prepare_knight_stats(knights_config["arthur"])
     red_knight = _prepare_knight_stats(knights_config["red_knight"])
 
-    # Battle 1: Lancelot vs Mordred
-    lancelot_hp = lancelot["hp"] - max(0, mordred["power"] - lancelot["protection"])
-    mordred_hp = mordred["hp"] - max(0, lancelot["power"] - mordred["protection"])
+    # Battle 1: Lancelot vs Mordred (broken into shorter lines)
+    damage_to_lancelot = max(0, mordred["power"] - lancelot["protection"])
+    lancelot_hp = lancelot["hp"] - damage_to_lancelot
 
-    # Battle 2: Arthur vs Red Knight
-    arthur_hp = arthur["hp"] - max(0, red_knight["power"] - arthur["protection"])
-    red_knight_hp = red_knight["hp"] - max(0, arthur["power"] - red_knight["protection"])
+    damage_to_mordred = max(0, lancelot["power"] - mordred["protection"])
+    mordred_hp = mordred["hp"] - damage_to_mordred
+
+    # Battle 2: Arthur vs Red Knight (broken into shorter lines)
+    damage_to_arthur = max(0, red_knight["power"] - arthur["protection"])
+    arthur_hp = arthur["hp"] - damage_to_arthur
+
+    damage_to_red_knight = max(0, arthur["power"] - red_knight["protection"])
+    red_knight_hp = red_knight["hp"] - damage_to_red_knight
 
     # Use actual names from config for the result keys
     return {
