@@ -1,4 +1,3 @@
-# Original KNIGHTS data, as expected by the tests. Do not change this.
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
@@ -67,10 +66,14 @@ def _prepare_knight_stats(knight_data: dict) -> dict:
 
 def _duel(knight1_stats: dict, knight2_stats: dict) -> tuple[int, int]:
     """Calculates the result of a single duel, returning final HP for both."""
-    damage_to_knight1 = max(0, knight2_stats["power"] - knight1_stats["protection"])
+    damage_to_knight1 = max(
+        0, knight2_stats["power"] - knight1_stats["protection"]
+    )
     hp1_after_battle = knight1_stats["hp"] - damage_to_knight1
 
-    damage_to_knight2 = max(0, knight1_stats["power"] - knight2_stats["protection"])
+    damage_to_knight2 = max(
+        0, knight1_stats["power"] - knight2_stats["protection"]
+    )
     hp2_after_battle = knight2_stats["hp"] - damage_to_knight2
 
     return max(0, hp1_after_battle), max(0, hp2_after_battle)
