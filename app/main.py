@@ -3,7 +3,7 @@ KNIGHTS = {
         "name": "Lancelot",
         "power": 35,
         "hp": 100,
-        "armour": [],  # Corrected: armour is a list of protections
+        "armour": [],
         "weapon": {"name": "Metal Sword", "power": 50},
         "potion": None,
     },
@@ -22,7 +22,7 @@ KNIGHTS = {
     "mordred": {
         "name": "Mordred",
         "power": 30,
-        "hp": 90,  # Restored original HP
+        "hp": 90,
         "armour": [{"part": "leather_vest", "protection": 10}],
         "weapon": {"name": "Magic Staff", "power": 60},
         "potion": {
