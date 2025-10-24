@@ -35,3 +35,9 @@ class Battle:
                 break
 
             round_num += 1
+
+        # возвращаем результат (с обнулением отрицательных значений HP)
+        return {
+            self.knight1.name: max(self.knight1.hp, 0),
+            self.knight2.name: max(self.knight2.hp, 0),
+        }

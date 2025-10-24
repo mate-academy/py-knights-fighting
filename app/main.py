@@ -1,11 +1,18 @@
 from app.data.knights_data import KNIGHTS
 from app.entities.knight import Knight
-from app.battle.battle import Battle
 
-
-if __name__ == "__main__":
+def battle():
     arthur = Knight("Arthur", KNIGHTS["arthur"])
     lancelot = Knight("Lancelot", KNIGHTS["lancelot"])
 
-    battle = Battle(arthur, lancelot)
-    battle.start()
+    # начинаем бой
+    arthur.fight(lancelot)
+
+    # возвращаем HP, не меньше 0
+    return {
+        arthur.name: max(arthur.hp, 0),
+        lancelot.name: max(lancelot.hp, 0),
+    }
+
+if __name__ == "__main__":
+    print(battle())
