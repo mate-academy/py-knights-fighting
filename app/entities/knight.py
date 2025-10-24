@@ -36,7 +36,7 @@ class Knight:
         else:
             self.potion = None
 
-    def total_protection(self) -> None:
+    def total_protection(self) -> int:
         return sum(a.protection for a in self.armor)
 
     def attack(self, enemy: "Knight") -> None:
