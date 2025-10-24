@@ -1,11 +1,10 @@
 def weapon_power_count(knights_config: dict) -> dict:
-    count = 0
     weapon_power = {}
-    for name, dict_knife in knights_config.items():
+    for name, knight_details in knights_config.items():
         power = 0
-        if "weapon" in dict_knife:
-            if "power" in dict_knife["weapon"]:
-                power += dict_knife["weapon"]["power"]
-        count += 1
+        if "weapon" in knight_details:
+            if "power" in knight_details["weapon"]:
+                power += knight_details["weapon"]["power"]
+
         weapon_power[name] = power
     return weapon_power
