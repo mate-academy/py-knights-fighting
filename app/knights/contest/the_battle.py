@@ -1,5 +1,5 @@
 from app.knights.calculation.count import calculate_all_stats
-from app.knights.contest.count_bb import calculation_before_battle
+from app.knights.contest.count_bb import simulate_battle
 
 
 def battle(main_dict: dict,
@@ -9,10 +9,10 @@ def battle(main_dict: dict,
         main_dict = {}
     result = {}
     stats_result = calculate_all_stats(main_dict)
-    result.update(calculation_before_battle(first_pair[0],
-                                            first_pair[1], stats_result))
-    result.update(calculation_before_battle(second_pair[0],
-                                          second_pair[1], stats_result))
+    result.update(simulate_battle(first_pair[0],
+                                  first_pair[1], stats_result))
+    result.update(simulate_battle(second_pair[0],
+                                  second_pair[1], stats_result))
     base_dict = {"Lancelot": 0,
                  "Arthur": 0,
                  "Mordred": 0,
