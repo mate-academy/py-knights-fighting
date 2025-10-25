@@ -18,7 +18,7 @@ class Knight:
             print(f"{self.name} equip {arm['part']}")
 
         if self.potion:
-            print(f"{self.name} drink {self.potion["name"]} potion")
+            print(f"{self.name} drink {self.potion['name']} potion")
             self.hp += self.potion["effect"].get("hp", 0)
             self.power += self.potion["effect"].get("power", 0)
             self.protection += self.potion["effect"].get("protection", 0)
