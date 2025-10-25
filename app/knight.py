@@ -15,7 +15,7 @@ class Knight:
     def prepare_knight(self) -> None:
         for arm in self.armour:
             self.protection += arm["protection"]
-            print(f"{self.name} equip {arm["part"]}")
+            print(f"{self.name} equip {arm['part']}")
 
         if self.potion:
             print(f"{self.name} drink {self.potion["name"]} potion")
@@ -24,7 +24,7 @@ class Knight:
             self.protection += self.potion["effect"].get("protection", 0)
 
         self.power += self.weapon["power"]
-        print(f"{self.name} take {self.weapon["name"]}")
+        print(f"{self.name} take {self.weapon['name']}")
 
         print(f"{self.name}: "
               f"power - {self.power}, "
