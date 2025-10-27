@@ -88,9 +88,13 @@ KNIGHTS = {
     }
 }
 
-VERSUS = [
-    ("lancelot", "mordred"),
-    ("arthur", "red knight")
-]
 
-print(Battle.battle(KNIGHTS, VERSUS))
+def battle(knights: dict) -> dict:
+    versus = [
+        ("lancelot", "mordred"),
+        ("arthur", "red knight")
+    ]
+    return Battle.battle(knights, versus)
+
+
+print(battle(KNIGHTS))

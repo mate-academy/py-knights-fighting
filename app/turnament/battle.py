@@ -30,30 +30,16 @@ class Battle:
         second_knight: EquippedKnight
     ) -> dict:
 
-        print(f"Battle: {first_knight.name} versus {second_knight.name}\n")
-
         first_knight_damage = first_knight.power - second_knight.protection
         second_knight_damage = second_knight.power - first_knight.protection
-        first_knight.hp = max(0, first_knight.hp - second_knight_damage)
-        second_knight.hp = max(0, second_knight.hp - first_knight_damage)
-
-        winner = Battle.who_wins(first_knight, second_knight)
-
-        print(f"      Score: \n\
-{first_knight.name} has {first_knight.hp} hp left\n\
-{second_knight.name} has {second_knight.hp} hp left\n\
-    {winner} Wins!\n")
+        first_knight.hp -= second_knight_damage
+        if first_knight.hp <= 0:
+            first_knight.hp = 0
+        second_knight.hp -= first_knight_damage
+        if second_knight.hp <= 0:
+            second_knight.hp = 0
 
         return {
             first_knight.name: first_knight.hp,
             second_knight.name: second_knight.hp
         }
-
-    @staticmethod
-    def who_wins(
-        first_knight: EquippedKnight,
-        second_knight: EquippedKnight
-    ) -> str:
-        if first_knight.hp > second_knight.hp:
-            return first_knight.name
-        return second_knight.name
