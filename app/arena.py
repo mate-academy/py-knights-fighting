@@ -1,10 +1,10 @@
 # app/arena.py
 from __future__ import annotations
-from typing import Dict, List
+from typing import Dict, List, Any
 from .entities import ArmorPiece, Weapon, Potion, Knight
 
 
-def build_knight(raw: Dict) -> Knight:
+def build_knight(raw: Dict[str, Any]) -> Knight:
 
     armour_list: List[ArmorPiece] = [
         ArmorPiece(part=a["part"], protection=a["protection"])
