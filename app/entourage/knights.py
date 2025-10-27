@@ -1,5 +1,4 @@
 from __future__ import annotations
-# from app.entourage.knights_list import KNIGHTS
 
 
 class Knight:
@@ -58,25 +57,31 @@ Potion: {potion}"
         return Knight(name, power, health, armour, weapon, potion)
 
 
-class EquipedKnight:
-    def __init__(self, name: str, power: int, hp: int, armour: int) -> None:
+class EquippedKnight:
+    def __init__(
+        self,
+        name: str,
+        power: int,
+        hp: int,
+        protection: int
+    ) -> None:
         self.name = name
         self.power = power
         self.hp = hp
-        self.armour = armour
+        self.protection = protection
 
     @classmethod
-    def equip_knight(cls, knight: Knight) -> EquipedKnight:
+    def equip_knight(cls, knight: Knight) -> EquippedKnight:
         power = knight.power + knight.weapon.power
         hp = knight.hp
-        armour = 0
+        protection = 0
         if knight.armour is not None:
-            armour += Armour.sum_armour(knight.armour)
+            protection += Armour.sum_armour(knight.armour)
         if knight.potion is not None:
             power += knight.potion.power
             hp += knight.potion.hp
-            armour += knight.potion.protection
-        return EquipedKnight(knight.name, power, hp, armour)
+            protection += knight.potion.protection
+        return EquippedKnight(knight.name, power, hp, protection)
 
 
 class Armour:
@@ -113,11 +118,17 @@ class Weapon:
 
 
 class Potion:
-    def __init__(self, name: str, power: int, hp: int, protect: int) -> None:
+    def __init__(
+        self,
+        name: str,
+        power: int,
+        hp: int,
+        protection: int
+    ) -> None:
         self.name = name
         self.power = power
         self.hp = hp
-        self.protection = protect
+        self.protection = protection
 
     @classmethod
     def add_potion(cls, potion: dict) -> Potion:
@@ -127,18 +138,3 @@ class Potion:
         hp = effect.get("hp", 0)
         protection = effect.get("protection", 0)
         return Potion(name, power, hp, protection)
-
-
-"""
-if __name__ == "__main__":
-    line = "=" * 30
-    print(f"Testing Code: \n{line} \n")
-
-    knight_list = [knight for knight in KNIGHTS.values()]
-
-    knight = Knight.recruit_a_knight(knight_list[3])
-
-    print(knight)
-
-    print(f"\n{line}")
-"""
