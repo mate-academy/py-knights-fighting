@@ -1,72 +1,64 @@
-# app/config.py
+from typing import Dict, Any
 
-KNIGHTS = {
+KNIGHTS: Dict[str, Dict[str, Any]] = {
     "lancelot": {
         "name": "Lancelot",
-        "power": 50,
-        "hp": 85,
-        "armour": [
-            {"part": "helmet", "protection": 10},
-            {"part": "boots", "protection": 5},
-        ],
-        "weapon": {"name": "Lance", "power": 40},
-        "potion": {
-            "name": "Holy Water",
-            "effect": {
-                "hp": +5,
-                "power": +10,
-            },
+        "power": 35,
+        "hp": 100,
+        "armour": [],
+        "weapon": {
+            "name": "Metal Sword",
+            "power": 50,
         },
+        "potion": None,
     },
-
     "arthur": {
         "name": "Arthur",
-        "power": 55,
-        "hp": 90,
+        "power": 45,
+        "hp": 75,
         "armour": [
+            {"part": "helmet", "protection": 15},
             {"part": "breastplate", "protection": 20},
+            {"part": "boots", "protection": 10},
         ],
-        "weapon": {"name": "Excalibur", "power": 50},
-        "potion": {
-            "name": "Royal Oath",
-            "effect": {
-                "hp": +10,
-                "power": +5,
-                "protection": +5,
-            },
+        "weapon": {
+            "name": "Two-handed Sword",
+            "power": 55,
         },
+        "potion": None,
     },
-
     "mordred": {
         "name": "Mordred",
-        "power": 60,
-        "hp": 95,
+        "power": 30,
+        "hp": 90,
         "armour": [
-            {"part": "shoulder", "protection": 15},
-            {"part": "gauntlets", "protection": 5},
+            {"part": "breastplate", "protection": 15},
+            {"part": "boots", "protection": 10},
         ],
-        "weapon": {"name": "Dark Blade", "power": 35},
+        "weapon": {
+            "name": "Poisoned Sword",
+            "power": 60,
+        },
         "potion": {
-            "name": "Curse",
+            "name": "Berserk",
             "effect": {
-                "hp": -5,
                 "power": +15,
-                "protection": 0,
+                "hp": -5,
+                "protection": +10,
             },
         },
     },
-
     "red_knight": {
         "name": "Red Knight",
         "power": 40,
         "hp": 70,
         "armour": [
-            {
-                "part": "breastplate",
-                "protection": 25,
-            }
+            {"part": "breastplate", "protection": 25},
         ],
-        "weapon": {"name": "Sword", "power": 45},
+        "weapon": {
+            "name": "Sword",
+            "power": 45,
+        },
         "potion": {
             "name": "Blessing",
             "effect": {

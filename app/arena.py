@@ -11,11 +11,14 @@ def build_knight(raw: Dict) -> Knight:
         for a in raw.get("armour", [])
     ]
 
-    weapon_raw = raw.get("weapon") or {}
-    weapon = Weapon(
-        name=weapon_raw["name"],
-        power=weapon_raw["power"],
-    ) if weapon_raw else None
+    weapon_raw = raw.get("weapon")
+    if weapon_raw is not None:
+        weapon = Weapon(
+            name=weapon_raw["name"],
+            power=weapon_raw["power"],
+        )
+    else:
+        weapon = None
 
     potion_raw = raw.get("potion")
     potion = Potion(
