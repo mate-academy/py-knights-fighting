@@ -90,17 +90,12 @@ KNIGHTS = {
 
 
 def battle(knights: dict) -> dict:
-    lancelot = Knight(*battle_preparation(knights["lancelot"]))
-    arthur = Knight(*battle_preparation(knights["arthur"]))
-    mordred = Knight(*battle_preparation(knights["mordred"]))
-    red_knight = Knight(*battle_preparation(knights["red_knight"]))
+    for knight in knights:
+        knights[knight] = Knight(*battle_preparation(knights[knight]))
 
     return {
-        lancelot.name: lancelot - mordred,
-        arthur.name: arthur - red_knight,
-        mordred.name: mordred - lancelot,
-        red_knight.name: red_knight - arthur
+        knights["lancelot"].name: knights["lancelot"] - knights["mordred"],
+        knights["arthur"].name: knights["arthur"] - knights["red_knight"],
+        knights["mordred"].name: knights["mordred"] - knights["lancelot"],
+        knights["red_knight"].name: knights["red_knight"] - knights["arthur"]
     }
-
-
-print(battle(KNIGHTS))
