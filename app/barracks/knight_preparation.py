@@ -7,7 +7,7 @@ class Knight:
 
     def __init__(self, config: Dict[str, any]) -> None:
         """Initialize knight stats and apply equipment and potion effects."""
-        self.name: str = config['name']
+        self.name: str = config["name"]
         self.hp: int = config["hp"]
         self.base_power: int = config["power"]
         self.armour: list = config["armour"]
