@@ -25,12 +25,7 @@ def battle(knights_config: dict) -> dict:
     take_battle(lancelot, mordred)
     take_battle(arthur, red_knight)
 
-    return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
-    }
+    return {knight.name: knight.hp for knight in knights.values()}
 
 
 if __name__ == "__main__":
