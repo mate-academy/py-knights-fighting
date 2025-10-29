@@ -8,8 +8,6 @@ def take_battle(first_knight: Knight, second_knight: Knight) -> None:
 
 
 def check_hp(first_knight: Knight, second_knight: Knight) -> None:
-    if first_knight.hp <= 0:
-        first_knight.hp = 0
-
-    if second_knight.hp <= 0:
-        second_knight.hp = 0
+    for knight in [first_knight, second_knight]:
+        if knight.hp <= 0:
+            knight.hp = 0

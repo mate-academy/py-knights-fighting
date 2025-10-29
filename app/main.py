@@ -13,11 +13,13 @@ def prepare_knight(knight_data: dict) -> Knight:
     return knight
 
 
-def battle(knights_config: dict) -> None:
-    lancelot = prepare_knight(knights_config["lancelot"])
-    arthur = prepare_knight(knights_config["arthur"])
-    mordred = prepare_knight(knights_config["mordred"])
-    red_knight = prepare_knight(knights_config["red_knight"])
+def battle(knights_config: dict) -> dict:
+    knights = {name: prepare_knight(cfg) for name, cfg in knights_config.items()}
+
+    lancelot = knights.get("lancelot")
+    arthur = knights.get("arthur")
+    mordred = knights.get("mordred")
+    red_knight = knights.get("red_knight")
 
     take_battle(lancelot, mordred)
     take_battle(arthur, red_knight)
