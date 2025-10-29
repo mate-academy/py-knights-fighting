@@ -14,7 +14,8 @@ def prepare_knight(knight_data: dict) -> Knight:
 
 
 def battle(knights_config: dict) -> dict:
-    knights = {name: prepare_knight(cfg) for name, cfg in knights_config.items()}
+    knights = {name: prepare_knight(cfg) for name, cfg in
+               knights_config.items()}
 
     lancelot = knights.get("lancelot")
     arthur = knights.get("arthur")
