@@ -1,6 +1,5 @@
 import copy
 
-from app.knights.all_knights import KNIGHTS
 from app.knights.create_knight import KnightStatCalculator
 from app.battle.battle import Battle
 
