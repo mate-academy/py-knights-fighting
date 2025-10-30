@@ -1,22 +1,23 @@
+from typing import Dict
 from app.battle.logic import fight
 from app.knights.config import KNIGHTS
 from app.knights.knight import Knight
 
 
+def create_knights(names: list[str]) -> Dict[str, Knight]:
+    return {name: Knight(KNIGHTS[name]) for name in names}
+
+
 def main() -> None:
-    lancelot = Knight(KNIGHTS["lancelot"])
-    mordred = Knight(KNIGHTS["mordred"])
-    arthur = Knight(KNIGHTS["arthur"])
-    red_knight = Knight(KNIGHTS["red_knight"])
+    knight_names = ["lancelot", "mordred", "arthur", "red_knight"]
+    knights = create_knights(knight_names)
 
-    result1 = fight(lancelot, mordred)
-    result2 = fight(arthur, red_knight)
+    battles = [("lancelot", "mordred"), ("arthur", "red_knight")]
 
-    print("Battle 1: Lancelot vs Mordred")
-    print(result1)
-
-    print("\nBattle 2: Arthur vs Red Knight")
-    print(result2)
+    for i, (first, second) in enumerate(battles, 1):
+        result = fight(knights[first], knights[second])
+        print(f"Battle {i}: {knights[first].name} vs {knights[second].name}")
+        print(result)
 
 
 if __name__ == "__main__":

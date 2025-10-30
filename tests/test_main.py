@@ -1,10 +1,12 @@
 import pytest
-from app.battle.logic import fight  # ✅ замість battle
+from typing import Dict, Any
+
+from app.battle.logic import fight
 from app.knights.knight import Knight
 
 
 @pytest.fixture()
-def base_knights_config():
+def base_knights_config() -> Dict[str, Dict[str, Any]]:
     return {
         "lancelot": {
             "name": "Lancelot",
@@ -51,26 +53,21 @@ def base_knights_config():
     }
 
 
-# 🧠 Тест помічників — створюємо лицарів і викликаємо fight()
-def run_battle(cfg):
-    lancelot = Knight(cfg["lancelot"])
-    arthur = Knight(cfg["arthur"])
-    mordred = Knight(cfg["mordred"])
-    red_knight = Knight(cfg["red_knight"])
+def run_battle(cfg: Dict[str, Dict[str, Any]]) -> Dict[str, int]:
+    names = ["lancelot", "arthur", "mordred", "red_knight"]
+    knights = {name: Knight(cfg[name]) for name in names}
 
-    res1 = fight(lancelot, mordred)
-    res2 = fight(arthur, red_knight)
+    res1 = fight(knights["lancelot"], knights["mordred"])
+    res2 = fight(knights["arthur"], knights["red_knight"])
 
     return {
-        lancelot.name: res1[lancelot.name],
-        mordred.name: res1[mordred.name],
-        arthur.name: res2[arthur.name],
-        red_knight.name: res2[red_knight.name],
+        knights["lancelot"].name: res1[knights["lancelot"].name],
+        knights["mordred"].name: res1[knights["mordred"].name],
+        knights["arthur"].name: res2[knights["arthur"].name],
+        knights["red_knight"].name: res2[knights["red_knight"].name],
     }
 
-
-# 🧪 ТЕСТИ
-def test_base_knights(base_knights_config):
+def test_base_knights(base_knights_config: Dict[str, Dict[str, Any]]) -> None:
     assert run_battle(base_knights_config) == {
         "Lancelot": 0,
         "Arthur": 30,
@@ -79,7 +76,7 @@ def test_base_knights(base_knights_config):
     }
 
 
-def test_lancelot_overpowered(base_knights_config):
+def test_lancelot_overpowered(base_knights_config: Dict[str, Dict[str, Any]]) -> None:
     base_knights_config["lancelot"]["hp"] += 50
     base_knights_config["lancelot"]["power"] += 50
     assert run_battle(base_knights_config) == {
@@ -90,7 +87,7 @@ def test_lancelot_overpowered(base_knights_config):
     }
 
 
-def test_red_knight_overpowered(base_knights_config):
+def test_red_knight_overpowered(base_knights_config: Dict[str, Dict[str, Any]]) -> None:
     base_knights_config["red_knight"]["hp"] += 50
     base_knights_config["red_knight"]["power"] += 50
     assert run_battle(base_knights_config) == {
@@ -101,7 +98,7 @@ def test_red_knight_overpowered(base_knights_config):
     }
 
 
-def test_lancelot_has_armour(base_knights_config):
+def test_lancelot_has_armour(base_knights_config: Dict[str, Dict[str, Any]]) -> None:
     base_knights_config["lancelot"]["armour"].append(
         {"part": "helmet", "protection": 25}
     )
@@ -113,7 +110,7 @@ def test_lancelot_has_armour(base_knights_config):
     }
 
 
-def test_mordred_sword_is_not_poisoned(base_knights_config):
+def test_mordred_sword_is_not_poisoned(base_knights_config: Dict[str, Dict[str, Any]]) -> None:
     base_knights_config["mordred"]["weapon"]["name"] = "Common Sword"
     base_knights_config["mordred"]["weapon"]["power"] -= 15
     assert run_battle(base_knights_config) == {
@@ -124,7 +121,7 @@ def test_mordred_sword_is_not_poisoned(base_knights_config):
     }
 
 
-def test_arthur_armour_weak(base_knights_config):
+def test_arthur_armour_weak(base_knights_config: Dict[str, Dict[str, Any]]) -> None:
     base_knights_config["arthur"]["armour"][0]["protection"] -= 10
     base_knights_config["arthur"]["armour"][1]["protection"] -= 10
     base_knights_config["arthur"]["armour"][2]["protection"] -= 10
@@ -136,7 +133,7 @@ def test_arthur_armour_weak(base_knights_config):
     }
 
 
-def test_arthur_and_lancelot_have_potion(base_knights_config):
+def test_arthur_and_lancelot_have_potion(base_knights_config: Dict[str, Dict[str, Any]]) -> None:
     base_knights_config["arthur"]["potion"] = {
         "name": "Dragon's heart",
         "effect": {"protection": +20, "power": +10, "hp": +10},
