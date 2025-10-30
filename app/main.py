@@ -29,10 +29,17 @@ def battle(knights_config: dict) -> dict:
 
         knights_obj.append(single_knight)
 
-    KnightsBattle.battle(knights_obj[0], knights_obj[2])
-    KnightsBattle.battle(knights_obj[1], knights_obj[3])
+    KnightsBattle.battle(
+        next(k for k in knights_obj if k.name.lower() == "lancelot"),
+        next(k for k in knights_obj if k.name.lower() == "mordred")
+    )
+
+    KnightsBattle.battle(
+        next(k for k in knights_obj if k.name.lower() == "arthur"),
+        next(k for k in knights_obj if k.name.lower() == "red knight")
+    )
 
     return {k.name: k.knight_hp for k in knights_obj}
 
 
-print(battle(KNIGHTS_DICT))
+battle(KNIGHTS_DICT)
