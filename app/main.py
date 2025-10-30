@@ -1,4 +1,4 @@
-from .knights import Knight
+from .knight import Knight
 
 KNIGHTS = {
     "lancelot": {
