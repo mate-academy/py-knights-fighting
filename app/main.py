@@ -1,4 +1,4 @@
-from knights import Knight
+from app.knights import Knight
 
 KNIGHTS = {
     "lancelot": {
@@ -89,7 +89,7 @@ KNIGHTS = {
 
 
 def battle(knights_config: dict) -> dict:
-    knights = []
+    knights = {}
     for identify in knights_config:
         info = knights_config[identify]
         knight_obj = Knight(
@@ -100,11 +100,11 @@ def battle(knights_config: dict) -> dict:
             armour=info["armour"],
             potion=info["potion"]
         )
-        knights.append(knight_obj)
+        knights[knight_obj.name] = knight_obj
 
     battles = [
-        (knights[0], knights[2]),
-        (knights[1], knights[3])
+        (knights["Lancelot"], knights["Mordred"]),
+        (knights["Arthur"], knights["Red Knight"])
     ]
 
     def fight(knight1: Knight, knight2: Knight) -> None:
@@ -116,7 +116,7 @@ def battle(knights_config: dict) -> dict:
     for k1, k2 in battles:
         fight(k1, k2)
 
-    return {k.name: k.hp for k in knights}
+    return {k.name: k.hp for k in knights.values()}
 
 
 print(battle(KNIGHTS))
