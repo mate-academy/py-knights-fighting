@@ -1,214 +1,68 @@
-KNIGHTS = {
-    "lancelot": {
-        "name": "Lancelot",
-        "power": 35,
-        "hp": 100,
-        "armour": [],
-        "weapon": {
-            "name": "Metal Sword",
-            "power": 50,
-        },
-        "potion": None,
-    },
-    "arthur": {
-        "name": "Arthur",
-        "power": 45,
-        "hp": 75,
-        "armour": [
-            {
-                "part": "helmet",
-                "protection": 15,
-            },
-            {
-                "part": "breastplate",
-                "protection": 20,
-            },
-            {
-                "part": "boots",
-                "protection": 10,
-            }
-        ],
-        "weapon": {
-            "name": "Two-handed Sword",
-            "power": 55,
-        },
-        "potion": None,
-    },
-    "mordred": {
-        "name": "Mordred",
-        "power": 30,
-        "hp": 90,
-        "armour": [
-            {
-                "part": "breastplate",
-                "protection": 15,
-            },
-            {
-                "part": "boots",
-                "protection": 10,
-            }
-        ],
-        "weapon": {
-            "name": "Poisoned Sword",
-            "power": 60,
-        },
-        "potion": {
-            "name": "Berserk",
-            "effect": {
-                "power": +15,
-                "hp": -5,
-                "protection": +10,
-            }
-        }
-    },
-    "red_knight": {
-        "name": "Red Knight",
-        "power": 40,
-        "hp": 70,
-        "armour": [
-            {
-                "part": "breastplate",
-                "protection": 25,
-            }
-        ],
-        "weapon": {
-            "name": "Sword",
-            "power": 45
-        },
-        "potion": {
-            "name": "Blessing",
-            "effect": {
-                "hp": +10,
-                "power": +5,
-            }
-        }
-    }
-}
+# app/main.py
+
+"""
+Główny plik aplikacji.
+"""
+
+from app.config import KNIGHTS
+from app.models.knight import Knight
+from app.services.battle_logic import calculate_battle_result
 
 
-def battle(knightsConfig):
-    # BATTLE PREPARATIONS:
+def battle(knight_a_name: str, knight_b_name: str) -> dict:
+    """
+    Publiczna funkcja `battle` używana przez testy.
+    """
+    if knight_a_name not in KNIGHTS:
+        raise KeyError(f"Rycerz '{knight_a_name}' nie znaleziony w KNIGHTS.")
+    if knight_b_name not in KNIGHTS:
+        raise KeyError(f"Rycerz '{knight_b_name}' nie znaleziony w KNIGHTS.")
 
-    # lancelot
-    lancelot = knightsConfig["lancelot"]
+    # 1. Pobierz surowe dane z konfiguracji
+    knight_a_data = KNIGHTS[knight_a_name]
+    knight_b_data = KNIGHTS[knight_b_name]
 
-    # apply armour
-    lancelot["protection"] = 0
-    for a in lancelot["armour"]:
-        lancelot["protection"] += a["protection"]
+    # 2. Utwórz obiekty Knight (statystyki zostaną obliczone w __init__)
+    knight_a = Knight(knight_a_data)
+    knight_b = Knight(knight_b_data)
 
-    # apply weapon
-    lancelot["power"] += lancelot["weapon"]["power"]
-
-    # apply potion if exist
-    if lancelot["potion"] is not None:
-        if "power" in lancelot["potion"]["effect"]:
-            lancelot["power"] += lancelot["potion"]["effect"]["power"]
-
-        if "protection" in lancelot["potion"]["effect"]:
-            lancelot["protection"] += lancelot["potion"]["effect"]["protection"]
-
-        if "hp" in lancelot["potion"]["effect"]:
-            lancelot["hp"] += lancelot["potion"]["effect"]["hp"]
-
-    # arthur
-    arthur = knightsConfig["arthur"]
-
-    # apply armour
-    arthur["protection"] = 0
-    for a in arthur["armour"]:
-        arthur["protection"] += a["protection"]
-
-    # apply weapon
-    arthur["power"] += arthur["weapon"]["power"]
-
-    # apply potion if exist
-    if arthur["potion"] is not None:
-        if "power" in arthur["potion"]["effect"]:
-            arthur["power"] += arthur["potion"]["effect"]["power"]
-
-        if "protection" in arthur["potion"]["effect"]:
-            arthur["protection"] += arthur["potion"]["effect"]["protection"]
-
-        if "hp" in arthur["potion"]["effect"]:
-            arthur["hp"] += arthur["potion"]["effect"]["hp"]
-
-    # mordred
-    mordred = knightsConfig["mordred"]
-
-    # apply armour
-    mordred["protection"] = 0
-    for a in mordred["armour"]:
-        mordred["protection"] += a["protection"]
-
-    # apply weapon
-    mordred["power"] += mordred["weapon"]["power"]
-
-    # apply potion if exist
-    if mordred["potion"] is not None:
-        if "power" in mordred["potion"]["effect"]:
-            mordred["power"] += mordred["potion"]["effect"]["power"]
-
-        if "protection" in mordred["potion"]["effect"]:
-            mordred["protection"] += mordred["potion"]["effect"]["protection"]
-
-        if "hp" in mordred["potion"]["effect"]:
-            mordred["hp"] += mordred["potion"]["effect"]["hp"]
-
-    # red_knight
-    red_knight = knightsConfig["red_knight"]
-
-    # apply armour
-    red_knight["protection"] = 0
-    for a in red_knight["armour"]:
-        red_knight["protection"] += a["protection"]
-
-    # apply weapon
-    red_knight["power"] += red_knight["weapon"]["power"]
-
-    # apply potion if exist
-    if red_knight["potion"] is not None:
-        if "power" in red_knight["potion"]["effect"]:
-            red_knight["power"] += red_knight["potion"]["effect"]["power"]
-
-        if "protection" in red_knight["potion"]["effect"]:
-            red_knight["protection"] += red_knight["potion"]["effect"]["protection"]
-
-        if "hp" in red_knight["potion"]["effect"]:
-            red_knight["hp"] += red_knight["potion"]["effect"]["hp"]
-
-    # -------------------------------------------------------------------------------
-    # BATTLE:
-
-    # 1 Lancelot vs Mordred:
-    lancelot["hp"] -= mordred["power"] - lancelot["protection"]
-    mordred["hp"] -= lancelot["power"] - mordred["protection"]
-
-    # check if someone fell in battle
-    if lancelot["hp"] <= 0:
-        lancelot["hp"] = 0
-
-    if mordred["hp"] <= 0:
-        mordred["hp"] = 0
-
-    # 2 Arthur vs Red Knight:
-    arthur["hp"] -= red_knight["power"] - arthur["protection"]
-    red_knight["hp"] -= arthur["power"] - red_knight["protection"]
-
-    # check if someone fell in battle
-    if arthur["hp"] <= 0:
-        arthur["hp"] = 0
-
-    if red_knight["hp"] <= 0:
-        red_knight["hp"] = 0
-
-    # Return battle results:
-    return {
-        lancelot["name"]: lancelot["hp"],
-        arthur["name"]: arthur["hp"],
-        mordred["name"]: mordred["hp"],
-        red_knight["name"]: red_knight["hp"],
-    }
+    # 3. Wywołaj logikę bitwy i zwróć wynik
+    return calculate_battle_result(knight_a, knight_b)
 
 
-print(battle(KNIGHTS))
+def run_championship() -> None:
+    """
+    Uruchamia predefiniowane walki mistrzowskie i drukuje wyniki.
+    """
+    print("--- Rozpoczynają się Wielkie Mistrzostwa Camelotu! ---")
+
+    # Zdefiniuj listę walk do przeprowadzenia.
+    # Każdy element to krotka: (tytuł walki, klucz_rycerza_1, klucz_rycerza_2)
+    battle_configurations = [
+        ("Walka 1: Lancelot vs Mordred", "lancelot", "mordred"),
+        ("Walka 2: Arthur vs Red Knight", "arthur", "red_knight")
+        # Możesz łatwo dodać tu więcej walk!
+        # Np. ("Walka 3: Arthur vs Lancelot", "arthur", "lancelot")
+    ]
+
+    # Użyj jednej pętli do przetworzenia wszystkich walk
+    for title, knight_a_key, knight_b_key in battle_configurations:
+        print(f"\n{title}")
+        try:
+            # Użyj dynamicznych kluczy do wywołania bitwy
+            battle_result = battle(knight_a_key, knight_b_key)
+
+            print("Wyniki walki:")
+            for knight, hp in battle_result.items():
+                print(f"  {knight}: {hp} HP pozostało")
+                if hp == 0:
+                    print(f"  {knight} został pokonany!")
+        except Exception as e:
+            # Wyświetl błąd dla konkretnej walki
+            print(f"Nie można było przeprowadzić walki ({title}): {e}")
+
+    print("\n--- Mistrzostwa zostały zakończone! ---")
+
+
+if __name__ == "__main__":
+    run_championship()
