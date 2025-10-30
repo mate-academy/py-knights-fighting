@@ -100,11 +100,11 @@ def battle(knights_config: dict) -> dict:
             armour=info["armour"],
             potion=info["potion"]
         )
-        knights[knight_obj.name] = knight_obj
+        knights[knight_obj.name.lower().replace(" ", "_")] = knight_obj
 
     battles = [
-        (knights["Lancelot"], knights["Mordred"]),
-        (knights["Arthur"], knights["Red Knight"])
+        (knights["lancelot"], knights["mordred"]),
+        (knights["arthur"], knights["red_knight"])
     ]
 
     def fight(knight1: Knight, knight2: Knight) -> None:
