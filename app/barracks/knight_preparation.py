@@ -1,17 +1,18 @@
-from typing import Dict, Optional
+from typing import Dict, Optional, Any
+
 from app.barracks.equip import apply_equipment, apply_potion
 
 
 class Knight:
     """Represents a knight with stats, equipment, and potions."""
 
-    def __init__(self, config: Dict[str, any]) -> None:
+    def __init__(self, config: Dict[str, Any]) -> None:
         """Initialize knight stats and apply equipment and potion effects."""
         self.name: str = config["name"]
         self.hp: int = config["hp"]
         self.base_power: int = config["power"]
         self.armour: list = config["armour"]
-        self.weapon: Dict[str, int] = config["weapon"]
+        self.weapon: Dict[str, Any] = config["weapon"]
         self.potion: Optional[dict] = config.get("potion")
 
         self.power = self.base_power

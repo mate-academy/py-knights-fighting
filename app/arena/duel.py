@@ -1,16 +1,18 @@
 from typing import Dict
+
 from app.barracks.knight_preparation import Knight
 
 
-def battle(knights_dict: Dict[str, Dict]) -> Dict[str, int]:
+def battle(knights_dict: Dict[str, Dict[str, int]]) -> Dict[str, int]:
     """Conduct battles between Lancelot vs Mordred and Arthur vs Red Knight."""
-    lancelot = Knight(knights_dict["lancelot"])
-    arthur = Knight(knights_dict["arthur"])
-    mordred = Knight(knights_dict["mordred"])
-    red_knight = Knight(knights_dict["red_knight"])
+    knights: Dict[str, Knight] = {
+        key: Knight(data)
+        for key, data in knights_dict.items()
+        if key in ("lancelot", "arthur", "mordred", "red_knight")
+    }
 
-    result1 = fight(lancelot, mordred)
-    result2 = fight(arthur, red_knight)
+    result1: Dict[str, int] = fight(knights["lancelot"], knights["mordred"])
+    result2: Dict[str, int] = fight(knights["arthur"], knights["red_knight"])
 
     return {**result1, **result2}
 
