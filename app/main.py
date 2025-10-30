@@ -36,29 +36,30 @@ def run_championship() -> None:
     """
     print("--- Rozpoczynają się Wielkie Mistrzostwa Camelotu! ---")
 
-    # Walka 1: Lancelot vs Mordred
-    print("\nWalka 1: Lancelot vs Mordred")
-    try:
-        battle_1_result = battle("lancelot", "mordred")
-        print("Wyniki walki:")
-        for knight, hp in battle_1_result.items():
-            print(f"  {knight}: {hp} HP pozostało")
-            if hp == 0:
-                print(f"  {knight} został pokonany!")
-    except Exception as e:
-        print(f"Nie można było przeprowadzić walki: {e}")
+    # Zdefiniuj listę walk do przeprowadzenia.
+    # Każdy element to krotka: (tytuł walki, klucz_rycerza_1, klucz_rycerza_2)
+    battle_configurations = [
+        ("Walka 1: Lancelot vs Mordred", "lancelot", "mordred"),
+        ("Walka 2: Arthur vs Red Knight", "arthur", "red_knight")
+        # Możesz łatwo dodać tu więcej walk!
+        # Np. ("Walka 3: Arthur vs Lancelot", "arthur", "lancelot")
+    ]
 
-    # Walka 2: Arthur vs Red Knight
-    print("\nWalka 2: Arthur vs Red Knight")
-    try:
-        battle_2_result = battle("arthur", "red_knight")
-        print("Wyniki walki:")
-        for knight, hp in battle_2_result.items():
-            print(f"  {knight}: {hp} HP pozostało")
-            if hp == 0:
-                print(f"  {knight} został pokonany!")
-    except Exception as e:
-        print(f"Nie można było przeprowadzić walki: {e}")
+    # Użyj jednej pętli do przetworzenia wszystkich walk
+    for title, knight_a_key, knight_b_key in battle_configurations:
+        print(f"\n{title}")
+        try:
+            # Użyj dynamicznych kluczy do wywołania bitwy
+            battle_result = battle(knight_a_key, knight_b_key)
+
+            print("Wyniki walki:")
+            for knight, hp in battle_result.items():
+                print(f"  {knight}: {hp} HP pozostało")
+                if hp == 0:
+                    print(f"  {knight} został pokonany!")
+        except Exception as e:
+            # Wyświetl błąd dla konkretnej walki
+            print(f"Nie można było przeprowadzić walki ({title}): {e}")
 
     print("\n--- Mistrzostwa zostały zakończone! ---")
 
