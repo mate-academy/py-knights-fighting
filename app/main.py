@@ -1,7 +1,6 @@
 from app.knights_pack.knights_data import Knight
 from app.battle_pack.prepare_for_battle import PrepareForBattle
 from app.battle_pack.knights_battle import KnightsBattle
-from app.knights_pack.knights_store import KNIGHTS_DICT
 
 
 def battle(knights_config: dict) -> dict:
@@ -40,6 +39,3 @@ def battle(knights_config: dict) -> dict:
     )
 
     return {k.name: k.knight_hp for k in knights_obj}
-
-
-battle(KNIGHTS_DICT)
