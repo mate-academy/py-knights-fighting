@@ -1,6 +1,11 @@
 from app.equipment import Armour, Weapon, Potion
 from app.gameplay import Logic, Knight
 
+BATTLE_PAIRS = [
+    ("Lancelot", "Mordred"),
+    ("Arthur", "Red Knight"),
+]
+
 
 def battle(knights_config: dict) -> dict:
 
@@ -36,31 +41,25 @@ def battle(knights_config: dict) -> dict:
             weapon_obj,
             potion_obj
         )
+        Logic.prepare_to_battle(knight)
         prepared_knights[knight.name] = knight
 
-    prepared_lancelot = prepared_knights.get("Lancelot")
-    prepared_arthur = prepared_knights.get("Arthur")
-    prepared_mordred = prepared_knights.get("Mordred")
-    prepared_red_knight = prepared_knights.get("Red Knight")
-
-    # apply armour, apply weapon, apply potion if exist
-    Logic.prepare_to_battle(prepared_lancelot)
-    Logic.prepare_to_battle(prepared_arthur)
-    Logic.prepare_to_battle(prepared_mordred)
-    Logic.prepare_to_battle(prepared_red_knight)
+    lancelot = prepared_knights.get("Lancelot")
+    mordred = prepared_knights.get("Mordred")
+    arthur = prepared_knights.get("Arthur")
+    red_knight = prepared_knights.get("Red Knight")
 
     # -------------------------------------------------------------------------------
     # BATTLE:
 
-    Logic.fight(prepared_lancelot, prepared_mordred)
+    if lancelot and mordred:
+        Logic.fight(lancelot, mordred)
 
-    # 2 Arthur vs Red Knight:
-    Logic.fight(prepared_arthur, prepared_red_knight)
+    if arthur and red_knight:
+        Logic.fight(arthur, red_knight)
 
     # Return battle results:
     return {
-        prepared_lancelot.name: prepared_lancelot.hp,
-        prepared_arthur.name: prepared_arthur.hp,
-        prepared_mordred.name: prepared_mordred.hp,
-        prepared_red_knight.name: prepared_red_knight.hp,
+        knight.name: knight.hp
+        for knight in prepared_knights.values()
     }
