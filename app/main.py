@@ -99,6 +99,3 @@ def battle(knights_config: dict) -> dict:
     r2 = duel(knights["arthur"], knights["red_knight"])
 
     return r1 | r2
-
-
-print(battle(KNIGHTS))
