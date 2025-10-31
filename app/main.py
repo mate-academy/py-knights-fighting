@@ -90,13 +90,13 @@ KNIGHTS = {
 
 
 def battle(knights_config: dict) -> dict:
-    lancelot = build_knight(knights_config["lancelot"])
-    mordred = build_knight(knights_config["mordred"])
-    arthur = build_knight(knights_config["arthur"])
-    red = build_knight(knights_config["red_knight"])
+    knights = {
+        knight: build_knight(knights_config[knight])
+        for knight in knights_config
+    }
 
-    r1 = duel(lancelot, mordred)
-    r2 = duel(arthur, red)
+    r1 = duel(knights["lancelot"], knights["mordred"])
+    r2 = duel(knights["arthur"], knights["red_knight"])
 
     return r1 | r2
 
