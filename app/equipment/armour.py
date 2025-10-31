@@ -3,10 +3,4 @@ class Armour:
         self.protection = 0
         if armour is not None:
             for item in armour:
-                if item.get("part") == "helmet":
-                    self.helmet = item.get("part")
-                elif item.get("part") == "breastplate":
-                    self.breastplate = item.get("part")
-                elif item.get("part") == "boots":
-                    self.boots = item.get("part")
                 self.protection += item.get("protection")

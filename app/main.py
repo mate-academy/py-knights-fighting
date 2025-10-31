@@ -41,22 +41,22 @@ def battle(knights_config: dict) -> dict:
             weapon_obj,
             potion_obj
         )
+        # preparing knight to battle
         Logic.prepare_to_battle(knight)
-        prepared_knights[knight.name] = knight
 
-    lancelot = prepared_knights.get("Lancelot")
-    mordred = prepared_knights.get("Mordred")
-    arthur = prepared_knights.get("Arthur")
-    red_knight = prepared_knights.get("Red Knight")
+        # saving prepared knight
+        prepared_knights[knight.name] = knight
 
     # -------------------------------------------------------------------------------
     # BATTLE:
 
-    if lancelot and mordred:
-        Logic.fight(lancelot, mordred)
+    for name_a, name_b in BATTLE_PAIRS:
+        fighter_a = prepared_knights.get(name_a)
+        fighter_b = prepared_knights.get(name_b)
 
-    if arthur and red_knight:
-        Logic.fight(arthur, red_knight)
+    # Checking if exist
+        if fighter_a and fighter_b:
+            Logic.fight(fighter_a, fighter_b)
 
     # Return battle results:
     return {
