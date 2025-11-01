@@ -1,3 +1,5 @@
+from typing import Dict, Any, Optional
+
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
@@ -87,7 +89,7 @@ KNIGHTS = {
 
 
 class Knight:
-    def __init__(self, config):
+    def __init__(self, config: Dict[str, Any]) -> None:
         self.name = config["name"]
         self.hp = config["hp"]
         self.power = config["power"]
@@ -97,22 +99,21 @@ class Knight:
         self.apply_weapon(config["weapon"])
         self.apply_potion(config.get("potion"))
 
-
-    def apply_armour(self, armour_list) -> None:
+    def apply_armour(self, armour_list: list[Dict[str, Any]]) -> None:
         for item in armour_list:
-            self.protection += item("protection", 0)
+            self.protection += item.get("protection", 0)
 
-    def apply_weapon(self, weapon):
+    def apply_weapon(self, weapon: Dict[str, Any]) -> None:
         self.power += weapon.get("power", 0)
 
-    def apply_potion(self, potion) -> None:
+    def apply_potion(self, potion: Optional[Dict[str, Any]]) -> None:
         if potion and "effect" in potion:
             effect = potion["effect"]
             self.hp += effect.get("hp", 0)
             self.power += effect.get("power", 0)
             self.protection += effect.get("protection", 0)
 
-    def take_damage(self, damage) -> None:
+    def take_damage(self, damage: int) -> None:
         self.hp -= damage
         if self.hp < 0:
             self.hp = 0
