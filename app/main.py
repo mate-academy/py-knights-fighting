@@ -1,3 +1,5 @@
+from app.statistics.knights import Knights
+from app.statistics import config
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
@@ -85,34 +87,24 @@ KNIGHTS = {
     }
 }
 
+stat = Knights(KNIGHTS)
+lister = Knights.list_knights
 
 def battle(knightsConfig):
     # BATTLE PREPARATIONS:
 
     # lancelot
-    lancelot = knightsConfig["lancelot"]
+    lancelot = stat.lancelot
 
     # apply armour
-    lancelot["protection"] = 0
-    for a in lancelot["armour"]:
-        lancelot["protection"] += a["protection"]
+    for i in lister:
+        config.configurations(i)
 
-    # apply weapon
-    lancelot["power"] += lancelot["weapon"]["power"]
-
-    # apply potion if exist
-    if lancelot["potion"] is not None:
-        if "power" in lancelot["potion"]["effect"]:
-            lancelot["power"] += lancelot["potion"]["effect"]["power"]
-
-        if "protection" in lancelot["potion"]["effect"]:
-            lancelot["protection"] += lancelot["potion"]["effect"]["protection"]
-
-        if "hp" in lancelot["potion"]["effect"]:
-            lancelot["hp"] += lancelot["potion"]["effect"]["hp"]
 
     # arthur
     arthur = knightsConfig["arthur"]
+    arthur = stat.arthur
+
 
     # apply armour
     arthur["protection"] = 0
@@ -134,7 +126,8 @@ def battle(knightsConfig):
             arthur["hp"] += arthur["potion"]["effect"]["hp"]
 
     # mordred
-    mordred = knightsConfig["mordred"]
+    mordred = stat.mordred
+
 
     # apply armour
     mordred["protection"] = 0
@@ -156,7 +149,7 @@ def battle(knightsConfig):
             mordred["hp"] += mordred["potion"]["effect"]["hp"]
 
     # red_knight
-    red_knight = knightsConfig["red_knight"]
+    red_knight = stat.red_knight
 
     # apply armour
     red_knight["protection"] = 0
@@ -212,3 +205,6 @@ def battle(knightsConfig):
 
 
 print(battle(KNIGHTS))
+print(stat.lancelot)
+print(stat.arthur)
+print(Knights.list_knights)
