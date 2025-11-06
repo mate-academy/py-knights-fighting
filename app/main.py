@@ -1,29 +1,29 @@
 from typing import cast
 
-from app.knight.knight import Knight, implement_knights_and_stuff
+from app.knight.knight import Knight, create_knight
 from app.knight.knights_data import KNIGHTS
 
 
 def battle(knights: dict) -> dict:
-    lancelot = cast(
-        Knight, implement_knights_and_stuff("lancelot", knights)
-    )
-    arthur = cast(
-        Knight, implement_knights_and_stuff("arthur", knights)
-    )
-    mordred = cast(
-        Knight, implement_knights_and_stuff("mordred", knights)
-    )
-    red_knight = cast(
-        Knight, implement_knights_and_stuff("red_knight", knights)
-    )
-
-    return {
-        lancelot.name: lancelot.count_hp(mordred),
-        mordred.name: mordred.count_hp(lancelot),
-        arthur.name: arthur.count_hp(red_knight),
-        red_knight.name: red_knight.count_hp(arthur),
+    knight_names = ["lancelot", "arthur", "mordred", "red_knight"]
+    knight_objects = {
+        name: cast(Knight, create_knight(name, knights))
+        for name in knight_names
     }
+
+    pairs = [
+        ("lancelot", "mordred"),
+        ("arthur", "red_knight")
+    ]
+
+    results = {}
+    for k1, k2 in pairs:
+        knight_1 = knight_objects[k1]
+        knight_2 = knight_objects[k2]
+        results[knight_1.name] = knight_1.count_hp(knight_2)
+        results[knight_2.name] = knight_2.count_hp(knight_1)
+
+    return results
 
 
 print(battle(KNIGHTS))
