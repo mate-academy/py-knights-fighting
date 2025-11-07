@@ -17,14 +17,14 @@ class Knight:
         self.hp = hp
         self.protection = protection
 
-    def __str__(self) -> None:
+    def __str__(self) -> str:
         if self.protection:
-            print(
+            return (
                 f"Knight {self.name} has {self.power} power, "
                 f"{self.hp} HP, {self.protection} protection."
             )
         else:
-            print(
+            return (
                 f"Knight {self.name} has {self.power} power, {self.hp} HP"
             )
 
@@ -49,14 +49,14 @@ class Knight:
         return hp
 
 
-def create_knight(name: str, knights_data: dict) -> object:
+def create_knight(name: str, knights_data: dict) -> Knight:
 
     knight = Knight(knights_data[name]["name"],
                     knights_data[name]["power"],
                     knights_data[name]["hp"])
 
-    for armour in knights_data[name]["armour"]:
-        armour = Armour(armour["part"], armour["protection"])
+    for armour_data in knights_data[name]["armour"]:
+        armour = Armour(armour_data["part"], armour_data["protection"])
         knight.use_armour(armour)
 
     if knights_data[name]["potion"] is not None:

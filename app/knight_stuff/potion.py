@@ -4,5 +4,5 @@ class Potion:
         self.name = name
         self.effect = effect
 
-    def __str__(self) -> None:
-        print(f"Potion is {self.name}")
+    def __str__(self) -> str:
+        return f"Potion is {self.name}"

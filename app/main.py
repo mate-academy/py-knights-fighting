@@ -1,11 +1,10 @@
 from typing import cast
 
 from app.knight.knight import Knight, create_knight
-from app.knight.knights_data import KNIGHTS
 
 
 def battle(knights: dict) -> dict:
-    knight_names = ["lancelot", "arthur", "mordred", "red_knight"]
+    knight_names = list(knights.keys())
     knight_objects = {
         name: cast(Knight, create_knight(name, knights))
         for name in knight_names
@@ -24,6 +23,3 @@ def battle(knights: dict) -> dict:
         results[knight_2.name] = knight_2.count_hp(knight_1)
 
     return results
-
-
-print(battle(KNIGHTS))

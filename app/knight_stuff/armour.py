@@ -4,5 +4,5 @@ class Armour:
         self.part = part
         self.protection = protection
 
-    def __str__(self) -> None:
-        print(f"{self.part} has {self.protection} protection")
+    def __str__(self) -> str:
+        return f"{self.part} has {self.protection} protection"
