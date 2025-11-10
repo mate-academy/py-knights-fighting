@@ -17,12 +17,12 @@ def battle(knights_config: dict,
     knights: dict = {
         key: Knight(cfg) for key, cfg in knights_config.items()
     }
-    for key_a, key_b in pairings:
-        a = knights.get(key_a)
-        b = knights.get(key_b)
-        if a is None or b is None:
+    for attacker_key, defender_key in pairings:
+        attacker = knights.get(attacker_key)
+        defender = knights.get(defender_key)
+        if attacker is None or defender is None:
             continue
-        a.duel(b)
+        attacker.duel(defender)
 
     return {knight.name: knight.hp for knight in knights.values()}
 
