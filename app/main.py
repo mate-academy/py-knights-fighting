@@ -1,101 +1,34 @@
-from app.helpers.potion_usage import UsePotion
+from typing import Any
+
+from app.helpers.battle import Battle
 from app.helpers.knights_config import KNIGHTS
-from app.helpers.apply_armour import Armour
-from app.helpers.apply_weapon import Weapon
 from app.knights.knights import Character
+from app.helpers.battle_preparation import BattlePreparation
 
 
-def battle(knightsConfig):
-    # BATTLE PREPARATIONS:
+def battle(knights_config: dict[Any]) -> dict[Character]:
 
-    # lancelot
-    lancelot = Character("lancelot", 35, 100)
-    lancelot.equip_character(knightsConfig)
+    lancelot_prep = BattlePreparation("lancelot", knights_config)
+    lancelot = lancelot_prep.create_character()
 
-    # apply armour
-    lancelot_use_armour = Armour(lancelot)
-    lancelot_use_armour.use_armour()
+    arthur_prep = BattlePreparation("arthur", knights_config)
+    arthur = arthur_prep.create_character()
 
-    # apply weapon
-    lancelot_weapon = Weapon(lancelot)
-    lancelot_weapon.use_weapon()
+    mordred_prep = BattlePreparation("mordred", knights_config)
+    mordred = mordred_prep.create_character()
 
-    # apply potion if exist
-    lancelot_use_potion = UsePotion(lancelot)
-    lancelot_use_potion.use_all_potion()
-
-    # arthur
-    arthur = Character("arthur", 45, 75)
-    arthur.equip_character(knightsConfig)
-
-    # apply armour
-    arthur_use_armour = Armour(arthur)
-    arthur_use_armour.use_armour()
-
-    # apply weapon
-    arthur_weapon = Weapon(arthur)
-    arthur_weapon.use_weapon()
-
-    # apply potion if exist
-    arthur_use_potion = UsePotion(arthur)
-    arthur_use_potion.use_all_potion()
-
-    # mordred
-    mordred = Character("mordred", 30, 90)
-    mordred.equip_character(knightsConfig)
-
-    # apply armour
-    mordred_use_armour = Armour(mordred)
-    mordred_use_armour.use_armour()
-
-    # apply weapon
-    mordred_weapon = Weapon(mordred)
-    mordred_weapon.use_weapon()
-
-    # apply potion if exist
-    mordred_use_potion = UsePotion(mordred)
-    mordred_use_potion.use_all_potion()
-
-    # red_knight
-    red_knight = Character("red_knight", 40, 70)
-    red_knight.equip_character(knightsConfig)
-
-    # apply armour
-    red_knight_use_armour = Armour(red_knight)
-    red_knight_use_armour.use_armour()
-
-    # apply weapon
-    red_knight_weapon = Weapon(red_knight)
-    red_knight_weapon.use_weapon()
-
-    # apply potion if exist
-    red_knight_use_potion = UsePotion(red_knight)
-    red_knight_use_potion.use_all_potion()
-
-    # -------------------------------------------------------------------------------
-    # BATTLE:
+    red_knight_prep = BattlePreparation("red_knight", knights_config)
+    red_knight = red_knight_prep.create_character()
 
     # 1 Lancelot vs Mordred:
-    lancelot.hp -= mordred.power - lancelot.protection
-    mordred.hp -= lancelot.power - mordred.protection
-
-    # check if someone fell in battle
-    if lancelot.hp <= 0:
-        lancelot.hp = 0
-
-    if mordred.hp <= 0:
-        mordred.hp = 0
+    battle1 = Battle(character_one=lancelot,
+                     character_two=mordred)
+    battle1.calculate_battle()
 
     # 2 Arthur vs Red Knight:
-    arthur.hp -= red_knight.power - arthur.protection
-    red_knight.hp -= arthur.power - red_knight.protection
-
-    # check if someone fell in battle
-    if arthur.hp <= 0:
-        arthur.hp = 0
-
-    if red_knight.hp <= 0:
-        red_knight.hp = 0
+    battle2 = Battle(character_one=arthur,
+                     character_two=red_knight)
+    battle2.calculate_battle()
 
     # Return battle results:
     return {

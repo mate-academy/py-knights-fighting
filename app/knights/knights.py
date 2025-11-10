@@ -2,7 +2,7 @@ from app.knight.knight import Knight
 
 
 class Character(Knight):
-    def __init__(self, name: str, power: int, hp: int):
+    def __init__(self, name: str, power: int, hp: int) -> None:
         super().__init__(name, power, hp)
         self.armour = []
         self.weapon = None
@@ -13,4 +13,3 @@ class Character(Knight):
         self.weapon = config[self.name]["weapon"]
         self.potion = config[self.name]["potion"]
         self.armour = config[self.name]["armour"]
-
