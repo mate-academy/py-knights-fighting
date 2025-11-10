@@ -37,7 +37,7 @@ class Knight:
         self.hp = max(0, self.hp)
         opponent.hp = max(0, opponent.hp)
 
-    def __repr__(self) -> None:
+    def __repr__(self) -> str:
         return (f"<Knight {self.name}: "
                 f"HP={self.hp}, Power={self.power}, "
                 f"Prot={self.protection}>")

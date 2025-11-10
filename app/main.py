@@ -1,18 +1,32 @@
 from .knights_data import KNIGHTS
 from .battle import Knight
 
+DEFAULT_PAIRINGS = [
+    ("lancelot", "mordred"),
+    ("arthur", "red_knight"),
+]
 
-def battle(knights_config: dict) -> None:
-    lancelot = Knight(knights_config["lancelot"])
-    arthur = Knight(knights_config["arthur"])
-    mordred = Knight(knights_config["mordred"])
-    red_knight = Knight(knights_config["red_knight"])
-    lancelot.duel(mordred)
-    arthur.duel(red_knight)
 
-    results = {k.name: k.hp for k in [lancelot, arthur, mordred, red_knight]}
-    return results
+def battle(knights_config: dict,
+           pairings: list[tuple[str, str]] | None = None
+           ) -> dict:
+
+    if pairings is None:
+        pairings = DEFAULT_PAIRINGS
+
+    knights: dict = {
+        key: Knight(cfg) for key, cfg in knights_config.items()
+    }
+    for key_a, key_b in pairings:
+        a = knights.get(key_a)
+        b = knights.get(key_b)
+        if a is None or b is None:
+            continue
+        a.duel(b)
+
+    return {knight.name: knight.hp for knight in knights.values()}
 
 
 if __name__ == "__main__":
-    print(battle(KNIGHTS))
+    results = battle(KNIGHTS)
+    print(results)
