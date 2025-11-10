@@ -1,7 +1,5 @@
 class Knight:
 
-    knights_list = {}
-
     def __init__(
             self,
             name: str,

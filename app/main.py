@@ -125,8 +125,9 @@ def fight_battle(knight: Knight, knight2: Knight) -> None:
 def battle(knights_config: dict) -> dict:
 
     # MAKE CLASSES
+    knights_list = {}
     for knight_name, knight in knights_config.items():
-        Knight.knights_list.update({
+        knights_list.update({
             knight_name:
                 Knight(
                     name=knight["name"],
@@ -141,22 +142,10 @@ def battle(knights_config: dict) -> dict:
     # BATTLE PREPARATIONS:
 
     dict_of_knights_to_battle = {}
-    # lancelot
-    dict_of_knights_to_battle.update({
-        "lancelot": Knight.knights_list["lancelot"]
-    })
-    # arthur
-    dict_of_knights_to_battle.update({
-        "arthur": Knight.knights_list["arthur"]
-    })
-    # mordred
-    dict_of_knights_to_battle.update({
-        "mordred": Knight.knights_list["mordred"]
-    })
-    # red_knight
-    dict_of_knights_to_battle.update({
-        "red_knight": Knight.knights_list["red_knight"]
-    })
+    for name in knights_config:
+        dict_of_knights_to_battle.update({
+            name: knights_list[name]
+        })
 
     for knight in dict_of_knights_to_battle.values():
         apply_armour(knight)
@@ -177,17 +166,8 @@ def battle(knights_config: dict) -> dict:
     )
 
     # Return battle results:
-    return {
-        dict_of_knights_to_battle["lancelot"].name:
-            dict_of_knights_to_battle["lancelot"].hp,
-        dict_of_knights_to_battle["arthur"].name:
-            dict_of_knights_to_battle["arthur"].hp,
-        dict_of_knights_to_battle["mordred"].name:
-            dict_of_knights_to_battle["mordred"].hp,
-        dict_of_knights_to_battle["red_knight"].name:
-            dict_of_knights_to_battle["red_knight"].hp,
-    }
+    result = {}
+    for knight in dict_of_knights_to_battle.values():
+        result.update({knight.name: knight.hp})
 
-
-# print(battle(KNIGHTS))
-# {'Lancelot': 0, 'Arthur': 30, 'Mordred': 35, 'Red Knight': 5}
+    return result
