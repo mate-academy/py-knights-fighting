@@ -1,3 +1,6 @@
+from __future__ import annotations
+from typing import Any, List, Dict, Optional
+
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
@@ -86,129 +89,104 @@ KNIGHTS = {
 }
 
 
-def battle(knightsConfig):
-    # BATTLE PREPARATIONS:
+class Item:
+    """Базовий клас для зброї, елементів обладунків та зілля."""
 
-    # lancelot
-    lancelot = knightsConfig["lancelot"]
+    def __init__(self, data: Dict[str]) -> None:
+        self.name: str = data.get("name")
+        # Атрибути залежать від типу предмета
+        self.power: int = data.get("power")
+        self.protection: int = data.get("protection")
+        self.part: Optional[str] = data.get("part")  # Для обладунків
+        self.effect: Optional[Dict[str, int]] = data.get("effect")  # Для зілля
 
-    # apply armour
-    lancelot["protection"] = 0
-    for a in lancelot["armour"]:
-        lancelot["protection"] += a["protection"]
 
-    # apply weapon
-    lancelot["power"] += lancelot["weapon"]["power"]
+class Knight:
+    """Представляє Лицаря з усіма його характеристиками та поведінкою."""
 
-    # apply potion if exist
-    if lancelot["potion"] is not None:
-        if "power" in lancelot["potion"]["effect"]:
-            lancelot["power"] += lancelot["potion"]["effect"]["power"]
+    def __init__(self, data: Dict[str, Any]) -> None:
+        self.name: str = data["name"]
+        self.base_power: int = data["power"]
+        self.hp: int = data["hp"]
 
-        if "protection" in lancelot["potion"]["effect"]:
-            lancelot["protection"] += lancelot["potion"]["effect"]["protection"]
+        # Предмети, перетворені на об'єкти класу Item
+        self.armour: List[Item] = [Item(a) for a in data.get("armour", [])]
+        self.weapon: Item = Item(data["weapon"])
+        self.potion: Optional[Item] = Item(data["potion"]) \
+            if data["potion"] else None
 
-        if "hp" in lancelot["potion"]["effect"]:
-            lancelot["hp"] += lancelot["potion"]["effect"]["hp"]
+        # Характеристики для битви (будуть розраховані пізніше)
+        self.total_power: int = 0
+        self.total_protection: int = 0
 
-    # arthur
-    arthur = knightsConfig["arthur"]
+    def prepare_for_battle(self) -> None:
+        """Розраховує остаточні характеристики перед боєм."""
 
-    # apply armour
-    arthur["protection"] = 0
-    for a in arthur["armour"]:
-        arthur["protection"] += a["protection"]
+        # 1. Базова сила + сила зброї
+        self.total_power = self.base_power + self.weapon.power
 
-    # apply weapon
-    arthur["power"] += arthur["weapon"]["power"]
+        # 2. Захист від обладунків
+        self.total_protection = sum(a.protection for a in self.armour)
 
-    # apply potion if exist
-    if arthur["potion"] is not None:
-        if "power" in arthur["potion"]["effect"]:
-            arthur["power"] += arthur["potion"]["effect"]["power"]
+        # 3. Застосування ефекту зілля
+        if self.potion and self.potion.effect:
+            effect = self.potion.effect
 
-        if "protection" in arthur["potion"]["effect"]:
-            arthur["protection"] += arthur["potion"]["effect"]["protection"]
+            self.total_power += effect.get("power", 0)
+            self.total_protection += effect.get("protection", 0)
+            self.hp += effect.get("hp", 0)  # Зміна HP перед боєм
 
-        if "hp" in arthur["potion"]["effect"]:
-            arthur["hp"] += arthur["potion"]["effect"]["hp"]
+    def attack(self, target: Knight) -> None:
+        """Лицар атакує ціль, розраховуючи шкоду."""
 
-    # mordred
-    mordred = knightsConfig["mordred"]
+        # Шкода = max(0, Атакуюча сила - Захист цілі)
+        damage = max(0, self.total_power - target.total_protection)
+        target.hp -= damage
 
-    # apply armour
-    mordred["protection"] = 0
-    for a in mordred["armour"]:
-        mordred["protection"] += a["protection"]
+        # HP не може бути менше 0
+        target.hp = max(0, target.hp)
 
-    # apply weapon
-    mordred["power"] += mordred["weapon"]["power"]
+    def __repr__(self) -> str:
+        """Представлення об'єкта для друку."""
+        return (f"Knight(Name={self.name}"
+                f", HP={self.hp}"
+                f", Power={self.total_power}"
+                f", Prot={self.total_protection})")
 
-    # apply potion if exist
-    if mordred["potion"] is not None:
-        if "power" in mordred["potion"]["effect"]:
-            mordred["power"] += mordred["potion"]["effect"]["power"]
+    @property
+    def is_alive(self) -> bool:
+        """Перевіряє, чи живий лицар."""
+        return self.hp > 0
 
-        if "protection" in mordred["potion"]["effect"]:
-            mordred["protection"] += mordred["potion"]["effect"]["protection"]
 
-        if "hp" in mordred["potion"]["effect"]:
-            mordred["hp"] += mordred["potion"]["effect"]["hp"]
+def battle(knights_data: Dict[str, Any]) -> Dict[str, int]:
+    # 1. 🏰 Створення об'єктів та підготовка до битви
+    knights = {key: Knight(data) for key, data in knights_data.items()}
 
-    # red_knight
-    red_knight = knightsConfig["red_knight"]
+    lancelot = knights["lancelot"]
+    arthur = knights["arthur"]
+    mordred = knights["mordred"]
+    red_knight = knights["red_knight"]
 
-    # apply armour
-    red_knight["protection"] = 0
-    for a in red_knight["armour"]:
-        red_knight["protection"] += a["protection"]
+    for knight in knights.values():
+        knight.prepare_for_battle()
 
-    # apply weapon
-    red_knight["power"] += red_knight["weapon"]["power"]
+    # 2. 🛡️ Битва: Лицарі атакують один одного
 
-    # apply potion if exist
-    if red_knight["potion"] is not None:
-        if "power" in red_knight["potion"]["effect"]:
-            red_knight["power"] += red_knight["potion"]["effect"]["power"]
+    # Lancelot vs Mordred
+    lancelot.attack(mordred)
+    mordred.attack(lancelot)
 
-        if "protection" in red_knight["potion"]["effect"]:
-            red_knight["protection"] += red_knight["potion"]["effect"]["protection"]
+    # Arthur vs Red Knight
+    arthur.attack(red_knight)
+    red_knight.attack(arthur)
 
-        if "hp" in red_knight["potion"]["effect"]:
-            red_knight["hp"] += red_knight["potion"]["effect"]["hp"]
-
-    # -------------------------------------------------------------------------------
-    # BATTLE:
-
-    # 1 Lancelot vs Mordred:
-    lancelot["hp"] -= mordred["power"] - lancelot["protection"]
-    mordred["hp"] -= lancelot["power"] - mordred["protection"]
-
-    # check if someone fell in battle
-    if lancelot["hp"] <= 0:
-        lancelot["hp"] = 0
-
-    if mordred["hp"] <= 0:
-        mordred["hp"] = 0
-
-    # 2 Arthur vs Red Knight:
-    arthur["hp"] -= red_knight["power"] - arthur["protection"]
-    red_knight["hp"] -= arthur["power"] - red_knight["protection"]
-
-    # check if someone fell in battle
-    if arthur["hp"] <= 0:
-        arthur["hp"] = 0
-
-    if red_knight["hp"] <= 0:
-        red_knight["hp"] = 0
-
-    # Return battle results:
+    # 3. 📝 Повернення результатів
     return {
-        lancelot["name"]: lancelot["hp"],
-        arthur["name"]: arthur["hp"],
-        mordred["name"]: mordred["hp"],
-        red_knight["name"]: red_knight["hp"],
+        k.name: k.hp
+        for k in knights.values()
     }
 
 
+# Виконання
 print(battle(KNIGHTS))
