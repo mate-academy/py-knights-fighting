@@ -1,6 +1,7 @@
 from typing import Dict, Any
-from .models.knight import Knight
-from .battle_engine.battle import Battle
+from app.models.knight import Knight
+from app.battle_engine.battle import Battle
+from app.battle_engine.tournament import Tournament
 
 KNIGHTS = {
     "lancelot": {
@@ -91,30 +92,8 @@ KNIGHTS = {
 
 
 def battle(knights_config: Dict[str, Any]) -> Dict[str, int]:
-    knights = {}
-    for knight_key, knight_data in knights_config.items():
-        knights[knight_key] = Knight(knight_data)
-
-    # Define battle pairings (maintaining original tournament structure)
-    battle_pairings = [
-        ("lancelot", "mordred"),
-        ("arthur", "red_knight")
-    ]
-
-    # Execute all battles
-    battle_results: Dict[str, int] = {}
-    for knight1_key, knight2_key in battle_pairings:
-        knight1 = knights[knight1_key]
-        knight2 = knights[knight2_key]
-
-        # Create and execute battle
-        battle_instance = Battle(knight1, knight2)
-        single_battle_result = battle_instance.fight()
-
-        # Merge results
-        battle_results.update(single_battle_result)
-
-    return battle_results
+    tournament = Tournament(knights_config)
+    return tournament.execute_battles()
 
 
 if __name__ == "__main__":

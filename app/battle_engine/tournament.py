@@ -1,5 +1,6 @@
 from typing import Dict, List, Optional, Tuple, Any
 from .battle import Battle
+from ..models.knight import Knight
 
 
 class Tournament:
@@ -15,8 +16,6 @@ class Tournament:
         self.results = {}
 
     def prepare_knights(self) -> Dict[str, Any]:
-        from ..models.knight import Knight
-
         self.knights = {}
         for knight_key, knight_data in self.knights_config.items():
             self.knights[knight_key] = Knight(knight_data)

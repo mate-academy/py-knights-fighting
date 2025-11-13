@@ -28,6 +28,7 @@ class Battle:
 
         if self.knight1.hp > 0 and self.knight2.hp > 0:
             return None
+        elif self.knight1.hp > 0:
             return self.knight1
         elif self.knight2.hp > 0:
             return self.knight2
