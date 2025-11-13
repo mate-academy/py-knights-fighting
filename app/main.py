@@ -1,6 +1,6 @@
 from typing import Dict, Any
-from models.knight import Knight
-from battle_engine.battle import Battle
+from .models.knight import Knight
+from .battle_engine.battle import Battle
 
 KNIGHTS = {
     "lancelot": {
