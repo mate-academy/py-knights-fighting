@@ -57,6 +57,6 @@ class Knight:
         return self.hp <= 0
 
     def __repr__(self) -> str:
-        return (f"Knight(name='{self.name}', "
+        return (f"Knight(name=\"{self.name}\", "
                 f"hp={self.hp}, power={self.power}, "
                 f"protection={self.protection})")

@@ -1,6 +1,4 @@
 from typing import Dict, Any
-from app.models.knight import Knight
-from app.battle_engine.battle import Battle
 from app.battle_engine.tournament import Tournament
 
 KNIGHTS = {
