@@ -3,24 +3,26 @@ from app.data.data import KNIGHTS
 
 stat = Tournament(KNIGHTS)
 
-def battle(knightsConfig):
+
+def battle(knights_config: dict) -> dict:
     # BATTLE PREPARATIONS:
+
     # apply armour
-    for value in knightsConfig.values():
+
+    for value in knights_config.values():
         stat.configurations(value)
 
     # lancelot
-    lancelot = knightsConfig["lancelot"]
+    lancelot = knights_config["lancelot"]
 
     # arthur
-    arthur = knightsConfig["arthur"]
+    arthur = knights_config["arthur"]
 
     # mordred
-    mordred = knightsConfig["mordred"]
+    mordred = knights_config["mordred"]
 
     # red_knight
-    red_knight = knightsConfig["red_knight"]
-
+    red_knight = knights_config["red_knight"]
 
     # -------------------------------------------------------------------------------
     # BATTLE:
@@ -38,6 +40,3 @@ def battle(knightsConfig):
         mordred["name"]: mordred["hp"],
         red_knight["name"]: red_knight["hp"],
     }
-
-
-print(battle(KNIGHTS))

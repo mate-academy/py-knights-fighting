@@ -4,6 +4,7 @@ class Tournament:
     mordred: dict
     red_knight: dict
     list_knights: list["Tournament"] = []
+
     def __init__(self, data: dict, protection: int = 0) -> None:
         self.protection = protection
         for key, value in data.items():
@@ -11,10 +12,10 @@ class Tournament:
             Tournament.list_knights.append(getattr(self, key))
 
     @staticmethod
-    def configurations(stat):
+    def configurations(stat: dict) -> None:
         stat["protection"] = 0
-        for a in stat["armour"]:
-            stat["protection"] += a["protection"]
+        for protect in stat["armour"]:
+            stat["protection"] += protect["protection"]
 
         # apply weapon
         stat["power"] += stat["weapon"]["power"]
@@ -31,7 +32,7 @@ class Tournament:
                 stat["hp"] += stat["potion"]["effect"]["hp"]
 
     @staticmethod
-    def battle(knight1, knight2):
+    def battle(knight1: dict, knight2: dict) -> None:
         knight1["hp"] -= knight2["power"] - knight1["protection"]
         knight2["hp"] -= knight1["power"] - knight2["protection"]
         if knight1["hp"] <= 0:
