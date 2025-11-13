@@ -1,42 +1,32 @@
 class Tournament:
-    lancelot: dict
-    arthur: dict
-    mordred: dict
-    red_knight: dict
-    list_knights: list["Tournament"] = []
+    def __init__(self, king: dict) -> None:
+        self.king = king
 
-    def __init__(self, data: dict, protection: int = 0) -> None:
-        self.protection = protection
-        for key, value in data.items():
-            setattr(self, key, value)
-            Tournament.list_knights.append(getattr(self, key))
-
-    @staticmethod
-    def configurations(stat: dict) -> None:
-        stat["protection"] = 0
-        for protect in stat["armour"]:
-            stat["protection"] += protect["protection"]
+    def configurations(self) -> None:
+        self.king["protection"] = 0
+        for protect in self.king["armour"]:
+            self.king["protection"] += protect["protection"]
 
         # apply weapon
-        stat["power"] += stat["weapon"]["power"]
+        self.king["power"] += self.king["weapon"]["power"]
 
         # apply potion if exist
-        if stat["potion"] is not None:
-            if "power" in stat["potion"]["effect"]:
-                stat["power"] += stat["potion"]["effect"]["power"]
+        if self.king["potion"] is not None:
+            if "power" in self.king["potion"]["effect"]:
+                self.king["power"] += self.king["potion"]["effect"]["power"]
 
-            if "protection" in stat["potion"]["effect"]:
-                stat["protection"] += stat["potion"]["effect"]["protection"]
+            if "protection" in self.king["potion"]["effect"]:
+                self.king["protection"] +=\
+                    self.king["potion"]["effect"]["protection"]
 
-            if "hp" in stat["potion"]["effect"]:
-                stat["hp"] += stat["potion"]["effect"]["hp"]
+            if "hp" in self.king["potion"]["effect"]:
+                self.king["hp"] += self.king["potion"]["effect"]["hp"]
 
-    @staticmethod
-    def battle(knight1: dict, knight2: dict) -> None:
-        knight1["hp"] -= knight2["power"] - knight1["protection"]
-        knight2["hp"] -= knight1["power"] - knight2["protection"]
-        if knight1["hp"] <= 0:
-            knight1["hp"] = 0
+    def battle(self, knight2: dict) -> None:
+        self.king["hp"] -= knight2["power"] - self.king["protection"]
+        knight2["hp"] -= self.king["power"] - knight2["protection"]
+        if self.king["hp"] <= 0:
+            self.king["hp"] = 0
 
         if knight2["hp"] <= 0:
             knight2["hp"] = 0
