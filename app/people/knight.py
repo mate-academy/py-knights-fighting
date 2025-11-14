@@ -16,7 +16,15 @@ class Knight:
         self.potion = potion
         self.protection = 0
 
+        self.base_power = power
+        self.base_hp = hp
+
     def prepare_for_battle(self) -> None:
+
+        self.power = self.base_power
+        self.hp = self.base_hp
+        self.protection = 0
+
         if self.armour:
             for armour in self.armour:
                 self.protection += armour["protection"]
