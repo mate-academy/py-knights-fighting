@@ -7,5 +7,5 @@ class Armour:
 
     def use_armour(self) -> None:
         if len(self.knight.armour) > 0:
-            for armo_unit in self.knight.armour:
-                self.knight.protection += armo_unit["protection"]
+            for armour_part in self.knight.armour:
+                self.knight.protection += armour_part["protection"]
