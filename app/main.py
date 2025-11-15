@@ -1,10 +1,8 @@
 from typing import Any
 
-from pycodestyle import python_3000_raise_comma
 
 from app.helpers.battle import Battle
 from app.helpers.knights_config import KNIGHTS
-from app.knights.knights import Character
 from app.helpers.battle_preparation import BattlePreparation
 
 
@@ -22,7 +20,6 @@ def battle(knights_config: dict[Any]) -> dict[str, int]:
     red_knight_prep = BattlePreparation("red_knight", knights_config)
     red_knight = red_knight_prep.create_character()
 
-
     # 1 Lancelot vs Mordred:
     battle1 = Battle(character_one=lancelot,
                      character_two=mordred)
@@ -38,7 +35,7 @@ def battle(knights_config: dict[Any]) -> dict[str, int]:
         lancelot.name.capitalize(): lancelot.hp,
         arthur.name.capitalize(): arthur.hp,
         mordred.name.capitalize(): mordred.hp,
-        red_knight.name.capitalize(): red_knight.hp,
+        "Red Knight": red_knight.hp,
     }
 
 
