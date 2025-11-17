@@ -32,7 +32,7 @@ KNIGHTS = {
             "name": "Two-handed Sword",
             "power": 55,
         },
-        "potion": None,
+        "potion": th_sword,
     },
     "mordred": {
         "name": "Mordred",
