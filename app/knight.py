@@ -31,7 +31,7 @@ class Knight:
     def apply_weapon(self, weapon: Weapon) -> None:
         self.power += weapon.power
 
-    def apply_potion(self, potion: Potion) -> None:
+    def apply_potion(self, potion: Potion | None) -> None:
         if potion is not None:
             if potion.effect.power:
                 self.power += potion.effect.power

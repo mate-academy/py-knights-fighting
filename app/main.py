@@ -139,10 +139,7 @@ def build_knights(knights_config: dict) -> dict:
             knight["hp"],
             [Armor(armor) for armor in knight["armour"]],
             Weapon(knight["weapon"]),
-            Potion(potion_name, potion_effect),
+            Potion(potion_name, potion_effect) if potion_data else None,
         )
 
     return knights
-
-
-print(battle(KNIGHTS))
