@@ -1,5 +1,5 @@
 class Knight:
-    def __init__(self, config: dict):
+    def __init__(self, config: dict) -> None:
         self.name = config["name"]
         self.hp = config["hp"]
         self.base_power = config["power"]
@@ -9,7 +9,7 @@ class Knight:
         self.power = self.base_power
         self.protection = 0
 
-    def prepare_for_battle(self):
+    def prepare_for_battle(self) -> None:
         self.protection = sum(a["protection"] for a in self.armour)
         self.power += self.weapon.get("power", 0)
 
@@ -19,7 +19,7 @@ class Knight:
             self.power += effect.get("power", 0)
             self.protection += effect.get("protection", 0)
 
-    def fight(self, opponent: "Knight"):
+    def fight(self, opponent: "Knight") -> None:
         damage_to_self = max(opponent.power - self.protection, 0)
         damage_to_opponent = max(self.power - opponent.protection, 0)
 
