@@ -1,21 +1,15 @@
 from .knights import Knight
 
-
 def battle(knights_config: dict) -> dict:
-    lancelot = Knight(knights_config["lancelot"])
-    mordred = Knight(knights_config["mordred"])
-    arthur = Knight(knights_config["arthur"])
-    red_knight = Knight(knights_config["red_knight"])
+    knights = {name: Knight(cfg) for name, cfg in knights_config.items()}
 
-    for knight in [lancelot, mordred, arthur, red_knight]:
+    for knight in knights.values():
         knight.prepare_for_battle()
 
-    lancelot.fight(mordred)
-    arthur.fight(red_knight)
+    knights["lancelot"].fight(knights["mordred"])
+    knights["arthur"].fight(knights["red_knight"])
 
     return {
-        lancelot.name: lancelot.hp,
-        mordred.name: mordred.hp,
-        arthur.name: arthur.hp,
-        red_knight.name: red_knight.hp,
+        cfg["name"]: knights[key].hp
+        for key, cfg in knights_config.items()
     }
