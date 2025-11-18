@@ -1,5 +1,6 @@
 from .knights import Knight
 
+
 def battle(knights_config: dict) -> dict:
     knights = {name: Knight(cfg) for name, cfg in knights_config.items()}
 
