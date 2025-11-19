@@ -1,13 +1,14 @@
 from __future__ import annotations
-from accessories.armour import ArmourPiece
-from accessories.potion import Potion
-from accessories.weapon import Weapon
+from app.accessories.armour import ArmourPiece
+from app.accessories.potion import Potion
+from app.accessories.weapon import Weapon
 
 
 class Knight:
     def __init__(self, name: str,
                  power: int, hp: int,
-                 armor: list, weapon: Weapon,
+                 armor: list[ArmourPiece],
+                 weapon: Weapon,
                  potion: Potion) -> None:
         self.name = name
         self.power = power
@@ -15,9 +16,9 @@ class Knight:
         self.armor = armor
         self.weapon = weapon
         self.potion = potion
-
-    def battle_preparation(self):
         self.protection = 0
+
+    def battle_preparation(self) -> None:
         for piece in self.armor:
             self.protection += piece.protection
 
@@ -34,7 +35,7 @@ class Knight:
             if "hp" in effects:
                 self.hp += effects["hp"]
 
-    def attack(self, target: Knight):
+    def battle(self, target: Knight) -> None:
         damage = self.power - target.protection
         if damage > 0:
             target.hp -= damage

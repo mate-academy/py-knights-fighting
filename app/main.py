@@ -1,7 +1,7 @@
-from accessories.armour import ArmourPiece
-from accessories.potion import Potion
-from accessories.weapon import Weapon
-from knight import Knight
+from app.accessories.armour import ArmourPiece
+from app.accessories.potion import Potion
+from app.accessories.weapon import Weapon
+from app.knight import Knight
 
 
 lancelot_weapon = Weapon("Metal Sword", 50)
@@ -36,29 +36,58 @@ red_knight = Knight("Red Knight", 40, 70,
 
 all_knights = [red_knight, lancelot, arthur, mordred]
 
+
 def prepare_for_battle(knights: list) -> None:
     for knight in knights:
         knight.battle_preparation()
 
+
 def duel(knight_1: Knight, knight_2: Knight) -> Knight | None:
-    knight_1.attack(knight_2)
-    knight_2.attack(knight_1)
+    knight_1.battle(knight_2)
+    knight_2.battle(knight_1)
     print(f"{knight_1.name} VS {knight_2.name}")
     if knight_1.hp > knight_2.hp:
         print(f"{knight_1.name} wins!"
-                f"\n{knight_1.name}: {knight_1.hp}"
-                f"\n{knight_2.name}: {knight_2.hp}")
+              f"\n{knight_1.name}: {knight_1.hp}"
+              f"\n{knight_2.name}: {knight_2.hp}")
         return knight_1
     if knight_1.hp < knight_2.hp:
         print(f"{knight_2.name} wins!"
-                f"\n{knight_1.name}: {knight_1.hp}"
-                f"\n{knight_2.name}: {knight_2.hp}")
+              f"\n{knight_1.name}: {knight_1.hp}"
+              f"\n{knight_2.name}: {knight_2.hp}")
         return knight_2
     else:
-        print(f"Draw"
-                f"\n{knight_1.name}: {knight_1.hp}"
-                f"\n{knight_2.name}: {knight_2.hp}")
+        print("Draw"
+              f"\n{knight_1.name}: {knight_1.hp}"
+              f"\n{knight_2.name}: {knight_2.hp}")
         return None
 
-prepare_for_battle(all_knights)
-duel(all_knights[0], all_knights[1])
+
+def tournament(knights: list) -> None:
+    prepare_for_battle(knights)
+    print("\n" + "=" * 40)
+    print("THE KNIGHTS TOURNAMENT HAS BEGUN")
+    print("=" * 40)
+    print("\n--- SEMIFINAL 1 ---")
+    winner_1 = duel(knights[0], knights[1])
+    print("\n--- SEMIFINAL 2 ---")
+    winner_2 = duel(knights[2], knights[3])
+    print("\n" + "=" * 40)
+    print("FINAL BATTLE HAS BEGUN")
+    print("=" * 40)
+    if winner_1 is None and winner_2 is None:
+        print("Draw")
+    elif winner_1 is None:
+        print(f"{winner_2.name} wins!")
+    elif winner_2 is None:
+        print(f"{winner_1.name} wins!")
+    else:
+        print(f"--- FINAL: {winner_1.name} VS {winner_2.name} ---")
+        the_best = duel(winner_1, winner_2)
+        if the_best is None:
+            print("Draw")
+        else:
+            print(f"{the_best.name} wins the tournament!")
+
+
+tournament(all_knights)
