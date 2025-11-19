@@ -3,38 +3,112 @@ from app.accessories.potion import Potion
 from app.accessories.weapon import Weapon
 from app.knight import Knight
 
+KNIGHTS = {
+    "lancelot": {
+        "name": "Lancelot",
+        "power": 35,
+        "hp": 100,
+        "armour": [],
+        "weapon": {
+            "name": "Metal Sword",
+            "power": 50,
+        },
+        "potion": None,
+    },
+    "arthur": {
+        "name": "Arthur",
+        "power": 45,
+        "hp": 75,
+        "armour": [
+            {
+                "part": "helmet",
+                "protection": 15,
+            },
+            {
+                "part": "breastplate",
+                "protection": 20,
+            },
+            {
+                "part": "boots",
+                "protection": 10,
+            }
+        ],
+        "weapon": {
+            "name": "Two-handed Sword",
+            "power": 55,
+        },
+        "potion": None,
+    },
+    "mordred": {
+        "name": "Mordred",
+        "power": 30,
+        "hp": 90,
+        "armour": [
+            {
+                "part": "breastplate",
+                "protection": 15,
+            },
+            {
+                "part": "boots",
+                "protection": 10,
+            }
+        ],
+        "weapon": {
+            "name": "Poisoned Sword",
+            "power": 60,
+        },
+        "potion": {
+            "name": "Berserk",
+            "effect": {
+                "power": +15,
+                "hp": -5,
+                "protection": +10,
+            }
+        }
+    },
+    "red_knight": {
+        "name": "Red Knight",
+        "power": 40,
+        "hp": 70,
+        "armour": [
+            {
+                "part": "breastplate",
+                "protection": 25,
+            }
+        ],
+        "weapon": {
+            "name": "Sword",
+            "power": 45
+        },
+        "potion": {
+            "name": "Blessing",
+            "effect": {
+                "hp": +10,
+                "power": +5,
+            }
+        }
+    }
+}
 
-lancelot_weapon = Weapon("Metal Sword", 50)
-lancelot = Knight("Lancelot", 35, 100,
-                  [], lancelot_weapon, None)
-
-
-arthur_helmet = ArmourPiece("helmet", 15)
-arthur_breastplate = ArmourPiece("breastplate", 20)
-arthur_boots = ArmourPiece("boots", 10)
-arthur_weapon = Weapon("Two-handed Sword", 55)
-arthur = Knight("Arthur",
-                45, 75,
-                [arthur_helmet, arthur_breastplate, arthur_boots],
-                arthur_weapon, None)
-
-mordred_breastplate = ArmourPiece("breastplate", 15)
-mordred_boots = ArmourPiece("boots", 10)
-mordred_weapon = Weapon("Poisoned Sword", 60)
-mordred_potion = Potion("Berserk", {"power": 15, "hp": -5, "protection": 10})
-mordred = Knight("Mordred",
-                 30, 90,
-                 [mordred_breastplate, mordred_boots],
-                 mordred_weapon, mordred_potion)
-
-red_knight_breastplate = ArmourPiece("breastplate", 25)
-red_knight_weapon = Weapon("Sword", 45)
-red_knight_potion = Potion("Blessing", {"power": 5, "hp": 10})
-red_knight = Knight("Red Knight", 40, 70,
-                    [red_knight_breastplate],
-                    red_knight_weapon, red_knight_potion)
-
-all_knights = [red_knight, lancelot, arthur, mordred]
+all_knights = []
+for knight_dict in KNIGHTS.values():
+    knight_armour = []
+    for armour in knight_dict["armour"]:
+        knight_armour.append(ArmourPiece(**armour))
+    knight_weapon = Weapon(knight_dict["weapon"]["name"],
+                           knight_dict["weapon"]["power"])
+    if knight_dict["potion"] is not None:
+        knight_potion = Potion(knight_dict["potion"]["name"],
+                               knight_dict["potion"]["effect"])
+    else:
+        knight_potion = None
+    knight = Knight(knight_dict["name"],
+                    knight_dict["power"],
+                    knight_dict["hp"],
+                    knight_armour,
+                    knight_weapon,
+                    knight_potion)
+    all_knights.append(knight)
 
 
 def prepare_for_battle(knights: list) -> None:
@@ -43,23 +117,32 @@ def prepare_for_battle(knights: list) -> None:
 
 
 def duel(knight_1: Knight, knight_2: Knight) -> Knight | None:
+    print(f"{knight_1.name} VS {knight_2.name}")
+    print("Before duel"
+          f"\n{knight_1.name} has"
+          f"\n{knight_1.power} power, "
+          f"{knight_1.protection} protection, and "
+          f"{knight_1.hp} hp.")
+    print(f"{knight_2.name} has"
+          f"\n{knight_2.power} power, "
+          f"{knight_2.protection} protection, and "
+          f"{knight_2.hp} hp.")
     knight_1.battle(knight_2)
     knight_2.battle(knight_1)
-    print(f"{knight_1.name} VS {knight_2.name}")
     if knight_1.hp > knight_2.hp:
         print(f"{knight_1.name} wins!"
-              f"\n{knight_1.name}: {knight_1.hp}"
-              f"\n{knight_2.name}: {knight_2.hp}")
+              f"\n{knight_1.name}: {knight_1.hp} hp"
+              f"\n{knight_2.name}: {knight_2.hp} hp")
         return knight_1
     if knight_1.hp < knight_2.hp:
         print(f"{knight_2.name} wins!"
-              f"\n{knight_1.name}: {knight_1.hp}"
-              f"\n{knight_2.name}: {knight_2.hp}")
+              f"\n{knight_1.name}: {knight_1.hp} hp"
+              f"\n{knight_2.name}: {knight_2.hp} hp")
         return knight_2
     else:
         print("Draw"
-              f"\n{knight_1.name}: {knight_1.hp}"
-              f"\n{knight_2.name}: {knight_2.hp}")
+              f"\n{knight_1.name}: {knight_1.hp} hp"
+              f"\n{knight_2.name}: {knight_2.hp} hp")
         return None
 
 
@@ -83,9 +166,12 @@ def tournament(knights: list) -> None:
         print(f"{winner_1.name} wins!")
     else:
         print(f"--- FINAL: {winner_1.name} VS {winner_2.name} ---")
+        print("Doctors run onto the field and treat the finalists!")
+        winner_1.heal()
+        winner_2.heal()
         the_best = duel(winner_1, winner_2)
         if the_best is None:
-            print("Draw")
+            pass
         else:
             print(f"{the_best.name} wins the tournament!")
 

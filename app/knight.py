@@ -13,12 +13,13 @@ class Knight:
         self.name = name
         self.power = power
         self.hp = hp
+        self.max_hp = hp
         self.armor = armor
         self.weapon = weapon
         self.potion = potion
-        self.protection = 0
 
     def battle_preparation(self) -> None:
+        self.protection = 0
         for piece in self.armor:
             self.protection += piece.protection
 
@@ -42,3 +43,6 @@ class Knight:
 
         if target.hp <= 0:
             target.hp = 0
+
+    def heal(self) -> None:
+        self.hp = self.max_hp
