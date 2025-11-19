@@ -2,26 +2,17 @@ from app.knight import Knight
 
 
 def battle(knights_config: dict) -> dict:
-    lancelot = Knight(**knights_config["lancelot"])
-    arthur = Knight(**knights_config["arthur"])
-    mordred = Knight(**knights_config["mordred"])
-    red_knight = Knight(**knights_config["red_knight"])
+    knights = {
+        name: Knight(**knights_config[name])
+        for name, config in knights_config.items()
+    }
+    lancelot = knights["lancelot"]
+    arthur = knights["arthur"]
+    mordred = knights["mordred"]
+    red_knight = knights["red_knight"]
 
-    lancelot.preparation_to_battle()
-    mordred.preparation_to_battle()
-
-    lancelot.battle(mordred)
-
-    lancelot.check_is_fall()
-    mordred.check_is_fall()
-
-    arthur.preparation_to_battle()
-    red_knight.preparation_to_battle()
-
-    arthur.battle(red_knight)
-
-    arthur.check_is_fall()
-    red_knight.check_is_fall()
+    lancelot.execute_duel(mordred)
+    arthur.execute_duel(red_knight)
 
     return {
         lancelot.name: lancelot.hp,
