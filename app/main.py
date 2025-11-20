@@ -116,7 +116,7 @@ def prepare_for_battle(knights: list) -> None:
         knight.battle_preparation()
 
 
-def duel(knight_1: Knight, knight_2: Knight) -> Knight | None:
+def battle(knight_1: Knight, knight_2: Knight) -> Knight | None:
     print(f"{knight_1.name} VS {knight_2.name}")
     print("Before duel"
           f"\n{knight_1.name} has"
@@ -127,8 +127,8 @@ def duel(knight_1: Knight, knight_2: Knight) -> Knight | None:
           f"\n{knight_2.power} power, "
           f"{knight_2.protection} protection, and "
           f"{knight_2.hp} hp.")
-    knight_1.battle(knight_2)
-    knight_2.battle(knight_1)
+    knight_1.attack(knight_2)
+    knight_2.attack(knight_1)
     if knight_1.hp > knight_2.hp:
         print(f"{knight_1.name} wins!"
               f"\n{knight_1.name}: {knight_1.hp} hp"
@@ -152,9 +152,9 @@ def tournament(knights: list) -> None:
     print("THE KNIGHTS TOURNAMENT HAS BEGUN")
     print("=" * 40)
     print("\n--- SEMIFINAL 1 ---")
-    winner_1 = duel(knights[0], knights[1])
+    winner_1 = battle(knights[0], knights[2])
     print("\n--- SEMIFINAL 2 ---")
-    winner_2 = duel(knights[2], knights[3])
+    winner_2 = battle(knights[1], knights[3])
     print("\n" + "=" * 40)
     print("FINAL BATTLE HAS BEGUN")
     print("=" * 40)
@@ -166,10 +166,9 @@ def tournament(knights: list) -> None:
         print(f"{winner_1.name} wins!")
     else:
         print(f"--- FINAL: {winner_1.name} VS {winner_2.name} ---")
-        print("Doctors run onto the field and treat the finalists!")
-        winner_1.heal()
-        winner_2.heal()
-        the_best = duel(winner_1, winner_2)
+        winner_1.battle_preparation()
+        winner_2.battle_preparation()
+        the_best = battle(winner_1, winner_2)
         if the_best is None:
             pass
         else:

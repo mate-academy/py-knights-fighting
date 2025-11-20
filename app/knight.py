@@ -11,15 +11,22 @@ class Knight:
                  weapon: Weapon,
                  potion: Potion) -> None:
         self.name = name
+
+        self.base_power = power
         self.power = power
+        self.base_hp = hp
         self.hp = hp
-        self.max_hp = hp
+
+        self.protection = 0
         self.armor = armor
         self.weapon = weapon
         self.potion = potion
 
     def battle_preparation(self) -> None:
         self.protection = 0
+        self.power = self.base_power
+        self.hp = self.base_hp
+
         for piece in self.armor:
             self.protection += piece.protection
 
@@ -36,13 +43,10 @@ class Knight:
             if "hp" in effects:
                 self.hp += effects["hp"]
 
-    def battle(self, target: Knight) -> None:
+    def attack(self, target: Knight) -> None:
         damage = self.power - target.protection
         if damage > 0:
             target.hp -= damage
 
         if target.hp <= 0:
             target.hp = 0
-
-    def heal(self) -> None:
-        self.hp = self.max_hp
