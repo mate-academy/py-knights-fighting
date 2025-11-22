@@ -1,11 +1,11 @@
 from app.knights.knights_list import KNIGHTS
-from app.prepering_to_battle import build_knight
+from app.preparing_to_battle import build_knight
 
 
 def battle(knights_config: dict) -> dict:
     fighters = {
         knight: build_knight(knight, knights_config)
-        for knight in ["lancelot", "mordred", "arthur", "red_knight"]
+        for knight in knights_config
     }
     for knight in fighters.values():
         knight.preparing_to_battle()
@@ -21,4 +21,5 @@ def battle(knights_config: dict) -> dict:
     return {knight.name: knight.hp for knight in fighters.values()}
 
 
-print(battle(KNIGHTS))
+if __name__ == "__main__":
+    print(battle(KNIGHTS))

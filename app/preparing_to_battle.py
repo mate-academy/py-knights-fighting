@@ -4,7 +4,7 @@ from __future__ import annotations
 class Knight:
     def __init__(
             self, name: str, power: int, hp: int,
-            weapon: dict, armour: dict | None, potion: dict = None
+            weapon: dict, armour: list[dict] | None, potion: dict = None
     ) -> None:
         self.name = name
         self.power = power
@@ -45,11 +45,11 @@ class Knight:
 
 def build_knight(name: str, knights_config: dict) -> Knight:
     warrior = knights_config[name]
-    bad_night = Knight(
+    knight = Knight(
         warrior["name"],
         warrior["power"],
         warrior["hp"],
         warrior["weapon"],
         warrior["armour"],
         warrior["potion"])
-    return bad_night
+    return knight
