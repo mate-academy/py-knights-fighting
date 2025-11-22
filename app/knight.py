@@ -19,6 +19,8 @@ class Knight:
         self.potion = potion
         self.protection = 0
 
+        self.preparation_to_battle()
+
     def apply_armour(self) -> None:
         for arm in self.armour:
             self.protection += arm["protection"]
@@ -47,12 +49,9 @@ class Knight:
         if self.hp <= 0:
             self.hp = 0
 
-    def execute_duel(self, knight_2: Knight) -> None:
+    def execute_duel(self, opponent: Knight) -> None:
 
-        self.preparation_to_battle()
-        knight_2.preparation_to_battle()
-
-        self.battle(knight_2)
+        self.battle(opponent)
 
         self.check_is_fall()
-        knight_2.check_is_fall()
+        opponent.check_is_fall()
