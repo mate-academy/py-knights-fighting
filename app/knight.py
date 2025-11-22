@@ -1,4 +1,5 @@
 from __future__ import annotations
+from typing import Optional
 
 
 class Knight:
@@ -9,7 +10,7 @@ class Knight:
             hp: int,
             armour: list,
             weapon: dict,
-            potion: None
+            potion: Optional[dict],
     ) -> None:
         self.name = name
         self.power = power
