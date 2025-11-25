@@ -91,15 +91,20 @@ KNIGHTS = {
 
 
 def battle(knights_config: dict) -> dict:
-    for name, knight in knights_config.items():
-        Knight.init_from_dict(knight)
-
-    for name, knight in Knight.knights.items():
+    knights = {}
+    for key, value in knights_config.items():
+        knights[key] = Knight.init_from_dict(value)
+    for name, knight in knights.items():
         knight.apply_armour()
         knight.apply_weapon()
         knight.apply_potion()
 
-    Battle.battle(Knight.knights["lancelot"], Knight.knights["mordred"])
-    Battle.battle(Knight.knights["arthur"], Knight.knights["red_knight"])
+    Battle.battle(knights["lancelot"], knights["mordred"])
+    Battle.battle(knights["arthur"], knights["red_knight"])
 
-    return Knight.get_hp()
+    results = {}
+
+    for name, knight in knights.items():
+        results[knight.name] = knight.hp
+
+    return results
