@@ -1,14 +1,8 @@
 class Effect:
-    def __init__(self) -> None:
-        pass
-
-    def get_effect(self, potion_effect: dict) -> None:
-        if "power" in potion_effect:
-            self.power = potion_effect["power"]
-        if "hp" in potion_effect:
-            self.hp = potion_effect["hp"]
-        if "protection" in potion_effect:
-            self.protection = potion_effect["protection"]
+    def __init__(self, potion_effect: dict) -> None:
+        self.power = potion_effect.get("power", 0)
+        self.hp = potion_effect.get("hp", 0)
+        self.protection = potion_effect.get("protection", 0)
 
 
 class Potion:

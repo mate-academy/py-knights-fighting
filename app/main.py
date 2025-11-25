@@ -4,21 +4,8 @@ from app.Medieval.weapon import Weapon
 from app.Medieval.knight import Knight
 
 
-def duel(knight_1: Knight, knight_2: Knight) -> list:
-    knight_1.hp -= knight_2.power - knight_1.protection
-    knight_2.hp -= knight_1.power - knight_2.protection
-
-    if knight_1.hp <= 0:
-        knight_1.hp = 0
-
-    if knight_2.hp <= 0:
-        knight_2.hp = 0
-
-    return [knight_1.hp, knight_2.hp]
-
-
-def init_knights(knights_config: dict) -> None:
-    Knight.list_of_knights = []
+def init_knights(knights_config: dict) -> dict[str, Knight]:
+    dict_of_knights = {}
     for hero in knights_config.keys():
         armour_list = []
         potion_dict = knights_config[hero]["potion"]
@@ -32,27 +19,32 @@ def init_knights(knights_config: dict) -> None:
             name=knights_config[hero]["weapon"]["name"],
             power=knights_config[hero]["weapon"]["power"])
         if potion_dict:
-            new_effect = Effect()
-            new_effect.get_effect(potion_dict["effect"])
+            new_effect = Effect(potion_dict["effect"])
             new_potion = Potion(name=potion_dict["name"], effect=new_effect)
-        Knight(
+        dict_of_knights[knights_config[hero]["name"]] = (Knight(
             name=knights_config[hero]["name"],
             power=knights_config[hero]["power"],
             hp=knights_config[hero]["hp"],
             armour=armour_list,
             weapon=new_weapon,
             potion=new_potion
-        )
+        ))
+    return dict_of_knights
 
 
 def battle(knights_config: dict) -> dict:
-    init_knights(knights_config)
-    knights = Knight.list_of_knights
-    lancelot_duel = duel(knights[0], knights[2])
-    arthur_duel = duel(knights[1], knights[3])
-    result_dict = {knights[0].name: lancelot_duel[0],
-                   knights[1].name: arthur_duel[0],
-                   knights[2].name: lancelot_duel[1],
-                   knights[3].name: arthur_duel[1]
+    knights = init_knights(knights_config)
+    lancelot = knights["Lancelot"]
+    arthur = knights["Arthur"]
+    mordor = knights["Mordred"]
+    red_knight = knights["Red Knight"]
+
+    lancelot_duel = Knight.duel(lancelot, mordor)
+    arthur_duel = Knight.duel(arthur, red_knight)
+
+    result_dict = {lancelot.name: lancelot_duel[0],
+                   arthur.name: arthur_duel[0],
+                   mordor.name: lancelot_duel[1],
+                   red_knight.name: arthur_duel[1]
                    }
     return result_dict
