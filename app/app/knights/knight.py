@@ -31,14 +31,9 @@ class Knight:
 
         # weapon
         self.power += self.weapon["power"]
-
-        # potion (opcjonalnie)
         if self.potion:
             effect = self.potion.get("effect", {})
-            # dokładnie ta sama logika co w oryginalnym kodzie
-            if "power" in effect:
-                self.power += effect["power"]
-            if "protection" in effect:
-                self.protection += effect["protection"]
-            if "hp" in effect:
-                self.hp += effect["hp"]
+            for stat, delta in effect.items():
+                if hasattr(self, stat):
+                    current_value = getattr(self, stat)
+                    setattr(self, stat, current_value + delta)
