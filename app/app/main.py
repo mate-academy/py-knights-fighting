@@ -1,11 +1,6 @@
 from typing import Dict
-import copy
 
 from .knights.battle import prepare_knights, duel
-
-
-def base_knights_config() -> Dict[str, Dict]:
-    return copy.deepcopy(base_knights_config())
 
 
 def battle(knights_config: Dict[str, Dict]) -> Dict[str, int]:
@@ -20,5 +15,5 @@ def battle(knights_config: Dict[str, Dict]) -> Dict[str, int]:
     duel(lancelot, mordred)
     duel(arthur, red_knight)
 
-    # DRY – zamiast ręcznie składać słownik, robimy dict comprehension
+    # Zwracamy słownik {nazwa_rycerza: jego_hp_po_bitwie}
     return {knight.name: knight.hp for knight in knights.values()}
