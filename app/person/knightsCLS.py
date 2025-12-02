@@ -72,12 +72,12 @@ class Knights:
         if self.hp < 0:
             self.hp = 0
 
-        fighters ={self.name: self.hp, enemy.name: enemy.hp}
+        fighters = {self.name: self.hp, enemy.name: enemy.hp}
         self.end_battle()
         enemy.end_battle()
         return fighters
 
-    def end_battle(self):
+    def end_battle(self) -> None:
         self.hp = self.base_hp
         self.power = self.base_power
         self.protection = 0

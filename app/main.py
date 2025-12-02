@@ -1,5 +1,4 @@
 from app.person.knightsCLS import Knights
-from app.DICT import KNIGHTS
 
 
 def battle(knights_config: dict) -> dict:
@@ -17,6 +16,4 @@ def battle(knights_config: dict) -> dict:
 
     final = {**result_1, **result_2}
 
-
     return final
-
