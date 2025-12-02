@@ -17,7 +17,6 @@ def battle(knights_config: dict) -> dict:
 
     final = {**result_1, **result_2}
 
+
     return final
 
-
-print(battle(KNIGHTS))

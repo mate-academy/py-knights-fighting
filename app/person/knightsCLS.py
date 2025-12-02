@@ -15,6 +15,8 @@ class Knights:
         self.weapon = weapon_thing
         self.potion = potion_things
         self.protection = 0
+        self.base_hp = hp
+        self.base_power = power
 
     @classmethod
     def from_dict(cls, knights: dict) -> dict:
@@ -41,7 +43,8 @@ class Knights:
 
     def prepare_for_battle(self) -> None:
         self.protection = 0
-
+        self.hp = self.base_hp
+        self.power = self.base_power
         for item in self.armour:
             self.protection += item.protection
 
@@ -68,4 +71,13 @@ class Knights:
             enemy.hp = 0
         if self.hp < 0:
             self.hp = 0
-        return {self.name: self.hp, enemy.name: enemy.hp}
+
+        fighters ={self.name: self.hp, enemy.name: enemy.hp}
+        self.end_battle()
+        enemy.end_battle()
+        return fighters
+
+    def end_battle(self):
+        self.hp = self.base_hp
+        self.power = self.base_power
+        self.protection = 0
