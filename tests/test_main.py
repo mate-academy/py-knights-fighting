@@ -21,7 +21,7 @@ def base_knights_config():
             "name": "Arthur",
             "power": 45,
             "hp": 75,
-            "armour": [
+            "armour": [ти
                 {
                     "part": "helmet",
                     "protection": 15,
