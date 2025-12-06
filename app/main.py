@@ -96,9 +96,3 @@ def battle(knights_config: dict) -> dict:
     battle_service = BattleService()
     results = battle_service.tournament(knights)
     return results
-
-
-if __name__ == "__main__":
-    battle_results = battle(KNIGHTS)
-    for knight_name, hp in battle_results.items():
-        print(f"{knight_name}: {hp} HP")

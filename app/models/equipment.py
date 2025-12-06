@@ -1,4 +1,5 @@
 from __future__ import annotations
+from typing import Optional
 
 
 class ArmourPiece:
@@ -32,12 +33,12 @@ class PotionEffect:
 
 
 class Potion:
-    def __init__(self, name: str, effect: dict) -> None:
+    def __init__(self, name: str, effect: PotionEffect) -> None:
         self.name = name
         self.effect = effect
 
     @classmethod
-    def create_from_dict(cls, data: dict) -> Potion | None:
+    def create_from_dict(cls, data: dict | None) -> Optional[Potion]:
         if not data:
             return None
         effect = PotionEffect.create_from_dict(data.get("effect", {}))

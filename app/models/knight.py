@@ -1,7 +1,11 @@
+from __future__ import annotations
+from app.models.equipment import Weapon, Potion, ArmourPiece
+
+
 class Knight:
     def __init__(self, name: str, base_power: int,
-                 base_hp: int, armour: list,
-                 weapon: dict, potion: dict | None = None) -> None:
+                 base_hp: int, armour: list[ArmourPiece],
+                 weapon: Weapon, potion: Potion | None = None) -> None:
         self.name = name
         self.base_power = base_power
         self.base_hp = base_hp
