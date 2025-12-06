@@ -12,14 +12,16 @@ class Knight:
         self.base_power = config["power"]
         self.power = config["power"]
 
-        self.armour_parts = [Armour(a["part"], a["protection"]) for a in config.get("armour", [])]
+        self.armour_parts = \
+            [Armour(a["part"], a["protection"]) for a in config.get("armour", [])]
         self.protection = 0
 
         weapon_cfg = config.get("weapon")
         self.weapon = Weapon(weapon_cfg["name"], weapon_cfg["power"])
 
         potion_cfg = config.get("potion")
-        self.potion = Potion(potion_cfg["name"], potion_cfg["effect"]) if potion_cfg else None
+        self.potion = (
+            Potion(potion_cfg["name"], potion_cfg["effect"])) if potion_cfg else None
 
     # ---------------------------------------------------------
 

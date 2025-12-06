@@ -7,7 +7,7 @@ def duel(k1: Knight, k2: Knight) -> None:
     k2.take_damage(k1.power - k2.protection)
 
 
-def prepare_knights(knights_config) -> dict:
+def prepare_knights(knights_config: dict) -> dict:
     """Convert dict config into Knight objects with applied effects."""
     knights = {k: Knight(conf) for k, conf in knights_config.items()}
     for knight in knights.values():

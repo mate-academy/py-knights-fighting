@@ -1,7 +1,7 @@
 from app.services.battle_service import prepare_knights, duel
 
 
-def battle(knights_config) -> dict:
+def battle(knights_config: dict) -> dict:
     knights = prepare_knights(knights_config)
 
     lancelot = knights["lancelot"]
