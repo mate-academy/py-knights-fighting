@@ -109,7 +109,3 @@ def battle(knights_config: dict) -> dict:
     result_knights = [prepared["lancelot"], prepared["arthur"],
                       prepared["mordred"], prepared["red_knight"]]
     return {k.name: k.hp for k in result_knights}
-
-
-if __name__ == "__main__":
-    print(battle(KNIGHTS))

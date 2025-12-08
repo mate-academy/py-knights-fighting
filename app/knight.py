@@ -16,15 +16,19 @@ class Knight:
         if self.weapon is not None:
             self.power += self.weapon["power"]
         else:
-            ValueError("Knight must have weapon")
+            raise ValueError("Knight must have weapon")
 
     def apply_potion(self) -> None:
-        if self.potion is not None:
-            if "power" in self.potion["effect"]:
-                self.power += self.potion["effect"]["power"]
+        if self.potion is None:
+            return
+        effect = self.potion.get("effect")
+        if not isinstance(effect, dict):
+            return
+        if "power" in effect:
+            self.power += effect["power"]
 
-            if "protection" in self.potion["effect"]:
-                self.protection += self.potion["effect"]["protection"]
+        if "protection" in effect:
+            self.protection += effect["protection"]
 
-            if "hp" in self.potion["effect"]:
-                self.hp += self.potion["effect"]["hp"]
+        if "hp" in effect:
+            self.hp += effect["hp"]
