@@ -15,6 +15,8 @@ class Knight:
     def apply_weapon(self) -> None:
         if self.weapon is not None:
             self.power += self.weapon["power"]
+        else:
+            ValueError("Knight must have weapon")
 
     def apply_potion(self) -> None:
         if self.potion is not None:

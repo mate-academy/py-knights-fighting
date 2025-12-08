@@ -97,20 +97,18 @@ def prepare_knight(config: dict) -> Knight:
 
 
 def battle(knights_config: dict) -> dict:
-    lancelot = prepare_knight(knights_config["lancelot"])
-    arthur = prepare_knight(knights_config["arthur"])
-    mordred = prepare_knight(knights_config["mordred"])
-    red_knight = prepare_knight(knights_config["red_knight"])
-
-    lancelot.hp, mordred.hp = (
-        max(0, lancelot.hp - (mordred.power - lancelot.protection)),
-        max(0, mordred.hp - (lancelot.power - mordred.protection)))
-    arthur.hp, red_knight.hp = (
-        max(0, arthur.hp - (red_knight.power - arthur.protection)),
-        max(0, red_knight.hp - (arthur.power - red_knight.protection)))
-
-    knights = [lancelot, arthur, mordred, red_knight]
-    return {k.name: k.hp for k in knights}
+    prepared = {k: prepare_knight(v) for k, v in knights_config.items()}
+    pairs = [("lancelot", "mordred"), ("arthur", "red_knight")]
+    for first_knight, second_knight in pairs:
+        fk = prepared[first_knight]
+        sk = prepared[second_knight]
+        dmg_to_fk = max(0, sk.power - fk.protection)
+        fk.hp = max(0, fk.hp - dmg_to_fk)
+        dmg_to_sk = max(0, fk.power - sk.protection)
+        sk.hp = max(0, sk.hp - dmg_to_sk)
+    result_knights = [prepared["lancelot"], prepared["arthur"],
+                      prepared["mordred"], prepared["red_knight"]]
+    return {k.name: k.hp for k in result_knights}
 
 
 if __name__ == "__main__":
