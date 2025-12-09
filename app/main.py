@@ -1,6 +1,7 @@
 from typing import Any
 
 from app.config.knights_config import KNIGHTS
+from app.knights.battle import battle as perform_battle
 from app.knights.factory import prepare_knight
 
 
@@ -10,19 +11,8 @@ def battle(knights_config: dict[str, Any]) -> dict[str, int]:
     arthur = prepare_knight(knights_config["arthur"])
     red_knight = prepare_knight(knights_config["red_knight"])
 
-    lancelot.hp -= max(mordred.power - lancelot.protection, 0)
-    mordred.hp -= max(lancelot.power - mordred.protection, 0)
-    if lancelot.hp < 0:
-        lancelot.hp = 0
-    if mordred.hp < 0:
-        mordred.hp = 0
-
-    arthur.hp -= max(red_knight.power - arthur.protection, 0)
-    red_knight.hp -= max(arthur.power - red_knight.protection, 0)
-    if arthur.hp < 0:
-        arthur.hp = 0
-    if red_knight.hp < 0:
-        red_knight.hp = 0
+    perform_battle(lancelot, mordred)
+    perform_battle(arthur, red_knight)
 
     return {
         lancelot.name: lancelot.hp,
