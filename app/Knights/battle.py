@@ -9,8 +9,8 @@ def create_knights(knights_config: dict) -> dict[str, Knight]:
 
 
 def duel(first_knight: Knight, second_knight: Knight) -> None:
-    damage_to_first = second_knight.power - first_knight.protection
-    damage_to_second = first_knight.power - second_knight.protection
+    damage_to_first = max(0, second_knight.power - first_knight.protection)
+    damage_to_second = max(0, first_knight.power - second_knight.protection)
 
     first_knight.hp -= damage_to_first
     second_knight.hp -= damage_to_second
