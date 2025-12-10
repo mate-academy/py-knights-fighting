@@ -4,7 +4,7 @@ class Knight:
         self.power = data["power"]
         self.hp = data["hp"]
         self.armour = data.get("armour", [])
-        self.weapon = data.get("weapon")
+        self.weapon = data["weapon"]
         self.potion = data.get("potion")
 
     def prepared_stats(self) -> dict:
