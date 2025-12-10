@@ -1,5 +1,4 @@
 from typing import Dict
-from .config import KNIGHTS
 from .knights.knight import Knight
 from .engine.battle import fight
 
