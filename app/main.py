@@ -4,15 +4,10 @@ from .engine.battle import fight
 
 
 def battle(knights_config: Dict[str, dict]) -> Dict[str, int]:
-    lancelot = Knight(knights_config["lancelot"])
-    arthur = Knight(knights_config["arthur"])
-    mordred = Knight(knights_config["mordred"])
-    red_knight = Knight(knights_config["red_knight"])
+    knights = {name: Knight(data) for name, data in knights_config.items()}
 
-    first_fight = fight(lancelot, mordred)
-    second_fight = fight(arthur, red_knight)
+    battle_result = {}
+    battle_result.update(fight(knights["lancelot"], knights["mordred"]))
+    battle_result.update(fight(knights["arthur"], knights["red_knight"]))
 
-    battle_result = {
-        **first_fight, **second_fight
-    }
     return battle_result
