@@ -1,26 +1,21 @@
-from app.utils.knight_utils import (apply_armour, apply_weapon, apply_potion,
-                                    hit)
-
+from app.utils.knight_utils import apply_armour, apply_weapon, apply_potion, hit
 
 def battle(knights: dict) -> dict:
-    lancelot_knight = knights["lancelot"]
-    mordred_knight = knights["mordred"]
-    arthur_knight = knights["arthur"]
-    red_knight = knights["red_knight"]
 
-    for knight in (lancelot_knight, mordred_knight, arthur_knight, red_knight):
-        apply_armour(knight)
-        apply_weapon(knight)
-        apply_potion(knight)
+    knight_names = ["lancelot", "mordred", "arthur", "red"]
+    knight_dict = {name: knights[name] for name in knight_names}
 
-    hit(lancelot_knight, mordred_knight)
-    hit(mordred_knight, lancelot_knight)
-    hit(arthur_knight, red_knight)
-    hit(red_knight, arthur_knight)
+    for k in knight_dict.values():
+        apply_armour(k)
+        apply_weapon(k)
+        apply_potion(k)
 
-    return {
-        "Lancelot": lancelot_knight["hp"],
-        "Arthur": arthur_knight["hp"],
-        "Mordred": mordred_knight["hp"],
-        "Red Knight": red_knight["hp"],
-    }
+    def exchange_hits(knight1, knight2):
+        hit(knight1, knight2)
+        hit(knight2, knight1)
+      
+    from itertools import combinations
+    for k1, k2 in combinations(knight_dict.values(), 2):
+        exchange_hits(k1, k2)
+
+    return {name: knight["к.с."] for name, knight in knight_dict.items()}
