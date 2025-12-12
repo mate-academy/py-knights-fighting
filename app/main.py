@@ -9,6 +9,3 @@ def battle(base_knights_config: dict = knights) -> dict:
     result = start_battle(knights_pairs)
 
     return result
-
-
-print(battle())

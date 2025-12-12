@@ -11,22 +11,7 @@ def start_battle(knights: list[tuple[Knight]]) -> dict:
         knight1.hit_opponent(knight2)
         knight2.hit_opponent(knight1)
 
-    # hardcoded dict to pass the tests
     return {
-        "Lancelot": next(
-            knight.current_hp
-            for knight in all_knights if knight.name == "Lancelot"
-        ),
-        "Arthur": next(
-            knight.current_hp
-            for knight in all_knights if knight.name == "Arthur"
-        ),
-        "Mordred": next(
-            knight.current_hp
-            for knight in all_knights if knight.name == "Mordred"
-        ),
-        "Red Knight": next(
-            knight.current_hp
-            for knight in all_knights if knight.name == "Red Knight"
-        ),
+        knight.name: knight.current_hp
+        for knight in all_knights
     }

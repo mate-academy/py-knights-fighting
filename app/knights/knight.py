@@ -39,7 +39,7 @@ class Knight:
     def __init__(
             self,
             name: str,
-            armor: [Armor],
+            armor: list[Armor],
             weapon: Weapon,
             potion: Potion,
             power: int = 0,

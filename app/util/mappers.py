@@ -28,7 +28,7 @@ def dict_to_potion(potion_dict: dict) -> Potion:
         return Potion()
 
 
-def dict_list_to_armor_list(armor_dict_lict: [dict]) -> list[Armor]:
+def dict_list_to_armor_list(armor_dict_lict: list[dict]) -> list[Armor]:
     return [dict_to_armor(armor_dict) for armor_dict in armor_dict_lict]
 
 
