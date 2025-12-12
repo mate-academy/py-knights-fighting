@@ -2,39 +2,49 @@ from app.knight import Knight
 
 
 class Battle:
-    @staticmethod
-    def check_hp(knights: list[Knight]) -> None:
-        for knight in knights:
+    knights_ = []
+
+    @classmethod
+    def check_hp(cls) -> None:
+        for knight in cls.knights_:
             if knight.hp < 0:
                 knight.hp = 0
 
-    @staticmethod
-    def preparations(knights_: list[Knight]) -> None:
-        for knight in knights_:
+    @classmethod
+    def preparations(cls) -> None:
+        for knight in cls.knights_:
             knight.prepare()
 
-    @staticmethod
-    def battle(knights_config: dict) -> dict:
-        knights_ = [Knight(knight) for knight in list(knights_config.values())]
-        Battle.preparations(knights_)
+    @classmethod
+    def one_battle(cls, name_knight1: str, name_knight2: str) -> None:
+        knights = [
+            knight
+            for knight in cls.knights_
+            if knight.name == name_knight1 or knight.name == name_knight2
+        ]
+
+        knights[0].hp -= knights[1].power - knights[0].protection
+        knights[1].hp -= knights[0].power - knights[1].protection
+
+        Battle.check_hp()
+
+    @classmethod
+    def battle(cls, knights_config: dict) -> dict:
+        cls.knights_ = [
+            Knight(knight)
+            for knight in list(knights_config.values())
+        ]
+        Battle.preparations()
 
         # BATTLE:
-
         # 1 Lancelot vs Mordred:
-        knights_[0].hp -= knights_[2].power - knights_[0].protection
-        knights_[2].hp -= knights_[0].power - knights_[2].protection
+        Battle.one_battle("Lancelot", "Mordred")
 
         # 2 Arthur vs Red Knight:
-        knights_[1].hp -= knights_[3].power - knights_[1].protection
-        knights_[3].hp -= knights_[1].power - knights_[3].protection
-
-        # check if someone fell in battle
-        Battle.check_hp(knights_)
+        Battle.one_battle("Arthur", "Red Knight")
 
         # Return battle results:
         return {
-            knights_[0].name: knights_[0].hp,
-            knights_[1].name: knights_[1].hp,
-            knights_[2].name: knights_[2].hp,
-            knights_[3].name: knights_[3].hp,
+            cls.knights_[i].name: cls.knights_[i].hp
+            for i in range(len(cls.knights_))
         }
