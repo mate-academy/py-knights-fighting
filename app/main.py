@@ -3,8 +3,7 @@ from app.application.battle import battle
 
 
 def main() -> None:
-    result = battle(BATTLE_CONFIG)
-    print(result)
+    battle(BATTLE_CONFIG)
 
 
 if __name__ == "__main__":

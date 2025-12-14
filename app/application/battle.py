@@ -10,20 +10,12 @@ def battle(config: dict) -> Dict[str, int]:
     Creates warriors, initiates duels, aggregates and returns the result.
     """
 
-    lancelot = create_knight(config["lancelot"])
-    arthur = create_knight(config["arthur"])
-    mordred = create_knight(config["mordred"])
-    red_knight = create_knight(config["red_knight"])
-
-    # -------------------------------------------------------------------------------
-    # BATTLE:
-    duel(lancelot, mordred)
-    duel(arthur, red_knight)
-
-    # Return battle results:
-    return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
+    knights = {
+        key: create_knight(knight_config)
+        for key, knight_config in config.items()
     }
+
+    duel(knights["lancelot"], knights["mordred"])
+    duel(knights["arthur"], knights["red_knight"])
+
+    return {knight.name: knight.hp for knight in knights.values()}

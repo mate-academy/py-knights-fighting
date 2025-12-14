@@ -12,14 +12,11 @@ def create_knight(config: dict) -> Knight:
     power = config.get("power")
     protection = 0
 
-    # apply armour
     for armor in config["armour"]:
         protection += armor["protection"]
 
-    # apply weapon
     power += config["weapon"]["power"]
 
-    # apply potion if exist
     if config["potion"] is not None:
         if "power" in config["potion"]["effect"]:
             power += config["potion"]["effect"]["power"]
