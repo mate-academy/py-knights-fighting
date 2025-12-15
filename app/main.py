@@ -1,3 +1,7 @@
+from app.battle import heroes_battle as battle_result
+from app.stats_count import heroes_stats_count as stats_counter
+from app.stats import Stats as stats
+
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
@@ -26,7 +30,7 @@ KNIGHTS = {
             {
                 "part": "boots",
                 "protection": 10,
-            }
+            },
         ],
         "weapon": {
             "name": "Two-handed Sword",
@@ -46,7 +50,7 @@ KNIGHTS = {
             {
                 "part": "boots",
                 "protection": 10,
-            }
+            },
         ],
         "weapon": {
             "name": "Poisoned Sword",
@@ -58,8 +62,8 @@ KNIGHTS = {
                 "power": +15,
                 "hp": -5,
                 "protection": +10,
-            }
-        }
+            },
+        },
     },
     "red_knight": {
         "name": "Red Knight",
@@ -71,18 +75,15 @@ KNIGHTS = {
                 "protection": 25,
             }
         ],
-        "weapon": {
-            "name": "Sword",
-            "power": 45
-        },
+        "weapon": {"name": "Sword", "power": 45},
         "potion": {
             "name": "Blessing",
             "effect": {
                 "hp": +10,
                 "power": +5,
-            }
-        }
-    }
+            },
+        },
+    },
 }
 
 
@@ -90,125 +91,69 @@ def battle(knightsConfig):
     # BATTLE PREPARATIONS:
 
     # lancelot
-    lancelot = knightsConfig["lancelot"]
-
-    # apply armour
-    lancelot["protection"] = 0
-    for a in lancelot["armour"]:
-        lancelot["protection"] += a["protection"]
-
-    # apply weapon
-    lancelot["power"] += lancelot["weapon"]["power"]
-
-    # apply potion if exist
-    if lancelot["potion"] is not None:
-        if "power" in lancelot["potion"]["effect"]:
-            lancelot["power"] += lancelot["potion"]["effect"]["power"]
-
-        if "protection" in lancelot["potion"]["effect"]:
-            lancelot["protection"] += lancelot["potion"]["effect"]["protection"]
-
-        if "hp" in lancelot["potion"]["effect"]:
-            lancelot["hp"] += lancelot["potion"]["effect"]["hp"]
+    lancelot = knightsConfig["lancelot"]  # get all lancelot stats
+    lancelot_prepare = stats_counter(
+        lancelot
+    )  # count lancelot stats for battle by app.stats_count.py
+    lancelot_ready = stats(
+        lancelot_prepare[0],
+        lancelot_prepare[1],
+        lancelot_prepare[2],
+        lancelot_prepare[3],
+    )  # objects of counted stats by app.stats.py
 
     # arthur
-    arthur = knightsConfig["arthur"]
-
-    # apply armour
-    arthur["protection"] = 0
-    for a in arthur["armour"]:
-        arthur["protection"] += a["protection"]
-
-    # apply weapon
-    arthur["power"] += arthur["weapon"]["power"]
-
-    # apply potion if exist
-    if arthur["potion"] is not None:
-        if "power" in arthur["potion"]["effect"]:
-            arthur["power"] += arthur["potion"]["effect"]["power"]
-
-        if "protection" in arthur["potion"]["effect"]:
-            arthur["protection"] += arthur["potion"]["effect"]["protection"]
-
-        if "hp" in arthur["potion"]["effect"]:
-            arthur["hp"] += arthur["potion"]["effect"]["hp"]
+    arthur = knightsConfig["arthur"]  # get all arthur stats
+    arthur_prepare = stats_counter(
+        arthur
+    )  # count arthur stats for battle by app.stats_count.py
+    arthur_ready = stats(
+        arthur_prepare[0],
+        arthur_prepare[1],
+        arthur_prepare[2],
+        arthur_prepare[3]
+    )  # objects of counted stats by app.stats.py
 
     # mordred
-    mordred = knightsConfig["mordred"]
-
-    # apply armour
-    mordred["protection"] = 0
-    for a in mordred["armour"]:
-        mordred["protection"] += a["protection"]
-
-    # apply weapon
-    mordred["power"] += mordred["weapon"]["power"]
-
-    # apply potion if exist
-    if mordred["potion"] is not None:
-        if "power" in mordred["potion"]["effect"]:
-            mordred["power"] += mordred["potion"]["effect"]["power"]
-
-        if "protection" in mordred["potion"]["effect"]:
-            mordred["protection"] += mordred["potion"]["effect"]["protection"]
-
-        if "hp" in mordred["potion"]["effect"]:
-            mordred["hp"] += mordred["potion"]["effect"]["hp"]
+    mordred = knightsConfig["mordred"]  # get all mordred stats
+    mordred_prepare = stats_counter(
+        mordred
+    )  # count mordred stats for battle by app.stats_count.py
+    mordred_ready = stats(
+        mordred_prepare[0],
+        mordred_prepare[1],
+        mordred_prepare[2],
+        mordred_prepare[3]
+    )  # objects of counted stats by app.stats.py
 
     # red_knight
-    red_knight = knightsConfig["red_knight"]
-
-    # apply armour
-    red_knight["protection"] = 0
-    for a in red_knight["armour"]:
-        red_knight["protection"] += a["protection"]
-
-    # apply weapon
-    red_knight["power"] += red_knight["weapon"]["power"]
-
-    # apply potion if exist
-    if red_knight["potion"] is not None:
-        if "power" in red_knight["potion"]["effect"]:
-            red_knight["power"] += red_knight["potion"]["effect"]["power"]
-
-        if "protection" in red_knight["potion"]["effect"]:
-            red_knight["protection"] += red_knight["potion"]["effect"]["protection"]
-
-        if "hp" in red_knight["potion"]["effect"]:
-            red_knight["hp"] += red_knight["potion"]["effect"]["hp"]
+    red_knight = knightsConfig[
+        "red_knight"
+    ]  # get all red_knight stats
+    red_knight_prepare = stats_counter(
+        red_knight
+    )  # count red_knight stats for battle by app.stats_count.py
+    red_knight_ready = stats(
+        red_knight_prepare[0],
+        red_knight_prepare[1],
+        red_knight_prepare[2],
+        red_knight_prepare[3],
+    )  # objects of counted stats by app.stats.py
 
     # -------------------------------------------------------------------------------
     # BATTLE:
-
     # 1 Lancelot vs Mordred:
-    lancelot["hp"] -= mordred["power"] - lancelot["protection"]
-    mordred["hp"] -= lancelot["power"] - mordred["protection"]
-
-    # check if someone fell in battle
-    if lancelot["hp"] <= 0:
-        lancelot["hp"] = 0
-
-    if mordred["hp"] <= 0:
-        mordred["hp"] = 0
+    first_battle = battle_result(
+        lancelot_ready, mordred_ready
+    )  # count battle hero vs hero by app.battle
 
     # 2 Arthur vs Red Knight:
-    arthur["hp"] -= red_knight["power"] - arthur["protection"]
-    red_knight["hp"] -= arthur["power"] - red_knight["protection"]
-
-    # check if someone fell in battle
-    if arthur["hp"] <= 0:
-        arthur["hp"] = 0
-
-    if red_knight["hp"] <= 0:
-        red_knight["hp"] = 0
+    second_battle = battle_result(
+        arthur_ready, red_knight_ready
+    )  # count battle hero vs hero by app.battle
 
     # Return battle results:
-    return {
-        lancelot["name"]: lancelot["hp"],
-        arthur["name"]: arthur["hp"],
-        mordred["name"]: mordred["hp"],
-        red_knight["name"]: red_knight["hp"],
-    }
+    return first_battle | second_battle
 
 
 print(battle(KNIGHTS))
