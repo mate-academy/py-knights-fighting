@@ -1,24 +1,22 @@
+from typing import Dict, Any
 from app.resourses import Knight
 
 
-def battle(knightsConfig):
-    lancelot = Knight(knightsConfig["lancelot"])
-    arthur = Knight(knightsConfig["arthur"])
-    mordred = Knight(knightsConfig["mordred"])
-    red_knight = Knight(knightsConfig["red_knight"])
+def battle(knights_config: Dict[str, Dict[str, Any]]) -> Dict[str, int]:
+    knights: Dict[str, Knight] = {
+        name: Knight(data) for name, data in knights_config.items()
+    }
 
-    for knight in (lancelot, arthur, mordred, red_knight):
+    for knight in knights.values():
         knight.prepare()
 
-    lancelot.fight(mordred)
-    mordred.fight(lancelot)
+    knights["lancelot"].fight(knights["mordred"])
+    knights["mordred"].fight(knights["lancelot"])
 
-    arthur.fight(red_knight)
-    red_knight.fight(arthur)
+    knights["arthur"].fight(knights["red_knight"])
+    knights["red_knight"].fight(knights["arthur"])
 
     return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
+        knight.name: knight.hp
+        for knight in knights.values()
     }
