@@ -41,8 +41,8 @@ class GameKnightFactory:
         self.protection += effect.get("protection", 0)
 
     def battle_with(self, another_knight: "GameKnightFactory") -> None:
-        damage_to_self = max(0, another_knight.power - self.protection)
-        damage_to_another = max(0, self.power - another_knight.protection)
+        self.hp -= another_knight.power - self.protection
+        another_knight.hp -= self.power - another_knight.protection
 
-        self.hp = max(0, self.hp - damage_to_self)
-        another_knight.hp = max(0, another_knight.hp - damage_to_another)
+        self.hp = max(0, self.hp)
+        another_knight.hp = max(0, another_knight.hp)
