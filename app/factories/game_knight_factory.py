@@ -27,9 +27,6 @@ class GameKnightFactory:
         elif key == "protection":
             return self.protection
 
-    def __setitem__(self, key: "hp", value: int) -> None:
-        self.hp = value
-
     def _calculate_protection(self, armour: List[Optional[Armour]]) -> int:
         return sum(item.get("protection", 0) if item else 0 for item in armour)
 

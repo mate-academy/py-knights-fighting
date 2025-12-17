@@ -1,8 +1,8 @@
-from typing import Optional, TypedDict, List, NotRequired
+from typing import Literal, Optional, TypedDict, List, NotRequired, Dict
 
 
 class Armour(TypedDict):
-    name: str
+    part: str
     protection: int
 
 
@@ -22,8 +22,11 @@ class Potion(TypedDict):
     effect: Effect
 
 
+KnightName = Literal["lancelot", "arthur", "mordred", "red_knight"]
+
+
 class Knight(TypedDict):
-    name: str
+    name: KnightName
     power: int
     hp: int
     armour: List[Optional[Armour]]
@@ -31,5 +34,4 @@ class Knight(TypedDict):
     potion: Potion | None
 
 
-class KnightDict(TypedDict):
-    [str, Knight]
+KnightDict = Dict[str, Knight]

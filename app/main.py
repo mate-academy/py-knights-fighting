@@ -1,27 +1,26 @@
 from app.constants import KNIGHTS
 from app.factories.game_knight_factory import GameKnightFactory
-from app.models.knight import KnightDict
+from app.models.knight import KnightDict, KnightName
 
 
 def battle(knights_config: KnightDict) -> dict[str, int]:
-    # BATTLE PREPARATIONS:
-    lancelot = GameKnightFactory(knights_config["lancelot"])
-    arthur = GameKnightFactory(knights_config["arthur"])
-    mordred = GameKnightFactory(knights_config["mordred"])
-    red_knight = GameKnightFactory(knights_config["red_knight"])
+    knights: dict[KnightName, GameKnightFactory] = {}
+
+    for knight_name, knight_data in knights_config.items():
+        knights[knight_name] = GameKnightFactory(knight_data)
 
     # -------------------------------------------------------------------------------
     # BATTLE:
 
-    lancelot.battle_with(mordred)
-    arthur.battle_with(red_knight)
+    knights["lancelot"].battle_with(knights["mordred"])
+    knights["arthur"].battle_with(knights["red_knight"])
 
     # Return battle results:
     return {
-        lancelot["name"]: lancelot["hp"],
-        arthur["name"]: arthur["hp"],
-        mordred["name"]: mordred["hp"],
-        red_knight["name"]: red_knight["hp"],
+        knights["lancelot"].name: knights["lancelot"].hp,
+        knights["arthur"].name: knights["arthur"].hp,
+        knights["mordred"].name: knights["mordred"].hp,
+        knights["red_knight"].name: knights["red_knight"].hp,
     }
 
 
