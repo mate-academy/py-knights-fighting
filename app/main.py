@@ -111,8 +111,9 @@ def fight(knight1: Knight, knight2: Knight) -> dict[str, int]:
 
 def battle(knightsconfig: dict) -> dict[str, int]:
     # Initialize knights from configuration
+    knights_obj: dict[str, Knight] = {}
     for key, config in knightsconfig.items():
-        knightsconfig[key] = Knight(
+        knights_obj[key] = Knight(
             name=config["name"],
             power=config["power"],
             hp=config["hp"],
@@ -122,25 +123,19 @@ def battle(knightsconfig: dict) -> dict[str, int]:
             weapon=Weapon(**config["weapon"]),
             potion=Potion(**config["potion"]) if config["potion"] else None
         )
+
     # BATTLE PREPARATIONS:
-    for knight in knightsconfig.values():
+    for knight in knights_obj.values():
         knight.prepare_for_battle()
 
     # SIMULATE BATTLES:
     # 1 Lancelot vs Mordred:
-    fight_results = fight(knightsconfig["lancelot"], knightsconfig["mordred"])
+    fight_results = fight(
+        knights_obj["lancelot"], knights_obj["mordred"]
+    )
     # 2 Arthur vs Red Knight:
     fight_results.update(
-        fight(
-            knightsconfig["arthur"], knightsconfig["red_knight"]
-        )
-    )
-
-    # Honor the deads by printing their names
-    print(
-        f"Fallen Knights: {
-            ', '.join([name for name, hp in fight_results.items() if hp == 0])
-        }"
+        fight(knights_obj["arthur"], knights_obj["red_knight"])
     )
 
     # Return the resulting knights with their updated HP
