@@ -140,6 +140,3 @@ def battle(knightsconfig: dict) -> dict[str, int]:
 
     # Return the resulting knights with their updated HP
     return fight_results
-
-
-print(battle(KNIGHTS))
