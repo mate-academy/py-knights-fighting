@@ -1,19 +1,19 @@
-from app.services.factory import create_knight
-from app.services.combat import duel
+from app.service.factory import create_knight
+from app.service.combat import duel
 
 
 def battle(knights_config: dict) -> dict[str, int]:
-    lancelot = create_knight(knights_config["lancelot"])
-    mordred = create_knight(knights_config["mordred"])
-    arthur = create_knight(knights_config["arthur"])
-    red_knight = create_knight(knights_config["red_knight"])
-
-    duel(lancelot, mordred)
-    duel(arthur, red_knight)
-
-    return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
+    knights = {
+        name: create_knight(config)
+        for name, config in knights_config.items()
     }
+
+    duels = [
+        ("lancelot", "mordred"),
+        ("arthur", "red_knight"),
+    ]
+
+    for first, second in duels:
+        duel(knights[first], knights[second])
+
+    return {knight.name: knight.hp for knight in knights.values()}
