@@ -6,7 +6,7 @@ class Knight:
             power: int,
             armour: list[dict[str, int]],
             weapon: dict[str, int],
-            potion: dict[str, dict[str, int]] = None
+            potion: dict[str, dict[str, int]] | None = None
     ) -> None:
 
         self.name = name
@@ -41,3 +41,6 @@ class Knight:
     def prepare_for_battle(self) -> None:
         self.apply_equipment()
         self.apply_potion()
+
+    def is_alive(self) -> bool:
+        return self.current_hp > 0

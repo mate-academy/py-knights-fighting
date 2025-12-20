@@ -1,7 +1,7 @@
 from typing import Any
 
 from app.services.create_knights import create_knights
-from app.services.fight import fight
+from app.services.duel import duel
 
 KNIGHTS = {
     "lancelot": {
@@ -94,10 +94,7 @@ KNIGHTS = {
 def battle(knights_config: dict[str, dict[str, Any]]) -> dict:
     knights = create_knights(knights_config)
 
-    fight(knights["lancelot"], knights["mordred"])
-    fight(knights["mordred"], knights["lancelot"])
-
-    fight(knights["arthur"], knights["red_knight"])
-    fight(knights["red_knight"], knights["arthur"])
+    duel(knights["lancelot"], knights["mordred"])
+    duel(knights["arthur"], knights["red_knight"])
 
     return {knight.name: knight.current_hp for knight in knights.values()}
