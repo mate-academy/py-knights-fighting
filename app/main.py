@@ -1,7 +1,7 @@
-from app.models.knight import Knight
-from app.services.compute_damage import compute_damage
 from typing import Any
 
+from app.services.create_knights import create_knights
+from app.services.fight import fight
 
 KNIGHTS = {
     "lancelot": {
@@ -92,26 +92,12 @@ KNIGHTS = {
 
 
 def battle(knights_config: dict[str, dict[str, Any]]) -> dict:
-    lancelot = Knight(**knights_config["lancelot"])
-    arthur = Knight(**knights_config["arthur"])
-    mordred = Knight(**knights_config["mordred"])
-    red_knight = Knight(**knights_config["red_knight"])
+    knights = create_knights(knights_config)
 
-    for knight in [lancelot, arthur, mordred, red_knight]:
-        knight.prepare_for_battle()
+    fight(knights["lancelot"], knights["mordred"])
+    fight(knights["mordred"], knights["lancelot"])
 
-    mordred.current_hp = compute_damage(lancelot, mordred)
-    lancelot.current_hp = compute_damage(mordred, lancelot)
-    red_knight.current_hp = compute_damage(arthur, red_knight)
-    arthur.current_hp = compute_damage(red_knight, arthur)
+    fight(knights["arthur"], knights["red_knight"])
+    fight(knights["red_knight"], knights["arthur"])
 
-    return {
-        lancelot.name: lancelot.current_hp,
-        arthur.name: arthur.current_hp,
-        mordred.name: mordred.current_hp,
-        red_knight.name: red_knight.current_hp,
-    }
-
-
-if __name__ == "__main__":
-    print(battle(KNIGHTS))
+    return {knight.name: knight.current_hp for knight in knights.values()}
