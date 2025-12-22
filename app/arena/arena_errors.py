@@ -1,0 +1,2 @@
+class MissingWarriorError(Exception):
+    pass
