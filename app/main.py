@@ -89,7 +89,7 @@ KNIGHTS = {
 }
 
 
-def battle(knights_config):
+def battle(knights_config: dict) -> dict:
     """
     Simulate a battle between knights.
 

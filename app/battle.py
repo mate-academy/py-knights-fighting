@@ -4,7 +4,7 @@ from app.knight import Knight
 class Battle:
     """Manages battles between knights."""
 
-    def __init__(self, knights_config: dict):
+    def __init__(self, knights_config: dict) -> None:
         """Initialize battle with knights configuration."""
         self.knights = self._create_knights(knights_config)
 
@@ -15,12 +15,12 @@ class Battle:
             knights[key] = Knight(config)
         return knights
 
-    def prepare_all_knights(self):
+    def prepare_all_knights(self) -> None:
         """Prepare all knights for battle by applying equipment."""
         for knight in self.knights.values():
             knight.prepare_for_battle()
 
-    def fight(self, knight1_key: str, knight2_key: str):
+    def fight(self, knight1_key: str, knight2_key: str) -> None:
         """Execute a fight between two knights."""
         knight1 = self.knights[knight1_key]
         knight2 = self.knights[knight2_key]
