@@ -1,9 +1,9 @@
 class Armour:
     def __init__(self, armours: list) -> None:
-        self.list = armours
+        self.armours = armours
 
     def total_protection(self) -> int:
-        return sum(armour["protection"] for armour in self.list)
+        return sum(armour["protection"] for armour in self.armours)
 
 
 class Weapon:

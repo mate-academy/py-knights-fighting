@@ -96,33 +96,32 @@ def battle(knights_config: dict) -> dict:
     for knight in knights_config.values():
 
         # creating instance of class Knight for each of the knights
-        list_of_knights.append(Knight(
+        new_knight = Knight(
             knight["name"],
             knight["power"],
             knight["hp"]
-        ))
+        )
 
         # applying armour, weapon and potion for each knight
         if knight["armour"] is not None:
-            list_of_knights[-1].apply_armour(Armour(knight["armour"]))
-        list_of_knights[-1].apply_weapon(Weapon(
+            new_knight.apply_armour(Armour(knight["armour"]))
+        new_knight.apply_weapon(Weapon(
             knight["weapon"]["name"],
             knight["weapon"]["power"]
         ))
         if knight["potion"] is not None:
-            list_of_knights[-1].apply_potion(Potion(
+            new_knight.apply_potion(Potion(
                 name=knight["potion"]["name"],
                 hp=knight["potion"]["effect"].get("hp", 0),
                 power=knight["potion"]["effect"].get("power", 0),
                 protection=knight["potion"]["effect"].get("protection", 0)
             ))
 
+        list_of_knights.append(new_knight)
+
     # battles
-    fight(list_of_knights[0], list_of_knights[2])
-    fight(list_of_knights[1], list_of_knights[3])
+    fight(Knight.knights["Lancelot"], Knight.knights["Mordred"])
+    fight(Knight.knights["Arthur"], Knight.knights["Red Knight"])
 
     # Return battle results:
     return {knight.name: knight.hp for knight in list_of_knights}
-
-
-print(battle(KNIGHTS))

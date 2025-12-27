@@ -2,14 +2,14 @@ from app.accessories import Armour, Weapon, Potion
 
 
 class Knight:
+    knights = dict()
+
     def __init__(self, name: str, power: int, hp: int) -> None:
         self.name = name
         self.power = power
         self.hp = hp
         self.protection = 0
-
-    # def __repr__(self) -> Any:
-    #     return self.name + ": " + self.hp
+        Knight.knights[name] = self
 
     def apply_armour(self, armour: Armour) -> None:
         self.armour = armour
