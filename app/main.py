@@ -91,18 +91,14 @@ KNIGHTS = {
 
 
 def battle(knights_config: dict) -> dict:
-    # BATTLE PREPARATIONS:
     list_of_knights = []
     for knight in knights_config.values():
-
-        # creating instance of class Knight for each of the knights
         new_knight = Knight(
             knight["name"],
             knight["power"],
             knight["hp"]
         )
 
-        # applying armour, weapon and potion for each knight
         if knight["armour"] is not None:
             new_knight.apply_armour(Armour(knight["armour"]))
         new_knight.apply_weapon(Weapon(
@@ -119,9 +115,7 @@ def battle(knights_config: dict) -> dict:
 
         list_of_knights.append(new_knight)
 
-    # battles
     fight(Knight.knights["Lancelot"], Knight.knights["Mordred"])
     fight(Knight.knights["Arthur"], Knight.knights["Red Knight"])
 
-    # Return battle results:
     return {knight.name: knight.hp for knight in list_of_knights}
