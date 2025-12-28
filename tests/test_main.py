@@ -98,7 +98,6 @@ def test_base_knights(base_knights_config):
         "Red Knight": 5,
     }
 
-
 def test_lancelot_overpowered(base_knights_config):
     base_knights_config["lancelot"]["hp"] += 50
     base_knights_config["lancelot"]["power"] += 50
