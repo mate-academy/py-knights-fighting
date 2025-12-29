@@ -1,25 +1,23 @@
 from app.knight import Knight
 
-def battle(knights_config):
-    # 1. Criar as instâncias dos cavaleiros usando a classe
-    lancelot = Knight(knights_config["lancelot"])
-    mordred = Knight(knights_config["mordred"])
-    arthur = Knight(knights_config["arthur"])
-    red_knight = Knight(knights_config["red_knight"])
+def battle(knights_config: dict) -> dict:
+    # 1. Criação dinâmica (DRY): cria um objeto Knight para cada chave no dicionário
+    knights = {
+        name: Knight(config) 
+        for name, config in knights_config.items()
+    }
 
-    # 2. Executar as batalhas conforme o enunciado
-    # Batalha 1: Lancelot vs Mordred
-    lancelot.receive_damage(mordred.power)
-    mordred.receive_damage(lancelot.power)
+    # 2. Executar as batalhas usando as instâncias do dicionário
+    # Lancelot vs Mordred
+    knights["lancelot"].receive_damage(knights["mordred"].power)
+    knights["mordred"].receive_damage(knights["lancelot"].power)
 
-    # Batalha 2: Arthur vs Red Knight
-    arthur.receive_damage(red_knight.power)
-    red_knight.receive_damage(arthur.power)
+    # Arthur vs Red Knight
+    knights["arthur"].receive_damage(knights["red_knight"].power)
+    knights["red_knight"].receive_damage(knights["arthur"].power)
 
     # 3. Retornar os HPs finais em um dicionário
     return {
-        lancelot.name: lancelot.hp,
-        mordred.name: mordred.hp,
-        arthur.name: arthur.hp,
-        red_knight.name: red_knight.hp
+        knight.name: knight.hp 
+        for knight in knights.values()
     }
