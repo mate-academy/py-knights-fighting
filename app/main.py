@@ -92,39 +92,18 @@ KNIGHTS = {
 
 
 def battle(knight_config: dict) -> dict:
-    lancelot = Knight(
-        knight_config["lancelot"]["name"],
-        knight_config["lancelot"]["power"],
-        knight_config["lancelot"]["hp"],
-        knight_config["lancelot"]["armour"],
-        knight_config["lancelot"]["weapon"],
-        knight_config["lancelot"]["potion"])
-    arthur = Knight(
-        knight_config["arthur"]["name"],
-        knight_config["arthur"]["power"],
-        knight_config["arthur"]["hp"],
-        knight_config["arthur"]["armour"],
-        knight_config["arthur"]["weapon"],
-        knight_config["arthur"]["potion"])
-    mordred = Knight(
-        knight_config["mordred"]["name"],
-        knight_config["mordred"]["power"],
-        knight_config["mordred"]["hp"],
-        knight_config["mordred"]["armour"],
-        knight_config["mordred"]["weapon"],
-        knight_config["mordred"]["potion"])
-    red_knight = Knight(
-        knight_config["red_knight"]["name"],
-        knight_config["red_knight"]["power"],
-        knight_config["red_knight"]["hp"],
-        knight_config["red_knight"]["armour"],
-        knight_config["red_knight"]["weapon"],
-        knight_config["red_knight"]["potion"])
+    knights = ["lancelot", "arthur", "mordred", "red_knight"]
+    user_data = {}
+    for knight in knights:
+        knight_instance = Knight(
+            knight_config[knight]["name"],
+            knight_config[knight]["power"],
+            knight_config[knight]["hp"],
+            knight_config[knight]["armour"],
+            knight_config[knight]["weapon"],
+            knight_config[knight]["potion"])
+        prepare(knight_instance)
+        user_data[knight] = knight_instance
 
-    prepare(lancelot)
-    prepare(arthur)
-    prepare(mordred)
-    prepare(red_knight)
-
-    return get_battle_results(lancelot, mordred) | \
-        get_battle_results(arthur, red_knight)
+    return get_battle_results(user_data["lancelot"], user_data["mordred"]) | \
+        get_battle_results(user_data["arthur"], user_data["red_knight"])
