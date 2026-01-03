@@ -92,7 +92,7 @@ KNIGHTS = {
 
 
 def battle(knight_config: dict) -> dict:
-    knights = ["lancelot", "arthur", "mordred", "red_knight"]
+    knights = [key for key in knight_config.keys()]
     user_data = {}
     for knight in knights:
         knight_instance = Knight(

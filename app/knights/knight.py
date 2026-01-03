@@ -27,7 +27,7 @@ class Knight:
                 self.protection += self.potion["effect"]["protection"]
 
     def get_power(self) -> None:
-        self.power += self.base_power
+        self.power = self.base_power
         if self.weapon is not None:
             self.power += self.weapon["power"]
         if self.potion is not None:
@@ -35,7 +35,7 @@ class Knight:
                 self.power += self.potion["effect"]["power"]
 
     def get_hp(self) -> None:
-        self.hp += self.base_hp
+        self.hp = self.base_hp
         if self.potion is not None:
             if "hp" in self.potion["effect"]:
                 self.hp += self.potion["effect"]["hp"]
