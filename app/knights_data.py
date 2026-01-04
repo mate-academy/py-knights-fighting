@@ -1,0 +1,37 @@
+knightsconfig = {
+    "lancelot": {
+        "name": "Lancelot",
+        "hp": 100,
+        "power": 30,
+        "armour": [],
+        "weapon": {"name": "Excalibur", "power": 20},
+        "potion": None,
+    },
+    "arthur": {
+        "name": "Arthur",
+        "hp": 70,
+        "power": 25,
+        "armour": [{"part": "helmet", "protection": 15},
+                   {"part": "breastplate", "protection": 20}],
+        "weapon": {"name": "Excalibur", "power": 20},
+        "potion": {"name": "Dragon's heart",
+                   "effect": {"protection": 20, "power": 10, "hp": 10}},
+    },
+    "mordred": {
+        "name": "Mordred",
+        "hp": 80,
+        "power": 25,
+        "armour": [],
+        "weapon": {"name": "Poisoned Sword", "power": 30},
+        "potion": None,
+    },
+    "red_knight": {
+        "name": "Red Knight",
+        "hp": 120,
+        "power": 20,
+        "armour": [{"part": "helmet", "protection": 15},
+                   {"part": "breastplate", "protection": 25}],
+        "weapon": {"name": "Axe", "power": 25},
+        "potion": {"name": "Blessing", "effect": {"hp": 10, "power": 5}},
+    },
+}
