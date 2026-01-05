@@ -1,4 +1,5 @@
 KNIGHTS = {
+    """Comment"""
     "lancelot": {
         "name": "Lancelot",
         "power": 35,
@@ -212,3 +213,4 @@ def battle(knightsConfig):
 
 
 print(battle(KNIGHTS))
+pass
