@@ -98,20 +98,21 @@ def battle(knights_config: Mapping[str, Any]) -> dict[str, int]:
         for name, config in knights_config.items()
     }
 
-    lancelot = prepared_knights["lancelot"]
-    arthur = prepared_knights["arthur"]
-    mordred = prepared_knights["mordred"]
-    red_knight = prepared_knights["red_knight"]
+    pairings = [
+        ("lancelot", "mordred"),
+        ("arthur", "red_knight"),
+    ]
 
-    lancelot_hp, mordred_hp = resolve_duel(lancelot, mordred)
-    arthur_hp, red_knight_hp = resolve_duel(arthur, red_knight)
+    result: dict[str, int] = {}
 
-    return {
-        lancelot.name: lancelot_hp,
-        arthur.name: arthur_hp,
-        mordred.name: mordred_hp,
-        red_knight.name: red_knight_hp,
-    }
+    for attacker_key, defender_key in pairings:
+        attacker = prepared_knights[attacker_key]
+        defender = prepared_knights[defender_key]
+        attacker_hp, defender_hp = resolve_duel(attacker, defender)
+        result[attacker.name] = attacker_hp
+        result[defender.name] = defender_hp
+
+    return result
 
 
 if __name__ == "__main__":
