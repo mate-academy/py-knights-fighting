@@ -93,10 +93,15 @@ KNIGHTS = {
 
 
 def battle(knights_config: Mapping[str, Any]) -> dict[str, int]:
-    lancelot = prepare_knight(knights_config["lancelot"])
-    arthur = prepare_knight(knights_config["arthur"])
-    mordred = prepare_knight(knights_config["mordred"])
-    red_knight = prepare_knight(knights_config["red_knight"])
+    prepared_knights = {
+        name: prepare_knight(config)
+        for name, config in knights_config.items()
+    }
+
+    lancelot = prepared_knights["lancelot"]
+    arthur = prepared_knights["arthur"]
+    mordred = prepared_knights["mordred"]
+    red_knight = prepared_knights["red_knight"]
 
     lancelot_hp, mordred_hp = resolve_duel(lancelot, mordred)
     arthur_hp, red_knight_hp = resolve_duel(arthur, red_knight)
