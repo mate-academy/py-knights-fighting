@@ -91,26 +91,16 @@ KNIGHTS = {
 def battle(knights_config: dict) -> dict:
     # BATTLE PREPARATIONS:
 
-    # lancelot
-    lancelot = Knight(knights_config["lancelot"])
-
-    # arthur
-    arthur = Knight(knights_config["arthur"])
-
-    # mordred
-    mordred = Knight(knights_config["mordred"])
-
-    # red_knight
-    red_knight = Knight(knights_config["red_knight"])
+    knights = {key: Knight(value) for key, value in knights_config.items()}
 
     # -------------------------------------------------------------------------------
     # BATTLE:
 
     # 1 Lancelot vs Mordred:
-    pair1 = fight(lancelot, mordred)
+    pair1 = fight(knights["lancelot"], knights["mordred"])
 
     # 2 Arthur vs Red Knight:
-    pair2 = fight(arthur, red_knight)
+    pair2 = fight(knights["arthur"], knights["red_knight"])
 
     # Return battle results:
     return pair1 | pair2
@@ -128,6 +118,3 @@ def fight(knight1: Knight, knight2: Knight) -> dict:
 
 def get_hp(hp: int) -> int:
     return 0 if hp <= 0 else hp
-
-
-print(battle(KNIGHTS))
