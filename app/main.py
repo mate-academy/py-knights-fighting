@@ -1,5 +1,4 @@
 from app.knight import Knight
-from app.data import KNIGHTS
 
 
 def battle(knights: dict) -> dict:
@@ -14,23 +13,10 @@ def battle(knights: dict) -> dict:
 
     # BATTLE:
 
-    # 1 Lancelot vs Mordred:
-
-    lancelot.take_damage(mordred.power)
-    mordred.take_damage(lancelot.power)
-
-    # 2 Arthur vs Red Knight:
-    arthur.take_damage(red_knight.power)
-    red_knight.take_damage(arthur.power)
-
-    # check if someone fell in battle
-
-    for knight in dict_knights.values():
-        if knight.hp <= 0:
-            knight.hp = 0
+    battle_pairs = [(lancelot, mordred), (arthur, red_knight)]
+    for pair in battle_pairs:
+        pair[0].take_damage(pair[1].power)
+        pair[1].take_damage(pair[0].power)
 
     # Return battle results:
     return {k.name: k.hp for k in dict_knights.values()}
-
-
-print(battle(KNIGHTS))
