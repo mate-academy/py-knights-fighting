@@ -93,36 +93,21 @@ KNIGHTS = {
 
 def battle(knightsconfig: dict) -> dict:
     # BATTLE PREPARATIONS:
+    knights = [
+        Knight.create_knight(knight)
+        for knight in knightsconfig.values()
+    ]
 
-    # lancelot
-    lancelot = Knight.create_knight(knightsconfig["lancelot"])
-    prepare_knight_to_battle(lancelot)
-
-    # arthur
-    arthur = Knight.create_knight(knightsconfig["arthur"])
-    prepare_knight_to_battle(arthur)
-
-    # mordred
-    mordred = Knight.create_knight(knightsconfig["mordred"])
-    prepare_knight_to_battle(mordred)
-
-    # red_knight
-    red_knight = Knight.create_knight(knightsconfig["red_knight"])
-    prepare_knight_to_battle(red_knight)
+    for knight in knights:
+        prepare_knight_to_battle(knight)
 
     # -------------------------------------------------------------------------------
     # BATTLE:
-
-    # 1 Lancelot vs Mordred:
-    battling(lancelot, mordred)
-    # 2 Arthur vs Red Knight:
-    battling(arthur, red_knight)
+    for knight1, knight2 in knights[::2], knights[1::2]:
+        battling(knight1, knight2)
 
     # Return battle results:
     return {
         knight.name: knight.hp
-        for knight in (lancelot, mordred, arthur, red_knight)
+        for knight in knights
     }
-
-
-print(battle(KNIGHTS))
