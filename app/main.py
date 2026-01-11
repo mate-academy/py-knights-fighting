@@ -3,20 +3,22 @@ from app.config import KNIGHTS
 
 
 def battle(knights_config: dict) -> dict:
-    lancelot = Knight.from_dict(knights_config["lancelot"])
-    arthur = Knight.from_dict(knights_config["arthur"])
-    mordred = Knight.from_dict(knights_config["mordred"])
-    red_knight = Knight.from_dict(knights_config["red_knight"])
+    """
+    Execute battles between knights and return results.
 
-    fight(lancelot, mordred)
-    fight(arthur, red_knight)
-
-    return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
+    Battles:
+    - Lancelot vs Mordred
+    - Arthur vs Red Knight
+    """
+    knights = {
+        key: Knight.from_dict(config)
+        for key, config in knights_config.items()
     }
+
+    fight(knights["lancelot"], knights["mordred"])
+    fight(knights["arthur"], knights["red_knight"])
+
+    return {knight.name: knight.hp for knight in knights.values()}
 
 
 if __name__ == "__main__":
