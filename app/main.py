@@ -1,21 +1,21 @@
 from app.logics.knights import Knight
 
 
+def conduct_battle(knight1: Knight, knight2: Knight) -> None:
+    knight1.take_hit(knight2.power)
+    knight2.take_hit(knight1.power)
+
+
 def battle(knights_config: dict) -> dict:
-    lancelot = Knight(knights_config["lancelot"])
-    arthur = Knight(knights_config["arthur"])
-    mordred = Knight(knights_config["mordred"])
-    red_knight = Knight(knights_config["red_knight"])
+    knights = {
+        name: Knight(config)
+        for name, config in knights_config.items()
+    }
 
-    lancelot.take_hit(mordred.power)
-    mordred.take_hit(lancelot.power)
-
-    arthur.take_hit(red_knight.power)
-    red_knight.take_hit(arthur.power)
+    conduct_battle(knights["lancelot"], knights["mordred"])
+    conduct_battle(knights["arthur"], knights["red_knight"])
 
     return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
+        knight.name: knight.hp
+        for knight in knights.values()
     }
