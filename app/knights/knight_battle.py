@@ -3,20 +3,15 @@ from app.knights.result_fight import fight
 
 
 def battle(knightsconfig: dict) -> dict:
-    lancelot = Knight(knightsconfig["lancelot"])
-    lancelot_update = lancelot.preparation_knight()
+    knights = {}
 
-    arthur = Knight(knightsconfig["arthur"])
-    arthur_update = arthur.preparation_knight()
+    for name, config in knightsconfig.items():
+        knight = Knight(config)
+        knight.preparation_knight()
+        knights[name] = knight
 
-    mordred = Knight(knightsconfig["mordred"])
-    mordred_update = mordred.preparation_knight()
-
-    red_knight = Knight(knightsconfig["red_knight"])
-    red_knight_update = red_knight.preparation_knight()
-
-    lancelot_hp, mordred_hp = fight(lancelot_update, mordred_update)
-    arthur_hp, red_knight_hp = fight(arthur_update, red_knight_update)
+    lancelot_hp, mordred_hp = fight(knights["lancelot"], knights["mordred"])
+    arthur_hp, red_knight_hp = fight(knights["arthur"], knights["red_knight"])
 
     return {
         lancelot_hp.name: lancelot_hp.hp,
