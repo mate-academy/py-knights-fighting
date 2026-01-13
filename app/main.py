@@ -11,14 +11,17 @@ def battle(knights_config: dict) -> dict:
             for a in data["armour"]
         ]
 
-        weapon = Weapon(name=data["weapon"]["name"],
-                        power=data["weapon"]["power"]
-                        )
+        weapon = Weapon(
+            name=data["weapon"]["name"],
+            power=data["weapon"]["power"]
+        )
 
         potion = None
         if data["potion"]:
-            potion = Potion(name=data["potion"]["name"],
-                            effect=data["potion"]["effect"])
+            potion = Potion(
+                name=data["potion"]["name"],
+                effect=data["potion"]["effect"]
+            )
 
         knights[name] = Knight(
             name=data["name"],
@@ -29,15 +32,18 @@ def battle(knights_config: dict) -> dict:
             potion=potion
         )
 
-    fights = [("lancelot", "mordred"),
-              ("arthur", "red_knight"),]
+    fights = [
+        ("lancelot", "mordred"),
+        ("arthur", "red_knight")
+    ]
 
-    for attaker_key, defender_key in fights:
-        attacker = knights[attaker_key]
+    for attacker_key, defender_key in fights:
+        attacker = knights[attacker_key]
         defender = knights[defender_key]
         attacker.fight(defender)
         defender.fight(attacker)
-    return {k.name: k.hp for k in knights.values()}
+
+    return {knight.name: knight.hp for knight in knights.values()}
 
 
 if __name__ == "__main__":
