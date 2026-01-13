@@ -6,7 +6,7 @@ from app.battle import battle as battle_mod
 def battle(dict_knights: dict) -> dict:
 
     knights_dict_class = {
-        key: knights_class.Knights(knight["name"], knight["power"],
+        key: knights_class.Knight(knight["name"], knight["power"],
                                    knight["hp"], knight["armour"],
                                    knight["weapon"], knight["potion"])
         for key, knight in dict_knights.items()
@@ -17,4 +17,5 @@ def battle(dict_knights: dict) -> dict:
     return battle_mod.battle_of_knights(knights_dict_class, pairs)
 
 
-print(battle(dict_of_knights.KNIGHTS))
+if __name__ == "__main__":
+    print(battle(dict_of_knights.KNIGHTS))

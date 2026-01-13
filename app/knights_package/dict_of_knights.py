@@ -1,4 +1,5 @@
 KNIGHTS = {
+    # dictionary of original knights
     "lancelot": {
         "name": "Lancelot",
         "power": 35,
