@@ -29,23 +29,15 @@ def battle(knights_config: dict) -> dict:
             potion=potion
         )
 
-    lancelot = knights["lancelot"]
-    arthur = knights["arthur"]
-    mordred = knights["mordred"]
-    red_knight = knights["red_knight"]
+    fights = [("lancelot", "mordred"),
+              ("arthur", "red_knight"),]
 
-    lancelot.fight(mordred)
-    mordred.fight(lancelot)
-
-    arthur.fight(red_knight)
-    red_knight.fight(arthur)
-
-    return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
-    }
+    for attaker_key, defender_key in fights:
+        attacker = knights[attaker_key]
+        defender = knights[defender_key]
+        attacker.fight(defender)
+        defender.fight(attacker)
+    return {k.name: k.hp for k in knights.values()}
 
 
 if __name__ == "__main__":
