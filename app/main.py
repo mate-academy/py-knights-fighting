@@ -7,8 +7,9 @@ def battle(dict_knights: dict) -> dict:
 
     knights_dict_class = {
         key: knights_class.Knight(knight["name"], knight["power"],
-                                   knight["hp"], knight["armour"],
-                                   knight["weapon"], knight["potion"])
+                                  knight["hp"], knight["armour"],
+                                  knight["weapon"], knight["potion"]
+                                  )
         for key, knight in dict_knights.items()
     }
 
