@@ -6,8 +6,8 @@ class Knight:
         self.name = knights_config["name"]
         self.protection = 0
         self.hp = knights_config["hp"]
-        for poram in knights_config["armour"]:
-            self.protection += poram["protection"]
+        for armour_part in knights_config["armour"]:
+            self.protection += armour_part["protection"]
         self.power = knights_config["weapon"]["power"] + knights_config["power"]
         if knights_config["potion"] is not None:
             if "power" in knights_config["potion"]["effect"]:
