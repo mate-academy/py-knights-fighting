@@ -3,22 +3,22 @@ from app.services.battle import duel
 
 
 def battle(knights_config: dict) -> dict:
-    lancelot = Knight.from_config(knights_config["lancelot"])
-    arthur = Knight.from_config(knights_config["arthur"])
-    mordred = Knight.from_config(knights_config["mordred"])
-    red_knight = Knight.from_config(knights_config["red_knight"])
+    # Create all knights dynamically
+    knights = {
+        key: Knight.from_config(config)
+        for key, config in knights_config.items()
+    }
 
-    knights = [lancelot, arthur, mordred, red_knight]
-
-    for knight in knights:
+    # Prepare all knights for battle
+    for knight in knights.values():
         knight.prepare_for_battle()
 
-    duel(lancelot, mordred)
-    duel(arthur, red_knight)
+    # Fixed battle pairs (as required by task)
+    duel(knights["lancelot"], knights["mordred"])
+    duel(knights["arthur"], knights["red_knight"])
 
+    # Build result dynamically
     return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
+        knight.name: knight.hp
+        for knight in knights.values()
     }
