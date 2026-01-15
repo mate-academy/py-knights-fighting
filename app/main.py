@@ -181,7 +181,8 @@ def battle(knightsConfig):
     # BATTLE:
 
     # 1 Lancelot vs Mordred:
-    lancelot["hp"] -= mordred["power"] - lancelot["protection"]
+    lancelot["hp"] -= (mordred["power"] -
+                       lancelot["protection"])
     mordred["hp"] -= lancelot["power"] - mordred["protection"]
 
     # check if someone fell in battle
