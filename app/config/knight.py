@@ -24,7 +24,6 @@ class Knight:
                 f"weapon={self.weapon}, "
                 f"potion={self.potion})")
 
-
     def battle_preparation(self) -> None:
         potion_stats = ["power", "hp", "protection"]
 

@@ -1,7 +1,6 @@
 from app.config.knight import Knight
-from app.config.stats import KNIGHTS
 
-MATCHUPS = [("lancelot", "mordred"), ("arthur", "red Knight")]
+MATCHUPS = [("lancelot", "mordred"), ("arthur", "red_knight")]
 
 
 def create_knights(knights_stats: dict) -> dict:
@@ -17,14 +16,11 @@ def battle(knights_stats: dict) -> dict:
         knight1 = knights.get(name1)
         knight2 = knights.get(name2)
 
-        knight1.take_damage(knight2.power)
-        knight2.take_damage(knight1.power)
+        if knight1 and knight2:
+            dmg_to_knight1 = max(0, knight2.power - knight1.protection)
+            dmg_to_knight2 = max(0, knight1.power - knight2.protection)
+
+            knight1.hp = max(0, knight1.hp - dmg_to_knight1)
+            knight2.hp = max(0, knight2.hp - dmg_to_knight2)
 
     return {knight.name: knight.hp for knight in knights.values()}
-
-knights = create_knights(KNIGHTS)
-for knight in knights.values():
-    knight.battle_preparation()
-    print(knight)
-
-# print(create_knights(KNIGHTS))
