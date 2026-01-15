@@ -1,101 +1,16 @@
-KNIGHTS = {
-    "lancelot": {
-        "name": "Lancelot",
-        "power": 35,
-        "hp": 100,
-        "armour": [],
-        "weapon": {
-            "name": "Metal Sword",
-            "power": 50,
-        },
-        "potion": None,
-    },
-    "arthur": {
-        "name": "Arthur",
-        "power": 45,
-        "hp": 75,
-        "armour": [
-            {
-                "part": "helmet",
-                "protection": 15,
-            },
-            {
-                "part": "breastplate",
-                "protection": 20,
-            },
-            {
-                "part": "boots",
-                "protection": 10,
-            }
-        ],
-        "weapon": {
-            "name": "Two-handed Sword",
-            "power": 55,
-        },
-        "potion": None,
-    },
-    "mordred": {
-        "name": "Mordred",
-        "power": 30,
-        "hp": 90,
-        "armour": [
-            {
-                "part": "breastplate",
-                "protection": 15,
-            },
-            {
-                "part": "boots",
-                "protection": 10,
-            }
-        ],
-        "weapon": {
-            "name": "Poisoned Sword",
-            "power": 60,
-        },
-        "potion": {
-            "name": "Berserk",
-            "effect": {
-                "power": +15,
-                "hp": -5,
-                "protection": +10,
-            }
-        }
-    },
-    "red_knight": {
-        "name": "Red Knight",
-        "power": 40,
-        "hp": 70,
-        "armour": [
-            {
-                "part": "breastplate",
-                "protection": 25,
-            }
-        ],
-        "weapon": {
-            "name": "Sword",
-            "power": 45
-        },
-        "potion": {
-            "name": "Blessing",
-            "effect": {
-                "hp": +10,
-                "power": +5,
-            }
-        }
-    }
-}
+from app.data.knights_config import KNIGHTS
 
 
-def battle(knightsConfig):
+def battle(knights_config: dict) -> dict:  # noqa: C901
     # BATTLE PREPARATIONS:
 
     # lancelot
-    lancelot = knightsConfig["lancelot"]
+    lancelot = knights_config["lancelot"]
 
     # apply armour
     lancelot["protection"] = 0
-    for a in lancelot["armour"]:
-        lancelot["protection"] += a["protection"]
+    for attacker in lancelot["armour"]:
+        lancelot["protection"] += attacker["protection"]
 
     # apply weapon
     lancelot["power"] += lancelot["weapon"]["power"]
@@ -106,18 +21,19 @@ def battle(knightsConfig):
             lancelot["power"] += lancelot["potion"]["effect"]["power"]
 
         if "protection" in lancelot["potion"]["effect"]:
-            lancelot["protection"] += lancelot["potion"]["effect"]["protection"]
+            lancelot["protection"] += lancelot["potion"]["effect"][
+                "protection"]
 
         if "hp" in lancelot["potion"]["effect"]:
             lancelot["hp"] += lancelot["potion"]["effect"]["hp"]
 
     # arthur
-    arthur = knightsConfig["arthur"]
+    arthur = knights_config["arthur"]
 
     # apply armour
     arthur["protection"] = 0
-    for a in arthur["armour"]:
-        arthur["protection"] += a["protection"]
+    for attacker in arthur["armour"]:
+        arthur["protection"] += attacker["protection"]
 
     # apply weapon
     arthur["power"] += arthur["weapon"]["power"]
@@ -134,12 +50,12 @@ def battle(knightsConfig):
             arthur["hp"] += arthur["potion"]["effect"]["hp"]
 
     # mordred
-    mordred = knightsConfig["mordred"]
+    mordred = knights_config["mordred"]
 
     # apply armour
     mordred["protection"] = 0
-    for a in mordred["armour"]:
-        mordred["protection"] += a["protection"]
+    for attacker in mordred["armour"]:
+        mordred["protection"] += attacker["protection"]
 
     # apply weapon
     mordred["power"] += mordred["weapon"]["power"]
@@ -156,12 +72,12 @@ def battle(knightsConfig):
             mordred["hp"] += mordred["potion"]["effect"]["hp"]
 
     # red_knight
-    red_knight = knightsConfig["red_knight"]
+    red_knight = knights_config["red_knight"]
 
     # apply armour
     red_knight["protection"] = 0
-    for a in red_knight["armour"]:
-        red_knight["protection"] += a["protection"]
+    for attacker in red_knight["armour"]:
+        red_knight["protection"] += attacker["protection"]
 
     # apply weapon
     red_knight["power"] += red_knight["weapon"]["power"]
@@ -172,7 +88,8 @@ def battle(knightsConfig):
             red_knight["power"] += red_knight["potion"]["effect"]["power"]
 
         if "protection" in red_knight["potion"]["effect"]:
-            red_knight["protection"] += red_knight["potion"]["effect"]["protection"]
+            protection_effect = red_knight["potion"]["effect"]["protection"]
+            red_knight["protection"] += protection_effect
 
         if "hp" in red_knight["potion"]["effect"]:
             red_knight["hp"] += red_knight["potion"]["effect"]["hp"]
