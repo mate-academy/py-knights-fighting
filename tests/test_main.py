@@ -69,7 +69,7 @@ def base_knights_config():
             },
         },
         "red_knight": {
-            "name": "Red Knight",
+            "name": "Red models",
             "power": 40,
             "hp": 70,
             "armour": [
@@ -95,7 +95,7 @@ def test_base_knights(base_knights_config):
         "Lancelot": 0,
         "Arthur": 30,
         "Mordred": 35,
-        "Red Knight": 5,
+        "Red models": 5,
     }
 
 
@@ -106,7 +106,7 @@ def test_lancelot_overpowered(base_knights_config):
         "Lancelot": 45,
         "Arthur": 30,
         "Mordred": 0,
-        "Red Knight": 5,
+        "Red models": 5,
     }
 
 
@@ -117,7 +117,7 @@ def test_red_knight_overpowered(base_knights_config):
         "Lancelot": 0,
         "Arthur": 0,
         "Mordred": 35,
-        "Red Knight": 55,
+        "Red models": 55,
     }
 
 
@@ -130,7 +130,7 @@ def test_lancelot_has_armour(base_knights_config):
         "Lancelot": 20,
         "Arthur": 30,
         "Mordred": 35,
-        "Red Knight": 5,
+        "Red models": 5,
     }
 
 
@@ -141,7 +141,7 @@ def test_mordred_sword_is_not_poisoned(base_knights_config):
         "Lancelot": 10,
         "Arthur": 30,
         "Mordred": 35,
-        "Red Knight": 5,
+        "Red models": 5,
     }
 
 
@@ -153,7 +153,7 @@ def test_arthur_armour_weak(base_knights_config):
         "Lancelot": 0,
         "Arthur": 0,
         "Mordred": 35,
-        "Red Knight": 5,
+        "Red models": 5,
     }
 
 
@@ -177,6 +177,6 @@ def test_arthur_and_lancelot_have_potion(base_knights_config):
         "Lancelot": 5,
         "Arthur": 60,
         "Mordred": 10,
-        "Red Knight": 0,
+        "Red models": 0,
     }
 
