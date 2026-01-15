@@ -16,14 +16,6 @@ class Knight:
         self.weapon = weapon
         self.potion = potion
 
-    def __repr__(self) -> str:
-        return (f"Knight(name='{self.name}', "
-                f"power={self.power}, "
-                f"hp={self.hp}, "
-                f"armour={self.armour}, "
-                f"weapon={self.weapon}, "
-                f"potion={self.potion})")
-
     def battle_preparation(self) -> None:
         potion_stats = ["power", "hp", "protection"]
 
