@@ -1,20 +1,19 @@
-from app.data.knights_data import KNIGHTS
 from app.entities.knight import Knight
 
 
-def battle() -> dict:
-    arthur = Knight("Arthur", KNIGHTS["arthur"])
-    lancelot = Knight("Lancelot", KNIGHTS["lancelot"])
+def battle(knights_config: dict) -> dict:
+    knights = {}
 
-    # начинаем бой
-    arthur.fight(lancelot)
+    for key, config in knights_config.items():
+        knights[key] = Knight(config["name"], config)
 
-    # возвращаем HP, не меньше 0
+    # дальше будет логика боёв (следующий шаг)
+
     return {
-        arthur.name: max(arthur.hp, 0),
-        lancelot.name: max(lancelot.hp, 0),
+        knight.name: max(knight.hp, 0)
+        for knight in knights.values()
     }
 
 
 if __name__ == "__main__":
-    print(battle())
+    pass
