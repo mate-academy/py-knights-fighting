@@ -2,7 +2,7 @@ from app.data.knights_data import KNIGHTS
 from app.entities.knight import Knight
 
 
-def battle(): -> None:
+def battle() -> dict:
     arthur = Knight("Arthur", KNIGHTS["arthur"])
     lancelot = Knight("Lancelot", KNIGHTS["lancelot"])
 

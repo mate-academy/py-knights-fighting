@@ -1,4 +1,3 @@
-from app.data.knights_data import KNIGHTS
 from app.entities.armor import Armor
 from app.entities.weapon import Weapon
 from app.entities.potion import Potion
@@ -17,7 +16,6 @@ class Knight:
             armor_obj = Armor(armor_dict["part"], armor_dict["protection"])
             armor_objects.append(armor_obj)
         self.armor = armor_objects
-
 
         # --- оружие ---
         weapon_data = data.get("weapon", {})
@@ -47,10 +45,16 @@ class Knight:
 
     def defend(self, damage: int) -> None:
        """Получение урона с учетом брони"""
-       total_protection = sum(a.protection for a in self.armor)
+       total_protection = sum(
+           a.protection for a in self.armor
+       )
        damage_taken = max(0, damage - total_protection)
        self.hp -= damage_taken
-       print(f"{self.name} получает {damage_taken} урона. HP осталось: {self.hp}")
+
+       print(
+           f"{self.name} получает {damage_taken} урона." 
+           f"HP осталось: {self.hp}"
+       )
 
     def is_alive(self) -> bool:
         """Проверяет жив ли рыцарь"""

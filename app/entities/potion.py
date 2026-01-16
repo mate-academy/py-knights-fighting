@@ -1,9 +1,12 @@
+from app.entities.knight import Knight
+
+
 class Potion:
     def __init__(self, name: str, effect: dict) -> None:
         self.name = name
         self.effect = effect
 
-    def apply(self, knight: "Knight"):
+    def apply(self, knight: "Knight") -> None:
         for key, value in self.effect.items():
             if key == "hp":
                 knight.hp += value
