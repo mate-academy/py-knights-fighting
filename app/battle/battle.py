@@ -4,7 +4,11 @@ from app.entities.knight import Knight
 class Battle:
     """Класс, управляющий поединком двух рыцарей."""
 
-    def __init__(self, knight1: Knight, knight2: Knight) -> None:
+    def __init__(
+        self,
+        knight1: Knight,
+        knight2: Knight
+    ) -> None:
         self.knight1 = knight1
         self.knight2 = knight2
 
