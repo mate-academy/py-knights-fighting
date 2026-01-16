@@ -44,17 +44,17 @@ class Knight:
         enemy.defend(damage)
 
     def defend(self, damage: int) -> None:
-       """Получение урона с учетом брони"""
-       total_protection = sum(
-           a.protection for a in self.armor
-       )
-       damage_taken = max(0, damage - total_protection)
-       self.hp -= damage_taken
+        """Получение урона с учетом брони"""
+        total_protection = sum(
+            a.protection for a in self.armor
+        )
+        damage_taken = max(0, damage - total_protection)
+        self.hp -= damage_taken
 
-       print(
-           f"{self.name} получает {damage_taken} урона." 
-           f"HP осталось: {self.hp}"
-       )
+        print(
+            f"{self.name} получает {damage_taken} урона."
+            f"HP осталось: {self.hp}"
+        )
 
     def is_alive(self) -> bool:
         """Проверяет жив ли рыцарь"""

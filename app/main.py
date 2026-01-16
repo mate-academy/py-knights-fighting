@@ -15,5 +15,6 @@ def battle() -> dict:
         lancelot.name: max(lancelot.hp, 0),
     }
 
+
 if __name__ == "__main__":
     print(battle())

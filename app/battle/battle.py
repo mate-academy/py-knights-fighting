@@ -15,20 +15,20 @@ class Battle:
     def start(self) -> None:
         """Запуск пошагового боя."""
         print(
-            f"\n⚔️ Битва начинается между" 
+            f"\n⚔️ Битва начинается между"
             f"{self.knight1.name} и {self.knight2.name}!\n"
         )
 
         # применяем зелья, если есть
         if self.knight1.potion:
             print(
-                f"{self.knight1.name} выпивает зелье" 
+                f"{self.knight1.name} выпивает зелье"
                 f"{self.knight1.potion.name}!"
             )
             self.knight1.potion.apply(self.knight1)
         if self.knight2.potion:
             print(
-                f"{self.knight2.name} выпивает зелье" 
+                f"{self.knight2.name} выпивает зелье"
                 f"{self.knight2.potion.name}!"
             )
             self.knight2.potion.apply(self.knight2)
@@ -48,7 +48,7 @@ class Battle:
             self.knight2.attack(self.knight1)
             if not self.knight1.is_alive():
                 print(
-                    f"\n💀 {self.knight1.name} пал в бою." 
+                    f"\n💀 {self.knight1.name} пал в бою."
                     f"Победитель — {self.knight2.name}!")
                 break
 
