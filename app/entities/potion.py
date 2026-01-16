@@ -1,6 +1,3 @@
-from app.entities.knight import Knight
-
-
 class Potion:
     def __init__(self, name: str, effect: dict) -> None:
         self.name = name
