@@ -90,8 +90,13 @@ def base_knights_config():
     }
 
 
-def test_base_knights(base_knights_config):
-    assert battle(base_knights_config) == {
+@pytest.fixture()
+def base_knight_pairs():
+    return [("lancelot", "mordred"), ("arthur", "red_knight")]
+
+
+def test_base_knights(base_knights_config, base_knight_pairs):
+    assert battle(base_knights_config, base_knight_pairs) == {
         "Lancelot": 0,
         "Arthur": 30,
         "Mordred": 35,
@@ -99,10 +104,10 @@ def test_base_knights(base_knights_config):
     }
 
 
-def test_lancelot_overpowered(base_knights_config):
+def test_lancelot_overpowered(base_knights_config, base_knight_pairs):
     base_knights_config["lancelot"]["hp"] += 50
     base_knights_config["lancelot"]["power"] += 50
-    assert battle(base_knights_config) == {
+    assert battle(base_knights_config, base_knight_pairs) == {
         "Lancelot": 45,
         "Arthur": 30,
         "Mordred": 0,
@@ -110,10 +115,10 @@ def test_lancelot_overpowered(base_knights_config):
     }
 
 
-def test_red_knight_overpowered(base_knights_config):
+def test_red_knight_overpowered(base_knights_config, base_knight_pairs):
     base_knights_config["red_knight"]["hp"] += 50
     base_knights_config["red_knight"]["power"] += 50
-    assert battle(base_knights_config) == {
+    assert battle(base_knights_config, base_knight_pairs) == {
         "Lancelot": 0,
         "Arthur": 0,
         "Mordred": 35,
@@ -121,12 +126,12 @@ def test_red_knight_overpowered(base_knights_config):
     }
 
 
-def test_lancelot_has_armour(base_knights_config):
+def test_lancelot_has_armour(base_knights_config, base_knight_pairs):
     base_knights_config["lancelot"]["armour"].append({
         "part": "helmet",
         "protection": 25,
     })
-    assert battle(base_knights_config) == {
+    assert battle(base_knights_config, base_knight_pairs) == {
         "Lancelot": 20,
         "Arthur": 30,
         "Mordred": 35,
@@ -134,10 +139,10 @@ def test_lancelot_has_armour(base_knights_config):
     }
 
 
-def test_mordred_sword_is_not_poisoned(base_knights_config):
+def test_mordred_sword_is_not_poisoned(base_knights_config, base_knight_pairs):
     base_knights_config["mordred"]["weapon"]["name"] = "Common Sword"
     base_knights_config["mordred"]["weapon"]["power"] -= 15
-    assert battle(base_knights_config) == {
+    assert battle(base_knights_config, base_knight_pairs) == {
         "Lancelot": 10,
         "Arthur": 30,
         "Mordred": 35,
@@ -145,11 +150,11 @@ def test_mordred_sword_is_not_poisoned(base_knights_config):
     }
 
 
-def test_arthur_armour_weak(base_knights_config):
+def test_arthur_armour_weak(base_knights_config, base_knight_pairs):
     base_knights_config["arthur"]["armour"][0]["protection"] -= 10
     base_knights_config["arthur"]["armour"][1]["protection"] -= 10
     base_knights_config["arthur"]["armour"][0]["protection"] -= 10
-    assert battle(base_knights_config) == {
+    assert battle(base_knights_config, base_knight_pairs) == {
         "Lancelot": 0,
         "Arthur": 0,
         "Mordred": 35,
@@ -157,7 +162,7 @@ def test_arthur_armour_weak(base_knights_config):
     }
 
 
-def test_arthur_and_lancelot_have_potion(base_knights_config):
+def test_arthur_and_lancelot_have_potion(base_knights_config, base_knight_pairs):
     base_knights_config["arthur"]["potion"] = {
         "name": "Dragon's heart",
         "effect": {
@@ -173,10 +178,9 @@ def test_arthur_and_lancelot_have_potion(base_knights_config):
             "hp": +10,
         }
     }
-    assert battle(base_knights_config) == {
+    assert battle(base_knights_config, base_knight_pairs) == {
         "Lancelot": 5,
         "Arthur": 60,
         "Mordred": 10,
         "Red Knight": 0,
     }
-
