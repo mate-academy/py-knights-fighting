@@ -87,8 +87,21 @@ KNIGHTS = {
 
 def createKnight(knights):
     knigths_dict = {}
-    for key, knight in knights:
-        print(key, knight)
+    for key in knights:
+        knight_info = knights[key]
+        knight = Knight(
+            name=knight_info["name"],
+            power=knight_info["power"],
+            hp=knight_info["hp"],
+            armour=knight_info["armour"],
+            weapon=knight_info["weapon"],
+            potion=knight_info["potion"],
+        )
+        knigths_dict[key] = knight
+    print(knigths_dict)
+    for knight in knigths_dict.values():
+        knight.inicializate_stats()
+    print(knigths_dict)
 
 
 def battle(knightsConfig):
@@ -216,6 +229,6 @@ def battle(knightsConfig):
     }
 
 
-print(battle(KNIGHTS))
-
 createKnight(KNIGHTS)
+
+print(battle(KNIGHTS))
