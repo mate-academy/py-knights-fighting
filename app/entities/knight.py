@@ -7,20 +7,30 @@ class Knight:
     def __init__(self, key: str, data: dict) -> None:
         self.key = key
         self.name = data["name"]
-        self.hp = data["hp"]
-        self.power = data["power"]
 
+        # базовые характеристики
+        self.hp = data["hp"]
+        base_power = data["power"]
+
+        # броня
         self.armor = [
             Armor(a["part"], a["protection"])
-            for a in data.get("armour", [])
+            for a in data.get("armor", [])
         ]
 
-        weapon_data = data.get("weapon")
-        self.weapon = (
-            Weapon(weapon_data["name"], weapon_data["power"])
-            if weapon_data else None
+        self.protection = sum(a.protection for a in self.armor)
+
+        # оружие (есть всегда по условиям)
+        weapon_data = data["weapon"]
+        self.weapon = Weapon(
+            weapon_data["name"],
+            weapon_data["power"],
         )
 
+        # итоговая сила
+        self.power = base_power + self.weapon.power
+
+        # зелье
         potion_data = data.get("potion")
         self.potion = (
             Potion(potion_data["name"], potion_data["effect"])
@@ -28,9 +38,3 @@ class Knight:
         )
 
         self.potion_used = False
-
-        # базовая защита от брони
-        self.armor_protection = sum(a.protection for a in self.armor)
-
-        # итоговая защита (может усиливаться зельями)
-        self.protection = self.armor_protection
