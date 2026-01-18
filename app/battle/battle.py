@@ -19,19 +19,22 @@ class Battle:
             f"{self.knight1.name} и {self.knight2.name}!\n"
         )
 
-        # применяем зелья, если есть
-        if self.knight1.potion:
+        # применяем зелья, если есть и если ещё не использовались
+        if self.knight1.potion and not self.knight1.potion_used:
             print(
-                f"{self.knight1.name} выпивает зелье"
+                f"{self.knight1.name} выпивает зелье "
                 f"{self.knight1.potion.name}!"
             )
             self.knight1.potion.apply(self.knight1)
-        if self.knight2.potion:
+            self.knight1.potion_used = True
+
+        if self.knight2.potion and not self.knight2.potion_used:
             print(
-                f"{self.knight2.name} выпивает зелье"
+                f"{self.knight2.name} выпивает зелье "
                 f"{self.knight2.potion.name}!"
             )
             self.knight2.potion.apply(self.knight2)
+            self.knight2.potion_used = True
 
         round_num = 1
         while self.knight1.is_alive() and self.knight2.is_alive():
