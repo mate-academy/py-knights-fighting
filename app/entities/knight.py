@@ -10,11 +10,17 @@ class Knight:
         self.hp = data.get("hp", 0)
 
         # --- броня ---
-        armor_data = data.get("armor", [])
-        self.armor = [
-            Armor(a["part"], a["protection"])
-            for a in armor_data
-        ]
+        armor_data = data.get("armor") or data.get("armour", [])
+        armor_objects = []
+
+        for armor_dict in armor_data:
+            armor_obj = Armor(
+                armor_dict["part"],
+                armor_dict["protection"]
+            )
+            armor_objects.append(armor_obj)
+
+        self.armor = armor_objects
 
         # --- оружие ---
         weapon_data = data.get("weapon", {})
