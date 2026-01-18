@@ -3,20 +3,20 @@ from app.battle.battle import Battle
 
 
 def battle(knights_config: dict) -> dict:
-    result = {}
+    knights = {
+        key: Knight(key, config)
+        for key, config in knights_config.items()
+    }
 
-    arthur = Knight("arthur", knights_config["arthur"])
+    pairs = [
+        ("lancelot", "mordred"),
+        ("arthur", "red_knight"),
+    ]
 
-    for name, config in knights_config.items():
-        if name == "arthur":
-            continue
+    for k1, k2 in pairs:
+        Battle(knights[k1], knights[k2]).start()
 
-        enemy = Knight(name, config)
-
-        fight = Battle(arthur, enemy)
-        fight.start()
-
-        result["arthur"] = max(arthur.hp, 0)
-        result[name] = max(enemy.hp, 0)
-
-    return result
+    return {
+        knight.name: max(knight.hp, 0)
+        for knight in knights.values()
+    }
