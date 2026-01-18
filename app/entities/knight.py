@@ -45,7 +45,7 @@ class Knight:
     def defend(self, damage: int) -> None:
         """Получение урона с учетом брони"""
         total_protection = sum(
-            a.protection for a in self.armourэ
+            a.protection for a in self.armour
         )
         damage_taken = max(0, damage - total_protection)
         self.hp -= damage_taken
