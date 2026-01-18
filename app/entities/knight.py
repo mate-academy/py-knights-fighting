@@ -10,10 +10,10 @@ class Knight:
         self.hp = data.get("hp", 0)
 
         # --- броня ---
-        armour_data = data.get("armour", [])
-        self.armour = [
+        armor_data = data.get("armor", [])
+        self.armor = [
             Armor(a["part"], a["protection"])
-            for a in armour_data
+            for a in armor_data
         ]
 
         # --- оружие ---
@@ -34,7 +34,7 @@ class Knight:
             self.potion = None
 
     def total_protection(self) -> int:
-        return sum(a.protection for a in self.armour)
+        return sum(a.protection for a in self.armor)
 
     def attack(self, enemy: "Knight") -> None:
         """Атака"""
@@ -45,7 +45,7 @@ class Knight:
     def defend(self, damage: int) -> None:
         """Получение урона с учетом брони"""
         total_protection = sum(
-            a.protection for a in self.armour
+            a.protection for a in self.armor
         )
         damage_taken = max(0, damage - total_protection)
         self.hp -= damage_taken
