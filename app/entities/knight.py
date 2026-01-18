@@ -36,5 +36,3 @@ class Knight:
             Potion(potion_data["name"], potion_data["effect"])
             if potion_data else None
         )
-
-        self.potion_used = False
