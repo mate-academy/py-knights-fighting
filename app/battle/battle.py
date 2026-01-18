@@ -12,44 +12,44 @@ class Battle:
         self.knight1 = knight1
         self.knight2 = knight2
 
-    def start(self) -> None:
+    def start(self) -> dict:
         """Запуск пошагового боя."""
-        print(
-            f"\n⚔️ Битва начинается между"
-            f"{self.knight1.name} и {self.knight2.name}!\n"
-        )
+        #print(
+            #f"\n⚔️ Битва начинается между"
+            #f"{self.knight1.name} и {self.knight2.name}!\n"
+        #)
 
         # применяем зелья, если есть
         if self.knight1.potion:
-            print(
-                f"{self.knight1.name} выпивает зелье"
-                f"{self.knight1.potion.name}!"
-            )
+            #print(
+                #f"{self.knight1.name} выпивает зелье"
+                #f"{self.knight1.potion.name}!"
+            #)
             self.knight1.potion.apply(self.knight1)
         if self.knight2.potion:
-            print(
-                f"{self.knight2.name} выпивает зелье"
-                f"{self.knight2.potion.name}!"
-            )
+            #print(
+                #f"{self.knight2.name} выпивает зелье"
+                #f"{self.knight2.potion.name}!"
+            #)
             self.knight2.potion.apply(self.knight2)
 
         round_num = 1
         while self.knight1.is_alive() and self.knight2.is_alive():
-            print(f"\n--- Раунд {round_num} ---")
+            #print(f"\n--- Раунд {round_num} ---")
 
             self.knight1.attack(self.knight2)
             if not self.knight2.is_alive():
-                print(
-                    f"\n💀 {self.knight2.name} пал в бою."
-                    f"Победитель — {self.knight1.name}!"
-                )
+                #print(
+                    #f"\n💀 {self.knight2.name} пал в бою."
+                    #f"Победитель — {self.knight1.name}!"
+                #)
                 break
 
             self.knight2.attack(self.knight1)
             if not self.knight1.is_alive():
-                print(
-                    f"\n💀 {self.knight1.name} пал в бою."
-                    f"Победитель — {self.knight2.name}!")
+                #print(
+                    #f"\n💀 {self.knight1.name} пал в бою."
+                    #f"Победитель — {self.knight2.name}!")
                 break
 
             round_num += 1

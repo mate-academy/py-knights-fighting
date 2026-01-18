@@ -10,12 +10,11 @@ class Knight:
         self.hp = data.get("hp", 0)
 
         # --- броня ---
-        armor_data = data.get("armor", [])
-        armor_objects = []
-        for armor_dict in armor_data:
-            armor_obj = Armor(armor_dict["part"], armor_dict["protection"])
-            armor_objects.append(armor_obj)
-        self.armor = armor_objects
+        armour_data = data.get("armour", [])
+        self.armour = [
+            Armor(a["part"], a["protection"])
+            for a in armour_data
+        ]
 
         # --- оружие ---
         weapon_data = data.get("weapon", {})
@@ -35,26 +34,26 @@ class Knight:
             self.potion = None
 
     def total_protection(self) -> int:
-        return sum(a.protection for a in self.armor)
+        return sum(a.protection for a in self.armour)
 
     def attack(self, enemy: "Knight") -> None:
         """Атака"""
         damage = self.power + self.weapon.power
-        print(f"{self.name} атакует {enemy.name} и наносит {damage} урона!")
+        #print(f"{self.name} атакует {enemy.name} и наносит {damage} урона!")
         enemy.defend(damage)
 
     def defend(self, damage: int) -> None:
         """Получение урона с учетом брони"""
         total_protection = sum(
-            a.protection for a in self.armor
+            a.protection for a in self.armourэ
         )
         damage_taken = max(0, damage - total_protection)
         self.hp -= damage_taken
 
-        print(
-            f"{self.name} получает {damage_taken} урона."
-            f"HP осталось: {self.hp}"
-        )
+        #print(
+            #f"{self.name} получает {damage_taken} урона."
+            #f"HP осталось: {self.hp}"
+        #)
 
     def is_alive(self) -> bool:
         """Проверяет жив ли рыцарь"""
