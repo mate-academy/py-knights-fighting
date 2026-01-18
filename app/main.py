@@ -1,9 +1,9 @@
 from app.classes.Knights import Knight
 from app.classes.Battle import Battle
-from app.data.knights import KNIGHTS as kn
+from app.data.knights import KNIGHTS as KN
 
 
-def createKnight(knights):
+def create_knight(knights: dict) -> dict:
     knigths_dict = {}
     for key in knights:
         knight_info = knights[key]
@@ -22,10 +22,10 @@ def createKnight(knights):
     # BATTLE:
 
 
-def battle(knightsConfig) -> dict:
+def battle(knights_config: dict) -> dict:
     # BATTLE PREPARATIONS:
 
-    knights = createKnight(knightsConfig)
+    knights = create_knight(knights_config)
 
     battle1 = Battle(knights["lancelot"], knights["mordred"])
     battle2 = Battle(knights["arthur"], knights["red_knight"])
@@ -41,4 +41,4 @@ def battle(knightsConfig) -> dict:
     }
 
 
-print(battle(kn))
+print(battle(KN))

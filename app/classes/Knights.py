@@ -24,7 +24,7 @@ class Knight:
     def __str__(self) -> str:
         return f"{self.name} (Power: {self.power}, HP: {self.hp})"
 
-    def inicializate_stats(self):
+    def inicializate_stats(self) -> None:
         self.protection = sum(a["protection"] for a in self.armour)
         self.power += self.weapon["power"]
         if self.potion:
