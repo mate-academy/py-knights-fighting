@@ -12,7 +12,7 @@ class Knight:
             hp: int,
             armour: list[Armour],
             weapon: Weapon,
-            potion: Potion,
+            potion: Potion | None,
     ) -> None:
         self.name = name
         self.power = power

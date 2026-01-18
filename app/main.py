@@ -4,18 +4,19 @@ from app.battle.battle import Battle
 
 
 def battle(knights: dict) -> dict:
-    lancelot = build_knight(knights["lancelot"])
-    arthur = build_knight(knights["arthur"])
-    mordred = build_knight(knights["mordred"])
-    red_knight = build_knight(knights["red_knight"])
+    knights_ready = {}
+    for key, value in knights.items():
+        knight = build_knight(value)
+        knights_ready[key] = (
+            PreparationToBattle(knight).preparation_to_battle()
+        )
 
-    lancelot_ready = PreparationToBattle(lancelot).preparation_to_battle()
-    arthur_ready = PreparationToBattle(arthur).preparation_to_battle()
-    mordred_ready = PreparationToBattle(mordred).preparation_to_battle()
-    red_knight_ready = PreparationToBattle(red_knight).preparation_to_battle()
-
-    battle1 = Battle(lancelot_ready, mordred_ready).fight()
-    battle2 = Battle(arthur_ready, red_knight_ready).fight()
+    battle1 = Battle(
+        knights_ready["lancelot"], knights_ready["mordred"]
+    ).fight()
+    battle2 = Battle(
+        knights_ready["arthur"], knights_ready["red_knight"]
+    ).fight()
 
     result = {}
     result.update(battle1)
