@@ -17,5 +17,4 @@ class Potion:
             elif key == "power":
                 knight.power += value
             elif key == "protection":
-                for armor in knight.armor:
-                    armor.protection += value
+                knight.protection += value

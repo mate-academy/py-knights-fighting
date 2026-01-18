@@ -5,13 +5,12 @@ from app.battle.battle import Battle
 def battle(knights_config: dict) -> dict:
     result = {}
 
-    arthur_config = knights_config["arthur"]
+    arthur = Knight("arthur", knights_config["arthur"])
 
     for name, config in knights_config.items():
         if name == "arthur":
             continue
 
-        arthur = Knight("arthur", arthur_config)
         enemy = Knight(name, config)
 
         fight = Battle(arthur, enemy)
