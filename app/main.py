@@ -11,14 +11,15 @@ def battle(knights: dict) -> dict:
             PreparationToBattle(knight).preparation_to_battle()
         )
 
-    battle1 = Battle(
-        knights_ready["lancelot"], knights_ready["mordred"]
-    ).fight()
-    battle2 = Battle(
-        knights_ready["arthur"], knights_ready["red_knight"]
-    ).fight()
-
+    battle_pairs = [
+        ("lancelot", "mordred"),
+        ("arthur", "red_knight"),
+    ]
     result = {}
-    result.update(battle1)
-    result.update(battle2)
+    for k1, k2 in battle_pairs:
+        outcome = Battle(
+            knights_ready[k1], knights_ready[k2]
+        ).fight()
+        result.update(outcome)
+
     return result

@@ -27,7 +27,6 @@ class PreparationToBattle:
                 total_power += potion_power
             if potion_protection is not None:
                 total_protection += potion_protection
-        self.knight.power = total_power
         self.knight.hp = total_hp
         self.knight.total_protection = total_protection
         self.knight.total_power = total_power
