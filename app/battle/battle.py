@@ -19,7 +19,7 @@ class Battle:
             f"{self.knight1.name} и {self.knight2.name}!\n"
         )
 
-        #применяем зелья, если есть
+        # применяем зелья, если есть
         if self.knight1.potion:
             print(
                 f"{self.knight1.name} выпивает зелье"
