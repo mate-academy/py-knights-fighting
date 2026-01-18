@@ -39,7 +39,7 @@ class Knight:
     def attack(self, enemy: "Knight") -> None:
         """Атака"""
         damage = self.power + self.weapon.power
-        #print(f"{self.name} атакует {enemy.name} и наносит {damage} урона!")
+        print(f"{self.name} атакует {enemy.name} и наносит {damage} урона!")
         enemy.defend(damage)
 
     def defend(self, damage: int) -> None:
@@ -50,10 +50,10 @@ class Knight:
         damage_taken = max(0, damage - total_protection)
         self.hp -= damage_taken
 
-        #print(
-            #f"{self.name} получает {damage_taken} урона."
-            #f"HP осталось: {self.hp}"
-        #)
+        print(
+            f"{self.name} получает {damage_taken} урона."
+            f"HP осталось: {self.hp}"
+        )
 
     def is_alive(self) -> bool:
         """Проверяет жив ли рыцарь"""
