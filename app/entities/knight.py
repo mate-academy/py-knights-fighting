@@ -29,6 +29,8 @@ class Knight:
 
         self.potion_used = False
 
-    @property
-    def protection(self) -> int:
-        return sum(a.protection for a in self.armor)
+        # базовая защита от брони
+        self.armor_protection = sum(a.protection for a in self.armor)
+
+        # итоговая защита (может усиливаться зельями)
+        self.protection = self.armor_protection
