@@ -3,20 +3,28 @@ from app.battle.battle import Battle
 
 
 def battle(knights_config: dict) -> dict:
-    results = {}
+    knights = {
+        key: Knight(config["name"], config)
+        for key, config in knights_config.items()
+    }
 
     order = ["arthur", "lancelot", "mordred", "red_knight"]
 
-    for opponent_key in order[1:]:
-        # каждый бой — с НОВЫМИ объектами
-        arthur = Knight("Arthur", knights_config["arthur"])
-        opponent_cfg = knights_config[opponent_key]
-        opponent = Knight(opponent_cfg["name"], opponent_cfg)
+    current = knights[order[0]]
 
-        fight = Battle(arthur, opponent)
+    for next_key in order[1:]:
+        enemy = knights[next_key]
+
+        fight = Battle(current, enemy)
         fight.start()
 
-        results[arthur.name] = max(arthur.hp, 0)
-        results[opponent.name] = max(opponent.hp, 0)
+        # победитель идёт дальше
+        if current.is_alive():
+            current = current
+        else:
+            current = enemy
 
-    return results
+    return {
+        knight.name: max(knight.hp, 0)
+        for knight in knights.values()
+    }
