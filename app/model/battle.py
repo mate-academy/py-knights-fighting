@@ -10,4 +10,3 @@ def battle_between_knights(
 
     knight_a.hp = max(0, knight_a.hp - damage_to_knight_a)
     knight_b.hp = max(0, knight_b.hp - damage_to_knight_b)
-
