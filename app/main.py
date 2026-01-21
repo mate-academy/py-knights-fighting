@@ -87,27 +87,25 @@ KNIGHTS = {
         }
     }
 }
+FIGHT_ORDER = [
+    ("lancelot", "mordred"),
+    ("arthur", "red_knight"),
+]
 
 
-def battle(knights_сonfig: dict) -> dict:
+def battle(knights_config: dict) -> dict:
     # BATTLE PREPARATIONS:
-    for knight in knights_сonfig.values():
+    for knight in knights_config.values():
         ApplyEquipment(knight).prepare_for_battle()
-
-    lancelot = knights_сonfig["lancelot"]
-    arthur = knights_сonfig["arthur"]
-    mordred = knights_сonfig["mordred"]
-    red_knight = knights_сonfig["red_knight"]
     # -------------------------------------------------------------------------------
     # BATTLE:
-    battle_for_honor(lancelot, mordred)
-    battle_for_honor(arthur, red_knight)
+    for fighter, stats in FIGHT_ORDER:
+        battle_for_honor(knights_config[fighter], knights_config[stats])
 
     return {
-        lancelot["name"]: lancelot["hp"],
-        arthur["name"]: arthur["hp"],
-        mordred["name"]: mordred["hp"],
-        red_knight["name"]: red_knight["hp"],
+        knight_result["name"]: knight_result["hp"]
+        for knight_result
+        in knights_config.values()
     }
 
 
