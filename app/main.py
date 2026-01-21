@@ -92,9 +92,14 @@ KNIGHTS = {
 
 def battle(knights_config: dict) -> dict:
 
-    preparations_for_battle(knights_config)
-    result = one_on_one("Lancelot", "Mordred")
-    result.update(one_on_one("Arthur", "Red Knight"))
+    for_battle = preparations_for_battle(knights_config)
+    first_knight = for_battle[0]
+    second_knight = for_battle[2]
+
+    result = one_on_one(first_knight, second_knight)
+    first_knight = for_battle[1]
+    second_knight = for_battle[3]
+    result.update(one_on_one(first_knight, second_knight))
     return result
 
 

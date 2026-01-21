@@ -1,8 +1,11 @@
 from app.class_knight import Knight
 
 
-def preparations_for_battle(knights_config: dict) -> None:
-    make_knights = []
+def preparations_for_battle(knights_config: dict) -> list:
+    make_knights2 = []
     for knight in knights_config.values():
-        make_knights.append(Knight(knight["name"],
-                                   knight).config_preparations())
+        one_knight = Knight(knight["name"], knight)
+        one_knight.config_preparations()
+        make_knights2.append(one_knight)
+
+    return make_knights2
