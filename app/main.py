@@ -1,5 +1,5 @@
 from app.battle_preparations import preparations_for_battle
-from app.battle_my import one_battle
+from app.battle_my import one_on_one
 
 
 KNIGHTS = {
@@ -93,8 +93,8 @@ KNIGHTS = {
 def battle(knights_config: dict) -> dict:
 
     preparations_for_battle(knights_config)
-
-    result = one_battle("Lancelot", "Mordred", "Arthur", "Red Knight")
+    result = one_on_one("Lancelot", "Mordred")
+    result.update(one_on_one("Arthur", "Red Knight"))
     return result
 
 

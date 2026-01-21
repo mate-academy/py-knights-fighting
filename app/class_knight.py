@@ -1,20 +1,20 @@
 class Knight:
     list_knight = {}
 
-    def __init__(self, name: str, config_k: dict) -> None:
+    def __init__(self, name: str, config_knight: dict) -> None:
         self.name = name
-        self.config_power = config_k["power"] + config_k["weapon"]["power"]
-        self.config_hp = config_k["hp"]
-        self.config_armour = config_k["armour"]
-        self.config_potion = config_k["potion"]
+        self.power = config_knight["power"] + config_knight["weapon"]["power"]
+        self.hp = config_knight["hp"]
+        self.armour = config_knight["armour"]
+        self.potion = config_knight["potion"]
         Knight.list_knight[name] = self
 
     def config_preparations(self) -> None:
         sum_protection = 0
-        for el_armour in self.config_armour:
+        for el_armour in self.armour:
             sum_protection += el_armour["protection"]
-        if self.config_potion is not None:
-            self.config_power += self.config_potion["effect"].get("power", 0)
-            self.config_hp += self.config_potion["effect"].get("hp", 0)
-            sum_protection += self.config_potion["effect"].get("protection", 0)
-        self.config_armour = sum_protection
+        if self.potion is not None:
+            self.power += self.potion["effect"].get("power", 0)
+            self.hp += self.potion["effect"].get("hp", 0)
+            sum_protection += self.potion["effect"].get("protection", 0)
+        self.armour = sum_protection
