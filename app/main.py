@@ -1,12 +1,119 @@
-"""
-ідкя наступна: створити перед боєм лицарів а потім рахувати переможця
-тообто кожен клас предметів просто повертає значення які потім буде використано для створення ліцаря
-потім бій і оголошення результатів згідно вімог тестів
+from app.Knights.knights import Knight
 
-увесь бій зводиться до формули hp(red) -= power(blue) - protection(red) 
-а щоб дійти доцього треба рахувати стати лицарів перед боєм
-"""
+# підрахунок шкоди
 
+def calc_damage(power: int, protection: int) -> int:
+    return max(0, power - protection)
+
+# duel takes two knights and call "calc_damage"
+
+def duel(couple: tuple["Knight", "Knight"]) -> dict[str, int]:
+    duel_result = {}
+    for idx in range(len(couple)):
+        hp = couple[idx].hp
+        hp -= calc_damage(couple[(idx + 1) % 2].power, couple[idx].protection)
+        duel_result.update({couple[idx].name: max(0, hp)})
+    return duel_result    
+
+# battle itterates through the list of couples and call "duel" func for each cople
+
+def battle(knights: list[tuple["Knight", "Knight"]]) -> dict[str, int]:
+    battle_result = {}
+    for couple in knights:
+        battle_result.update(duel(couple))
+    return battle_result
+
+
+
+
+
+
+
+    first_knight = couple[0]
+    second_knight = couple[1]
+
+    hp1 = first_knight.hp
+    hp2 = second_knight.hp
+
+    hp1 -= calc_damage(second_knight.power, first_knight.protection)
+    hp2 -= calc_damage(first_knight.power, second_knight.protection)
+
+
+
+# def battle(
+#         first_knight: "Knight",
+#         second_knight: "Knight",
+#         third_knight: "Knight" = None,
+#         fourth_knight: "Knight" = None
+# ) -> dict[str, int]:
+    
+    # if fourth_knight:
+
+    #     hp1 = first_knight.hp
+    #     hp2 = second_knight.hp
+    #     hp3 = third_knight.hp
+    #     hp4 = fourth_knight.hp
+
+    #     hp1 -= calc_damage(second_knight.power, first_knight.protection)
+    #     hp2 -= calc_damage(first_knight.power, second_knight.protection)
+    #     hp3 -= calc_damage(fourth_knight.power, third_knight.protection)
+    #     hp4 -= calc_damage(third_knight.power, fourth_knight.protection)
+        
+    #     hp1 = max(0, hp1)
+    #     hp2 = max(0, hp2)
+    #     hp3 = max(0, hp3)
+    #     hp4 = max(0, hp4)
+        
+    #     return {
+    #         first_knight.name: hp1,
+    #         second_knight.name: hp2,
+    #         third_knight.name: hp3,
+    #         fourth_knight.name: hp4
+    #     }
+
+    # else:
+    #     hp1 = first_knight.hp
+    #     hp2 = second_knight.hp
+
+
+    #     hp1 -= calc_damage(second_knight.power, first_knight.protection)
+    #     hp2 -= calc_damage(first_knight.power, second_knight.protection)
+
+    #     hp1 = max(0, hp1)
+    #     hp2 = max(0, hp2)
+
+        
+    #     return {
+    #         first_knight.name: hp1,
+    #         second_knight.name: hp2,
+    #     }
+
+# друга версія битви
+    
+def battle(knights: list[list]):
+    for idx, knight in enumerate(knights):
+        hp = knight.hp
+        hp -= calc_damage(knights[(idx + 1) % 2].power, knights[(idx + 1) % 2].protection)
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    pass
+    
+
+
+
+
+
+
+
+'''
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
@@ -221,3 +328,4 @@ def battle(knightsConfig):
 
 
 print(battle(KNIGHTS))
+'''
