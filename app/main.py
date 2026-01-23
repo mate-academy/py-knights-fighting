@@ -1,4 +1,4 @@
-from app.knights_file.knight import Knight
+from app.knights.knight import Knight
 
 KNIGHTS = {
     "lancelot": {
@@ -91,30 +91,28 @@ KNIGHTS = {
 def battle(knights_config: dict) -> dict:
     # -------------------------------------------------------------------------------
     # BATTLE:
+    knights_dict = {}
+    for knight_name, knight in knights_config.items():
+        knights_dict[knight_name] = Knight(
+            knight["power"],
+            knight["hp"],
+            knight["armour"],
+            knight["weapon"],
+            knight["potion"]
+        )
     # 1 Lancelot vs Mordred:
-    knights_config["lancelot"].battle_vs(knights_config["mordred"])
-    knights_config["mordred"].battle_vs(knights_config["lancelot"])
+    knights_dict["lancelot"].battle_vs(knights_dict["mordred"])
+    knights_dict["mordred"].battle_vs(knights_dict["lancelot"])
 
-    knights_config["arthur"].battle_vs(knights_config["red_knight"])
-    knights_config["red_knight"].battle_vs(knights_config["arthur"])
+    knights_dict["arthur"].battle_vs(knights_dict["red_knight"])
+    knights_dict["red_knight"].battle_vs(knights_dict["arthur"])
 
     result_dict = {}
-    for knight_name, knight in knights_config:
-        result_dict[knight_name] = knight.hp
+    for knight_name, knight in knights_dict.items():
+        result_dict[knight_name.capitalize()] = knight.hp
 
     # Return battle results:
     return result_dict
 
 
-knights_dict = {}
-for knight_name, knight in KNIGHTS:
-    knights_dict[knight_name] = Knight(
-        knight["name"],
-        knight["power"],
-        knight["hp"],
-        knight["armour"],
-        knight["weapon"],
-        knight["potion"]
-    )
-
-print(battle(knights_dict))
+print(battle(KNIGHTS))
