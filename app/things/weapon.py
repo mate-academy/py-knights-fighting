@@ -5,6 +5,6 @@ class Weapon:
 
     @classmethod
     def create_weapon_from_dict(cls,
-                                dictionary: dict) -> Weapon:
+                                dictionary: dict) -> "Weapon":
         return cls(name=dictionary["name"],
                    power=dictionary["power"])
