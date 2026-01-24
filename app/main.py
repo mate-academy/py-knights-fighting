@@ -109,7 +109,11 @@ def battle(knights_config: dict) -> dict:
 
     result_dict = {}
     for knight_name, knight in knights_dict.items():
-        result_dict[knight_name.capitalize()] = knight.hp
+        if "_" in knight_name:
+            new_knight_name = knight_name.replace("_", " ")
+            result_dict[new_knight_name.title()] = knight.hp
+        else:
+            result_dict[knight_name.capitalize()] = knight.hp
 
     # Return battle results:
     return result_dict

@@ -18,12 +18,12 @@ class Knight:
                 self.protection += arm["protection"]
         self.power += weapon["power"]
         if potion is not None:
-            if "power" in potion:
-                self.power += potion["power"]
-            if "hp" in potion:
-                self.hp += potion["hp"]
-            if "protection" in potion:
-                self.protection += potion["protection"]
+            if "power" in potion["effect"]:
+                self.power += potion["effect"]["power"]
+            if "hp" in potion["effect"]:
+                self.hp += potion["effect"]["hp"]
+            if "protection" in potion["effect"]:
+                self.protection += potion["effect"]["protection"]
 
     def battle_vs(self, other: Knight) -> None:
         self.hp -= other.power - self.protection
