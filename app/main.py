@@ -7,12 +7,16 @@ def battle(knights: Optional[Dict] = None) -> Dict[str, int]:
     if knights is None:
         knights = KNIGHTS
 
-    lm = fight(knights["lancelot"], knights["mordred"])
-    ar = fight(knights["arthur"], knights["red_knight"])
+    pairs = [
+        ("Lancelot", "lancelot", "Mordred", "mordred"),
+        ("Arthur", "arthur", "Red Knight", "red_knight"),
+    ]
 
-    return {
-        "Lancelot": lm["first"],
-        "Mordred": lm["second"],
-        "Arthur": ar["first"],
-        "Red Knight": ar["second"],
-    }
+    results: Dict[str, int] = {}
+
+    for name1, key1, name2, key2 in pairs:
+        outcome = fight(knights[key1], knights[key2])
+        results[name1] = outcome["first"]
+        results[name2] = outcome["second"]
+
+    return results
