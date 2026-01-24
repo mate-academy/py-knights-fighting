@@ -40,7 +40,7 @@ class Knight:
                     getattr(self, stat) + getattr(self.potion, stat))
 
     @classmethod
-    def create_knight_from_dict(cls, dictionary: dict) -> Knight:
+    def create_knight_from_dict(cls, dictionary: dict) -> "Knight":
         knight = cls(dictionary["name"],
                      dictionary["power"],
                      dictionary["hp"])
