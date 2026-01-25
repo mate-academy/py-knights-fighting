@@ -7,40 +7,30 @@ class Knight():
         self.weapon = knight_info["weapon"]
         self.potion = knight_info["potion"]
 
-    def knights_stats(self):
+    def knights_stats(self) -> dict:
         ammount_of_protection = 0
+        ammount_of_hp = self.hp
+        ammount_of_power = self.power + self.weapon["power"]
+
         if self.armour:
             for armor_part in self.armour:
                 ammount_of_protection += armor_part["protection"]
 
-        if not self.potion["effect"]["hp"]:
-            ammount_of_hp = self.hp
-        else:
-            ammount_of_hp = self.hp + self.potion["effect"]["hp"]
-
-        if not self.potion["effect"]["power"]:
-            ammount_of_power = self.power + self.weapon["power"]
-        else:
-            ammount_of_power = self.power + self.weapon["power"] + self.potion["effect"]["power"]
-
+        if self.potion:
+            if "protection" in self.potion["effect"]:
+                ammount_of_protection += self.potion["effect"]["protection"]
+            if "hp" in self.potion["effect"]:
+                ammount_of_hp = (self.hp
+                                 + self.potion["effect"]["hp"]
+                                 )
+            if "power" in self.potion["effect"]:
+                ammount_of_power = (self.power
+                                    + self.weapon["power"]
+                                    + self.potion["effect"]["power"]
+                                    )
 
         return {
-            "hp": ammount_of_hp,  # 70 + 10
-            "power": ammount_of_power,  # 40 + 45 + 5
-            "protection": ammount_of_protection  # 0 + 25
+            "hp": ammount_of_hp,
+            "power": ammount_of_power,
+            "protection": ammount_of_protection
         }
-
-
-info = {
-        "name": "Lancelot",
-        "power": 35,
-        "hp": 100,
-        "armour": [],
-        "weapon": {
-            "name": "Metal Sword",
-            "power": 50,
-        },
-        "potion": None,
-    }
-x = Knight(info)
-print(x.knights_stats())
