@@ -8,35 +8,38 @@ class Knight:
         self.weapon = weapon
         self.potion = potion
 
-        # Фінальні стати (поки що 0 або базові)
+        # Ініціалізуємо поточні стати базовими значеннями
         self.hp = base_hp
         self.power = base_power
         self.protection = 0
 
     def prepare_stats(self) -> None:
-        # 1. Рахуємо захист від броні
+        # 1. обов'язково: Скидаємо стати до базових перед розрахунком
+        # Це робить метод безпечним для повторного виклику
+        self.hp = self.base_hp
+        self.power = self.base_power
+        self.protection = 0
+
+        # 2. Рахуємо захист від броні
         self.protection = sum(part["protection"] for part in self.armour)
 
-        # 2. Додаємо силу зброї
+        # 3. Додаємо силу зброї
         self.power += self.weapon["power"]
 
-        # 3. Застосовуємо зілля (якщо є)
+        # 4. Застосовуємо зілля (якщо є)
         if self.potion:
             effect = self.potion["effect"]
-            # dict.get(key, 0) повертає 0, якщо ключа немає
             self.hp += effect.get("hp", 0)
             self.power += effect.get("power", 0)
             self.protection += effect.get("protection", 0)
 
     def take_damage(self, damage: int) -> None:
-        """Зменшує HP лицаря. HP не може бути менше 0."""
         self.hp -= damage
         if self.hp < 0:
             self.hp = 0
 
     @classmethod
     def from_config(cls, config: dict) -> "Knight":
-        """Створює лицаря зі словника конфігурації."""
         return cls(
             name=config["name"],
             base_hp=config["hp"],

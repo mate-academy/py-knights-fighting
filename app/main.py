@@ -3,40 +3,35 @@ from app.config import KNIGHTS
 
 
 def run_duel(attacker: Knight, defender: Knight) -> None:
-    # Формула: damage = power ворога - protection захисника
     damage = attacker.power - defender.protection
-    # Якщо захист більший за удар, шкода = 0
     if damage < 0:
         damage = 0
     defender.take_damage(damage)
 
 
 def battle(knights_config: dict = KNIGHTS) -> dict:
-    # 1. Створюємо об'єкти лицарів
-    lancelot = Knight.from_config(knights_config["lancelot"])
-    arthur = Knight.from_config(knights_config["arthur"])
-    mordred = Knight.from_config(knights_config["mordred"])
-    red_knight = Knight.from_config(knights_config["red_knight"])
+    # Словник для зберігання готових об'єктів лицарів
+    knights = {}
 
-    # 2. Підготовуємо їх (рахуємо броню, зілля тощо)
-    lancelot.prepare_stats()
-    arthur.prepare_stats()
-    mordred.prepare_stats()
-    red_knight.prepare_stats()
+    # 1. & 2. Створюємо та готуємо лицарів у циклі
+    for name, config in knights_config.items():
+        knight = Knight.from_config(config)
+        knight.prepare_stats()
+        knights[name] = knight
 
-    # 3. Проводимо бої згідно з завданням
-    # Lancelot vs Mordred
+    # Отримуємо потрібних лицарів зі словника для проведення боїв
+    # (Ми знаємо ключі з конфігурації)
+    lancelot = knights["lancelot"]
+    arthur = knights["arthur"]
+    mordred = knights["mordred"]
+    red_knight = knights["red_knight"]
+
+    # 3. Проводимо бої
     run_duel(attacker=lancelot, defender=mordred)
     run_duel(attacker=mordred, defender=lancelot)
 
-    # Arthur vs Red Knight
     run_duel(attacker=arthur, defender=red_knight)
     run_duel(attacker=red_knight, defender=arthur)
 
-    # 4. Повертаємо результати
-    return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
-    }
+    # 4. Формуємо результат через dict comprehension (виправлено Checklist #2)
+    return {knight.name: knight.hp for knight in knights.values()}
