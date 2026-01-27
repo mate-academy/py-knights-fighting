@@ -18,15 +18,12 @@ class Knight:
         power = self.power
         protection = 0
 
-        # броня
         for piece in self.armour:
             protection += piece.protection
 
-        # зброя
         if self.weapon:
             power += self.weapon.power
 
-        # зілля
         if self.potion:
             effect = self.potion.effect
             hp += effect.get("hp", 0)
