@@ -7,17 +7,15 @@ from app.fight.fight import fight
 def battle(knights_config: dict) -> dict:
     config = deepcopy(knights_config)
 
-    lancelot = Knight(config["lancelot"])
-    mordred = Knight(config["mordred"])
-    arthur = Knight(config["arthur"])
-    red_knight = Knight(config["red_knight"])
+    knights = {
+        key: Knight(data)
+        for key, data in config.items()
+    }
 
-    fight(lancelot, mordred)
-    fight(arthur, red_knight)
+    fight(knights["lancelot"], knights["mordred"])
+    fight(knights["arthur"], knights["red_knight"])
 
     return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
+        knight.name: knight.hp
+        for knight in knights.values()
     }
