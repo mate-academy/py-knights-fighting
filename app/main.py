@@ -2,8 +2,8 @@ from app.knights.factory_knights import factory_knights
 from app.battle_m import Battle
 
 
-def battle(knightsconfig: dict) -> dict:
-    knights = factory_knights(knightsconfig)
+def battle(knights_config: dict) -> dict:
+    knights = factory_knights(knights_config)
 
     lancelot = knights["Lancelot"]
     arthur = knights["Arthur"]
