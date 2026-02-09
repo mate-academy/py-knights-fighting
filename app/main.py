@@ -1,4 +1,3 @@
-from app.knights.list_knights import KNIGHTS
 from app.knights.factory_knights import factory_knights
 from app.battle_m import Battle
 
@@ -23,7 +22,3 @@ def battle(knightsconfig: dict) -> dict:
         mordred.name: mordred.hp,
         red_knight.name: red_knight.hp,
     }
-
-
-if __name__ == "__main__":
-    print(battle(KNIGHTS))
