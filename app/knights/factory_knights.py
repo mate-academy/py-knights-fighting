@@ -21,7 +21,8 @@ def factory_knights(knights: dict) -> dict:
 
         potion = None
         if knights[name]["potion"] is not None:
-            potion = Potion(knights[name]["potion"]["name"], knights[name]["potion"]["effect"])
+            potion = Potion(knights[name]["potion"]["name"],
+                            knights[name]["potion"]["effect"])
 
         knight = Knight(warrior, list_armour, weapon, potion)
         knights_[knight.name] = knight

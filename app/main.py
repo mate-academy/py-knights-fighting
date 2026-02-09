@@ -1,12 +1,10 @@
-from app.knights import knight
 from app.knights.list_knights import KNIGHTS
 from app.knights.factory_knights import factory_knights
-from app.knights.knight import Knight
 from app.battle_m import Battle
 
 
-def battle(knightsConfig):
-    knights = factory_knights(knightsConfig)
+def battle(knightsconfig: dict) -> dict:
+    knights = factory_knights(knightsconfig)
 
     lancelot = knights["Lancelot"]
     arthur = knights["Arthur"]
@@ -25,6 +23,7 @@ def battle(knightsConfig):
         mordred.name: mordred.hp,
         red_knight.name: red_knight.hp,
     }
+
 
 if __name__ == "__main__":
     print(battle(KNIGHTS))
