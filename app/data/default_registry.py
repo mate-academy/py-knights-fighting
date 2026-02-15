@@ -1,5 +1,5 @@
-from items import Weapon, Armour, Potion
-from registry import ItemRegistry
+from app.domain.items import Weapon, Armour, Potion
+from app.domain.registry import ItemRegistry
 
 registry = ItemRegistry(
     weapons = {

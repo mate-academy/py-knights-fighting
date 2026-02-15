@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Mapping
 
-from items import Weapon, Armour, Potion
+from app.domain.items import Weapon, Armour, Potion
 
 @dataclass(frozen=True, slots=True)
 class ItemRegistry:

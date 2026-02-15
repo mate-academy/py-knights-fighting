@@ -1,11 +1,11 @@
-from app.default_loadouts import (
+from app.data.loadouts import (
     lancelot_loadout,
     arthur_loadout,
     mordred_loadout,
     red_knight_loadout
 )
-from app.default_registry import registry
-from app.knight import Knight
+from app.data.default_registry import registry
+from app.domain.knight import Knight
 
 lancelot = Knight(
     name = "Lancelot",

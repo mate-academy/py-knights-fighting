@@ -1,4 +1,4 @@
-from registry import Loadout
+from app.domain.registry import Loadout
 
 lancelot_loadout = Loadout(
     weapon_id = "metal_sword",
