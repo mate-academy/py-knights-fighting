@@ -36,8 +36,8 @@ mordred = Knight(
 
 red_knight = Knight(
     name="Red Knight",
-    hp=40,
-    power=70,
+    hp=70,
+    power=40,
     protection=0,
     registry=registry,
     equipment=red_knight_loadout
