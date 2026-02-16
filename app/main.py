@@ -1,12 +1,56 @@
-from app.data.knights import (
-    lancelot,
-    arthur,
-    mordred,
-    red_knight)
-from app.domain.knight import Knight
+from __future__ import annotations
 
-def make_combatant(knight: Knight):
-
-def duel(knight1: Knight, knight2: Knight):
+from dataclasses import dataclass
+from typing import Any
 
 
+@dataclass(slots=True)
+class Combatant:
+    name: str
+    hp: int
+    power: int
+    protection: int
+
+
+def _to_combatant(cfg: dict[str, Any]) -> Combatant:
+    potion = cfg.get("potion")
+    effect = potion.get("effect", {}) if potion else {}
+    hp = cfg["hp"] + effect.get("hp", 0)
+    power = cfg["power"] + cfg["weapon"]["power"] + effect.get("power", 0)
+    protection = (sum(
+        a["protection"] for a in cfg["armour"])
+        + effect.get("protection", 0
+                     ))
+
+    return Combatant(
+        name=cfg["name"],
+        hp=hp,
+        power=power,
+        protection=protection,
+    )
+
+
+def duel(first: Combatant, second: Combatant) -> tuple[int, int]:
+    dmg_to_first = max(0, second.power - first.protection)
+    dmg_to_second = max(0, first.power - second.protection)
+
+    a_hp = max(0, first.hp - dmg_to_first)
+    b_hp = max(0, first.hp - dmg_to_second)
+    return a_hp, b_hp
+
+
+def battle(config: dict[str, dict[str, Any]]) -> dict[str, int]:
+    lancelot = _to_combatant(config["lancelot"])
+    arthur = _to_combatant(config["arthur"])
+    mordred = _to_combatant(config["mordred"])
+    red_knight = _to_combatant(config["red_knight"])
+
+    l_hp, m_hp = duel(lancelot, mordred)
+    a_hp, r_hp = duel(arthur, red_knight)
+
+    return {
+        lancelot.name: l_hp,
+        arthur.name: a_hp,
+        mordred.name: m_hp,
+        red_knight.name: r_hp,
+    }
