@@ -15,12 +15,13 @@ class Combatant:
 def _to_combatant(cfg: dict[str, Any]) -> Combatant:
     potion = cfg.get("potion")
     effect = potion.get("effect", {}) if potion else {}
+
     hp = cfg["hp"] + effect.get("hp", 0)
     power = cfg["power"] + cfg["weapon"]["power"] + effect.get("power", 0)
-    protection = (sum(
-        a["protection"] for a in cfg["armour"])
-        + effect.get("protection", 0
-                     ))
+    protection = (sum(a["protection"]
+                  for a in cfg["armour"])
+                  + effect.get("protection", 0
+                               ))
 
     return Combatant(
         name=cfg["name"],
@@ -30,13 +31,13 @@ def _to_combatant(cfg: dict[str, Any]) -> Combatant:
     )
 
 
-def duel(first: Combatant, second: Combatant) -> tuple[int, int]:
-    dmg_to_first = max(0, second.power - first.protection)
-    dmg_to_second = max(0, first.power - second.protection)
+def duel(aa: Combatant, bb: Combatant) -> tuple[int, int]:
+    dmg_to_aa = max(0, bb.power - aa.protection)
+    dmg_to_bb = max(0, aa.power - bb.protection)
 
-    a_hp = max(0, first.hp - dmg_to_first)
-    b_hp = max(0, first.hp - dmg_to_second)
-    return a_hp, b_hp
+    aa_hp = max(0, aa.hp - dmg_to_aa)
+    bb_hp = max(0, bb.hp - dmg_to_bb)
+    return aa_hp, bb_hp
 
 
 def battle(config: dict[str, dict[str, Any]]) -> dict[str, int]:
