@@ -10,7 +10,7 @@ class Knight:
         armour: Optional[list[dict]],
         weapon: Optional[dict],
         potion: Optional[dict],
-    ):
+    ) -> None:
         self.name = name
         self.hp = hp
         self.power = power
@@ -29,13 +29,13 @@ class Knight:
 
         weapon_power = (self.weapon or {}).get("power", 0)
 
-        total_power = int(
-            self.power +
-            weapon_power +
-            potion_effect.get("power", 0)
+        total_power = (
+            self.power
+            + weapon_power
+            + potion_effect.get("power", 0)
         )
 
-        hp = int(self.hp + potion_effect.get("hp", 0))
+        hp = self.hp + potion_effect.get("hp", 0)
 
         return {
             "hp": hp,
