@@ -15,7 +15,7 @@ class Knight:
         self.protection = 0
 
     @classmethod
-    def from_dict(cls, config: dict) -> Knight:
+    def from_dict(cls, config: dict) -> "Knight":
         return cls(
             name=config["name"],
             hp=config["hp"],
@@ -25,7 +25,7 @@ class Knight:
             potion=config.get("potion"),
         )
 
-    def prepare_stats(self) -> Knight:
+    def prepare_stats(self) -> "Knight":
         # Armour
         self.protection = sum(a.get("protection", 0) for a in self.armour)
         # Weapon
