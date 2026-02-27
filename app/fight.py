@@ -1,7 +1,7 @@
 from app.knight import Knight
 
 
-def fight(first: Knight = None, second: Knight = None) -> dict:
+def fight(first: Knight, second: Knight) -> dict:
     first.prepare()
     second.prepare()
 

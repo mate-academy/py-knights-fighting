@@ -7,19 +7,24 @@ from app.fight import fight
 
 
 def battle(knights: dict = None) -> dict:
-    if knights is None:
-        lancelot_conf = Knight(lancelot["lancelot"])
-        mordred_conf = Knight(mordred["mordred"])
-        arthur_conf = Knight(arthur["arthur"])
-        red_knight_conf = Knight(red_knight["red_knight"])
-    else:
-        lancelot_conf = Knight(knights["lancelot"])
-        mordred_conf = Knight(knights["mordred"])
-        arthur_conf = Knight(knights["arthur"])
-        red_knight_conf = Knight(knights["red_knight"])
+    keys = ["lancelot", "mordred", "arthur", "red_knight"]
+    knights_objs = {}
+    source = {
+        "lancelot": lancelot,
+        "mordred": mordred,
+        "arthur": arthur,
+        "red_knight": red_knight,
+    }
+    for key in keys:
+        if knights is None:
+            config = source[key][key]
+            knights_objs[key] = Knight(config)
+        else:
+            config = knights[key]
+            knights_objs[key] = Knight(config)
 
-    first_fight = fight(lancelot_conf, mordred_conf)
-    second_fight = fight(arthur_conf, red_knight_conf)
+    first_fight = fight(knights_objs["lancelot"], knights_objs["mordred"])
+    second_fight = fight(knights_objs["arthur"], knights_objs["red_knight"])
 
     return {**first_fight, **second_fight}
 
