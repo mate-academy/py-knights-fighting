@@ -1,7 +1,7 @@
 from typing import Any
 
 from app.knight import Knight   # app.knight instead of knight for pytest
-from app.tournament import Lists
+from app.tournament import BattleSetup
 
 
 KNIGHTS = {
@@ -96,8 +96,8 @@ def preparation(knights_config: dict[str, dict[str, Any]]) -> None:
     Knight.knights_enlisted.clear()
 
     for knight in knights_config.values():
-        Lists.enlist_knight(knight)
-        Lists.take_knight_to_armoury(knight)
+        BattleSetup.enlist_knight(knight)
+        BattleSetup.take_knight_to_armoury(knight)
 
 
 def battle(knights_config: dict[str, dict[str, Any]]) -> dict[str, int]:
