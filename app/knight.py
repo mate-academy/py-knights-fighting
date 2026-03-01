@@ -14,9 +14,6 @@ def prepare_knight_for_battle(knight: dict) -> None:
 
     if knight["potion"] is not None:
         effect = knight["potion"]["effect"]
-        if "power" in effect:
-            knight["power"] += effect["power"]
-        if "protection" in effect:
-            knight["protection"] += effect["protection"]
-        if "hp" in effect:
-            knight["hp"] += effect["hp"]
+        for stat in ("power", "protection", "hp"):
+            if stat in effect:
+                knight[stat] += effect[stat]

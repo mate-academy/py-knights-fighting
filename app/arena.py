@@ -18,10 +18,9 @@ def duel(first_knight: dict, second_knight: dict) -> None:
     first_knight["hp"] -= second_knight["power"] - first_knight["protection"]
     second_knight["hp"] -= first_knight["power"] - second_knight["protection"]
 
-    if first_knight["hp"] <= 0:
-        first_knight["hp"] = 0
-    if second_knight["hp"] <= 0:
-        second_knight["hp"] = 0
+    for knight in (first_knight, second_knight):
+        if knight["hp"] <= 0:
+            knight["hp"] = 0
 
 
 def battle(knights_config: dict) -> dict:
@@ -37,9 +36,4 @@ def battle(knights_config: dict) -> dict:
     for first_key, second_key in BATTLE_PAIRS:
         duel(config[first_key], config[second_key])
 
-    return {
-        config["lancelot"]["name"]: config["lancelot"]["hp"],
-        config["arthur"]["name"]: config["arthur"]["hp"],
-        config["mordred"]["name"]: config["mordred"]["hp"],
-        config["red_knight"]["name"]: config["red_knight"]["hp"],
-    }
+    return {knight["name"]: knight["hp"] for knight in config.values()}

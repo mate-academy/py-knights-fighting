@@ -1,6 +1,6 @@
 """Knights configuration for the championship."""
 
-KNIGHTS = {
+KNIGHTS: dict = {
     "lancelot": {
         "name": "Lancelot",
         "power": 35,
