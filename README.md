@@ -4,7 +4,7 @@ Read [the guideline](https://github.com/mate-academy/py-task-guideline/blob/main
 
 ## Story
 
-In the Kingdom of Camelot the greatest championship of
+In the Kingdom of Camelot the  reatest championship of
 knights is taking place. The most powerful and strong
 knights ready to give their lives here. So, lets the battle begin!
 
