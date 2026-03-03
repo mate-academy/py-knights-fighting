@@ -1,42 +1,5 @@
-from typing import Dict, Optional
-
-
-class Knight:
-    def __init__(self, data: Dict) -> None:
-        self.name: str = data["name"]
-        self.hp: int = data["hp"]
-        self.power: int = data["power"]
-        self.armour = data.get("armour", [])
-        self.weapon = data.get("weapon", {})
-        self.potion: Optional[Dict] = data.get("potion")
-
-        self.protection: int = 0
-
-        self._apply_armour()
-        self._apply_weapon()
-        self._apply_potion()
-
-    def _apply_armour(self) -> None:
-        for piece in self.armour:
-            self.protection += piece.get("protection", 0)
-
-    def _apply_weapon(self) -> None:
-        self.power += self.weapon.get("power", 0)
-
-    def _apply_potion(self) -> None:
-        if not self.potion:
-            return
-        effect = self.potion.get("effect", {})
-        self.hp += effect.get("hp", 0)
-        self.power += effect.get("power", 0)
-        self.protection += effect.get("protection", 0)
-
-    def take_damage(self, enemy_power: int) -> None:
-        damage = enemy_power - self.protection
-        if damage > 0:
-            self.hp -= damage
-        if self.hp < 0:
-            self.hp = 0
+from typing import Dict
+from app.knight import Knight
 
 
 def _fight(k1: Knight, k2: Knight) -> None:
@@ -45,17 +8,17 @@ def _fight(k1: Knight, k2: Knight) -> None:
 
 
 def battle(knights_config: Dict) -> Dict[str, int]:
-    lancelot = Knight(knights_config["lancelot"])
-    mordred = Knight(knights_config["mordred"])
-    arthur = Knight(knights_config["arthur"])
-    red_knight = Knight(knights_config["red_knight"])
+    knights: dict[str, Knight] = {}
 
-    _fight(lancelot, mordred)
-    _fight(arthur, red_knight)
+    for key, data in knights_config.items():
+        knights[key] = Knight(data)
+
+    _fight(knights["lancelot"], knights["mordred"])
+    _fight(knights["arthur"], knights["red_knight"])
 
     return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
+        knights["lancelot"].name: knights["lancelot"].hp,
+        knights["arthur"].name: knights["arthur"].hp,
+        knights["mordred"].name: knights["mordred"].hp,
+        knights["red_knight"].name: knights["red_knight"].hp,
     }
