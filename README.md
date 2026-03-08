@@ -7,7 +7,7 @@ Read [the guideline](https://github.com/mate-academy/py-task-guideline/blob/main
 In the Kingdom of Camelot the greatest championship of
 knights is taking place. The most powerful and strong
 knights ready to give their lives here. So, lets the battle begin!
-
+оп
 At first, you have knights stats as dictionary:
 ```python
 KNIGHTS = {
