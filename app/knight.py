@@ -26,6 +26,7 @@ class Knight:
     def _apply_potion(self) -> None:
         if not self.potion:
             return
+
         effect = self.potion.get("effect", {})
         self.hp += effect.get("hp", 0)
         self.power += effect.get("power", 0)
@@ -33,7 +34,9 @@ class Knight:
 
     def take_damage(self, enemy_power: int) -> None:
         damage = enemy_power - self.protection
+
         if damage > 0:
             self.hp -= damage
+
         if self.hp < 0:
             self.hp = 0
