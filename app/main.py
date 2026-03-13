@@ -6,12 +6,17 @@ def battle(knights_config: dict) -> dict:
         name: Knight(config)
         for name, config in knights_config.items()
     }
-    knights["lancelot"].take_damage(knights["mordred"].power)
-    knights["mordred"].take_damage(knights["lancelot"].power)
-    knights["arthur"].take_damage(knights["red_knight"].power)
-    knights["red_knight"].take_damage(knights["arthur"].power)
+    battles = [
+        ("lancelot", "mordred"),
+        ("arthur", "red_knight")
+    ]
+    for player1_name, player2_name in battles:
+        p1 = knights[player1_name]
+        p2 = knights[player2_name]
+        p1.take_damage(p2.power)
+        p2.take_damage(p1.power)
 
     return {
-        k.name: k.hp
-        for k in knights.values()
+        knight.name: knight.hp
+        for knight in knights.values()
     }
