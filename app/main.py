@@ -1,4 +1,4 @@
-from typing import Dict, Any
+from typing import Dict, Any, List, Tuple
 
 # Описания типов для удобства
 KnightData = Dict[str, Any]
@@ -40,34 +40,33 @@ def battle(knights_config: Dict[str, KnightData]) -> BattleResult:
     Проводит турнир между рыцарями согласно заданной конфигурации.
     Возвращает словарь с итоговым здоровьем каждого рыцаря.
     """
-    # Подготовка рыцарей (работаем с копиями)
-    lancelot = prepare_knight(knights_config["lancelot"])
-    arthur = prepare_knight(knights_config["arthur"])
-    mordred = prepare_knight(knights_config["mordred"])
-    red_knight = prepare_knight(knights_config["red_knight"])
-
-    # 1-й бой: Lancelot vs Mordred
-    lancelot["hp"] -= mordred["power"] - lancelot["protection"]
-    mordred["hp"] -= lancelot["power"] - mordred["protection"]
-
-    # Проверка на выживание
-    lancelot["hp"] = max(lancelot["hp"], 0)
-    mordred["hp"] = max(mordred["hp"], 0)
-
-    # 2-й бой: Arthur vs Red Knight
-    arthur["hp"] -= red_knight["power"] - arthur["protection"]
-    red_knight["hp"] -= arthur["power"] - red_knight["protection"]
-
-    arthur["hp"] = max(arthur["hp"], 0)
-    red_knight["hp"] = max(red_knight["hp"], 0)
-
-    # Формирование результата
-    return {
-        lancelot["name"]: lancelot["hp"],
-        arthur["name"]: arthur["hp"],
-        mordred["name"]: mordred["hp"],
-        red_knight["name"]: red_knight["hp"],
+    # Подготовка всех рыцарей (генератор словарей)
+    prepared = {
+        name: prepare_knight(data) for name,
+        data in knights_config.items()
     }
+
+    # Определение пар для боёв (можно легко добавить новые)
+    battles: List[Tuple[str, str]] = [
+        ("lancelot", "mordred"),
+        ("arthur", "red_knight"),
+    ]
+
+    # Проведение боёв
+    for knight1_key, knight2_key in battles:
+        k1 = prepared[knight1_key]
+        k2 = prepared[knight2_key]
+
+        # Обоюдная атака
+        k1["hp"] -= k2["power"] - k1["protection"]
+        k2["hp"] -= k1["power"] - k2["protection"]
+
+        # Здоровье не может быть отрицательным
+        k1["hp"] = max(k1["hp"], 0)
+        k2["hp"] = max(k2["hp"], 0)
+
+    # Формирование результата (используем поле "name" из данных рыцаря)
+    return {prepared[name]["name"]: prepared[name]["hp"] for name in prepared}
 
 
 # Конфигурация рыцарей остаётся без изменений
@@ -128,7 +127,7 @@ KNIGHTS = {
         "potion": {
             "name": "Berserk",
             "effect": {
-                "power": 15,        # убрали устаревший +
+                "power": 15,
                 "hp": -5,
                 "protection": 10,
             }
@@ -157,7 +156,3 @@ KNIGHTS = {
         }
     }
 }
-
-
-if __name__ == "__main__":
-    print(battle(KNIGHTS))
