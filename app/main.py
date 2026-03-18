@@ -1,3 +1,21 @@
+from app.battle.engine import fight
+from app.utils.factory import create_knight
+
+
+def battle(knight_1: str, knight_2: str) -> dict:
+    k1 = create_knight(KNIGHTS[knight_1])
+    k2 = create_knight(KNIGHTS[knight_2])
+
+    stats_1 = k1.prepare_for_battle()
+    stats_2 = k2.prepare_for_battle()
+
+    result_1, result_2 = fight(stats_1, stats_2)
+
+    return {
+        k1.name: result_1["hp"],
+        k2.name: result_2["hp"],
+    }
+
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
