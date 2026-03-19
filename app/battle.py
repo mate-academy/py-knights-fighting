@@ -1,8 +1,8 @@
 from app.knights.knight import Knight
 
 
-def battle_preparation(knights: list[Knight]) -> None:
-    for knight in knights:
+def battle_preparation(knights: dict) -> None:
+    for knight in knights.values():
         knight.apply_equipment()
 
 
