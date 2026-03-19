@@ -1,0 +1,17 @@
+from app.knights.knight import Knight
+
+
+def battle_preparation(knights: list[Knight]) -> None:
+    for knight in knights:
+        knight.apply_equipment()
+
+
+def duel(knight1: Knight, knight2: Knight) -> None:
+    knight1.hp -= (knight2.power - knight1.protection)
+    knight2.hp -= (knight1.power - knight2.protection)
+
+    if knight1.hp <= 0:
+        knight1.hp = 0
+
+    if knight2.hp <= 0:
+        knight2.hp = 0
