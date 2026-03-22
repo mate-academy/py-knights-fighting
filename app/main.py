@@ -91,16 +91,10 @@ knights = {
 
 
 def battle(knights_data: dict) -> dict:
-    lancelot = Knight(**knights_data["lancelot"])
-    mordred = Knight(**knights_data["mordred"])
-    arthur = Knight(**knights_data["arthur"])
-    red_knight = Knight(**knights_data["red_knight"])
+    names_in_order = ["lancelot", "mordred", "arthur", "red_knight"]
 
-    start_fight([lancelot, mordred, arthur, red_knight])
+    knights_list = [Knight(**knights_data[name]) for name in names_in_order]
 
-    return {
-        lancelot.name: lancelot.hp,
-        mordred.name: mordred.hp,
-        arthur.name: arthur.hp,
-        red_knight.name: red_knight.hp,
-    }
+    start_fight(knights_list)
+
+    return {knight.name: knight.hp for knight in knights_list}
