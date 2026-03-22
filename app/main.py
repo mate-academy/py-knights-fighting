@@ -90,42 +90,17 @@ knights = {
 }
 
 
-def battle(knights : dict) -> dict:
-
-    lancelot = Knight(knights["lancelot"]["name"],
-                      knights["lancelot"]["power"],
-                      knights["lancelot"]["hp"], knights["lancelot"]["armour"],
-                      knights["lancelot"]["weapon"],
-                      knights["lancelot"]["potion"]
-                      )
-
-    arthur = Knight(knights["arthur"]["name"], knights["arthur"]["power"],
-                    knights["arthur"]["hp"], knights["arthur"]["armour"],
-                    knights["arthur"]["weapon"], knights["arthur"]["potion"]
-                    )
-
-    mordred = Knight(knights["mordred"]["name"], knights["mordred"]["power"],
-                     knights["mordred"]["hp"], knights["mordred"]["armour"],
-                     knights["mordred"]["weapon"],
-                     knights["mordred"]["potion"]
-                     )
-
-    red_knight = Knight(knights["red_knight"]["name"],
-                        knights["red_knight"]["power"],
-                        knights["red_knight"]["hp"],
-                        knights["red_knight"]["armour"],
-                        knights["red_knight"]["weapon"],
-                        knights["red_knight"]["potion"]
-                        )
+def battle(knights_data: dict) -> dict:
+    lancelot = Knight(**knights_data["lancelot"])
+    mordred = Knight(**knights_data["mordred"])
+    arthur = Knight(**knights_data["arthur"])
+    red_knight = Knight(**knights_data["red_knight"])
 
     start_fight([lancelot, mordred, arthur, red_knight])
 
     return {
         lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
         mordred.name: mordred.hp,
+        arthur.name: arthur.hp,
         red_knight.name: red_knight.hp,
     }
-
-
-print(battle(knights))
