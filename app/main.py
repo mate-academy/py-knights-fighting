@@ -1,26 +1,18 @@
 from app.change_stats import change_stats
-from app.Data import KNIGHTS
 
 
 def battle(knights: dict) -> dict:
-    result = {}
-    for name in knights:
-        change_stats(knights[name])
-    lancelot = knights["lancelot"]
-    mordred = knights["mordred"]
-    arthur = knights["arthur"]
-    red_knight = knights["red_knight"]
-    lancelot["hp"] -= (mordred["power"] - lancelot["protection"])
-    mordred["hp"] -= (lancelot["power"] - mordred["protection"])
-    arthur["hp"] -= (red_knight["power"] - arthur["protection"])
-    red_knight["hp"] -= (arthur["power"] - red_knight["protection"])
-    warriors = [lancelot, mordred, arthur, red_knight]
-    for warrior in warriors:
-        if warrior["hp"] < 0:
-            warrior["hp"] = 0
-        result[warrior["name"]] = warrior["hp"]
+    warriors = []
+    for warrior in knights.values():
+        warriors.append(change_stats(warrior))
+    for i in range(len(warriors) // 2):
+        war1 = warriors[i]
+        war2 = warriors[i + len(warriors) // 2]
+        war1["hp"] -= (war2["power"] - war1.get("protection", 0))
+        war2["hp"] -= (war1["power"] - war2.get("protection", 0))
+        if war1["hp"] < 0:
+            war1["hp"] = 0
+        if war2["hp"] < 0:
+            war2["hp"] = 0
 
-    return result
-
-
-print(battle(KNIGHTS.KNIGHTS))
+    return {war["name"]: war["hp"] for war in warriors}

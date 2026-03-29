@@ -1,13 +1,16 @@
-def change_stats(knights: dict) -> dict:
-    knights["protection"] = 0
-    for arm in knights["armour"]:
-        knights["protection"] += arm["protection"]
-    knights["power"] += knights["weapon"]["power"]
-    if knights["potion"] is not None:
-        if "power" in knights["potion"]["effect"]:
-            knights["power"] += knights["potion"]["effect"]["power"]
-        if "protection" in knights["potion"]["effect"]:
-            knights["protection"] += knights["potion"]["effect"]["protection"]
-        if "hp" in knights["potion"]["effect"]:
-            knights["hp"] += knights["potion"]["effect"]["hp"]
-    return knights
+def change_stats(knight: dict) -> dict:
+    protection = 0
+    for arm in knight["armour"]:
+        protection += arm["protection"]
+    power = knight["power"]
+    power += knight["weapon"]["power"]
+    hp = knight["hp"]
+    if knight["potion"] is not None:
+        if "power" in knight["potion"]["effect"]:
+            power += knight["potion"]["effect"]["power"]
+        if "protection" in knight["potion"]["effect"]:
+            protection += knight["potion"]["effect"]["protection"]
+        if "hp" in knight["potion"]["effect"]:
+            hp += knight["potion"]["effect"]["hp"]
+    return {"name": knight.get("name"), "power": power,
+            "hp": hp, "protection": protection}
