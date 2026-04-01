@@ -3,23 +3,28 @@ from app.helpers.battle_logic import fight
 
 
 def battle(knights_config: dict) -> dict:
-    knights = {
-        key: Knight(config)
-        for key, config in knights_config.items()
-    }
+    knights = {}
 
-    lancelot = knights["lancelot"]
-    mordred = knights["mordred"]
-    arthur = knights["arthur"]
-    red_knight = knights["red_knight"]
+    for key, stats in knights_config.items():
+        hp = stats["hp"]
+        power = stats["power"] + stats["weapon"]["power"]
 
-    fight(lancelot, mordred)
-    fight(mordred, lancelot)
+        protection = sum(
+            part.get("protection", 0)
+            for part in stats.get("armour", [])
+        )
 
-    fight(arthur, red_knight)
-    fight(red_knight, arthur)
+        potion = stats.get("potion")
+        if potion:
+            effect = potion.get("effect", {})
+            hp += effect.get("hp", 0)
+            power += effect.get("power", 0)
+            protection += effect.get("protection", 0)
 
-    return {
-        knight.name: knight.hp
-        for knight in knights.values()
-    }
+        knights[key] = Knight(stats["name"], hp, power, protection)
+
+    # ✅ ТІЛЬКИ 2 БОЇ
+    fight(knights["lancelot"], knights["mordred"])
+    fight(knights["arthur"], knights["red_knight"])
+
+    return {k.name: k.hp for k in knights.values()}

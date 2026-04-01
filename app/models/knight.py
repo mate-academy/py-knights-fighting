@@ -1,25 +1,12 @@
 class Knight:
-    def __init__(self, config: dict) -> None:
-        self.name = config["name"]
-        self.base_hp = config["hp"]
-        self.base_power = config["power"]
-        self.armour = config["armour"]
-        self.weapon = config["weapon"]
-        self.potion = config["potion"]
-
-        self.hp = 0
-        self.power = 0
-        self.protection = 0
-
-        self.prepare_for_battle()
-
-    def prepare_for_battle(self) -> None:
-        self.hp = self.base_hp
-        self.power = self.base_power + self.weapon["power"]
-        self.protection = sum(part["protection"] for part in self.armour)
-
-        if self.potion:
-            effect = self.potion["effect"]
-            self.hp += effect.get("hp", 0)
-            self.power += effect.get("power", 0)
-            self.protection += effect.get("protection", 0)
+    def __init__(
+        self,
+        name: str,
+        hp: int,
+        power: int,
+        protection: int
+    ) -> None:
+        self.name = name
+        self.hp = hp
+        self.power = power
+        self.protection = protection
