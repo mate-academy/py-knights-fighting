@@ -1,6 +1,8 @@
 from app.participants.create_knights import create_participants
 from app.participants.equipment import add_equipment
-from app.fight import get_fight_result
+from app.fight.prepare_fight import prepare_table, get_pairs
+from app.fight.make_fight import get_fight_result
+
 
 KNIGHTS = {
     "lancelot": {
@@ -93,6 +95,15 @@ KNIGHTS = {
 def battle(given_data: dict) -> dict:
 
     participants = list(create_participants(given_data))
+
     add_equipment(participants, given_data)
-    result = get_fight_result(participants)
+
+    table = prepare_table(participants)
+    pairs = get_pairs(participants)
+
+    result = get_fight_result(pairs, table)
+
     return result
+
+
+print(battle(KNIGHTS))
