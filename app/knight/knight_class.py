@@ -21,6 +21,9 @@ class Knight:
         self.armours: list[dict] = dict_of_knight.get("armour")
         self.weapon: dict = dict_of_knight.get("weapon")
         self.potion: dict = dict_of_knight.get("potion")
+        self.apply_weapon()
+        self.apply_armours()
+        self.apply_potion()
 
     def apply_armours(self) -> None:
         if self.armours is None:
@@ -74,14 +77,6 @@ class Knight:
         phrase_for_second = choice(SECOND_KNIGHT_INTROS)
         print(phrase_for_second.format(name=other.name))
         print()
-
-        self.apply_weapon()
-        self.apply_armours()
-        self.apply_potion()
-
-        other.apply_weapon()
-        other.apply_armours()
-        other.apply_potion()
 
         print()
         phrase_for_first = choice(KNIGHT_STATS_PHRASES)
