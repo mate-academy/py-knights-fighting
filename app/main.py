@@ -91,23 +91,23 @@ KNIGHTS = {
 
 def battle(knights: dict) -> dict:
     # KNIGHT PRESENTATION:
-    kinghts = {name: Knight(knights[name]) for name in knights}
+    knights = {name: Knight(knights[name]) for name in knights}
 
     # -------------------------------------------------------------------------------
     # BATTLE:
 
     # 1 Lancelot vs Mordred:
-    kinghts["lancelot"].battle(kinghts["mordred"])
+    knights["lancelot"].battle(knights["mordred"])
 
     # 2 Arthur vs Red Knight:
-    kinghts["arthur"].battle(kinghts["red_knight"])
+    knights["arthur"].battle(knights["red_knight"])
 
     # Return battle results:
     return {
-        kinghts["lancelot"].name: kinghts["lancelot"].hp,
-        kinghts["arthur"].name: kinghts["arthur"].hp,
-        kinghts["mordred"].name: kinghts["mordred"].hp,
-        kinghts["red_knight"].name: kinghts["red_knight"].hp,
+        knights["lancelot"].name: knights["lancelot"].hp,
+        knights["arthur"].name: knights["arthur"].hp,
+        knights["mordred"].name: knights["mordred"].hp,
+        knights["red_knight"].name: knights["red_knight"].hp,
     }
 
 

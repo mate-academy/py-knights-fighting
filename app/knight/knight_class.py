@@ -14,13 +14,13 @@ from app.knight.contains import (FIRST_KNIGHT_INTROS, SECOND_KNIGHT_INTROS,
 class Knight:
 
     def __init__(self, dict_of_knight: dict[str, Any]) -> None:
-        self.name: str = dict_of_knight.get("name")
-        self.power: int = dict_of_knight.get("power")
-        self.hp: int = dict_of_knight.get("hp")
+        self.name: str = dict_of_knight.get("name", "Undefined")
+        self.power: int = dict_of_knight.get("power", 0)
+        self.hp: int = dict_of_knight.get("hp", 0)
         self.protection: int = 0
-        self.armours: list[dict] = dict_of_knight.get("armour")
-        self.weapon: dict = dict_of_knight.get("weapon")
-        self.potion: dict = dict_of_knight.get("potion")
+        self.armours: list[dict] = dict_of_knight.get("armour", [])
+        self.weapon: dict = dict_of_knight.get("weapon", {})
+        self.potion: dict = dict_of_knight.get("potion", {})
         self.apply_weapon()
         self.apply_armours()
         self.apply_potion()
