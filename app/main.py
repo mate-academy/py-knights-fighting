@@ -1,5 +1,3 @@
-from typing import Any
-
 from app.knight.knight_class import Knight
 
 
@@ -91,44 +89,35 @@ KNIGHTS = {
 }
 
 
-def battle(knights: Any) -> dict:
-
+def battle(knights: dict) -> dict:
     # KNIGHT PRESENTATION:
+    knights_instances = {name: Knight(knights[name]) for name in knights}
 
-    # lancelot
-    lancelot = knights["lancelot"]
-    lancelot_knight = Knight(lancelot)
-
-    # arthur
-    arthur = knights["arthur"]
-    arthur_knight = Knight(arthur)
-
-    # mordred
-    mordred = knights["mordred"]
-    mordred_knight = Knight(mordred)
-
-    # red_knight
-    red = knights["red_knight"]
-    red_knight = Knight(red)
+    lancelot = knights_instances["lancelot"]
+    arthur = knights_instances["arthur"]
+    mordred = knights_instances["mordred"]
+    red_knight = knights_instances["red_knight"]
 
     # -------------------------------------------------------------------------------
     # BATTLE:
 
     # 1 Lancelot vs Mordred:
-    lancelot_knight.battle(mordred_knight)
+    lancelot.battle(mordred)
 
     # 2 Arthur vs Red Knight:
-    arthur_knight.battle(red_knight)
+    arthur.battle(red_knight)
 
     # Return battle results:
     return {
-        lancelot_knight.name: lancelot_knight.hp,
-        arthur_knight.name: arthur_knight.hp,
-        mordred_knight.name: mordred_knight.hp,
+        lancelot.name: lancelot.hp,
+        arthur.name: arthur.hp,
+        mordred.name: mordred.hp,
         red_knight.name: red_knight.hp,
     }
 
 
 result = battle(KNIGHTS)
-print("\nBattle Results:\n")
-print(result)
+print("Battle Results:\n")
+for knight in result:
+    hp = f"{result[knight]} HP" if result[knight] else "Was defeated"
+    print(f"{knight} = {hp}")

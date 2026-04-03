@@ -7,7 +7,8 @@ from app.knight.knight_items_class import Armour, Weapon, Potion
 from app.knight.contains import (FIRST_KNIGHT_INTROS, SECOND_KNIGHT_INTROS,
                                  ARMOUR_EQUIP_PHRASES, WEAPON_EQUIP_PHRASES,
                                  POTION_DRINK_PHRASES, KNIGHT_STATS_PHRASES,
-                                 BATTLE_START_PHRASES, VICTORY_PHRASES)
+                                 BATTLE_START_PHRASES, VICTORY_PHRASES,
+                                 DRAW_PHRASES)
 
 
 class Knight:
@@ -24,15 +25,14 @@ class Knight:
     def apply_armours(self) -> None:
         if self.armours is None:
             return
-
         for arm in self.armours:
             armour = Armour(arm)
-
             phrase = choice(ARMOUR_EQUIP_PHRASES)
             print(phrase.format(name=self.name, defens=armour.protection,
                                 armour=armour.part))
-
+            print()
             self.protection += armour.protection
+        self.armours = None
 
     def apply_weapon(self) -> None:
         if self.weapon is None:
@@ -43,8 +43,10 @@ class Knight:
         phrase = choice(WEAPON_EQUIP_PHRASES)
         print(phrase.format(name=self.name, power=weapon.power,
                             weapon_name=weapon.name))
+        print()
 
         self.power += weapon.power
+        self.weapon = None
 
     def apply_potion(self) -> None:
         if self.potion is None:
@@ -60,6 +62,7 @@ class Knight:
         self.hp += potion.hp
         self.power += potion.power
         self.protection += potion.protection
+        self.potion = None
 
     def battle(self, other: Knight) -> None:
         if not isinstance(other, Knight):
@@ -67,34 +70,32 @@ class Knight:
 
         phrase_for_first = choice(FIRST_KNIGHT_INTROS)
         print(phrase_for_first.format(name=self.name))
-
+        print()
         phrase_for_second = choice(SECOND_KNIGHT_INTROS)
         print(phrase_for_second.format(name=other.name))
-
-        print("\n")
-        self.apply_armours()
         print()
-        other.apply_armours()
-        print("\n")
-        self.apply_weapon()
-        other.apply_weapon()
-        print("\n")
-        self.apply_potion()
-        other.apply_potion()
-        print("\n")
 
+        self.apply_weapon()
+        self.apply_armours()
+        self.apply_potion()
+
+        other.apply_weapon()
+        other.apply_armours()
+        other.apply_potion()
+
+        print()
         phrase_for_first = choice(KNIGHT_STATS_PHRASES)
         print(phrase_for_first.format(name=self.name, power=self.power,
                                       hp=self.hp, protect=self.protection))
-
+        print()
         phrase_for_second = choice(KNIGHT_STATS_PHRASES)
         print(phrase_for_second.format(name=other.name, power=other.power,
                                        hp=other.hp, protect=other.protection))
 
-        print("\n")
+        print()
         phrase = choice(BATTLE_START_PHRASES)
         print(phrase.format(name1=self.name, name2=other.name))
-        print("\n")
+        print()
 
         self_damage = self.power - other.protection
         other_damage = other.power - self.protection
@@ -106,3 +107,7 @@ class Knight:
             print(phrase.format(name=self.name))
         elif other.hp > self.hp:
             print(phrase.format(name=other.name))
+        else:
+            phrase = choice(DRAW_PHRASES)
+            print(phrase.format(name1=self.name, name2=other.name))
+        print("\n")

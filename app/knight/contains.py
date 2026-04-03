@@ -1,4 +1,4 @@
-FIRST_KNIGHT_INTROS = [
+FIRST_KNIGHT_INTROS: list[str] = [
     "Gates open, and {name} steps into the light.",
     "First to arrive is {name}, standing tall and ready.",
     "The dust rises as {name} claims his side of the field.",
@@ -8,7 +8,7 @@ FIRST_KNIGHT_INTROS = [
     "No armor, no blade yet—just {name}, a warrior in his purest form."
 ]
 
-SECOND_KNIGHT_INTROS = [
+SECOND_KNIGHT_INTROS: list[str] = [
     "A shadow looms—{name} comes to challenge the peace!",
     "But he is not alone; {name} emerges to meet him face to face.",
     "Tension rises as {name} walks out to face his rival.",
@@ -18,56 +18,53 @@ SECOND_KNIGHT_INTROS = [
     "A second champion enters—make way for the mighty {name}!"
 ]
 
-ARMOUR_EQUIP_PHRASES = [
-    "{name} fastens {armour}, increasing defense by {defens}.",
-    "{name} puts on {armour}. Defense boosted by {defens}!",
-    "{name} is shielded by {armour}, gaining {defens} protection.",
-    "Squire helps {name} with {armour}. Defense up by {defens}.",
-    "{name} secures {armour} for +{defens} protection.",
-    "With {armour} on, {name} feels safer. Defense +{defens}.",
-    "{armour} grants {name} {defens} extra protection.",
-    "{name} dons {armour}. Protection raised by {defens}.",
-    "{name} equips {armour} for {defens} defense.",
-    "{name} is a fortress in {armour}, adding {defens} protection."
+ARMOUR_EQUIP_PHRASES: list[str] = [
+    "{name} fastens {armour}, increasing (+{defens} defense).",
+    "{name} puts on {armour}. increasing (+{defens} defense).",
+    "{name} is shielded by {armour}, gaining (+{defens} defense).",
+    "Squire helps {name} with {armour}. gaining (+{defens} defense).",
+    "{name} secures {armour} for (+{defens} defense).",
+    "With {armour} on, {name} feels safer (+{defens} defense)",
+    "{armour} grants {name} extra (+{defens} defense).",
+    "{name} dons {armour} (+{defens} defense).",
+    "{name} equips {armour} (+{defens} defense)",
+    "{name} is a fortress in {armour}, adding (+{defens} defense)."
 ]
 
-WEAPON_EQUIP_PHRASES = [
-    "{name} unsheathes {weapon_name}, adding {power} to attack!",
-    "{name} grips {weapon_name}. Power increases by {power}.",
-    "{name} prepares to strike with {weapon_name} (+{power} damage).",
-    "{weapon_name} gleams! {name} boosts attack power by {power}!",
-    "Legendary {weapon_name} is in {name}'s hands. +{power} power.",
-    "{name} tests {weapon_name}. Strikes now deal +{power} damage.",
-    "{name} equips {weapon_name} for {power} power.",
-    "{name} holds {weapon_name} tight. Total power up by {power}.",
-    "{weapon_name} is thirsty for blood. {name} gains {power} ATK.",
-    "{name} swings {weapon_name}. A deadly boost of {power} power!"
+WEAPON_EQUIP_PHRASES: list[str] = [
+    "{name} unsheathes {weapon_name} (+{power} attack)!",
+    "{name} grips {weapon_name} (+{power} attack).",
+    "{name} prepares to strike with {weapon_name} (+{power} attack).",
+    "{weapon_name} gleams! {name} gains (+{power} attack).",
+    "Legendary {weapon_name} is in {name}'s hands (+{power} attack).",
+    "{name} tests {weapon_name} (+{power} attack).",
+    "{name} equips {weapon_name} for (+{power} attack).",
+    "{name} holds {weapon_name} tight (+{power} attack).",
+    "{name} swings {weapon_name} (+{power} attack)!"
 ]
 
-POTION_DRINK_PHRASES = [
-    "{name} drinks {potion}: HP +{hp}, ATK +{power}, DEF +{defens}!",
-    "{name} gulps {potion}: {hp} HP, {power} ATK, {defens} DEF.",
-    "{name} takes {potion}. Stats: HP: {hp}, ATK: {power}, DEF: {defens}!",
-    "{potion} surrounds {name} (HP: +{hp}, ATK: +{power}, DEF: +{defens}).",
-    "{name} feels {potion}! Bonus: +{hp} HP, +{power} ATK, +{defens} DEF.",
-    "{name} downs {potion} for +{hp} HP, +{power} ATK, and +{defens} DEF.",
-    "{name} is empowered by {potion}! ({hp} HP, {power} ATK, {defens} DEF).",
-    "{name} uses {potion}: +{hp} HP, +{power} ATK, +{defens} DEF.",
-    "{name} drinks {potion}: +{hp} HP, +{power} ATK, +{defens} DEF.",
-    "Energy overflows! {name} takes {potion}: +{hp} HP, +{power} ATK!"
+POTION_DRINK_PHRASES: list[str] = [
+    "{name} drinks {potion} ({hp} hp, {power} attack, {defens} defense)!",
+    "{name} gulps {potion} ({hp} hp, {power} attack, {defens} defense).",
+    "{name} takes {potion} ({hp} hp, {power} attack, {defens} defense)!",
+    "{name} feels {potion} ({hp} hp, {power} attack, {defens} defense).",
+    "{name} downs {potion} ({hp} hp, {power} attack, {defens} defense).",
+    "{name} is empowered! ({hp} hp, {power} attack, {defens} defense).",
+    "{name} uses {potion} ({hp} hp, {power} attack, {defens} defense).",
+    "{name} drinks {potion} ({hp} hp, {power} attack, {defens} defense).",
 ]
 
-KNIGHT_STATS_PHRASES = [
-    "{name} ready! Stats: HP: {hp}, ATK: {power}, DEF: {protect}.",
-    "Status for {name}: Health {hp}, Attack {power}, Defense {protect}.",
-    "{name}: {hp} HP, {power} damage and {protect} protection.",
-    "Power of {name}: [HP: {hp} | ATK: {power} | DEF: {protect}].",
-    "Combat form: {name} has {hp} HP, {power} ATK, {protect} DEF.",
-    "{name} looks unstoppable: HP {hp}, Power {power}, DEF {protect}.",
-    "Final check: {name} has {hp} HP, {power} ATK, {protect} DEF."
+KNIGHT_STATS_PHRASES: list[str] = [
+    "{name} ready! Stats: (HP={hp}, ATK={power}, DEF={protect}).",
+    "Status for {name}: (HP={hp}, ATK={power}, DEF={protect}).",
+    "{name}: (HP={hp}, ATK={power}, DEF={protect}).",
+    "Power of {name}: (HP={hp}, ATK={power}, DEF={protect}).",
+    "Combat form: {name} has (HP={hp}, ATK={power}, DEF={protect}).",
+    "{name} looks unstoppable: (HP={hp}, ATK={power}, DEF={protect}).",
+    "Final check: {name} has (HP={hp}, ATK={power}, DEF={protect})."
 ]
 
-BATTLE_START_PHRASES = [
+BATTLE_START_PHRASES: list[str] = [
     "Horns sound! {name1} and {name2} charge!",
     "No more words! {name1} and {name2} begin the fight!",
     "Steel meets steel! {name1} and {name2} engage in combat!",
@@ -77,7 +74,7 @@ BATTLE_START_PHRASES = [
     "Fight to the death! {name1} and {name2} start the battle!"
 ]
 
-VICTORY_PHRASES = [
+VICTORY_PHRASES: list[str] = [
     "Battle over! {name} stands alone as the supreme victor!",
     "All hail {name}! The undisputed champion of the arena!",
     "{name} delivers the final blow and claims his glory!",
@@ -85,4 +82,17 @@ VICTORY_PHRASES = [
     "The crowd roars for {name}, the last warrior standing!",
     "{name} has crushed his opponent and stands triumphant!",
     "The legend of {name} grows today with this magnificent win!"
+]
+
+DRAW_PHRASES: list[str] = [
+    "It is a draw! Neither {name1} nor {name2} would yield!",
+    "Incredible! {name1} and {name2} have fought to a standstill!",
+    "The duel ends! {name1} and {name2} are both still standing!",
+    "A perfect match! {name1} and {name2} share the glory today!",
+    "No victor! {name1} and {name2} have met their equal!",
+    "The steel rests. {name1} and {name2} finish in a tie!",
+    "Honor is satisfied! {name1} and {name2} part as equals!",
+    "Both warriors fall back! {name1} and {name2} survive the day!",
+    "An unbreakable line! {name1} and {name2} end in a draw!",
+    "A legendary tie! {name1} and {name2} are evenly matched!"
 ]
