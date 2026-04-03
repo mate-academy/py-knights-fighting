@@ -1,0 +1,12 @@
+app/
+│
+├── knights/               # Wszystko co dotyczy rycerzy i ich atrybutów
+│     ├── knight.py        # Klasa Knight (logika rycerza, wyliczanie końcowych statystyk)
+│     ├── weapon.py        # Klasa Weapon
+│     ├── armour.py        # Klasa Armour (możesz obsłużyć listę części)
+│     ├── potion.py        # Klasa Potion
+│
+├── battle/                # Sama logika walki
+│     ├── battle.py        # Funkcja battle() albo Klasa Battle
+│
+├── main.py                # Wywołanie bitwy, import danych, start programu
