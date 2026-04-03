@@ -23,8 +23,12 @@ def battle(knights_config: dict) -> dict:
 
         knights[key] = Knight(stats["name"], hp, power, protection)
 
-    # ✅ ТІЛЬКИ 2 БОЇ
-    fight(knights["lancelot"], knights["mordred"])
-    fight(knights["arthur"], knights["red_knight"])
+    battles = [
+        ("lancelot", "mordred"),
+        ("arthur", "red_knight")
+    ]
+
+    for attacker, defender in battles:
+        fight(knights[attacker], knights[defender])
 
     return {k.name: k.hp for k in knights.values()}
