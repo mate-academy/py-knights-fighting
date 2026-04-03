@@ -20,15 +20,17 @@ class Knight:
         self.weapon = Weapon(**weapon) if weapon else None
         self.potion = Potion(**potion) if potion else None
 
-        self.hp = self.base_hp + (self.potion.effect.get("hp", 0)
-                                  if self.potion else 0)
-        self.power = self.base_power + (self.weapon.power
-                                        if self.weapon else 0)
-        self.power += self.potion.effect.get("power", 0) \
-            if self.potion else 0
+        self.hp = self.base_hp + self._get_potion_effect("hp")
+        self.power = (self.base_power
+                      + (self.weapon.power if self.weapon else 0))
+        self.power += self._get_potion_effect("power")
         self.protection = sum(a.protection for a in self.armour)
-        self.protection += self.potion.effect.get("protection", 0) \
-            if self.potion else 0
+        self.protection += self._get_potion_effect("protection")
+
+    def _get_potion_effect(self, key: str) -> int:
+        if not self.potion:
+            return 0
+        return self.potion.effect.get(key, 0)
 
     def take_damage(self, damage: int) -> None:
         actual_damage = max(damage - self.protection, 0)
