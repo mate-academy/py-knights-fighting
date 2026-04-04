@@ -103,13 +103,16 @@
 #     # apply potion if exist
 #     if lancelot["potion"] is not None:
 #         if "power" in lancelot["potion"]["effect"]:
-#             lancelot["power"] += lancelot["potion"]["effect"]["power"]
+#             lancelot["power"] +=
+#             lancelot["potion"]["effect"]["power"]
 #
 #         if "protection" in lancelot["potion"]["effect"]:
-#             lancelot["protection"] += lancelot["potion"]["effect"]["protection"]
+#             lancelot["protection"] +=
+#             lancelot["potion"]["effect"]["protection"]
 #
 #         if "hp" in lancelot["potion"]["effect"]:
-#             lancelot["hp"] += lancelot["potion"]["effect"]["hp"]
+#             lancelot["hp"] +=
+#             lancelot["potion"]["effect"]["hp"]
 #
 #     # arthur
 #     arthur = knightsConfig["arthur"]
@@ -125,10 +128,12 @@
 #     # apply potion if exist
 #     if arthur["potion"] is not None:
 #         if "power" in arthur["potion"]["effect"]:
-#             arthur["power"] += arthur["potion"]["effect"]["power"]
+#             arthur["power"] +=
+#             arthur["potion"]["effect"]["power"]
 #
 #         if "protection" in arthur["potion"]["effect"]:
-#             arthur["protection"] += arthur["potion"]["effect"]["protection"]
+#             arthur["protection"] +=
+#             arthur["potion"]["effect"]["protection"]
 #
 #         if "hp" in arthur["potion"]["effect"]:
 #             arthur["hp"] += arthur["potion"]["effect"]["hp"]
@@ -147,13 +152,16 @@
 #     # apply potion if exist
 #     if mordred["potion"] is not None:
 #         if "power" in mordred["potion"]["effect"]:
-#             mordred["power"] += mordred["potion"]["effect"]["power"]
+#             mordred["power"] +=
+#             mordred["potion"]["effect"]["power"]
 #
 #         if "protection" in mordred["potion"]["effect"]:
-#             mordred["protection"] += mordred["potion"]["effect"]["protection"]
+#             mordred["protection"] +=
+#             mordred["potion"]["effect"]["protection"]
 #
 #         if "hp" in mordred["potion"]["effect"]:
-#             mordred["hp"] += mordred["potion"]["effect"]["hp"]
+#             mordred["hp"] +=
+#             mordred["potion"]["effect"]["hp"]
 #
 #     # red_knight
 #     red_knight = knightsConfig["red_knight"]
@@ -169,20 +177,25 @@
 #     # apply potion if exist
 #     if red_knight["potion"] is not None:
 #         if "power" in red_knight["potion"]["effect"]:
-#             red_knight["power"] += red_knight["potion"]["effect"]["power"]
+#             red_knight["power"] +=
+#             red_knight["potion"]["effect"]["power"]
 #
 #         if "protection" in red_knight["potion"]["effect"]:
-#             red_knight["protection"] += red_knight["potion"]["effect"]["protection"]
+#             red_knight["protection"] +=
+#             red_knight["potion"]["effect"]["protection"]
 #
 #         if "hp" in red_knight["potion"]["effect"]:
-#             red_knight["hp"] += red_knight["potion"]["effect"]["hp"]
+#             red_knight["hp"] +=
+#             red_knight["potion"]["effect"]["hp"]
 #
-#     # -------------------------------------------------------------------------------
+#     # ---------------------------------------
 #     # BATTLE:
 #
 #     # 1 Lancelot vs Mordred:
-#     lancelot["hp"] -= mordred["power"] - lancelot["protection"]
-#     mordred["hp"] -= lancelot["power"] - mordred["protection"]
+#     lancelot["hp"] -=
+#     mordred["power"] - lancelot["protection"]
+#     mordred["hp"] -=
+#     lancelot["power"] - mordred["protection"]
 #
 #     # check if someone fell in battle
 #     if lancelot["hp"] <= 0:
@@ -192,8 +205,10 @@
 #         mordred["hp"] = 0
 #
 #     # 2 Arthur vs Red Knight:
-#     arthur["hp"] -= red_knight["power"] - arthur["protection"]
-#     red_knight["hp"] -= arthur["power"] - red_knight["protection"]
+#     arthur["hp"] -=
+#     red_knight["power"] - arthur["protection"]
+#     red_knight["hp"] -=
+#     arthur["power"] - red_knight["protection"]
 #
 #     # check if someone fell in battle
 #     if arthur["hp"] <= 0:
