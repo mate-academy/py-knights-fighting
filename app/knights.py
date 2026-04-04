@@ -1,5 +1,14 @@
+from __future__ import annotations
+
+
 class Knight:
-    def __init__(self, name, power, hp, armour, weapon, potion) -> None:
+    def __init__(self,
+                 name: str,
+                 power: int,
+                 hp: int,
+                 armour: list,
+                 weapon: dict,
+                 potion: dict) -> None:
         # Statystyki bazowe (nigdy ich nie zmieniamy!)
         self.name = name
         self.base_power = power
@@ -14,7 +23,7 @@ class Knight:
         self.protection = 0
 
     @classmethod
-    def from_config(cls, config: dict):
+    def from_config(cls, config: dict) -> Knight:
         return cls(
             name=config["name"],
             power=config["power"],
@@ -27,7 +36,7 @@ class Knight:
     def apply_protection(self) -> None:
         self.protection = sum(a["protection"] for a in self.armour)
 
-    def apply_weapon(self):
+    def apply_weapon(self) -> None:
         self.current_power += self.weapon["power"]
 
     def apply_potion(self) -> None:
