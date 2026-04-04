@@ -210,5 +210,4 @@ def battle(knightsConfig):
         red_knight["name"]: red_knight["hp"],
     }
 
-
 print(battle(KNIGHTS))
