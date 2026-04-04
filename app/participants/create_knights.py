@@ -18,6 +18,11 @@ class Knight:
         self.hp = hp
         self.protection = protection
 
+    def correct_damage(self: Knight, attack: Knight) -> int:
+        damage = max(0, attack.power - self.protection)
+        self.hp = max(0, self.hp - damage)
+        return self.hp
+
 
 def create_participants(given_data: dict) -> Generator:
     for name, characteristic in given_data.items():
