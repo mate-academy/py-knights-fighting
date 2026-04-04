@@ -1,12 +1,11 @@
 from app.knights import Knight
 from app.battle import Battle
-from app.knight_list import KNIGHTS
 
 
-def battle() -> dict:
+def battle(knights_config: dict) -> dict:
     all_knights = {
         key: Knight.from_config(val)
-        for key, val in KNIGHTS.items()
+        for key, val in knights_config.items()
     }
 
     for knight in all_knights.values():
