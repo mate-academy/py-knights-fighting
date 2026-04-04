@@ -2,8 +2,12 @@ from app.knights import Knight
 from app.battle import Battle
 from app.knight_list import KNIGHTS
 
-def battle():
-    all_knights = {key: Knight.from_config(val) for key, val in KNIGHTS.items()}
+
+def battle() -> dict:
+    all_knights = {
+        key: Knight.from_config(val)
+        for key, val in KNIGHTS.items()
+    }
 
     for knight in all_knights.values():
         knight.prepare()
