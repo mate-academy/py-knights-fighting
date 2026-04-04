@@ -1,15 +1,16 @@
 def add_equipment(basic_participants: list, given_data: dict) -> None:
 
     for each_participant in basic_participants:
-
-        weapons = given_data[each_participant.internal_name]["weapon"]
-        armours = given_data[each_participant.internal_name]["armour"]
-        potion = given_data[each_participant.internal_name]["potion"]
+        participant_data = given_data[each_participant.internal_name]
+        weapons = participant_data["weapon"]
+        armours = participant_data["armour"]
+        potion = participant_data["potion"]
 
         each_participant.power += weapons["power"]
+
         if armours:
-            for each_armor in armours:
-                each_participant.protection += each_armor["protection"]
+            protection_bonus = sum(armor["protection"] for armor in armours)
+            each_participant.protection += protection_bonus
 
         if potion:
             each_participant.hp += (

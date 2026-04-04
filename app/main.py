@@ -95,9 +95,7 @@ KNIGHTS = {
 def battle(given_data: dict) -> dict:
 
     participants = list(create_participants(given_data))
-
     add_equipment(participants, given_data)
-
     table = prepare_table(participants)
     pairs = get_pairs(participants)
 

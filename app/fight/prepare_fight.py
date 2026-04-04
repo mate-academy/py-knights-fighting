@@ -1,21 +1,14 @@
 def prepare_table(knights: list) -> dict:
-    result = {
-        knights[i].display_name: 0
-        for i in range(len(knights))
-    }
-
-    return result
+    return {knight.display_name: 0 for knight in knights}
 
 
 def get_pairs(knights: list) -> list:
     pair1 = []
     pair2 = []
     for knight in knights:
-        if (knight.display_name == "Lancelot"
-                or knight.display_name == "Mordred"):
+        if knight.display_name in ("Lancelot", "Mordred"):
             pair1.append(knight)
-        elif (knight.display_name == "Arthur"
-              or knight.display_name == "Red Knight"):
+        elif knight.display_name in ("Arthur", "Red Knight"):
             pair2.append(knight)
 
     return [pair1, pair2]
