@@ -1,4 +1,4 @@
-from app.data import KNIGHTS, draw
+from app.data import draw
 from app.knights import set_knights, duel
 
 
