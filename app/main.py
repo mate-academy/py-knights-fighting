@@ -10,6 +10,3 @@ def battle(knights_config: dict) -> dict:
         duel(knights[fighter1], knights[fighter2])
 
     return {knight.name : knight.hp for _, knight in knights.items()}
-
-
-print(battle(KNIGHTS))

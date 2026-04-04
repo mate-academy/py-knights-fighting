@@ -1,30 +1,27 @@
 class Knight:
-    def __init__(self, alias: str) -> None:
+    def __init__(self, alias: str, preferences: dict) -> None:
         self.alias = alias
         self.protection = 0
-        self.name = ""
-        self.power = 0
-        self.hp = 0
+        self.name = preferences["name"]
+        self.power = preferences["power"]
+        self.hp = preferences["hp"]
+
+        for armour in preferences["armour"]:
+            self.protection += armour["protection"]
+
+        self.power += preferences["weapon"]["power"]
+
+        if preferences["potion"] is not None:
+            self.power += preferences["potion"]["effect"].get("power", 0)
+            self.protection += (
+                preferences["potion"]["effect"].get("protection", 0))
+            self.hp += preferences["potion"]["effect"].get("hp", 0)
 
 
 def set_knights(knights_data: dict) -> dict:
     knights = {}
     for fighter, preferences in knights_data.items():
-        knight = Knight(fighter)
-        knight.name = preferences["name"]
-        knight.power = preferences["power"]
-        knight.hp = preferences["hp"]
-
-        for armour in preferences["armour"]:
-            knight.protection += armour["protection"]
-
-        knight.power += preferences["weapon"]["power"]
-
-        if preferences["potion"] is not None:
-            knight.power += preferences["potion"]["effect"].get("power", 0)
-            knight.protection += (
-                preferences["potion"]["effect"].get("protection", 0))
-            knight.hp += preferences["potion"]["effect"].get("hp", 0)
+        knight = Knight(fighter, preferences)
 
         knights[knight.alias] = knight
 
