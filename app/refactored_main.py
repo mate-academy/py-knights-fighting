@@ -1,6 +1,6 @@
 from app.knights import Knight
-from battle import Battle
-from knight_list import KNIGHTS
+from app.battle import Battle
+from app.knight_list import KNIGHTS
 
 
 all_knights = {key: Knight.from_config(val) for key, val in KNIGHTS.items()}
@@ -15,7 +15,7 @@ battle2 = Battle(all_knights["arthur"], all_knights["red_knight"])
 battle2.run()
 
 final_result: dict[str, int] = {
-    knight_obj.name: knight_obj.hp
+    knight_obj.name: knight_obj.current_hp
     for knight_obj in all_knights.values()
 }
 

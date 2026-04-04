@@ -58,4 +58,4 @@ class Knight:
 
     def get_damage(self, attack_power: int) -> None:
         net_damage = max(0, attack_power - self.protection)
-        self.hp = max(0, self.hp - net_damage)
+        self.current_hp = max(0, self.current_hp - net_damage)

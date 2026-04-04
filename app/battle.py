@@ -11,6 +11,6 @@ class Battle:
         self.knight2.get_damage(self.knight1.current_power)
 
         return {
-            self.knight1.name: self.knight1.hp,
-            self.knight2.name: self.knight2.hp
+            self.knight1.name: self.knight1.current_hp,
+            self.knight2.name: self.knight2.current_hp
         }
