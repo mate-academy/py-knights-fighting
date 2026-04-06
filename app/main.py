@@ -40,4 +40,3 @@ def battle(knight: dict) -> dict:
 
     # Return battle results:
     return {element.name: element.hp for element in knights.values()}
-
