@@ -19,6 +19,11 @@ def fight(knight1: Knight, knight2: Knight) -> None:
     knight2.hp -= knight1.power - knight2.protection
 
 
+def conduct_combat(knight1: Knight, knight2: Knight) -> None:
+    fight(knight1, knight2)
+    check_who_fell(knight1, knight2)
+
+
 def battle(knight: dict) -> dict:
     # BATTLE PREPARATIONS:
 
@@ -31,12 +36,10 @@ def battle(knight: dict) -> dict:
     # BATTLE:
 
     # 1 Lancelot vs Mordred:
-    fight(knights.get("lancelot"), knights.get("mordred"))
-    check_who_fell(knights.get("lancelot"), knights.get("mordred"))
+    conduct_combat(knights.get("lancelot"), knights.get("mordred"))
 
     # 2 Arthur vs Red Knight:
-    fight(knights.get("arthur"), knights.get("red_knight"))
-    check_who_fell(knights.get("arthur"), knights.get("red_knight"))
+    conduct_combat(knights.get("arthur"), knights.get("red_knight"))
 
     # Return battle results:
     return {element.name: element.hp for element in knights.values()}

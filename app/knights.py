@@ -19,10 +19,10 @@ class Knight:
         if self.potion:
             effect = self.potion.get("effect")
             if effect.get("power"):
-                self.power += self.potion.get("effect").get("power")
+                self.power += effect.get("power")
 
             if effect.get("protection"):
-                self.protection += self.potion.get("effect").get("protection")
+                self.protection += effect.get("protection")
 
             if effect.get("hp"):
-                self.hp += self.potion.get("effect").get("hp")
+                self.hp += effect.get("hp")
