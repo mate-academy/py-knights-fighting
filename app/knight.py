@@ -26,15 +26,12 @@ class Knight:
     def protection_calc(self) -> None:
         for armour_pieces in self.armour:
             self.knight_protection += armour_pieces["protection"]
-        print(f"{self.name} protection is {self.knight_protection}")
 
     def power_calc(self) -> None:
         self.knight_power += self.weapon["power"]
-        print(f"{self.name} power is {self.knight_power}")
 
     def potion_calc(self) -> None:
         if self.potion is not None:
-            print(self.potion)
             for effect_key, effect in self.potion["effect"].items():
                 if effect_key == "power":
                     self.knight_power += effect
@@ -42,5 +39,3 @@ class Knight:
                     self.knight_hp += effect
                 if effect_key == "protection":
                     self.knight_protection += effect
-            print(f"{self.name} protection is {self.knight_protection}")
-            print(f"{self.name} power is {self.knight_power}")
