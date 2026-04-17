@@ -6,6 +6,7 @@ class Weapon:
 
 class Armor:
     def __init__(self, data: list) -> None:
+        # Считаем общую защиту всех частей брони
         self.protection = sum(part["protection"] for part in data)
 
 
