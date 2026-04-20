@@ -89,10 +89,11 @@ KNIGHTS = {
 
 
 def battle(knights_config: dict) -> dict:
-    lancelot = Knight(knights_config["lancelot"])
-    arthur = Knight(knights_config["arthur"])
-    mordred = Knight(knights_config["mordred"])
-    red_knight = Knight(knights_config["red_knight"])
+    knights = {name: Knight(config) for name, config in knights_config.items()}
+    lancelot = knights["lancelot"]
+    arthur = knights["arthur"]
+    mordred = knights["mordred"]
+    red_knight = knights["red_knight"]
 
     lancelot_power = lancelot.power
     mordred_power = mordred.power

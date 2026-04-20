@@ -31,5 +31,5 @@ class Knight:
         k1_initial_power = knight1.power
         k2_initial_power = knight2.power
 
-        knight1.recive_damage(k2_initial_power)
-        knight2.recive_damage(k1_initial_power)
+        knight1.take_damage(k2_initial_power)
+        knight2.take_damage(k1_initial_power)
