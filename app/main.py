@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, Any
 from app.data.knights import KNIGHTS
 from app.models.knight import Knight
 from app.fight.battle import Battle
@@ -7,7 +7,7 @@ from app.fight.battle import Battle
 def battle(knights: dict | None = None) -> Dict:
     data = knights if knights is not None else KNIGHTS
 
-    def prepare_knight(raw: dict) -> dict:
+    def prepare_knight(raw: Dict[str, Any]) -> Dict[str, Any]:
         name = raw["name"]
         base_hp = raw.get("hp", 0)
         base_power = raw.get("power", 0)
@@ -36,25 +36,14 @@ def battle(knights: dict | None = None) -> Dict:
     prepared = {key: prepare_knight(data[key])
                 for key in ("lancelot", "mordred", "arthur", "red_knight")}
 
-    res_a = Battle(Knight(prepared["lancelot"]),
-                   Knight(prepared["mordred"])).fight()
-    res_b = Battle(Knight(prepared["arthur"]),
-                   Knight(prepared["red_knight"])).fight()
+    pairs = [
+        ("lancelot", "mordred"),
+        ("arthur", "red_knight"),
+    ]
 
-    result = {
-        prepared["lancelot"]["name"]: max(0,
-                                          res_a[prepared["lancelot"]["name"]]),
-        prepared["mordred"]["name"]: max(0,
-                                         res_a[prepared["mordred"]["name"]]),
-        prepared["arthur"]["name"]: max(0,
-                                        res_b[prepared["arthur"]["name"]]),
-        prepared["red_knight"]["name"]: max(
-            0,
-            res_b[prepared["red_knight"]["name"]]
-        ), }
-
-    return result
-
-
-if __name__ == "__main__":
-    print(battle())
+    results = {}
+    for knight1, knight2 in pairs:
+        battle_result = Battle(Knight(prepared[knight1]),
+                               Knight(prepared[knight2])).fight()
+        results.update(battle_result)
+    return results

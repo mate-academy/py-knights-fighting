@@ -1,6 +1,6 @@
 class Equipment:
     def __init__(self, armour: list | None,
-                 weapon: list | None, potion: str) -> None:
+                 weapon: dict | None, potion: dict | None) -> None:
         self.armour = list(armour) if armour else []
         self.weapon = weapon
         self.potion = potion
