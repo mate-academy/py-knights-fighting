@@ -1,4 +1,4 @@
-def apply_potion(knights_data: dict) -> None:
+def apply_potion(knights_data: dict) -> dict:
     for knight in knights_data.values():
         if knight["potion"] is not None:
             if "power" in knight["potion"]["effect"]:
@@ -8,3 +8,4 @@ def apply_potion(knights_data: dict) -> None:
                     += knight["potion"]["effect"]["protection"]
             if "hp" in knight["potion"]["effect"]:
                 knight["hp"] += knight["potion"]["effect"]["hp"]
+    return knights_data

@@ -5,7 +5,7 @@ from app.potion.potion import apply_potion
 from app.battle.battle import fight
 
 
-def battle(knights_config: dict) -> None:
+def battle(knights_config: dict) -> dict:
     apply_armour(knights_config)
     apply_weapon(knights_config)
     apply_potion(knights_config)
