@@ -28,14 +28,12 @@ def battle(knights: dict) -> dict:
     mordred = ready_knights["mordred"]
     red_knight = ready_knights["red_knight"]
 
-    # 1 battle
     lancelot.hp -= max(0, mordred.power - lancelot.protection)
     mordred.hp -= max(0, lancelot.power - mordred.protection)
 
     lancelot.hp = max(0, lancelot.hp)
     mordred.hp = max(0, mordred.hp)
 
-    # 2 battle
     arthur.hp -= max(0, red_knight.power - arthur.protection)
     red_knight.hp -= max(0, arthur.power - red_knight.protection)
 
