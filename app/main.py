@@ -28,6 +28,3 @@ def battle(knights_config: dict) -> dict:
     if "Red_knight" in result:
         result["Red Knight"] = result.pop("Red_knight")
     return result
-
-
-print(battle(KNIGHTS))
