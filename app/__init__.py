@@ -1,0 +1,1 @@
+"""Knights fighting game package."""
