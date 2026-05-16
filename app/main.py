@@ -32,7 +32,7 @@ def create_knight(name: str, data: dict) -> Knight:
     )
 
 
-knigths = {
+knights = {
     "lancelot": {
         "name": "Lancelot",
         "power": 35,
@@ -131,3 +131,5 @@ def start_battle(knights: dict) -> dict:
     second_fight = knights_fight(arthur, red_knight)
 
     return first_fight | second_fight
+
+print(start_battle(knights))

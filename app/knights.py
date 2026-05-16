@@ -1,7 +1,10 @@
 from __future__ import annotations
+from typing import TYPE_CHECKING
 from app.ammo.weapon import Weapon
-from app.ammo.potion import Potion
 from app.ammo.armour import Armour
+
+if TYPE_CHECKING:
+    from app.ammo.potion import Potion
 
 
 class Knight:

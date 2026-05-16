@@ -1,4 +1,8 @@
-from app.knights import Knight
+from __future__ import annotations
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from app.knights import Knight
 
 
 class Potion:
@@ -12,7 +16,7 @@ class Potion:
         self.power = power
         self.protection = protection
 
-    def use_potion(self, knight: Knight) -> None:
+    def use_potion(self, knight: 'Knight') -> None:
         if self.hp is not None:
             knight.hp += self.hp
         if self.power is not None:
