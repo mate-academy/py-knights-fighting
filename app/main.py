@@ -132,4 +132,5 @@ def start_battle(knights: dict) -> dict:
 
     return first_fight | second_fight
 
+
 print(start_battle(knights))
