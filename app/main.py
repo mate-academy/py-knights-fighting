@@ -120,12 +120,12 @@ knights = {
 }
 
 
-def start_battle(knights: dict) -> dict:
-    lancelot = create_knight("lancelot", knights["lancelot"])
-    mordred = create_knight("mordred", knights["mordred"])
+def battle(knights: dict) -> dict:
+    lancelot = create_knight("Lancelot", knights["lancelot"])
+    mordred = create_knight("Mordred", knights["mordred"])
 
-    arthur = create_knight("arthur", knights["arthur"])
-    red_knight = create_knight("red_knight", knights["red_knight"])
+    arthur = create_knight("Arthur", knights["arthur"])
+    red_knight = create_knight("Red Knight", knights["red_knight"])
 
     first_fight = knights_fight(lancelot, mordred)
     second_fight = knights_fight(arthur, red_knight)
@@ -133,4 +133,4 @@ def start_battle(knights: dict) -> dict:
     return first_fight | second_fight
 
 
-print(start_battle(knights))
+print(battle(knights))
