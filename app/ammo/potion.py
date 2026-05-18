@@ -16,7 +16,7 @@ class Potion:
         self.power = power
         self.protection = protection
 
-    def use_potion(self, knight: 'Knight') -> None:
+    def use_potion(self, knight: "Knight") -> None:
         if self.hp is not None:
             knight.hp += self.hp
         if self.power is not None:
