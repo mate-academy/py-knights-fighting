@@ -1,3 +1,7 @@
+from app.knights.factory import prepare_knight
+from app.battle.engine import fight
+
+
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
@@ -86,64 +90,25 @@ KNIGHTS = {
 }
 
 
-def prepare_knight(knight: dict) -> dict:
-    """Applies armour, weapon and potion effects to a knight."""
-    result = knight.copy()
-
-    # armour
-    result["protection"] = sum(
-        piece["protection"]
-        for piece in result["armour"]
-    )
-
-    # weapon
-    result["power"] += result["weapon"]["power"]
-
-    # potion
-    potion = result.get("potion")
-    if potion:
-        effect = potion["effect"]
-        result["hp"] += effect.get("hp", 0)
-        result["power"] += effect.get("power", 0)
-        result["protection"] += effect.get("protection", 0)
-
-    return result
-
-
-def fight(attacker: dict, defender: dict) -> None:
-    """Simulates one fight exchange between two knights."""
-
-    attacker_damage = max(0, defender["power"] - attacker["protection"])
-    defender_damage = max(0, attacker["power"] - defender["protection"])
-
-    attacker["hp"] -= attacker_damage
-    defender["hp"] -= defender_damage
-
-    attacker["hp"] = max(0, attacker["hp"])
-    defender["hp"] = max(0, defender["hp"])
-
-
 def battle(knights_config: dict) -> dict:
-    # prepare all knights
     knights = {
         name: prepare_knight(knight)
         for name, knight in knights_config.items()
     }
 
-    # battles
-    battles = [
+    fights = [
         ("lancelot", "mordred"),
         ("arthur", "red_knight"),
     ]
 
-    for attacker_name, defender_name in battles:
+    for attacker_name, defender_name in fights:
         fight(knights[attacker_name], knights[defender_name])
 
-    # result
     return {
-        knight["name"]: knight["hp"]
-        for knight in knights.values()
+        k["name"]: k["hp"]
+        for k in knights.values()
     }
 
 
-print(battle(KNIGHTS))
+if __name__ == "__main__":
+    print(battle(KNIGHTS))
