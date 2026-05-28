@@ -1,7 +1,9 @@
 from typing import Any
 
+from app.fight import fight
+from app.knight import prepare_knight
+
 KnightConfig = dict[str, Any]
-PreparedKnight = dict[str, Any]
 
 
 KNIGHTS: dict[str, KnightConfig] = {
@@ -92,40 +94,6 @@ KNIGHTS: dict[str, KnightConfig] = {
 }
 
 
-def prepare_knight(knight: KnightConfig) -> PreparedKnight:
-    prepared_knight = {
-        "name": knight["name"],
-        "hp": knight["hp"],
-        "power": knight["power"],
-        "protection": 0,
-    }
-
-    for armour_part in knight["armour"]:
-        prepared_knight["protection"] += armour_part["protection"]
-
-    prepared_knight["power"] += knight["weapon"]["power"]
-
-    if knight["potion"] is not None:
-        potion_effect = knight["potion"]["effect"]
-
-        prepared_knight["hp"] += potion_effect.get("hp", 0)
-        prepared_knight["power"] += potion_effect.get("power", 0)
-        prepared_knight["protection"] += potion_effect.get("protection", 0)
-
-    return prepared_knight
-
-
-def fight(knight_1: PreparedKnight, knight_2: PreparedKnight) -> None:
-    knight_1["hp"] -= knight_2["power"] - knight_1["protection"]
-    knight_2["hp"] -= knight_1["power"] - knight_2["protection"]
-
-    if knight_1["hp"] <= 0:
-        knight_1["hp"] = 0
-
-    if knight_2["hp"] <= 0:
-        knight_2["hp"] = 0
-
-
 def battle(knights_config: dict[str, KnightConfig]) -> dict[str, int]:
     lancelot = prepare_knight(knights_config["lancelot"])
     arthur = prepare_knight(knights_config["arthur"])
@@ -141,7 +109,3 @@ def battle(knights_config: dict[str, KnightConfig]) -> dict[str, int]:
         mordred["name"]: mordred["hp"],
         red_knight["name"]: red_knight["hp"],
     }
-
-
-if __name__ == "__main__":
-    print(battle(KNIGHTS))
