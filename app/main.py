@@ -90,10 +90,15 @@ KNIGHTS = {
 
 
 def battle(knights_config: dict) -> dict:
-    lancelot = Knight(knights_config["lancelot"])
-    arthur = Knight(knights_config["arthur"])
-    mordred = Knight(knights_config["mordred"])
-    red_knight = Knight(knights_config["red_knight"])
+    knights = {
+        name: Knight(config)
+        for name, config in knights_config.items()
+    }
+
+    lancelot = knights["lancelot"]
+    arthur = knights["arthur"]
+    mordred = knights["mordred"]
+    red_knight = knights["red_knight"]
 
     lancelot.hp -= max(0, mordred.power - lancelot.protection)
     mordred.hp -= max(0, lancelot.power - mordred.protection)
@@ -101,10 +106,8 @@ def battle(knights_config: dict) -> dict:
     arthur.hp -= max(0, red_knight.power - arthur.protection)
     red_knight.hp -= max(0, arthur.power - red_knight.protection)
 
-    lancelot.hp = max(0, lancelot.hp)
-    mordred.hp = max(0, mordred.hp)
-    arthur.hp = max(0, arthur.hp)
-    red_knight.hp = max(0, red_knight.hp)
+    for knight in [lancelot, mordred, arthur, red_knight]:
+        knight.hp = max(0, knight.hp)
 
     return {
         lancelot.name: lancelot.hp,
@@ -112,6 +115,3 @@ def battle(knights_config: dict) -> dict:
         mordred.name: mordred.hp,
         red_knight.name: red_knight.hp,
     }
-
-
-print(battle(KNIGHTS))
