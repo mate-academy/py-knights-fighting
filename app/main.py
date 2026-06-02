@@ -1,3 +1,6 @@
+from app.models.knight import Knight
+
+
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
@@ -86,10 +89,6 @@ KNIGHTS = {
 }
 
 
-
-from app.models.knight import Knight
-
-
 def battle(knights_config: dict) -> dict:
     lancelot = Knight(knights_config["lancelot"])
     arthur = Knight(knights_config["arthur"])
@@ -113,6 +112,5 @@ def battle(knights_config: dict) -> dict:
         mordred.name: mordred.hp,
         red_knight.name: red_knight.hp,
     }
-
 
 print(battle(KNIGHTS))
