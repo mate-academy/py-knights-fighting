@@ -29,18 +29,17 @@ class Knight:
         if weapon:
             self.apply_weapon(weapon)
 
-
     def apply_armour(self, armour: Armour) -> None:
         self.armours.append(armour)
         self.protection += armour.protection
 
-    def apply_weapon(self, weapon: Weapon):
+    def apply_weapon(self, weapon: Weapon) -> None:
         if self.weapon is not None:
             self.power -= self.weapon.power
         self.weapon = weapon
         self.power += weapon.power
 
-    def apply_poison(self, poison: Poison):
+    def apply_poison(self, poison: Poison) -> None:
         self.poisons.append(poison)
         if poison.hp_affect:
             self.hp += poison.hp_affect
@@ -48,3 +47,25 @@ class Knight:
             self.power += poison.power_affect
         if poison.protection_affect:
             self.protection += poison.protection_affect
+
+    def prepare(self,
+                weapon_data: dict,
+                armours_data: list[dict],
+                poison_data: dict | None) -> None:
+        # apply armour
+        for armour_data in armours_data:
+            self.apply_armour(
+                Armour(armour_data["part"], armour_data["protection"])
+            )
+
+        # apply weapon
+        self.apply_weapon(Weapon(weapon_data["name"], weapon_data["power"]))
+
+        # apply potion if exist
+        if poison_data is not None:
+            self.apply_poison(Poison(
+                poison_data["name"],
+                poison_data["effect"].get("hp"),
+                poison_data["effect"].get("power"),
+                poison_data["effect"].get("protection")
+            ))
