@@ -52,16 +52,11 @@ class Knight:
                 weapon_data: dict,
                 armours_data: list[dict],
                 poison_data: dict | None) -> None:
-        # apply armour
         for armour_data in armours_data:
             self.apply_armour(
                 Armour(armour_data["part"], armour_data["protection"])
             )
-
-        # apply weapon
         self.apply_weapon(Weapon(weapon_data["name"], weapon_data["power"]))
-
-        # apply potion if exist
         if poison_data is not None:
             self.apply_poison(Poison(
                 poison_data["name"],

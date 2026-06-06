@@ -1,4 +1,5 @@
 from app.data.knights import KNIGHTS
+from app.knights_fighting.battle import Battle
 from app.knights_fighting.knight import Knight
 
 
@@ -23,38 +24,11 @@ def battle(knights_data: dict) -> dict:
     mordred = prepare_knight(knights_data["mordred"])
     red_knight = prepare_knight(knights_data["red_knight"])
 
-    # -------------------------------------------------------------------------------
     # BATTLE:
+    lancelot_vs_mordred_fight = Battle.fight(lancelot, mordred)
+    arthur_vs_red_knight_fight = Battle.fight(arthur, red_knight)
 
-    # 1 Lancelot vs Mordred:
-    lancelot.hp -= mordred.power - lancelot.protection
-    mordred.hp -= lancelot.power - mordred.protection
-
-    # check if someone fell in battle
-    if lancelot.hp <= 0:
-        lancelot.hp = 0
-
-    if mordred.hp <= 0:
-        mordred.hp = 0
-
-    # 2 Arthur vs Red Knight:
-    arthur.hp -= red_knight.power - arthur.protection
-    red_knight.hp -= arthur.power - red_knight.protection
-
-    # check if someone fell in battle
-    if arthur.hp <= 0:
-        arthur.hp = 0
-
-    if red_knight.hp <= 0:
-        red_knight.hp = 0
-
-    # Return battle results:
-    return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
-    }
+    return {**lancelot_vs_mordred_fight, **arthur_vs_red_knight_fight}
 
 
 print(battle(KNIGHTS))
