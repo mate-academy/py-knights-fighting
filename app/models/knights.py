@@ -1,3 +1,6 @@
+from typing import Optional
+
+
 class Knights:
     def __init__(
         self,
@@ -6,7 +9,7 @@ class Knights:
         hp: int,
         weapon: dict,
         armour: list,
-        potion: dict
+        potion: Optional[dict]
     ) -> None:
         self.name = name
         self.base_power = power

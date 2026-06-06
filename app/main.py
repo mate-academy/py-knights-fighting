@@ -1,4 +1,5 @@
 from app.models.knights import Knights
+from typing import Any
 
 
 KNIGHTS = {
@@ -89,7 +90,7 @@ KNIGHTS = {
 }
 
 
-def battle(config: any) -> dict:
+def battle(config: Any) -> dict:
     lancelot = Knights(**config["lancelot"])
     arthur = Knights(**config["arthur"])
     mordred = Knights(**config["mordred"])
