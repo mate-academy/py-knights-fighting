@@ -67,3 +67,4 @@ class KnightFactory:
             knights[key] = knight
 
         return knights
+
