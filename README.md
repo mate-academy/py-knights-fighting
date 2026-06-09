@@ -9,6 +9,7 @@ knights is taking place. The most powerful and strong
 knights ready to give their lives here. So, lets the battle begin!
 
 At first, you have knights stats as dictionary:
+
 ```python
 KNIGHTS = {
     "red_knight": {
@@ -33,9 +34,11 @@ KNIGHTS = {
     # ...
 }
 ```
+
 So basically, each knight has `name`, `power` and `hp` (Health Points).
 
 Additionally, knights have:
+
 - `armour` with `name` and `protection` (more than 1 part of armour is possible, 0 armour also possible).
   - All armour is applied to each knight before entering the battle.
   - Armour adds additional stat to knight, known as `protection`.
@@ -50,6 +53,7 @@ Additionally, knights have:
   - If `effect` value is positive - it improves this stat on that value, if negative - worsen.
 
 So, for `red_knight` we have before the battle next stats:
+
 ```python
 red_knight_stats = {
     "hp": 80,  # 70 + 10
@@ -59,6 +63,7 @@ red_knight_stats = {
 ```
 
 Imagine, that another knight (let us call him `x_knight`) has next stats before battle:
+
 ```python
 x_knight_stats = {
     "hp": 100,
@@ -68,13 +73,16 @@ x_knight_stats = {
 ```
 
 When the battle begins between them:
+
 - They lose their `hp` based on `power` of opponent and self `protection` using next formula:
+
 ```python
 red_knight_stats["hp"] -= x_knight_stats["power"] - red_knight_stats["protection"]
 x_knight_stats["hp"] -= red_knight_stats["power"] - x_knight_stats["protection"]
 ```
 
 So the result `hp` of this battle is:
+
 ```python
 battle_result_hp = {
     "Red Knight": 35,  # 80 - (70 - 25)
@@ -86,6 +94,7 @@ In this battle no one fell, but if someone will have `hp <= 0` - it means
 this knight is defeated - and his `hp` must be equal to `0`.
 
 ## Task
+
 So up to this moment, you will have `KNIGHTS` config with parameters
 of 4 knights in Kingdom: `Lancelot`, `Arthur`, `Mordred` and `Red Knight`.
 
@@ -98,6 +107,7 @@ In the code (`app/main.py`) you already have everything ready for calculation th
 But you will notice, that it is achieved not in the best-practice way of coding.
 
 So, your task will be next: 
+
 - Make this code work in more `best-practice` way.
 - Split functionality to different `modules` and `packages` as you think will be the most meaningful.
 - `Refactor` existing logic, if needed.
@@ -106,6 +116,7 @@ So, your task will be next:
 - Make sure, that your final code pass `flake8` and `pytest`
 
 Obligations:
+
 - In this task we test only 1 `battle` function from `app.main` - make sure it works 
   correctly after all your changes applied to the project.
 
