@@ -29,7 +29,7 @@ class Knight:
     def apply_weapon(self) -> None:
         self.power += self.weapon.power
 
-    def apply_potion(self, potion):
+    def apply_potion(self, potion) -> None:
         if potion is None:
             return
 
@@ -40,10 +40,3 @@ class Knight:
     def get_damage(self, other: Knight) -> None:
         damage = max(other.power - self.protection, 0)
         self.hp -= damage
-
-    def is_alive_check(self) -> bool:
-
-        if self.hp > 0:
-            return True
-
-        return False

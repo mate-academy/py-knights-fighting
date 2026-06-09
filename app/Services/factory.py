@@ -52,7 +52,6 @@ class KnightFactory:
             potion=potion,
         )
 
-        # Застосовуємо броню, зброю та зілля до лицаря
         knight.apply_armour()
         knight.apply_weapon()
         knight.apply_potion(potion)
@@ -65,8 +64,6 @@ class KnightFactory:
 
         for key, knight_data in knights_data.items():
             knight = KnightFactory.create_knight(knight_data)
-            if not isinstance(knight, Knight):
-                raise TypeError(f"Object {key} is not an instance of Knight after creation")
             knights[key] = knight
 
         return knights
