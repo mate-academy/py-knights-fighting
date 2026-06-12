@@ -27,7 +27,7 @@ class Knight:
             self.protection += armour.protection
 
     def apply_potion_effect(self, potion: Potion) -> None:
-        if self.potion is not None:
+        if potion is not None:
             for key, value in potion.effect.items():
                 if key == "hp":
                     self.hp += value

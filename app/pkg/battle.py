@@ -13,7 +13,7 @@ class Battle:
 
     @staticmethod
     def check_hp(hp: int) -> int:
-        if hp < 0:
+        if hp <= 0:
             return 0
         return hp
 
