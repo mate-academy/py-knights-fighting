@@ -1,30 +1,28 @@
 from app.knight import Knight
-from app.knights_data import KNIGHTS
 
 
-def battle(knights_config: dict) -> dict:
-    lancelot = Knight(knights_config["lancelot"])
-    arthur = Knight(knights_config["arthur"])
-    mordred = Knight(knights_config["mordred"])
-    red_knight = Knight(knights_config["red_knight"])
+def battle(knights_config: dict[str, dict]) -> dict[str, int]:
+    knights = {name: Knight(config) for name, config in knights_config.items()}
 
-    lancelot.prepare_for_battle()
-    arthur.prepare_for_battle()
-    mordred.prepare_for_battle()
-    red_knight.prepare_for_battle()
+    for knight in knights.values():
+        knight.prepare_for_battle()
 
-    lancelot.take_damage(mordred.power)
-    mordred.take_damage(lancelot.power)
+    pairs = [
+        ("lancelot", "mordred"),
+        ("arthur", "red_knight")
+    ]
 
-    arthur.take_damage(red_knight.power)
-    red_knight.take_damage(arthur.power)
+    for attacker_key, defender_key in pairs:
+        attacker = knights[attacker_key]
+        defender = knights[defender_key]
 
-    return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
-    }
+        attacker.take_damage(defender.power)
+        defender.take_damage(attacker.power)
+
+    return {knight.name: knight.hp for knight in knights.values()}
 
 
-print(battle(KNIGHTS))
+if __name__ == "__main__":
+    from app.knights_data import KNIGHTS
+
+    print(battle(KNIGHTS))
