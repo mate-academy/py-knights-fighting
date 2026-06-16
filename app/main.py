@@ -1,8 +1,6 @@
 from app.characters.parser import parse
 from app.characters.knights import Knight
 
-from app.knights_info import KNIGHTS
-
 
 def check_hp(battler: Knight) -> None:
     if battler.hp <= 0:
@@ -22,9 +20,6 @@ def fight(first_battler: Knight, second_battler: Knight) -> dict:
 
 def battle(knights_config: dict) -> dict:
     battlers = parse(knights_config)
-    lancelot = battlers[0]
-    arthur = battlers[1]
-    mordred = battlers[2]
-    red_knight = battlers[3]
 
-    return fight(lancelot, mordred) | fight(arthur, red_knight)
+    return (fight(battlers["Lancelot"], battlers["Mordred"])
+            | fight(battlers["Arthur"], battlers["Red Knight"]))

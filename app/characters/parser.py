@@ -1,8 +1,8 @@
 from app.characters.knights import Knight
 
 
-def parse(config: dict) -> list:
-    result = []
+def parse(config: dict) -> dict:
+    result = {}
 
     for character in config.values():
         power = character["power"]
@@ -26,7 +26,8 @@ def parse(config: dict) -> list:
             if "hp" in character["potion"]["effect"]:
                 hp += character["potion"]["effect"]["hp"]
 
-        character["name"] = Knight(character["name"], power, hp, armour)
-        result.append(character["name"])
+        name = character["name"]
+        knight = Knight(name, power, hp, armour)
+        result[name] = knight
 
     return result
