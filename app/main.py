@@ -90,22 +90,16 @@ KNIGHTS = {
 
 
 def battle(knights_config: dict) -> dict:
-    lancelot = Knight(knights_config["lancelot"])
-    arthur = Knight(knights_config["arthur"])
-    mordred = Knight(knights_config["mordred"])
-    red_knight = Knight(knights_config["red_knight"])
+    knights = {}
 
-    lancelot.apply_buffs()
-    arthur.apply_buffs()
-    mordred.apply_buffs()
-    red_knight.apply_buffs()
+    for key, knight_data in knights_config.items():
+        knight = Knight(knight_data)
+        knight.apply_buffs()
+        knights[key] = knight
 
-    lancelot.fight(mordred)
-    arthur.fight(red_knight)
+    knights["lancelot"].fight(knights["mordred"])
+    knights["arthur"].fight(knights["red_knight"])
 
     return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp
+        knight.name: knight.hp for knight in knights.values()
     }
