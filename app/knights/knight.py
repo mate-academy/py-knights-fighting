@@ -6,15 +6,16 @@ class Knight:
         self.armour = knight["armour"]
         self.weapon = knight["weapon"]
         self.potion = knight["potion"]
-        self.protection = 0
+        self.power += self.weapon["power"]
+        self.protection = sum(
+            armour["protection"]
+            for armour in self.armour
+        )
 
     def get_protection(self) -> int:
-        for armour in self.armour:
-            self.protection += armour["protection"]
         return self.protection
 
     def get_power(self) -> int:
-        self.power = self.power + self.weapon["power"]
         return self.power
 
     def apply_potion(self) -> None:
