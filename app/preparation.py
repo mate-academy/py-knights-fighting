@@ -6,8 +6,10 @@ class Preparation:
     def apply_equipment(self, knight_data: dict) -> dict:
         knight = copy.deepcopy(knight_data)
 
-        # Apply armour
-        knight["protection"] = sum(a["protection"] for a in knight["armour"])
+        knight["protection"] = 0
+
+        armour = knight.get("armour") or []
+        knight["protection"] += sum(a["protection"] for a in armour)
 
         # Apply weapon
         knight["power"] += knight["weapon"]["power"]
