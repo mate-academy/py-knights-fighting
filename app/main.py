@@ -18,4 +18,3 @@ def battle(knights_config: dict) -> dict:
     fight(knights[0], knights[2])
     fight(knights[1], knights[3])
     return {knight.name: knight.hp for knight in knights_dict.values()}
-gi
