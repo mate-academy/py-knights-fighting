@@ -1,9 +1,10 @@
-from app.Knight.Knight import knight_instances
+from app.Knight.Knight import dict_into_cls
 
 
-def prepare_to_battle(list_of_instances):
-    equipped_knights =[]
-    for knight in list_of_instances:
+def prepare_to_battle(list_of_pretendants: list) -> list:
+    prepared_candidates = dict_into_cls(list_of_pretendants)
+    equipped_knights = []
+    for knight in prepared_candidates:
         for armour_pice in knight.armour:
             knight.protection += armour_pice["protection"]
         knight.power += knight.weapon["power"]
@@ -14,5 +15,3 @@ def prepare_to_battle(list_of_instances):
             knight.protection += effect.get("protection", 0)
         equipped_knights.append(knight)
     return equipped_knights
-
-Equipped_knight = prepare_to_battle(knight_instances)

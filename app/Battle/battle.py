@@ -1,19 +1,20 @@
-from app.Knight_config.knight_config import Equipped_knight
+from app.Knight_config.knight_config import prepare_to_battle
 
 
-def battle(pretendents:list = Equipped_knight) -> None:
-    battle_result = []
-    for ind, warrior in enumerate(pretendents):
-        for opponent in pretendents[ind + 1:]:
-            warrior_health_points = warrior.hp
-            warrior_health_points -= opponent.power - warrior.protection
-            opponent_health_points = opponent.hp
-            opponent_health_points -= warrior.power - opponent.protection
-            if warrior_health_points <= 0:
-                warrior_health_points = 0
-            if opponent_health_points <= 0:
-               opponent_health_points = 0
-            battle_result.append(f"Battle between: {warrior.name} vs {opponent.name}. "
-                                 f"Results are: {warrior_health_points} and {opponent_health_points} respectively")
+def battle(dict_with_knights: dict) -> dict:
+    prepared_knight = prepare_to_battle(dict_with_knights)
 
-    return battle_result
+    prepared_knight[0].hp -= (prepared_knight[2].power
+                              - prepared_knight[0].protection)
+    prepared_knight[2].hp -= (prepared_knight[0].power
+                              - prepared_knight[2].protection)
+    prepared_knight[1].hp -= (prepared_knight[3].power
+                              - prepared_knight[1].protection)
+    prepared_knight[3].hp -= (prepared_knight[1].power
+                              - prepared_knight[3].protection)
+    result_dict = {}
+    for knight in prepared_knight:
+        if knight.hp <= 0:
+            knight.hp = 0
+        result_dict[knight.name] = knight.hp
+    return result_dict

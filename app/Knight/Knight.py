@@ -1,6 +1,3 @@
-from app.base_information import KNIGHTS
-
-
 class Knight:
     def __init__(
             self,
@@ -20,16 +17,24 @@ class Knight:
         self.potion = potion
         self.protection = protection
 
-    def __repr__(self):
-        return (f"[Knight {self.name}, stats and equipment: power = {self.power},\n "
-                f"health points = {self.hp}, armour = {self.armour}, total protection = {self.protection},\n "
-                f"weapons = {self.weapon},potions = {self.potion}]\n")
+    def __repr__(self) -> str:
+        return (f"[Knight {self.name}, stats and equipment: "
+                f"power = {self.power},\n "
+                f"health points = {self.hp}, "
+                f"armour = {self.armour}, "
+                f"total protection = {self.protection},\n "
+                f"weapons = {self.weapon},"
+                f"potions = {self.potion}]\n")
 
-def dict_into_cls(candid: dict) -> Knight:
+
+def dict_into_cls(candid: dict) -> list[Knight]:
     lst_of_knights = []
-    for knight, stats in candid.items():
-        x = globals()[knight] = Knight(**stats)
-        lst_of_knights.append(x)
+    lancelot = Knight(**candid["lancelot"])
+    lst_of_knights.append(lancelot)
+    arthur = Knight(**candid["arthur"])
+    lst_of_knights.append(arthur)
+    mordred = Knight(**candid["mordred"])
+    lst_of_knights.append(mordred)
+    red_knight = Knight(**candid["red_knight"])
+    lst_of_knights.append(red_knight)
     return lst_of_knights
-
-knight_instances = dict_into_cls(KNIGHTS)
