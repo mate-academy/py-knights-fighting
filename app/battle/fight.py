@@ -17,6 +17,13 @@ def prepare_knight(knight: dict) -> dict:
     return prepared_knight
 
 
+def prepare_knights(knights_config: dict) -> dict:
+    return {
+        knight_key: prepare_knight(knight)
+        for knight_key, knight in knights_config.items()
+    }
+
+
 def fight(knight1: dict, knight2: dict) -> dict:
     knight1["hp"] -= knight2["power"] - knight1["protection"]
     knight2["hp"] -= knight1["power"] - knight2["protection"]
@@ -30,16 +37,4 @@ def fight(knight1: dict, knight2: dict) -> dict:
     return {
         knight1["name"]: knight1["hp"],
         knight2["name"]: knight2["hp"],
-    }
-
-
-def battle(knights_config: dict) -> dict:
-    lancelot = prepare_knight(knights_config["lancelot"])
-    arthur = prepare_knight(knights_config["arthur"])
-    mordred = prepare_knight(knights_config["mordred"])
-    red_knight = prepare_knight(knights_config["red_knight"])
-
-    return {
-        **fight(lancelot, mordred),
-        **fight(arthur, red_knight),
     }
