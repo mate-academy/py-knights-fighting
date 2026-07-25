@@ -1,24 +1,35 @@
 from knight import Knight
 from constants import KNIGHTS
-lancelot = Knight(KNIGHTS["lancelot"])
-arthur = Knight(KNIGHTS["arthur"])
-mordred = Knight(KNIGHTS["mordred"])
-red_knight = Knight(KNIGHTS["red_knight"])
 
 
-def battle(knight1: Knight, knight2: Knight) -> dict:
-    knight1.hp -= knight2.power - knight1.protection
-    knight2.hp -= knight1.power - knight2.protection
-    if knight1.hp <= 0:
-        knight1.hp = 0
-    if knight2.hp <= 0:
-        knight2.hp = 0
+def battle(knights_config: dict) -> dict:
+    # Створюємо об'єкти
+    lancelot = Knight(knights_config["lancelot"])
+    arthur = Knight(knights_config["arthur"])
+    mordred = Knight(knights_config["mordred"])
+    red_knight = Knight(knights_config["red_knight"])
+    # Бій 1: Lancelot vs Mordred
+    lancelot.hp -= mordred.power - lancelot.protection
+    mordred.hp -= lancelot.power - mordred.protection
 
+    if lancelot.hp <= 0:
+        lancelot.hp = 0
+    if mordred.hp <= 0:
+        mordred.hp = 0
+    # Бій 2: Arthur vs Red Knight
+    arthur.hp -= red_knight.power - arthur.protection
+    red_knight.hp -= arthur.power - red_knight.protection
+
+    if arthur.hp <= 0:
+        arthur.hp = 0
+    if red_knight.hp <= 0:
+        red_knight.hp = 0
     return {
-        knight1.name: knight1.hp,
-        knight2.name: knight2.hp
+        lancelot.name: lancelot.hp,
+        arthur.name: arthur.hp,
+        mordred.name: mordred.hp,
+        red_knight.name: red_knight.hp,
     }
 
 
-print(battle(lancelot, arthur))
-print(battle(mordred, red_knight))
+print(battle(KNIGHTS))
