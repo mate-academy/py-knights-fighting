@@ -1,36 +1,43 @@
-from app.knights.battlepreparation import list_of_knights
+from app.knights.Knight import Knight
 
 
-def battle(knights: list) -> dict:
-    lancelot = knights[0]
-    mordred = knights[2]
-    arthur = knights[1]
-    red_knight = knights[3]
+def battle(knights_config: dict) -> dict:
+    knights = {}
+    for key, config in knights_config.items():
+        knight = Knight(
+            name=config["name"],
+            power=config["power"],
+            hp=config["hp"],
+            armour=config.get("armour", []),
+            weapon=config.get("weapon"),
+            potion=config.get("potion")
+        )
+        knights[knight.name.lower()] = knight  # Використовуємо ім'я як ключ
 
-    lancelot.hp -= mordred.power - lancelot.protection
-    mordred.hp -= lancelot.power - mordred.protection
+    # Apply all items to knights
+    for knight in knights.values():
+        knight.apply_armour()
+        knight.apply_weapon()
+        knight.apply_potion()
 
-    if lancelot.hp <= 0:
-        lancelot.hp = 0
-
-    if mordred.hp <= 0:
-        mordred.hp = 0
-
-    arthur.hp -= red_knight.power - arthur.protection
-    red_knight.hp -= arthur.power - red_knight.protection
-
-    if arthur.hp <= 0:
-        arthur.hp = 0
-
-    if red_knight.hp <= 0:
-        red_knight.hp = 0
-
-    return {
-        lancelot.name: lancelot.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
-        arthur.name: arthur.hp,
+    battle_pairs = {
+        "Lancelot": "Mordred",
+        "Arthur": "Red Knight",
     }
 
+    results = {}
+    for knight1_name, knight2_name in battle_pairs.items():
+        knight1 = knights.get(knight1_name.lower())
+        knight2 = knights.get(knight2_name.lower())
 
-print(battle(list_of_knights))
+        if knight1 and knight2:
+            damage_to_knight1 = max(0, knight2.power - knight1.protection)
+            damage_to_knight2 = max(0, knight1.power - knight2.protection)
+
+            knight1.hp = max(0, knight1.hp - damage_to_knight1)
+            knight2.hp = max(0, knight2.hp - damage_to_knight2)
+
+            results[knight1.name] = knight1.hp
+            results[knight2.name] = knight2.hp
+
+    return results
