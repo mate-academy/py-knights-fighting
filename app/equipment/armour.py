@@ -1,4 +1,9 @@
 class Armour:
-    def __init__(self, part_name: str, protection: int) -> None:
+    """Armour item that protects a specific body part."""
+
+    part: str
+    protection: int
+
+    def __init__(self, part: str, protection: int) -> None:
+        self.part = part
         self.protection = protection
-        self.part_name = part_name

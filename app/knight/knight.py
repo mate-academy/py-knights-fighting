@@ -4,6 +4,7 @@ from app.equipment.potion import Potion
 
 
 class Knight:
+    """Knight who will fight with another knight."""
     def __init__(
         self,
         name: str,

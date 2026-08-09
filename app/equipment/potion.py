@@ -1,4 +1,11 @@
 class Potion:
+    """Potion effects applied to a knight during battle."""
+
+    part: str
+    hp: int
+    power: int
+    protection: int
+
     def __init__(
         self,
         part: str,
