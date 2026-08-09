@@ -3,7 +3,8 @@ from app.equipment.potion import Potion
 from app.equipment.weapon import Weapon
 from app.knight.knight import Knight
 
-def create_potion(potion_config):
+
+def create_potion(potion_config: dict) -> Potion | None:
     if potion_config is None:
         return None
 
@@ -16,7 +17,7 @@ def create_potion(potion_config):
     )
 
 
-def create_knight(knight_config):
+def create_knight(knight_config: dict) -> Knight:
     armour_config = knight_config.get(
         "armour",
         knight_config.get("equipment", []),
@@ -41,7 +42,7 @@ def create_knight(knight_config):
     )
 
 
-def convert_knights(knights):
+def convert_knights(knights: dict | list[Knight]) -> list[Knight]:
     if isinstance(knights, dict):
         return [
             create_knight(knights["lancelot"]),
@@ -53,14 +54,12 @@ def convert_knights(knights):
     return knights
 
 
-def battle_between_two(knight_one: Knight, knight_two: Knight):
-    knight_one_battle_hp = (
-            knight_one.calculate_hp()
-            - (knight_two.calculate_power() - knight_one.calculate_protection())
+def battle_between_two(knight_one: Knight, knight_two: Knight) -> dict:
+    knight_one_battle_hp = knight_one.calculate_hp() - (
+        knight_two.calculate_power() - knight_one.calculate_protection()
     )
-    knight_two_battle_hp = (
-        knight_two.calculate_hp()
-        - (knight_one.calculate_power() - knight_two.calculate_protection())
+    knight_two_battle_hp = knight_two.calculate_hp() - (
+        knight_one.calculate_power() - knight_two.calculate_protection()
     )
 
     if knight_one_battle_hp < 0:
@@ -75,9 +74,8 @@ def battle_between_two(knight_one: Knight, knight_two: Knight):
     }
 
 
-def battle(knights):
+def battle(knights: dict | list[Knight]) -> dict:
     knights = convert_knights(knights)
-    return (battle_between_two(knights[0], knights[2])
-            | battle_between_two(knights[1], knights[3]))
-
-
+    return battle_between_two(knights[0], knights[2]) | battle_between_two(
+        knights[1], knights[3]
+    )

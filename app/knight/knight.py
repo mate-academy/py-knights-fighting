@@ -2,16 +2,17 @@ from app.equipment.armour import Armour
 from app.equipment.weapon import Weapon
 from app.equipment.potion import Potion
 
+
 class Knight:
     def __init__(
-            self,
-            name: str,
-            power: int,
-            hp: int,
-            armour: list[Armour],
-            weapon: Weapon,
-            potion: Potion | None = None,
-    ):
+        self,
+        name: str,
+        power: int,
+        hp: int,
+        armour: list[Armour],
+        weapon: Weapon,
+        potion: Potion | None = None,
+    ) -> None:
         self.name = name
         self.hp = hp
         self.power = power
