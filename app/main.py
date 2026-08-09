@@ -62,10 +62,10 @@ def battle_between_two(knight_one: Knight, knight_two: Knight) -> dict:
         knight_one.calculate_power() - knight_two.calculate_protection()
     )
 
-    if knight_one_battle_hp < 0:
+    if knight_one_battle_hp <= 0:
         knight_one_battle_hp = 0
 
-    if knight_two_battle_hp < 0:
+    if knight_two_battle_hp <= 0:
         knight_two_battle_hp = 0
 
     return {
