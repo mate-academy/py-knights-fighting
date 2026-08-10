@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+
 class Knight:
     def __init__(self, data: dict) -> None:
         self.name = data["name"]
@@ -16,7 +19,7 @@ class Knight:
     def apply_weapon(self, weapon: dict) -> None:
         self.power += weapon["power"]
 
-    def apply_potion(self, potion: dict) -> None:
+    def apply_potion(self, potion: dict | None) -> None:
         if potion is None:
             return
 
