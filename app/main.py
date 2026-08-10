@@ -7,11 +7,11 @@ def battle(knights_config: dict) -> dict:
     arthur = Knight(**knights_config["arthur"])
     red_knight = Knight(**knights_config["red_knight"])
 
-    lancelot.hp -= max(0, mordred.power - lancelot.protection)
-    mordred.hp -= max(0, lancelot.power - mordred.protection)
+    lancelot.hp -= mordred.power - lancelot.protection
+    mordred.hp -= lancelot.power - mordred.protection
 
-    arthur.hp -= max(0, red_knight.power - arthur.protection)
-    red_knight.hp -= max(0, arthur.power - red_knight.protection)
+    arthur.hp -= red_knight.power - arthur.protection
+    red_knight.hp -= arthur.power - red_knight.protection
 
     lancelot.hp = max(0, lancelot.hp)
     mordred.hp = max(0, mordred.hp)
