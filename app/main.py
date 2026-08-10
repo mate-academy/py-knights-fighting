@@ -6,43 +6,24 @@ from app.knights_stats.red_knight_stats import RED_KNIGHT
 
 
 def battle(config: dict) -> dict:
-    lancelot = Knights.from_dict(config["lancelot"])
-    arthur = Knights.from_dict(config["arthur"])
-    mordred = Knights.from_dict(config["mordred"])
-    red_knight = Knights.from_dict(config["red_knight"])
+    knights = {key: Knights.from_dict(config[key]) for key in config}
 
-    # -------------------------------------------------------------------------------
-    # BATTLE:
+    fight(knights["lancelot"], knights["mordred"])
+    fight(knights["arthur"], knights["red_knight"])
 
-    # 1 Lancelot vs Mordred:
-    lancelot.hp -= mordred.power - lancelot.protection
-    mordred.hp -= lancelot.power - mordred.protection
+    return {knight.name: knight.hp for knight in knights.values()}
 
-    # check if someone fell in battle
-    if lancelot.hp <= 0:
-        lancelot.hp = 0
 
-    if mordred.hp <= 0:
-        mordred.hp = 0
+def fight(knight1: Knights, knight2: Knights) -> None:
+    knight1.hp -= knight2.power - knight1.protection
+    knight2.hp -= knight1.power - knight2.protection
+    check_defeat(knight1)
+    check_defeat(knight2)
 
-    # 2 Arthur vs Red Knight:
-    arthur.hp -= red_knight.power - arthur.protection
-    red_knight.hp -= arthur.power - red_knight.protection
 
-    # check if someone fell in battle
-    if arthur.hp <= 0:
-        arthur.hp = 0
-
-    if red_knight.hp <= 0:
-        red_knight.hp = 0
-
-    # Return battle results:
-    return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
-    }
+def check_defeat(knight: Knights) -> None:
+    if knight.hp <= 0:
+        knight.hp = 0
 
 
 config = {
