@@ -1,12 +1,15 @@
+from app.data.knights import KNIGHTS
+
+
 class Knight:
     def __init__(self,
                  name: str,
                  hp: int,
                  power: int,
                  armour: list,
-                 weapon : dict,
+                 weapon: dict,
                  potion: dict = None
-                 ) -> dict:
+                 ) -> None:
         self.name = name
         self.hp = hp
         self.power = power
@@ -35,6 +38,6 @@ class Knight:
             self.protection += effects.get("protection", 0)
 
     def take_damage(self, damage: int) -> None:
-        self.hp -= damage
-        if self.hp <= 0:
-            self.hp = 0
+        for knight in (KNIGHTS):
+            if knight["hp"] < 0:
+                knight["hp"] = 0

@@ -11,10 +11,6 @@ def prepare_knight(knight: dict) -> dict:
 
     if knight["potion"] is not None:
         effect = knight["potion"]["effect"]
-        if "hp" in effect:
-            knight["hp"] += effect["hp"]
-        if "power" in effect:
-            knight["power"] += effect["power"]
-        if "protection" in effect:
-            knight["protection"] += effect["protection"]
+        for stat in ["hp", "power", "protection"]:
+            knight[stat] += effect.get(stat, 0)
     return knight
