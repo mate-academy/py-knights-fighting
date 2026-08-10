@@ -23,15 +23,15 @@ class Knight:
         if potion is None:
             return
 
-        for key, value in potion["effect"].items():
-            if key == "power":
+        for stat, value in potion["effect"].items():
+            if stat == "power":
                 self.power += value
-            elif key == "hp":
+            elif stat == "hp":
                 self.hp += value
-            elif key == "protection":
+            elif stat == "protection":
                 self.protection += value
 
-    def damage(self, enemy_power: int) -> None:
+    def take_damage(self, enemy_power: int) -> None:
         self.hp -= enemy_power - self.protection
 
         if self.hp <= 0:

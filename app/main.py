@@ -3,8 +3,8 @@ from app.knight_info import Knight
 
 
 def fight(first_knight: Knight, second_knight: Knight) -> None:
-    first_knight.damage(second_knight.power)
-    second_knight.damage(first_knight.power)
+    first_knight.take_damage(second_knight.power)
+    second_knight.take_damage(first_knight.power)
 
 
 def battle(knights_config: dict) -> dict:
