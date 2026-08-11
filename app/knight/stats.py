@@ -24,7 +24,7 @@ class Knight:
             if "hp" in self.knight["potion"]["effect"]:
                 self.knight["hp"] += self.knight["potion"]["effect"]["hp"]
 
-    def knight_battle(self, other: Knight) -> None:
+    def battle(self, other: Knight) -> None:
         self.knight["hp"] -= other.knight["power"] - self.knight["protection"]
         other.knight["hp"] -= self.knight["power"] - other.knight["protection"]
 

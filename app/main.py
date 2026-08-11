@@ -17,17 +17,13 @@ def battle(knights_config: dict) -> dict:
         element.knight_weapon()
         element.knight_potion()
 
-    fight(lancelot, mordred)
-    fight(arthur, red_knight)
+    lancelot.battle(mordred)
+    arthur.battle(red_knight)
 
     for element in knights_list:
         battle_result.update(element.knight_final_stats())
 
     return battle_result
-
-
-def fight(knight1: Knight, knight2: Knight) -> None:
-    knight1.knight_battle(knight2)
 
 
 print(battle(KNIGHTS))
