@@ -21,7 +21,7 @@ class Knight:
         if not armor:
             return protection
         for piece_of_armor in armor:
-            protection += piece_of_armor["protection"]
+            protection += piece_of_armor.get("protection", 0)
         return protection
 
     def calculate_potion(self, potion: None | dict) -> None:
@@ -29,7 +29,7 @@ class Knight:
         # based on potion in knights pocket
         if potion is None:
             return None
-        for stat, value in potion["effect"].items():
+        for stat, value in potion.get("effect", {}).items():
             if stat == "power":
                 self.power += value
             elif stat == "hp":
@@ -54,12 +54,12 @@ class Knight:
         # using dict with data as an input
         knight = cls(
             name=knight_dict["name"],
-            power=knight_dict["power"] + knight_dict["weapon"]["power"],
+            power=knight_dict["power"] + knight_dict["weapon"].get("power", 0),
             hp=knight_dict["hp"],
         )
         knight.protection = (
             knight.calculate_protection(knight_dict.get("armour", []))
         )
-        knight.calculate_potion(knight_dict["potion"])
+        knight.calculate_potion(knight_dict.get("potion", None))
 
         return knight
