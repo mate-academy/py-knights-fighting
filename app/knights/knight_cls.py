@@ -3,31 +3,33 @@ from __future__ import annotations
 
 class Knight:
     def __init__(self, knight_config: dict) -> None:
-        self.name = knight_config["name"]
-        self.power = knight_config["power"]
-        self.hp = knight_config["hp"]
-        self.protection = 0
+        self.name: str = knight_config["name"]
+        self.power: int = knight_config["power"]
+        self.hp: int = knight_config["hp"]
+        self.protection: int = 0
         self.prepare_for_battle(knight_config)
 
     def prepare_for_battle(self, knight_config: dict) -> None:
-        if knight_config["armour"]:
+        if knight_config.get("armour", []):
             for armor in knight_config["armour"]:
                 self.protection += armor["protection"]
+        # According to the rules, each knight !must! have exactly !one! weapon
+        # Because knights cannot fight an unarmed opponent
         self.power += knight_config["weapon"]["power"]
-        if knight_config["potion"]:
-            if "power" in knight_config["potion"]["effect"]:
-                self.power += knight_config["potion"]["effect"]["power"]
-
-            if "protection" in knight_config["potion"]["effect"]:
+        # There is no need to check if weapon exist
+        if knight_config.get("potion") is not None:
+            effect: dict = knight_config["potion"].get("effect", {})
+            if "power" in effect:
+                self.power += effect["power"]
+            if "protection" in effect:
                 self.protection \
-                    += knight_config["potion"]["effect"]["protection"]
-
-            if "hp" in knight_config["potion"]["effect"]:
-                self.hp += knight_config["potion"]["effect"]["hp"]
+                    += effect["protection"]
+            if "hp" in effect:
+                self.hp += effect["hp"]
 
     def fight_with(self, opponent: Knight) -> None:
-        self.hp -= opponent.power - self.protection
-        opponent.hp -= self.power - opponent.protection
+        self.hp -= max(0, opponent.power - self.protection)
+        opponent.hp -= max(0, self.power - opponent.protection)
         if self.hp < 0:
             self.hp = 0
         if opponent.hp < 0:
