@@ -18,4 +18,3 @@ def battle(knights_config: dict) -> dict:
     result = Battle.battle(duels)
     return result
 
-
