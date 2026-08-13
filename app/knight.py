@@ -7,13 +7,13 @@ class Knight:
             hp: int,
             armour: list,
             weapon: dict,
-            potion: None
+            potion: dict | None
     ) -> None:
 
         self.name = name
         self.power = power
         self.hp = hp
-        self.armour = armour
+        self.armour = [] if armour is None else armour
         self.weapon = weapon
         self.potion = potion
         self.protection = 0
@@ -35,11 +35,11 @@ class Knight:
 
     def apply_potion(self) -> None:
         effect = self.potion["effect"]
-        if effect.get("power"):
+        if "power" in effect:
             self.power += effect["power"]
-        if effect.get("hp"):
+        if "hp" in effect:
             self.hp += effect["hp"]
-        if effect.get("protection"):
+        if "protection" in effect:
             self.protection += effect["protection"]
 
     def rest(self) -> None:

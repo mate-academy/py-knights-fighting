@@ -24,19 +24,19 @@ class Battle:
         self.after_battle()
 
     def fight(self, first_knight: str, second_knight: str) -> None:
-        self.knights[first_knight].hp -= (
-            self.knights[second_knight].power
-            - self.knights[first_knight].protection
-        )
-        self.knights[second_knight].hp -= (
-            self.knights[first_knight].power
-            - self.knights[second_knight].protection
-        )
+        first = self.knights[first_knight]
+        second = self.knights[second_knight]
 
-        if self.knights[first_knight].hp <= 0:
-            self.knights[first_knight].hp = 0
-        if self.knights[second_knight].hp <= 0:
-            self.knights[second_knight].hp = 0
+        first_damage = calculate_damage(second.power, first.protection)
+        second_damage = calculate_damage(first.power, second.protection)
+
+        first.hp -= first_damage
+        second.hp -= second_damage
+
+        if first.hp <= 0:
+            first.hp = 0
+        if second.hp <= 0:
+            second.hp = 0
 
     def print_results(self) -> dict:
         return self.results
@@ -44,3 +44,7 @@ class Battle:
     def after_battle(self) -> None:
         for knight in self.knights.values():
             self.results[knight.name] = knight.hp
+
+
+def calculate_damage(power: int, protection: int) -> int:
+    return max(0, power - protection)
