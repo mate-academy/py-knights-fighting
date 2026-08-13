@@ -1,5 +1,4 @@
 from app.battle import Battle
-from app.knights.knights_collection import KNIGHTS
 from app.knights.knights_config import Knight
 
 
@@ -17,4 +16,3 @@ def battle(knights_config: dict) -> dict:
     ]
     result = Battle.battle(duels)
     return result
-
