@@ -14,5 +14,5 @@ def battle(knights_config: dict) -> dict:
         (lancelot, mordred),
         (arthur, red_knight)
     ]
-    result = Battle.battle(duels)
-    return result
+    final_result = Battle.battle(duels)
+    return final_result
