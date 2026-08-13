@@ -10,20 +10,21 @@ class Knight:
         self.prepare_for_battle(knight_config)
 
     def prepare_for_battle(self, knight_config: dict) -> None:
-        if knight_config.get("armour", []):
+        armour = knight_config.get("armour", [])
+        if armour:
             for armor in knight_config["armour"]:
                 self.protection += armor["protection"]
         # According to the rules, each knight !must! have exactly !one! weapon
         # Because knights cannot fight an unarmed opponent
         self.power += knight_config["weapon"]["power"]
         # There is no need to check if weapon exist
-        if knight_config.get("potion") is not None:
+        potion = knight_config.get("potion")
+        if potion is not None:
             effect: dict = knight_config["potion"].get("effect", {})
             if "power" in effect:
                 self.power += effect["power"]
             if "protection" in effect:
-                self.protection \
-                    += effect["protection"]
+                self.protection += effect["protection"]
             if "hp" in effect:
                 self.hp += effect["hp"]
 
