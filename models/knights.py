@@ -1,3 +1,36 @@
+from typing import TypedDict, Optional, List, Dict, Any
+
+
+class ArmourDict(TypedDict):
+    part: str
+    protection: int
+
+
+class WeaponDict(TypedDict):
+    name: str
+    power: int
+
+
+class PotionEffectDict(TypedDict, total=False):
+    power: int
+    hp: int
+    protection: int
+
+
+class PotionDict(TypedDict):
+    name: str
+    effect: PotionEffectDict
+
+
+class KnightDataDict(TypedDict):
+    name: str
+    power: int
+    hp: int
+    armour: List[ArmourDict]
+    weapon: WeaponDict
+    potion: Optional[PotionDict]
+
+
 class Knight:
     def __init__(self, knight_data: dict) -> None:
         self.name = knight_data["name"]
