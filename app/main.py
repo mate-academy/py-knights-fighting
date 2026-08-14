@@ -25,5 +25,6 @@ def battle(knights_config: dict) -> dict[str, int]:
         for knight in knights.values()
     }
 
+
 if __name__ == "__main__":
     print(battle(KNIGHTS))
