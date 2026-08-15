@@ -1,42 +1,62 @@
-def prepare_knight(knight: dict) -> None:
-    knight["protection"] = 0
+class Knight:
+    def __init__(
+        self,
+        name: str,
+        power: int,
+        hp: int,
+        armour: list,
+        weapon: dict,
+        potion: dict | None,
+    ) -> None:
 
-    for armour in knight["armour"]:
-        knight["protection"] += armour["protection"]
+        self.name = name
+        self.power = power
+        self.hp = hp
+        self.armour = armour
+        self.weapon = weapon
+        self.potion = potion
+        self.protection = 0
 
-    knight["power"] += knight["weapon"]["power"]
+    def prepare(self) -> None:
+        for armour in self.armour:
+            self.protection += armour["protection"]
 
-    if knight["potion"] is not None:
-        if "power" in knight["potion"]["effect"]:
-            knight["power"] += knight["potion"]["effect"]["power"]
+        self.power += self.weapon["power"]
 
-        if "protection" in knight["potion"]["effect"]:
-            knight["protection"] += knight["potion"]["effect"]["protection"]
+        if self.potion is not None:
+            if "power" in self.potion["effect"]:
+                self.power += self.potion["effect"]["power"]
 
-        if "hp" in knight["potion"]["effect"]:
-            knight["hp"] += knight["potion"]["effect"]["hp"]
+            if "protection" in self.potion["effect"]:
+                self.protection += self.potion["effect"]["protection"]
 
+            if "hp" in self.potion["effect"]:
+                self.hp += self.potion["effect"]["hp"]
 
-def fight(first_knight: dict, second_knight: dict) -> None:
-    first_knight["hp"] -= second_knight["power"] - first_knight["protection"]
-    second_knight["hp"] -= first_knight["power"] - second_knight["protection"]
+    def fight_with(self, opponent: "Knight") -> None:
+        self.hp -= opponent.power - self.protection
+        opponent.hp -= self.power - opponent.protection
 
-    if first_knight["hp"] <= 0:
-        first_knight["hp"] = 0
+        if self.hp <= 0:
+            self.hp = 0
 
-    if second_knight["hp"] <= 0:
-        second_knight["hp"] = 0
+        if opponent.hp <= 0:
+            opponent.hp = 0
 
 
 def battle(knights_config: dict) -> dict:
+    knights = {
+        key: Knight(**knight_data)
+        for key, knight_data in knights_config.items()
+    }
 
-    for knight_key in ["lancelot", "arthur", "mordred", "red_knight"]:
-        prepare_knight(knights_config[knight_key])
+    for knight in knights.values():
+        knight.prepare()
 
-    fight(knights_config["lancelot"], knights_config["mordred"])
-    fight(knights_config["arthur"], knights_config["red_knight"])
+    knights["lancelot"].fight_with(knights["mordred"])
+    knights["arthur"].fight_with(knights["red_knight"])
 
     return {
-        knight["name"]: knight["hp"]
-        for knight in knights_config.values()
+        knight.name: knight.hp
+        for knight in knights.values()
     }
