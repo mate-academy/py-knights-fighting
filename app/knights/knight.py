@@ -5,7 +5,7 @@ class Knight:
         self.base_power: int = config["power"]
         self.armour: list = config.get("armour", [])
         self.weapon: dict = config.get("weapon", {})
-        self.potion: dict = config.get("potion", None)
+        self.potion: dict = config.get("potion", dict | None)
         self.hp: int = 0
         self.power: int = 0
         self.protection: int = 0
