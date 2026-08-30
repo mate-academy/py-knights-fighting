@@ -1,5 +1,4 @@
-from app.datas import KNIGHTS
-from app.knigth import Knight
+from app.knight import Knight
 
 
 def prepare_knight(data: dict) -> Knight:
@@ -25,18 +24,22 @@ def prepare_knight(data: dict) -> Knight:
 
 
 def battle(knights_config: dict) -> dict[str, int]:
+    prepared_knights = {}
+
+    for knight_key, knight_data in knights_config.items():
+        prepared_knights[knight_key] = prepare_knight(knight_data)
 
     # lancelot
-    lancelot = prepare_knight(knights_config["lancelot"])
+    lancelot = prepared_knights["lancelot"]
 
     # arthur
-    arthur = prepare_knight(knights_config["arthur"])
+    arthur = prepared_knights["arthur"]
 
     # mordred
-    mordred = prepare_knight(knights_config["mordred"])
+    mordred = prepared_knights["mordred"]
 
     # red_knight
-    red_knight = prepare_knight(knights_config["red_knight"])
+    red_knight = prepared_knights["red_knight"]
 
     # -------------------------------------------------------------------------------
     # BATTLE:
@@ -53,7 +56,5 @@ def battle(knights_config: dict) -> dict[str, int]:
         arthur.name: arthur.hp,
         mordred.name: mordred.hp,
         red_knight.name: red_knight.hp,
+
     }
-
-
-print(battle(KNIGHTS))
