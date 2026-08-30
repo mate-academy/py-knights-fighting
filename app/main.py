@@ -92,21 +92,26 @@ KNIGHTS = {
 def battle(knights_config: dict) -> dict:
     # BATTLE PREPARATIONS:
 
+    for name, stats in knights_config.items():
+        knight = Knight(**knights_config[name])
+        knight.init_battle_stats()
+        globals()[name] = knight
+
     # lancelot
-    lancelot = Knight(**knights_config["lancelot"])
-    lancelot.init_battle_stats()
+    # lancelot = Knight(**knights_config["lancelot"])
+    # lancelot.init_battle_stats()
 
     # arthur
-    arthur = Knight(**knights_config["arthur"])
-    arthur.init_battle_stats()
+    # arthur = Knight(**knights_config["arthur"])
+    # arthur.init_battle_stats()
 
     # mordred
-    mordred = Knight(**knights_config["mordred"])
-    mordred.init_battle_stats()
+    # mordred = Knight(**knights_config["mordred"])
+    # mordred.init_battle_stats()
 
     # red_knight
-    red_knight = Knight(**knights_config["red_knight"])
-    red_knight.init_battle_stats()
+    # red_knight = Knight(**knights_config["red_knight"])
+    # red_knight.init_battle_stats()
 
     # -------------------------------------------------------------------------------
     # BATTLE:
