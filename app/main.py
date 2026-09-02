@@ -89,46 +89,23 @@ KNIGHTS = {
 }
 
 
-def fight(first_knight: Knight, second_knight: Knight) -> None:
-    first_knight_damage = (
-        second_knight.power - first_knight.protection
-    )
-    second_knight_damage = (
-        first_knight.power - second_knight.protection
-    )
-
-    first_knight.hp -= first_knight_damage
-    second_knight.hp -= second_knight_damage
-
-    if first_knight.hp <= 0:
-        first_knight.hp = 0
-
-    if second_knight.hp <= 0:
-        second_knight.hp = 0
-
-
 def battle(knights_config: dict) -> dict:
-    lancelot = Knight(knights_config["lancelot"])
-    arthur = Knight(knights_config["arthur"])
-    mordred = Knight(knights_config["mordred"])
-    red_knight = Knight(knights_config["red_knight"])
+    knights = {}
 
-    knights = [
-        lancelot,
-        arthur,
-        mordred,
-        red_knight,
-    ]
-
-    for knight in knights:
+    for knight_key, knight_data in knights_config.items():
+        knight = Knight(knight_data)
         knight.prepare_for_battle()
+        knights[knight_key] = knight
 
-    fight(lancelot, mordred)
-    fight(arthur, red_knight)
+    knights["lancelot"].fight(knights["mordred"])
+    knights["mordred"].fight(knights["lancelot"])
 
-    return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
-    }
+    knights["arthur"].fight(knights["red_knight"])
+    knights["red_knight"].fight(knights["arthur"])
+
+    battle_result = {}
+
+    for knight in knights.values():
+        battle_result[knight.name] = knight.hp
+
+    return battle_result
