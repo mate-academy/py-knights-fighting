@@ -1,7 +1,7 @@
 from app.preparation import prepare_knight
 
 
-def fight(attacker: dict, defender: dict) -> None:
+def fight(attacker: dict, defender: dict) -> dict:
     damage = attacker["power"] - defender["protection"]
     defender["hp"] -= damage
 
@@ -9,7 +9,7 @@ def fight(attacker: dict, defender: dict) -> None:
         defender["hp"] = 0
 
 
-def battle(knights_config: dict) -> None:
+def battle(knights_config: dict) -> dict:
     for knight in knights_config.values():
         prepare_knight(knight)
 
