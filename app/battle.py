@@ -1,7 +1,7 @@
 from app.preparation import prepare_knight
 
 
-def fight(attacker: dict, defender: dict) -> dict:
+def fight(attacker: dict, defender: dict) -> None:
     damage = attacker["power"] - defender["protection"]
     defender["hp"] -= damage
 

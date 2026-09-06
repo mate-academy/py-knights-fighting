@@ -1,4 +1,4 @@
-def prepare_knight(knight: dict) -> dict:
+def prepare_knight(knight: dict) -> None:
     knight["protection"] = sum(
         armour["protection"] for armour in knight["armour"]
     )
