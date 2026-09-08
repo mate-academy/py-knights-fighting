@@ -1,11 +1,11 @@
 from app.knights.knight import Knight
 
+
 class Arena:
 
     @staticmethod
-    def arena_fight(knight_one: Knight, knight_two:Knight) :
-
-
+    def arena_fight(knight_one: Knight,
+                    knight_two: Knight) -> tuple[Knight, Knight] :
 
         armed_knight_one = knight_one.arm_knight()
         armed_knight_two = knight_two.arm_knight()
@@ -19,8 +19,6 @@ class Arena:
         if armed_knight_one.power > armed_knight_two.protection:
             dmg_two = armed_knight_one.power - armed_knight_two.protection
 
-
-
         armed_knight_one.hp -= dmg_one
         armed_knight_two.hp -= dmg_two
 
@@ -30,5 +28,3 @@ class Arena:
             armed_knight_two.hp = 0
 
         return armed_knight_one, armed_knight_two
-
-
