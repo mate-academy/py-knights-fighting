@@ -128,7 +128,21 @@
 
 
 from app.arena.fights import Arena
-def battle(arg)-> dict:
-    print(arg)
-    print(Arena.get_fight_results())
+from app.knights.knights_list import KNIGHTS
+from app.knights.knight import create_knight
+
+# knight_config = KNIGHTS
+
+def battle(knight_config)-> dict :
+
+
+    knights = create_knight(knight_config)
+    print("before",knights["arthur"].__dict__, knights["lancelot"].__dict__,knights["mordred"],knights["red_knight"])
+
+    lancelot, mordred = Arena.arena_fight(knights["lancelot"], knights["mordred"])
+    arthur, red_knight = Arena.arena_fight(knights["arthur"], knights["red_knight"])
+    Arena.arena_fight(knights["arthur"], knights["red_knight"])
+
+
+    return {knight.name: knight.hp for knight in [lancelot, mordred, red_knight, arthur]}
 

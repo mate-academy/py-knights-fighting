@@ -1,25 +1,34 @@
-from app.knights.knight import Knight, knights
+from app.knights.knight import Knight
 
 class Arena:
 
     @staticmethod
-    def arena_fight(knight_one: Knight, knight_two:Knight) -> None:
+    def arena_fight(knight_one: Knight, knight_two:Knight) :
 
-        knight_one.arm_knight()
-        knight_two.arm_knight()
 
-        knight_one.hp -= knight_two.power - knight_two.protection
-        knight_two.hp += knight_one.power - knight_two.protection
 
-        if knight_one.hp <= 0:
-            knight_one.hp = 0
-        if knight_two.hp <= 0:
-            knight_two.hp = 0
+        armed_knight_one = knight_one.arm_knight()
+        armed_knight_two = knight_two.arm_knight()
 
-    @staticmethod
-    def get_fight_results() -> dict:
+        dmg_one = 0
+        dmg_two = 0
 
-        Arena.arena_fight(knights["lancelot"], knights["mordred"])
-        Arena.arena_fight(knights["arthur"], knights["red_knight"])
+        if armed_knight_two.power > armed_knight_one.protection:
+            dmg_one = armed_knight_two.power - armed_knight_one.protection
 
-        return {knight.name: knight.hp for knight in knights.values()}
+        if armed_knight_one.power > armed_knight_two.protection:
+            dmg_two = armed_knight_one.power - armed_knight_two.protection
+
+
+
+        armed_knight_one.hp -= dmg_one
+        armed_knight_two.hp -= dmg_two
+
+        if armed_knight_one.hp <= 0:
+            armed_knight_one.hp = 0
+        if armed_knight_two.hp <= 0:
+            armed_knight_two.hp = 0
+
+        return armed_knight_one, armed_knight_two
+
+

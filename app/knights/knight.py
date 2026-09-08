@@ -10,28 +10,39 @@ class Knight:
         self.potion = potion
         self.protection = 0
 
-    def arm_knight(self):
+    def arm_knight(self) -> Knight:
+        power = self.power
+        health = self.hp
+        defence = 0
 
         if self.armour:
             for piece in self.armour:
-                self.protection += piece["protection"]
+                defence += piece["protection"]
 
-        self.power += self.weapon["power"]
+        power += self.weapon["power"]
 
         if self.potion:
-            hp = self.potion.get("hp")
-            protection = self.potion.get("protection")
-            power = self.potion.get("power")
+            self.potion.get("effect")
+            additional_hp = self.potion.get("effect").get("hp")
+            additional_power = self.potion.get("effect").get("power")
+            additional_protection = self.potion.get("effect").get("protection")
 
-            if hp :
-                self.hp += hp
-            if protection:
-                self.protection += protection
-            if power:
-                self.power += power
+            if additional_hp :
+                health += additional_hp
+            if additional_protection:
+                defence += additional_protection
+            if additional_power:
+                power += additional_power
 
-knights = {name:Knight(knight["name"], knight["power"], knight["hp"],
-                  knight["armour"], knight["weapon"], knight["potion"])
-           for name, knight in knights_list.KNIGHTS.items()}
-for value in knights.values():
-    print(value.__dict__)
+        armed_knight = Knight(self.name,power,health,self.armour,self.weapon,self.potion)
+        armed_knight.protection = defence
+        return armed_knight
+
+def create_knight(knight_config):
+
+    return {name: Knight(knight["name"], knight["power"], knight["hp"],
+                            knight["armour"], knight["weapon"], knight["potion"])
+               for name, knight in knights_list.KNIGHTS.items()}
+
+
+
