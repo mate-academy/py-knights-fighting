@@ -86,7 +86,3 @@ KNIGHTS = {
 }
 
 
-    # lancelot = knights[0]
-    # arthur = knights[1]
-    # mordred = knights[2]
-    # red_knight = knights[3]
