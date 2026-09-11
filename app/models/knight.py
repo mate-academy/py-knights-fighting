@@ -1,37 +1,30 @@
-from .armor import Armour
+from .armour import Armour
 from .weapon import Weapon
 from .status import Status
 from .potion import Potion
 
-
+# {name: str, power: str, hp: int,
+#         armour: list[Armour | None],
+#         weapon: Weapon,
+#         potion: Potion | None}
 class Knight:
     def __init__(
-        self, name: str, status: Status,
-        armour: list[Armor | None],
-        weapon: Weapon,
-        potion: Potion | None
+        self, knight: dict
     ) -> None:
-        self.name = name
-        self.base_power = status.power
-        self.base_hp = status.hp
-        self.base_protection = 0
-        self.armor = armor
-        self.weapon = weapon
-        self.potion = potion
-        self.refresh_initial_status()
-        
-    
-    def equip_armours(self) -> int:
-        return self.base_protection + sum(armour.protection for armour in self.armour)
+        self.name = knight["name"]
+        self.power = knight["power"]
+        self.hp = knight["hp"]
+        self.armour = [Armour(**armour) for armour in knight["armour"]]
+        self.weapon = Weapon(**knight["weapon"])
+        self.potion = Potion(**knight["potion"]) if knight["potion"] else None
+
+    def apply_armours(self) -> None:
+        self.protection = sum(armour.protection for armour in self.armour)
    
-    def equip_weapon(self) -> int:
-        return self.base_power + self.weapon.power
+    def apply_weapon(self) -> None:
+        self.power += self.weapon.power
 
     def apply_potion(self):
-        for effect, value in self.potion.effect.items():
-            self[effect] += value
-    
-    def refresh_initial_status(self):
-        self.protection = self.equip_armours()
-        self.power = self.equip_weapon()
-        self.apply_potion()
+        if(self.potion):
+            for effect, value in self.potion.effect.items():
+                self.__dict__[effect] += value
