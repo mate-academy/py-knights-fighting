@@ -1,5 +1,4 @@
 from app.models.knight import Knight
-from app.data.KNIGHTS_DATABASE import KNIGHTS
 
 
 def attack(attacker: "Knight", defensor: "Knight") -> int:
@@ -10,11 +9,6 @@ def attack(attacker: "Knight", defensor: "Knight") -> int:
 def new_round(knights: list[Knight]) -> None:
     for index, attacker in enumerate(knights):
         defensor = knights[1 - index]
-        print(
-            f"{attacker.name} {attacker.hp}❤️ \
-            {attacker.power}⚔️ atacked {defensor.name} \
-            {defensor.hp}❤️ {defensor.protection}🛡️"
-        )
         if attack(attacker, defensor) <= 0:
             defensor.hp = 0
 
@@ -40,6 +34,3 @@ def battle(knights_config: dict) -> dict:
     return {
         knight.name: knight.hp for knight in knights
     }
-
-
-print(battle(KNIGHTS))
