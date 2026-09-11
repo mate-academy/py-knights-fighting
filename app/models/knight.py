@@ -1,12 +1,8 @@
 from .armour import Armour
 from .weapon import Weapon
-from .status import Status
 from .potion import Potion
 
-# {name: str, power: str, hp: int,
-#         armour: list[Armour | None],
-#         weapon: Weapon,
-#         potion: Potion | None}
+
 class Knight:
     def __init__(
         self, knight: dict
@@ -20,11 +16,16 @@ class Knight:
 
     def apply_armours(self) -> None:
         self.protection = sum(armour.protection for armour in self.armour)
-   
+
     def apply_weapon(self) -> None:
         self.power += self.weapon.power
 
-    def apply_potion(self):
-        if(self.potion):
+    def apply_potion(self) -> None:
+        if self.potion:
             for effect, value in self.potion.effect.items():
                 self.__dict__[effect] += value
+
+    def apply_equipments(self) -> None:
+        self.apply_armours()
+        self.apply_weapon()
+        self.apply_potion()
