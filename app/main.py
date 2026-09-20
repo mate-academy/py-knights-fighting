@@ -6,49 +6,26 @@ def battle(knights: dict) -> dict:
     """Execute battle rounds and return hp results."""
     # BATTLE PREPARATIONS:
 
-    # lancelot
-    lancelot = Knight(
-        name=knights["lancelot"]["name"],
-        power=knights["lancelot"]["power"],
-        hp=knights["lancelot"]["hp"],
-        armour=knights["lancelot"]["armour"],
-        weapon=knights["lancelot"]["weapon"],
-        potion=knights["lancelot"]["potion"],
-    )
-    lancelot.prepare()
+    prepared_knights = {}
+    knight_keys = ["lancelot", "arthur", "mordred", "red_knight"]
 
-    # arthur
-    arthur = Knight(
-        name=knights["arthur"]["name"],
-        power=knights["arthur"]["power"],
-        hp=knights["arthur"]["hp"],
-        armour=knights["arthur"]["armour"],
-        weapon=knights["arthur"]["weapon"],
-        potion=knights["arthur"]["potion"],
-    )
-    arthur.prepare()
+    for knight_key in knight_keys:
+        config = knights[knight_key]
+        knight = Knight(
+            name=config["name"],
+            power=config["power"],
+            hp=config["hp"],
+            armour=config["armour"],
+            weapon=config["weapon"],
+            potion=config["potion"],
+        )
+        knight.prepare()
+        prepared_knights[knight_key] = knight
 
-    # mordred
-    mordred = Knight(
-        name=knights["mordred"]["name"],
-        power=knights["mordred"]["power"],
-        hp=knights["mordred"]["hp"],
-        armour=knights["mordred"]["armour"],
-        weapon=knights["mordred"]["weapon"],
-        potion=knights["mordred"]["potion"],
-    )
-    mordred.prepare()
-
-    # red_knight
-    red_knight = Knight(
-        name=knights["red_knight"]["name"],
-        power=knights["red_knight"]["power"],
-        hp=knights["red_knight"]["hp"],
-        armour=knights["red_knight"]["armour"],
-        weapon=knights["red_knight"]["weapon"],
-        potion=knights["red_knight"]["potion"],
-    )
-    red_knight.prepare()
+    lancelot = prepared_knights["lancelot"]
+    arthur = prepared_knights["arthur"]
+    mordred = prepared_knights["mordred"]
+    red_knight = prepared_knights["red_knight"]
 
     # ---------------------------------------------------------------
     # BATTLE:

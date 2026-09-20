@@ -48,12 +48,10 @@ class Knight:
     def apply_potion(self) -> None:
         """Apply potion effects to hp, power, and protection."""
         if self.potion is not None:
-            for effect in self.potion["effect"]:
-                if effect == "power":
-                    self.power += self.potion["effect"]["power"]
-                if effect == "protection":
-                    self.protection += self.potion["effect"][
-                        "protection"
-                    ]
-                if effect == "hp":
-                    self.hp += self.potion["effect"]["hp"]
+            for stat, value in self.potion["effect"].items():
+                if stat == "power":
+                    self.power += value
+                elif stat == "protection":
+                    self.protection += value
+                elif stat == "hp":
+                    self.hp += value
