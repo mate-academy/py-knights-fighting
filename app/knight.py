@@ -32,6 +32,10 @@ class Knight:
             if "hp" in self.potion["effect"]:
                 self.hp += self.potion["effect"]["hp"]
 
+    def attack(self, defender: "Knight") -> None:
+        incoming_damage = max(0, self.power - defender.protection)
+        defender.hp = max(0, defender.hp - incoming_damage)
+
 
 def prepare_knights(config: dict) -> dict:
     knights = {}
@@ -46,6 +50,6 @@ def prepare_knights(config: dict) -> dict:
             potion=knight_data["potion"]
         )
 
-    for knight in knights.values():
-        knight.equip()
+        for knight in knights.values():
+            knight.equip()
     return knights
