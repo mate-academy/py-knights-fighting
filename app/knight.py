@@ -50,6 +50,6 @@ def prepare_knights(config: dict) -> dict:
             potion=knight_data["potion"]
         )
 
-        for knight in knights.values():
-            knight.equip()
+    for knight in knights.values():
+        knight.equip()
     return knights
