@@ -1,5 +1,6 @@
 from app.knight import Knight
 
+
 KNIGHTS = {
     "lancelot": {
         "name": "Lancelot",
@@ -28,7 +29,7 @@ KNIGHTS = {
             {
                 "part": "boots",
                 "protection": 10,
-            }
+            },
         ],
         "weapon": {
             "name": "Two-handed Sword",
@@ -48,7 +49,7 @@ KNIGHTS = {
             {
                 "part": "boots",
                 "protection": 10,
-            }
+            },
         ],
         "weapon": {
             "name": "Poisoned Sword",
@@ -57,11 +58,11 @@ KNIGHTS = {
         "potion": {
             "name": "Berserk",
             "effect": {
-                "power": +15,
+                "power": 15,
                 "hp": -5,
-                "protection": +10,
-            }
-        }
+                "protection": 10,
+            },
+        },
     },
     "red_knight": {
         "name": "Red Knight",
@@ -71,38 +72,46 @@ KNIGHTS = {
             {
                 "part": "breastplate",
                 "protection": 25,
-            }
+            },
         ],
         "weapon": {
             "name": "Sword",
-            "power": 45
+            "power": 45,
         },
         "potion": {
             "name": "Blessing",
             "effect": {
-                "hp": +10,
-                "power": +5,
-            }
-        }
-    }
+                "hp": 10,
+                "power": 5,
+            },
+        },
+    },
 }
 
 
-class Knight:
-    def __init__(self, config: dict) -> None:
-        self.name = config["name"]
-        self.hp = config["hp"]
-        self.power = config["power"] + config["weapon"]["power"]
-        self.protection = sum(
-            armour["protection"] for armour in config["armour"]
-        )
+def battle(knights_config: dict) -> dict:
+    knights = {
+        key: Knight(config)
+        for key, config in knights_config.items()
+    }
 
-        if config["potion"] is not None:
-            effects = config["potion"]["effect"]
-            self.hp += effects.get("hp", 0)
-            self.power += effects.get("power", 0)
-            self.protection += effects.get("protection", 0)
+    battle_pairs = (
+        ("lancelot", "mordred"),
+        ("arthur", "red_knight"),
+    )
 
-    def receive_hit(self, opponent: "Knight") -> None:
-        damage = opponent.power - self.protection
-        self.hp = max(0, self.hp - damage)
+    for first_key, second_key in battle_pairs:
+        first = knights[first_key]
+        second = knights[second_key]
+
+        first.receive_hit(second)
+        second.receive_hit(first)
+
+    return {
+        knight.name: knight.hp
+        for knight in knights.values()
+    }
+
+
+if __name__ == "__main__":
+    print(battle(KNIGHTS))
