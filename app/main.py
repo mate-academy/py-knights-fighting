@@ -120,4 +120,3 @@ def battle(knights_config: dict) -> dict:
         mordred.name: mordred.hp,
         red_knight.name: red_knight.hp,
     }
-
