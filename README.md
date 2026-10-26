@@ -36,18 +36,24 @@ KNIGHTS = {
 So basically, each knight has `name`, `power` and `hp` (Health Points).
 
 Additionally, knights have:
-- `armour` with `name` and `protection` (more than 1 part of armour is possible, 0 armour also possible).
+- `armour` with `name` and `protection` (more than 1 part of armour is possible, 
+- 0 armour also possible).
   - All armour is applied to each knight before entering the battle.
   - Armour adds additional stat to knight, known as `protection`.
   - Base protection of unarmoured knight is always 0.
-  - Armour is additional, so `helmet` with 10 `protection` and `boots` with 5 `protection` means 15 `protection` in total.
-- `weapon` with `name` and `power` (everyone has exactly one weapon, because knights cannot fight unarmed opponent).
+  - Armour is additional, so `helmet` with 10 `protection` and `boots` with 5 `protection` 
+    means 15 `protection` in total.
+- `weapon` with `name` and `power` (everyone has exactly one weapon, because knights 
+   cannot fight unarmed opponent).
   - Weapon is applied to each knight before entering the battle.
   - Weapon makes knight more powerful - it just add-up with basic knight `power`.
-- `potion` with `name` and `effect` (effects may be somehow positive and somehow negative). Potion may exist, but may be just `None` also.
+- `potion` with `name` and `effect` (effects may be somehow positive and somehow negative). 
+   Potion may exist, but may be just `None` also.
   - Potion (if exists) is applied to each knight before entering the battle.
-  - Potion `effect` may improve/worsen one of 3 main stats of knight: `hp`, `power` or `protection`.
-  - If `effect` value is positive - it improves this stat on that value, if negative - worsen.
+  - Potion `effect` may improve/worsen one of 3 main stats of knight: `hp`, `power` or 
+    `protection`.
+  - If `effect` value is positive - it improves this stat on that value, if negative - 
+    worsen.
 
 So, for `red_knight` we have before the battle next stats:
 ```python
@@ -92,17 +98,21 @@ of 4 knights in Kingdom: `Lancelot`, `Arthur`, `Mordred` and `Red Knight`.
 It is already chosen, that `Lancelot` is battling versus `Mordred` and
 `Arthur` versus `Red Knight`.
 
-In the code (`app/main.py`) you already have everything ready for calculation the result of the battle.
+In the code (`app/main.py`) you already have everything ready for calculation the result 
+of the battle.
 (All tests are passing, if you run `pytest`).
 
 But you will notice, that it is achieved not in the best-practice way of coding.
 
 So, your task will be next: 
 - Make this code work in more `best-practice` way.
-- Split functionality to different `modules` and `packages` as you think will be the most meaningful.
+- Split functionality to different `modules` and `packages` as you think will be the most 
+  meaningful.
 - `Refactor` existing logic, if needed.
-- Be as `creative` as possible - in this task you are not obliged to write everything by our scenario.
-- Use classes if you like classes (preferable), and use functions, if you like functions (functions also ok here).
+- Be as `creative` as possible - in this task you are not obliged to write everything by 
+  our scenario.
+- Use classes if you like classes (preferable), and use functions, if you like functions 
+  (functions also ok here).
 - Make sure, that your final code pass `flake8` and `pytest`
 
 Obligations:
