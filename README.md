@@ -106,7 +106,7 @@ So, your task will be next:
 - Make sure, that your final code pass `flake8` and `pytest`
 
 Obligations:
-- In this task we test only 1 `battle` function from `app.main` - make sure it works 
+- In this task we test only 1 `fight.py` function from `app.main` - make sure it works
   correctly after all your changes applied to the project.
 
 P.S: You could add your own logic to this project, if you want: just be creative here :)
