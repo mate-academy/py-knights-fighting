@@ -57,3 +57,4 @@ class Knight:
     def take_damage(self, opponent_power: int) -> None:
         damage = opponent_power - self.protection
         self.hp = max(0, self.hp - damage)
+        
