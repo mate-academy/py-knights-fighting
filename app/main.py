@@ -1,25 +1,32 @@
+from typing import Any
+
 from app.models.knight import Knight
 from app.services.fight import fight
-from app.knights import KNIGHTS
+
+
+BATTLE_PAIRS = (
+    ("lancelot", "mordred"),
+    ("arthur", "red_knight"),
+)
 
 
 def battle(
-    first_knight_key: str,
-    second_knight_key: str,
+    knights_config: dict[str, dict[str, Any]],
 ) -> dict[str, int]:
-    first_knight = Knight.from_config(
-        KNIGHTS[first_knight_key],
-    )
-    second_knight = Knight.from_config(
-        KNIGHTS[second_knight_key],
-    )
+    knights: dict[str, Knight] = {}
 
-    first_knight.prepare_for_battle()
-    second_knight.prepare_for_battle()
+    for knight_key, knight_config in knights_config.items():
+        knight = Knight.from_config(knight_config)
+        knight.prepare_for_battle()
+        knights[knight_key] = knight
 
-    fight(first_knight, second_knight)
+    for first_knight_key, second_knight_key in BATTLE_PAIRS:
+        fight(
+            knights[first_knight_key],
+            knights[second_knight_key],
+        )
 
     return {
-        first_knight.name: first_knight.hp,
-        second_knight.name: second_knight.hp,
+        knight.name: knight.hp
+        for knight in knights.values()
     }
