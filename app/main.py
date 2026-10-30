@@ -29,5 +29,4 @@ def battle(
     return {
         knight.name: knight.hp
         for knight in knights.values()
-    }
-    
+    }    
