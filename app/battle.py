@@ -1,9 +1,6 @@
-def check(fisrt: dict, second: dict) -> None:
-    fisrt["hp"] -= second["power"] - fisrt["protection"]
-    second["hp"] -= fisrt["power"] - second["protection"]
+from app.knight import Knight
 
-    if fisrt["hp"] <= 0:
-        fisrt["hp"] = 0
 
-    if second["hp"] <= 0:
-        second["hp"] = 0
+def perform_battle(first: Knight, second: Knight) -> None:
+    first.hp = max(0, first.hp - (second.power - first.protection))
+    second.hp = max(0, second.hp - (first.power - second.protection))

@@ -1,0 +1,39 @@
+class Knight:
+    def __init__(
+        self,
+        name: str,
+        power: int,
+        hp: int,
+        armour: list,
+        weapon: dict,
+        potion: None | dict
+    ) -> None:
+        self.name = name
+        self.power = power
+        self.hp = hp
+        self.armour = armour
+        self.weapon = weapon
+        self.potion = potion
+        self.protection = 0
+
+        self.apply_armour()
+        self.apply_weapon()
+        self.apply_potion()
+
+    def apply_potion(self) -> None:
+        if self.potion is not None:
+            effect = self.potion["effect"]
+            if "power" in effect:
+                self.power += effect["power"]
+            if "protection" in effect:
+                self.protection += effect["protection"]
+            if "hp" in effect:
+                self.hp += effect["hp"]
+
+    def apply_armour(self) -> None:
+        self.protection = 0
+        for element in self.armour:
+            self.protection += element["protection"]
+
+    def apply_weapon(self) -> None:
+        self.power += self.weapon["power"]
