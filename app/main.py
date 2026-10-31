@@ -107,7 +107,7 @@ def battle(knights_config: dict) -> dict:
     }
 
 
-def main():
+def main() -> None:
     print(battle(knights_config))
 
 
