@@ -98,7 +98,6 @@ def prepare_knight(knight: dict) -> dict:
         protection += effect.get("protection", 0)
         hp += effect.get("hp", 0)
 
-    # a NEW dict: the original config is not modified
     return {
         "name": knight["name"],
         "hp": hp,
