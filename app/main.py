@@ -107,6 +107,7 @@ def prepare_knight(knight: dict) -> dict:
 
 
 def duel(first: dict, second: dict) -> None:
+    """Two knights hit each other; hp never drops below 0."""
     first["hp"] -= second["power"] - first["protection"]
     second["hp"] -= first["power"] - second["protection"]
     first["hp"] = max(first["hp"], 0)
