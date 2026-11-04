@@ -3,11 +3,11 @@ from app.stats.other_stats import armor, weapon
 from app.stats.potion import apply_potion
 
 
-def battle(knightsConfig: dict) -> dict:
+def battle(knights_config: dict) -> dict:
     # BATTLE PREPARATIONS:
 
     # lancelot
-    lancelot = knightsConfig["lancelot"]
+    lancelot = knights_config["lancelot"]
 
     # apply armour
     lancelot = armor(lancelot)
@@ -19,7 +19,7 @@ def battle(knightsConfig: dict) -> dict:
     lancelot = apply_potion(lancelot)
 
     # arthur
-    arthur = knightsConfig["arthur"]
+    arthur = knights_config["arthur"]
 
     # apply armour
     arthur = armor(arthur)
@@ -31,7 +31,7 @@ def battle(knightsConfig: dict) -> dict:
     arthur = apply_potion(arthur)
 
     # mordred
-    mordred = knightsConfig["mordred"]
+    mordred = knights_config["mordred"]
 
     # apply armour
     mordred = armor(mordred)
@@ -43,7 +43,7 @@ def battle(knightsConfig: dict) -> dict:
     mordred = apply_potion(mordred)
 
     # red_knight
-    red_knight = knightsConfig["red_knight"]
+    red_knight = knights_config["red_knight"]
 
     # apply armour
     red_knight = armor(red_knight)

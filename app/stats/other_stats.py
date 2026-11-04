@@ -1,10 +1,10 @@
-def armor(name: dict) -> dict:
-    name["protection"] = 0
-    for ab in name["armour"]:
-        name["protection"] += ab["protection"]
-    return name
+def armor(knight : dict) -> dict:
+    knight ["protection"] = 0
+    for ab in knight ["armour"]:
+        knight ["protection"] += ab["protection"]
+    return knight
 
 
-def weapon(name: dict) -> dict:
-    name["power"] += name["weapon"]["power"]
-    return name
+def weapon(knight : dict) -> dict:
+    knight ["power"] += knight ["weapon"]["power"]
+    return knight
