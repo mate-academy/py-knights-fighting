@@ -101,5 +101,7 @@ def battle(knights_config: dict) -> dict[str, int]:
     first_pair.main_battle()
     second_pair.main_battle()
 
+    knights = [lancelot, arthur, mordred, red_knight]
+    return {knight["name"]: knight["hp"] for knight in knights}
 
-battle(KNIGHTS)
+
