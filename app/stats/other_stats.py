@@ -4,6 +4,7 @@ def armor(knight: dict) -> dict:
         knight["protection"] += ab["protection"]
     return knight
 
+
 def weapon(knight: dict) -> dict:
     knight["power"] += knight["weapon"]["power"]
     return knight

@@ -1,4 +1,3 @@
-from app.kings import KNIGHTS
 from app.stats.other_stats import armor, weapon
 from app.stats.potion import apply_potion
 
