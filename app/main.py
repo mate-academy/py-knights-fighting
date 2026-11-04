@@ -103,5 +103,3 @@ def battle(knights_config: dict) -> dict[str, int]:
 
     knights = [lancelot, arthur, mordred, red_knight]
     return {knight["name"]: knight["hp"] for knight in knights}
-
-
