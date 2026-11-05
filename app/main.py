@@ -90,12 +90,12 @@ KNIGHTS = {
 }
 
 
-def battle(knightsconfig : dict) -> dict:
+def battle(knights_config : dict) -> dict:
     # BATTLE PREPARATIONS:
 
     # create instances
     knight_instance = []
-    for value in knightsconfig.values():
+    for value in knights_config.values():
         knight_instance.append(Knights(value["name"], value["power"],
                                        value["hp"], value["armour"],
                                        value["weapon"], value["potion"])
@@ -116,6 +116,3 @@ def battle(knightsconfig : dict) -> dict:
         result[knight.name_knight] = knight.stats["hp"]
 
     return result
-
-
-print(battle(KNIGHTS))
