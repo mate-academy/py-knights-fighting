@@ -1,82 +1,34 @@
 from app.stats.other_stats import armor, weapon
 from app.stats.potion import apply_potion
+from app.battle import hit
 
 
 def battle(knights_config: dict) -> dict:
     # BATTLE PREPARATIONS:
+    for king in knights_config.values():
+        armor(king)
+        weapon(king)
+        apply_potion(king)
 
     # lancelot
     lancelot = knights_config["lancelot"]
 
-    # apply armour
-    lancelot = armor(lancelot)
-
-    # apply weapon
-    lancelot = weapon(lancelot)
-
-    # apply potion if exist
-    lancelot = apply_potion(lancelot)
-
     # arthur
     arthur = knights_config["arthur"]
-
-    # apply armour
-    arthur = armor(arthur)
-
-    # apply weapon
-    arthur = weapon(arthur)
-
-    # apply potion if exist
-    arthur = apply_potion(arthur)
 
     # mordred
     mordred = knights_config["mordred"]
 
-    # apply armour
-    mordred = armor(mordred)
-
-    # apply weapon
-    mordred = weapon(mordred)
-
-    # apply potion if exist
-    mordred = apply_potion(mordred)
-
     # red_knight
     red_knight = knights_config["red_knight"]
 
-    # apply armour
-    red_knight = armor(red_knight)
-
-    # apply weapon
-    red_knight = weapon(red_knight)
-
-    # apply potion if exist
-    red_knight = apply_potion(red_knight)
-
     # -------------------------------------------------------------------------------
     # BATTLE:
-
     # 1 Lancelot vs Mordred:
-    lancelot["hp"] -= mordred["power"] - lancelot["protection"]
-    mordred["hp"] -= lancelot["power"] - mordred["protection"]
-
-    # check if someone fell in battle
-    if lancelot["hp"] <= 0:
-        lancelot["hp"] = 0
-
-    if mordred["hp"] <= 0:
-        mordred["hp"] = 0
+    hit(lancelot, mordred)
 
     # 2 Arthur vs Red Knight:
-    arthur["hp"] -= red_knight["power"] - arthur["protection"]
-    red_knight["hp"] -= arthur["power"] - red_knight["protection"]
-
-    # check if someone fell in battle
-    if arthur["hp"] <= 0:
-        arthur["hp"] = 0
-
-    if red_knight["hp"] <= 0:
-        red_knight["hp"] = 0
+    hit(arthur, red_knight)
 
     # Return battle results:
     return {
