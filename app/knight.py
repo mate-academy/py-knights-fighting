@@ -1,5 +1,12 @@
 class Knight:
-    def __init__(self,name: str,hp: int,power: int,armour: list,weapon: dict,potion: dict | None
+    def __init__(
+        self,
+        name: str,
+        hp: int,
+        power: int,
+        armour: list,
+        weapon: dict,
+        potion: dict | None
     ) -> None:
         self.name = name
         self.hp = hp
@@ -38,6 +45,7 @@ class Knight:
 
         if self.hp < 0:
             self.hp = 0
+
 
 def duel(first_knight: Knight, second_knight: Knight) -> None:
     first_knight.fight(second_knight)
