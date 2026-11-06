@@ -90,34 +90,25 @@ KNIGHTS = {
 
 def battle(knights: dict) -> dict:
     knights_list = preparation_for_battle(knights)
-    for knight in knights_list:
-        if knight.name == "Lancelot":
-            lancelot = knight
-        if knight.name == "Arthur":
-            arthur = knight
-        if knight.name == "Mordred":
-            mordred = knight
-        if knight.name == "Red Knight":
-            red_knight = knight
 
-    lancelot.hp -= (mordred.power - lancelot.protection)
-    mordred.hp -= (lancelot.power - mordred.protection)
+    first_team = knights_list[len(knights_list) // 2:]
+    second_team = knights_list[:len(knights_list) // 2]
 
-    arthur.hp -= (red_knight.power - arthur.protection)
-    red_knight.hp -= (arthur.power - red_knight.protection)
+    for i in range(len(first_team)):
+        first_knight = first_team[i]
+        second_knight = second_team[i]
 
-    if lancelot.hp <= 0:
-        lancelot.hp = 0
-    if mordred.hp <= 0:
-        mordred.hp = 0
-    if arthur.hp <= 0:
-        arthur.hp = 0
-    if red_knight.hp <= 0:
-        red_knight.hp = 0
+        first_knight.hp -= second_knight.power - first_knight.protection
+        second_knight.hp -= first_knight.power - second_knight.protection
+
+        if first_knight.hp <= 0:
+            first_knight.hp = 0
+        if second_knight.hp <= 0:
+            second_knight.hp = 0
+
+    first_team.extend(second_team)
 
     return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
+        knight.name: knight.hp
+        for knight in first_team
     }
