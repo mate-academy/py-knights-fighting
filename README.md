@@ -112,3 +112,10 @@ Obligations:
 P.S: You could add your own logic to this project, if you want: just be creative here :)
 
 ### Note: Check your code using this [checklist](checklist.md) before pushing your solution.
+
+## Project structure
+
+- `app/config.py` contains the default knight configuration.
+- `app/domain/knight.py` defines the knight model and configuration types.
+- `app/domain/battle.py` contains the duel rules.
+- `app/main.py` exposes `battle()` and can be run with `python -m app.main`.
