@@ -89,12 +89,12 @@ KNIGHTS = {
 }
 
 
-def battle(knightsconfig: dict) -> dict:
+def battle(knights_config: dict) -> dict:
     # BATTLE PREPARATIONS:
 
     knights_collection = {}
-    for knight_key in knightsconfig:
-        knights_data = knightsconfig[knight_key]
+    for knight_key in knights_config:
+        knights_data = knights_config[knight_key]
         knight = Cavaleiro(
             knights_data["name"],
             knights_data["power"],
@@ -115,44 +115,21 @@ def battle(knightsconfig: dict) -> dict:
 
         knights_collection[knight_key] = knight
 
-    # -------------------------------------------------------------------------------
-    # BATTLE:
+    battle_calculation(
+        knights_collection["lancelot"],
+        knights_collection["mordred"]
+    )
 
-    # 1 Lancelot vs Mordred:
+    battle_calculation(
+        knights_collection["arthur"],
+        knights_collection["red_knight"]
+    )
+
     lancelot = knights_collection["lancelot"]
     mordred = knights_collection["mordred"]
-
-    damage = lancelot.power - mordred.protection
-    mordred.hp -= damage
-
-    damage = mordred.power - lancelot.protection
-    lancelot.hp -= damage
-
-    # check if someone fell in battle
-    if lancelot.hp <= 0:
-        lancelot.hp = 0
-
-    if mordred.hp <= 0:
-        mordred.hp = 0
-
-    # 2 Arthur vs Red Knight:
     arthur = knights_collection["arthur"]
     red_knight = knights_collection["red_knight"]
 
-    damage = arthur.power - red_knight.protection
-    red_knight.hp -= damage
-
-    damage = red_knight.power - arthur.protection
-    arthur.hp -= damage
-
-    # check if someone fell in battle
-    if arthur.hp <= 0:
-        arthur.hp = 0
-
-    if red_knight.hp <= 0:
-        red_knight.hp = 0
-
-    # Return battle results:
     return {
         lancelot.name: lancelot.hp,
         arthur.name: arthur.hp,
@@ -161,4 +138,16 @@ def battle(knightsconfig: dict) -> dict:
     }
 
 
-print(battle(KNIGHTS))
+def battle_calculation(knight1: Cavaleiro, knight2: Cavaleiro) -> None:
+
+    damage1 = knight1.power - knight2.protection
+    knight2.hp -= damage1
+
+    damage2 = knight2.power - knight1.protection
+    knight1.hp -= damage2
+
+    if knight1.hp <= 0:
+        knight1.hp = 0
+
+    if knight2.hp <= 0:
+        knight2.hp = 0
