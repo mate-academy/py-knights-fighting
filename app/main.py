@@ -4,8 +4,12 @@ from app.preparing.knight import Knight
 
 def battle(team: dict) -> dict:
     team = init.initialize(team)
-    Knight.fight(team["Lancelot"], team["Mordred"])
-    Knight.fight(team["Arthur"], team["Red Knight"])
+    pairs = [
+        ("Lancelot", "Mordred"),
+        ("Arthur", "Red Knight"),
+    ]
+    for first, second in pairs:
+        Knight.fight(team[first], team[second])
     return {
         "Lancelot": team["Lancelot"].hp,
         "Arthur": team["Arthur"].hp,
