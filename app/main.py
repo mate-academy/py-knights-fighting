@@ -1,9 +1,9 @@
-import app.preparing.initialize as init
+from app.preparing.initialize import initialize
 from app.preparing.knight import Knight
 
 
 def battle(team: dict) -> dict:
-    team = init.initialize(team)
+    team = initialize(team)
     pairs = [
         ("Lancelot", "Mordred"),
         ("Arthur", "Red Knight"),
@@ -11,8 +11,5 @@ def battle(team: dict) -> dict:
     for first, second in pairs:
         Knight.fight(team[first], team[second])
     return {
-        "Lancelot": team["Lancelot"].hp,
-        "Arthur": team["Arthur"].hp,
-        "Mordred": team["Mordred"].hp,
-        "Red Knight": team["Red Knight"].hp
+        knight.name: knight.hp for knight in team.values()
     }
