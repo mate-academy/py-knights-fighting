@@ -1,29 +1,26 @@
-from app.config.knights import KNIGHTS
 from app.services.battle import fight
 from app.services.preparation import prepare_knight
 
 
 def battle(knights_config: dict) -> dict:
-    # Prepare all knights
-    lancelot = prepare_knight(knights_config["lancelot"])
-    arthur = prepare_knight(knights_config["arthur"])
-    mordred = prepare_knight(knights_config["mordred"])
-    red_knight = prepare_knight(knights_config["red_knight"])
+    prepared_knights = {}
+
+    for knight_name, knight_data in knights_config.items():
+        prepared_knights[knight_name] = prepare_knight(knight_data)
 
     # Lancelot vs Mordred
-    fight(lancelot, mordred)
+    fight(
+        prepared_knights["lancelot"],
+        prepared_knights["mordred"],
+    )
 
     # Arthur vs Red Knight
-    fight(arthur, red_knight)
+    fight(
+        prepared_knights["arthur"],
+        prepared_knights["red_knight"],
+    )
 
-    # Return battle results
     return {
-        lancelot["name"]: lancelot["hp"],
-        arthur["name"]: arthur["hp"],
-        mordred["name"]: mordred["hp"],
-        red_knight["name"]: red_knight["hp"],
+        knight["name"]: knight["hp"]
+        for knight in prepared_knights.values()
     }
-
-
-if __name__ == "__main__":
-    print(battle(KNIGHTS))
