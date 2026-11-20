@@ -28,7 +28,6 @@ class Knight:
                 setattr(self, stat, current_value + value)
 
     def take_damage(self, damage: int) -> None:
-        if damage > 0:
-            self.hp -= damage
+        self.hp -= damage
         if self.hp <= 0:
             self.hp = 0
