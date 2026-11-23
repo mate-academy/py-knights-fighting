@@ -1,4 +1,3 @@
-from app.knights import KNIGHTS
 from app.preparation import prepare_knights
 
 
@@ -31,6 +30,3 @@ def battle(knights_config: dict) -> dict:
         knight["name"]: knight["hp"]
         for knight in knights_config.values()
     }
-
-
-print(battle(KNIGHTS))
