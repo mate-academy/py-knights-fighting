@@ -1,4 +1,5 @@
 from app.preparation import prepare_knights
+from app.knights import KNIGHTS
 
 
 def fight(knight1: dict, knight2: dict) -> None:
@@ -13,18 +14,11 @@ def fight(knight1: dict, knight2: dict) -> None:
     )
 
 
-def battle(knights_config: dict) -> dict:
+def battle(knights_config: dict = KNIGHTS) -> dict:
     prepare_knights(knights_config)
 
-    fight(
-        knights_config["lancelot"],
-        knights_config["mordred"]
-    )
-
-    fight(
-        knights_config["arthur"],
-        knights_config["red_knight"]
-    )
+    fight(knights_config["lancelot"], knights_config["mordred"])
+    fight(knights_config["arthur"], knights_config["red_knight"])
 
     return {
         knight["name"]: knight["hp"]
