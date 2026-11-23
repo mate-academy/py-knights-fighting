@@ -91,7 +91,7 @@ KNIGHTS = {
 }
 
 
-def make_knight(config):
+def make_knight(config: dict) -> Knight:
     armour = [Armour(a["part"], a["protection"]) for a in config["armour"]]
     weapon = Weapon(config["weapon"]["name"], config["weapon"]["power"])
     potion = None
@@ -107,7 +107,7 @@ def make_knight(config):
     )
 
 
-def battle(knights_config):
+def battle(knights_config: dict) -> dict:
     lancelot = make_knight(knights_config["lancelot"])
     arthur = make_knight(knights_config["arthur"])
     mordred = make_knight(knights_config["mordred"])
