@@ -108,19 +108,16 @@ def make_knight(config: dict) -> Knight:
 
 
 def battle(knights_config: dict) -> dict:
-    lancelot = make_knight(knights_config["lancelot"])
-    arthur = make_knight(knights_config["arthur"])
-    mordred = make_knight(knights_config["mordred"])
-    red_knight = make_knight(knights_config["red_knight"])
-
-    lancelot.fight(mordred)
-    arthur.fight(red_knight)
-
-    return {
-        knight.name: knight.total_hp
-        for knight in (lancelot, arthur, mordred, red_knight)
+    knights = {
+        key: make_knight(config)
+        for key, config in knights_config.items()
     }
 
+    pairs = [("lancelot", "mordred"), ("arthur", "red_knight")]
+    for attacker, opponent in pairs:
+        knights[attacker].fight(knights[opponent])
 
-if __name__ == "__main__":
-    print(battle(KNIGHTS))
+    return {knight.name: knight.total_hp for knight in knights.values()}
+
+
+print(battle(KNIGHTS))
