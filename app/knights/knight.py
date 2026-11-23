@@ -37,7 +37,7 @@ class Knight:
             bonus = self.potion.effect.get("hp", 0)
         return int(self.hp + bonus)
 
-    def calculate_total_armour(self):
+    def calculate_total_armour(self) -> int:
         bonus_armour = 0
         if self.armour:
             for armour_ in self.armour:
@@ -47,7 +47,7 @@ class Knight:
         return int(bonus_armour)
 
     def fight(self, opponent: "Knight") -> None:
-        damage_to_opponent = max(0, self.total_power - opponent.total_armour)
-        damage_to_self = max(0, opponent.total_power - self.total_armour)
+        damage_to_opponent = self.total_power - opponent.total_armour
+        damage_to_self = opponent.total_power - self.total_armour
         self.total_hp = max(0, self.total_hp - damage_to_self)
         opponent.total_hp = max(0, opponent.total_hp - damage_to_opponent)
