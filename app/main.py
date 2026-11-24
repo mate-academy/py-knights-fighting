@@ -23,7 +23,7 @@ def create_knight(data: dict) -> Knight:
     )
 
 
-def battle(knights_config):
+def battle(knights_config: dict) -> dict:
     lancelot = create_knight(knights_config["lancelot"])
     mordred = create_knight(knights_config["mordred"])
     arthur = create_knight(knights_config["arthur"])
