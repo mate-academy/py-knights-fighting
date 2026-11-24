@@ -104,6 +104,3 @@ def fight(knight1: Knight, knight2: Knight) -> None:
     knight2.prepare_to_battle()
     knight1.get_damage(knight2.power)
     knight2.get_damage(knight1.power)
-
-
-print(battle(KNIGHTS))
