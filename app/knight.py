@@ -29,6 +29,8 @@ class Knight:
         if self.potion:
             self.battle_hp += self.potion["effect"].get("hp", 0)
 
+        self.battle_protection = 0
+
         for armour_part in self.armour:
             self.battle_protection += armour_part["protection"]
         if self.potion:

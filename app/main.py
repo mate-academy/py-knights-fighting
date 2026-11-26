@@ -2,9 +2,9 @@ from app.knight import Knight
 
 
 def battle(all_targets: dict) -> dict:
-    knight_list = []
+    knights  = {}
     for knight in all_targets.values():
-        knight_list.append(
+        knights[knight["name"]] = (
             Knight(
                 knight["name"],
                 knight["power"],
@@ -14,13 +14,13 @@ def battle(all_targets: dict) -> dict:
                 knight["potion"]
             )
         )
-    fight(knight_list[0], knight_list[2])
-    fight(knight_list[1], knight_list[3])
+    fight(knights["Lancelot"], knights["Mordred"])
+    fight(knights["Arthur"], knights["Red Knight"])
     return {
-        knight_list[0].name : knight_list[0].hp,
-        knight_list[1].name : knight_list[1].hp,
-        knight_list[2].name : knight_list[2].hp,
-        knight_list[3].name : knight_list[3].hp,
+        knights["Lancelot"].name : knights["Lancelot"].hp,
+        knights["Arthur"].name : knights["Arthur"].hp,
+        knights["Mordred"].name :  knights["Mordred"].hp,
+        knights["Red Knight"].name : knights["Red Knight"].hp,
     }
 
 
