@@ -2,7 +2,7 @@ from app.knight import Knight
 
 
 def battle(all_targets: dict) -> dict:
-    knights  = {}
+    knights = {}
     for knight in all_targets.values():
         knights[knight["name"]] = (
             Knight(
@@ -19,7 +19,7 @@ def battle(all_targets: dict) -> dict:
     return {
         knights["Lancelot"].name : knights["Lancelot"].hp,
         knights["Arthur"].name : knights["Arthur"].hp,
-        knights["Mordred"].name :  knights["Mordred"].hp,
+        knights["Mordred"].name : knights["Mordred"].hp,
         knights["Red Knight"].name : knights["Red Knight"].hp,
     }
 
