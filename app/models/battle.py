@@ -3,7 +3,6 @@ from app.models.knight import Knight
 
 
 def fight(knight1: Knight, knight2: Knight) -> None:
-    # Зберігаємо силу до бою
     power1 = knight1.power
     power2 = knight2.power
 
@@ -12,20 +11,18 @@ def fight(knight1: Knight, knight2: Knight) -> None:
 
 
 def battle(knights_config: dict) -> Dict[str, int]:
-    # Створюємо екземпляри лицарів
-    lancelot = Knight(knights_config["lancelot"])
-    arthur = Knight(knights_config["arthur"])
-    mordred = Knight(knights_config["mordred"])
-    red_knight = Knight(knights_config["red_knight"])
+    # 1. Створюємо всіх лицарів через цикл (без дублювання)
+    knights = {
+        key: Knight(config)
+        for key, config in knights_config.items()
+    }
 
-    # Проводимо бої
-    fight(lancelot, mordred)
-    fight(arthur, red_knight)
+    # 2. Проводимо бої, звертаючись до лицарів за їхніми ключами
+    fight(knights["lancelot"], knights["mordred"])
+    fight(knights["arthur"], knights["red_knight"])
 
-    # Повертаємо результат
+    # 3. Повертаємо результат
     return {
-        lancelot.name: lancelot.hp,
-        arthur.name: arthur.hp,
-        mordred.name: mordred.hp,
-        red_knight.name: red_knight.hp,
+        knight.name: knight.hp
+        for knight in knights.values()
     }
