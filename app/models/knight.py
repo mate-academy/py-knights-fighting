@@ -9,8 +9,6 @@ class Knight:
         self.armour: List[Dict[str, Any]] = data.get("armour", [])
         self.weapon: Dict[str, Any] = data["weapon"]
         self.potion: Optional[Dict[str, Any]] = data.get("potion")
-
-        # Підготовка до бою
         self.hp: int = self.base_hp
         self.power: int = self.base_power
         self.protection: int = 0
